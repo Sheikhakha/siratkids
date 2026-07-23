@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Outer Ring Background -->
+  <circle cx="250" cy="250" r="230" fill="#F0F7FF" stroke="#1A365D" stroke-width="8" />
+  
+  <!-- Outer Decorative Ring -->
+  <circle cx="250" cy="250" r="215" fill="none" stroke="#0284C7" stroke-width="3" stroke-dasharray="8,8" />
+
+  <!-- Dome / Arch Outline -->
+  <path d="M 130 310 C 130 170, 250 120, 250 120 C 250 120, 370 170, 370 310 Z" 
+        fill="none" stroke="#1A365D" stroke-width="6" stroke-linecap="round" />
+
+  <!-- Luminous White & Sky Blue Path / Sirat -->
+  <path d="M 210 310 L 290 310 L 262 200 Q 250 190 238 200 Z" fill="url(#bluePathGradient)" />
+  
+  <!-- Crescent & Star on Top -->
+  <path d="M 245 90 A 12 12 0 1 0 258 105 A 10 10 0 1 1 245 90 Z" fill="#0284C7" />
+  <polygon points="258,88 260,93 265,93 261,96 262,101 258,98 254,101 255,96 251,93 256,93" fill="#0284C7" />
+
+  <!-- Quran Verse (Surah 1:6) Curved Text Path -->
+  <path id="versePath" d="M 120 280 A 140 140 0 0 1 380 280" fill="none" />
+  <text font-family="'Traditional Arabic', 'Amiri', 'Scheherazade New', serif" font-size="22" font-weight="bold" fill="#1A365D">
+    <textPath href="#versePath" startOffset="50%" text-anchor="middle">
+      اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ
+    </textPath>
+  </text>
+
+  <!-- Logo Title: SiratKids -->
+  <text x="250" y="375" font-family="'Nunito', 'Poppins', sans-serif" font-size="42" font-weight="900" fill="#1A365D" text-anchor="middle" letter-spacing="1">
+    Sirat<tspan fill="#0284C7">Kids</tspan>
+  </text>
+
+  <!-- Arabic Name Subtitle -->
+  <text x="250" y="415" font-family="'Amiri', 'Traditional Arabic', serif" font-size="26" font-weight="bold" fill="#0284C7" text-anchor="middle">
+    صِرَاط كِيدْز
+  </text>
+
+  <!-- Blue & White Gradients -->
+  <defs>
+    <linearGradient id="bluePathGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+</svg>

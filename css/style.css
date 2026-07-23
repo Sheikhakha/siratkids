@@ -1,0 +1,517 @@
+/* ============================================
+   SiratKids — Main Stylesheet
+   Gulzar for Arabic, Nunito for English
+   ============================================ */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #4f9cf7;
+    --primary-dark: #3a7bd5;
+    --secondary: #f7b955;
+    --bg-light: #f0f9ff;
+    --bg-white: #ffffff;
+    --text-dark: #1a202c;
+    --text-medium: #4a5568;
+    --text-light: #a0aec0;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 28px;
+    --font-en: 'Nunito', sans-serif;
+    --font-ar: 'Noto Naskh Arabic', serif;
+    --transition: 0.3s ease;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-en);
+    color: var(--text-dark);
+    background: var(--bg-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-sm);
+    z-index: 1000;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.nav-logo-img {
+    height: 40px;
+    width: auto;
+}
+
+.nav-brand {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    letter-spacing: 0.5px;
+}
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-medium);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color var(--transition);
+}
+
+.nav-links a:hover { color: var(--primary); }
+
+/* ---------- Hero ---------- */
+.hero {
+    position: relative;
+    padding: 140px 32px 100px;
+    text-align: center;
+    background: linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative; z-index: 2;
+    max-width: 720px; margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-quran {
+    font-family: var(--font-ar);
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-bottom: 24px;
+    line-height: 1.8;
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    line-height: 1.15;
+    margin-bottom: 16px;
+}
+
+.hero-sub-en {
+    font-size: 1.15rem;
+    color: var(--text-medium);
+    margin-bottom: 4px;
+}
+
+.hero-sub-ar {
+    font-family: var(--font-ar);
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    margin-bottom: 28px;
+}
+
+.hero-cta {
+    display: inline-block;
+    padding: 14px 36px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    border-radius: 50px;
+    transition: all var(--transition);
+    box-shadow: 0 4px 14px rgba(79,156,247,0.35);
+}
+
+.hero-cta:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79,156,247,0.45);
+}
+
+.hero-wave {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;
+}
+
+.hero-wave svg { display: block; width: 100%; height: auto; }
+
+/* ---------- Tracks Section ---------- */
+.tracks-section {
+    padding: 64px 40px;
+    background: var(--bg-light);
+}
+
+.tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.track-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 28px;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: all var(--transition);
+}
+
+.track-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+.track-tawheed {
+    background: linear-gradient(135deg, #e8f4ff, #dbeafe);
+    border: 2px solid #bfdbfe;
+}
+
+.track-hadith {
+    background: linear-gradient(135deg, #fef3e2, #fde68a);
+    border: 2px solid #fcd34d;
+}
+
+.track-adhkar {
+    background: linear-gradient(135deg, #ecfdf5, #bbf7d0);
+    border: 2px solid #86efac;
+}
+
+.track-icon { font-size: 3rem; margin-bottom: 12px; }
+
+.track-name {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.track-name-ar {
+    font-family: var(--font-ar);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    margin-bottom: 12px;
+}
+
+.track-desc {
+    font-size: 0.95rem;
+    color: var(--text-medium);
+    line-height: 1.5;
+}
+
+.coming-soon { opacity: 0.65; cursor: default; }
+.coming-soon:hover { transform: none; box-shadow: none; }
+
+/* ---------- Curriculum Section ---------- */
+.curriculum-section {
+    padding: 64px 40px;
+    background: var(--bg-white);
+}
+
+.curriculum-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.curriculum-icon { font-size: 2rem; }
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+.section-title .ar {
+    display: block;
+    font-family: var(--font-ar);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    margin-top: 4px;
+}
+
+.unit-card {
+    max-width: 900px;
+    margin: 0 auto 36px;
+    background: var(--bg-white);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #e2e8f0;
+}
+
+.unit-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.unit-number { color: var(--primary); margin-right: 4px; }
+
+.unit-title .ar {
+    font-family: var(--font-ar);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.lessons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: all var(--transition);
+    border: 2px solid transparent;
+}
+
+.lesson-item:hover {
+    background: #f0f9ff;
+    border-color: var(--primary);
+    transform: translateX(4px);
+}
+
+.lesson-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    font-weight: 800;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.lesson-info { flex: 1; }
+
+.lesson-name {
+    display: block;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 2px;
+}
+
+.lesson-name.ar {
+    font-family: var(--font-ar);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    margin-bottom: 0;
+}
+
+.lesson-concept {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+.lesson-arrow {
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: transform var(--transition);
+}
+
+.lesson-item:hover .lesson-arrow { transform: translateX(4px); }
+
+/* ---------- Footer ---------- */
+.footer {
+    padding: 32px 40px;
+    text-align: center;
+    background: var(--text-dark);
+    color: #718096;
+    font-size: 0.85rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .navbar { padding: 10px 20px; }
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 0.85rem; }
+    .hero { padding: 120px 20px 80px; }
+    .hero-quran { font-size: 2rem; }
+    .hero-title { font-size: 1.9rem; }
+    .hero-sub-ar { font-size: 1.4rem; }
+    .tracks-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .curriculum-section { padding: 48px 20px; }
+    .unit-card { padding: 20px 16px; }
+    .lesson-item { padding: 12px 14px; gap: 12px; }
+    .lesson-concept { display: none; }
+}
+
+@media (max-width: 480px) {
+    .hero-title { font-size: 1.6rem; }
+    .hero-quran { font-size: 1.6rem; }
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content { animation: fadeInUp 0.8s ease-out; }
+
+.track-card { animation: fadeInUp 0.6s ease-out backwards; }
+.track-card:nth-child(1) { animation-delay: 0.1s; }
+.track-card:nth-child(2) { animation-delay: 0.2s; }
+.track-card:nth-child(3) { animation-delay: 0.3s; }
+
+.unit-card { animation: fadeInUp 0.5s ease-out backwards; }
+
+/* ---------- Lesson Pages ---------- */
+.lesson-hero {
+    padding: 100px 32px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+}
+
+.lesson-hero-inner { max-width: 700px; margin: 0 auto; }
+
+.lesson-unit {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 8px;
+}
+
+.lesson-title { margin-bottom: 12px; }
+
+.lesson-title .en {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    display: block;
+}
+
+.lesson-title .ar {
+    font-family: var(--font-ar);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    display: block;
+    margin-top: 4px;
+    line-height: 1.6;
+}
+
+.lesson-concept-block .en {
+    font-size: 1rem;
+    color: var(--text-medium);
+    display: block;
+}
+
+.lesson-concept-block .ar {
+    font-family: var(--font-ar);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    display: block;
+}
+
+.lesson-main {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+}
+
+.lesson-body { line-height: 1.8; font-size: 1.05rem; }
+
+.lesson-body.ar {
+    font-family: var(--font-ar);
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 2;
+}
+
+.lesson-body.ar h3 {
+    font-family: var(--font-ar);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.lesson-body h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin: 24px 0 8px;
+}
+
+.lesson-body p { margin-bottom: 12px; }
+
+.lesson-highlight {
+    margin-top: 28px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #e8f4ff, #dbeafe);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-size: 1.05rem;
+}
+
+.lesson-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 2px solid #e2e8f0;
+}
+
+.lesson-nav-prev,
+.lesson-nav-next,
+.lesson-nav-index {
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.lesson-nav-prev:hover,
+.lesson-nav-next:hover { text-decoration: underline; }
+
+.lesson-nav-index { margin: 0 16px; }
+
+.footer-logo-img {
+    height: 60px;
+    width: auto;
+    margin-bottom: 12px;
+}
