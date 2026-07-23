@@ -1,6 +1,6 @@
 /* ============================================
    SiratKids — Main Stylesheet
-   Gulzar for Arabic, Nunito for English
+   Noto Naskh Arabic for Arabic, Nunito for English
    ============================================ */
 
 *, *::before, *::after {
@@ -162,11 +162,17 @@ body {
 }
 
 .tracks-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 28px;
     max-width: 1100px;
     margin: 0 auto;
+}
+
+.track-card {
+    width: calc(33.333% - 19px);
+    min-width: 280px;
 }
 
 .track-card {
@@ -194,6 +200,16 @@ body {
 .track-hadith {
     background: linear-gradient(135deg, #fef3e2, #fde68a);
     border: 2px solid #fcd34d;
+}
+
+.track-manners {
+    background: linear-gradient(135deg, #fdf2f8, #fbcfe8);
+    border: 2px solid #f9a8d4;
+}
+
+.track-seerah {
+    background: linear-gradient(135deg, #f5f3ff, #ddd6fe);
+    border: 2px solid #c4b5fd;
 }
 
 .track-adhkar {
@@ -534,7 +550,7 @@ body {
 }
 
 .verse-arabic {
-    font-family: 'Noto Naskh Arabic', serif;
+    font-family: var(--font-ar);
     font-size: 1.5rem;
     line-height: 2.2;
     color: #1e293b;
