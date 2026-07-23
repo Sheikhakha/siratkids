@@ -1,5 +1,6 @@
 /* SIRATKIDS — Main JavaScript */
 document.addEventListener('DOMContentLoaded', function () {
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
             var target = document.querySelector(this.getAttribute('href'));
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Navbar shadow
     var navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', function () {
         navbar.style.boxShadow = window.scrollY > 50
@@ -44,8 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
     toggles.forEach(function (btn) {
         var key = btn.getAttribute('data-toggle');
         var cls = 'no-' + key;
-
-        // Default: translation=on, tamil=off, transliteration=off
         var defaultOn = (key === 'translation');
         var saved = localStorage.getItem('toggle-' + key);
         var isOn;
@@ -57,12 +57,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!isOn) {
             document.body.classList.add(cls);
-            btn.classList.remove('on');
-            btn.querySelector('.toggle-label').textContent = btn.getAttribute('data-off');
-        } else {
-            btn.classList.add('on');
-            btn.querySelector('.toggle-label').textContent = btn.getAttribute('data-on');
         }
+        btn.classList.toggle('on', isOn);
+        btn.querySelector('.toggle-label').textContent = isOn ? btn.getAttribute('data-on') : btn.getAttribute('data-off');
 
         btn.addEventListener('click', function () {
             isOn = !isOn;
@@ -73,58 +70,111 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Font size controls — Arabic and English separate
+    // Font size controls — direct DOM approach
+    var AR_BASE = {
+        title: 2.2,
+        body: 1.15,
+        h3: 1.4,
+        hadith: 1.2
+    };
+    var EN_BASE = {
+        title: 2.0,
+        body: 1.0,
+        h3: 1.15,
+        hadith: 1.1
+    };
+
+    var arScale = parseFloat(localStorage.getItem('ar-font-scale')) || 1;
+    var enScale = parseFloat(localStorage.getItem('en-font-scale')) || 1;
+
     var arLabel = document.getElementById('ar-font-size-label');
     var enLabel = document.getElementById('en-font-size-label');
+    if (arLabel) arLabel.textContent = Math.round(arScale * 100) + '%';
+    if (enLabel) enLabel.textContent = Math.round(enScale * 100) + '%';
 
-    // Load saved sizes
-    var savedAr = localStorage.getItem('ar-font-size');
-    var savedEn = localStorage.getItem('en-font-size');
-    if (savedAr) {
-        document.documentElement.style.setProperty('--ar-font-scale', savedAr);
-        if (arLabel) arLabel.textContent = Math.round(parseFloat(savedAr) * 100) + '%';
+    function applyArabicScale(scale) {
+        document.querySelectorAll('.lesson-title .ar').forEach(function (el) {
+            el.style.fontSize = (AR_BASE.title * scale) + 'rem';
+        });
+        document.querySelectorAll('.lesson-pair .ar p').forEach(function (el) {
+            el.style.fontSize = (AR_BASE.body * scale) + 'rem';
+        });
+        document.querySelectorAll('.lesson-pair .ar h3').forEach(function (el) {
+            el.style.fontSize = (AR_BASE.h3 * scale) + 'rem';
+        });
+        document.querySelectorAll('.hadith-card .ar .hadith-text').forEach(function (el) {
+            el.style.fontSize = (AR_BASE.hadith * scale) + 'rem';
+        });
+        document.querySelectorAll('.verse-arabic').forEach(function (el) {
+            el.style.fontSize = (1.5 * scale) + 'rem';
+        });
+        document.querySelectorAll('.hero-sub-ar').forEach(function (el) {
+            el.style.fontSize = (1.6 * scale) + 'rem';
+        });
+        document.querySelectorAll('.lesson-highlight.ar').forEach(function (el) {
+            el.style.fontSize = (1.05 * scale) + 'rem';
+        });
     }
-    if (savedEn) {
-        document.documentElement.style.setProperty('--en-font-scale', savedEn);
-        if (enLabel) enLabel.textContent = Math.round(parseFloat(savedEn) * 100) + '%';
+
+    function applyEnglishScale(scale) {
+        document.querySelectorAll('.lesson-title .en').forEach(function (el) {
+            el.style.fontSize = (EN_BASE.title * scale) + 'rem';
+        });
+        document.querySelectorAll('.lesson-pair .en p').forEach(function (el) {
+            el.style.fontSize = (EN_BASE.body * scale) + 'rem';
+        });
+        document.querySelectorAll('.lesson-pair .en h3').forEach(function (el) {
+            el.style.fontSize = (EN_BASE.h3 * scale) + 'rem';
+        });
+        document.querySelectorAll('.hadith-card .en .hadith-text').forEach(function (el) {
+            el.style.fontSize = (EN_BASE.hadith * scale) + 'rem';
+        });
+        document.querySelectorAll('.lesson-highlight.en').forEach(function (el) {
+            el.style.fontSize = (1.05 * scale) + 'rem';
+        });
+        document.querySelectorAll('.track-desc').forEach(function (el) {
+            el.style.fontSize = (0.95 * scale) + 'rem';
+        });
     }
+
+    applyArabicScale(arScale);
+    applyEnglishScale(enScale);
 
     var arUp = document.getElementById('ar-font-size-up');
     var arDown = document.getElementById('ar-font-size-down');
     var enUp = document.getElementById('en-font-size-up');
     var enDown = document.getElementById('en-font-size-down');
 
-    if (arUp && arDown && arLabel) {
+    if (arUp) {
         arUp.addEventListener('click', function () {
-            var current = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ar-font-scale')) || 1;
-            var next = Math.min(current + 0.1, 1.8);
-            document.documentElement.style.setProperty('--ar-font-scale', next);
-            arLabel.textContent = Math.round(next * 100) + '%';
-            localStorage.setItem('ar-font-size', next);
-        });
-        arDown.addEventListener('click', function () {
-            var current = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ar-font-scale')) || 1;
-            var next = Math.max(current - 0.1, 0.7);
-            document.documentElement.style.setProperty('--ar-font-scale', next);
-            arLabel.textContent = Math.round(next * 100) + '%';
-            localStorage.setItem('ar-font-size', next);
+            arScale = Math.min(arScale + 0.05, 1.5);
+            applyArabicScale(arScale);
+            arLabel.textContent = Math.round(arScale * 100) + '%';
+            localStorage.setItem('ar-font-scale', arScale);
         });
     }
-
-    if (enUp && enDown && enLabel) {
-        enUp.addEventListener('click', function () {
-            var current = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--en-font-scale')) || 1;
-            var next = Math.min(current + 0.1, 1.8);
-            document.documentElement.style.setProperty('--en-font-scale', next);
-            enLabel.textContent = Math.round(next * 100) + '%';
-            localStorage.setItem('en-font-size', next);
+    if (arDown) {
+        arDown.addEventListener('click', function () {
+            arScale = Math.max(arScale - 0.05, 0.7);
+            applyArabicScale(arScale);
+            arLabel.textContent = Math.round(arScale * 100) + '%';
+            localStorage.setItem('ar-font-scale', arScale);
         });
+    }
+    if (enUp) {
+        enUp.addEventListener('click', function () {
+            enScale = Math.min(enScale + 0.05, 1.5);
+            applyEnglishScale(enScale);
+            enLabel.textContent = Math.round(enScale * 100) + '%';
+            localStorage.setItem('en-font-size', enScale);
+        });
+    }
+    if (enDown) {
         enDown.addEventListener('click', function () {
-            var current = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--en-font-scale')) || 1;
-            var next = Math.max(current - 0.1, 0.7);
-            document.documentElement.style.setProperty('--en-font-scale', next);
-            enLabel.textContent = Math.round(next * 100) + '%';
-            localStorage.setItem('en-font-size', next);
+            enScale = Math.max(enScale - 0.05, 0.7);
+            applyEnglishScale(enScale);
+            enLabel.textContent = Math.round(enScale * 100) + '%';
+            localStorage.setItem('en-font-size', enScale);
         });
     }
 
