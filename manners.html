@@ -25,10 +25,18 @@
                 </select>
             </div>
             <div class="font-size-controls">
-                <button class="font-size-btn" id="font-size-down">A-</button>
-                <span class="font-size-label" id="font-size-label">100%</span>
-                <button class="font-size-btn" id="font-size-up">A+</button>
-            </div>
+                <div class="font-size-group">
+                    <span class="font-size-group-label">EN</span>
+                    <button class="font-size-btn" id="en-font-size-down">A-</button>
+                    <span class="font-size-label" id="en-font-size-label">100%</span>
+                    <button class="font-size-btn" id="en-font-size-up">A+</button>
+                </div>
+                <div class="font-size-group">
+                    <span class="font-size-group-label">AR</span>
+                    <button class="font-size-btn" id="ar-font-size-down">A-</button>
+                    <span class="font-size-label" id="ar-font-size-label">100%</span>
+                    <button class="font-size-btn" id="ar-font-size-up">A+</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -60,14 +68,14 @@
 
     <main class="lesson-main">
         <div class="toggle-bar">
-            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
-            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil ON</span></button>
-            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration ON</span></button>
+            <button class="translation-toggle on" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
         </div>
 
         <div class="hadith-card" id="m1">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">١.</span> <p class="hadith-text">غَسْلُ الْيَدَيْنِ قَبْلَ الطَّعَامِ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">١.</span> غَسْلُ الْيَدَيْنِ قَبْلَ الطَّعَامِ</p></div>
                 <div class="en transliteration"><p>Ghaslul yadayni qablat-ta'am</p></div>
                 <div class="en translation"><p>Washing both hands before eating</p></div>
                 <div class="en tamil"><p>சாப்பிடுவதற்கு முன் இரண்டு கைகளையும் கழுவுதல்</p></div>
@@ -76,7 +84,7 @@
 
         <div class="hadith-card" id="m2">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">٢.</span> <p class="hadith-text">قَوْلُ "بِسْمِ اللهِ" قَبْلَ الْأَكْلِ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٢.</span> قَوْلُ "بِسْمِ اللهِ" قَبْلَ الْأَكْلِ</p></div>
                 <div class="en transliteration"><p>Qawlu "Bismillah" qablal-akl</p></div>
                 <div class="en translation"><p>Saying "Bismillah" (In the name of Allah) before eating</p></div>
                 <div class="en tamil"><p>சாப்பிடுவதற்கு முன் "பிஸ்மில்லாஹ்" என்று கூறுதல்</p></div>
@@ -85,7 +93,7 @@
 
         <div class="hadith-card" id="m3">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">٣.</span> <p class="hadith-text">الْأَكْلُ بِالْيَمِينِ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٣.</span> الْأَكْلُ بِالْيَمِينِ</p></div>
                 <div class="en transliteration"><p>Al-aklu bil-yameen</p></div>
                 <div class="en translation"><p>Eating with the right hand</p></div>
                 <div class="en tamil"><p>வலது கையால் சாப்பிடுதல்</p></div>
@@ -94,7 +102,7 @@
 
         <div class="hadith-card" id="m4">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">٤.</span> <p class="hadith-text">الْأَكْلُ عَلَى السُّفْرَةِ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٤.</span> الْأَكْلُ عَلَى السُّفْرَةِ</p></div>
                 <div class="en transliteration"><p>Al-aklu 'alas-sufrah</p></div>
                 <div class="en translation"><p>Eating on a dining mat / cloth spread on the floor</p></div>
                 <div class="en tamil"><p>உணவுக் விரிப்பில் (சுஃப்ரா) அமர்ந்து சாப்பிடுதல்</p></div>
@@ -103,7 +111,7 @@
 
         <div class="hadith-card" id="m5">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">٥.</span> <p class="hadith-text">الْجُلُوسُ تَوَاضُعًا بِغَيْرِ إِتِّكَاءٍ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٥.</span> الْجُلُوسُ تَوَاضُعًا بِغَيْرِ إِتِّكَاءٍ</p></div>
                 <div class="en transliteration"><p>Al-juloosu tawadu'an bi-ghayri ittika'</p></div>
                 <div class="en translation"><p>Sitting humbly without leaning</p></div>
                 <div class="en tamil"><p>சாய்ந்து கொள்ளாமல் அடக்கத்தோடு/பணிவோடு அமருதல்</p></div>

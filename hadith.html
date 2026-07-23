@@ -25,10 +25,18 @@
                 </select>
             </div>
             <div class="font-size-controls">
-                <button class="font-size-btn" id="font-size-down">A-</button>
-                <span class="font-size-label" id="font-size-label">100%</span>
-                <button class="font-size-btn" id="font-size-up">A+</button>
-            </div>
+                <div class="font-size-group">
+                    <span class="font-size-group-label">EN</span>
+                    <button class="font-size-btn" id="en-font-size-down">A-</button>
+                    <span class="font-size-label" id="en-font-size-label">100%</span>
+                    <button class="font-size-btn" id="en-font-size-up">A+</button>
+                </div>
+                <div class="font-size-group">
+                    <span class="font-size-group-label">AR</span>
+                    <button class="font-size-btn" id="ar-font-size-down">A-</button>
+                    <span class="font-size-label" id="ar-font-size-label">100%</span>
+                    <button class="font-size-btn" id="ar-font-size-up">A+</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -63,70 +71,70 @@
 
     <main class="lesson-main">
         <div class="toggle-bar">
-            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
-            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil ON</span></button>
-            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration ON</span></button>
+            <button class="translation-toggle on" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
         </div>
 
         <div class="hadith-card" id="h1">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">١.</span> <p class="hadith-text">الدِّينُ يُسْرٌ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">١.</span> الدِّينُ يُسْرٌ</p></div>
                 <div class="en translation"><p class="hadith-text">Religion is ease.</p></div>
             </div>
         </div>
 
         <div class="hadith-card" id="h2">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">٢.</span> <p class="hadith-text">مِفْتَاحُ الْجَنَّةِ الصَّلَاةُ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٢.</span> مِفْتَاحُ الْجَنَّةِ الصَّلَاةُ</p></div>
                 <div class="en translation"><p class="hadith-text">The key to Paradise is prayer.</p></div>
             </div>
         </div>
 
         <div class="hadith-card" id="h3">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">٣.</span> <p class="hadith-text">مَنْ غَشَّ فَلَيْسَ مِنَّا</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٣.</span> مَنْ غَشَّ فَلَيْسَ مِنَّا</p></div>
                 <div class="en translation"><p class="hadith-text">Whoever cheats is not one of us.</p></div>
             </div>
         </div>
 
         <div class="hadith-card" id="h4">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">٤.</span> <p class="hadith-text">إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٤.</span> إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ</p></div>
                 <div class="en translation"><p class="hadith-text">Actions are judged by intentions.</p></div>
             </div>
         </div>
 
         <div class="hadith-card" id="h5">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">٥.</span> <p class="hadith-text">السَّلَامُ قَبْلَ الْكَلَامِ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٥.</span> السَّلَامُ قَبْلَ الْكَلَامِ</p></div>
                 <div class="en translation"><p class="hadith-text">Greetings (peace) come before speech.</p></div>
             </div>
         </div>
 
         <div class="hadith-card" id="h6">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">٦.</span> <p class="hadith-text">عَلَيْكُمْ بِالصِّدْقِ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٦.</span> عَلَيْكُمْ بِالصِّدْقِ</p></div>
                 <div class="en translation"><p class="hadith-text">Hold fast to truthfulness.</p></div>
             </div>
         </div>
 
         <div class="hadith-card" id="h7">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">٧.</span> <p class="hadith-text">إِيَّاكُمْ وَ الْكِذْبَ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٧.</span> إِيَّاكُمْ وَ الْكِذْبَ</p></div>
                 <div class="en translation"><p class="hadith-text">Beware of lying.</p></div>
             </div>
         </div>
 
         <div class="hadith-card" id="h8">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">٨.</span> <p class="hadith-text">الْجَنَّةُ تَحْتَ أَقْدَامِ الْأُمَّهَاتِ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٨.</span> الْجَنَّةُ تَحْتَ أَقْدَامِ الْأُمَّهَاتِ</p></div>
                 <div class="en translation"><p class="hadith-text">Paradise lies under the feet of mothers.</p></div>
             </div>
         </div>
 
         <div class="hadith-card" id="h9">
             <div class="lesson-pair">
-                <div class="ar" dir="rtl"><span class="hadith-number">٩.</span> <p class="hadith-text">الْوَالِدُ أَوْسَطُ أَبْوَابِ الْجَنَّةِ</p></div>
+                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٩.</span> الْوَالِدُ أَوْسَطُ أَبْوَابِ الْجَنَّةِ</p></div>
                 <div class="en translation"><p class="hadith-text">A parent is the middle door of Paradise.</p></div>
             </div>
         </div>

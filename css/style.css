@@ -34,6 +34,8 @@
     --font-ar: 'Noto Naskh Arabic', serif;
     --font-ar-nastaleeq: 'Indopak Nastaleeq', 'Noto Naskh Arabic', serif;
     --transition: 0.3s ease;
+    --ar-font-scale: 1;
+    --en-font-scale: 1;
 }
 
 html { scroll-behavior: smooth; }
@@ -207,10 +209,24 @@ body {
 .font-size-controls {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 12px;
     margin-left: 8px;
     padding-left: 12px;
     border-left: 1px solid #e2e8f0;
+}
+
+.font-size-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.font-size-group-label {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .font-size-btn {
@@ -239,7 +255,7 @@ body {
     font-size: 0.75rem;
     color: var(--text-light);
     font-weight: 600;
-    min-width: 30px;
+    min-width: 28px;
     text-align: center;
 }
 
@@ -796,16 +812,7 @@ body {
     box-shadow: var(--shadow-md);
 }
 
-.hadith-number {
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--primary);
-    margin-left: 4px;
-}
 
-.font-nastaleeq .hadith-number {
-    font-family: var(--font-en);
-}
 
 .hadith-text {
     font-size: 1.4rem;
@@ -862,12 +869,26 @@ body {
 .lesson-body p { margin-bottom: 12px; }
 
 .lesson-pair .ar h3 {
-    font-size: 1.4rem;
+    font-size: calc(1.4rem * var(--ar-font-scale));
     font-weight: 700;
     color: var(--primary-dark);
     margin: 24px 0 10px;
     padding-bottom: 6px;
     border-bottom: 2px solid #e0e7ff;
+}
+
+.lesson-pair .ar h3 .ar-num {
+    font-family: 'Noto Naskh Arabic', serif;
+    color: var(--primary);
+}
+
+.lesson-main {
+    counter-reset: ar-heading;
+}
+
+.ar-num {
+    font-family: 'Noto Naskh Arabic', serif !important;
+    direction: rtl;
 }
 
 .lesson-pair .en h3 {
@@ -978,5 +999,65 @@ body {
     font-weight: 700;
     color: #0284c7;
     margin: 0;
+}
+
+/* Font size scaling — Arabic */
+.lesson-pair .ar,
+.lesson-title .ar,
+.lesson-concept-block .ar,
+.hero-sub-ar,
+.verse-arabic,
+.lesson-highlight.ar,
+.track-name-ar,
+.hadith-card .ar {
+    font-size: calc(1rem * var(--ar-font-scale));
+}
+
+.lesson-pair .ar h3 {
+    font-size: calc(1.4rem * var(--ar-font-scale));
+}
+
+.lesson-pair .ar p {
+    font-size: calc(1.15rem * var(--ar-font-scale));
+}
+
+.lesson-title .ar {
+    font-size: calc(2.2rem * var(--ar-font-scale));
+}
+
+.font-nastaleeq .lesson-pair .ar,
+.font-nastaleeq .lesson-title .ar,
+.font-nastaleeq .lesson-concept-block .ar {
+    font-size: calc(1.1rem * var(--ar-font-scale));
+}
+
+.font-nastaleeq .lesson-pair .ar h3 {
+    font-size: calc(1.5rem * var(--ar-font-scale));
+}
+
+.font-nastaleeq .lesson-title .ar {
+    font-size: calc(2.4rem * var(--ar-font-scale));
+}
+
+/* Font size scaling — English */
+.lesson-pair .en,
+.lesson-title .en,
+.lesson-concept-block .en,
+.track-desc,
+.lesson-highlight.en,
+.hadith-card .en {
+    font-size: calc(1rem * var(--en-font-scale));
+}
+
+.lesson-pair .en h3 {
+    font-size: calc(1.15rem * var(--en-font-scale));
+}
+
+.lesson-title .en {
+    font-size: calc(2rem * var(--en-font-scale));
+}
+
+.lesson-pair .en .hadith-text {
+    font-size: calc(1.1rem * var(--en-font-scale));
 }
 
