@@ -388,7 +388,8 @@ body {
     .hero-quran { font-size: 2rem; }
     .hero-title { font-size: 1.9rem; }
     .hero-sub-ar { font-size: 1.4rem; }
-    .tracks-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .tracks-grid { flex-direction: column; align-items: center; }
+    .track-card { width: 100%; max-width: 400px; }
     .curriculum-section { padding: 48px 20px; }
     .unit-card { padding: 20px 16px; }
     .lesson-item { padding: 12px 14px; gap: 12px; }
