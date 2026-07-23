@@ -875,17 +875,12 @@ body {
     border-bottom: 2px solid #e0e7ff;
 }
 
-.lesson-pair .ar h3 .ar-num {
-    font-family: 'Noto Naskh Arabic', serif;
-    color: var(--primary);
-}
-
-.lesson-main {
-    counter-reset: ar-heading;
-}
-
-.ar-num {
-    font-family: 'Noto Naskh Arabic', serif !important;
+.ar-num,
+.font-nastaleeq .ar-num,
+.font-nastaleeq .lesson-pair .ar .ar-num,
+.font-nastaleeq .lesson-pair .ar h3 .ar-num {
+    font-family: 'Noto Naskh Arabic', 'Traditional Arabic', 'Arabic Typesetting', 'Simplified Arabic', serif !important;
+    font-weight: 600;
     direction: rtl;
 }
 
