@@ -515,3 +515,44 @@ body {
     width: auto;
     margin-bottom: 12px;
 }
+
+.verse-section {
+    padding: 40px 20px;
+    background-color: #f0f9ff;
+    display: flex;
+    justify-content: center;
+}
+
+.verse-container {
+    max-width: 800px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border: 1px solid #e0f2fe;
+}
+
+.verse-arabic {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 1.5rem;
+    line-height: 2.2;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.verse-translation {
+    font-size: 1.05rem;
+    color: #334155;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.verse-reference {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0284c7;
+    margin: 0;
+}
+
