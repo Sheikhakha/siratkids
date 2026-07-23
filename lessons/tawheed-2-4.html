@@ -17,7 +17,19 @@
         </a>
         <div class="nav-links">
             <a href="../index.html">Home</a>
-            <a href="../index.html#tawheed-curriculum">Curriculum</a>
+            <div class="font-switcher">
+                <label class="font-switcher-label" for="arabic-font">Script:</label>
+                <select id="arabic-font">
+                    <option value="naskh">Noto Naskh</option>
+                    <option value="nastaleeq">Indopak Nastaleeq</option>
+                </select>
+            </div>
+            <div class="font-size-controls">
+                <button class="font-size-btn" id="font-size-down">A-</button>
+                <span class="font-size-label" id="font-size-label">100%</span>
+                <button class="font-size-btn" id="font-size-up">A+</button>
+            </div>
+            </div>
         </div>
     </nav>
 
@@ -25,40 +37,81 @@
         <div class="lesson-hero-inner">
             <p class="lesson-unit">Unit 2</p>
             <h1 class="lesson-title">
+                <span class="ar" dir="rtl">أُحِبُّ اللَّهَ رَبِّي</span>
                 <span class="en">I Love Allah My Lord</span>
-                <span class="ar" dir="rtl">أحب الله ربي</span>
             </h1>
             <p class="lesson-concept-block">
+                <span class="ar" dir="rtl">أَعْبُدُ اللَّهَ وَحْدَهُ دُونَ شُرَكَاءَ وَأُحِبُّهُ لِأَنَّنِي مُسْلِمٌ.</span>
                 <span class="en">I worship Allah alone without partners and love Him for making me a Muslim.</span>
-                <span class="ar" dir="rtl">أعبد الله وحده دون شركاء وأحبه لأنني مسلم.</span>
             </p>
         </div>
     </header>
 
+    <div class="lesson-layout">
+    <aside class="lesson-sidebar">
+        <div class="sidebar-title">Tawheed Lessons</div>
+        <div class="sidebar-unit">
+            <div class="sidebar-unit-label">Unit 1: Rububiyyah</div>
+            <a href="tawheed-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Three Principles</a>
+            <a href="tawheed-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Allah the Creator</a>
+            <a href="tawheed-1-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Allah My Creator</a>
+            <a href="tawheed-1-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Allah the Owner</a>
+            <a href="tawheed-1-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>Allah the Provider</a>
+        </div>
+        <div class="sidebar-unit">
+            <div class="sidebar-unit-label">Unit 2: Uloohiyyah</div>
+            <a href="tawheed-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Why Create Us?</a>
+            <a href="tawheed-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Word of Tawheed</a>
+            <a href="tawheed-2-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>I Am a Muslim</a>
+            <a href="tawheed-2-4.html" class="sidebar-lesson active"><span class="sidebar-lesson-num">4</span>I Love Allah</a>
+        </div>
+        <div class="sidebar-unit">
+            <div class="sidebar-unit-label">Unit 3: Islam</div>
+            <a href="tawheed-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>My Religion is Islam</a>
+            <a href="tawheed-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Two Testimonies</a>
+            <a href="tawheed-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Love the Prophet</a>
+            <a href="tawheed-3-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Love Companions</a>
+        </div>
+    </aside>
+
     <main class="lesson-main">
-        <div class="lesson-body en"><p>Loving Allah is the most beautiful feeling!</p>
-<h3>Why I Love Allah</h3>
-<p>Allah created me, gives me food and water, and takes care of me every single day. How can I not love Him?</p>
-<h3>How Do I Show My Love?</h3>
-<p>I show my love by praying, being kind, saying thank you (Alhamdulillah), and being honest.</p>
-<h3>Allah Loves Me Too</h3>
-<p>When we love Allah and try our best to obey Him, Allah loves us even more!</p>
-<div class='lesson-highlight'>Say with your heart: I love Allah, my Lord!</div></div>
-        <div class="lesson-body ar" dir="rtl"><p>حب الله أجمل شعور!</p>
-<h3>لماذا أحب الله</h3>
-<p>الله خلقني وأطعمني وسقاني ويرعاني كل يوم. كيف لا أحبه?</p>
-<h3>كيف أُظهر حبي؟</h3>
-<p>أُظهر حبي بالصلاة وباللطف وبالشكر (الحمد لله) وبالصدق.</p>
-<h3>الله يحبني أيضاً</h3>
-<p>عندما نحب الله ونحاول طاعته، يحبنا الله أكثر!</p>
-<div class='lesson-highlight'>قل بقلبك: أحب الله ربي!</div></div>
+                <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil ON</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration ON</span></button>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><p>حُبُّ اللَّهِ أَجْمَلُ شُعُورٍ!</p></div>
+            <div class="en translation"><p>Loving Allah is the most beautiful feeling!</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><h3>١. ?. لِمَاذَا أُحِبُّ اللَّهَ</h3><p>اللَّهُ خَلَقَنِي وَأَطْعَمَنِي وَسَقَانِي وَيَرْعَانِي كُلَّ يَوْمٍ. كَيْفَ لَا أُحِبُّهُ؟</p></div>
+            <div class="en translation"><h3>1. Why I Love Allah</h3><p>Allah created me, gives me food and water, and takes care of me every single day. How can I not love Him?</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><h3>٢. ?. كَيْفَ أُظْهِرُ حُبِّي؟</h3><p>أُظْهِرُ حُبِّي بِالصَّلَاةِ وَبِاللُّطْفِ وَبِالشُّكْرِ (الْحَمْدُ لِلَّهِ) وَبِالصِّدْقِ.</p></div>
+            <div class="en translation"><h3>2. How Do I Show My Love?</h3><p>I show my love by praying, being kind, saying thank you (Alhamdulillah), and being honest.</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><h3>٣. ?. اللَّهُ يُحِبُّنِي أَيْضًا</h3><p>عِنْدَمَا نُحِبُّ اللَّهَ وَنُحَاوِلُ طَاعَتَهُ، يُحِبُّنَا اللَّهُ أَكْثَرَ!</p></div>
+            <div class="en translation"><h3>3. Allah Loves Me Too</h3><p>When we love Allah and try our best to obey Him, Allah loves us even more!</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="lesson-highlight ar" dir="rtl">قُلْ بِقَلْبِكَ: أُحِبُّ اللَّهَ رَبِّي!</div>
+            <div class="lesson-highlight en translation">Say with your heart: I love Allah, my Lord!</div>
+        </div>
 
         <div class="lesson-nav">
             <a href="tawheed-2-3.html" class="lesson-nav-prev">&#8592; Previous</a>
-            <a href="../index.html#tawheed-curriculum" class="lesson-nav-index">Index</a>
             <a href="tawheed-3-1.html" class="lesson-nav-next">Next &#8594;</a>
         </div>
     </main>
+    </div>
 
     <footer class="footer">
         <p>&copy; 2026 SiratKids. All rights reserved.</p>

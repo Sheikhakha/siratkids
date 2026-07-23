@@ -17,7 +17,19 @@
         </a>
         <div class="nav-links">
             <a href="../index.html">Home</a>
-            <a href="../index.html#tawheed-curriculum">Curriculum</a>
+            <div class="font-switcher">
+                <label class="font-switcher-label" for="arabic-font">Script:</label>
+                <select id="arabic-font">
+                    <option value="naskh">Noto Naskh</option>
+                    <option value="nastaleeq">Indopak Nastaleeq</option>
+                </select>
+            </div>
+            <div class="font-size-controls">
+                <button class="font-size-btn" id="font-size-down">A-</button>
+                <span class="font-size-label" id="font-size-label">100%</span>
+                <button class="font-size-btn" id="font-size-up">A+</button>
+            </div>
+            </div>
         </div>
     </nav>
 
@@ -25,40 +37,81 @@
         <div class="lesson-hero-inner">
             <p class="lesson-unit">Unit 1</p>
             <h1 class="lesson-title">
+                <span class="ar" dir="rtl">اللَّهُ الرَّزَّاقُ</span>
                 <span class="en">Allah the Provider</span>
-                <span class="ar" dir="rtl">الله الرزاق</span>
             </h1>
             <p class="lesson-concept-block">
+                <span class="ar" dir="rtl">لَا رَزَّاقَ إِلَّا اللَّهُ. يَرْزُقُنَا بِالطَّعَامِ وَالشَّرَابِ وَيُرْزِقُ جَمِيعَ الْمَخْلُوقَاتِ.</span>
                 <span class="en">There is no provider except Allah. He provides us with food, drink, and sustains all creatures.</span>
-                <span class="ar" dir="rtl">لا رزاق إلا الله. يرزقنا بالطعام والشراب ويُرزق جميع المخلوقات.</span>
             </p>
         </div>
     </header>
 
+    <div class="lesson-layout">
+    <aside class="lesson-sidebar">
+        <div class="sidebar-title">Tawheed Lessons</div>
+        <div class="sidebar-unit">
+            <div class="sidebar-unit-label">Unit 1: Rububiyyah</div>
+            <a href="tawheed-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Three Principles</a>
+            <a href="tawheed-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Allah the Creator</a>
+            <a href="tawheed-1-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Allah My Creator</a>
+            <a href="tawheed-1-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Allah the Owner</a>
+            <a href="tawheed-1-5.html" class="sidebar-lesson active"><span class="sidebar-lesson-num">5</span>Allah the Provider</a>
+        </div>
+        <div class="sidebar-unit">
+            <div class="sidebar-unit-label">Unit 2: Uloohiyyah</div>
+            <a href="tawheed-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Why Create Us?</a>
+            <a href="tawheed-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Word of Tawheed</a>
+            <a href="tawheed-2-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>I Am a Muslim</a>
+            <a href="tawheed-2-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>I Love Allah</a>
+        </div>
+        <div class="sidebar-unit">
+            <div class="sidebar-unit-label">Unit 3: Islam</div>
+            <a href="tawheed-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>My Religion is Islam</a>
+            <a href="tawheed-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Two Testimonies</a>
+            <a href="tawheed-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Love the Prophet</a>
+            <a href="tawheed-3-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Love Companions</a>
+        </div>
+    </aside>
+
     <main class="lesson-main">
-        <div class="lesson-body en"><p>Allah provides for everyone and everything!</p>
-<h3>Allah Provides Food</h3>
-<p>Every time you eat a meal, remember &#8212; Allah sent that food to you. The fruits, the bread, the milk &#8212; all from Allah.</p>
-<h3>Allah Provides Water</h3>
-<p>Fresh, clean water comes from Allah. The rain falls by His command.</p>
-<h3>Allah Provides for All Creatures</h3>
-<p>Even the smallest ant and the biggest whale &#8212; Allah provides food for all of them.</p>
-<div class='lesson-highlight'>When you sit down to eat, say: Bismillah! Allah is the Provider.</div></div>
-        <div class="lesson-body ar" dir="rtl"><p>الله يرزق الجميع وكل شيء!</p>
-<h3>الله يرزقنا الطعام</h3>
-<p>في كل مرة تأكل فيها وجبة، تذكّر &#8212; الله أرسل لك ذلك الطعام.</p>
-<h3>الله يرزقنا الماء</h3>
-<p>الماء العذب النظيف من الله. المطر ينزل بأمره.</p>
-<h3>الله يرزق جميع المخلوقات</h3>
-<p>حتى النملة الصغيرة والحوت الكبير &#8212; الله يرزقها جميعاً.</p>
-<div class='lesson-highlight'>عندما تجلس للأكل، قل: بسم الله! الله هو الرزّاق.</div></div>
+                <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil ON</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration ON</span></button>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><p>اللَّهُ يَرْزُقُ الْجَمِيعَ وَكُلَّ شَيْءٍ!</p></div>
+            <div class="en translation"><p>Allah provides for everyone and everything!</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><h3>١. ?. اللَّهُ يَرْزُقُنَا الطَّعَامَ</h3><p>فِي كُلِّ مَرَّةٍ تَأْكُلُ فِيهَا وَجْبَةً، تَذَكَّرْ &#8212; اللَّهُ أَرْسَلَ لَكَ ذَلِكَ الطَّعَامَ.</p></div>
+            <div class="en translation"><h3>1. Allah Provides Food</h3><p>Every time you eat a meal, remember &#8212; Allah sent that food to you. The fruits, the bread, the milk &#8212; all from Allah.</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><h3>٢. ?. اللَّهُ يَرْزُقُنَا الْمَاءَ</h3><p>الْمَاءُ الْعَذْبُ النَّظِيفُ مِنَ اللَّهِ. الْمَطَرُ يَنْزِلُ بِأَمْرِهِ.</p></div>
+            <div class="en translation"><h3>2. Allah Provides Water</h3><p>Fresh, clean water comes from Allah. The rain falls by His command.</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><h3>٣. ?. اللَّهُ يَرْزُقُ جَمِيعَ الْمَخْلُوقَاتِ</h3><p>حَتَّى النَّمْلَةُ الصَّغِيرَةُ وَالْحُوتُ الْكَبِيرُ &#8212; اللَّهُ يَرْزُقُهَا جَمِيعًا.</p></div>
+            <div class="en translation"><h3>3. Allah Provides for All Creatures</h3><p>Even the smallest ant and the biggest whale &#8212; Allah provides food for all of them.</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="lesson-highlight ar" dir="rtl">عِنْدَمَا تَجْلِسُ لِلْأَكْلِ، قُلْ: بِسْمِ اللَّهِ! اللَّهُ هُوَ الرَّزَّاقُ.</div>
+            <div class="lesson-highlight en translation">When you sit down to eat, say: Bismillah! Allah is the Provider.</div>
+        </div>
 
         <div class="lesson-nav">
             <a href="tawheed-1-4.html" class="lesson-nav-prev">&#8592; Previous</a>
-            <a href="../index.html#tawheed-curriculum" class="lesson-nav-index">Index</a>
             <a href="tawheed-2-1.html" class="lesson-nav-next">Next &#8594;</a>
         </div>
     </main>
+    </div>
 
     <footer class="footer">
         <p>&copy; 2026 SiratKids. All rights reserved.</p>

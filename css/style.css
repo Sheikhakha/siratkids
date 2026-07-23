@@ -1,7 +1,13 @@
 /* ============================================
    SiratKids — Main Stylesheet
-   Noto Naskh Arabic for Arabic, Nunito for English
+   Noto Naskh Arabic / Indopak Nastaleeq for Arabic, Nunito for English
    ============================================ */
+
+@font-face {
+    font-family: 'Indopak Nastaleeq';
+    src: url('../fonts/IndopakNastaleeq.ttf') format('truetype');
+    font-display: swap;
+}
 
 *, *::before, *::after {
     margin: 0;
@@ -26,6 +32,7 @@
     --radius-lg: 28px;
     --font-en: 'Nunito', sans-serif;
     --font-ar: 'Noto Naskh Arabic', serif;
+    --font-ar-nastaleeq: 'Indopak Nastaleeq', 'Noto Naskh Arabic', serif;
     --transition: 0.3s ease;
 }
 
@@ -125,7 +132,7 @@ body {
 .hero-sub-ar {
     font-family: var(--font-ar);
     font-size: 1.7rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-medium);
     margin-bottom: 28px;
 }
@@ -154,6 +161,111 @@ body {
 }
 
 .hero-wave svg { display: block; width: 100%; height: auto; }
+
+/* ---------- Font Switcher ---------- */
+.font-nastaleeq .hero-quran,
+.font-nastaleeq .hero-sub-ar,
+.font-nastaleeq .track-name-ar,
+.font-nastaleeq .verse-arabic,
+.font-nastaleeq .lesson-title .ar,
+.font-nastaleeq .lesson-concept-block .ar,
+.font-nastaleeq .lesson-pair .ar,
+.font-nastaleeq .lesson-pair .ar h3,
+.font-nastaleeq .lesson-name.ar,
+.font-nastaleeq .section-title .ar,
+.font-nastaleeq .unit-title .ar {
+    font-family: var(--font-ar-nastaleeq);
+}
+
+.font-nastaleeq .hero-sub-ar,
+.font-nastaleeq .track-name-ar,
+.font-nastaleeq .verse-arabic,
+.font-nastaleeq .lesson-pair .ar,
+.font-nastaleeq .lesson-pair .ar h3 {
+    font-weight: 400;
+}
+
+.font-nastaleeq .hero-sub-ar {
+    font-size: 2rem;
+}
+
+.font-nastaleeq .verse-arabic {
+    font-size: 1.8rem;
+}
+
+.font-nastaleeq .track-name-ar {
+    font-size: 1.6rem;
+}
+
+.font-switcher {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.font-size-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 8px;
+    padding-left: 12px;
+    border-left: 1px solid #e2e8f0;
+}
+
+.font-size-btn {
+    width: 28px;
+    height: 28px;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+    font-family: var(--font-en);
+}
+
+.font-size-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.font-size-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    font-weight: 600;
+    min-width: 30px;
+    text-align: center;
+}
+
+.font-switcher-label {
+    font-size: 0.85rem;
+    color: var(--text-medium);
+    font-weight: 600;
+}
+
+.font-switcher select {
+    padding: 6px 10px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    background: white;
+    cursor: pointer;
+    outline: none;
+    transition: border-color var(--transition);
+}
+
+.font-switcher select:focus {
+    border-color: var(--primary);
+}
 
 /* ---------- Tracks Section ---------- */
 .tracks-section {
@@ -228,7 +340,7 @@ body {
 .track-name-ar {
     font-family: var(--font-ar);
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-medium);
     margin-bottom: 12px;
 }
@@ -394,6 +506,8 @@ body {
     .unit-card { padding: 20px 16px; }
     .lesson-item { padding: 12px 14px; gap: 12px; }
     .lesson-concept { display: none; }
+    .lesson-sidebar { display: none; }
+    .lesson-layout { padding: 0 16px; }
 }
 
 @media (max-width: 480px) {
@@ -417,6 +531,91 @@ body {
 .unit-card { animation: fadeInUp 0.5s ease-out backwards; }
 
 /* ---------- Lesson Pages ---------- */
+.lesson-layout {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    gap: 32px;
+}
+
+.lesson-sidebar {
+    position: sticky;
+    top: 80px;
+    align-self: flex-start;
+    width: 260px;
+    flex-shrink: 0;
+    padding: 24px 0;
+}
+
+.sidebar-title {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-light);
+    margin-bottom: 12px;
+}
+
+.sidebar-unit {
+    margin-bottom: 16px;
+}
+
+.sidebar-unit-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    padding-left: 8px;
+}
+
+.sidebar-lesson {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    transition: all var(--transition);
+    margin-bottom: 2px;
+}
+
+.sidebar-lesson:hover {
+    background: #f0f9ff;
+    color: var(--primary);
+}
+
+.sidebar-lesson.active {
+    background: linear-gradient(135deg, #e8f4ff, #dbeafe);
+    color: var(--primary-dark);
+    font-weight: 700;
+    border: 1px solid #bfdbfe;
+}
+
+.sidebar-lesson-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    color: var(--text-medium);
+    font-size: 0.7rem;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.sidebar-lesson.active .sidebar-lesson-num {
+    background: var(--primary);
+    color: white;
+}
+
 .lesson-hero {
     padding: 100px 32px 40px;
     text-align: center;
@@ -468,6 +667,174 @@ body {
     max-width: 750px;
     margin: 0 auto;
     padding: 40px 24px 80px;
+    flex: 1;
+}
+
+/* Translation toggles */
+.toggle-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.translation-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 24px;
+    background: white;
+    color: var(--text-medium);
+    cursor: pointer;
+    font-family: var(--font-en);
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: all var(--transition);
+}
+
+.translation-toggle:hover {
+    border-color: var(--primary);
+}
+
+.translation-toggle.on {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.translation-toggle .toggle-track {
+    width: 30px;
+    height: 16px;
+    border-radius: 8px;
+    background: #cbd5e0;
+    position: relative;
+    transition: all var(--transition);
+    flex-shrink: 0;
+}
+
+.translation-toggle .toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
+    transition: all var(--transition);
+}
+
+.translation-toggle.on .toggle-track {
+    background: rgba(255,255,255,0.4);
+}
+
+.translation-toggle.on .toggle-knob {
+    left: 16px;
+}
+
+.no-translation .translation,
+.no-transliteration .transliteration,
+.no-tamil .tamil {
+    display: none;
+}
+
+.transliteration p {
+    font-style: italic;
+    color: #8b5cf6;
+    font-size: 0.9rem;
+    margin: 0 0 4px;
+    font-family: var(--font-en);
+}
+
+.translation p {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin: 0 0 4px;
+    font-weight: 600;
+}
+
+.tamil p {
+    font-size: 0.95rem;
+    color: var(--text-medium);
+    margin: 0;
+    font-family: 'Noto Sans Tamil', sans-serif;
+}
+
+.font-nastaleeq .lesson-pair .ar {
+    font-family: var(--font-ar-nastaleeq);
+    font-weight: 400;
+}
+
+.font-nastaleeq .lesson-pair .ar h3 {
+    font-family: var(--font-ar-nastaleeq);
+    font-weight: 400;
+}
+
+.font-nastaleeq .lesson-title .ar {
+    font-family: var(--font-ar-nastaleeq);
+    font-weight: 400;
+}
+
+.font-nastaleeq .lesson-concept-block .ar {
+    font-family: var(--font-ar-nastaleeq);
+    font-weight: 400;
+}
+
+.hadith-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition);
+}
+
+.hadith-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
+}
+
+.hadith-number {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-left: 4px;
+}
+
+.font-nastaleeq .hadith-number {
+    font-family: var(--font-en);
+}
+
+.hadith-text {
+    font-size: 1.4rem;
+    line-height: 1.8;
+}
+
+.font-nastaleeq .hadith-text {
+    font-size: 1.6rem;
+}
+
+.font-nastaleeq .lesson-pair .ar .hadith-text {
+    font-family: var(--font-ar-nastaleeq);
+    font-weight: 400;
+}
+
+.lesson-pair .en .hadith-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.lesson-pair .en .transliteration {
+    margin-bottom: 6px;
+}
+
+.lesson-pair .en .tamil {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #f0f0f0;
 }
 
 .lesson-body { line-height: 1.8; font-size: 1.05rem; }
@@ -493,6 +860,46 @@ body {
 }
 
 .lesson-body p { margin-bottom: 12px; }
+
+.lesson-pair .ar h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin: 24px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #e0e7ff;
+}
+
+.lesson-pair .en h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin: 24px 0 10px;
+}
+
+.lesson-pair .ar p {
+    font-size: 1.15rem;
+    line-height: 2;
+    margin: 0 0 8px;
+}
+
+.lesson-pair .en p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0 0 8px;
+}
+
+.lesson-pair {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.lesson-pair:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
 
 .lesson-highlight {
     margin-top: 28px;

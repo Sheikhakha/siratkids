@@ -17,7 +17,19 @@
         </a>
         <div class="nav-links">
             <a href="../index.html">Home</a>
-            <a href="../index.html#tawheed-curriculum">Curriculum</a>
+            <div class="font-switcher">
+                <label class="font-switcher-label" for="arabic-font">Script:</label>
+                <select id="arabic-font">
+                    <option value="naskh">Noto Naskh</option>
+                    <option value="nastaleeq">Indopak Nastaleeq</option>
+                </select>
+            </div>
+            <div class="font-size-controls">
+                <button class="font-size-btn" id="font-size-down">A-</button>
+                <span class="font-size-label" id="font-size-label">100%</span>
+                <button class="font-size-btn" id="font-size-up">A+</button>
+            </div>
+            </div>
         </div>
     </nav>
 
@@ -25,44 +37,86 @@
         <div class="lesson-hero-inner">
             <p class="lesson-unit">Unit 2</p>
             <h1 class="lesson-title">
+                <span class="ar" dir="rtl">أَنَا مُسْلِمٌ</span>
                 <span class="en">I Am a Muslim</span>
-                <span class="ar" dir="rtl">أنا مسلم</span>
             </h1>
             <p class="lesson-concept-block">
+                <span class="ar" dir="rtl">أُطِيعُ اللَّهَ رَبِّي، وَأُصَلِّي، وَأَصُومُ، وَأَدْعُوهُ وَحْدَهُ.</span>
                 <span class="en">I obey Allah my Lord, pray, fast, and call upon Him alone.</span>
-                <span class="ar" dir="rtl">أطيع الله ربي، وأصلي، وأصوم، وأدعوه وحده.</span>
             </p>
         </div>
     </header>
 
+    <div class="lesson-layout">
+    <aside class="lesson-sidebar">
+        <div class="sidebar-title">Tawheed Lessons</div>
+        <div class="sidebar-unit">
+            <div class="sidebar-unit-label">Unit 1: Rububiyyah</div>
+            <a href="tawheed-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Three Principles</a>
+            <a href="tawheed-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Allah the Creator</a>
+            <a href="tawheed-1-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Allah My Creator</a>
+            <a href="tawheed-1-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Allah the Owner</a>
+            <a href="tawheed-1-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>Allah the Provider</a>
+        </div>
+        <div class="sidebar-unit">
+            <div class="sidebar-unit-label">Unit 2: Uloohiyyah</div>
+            <a href="tawheed-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Why Create Us?</a>
+            <a href="tawheed-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Word of Tawheed</a>
+            <a href="tawheed-2-3.html" class="sidebar-lesson active"><span class="sidebar-lesson-num">3</span>I Am a Muslim</a>
+            <a href="tawheed-2-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>I Love Allah</a>
+        </div>
+        <div class="sidebar-unit">
+            <div class="sidebar-unit-label">Unit 3: Islam</div>
+            <a href="tawheed-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>My Religion is Islam</a>
+            <a href="tawheed-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Two Testimonies</a>
+            <a href="tawheed-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Love the Prophet</a>
+            <a href="tawheed-3-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Love Companions</a>
+        </div>
+    </aside>
+
     <main class="lesson-main">
-        <div class="lesson-body en"><p>Being a Muslim is a wonderful blessing!</p>
-<h3>I Obey Allah</h3>
-<p>As a Muslim, I try to do what Allah wants me to do and stay away from what He forbids.</p>
-<h3>I Pray</h3>
-<p>I pray five times a day to talk to Allah. It makes my heart happy and close to Him.</p>
-<h3>I Fast</h3>
-<p>During Ramadan, I fast to learn patience and to get closer to Allah.</p>
-<h3>I Call Upon Allah Alone</h3>
-<p>When I need something, I ask Allah &#8212; not anyone else. He is the One who can help me.</p>
-<div class='lesson-highlight'>Being a Muslim is the best gift ever! Alhamdulillah!</div></div>
-        <div class="lesson-body ar" dir="rtl"><p>أن تكون مسلماً نعمة عظيمة!</p>
-<h3>أطيع الله</h3>
-<p>كمسلم، أحاول أن أفعل ما يريد الله مني وأتجنب ما حرمته.</p>
-<h3>أصلي</h3>
-<p>أصلي خمس مرات في اليوم لأتحدث مع الله. يملأ قلبي السعادة وقربي منه.</p>
-<h3>أصوم</h3>
-<p>في رمضان أصوم لأتعلّم الصبر وأقترب من الله.</p>
-<h3>أدعو الله وحده</h3>
-<p>عندما أحتاج شيئاً، أسأل الله &#8212; لا أحد غيره. هو الذي يمكنه مساعدتي.</p>
-<div class='lesson-highlight'>أن تكون مسلماً أفضل هدية على الإطلاق! الحمد لله!</div></div>
+                <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil ON</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration ON</span></button>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><p>أَنْ تَكُونَ مُسْلِمًا نِعْمَةٌ عَظِيمَةٌ!</p></div>
+            <div class="en translation"><p>Being a Muslim is a wonderful blessing!</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><h3>١. ?. أُطِيعُ اللَّهَ</h3><p>كَمُسْلِمٍ، أَحَاوِلُ أَنْ أَفْعَلَ مَا يُرِيدُهُ اللَّهُ مِنِّي وَأَتَجَنَّبُ مَا حَرَّمَهُ.</p></div>
+            <div class="en translation"><h3>1. I Obey Allah</h3><p>As a Muslim, I try to do what Allah wants me to do and stay away from what He forbids.</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><h3>٢. ?. أُصَلِّي</h3><p>أُصَلِّي خَمْسَ مَرَّاتٍ فِي الْيَوْمِ لأُحَادِثَ اللَّهَ. يَمْلَأُ قَلْبِي السَّعَادَةَ وَقُرْبِي مِنْهُ.</p></div>
+            <div class="en translation"><h3>2. I Pray</h3><p>I pray five times a day to talk to Allah. It makes my heart happy and close to Him.</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><h3>٣. ?. أَصُومُ</h3><p>فِي رَمَضَانَ أَصُومُ لِأَتَعَلَّمَ الصَّبْرَ وَأَقْتَرِبَ مِنَ اللَّهِ.</p></div>
+            <div class="en translation"><h3>3. I Fast</h3><p>During Ramadan, I fast to learn patience and to get closer to Allah.</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="ar" dir="rtl"><h3>٤. ?. أَدْعُو اللَّهَ وَحْدَهُ</h3><p>عِنْدَمَا أَحْتَاجُ شَيْئًا، أَسْأَلُ اللَّهَ &#8212; لَا أَحَدٌ غَيْرُهُ. هُوَ الَّذِي يُمْكِنُهُ مُسَاعَدَتِي.</p></div>
+            <div class="en translation"><h3>4. I Call Upon Allah Alone</h3><p>When I need something, I ask Allah &#8212; not anyone else. He is the One who can help me.</p></div>
+        </div>
+
+        <div class="lesson-pair">
+            <div class="lesson-highlight ar" dir="rtl">أَنْ تَكُونَ مُسْلِمًا أَفْضَلُ هَدِيَّةٍ عَلَى الإِطْلَاقِ! الْحَمْدُ لِلَّهِ!</div>
+            <div class="lesson-highlight en translation">Being a Muslim is the best gift ever! Alhamdulillah!</div>
+        </div>
 
         <div class="lesson-nav">
             <a href="tawheed-2-2.html" class="lesson-nav-prev">&#8592; Previous</a>
-            <a href="../index.html#tawheed-curriculum" class="lesson-nav-index">Index</a>
             <a href="tawheed-2-4.html" class="lesson-nav-next">Next &#8594;</a>
         </div>
     </main>
+    </div>
 
     <footer class="footer">
         <p>&copy; 2026 SiratKids. All rights reserved.</p>
