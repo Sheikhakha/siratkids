@@ -187,12 +187,24 @@ document.addEventListener('DOMContentLoaded', function () {
     // Auto-insert Arabic-Indic numbers in lesson Arabic h3 headings
     var arNums = ['\u0661', '\u0662', '\u0663', '\u0664', '\u0665', '\u0666', '\u0667', '\u0668', '\u0669'];
     var arH3s = document.querySelectorAll('.lesson-pair .ar h3');
-    arH3s.forEach(function (h3, i) {
-        if (i < arNums.length) {
+    var numIndex = 0;
+    arH3s.forEach(function (h3) {
+        if (numIndex >= arNums.length) return;
+        var hasNum = h3.textContent.match(/^[\u0661-\u0669]+[\.\s]*/);
+        if (hasNum) {
+            // Wrap existing number in .ar-num
             var span = document.createElement('span');
             span.className = 'ar-num';
-            span.textContent = arNums[i] + '. ';
+            span.textContent = hasNum[0];
+            h3.textContent = h3.textContent.replace(/^[\u0661-\u0669]+[\.\s]*/, '');
+            h3.insertBefore(span, h3.firstChild);
+        } else {
+            // Inject new number
+            var span = document.createElement('span');
+            span.className = 'ar-num';
+            span.textContent = arNums[numIndex] + '. ';
             h3.insertBefore(span, h3.firstChild);
         }
+        numIndex++;
     });
 });
