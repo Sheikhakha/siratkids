@@ -33,7 +33,12 @@
     --font-en: 'Nunito', sans-serif;
     --font-ar: 'Noto Naskh Arabic', serif;
     --font-ar-nastaleeq: 'Indopak Nastaleeq', 'Noto Naskh Arabic', serif;
+    --font-ar-amiri: 'Amiri', 'Noto Naskh Arabic', serif;
+    --font-ar-scheherazade: 'Scheherazade New', 'Noto Naskh Arabic', serif;
+    --font-ar-lateef: 'Lateef', 'Noto Naskh Arabic', serif;
     --transition: 0.3s ease;
+    --ar-font-scale: 1;
+    --en-font-scale: 1;
 }
 
 html { scroll-behavior: smooth; }
@@ -198,6 +203,76 @@ body {
 }
 
 .font-nastaleeq .track-name-ar {
+    font-size: 1.6rem;
+}
+
+.font-amiri .hero-quran,
+.font-amiri .hero-sub-ar,
+.font-amiri .track-name-ar,
+.font-amiri .verse-arabic,
+.font-amiri .lesson-title .ar,
+.font-amiri .lesson-concept-block .ar,
+.font-amiri .lesson-pair .ar,
+.font-amiri .lesson-pair .ar h3,
+.font-amiri .lesson-block .ar,
+.font-amiri .lesson-block .ar h3,
+.font-amiri .lesson-name.ar,
+.font-amiri .section-title .ar,
+.font-amiri .unit-title .ar {
+    font-family: var(--font-ar-amiri);
+}
+
+.font-scheherazade .hero-quran,
+.font-scheherazade .hero-sub-ar,
+.font-scheherazade .track-name-ar,
+.font-scheherazade .verse-arabic,
+.font-scheherazade .lesson-title .ar,
+.font-scheherazade .lesson-concept-block .ar,
+.font-scheherazade .lesson-pair .ar,
+.font-scheherazade .lesson-pair .ar h3,
+.font-scheherazade .lesson-block .ar,
+.font-scheherazade .lesson-block .ar h3,
+.font-scheherazade .lesson-name.ar,
+.font-scheherazade .section-title .ar,
+.font-scheherazade .unit-title .ar {
+    font-family: var(--font-ar-scheherazade);
+}
+
+.font-lateef .hero-quran,
+.font-lateef .hero-sub-ar,
+.font-lateef .track-name-ar,
+.font-lateef .verse-arabic,
+.font-lateef .lesson-title .ar,
+.font-lateef .lesson-concept-block .ar,
+.font-lateef .lesson-pair .ar,
+.font-lateef .lesson-pair .ar h3,
+.font-lateef .lesson-block .ar,
+.font-lateef .lesson-block .ar h3,
+.font-lateef .lesson-name.ar,
+.font-lateef .section-title .ar,
+.font-lateef .unit-title .ar {
+    font-family: var(--font-ar-lateef);
+}
+
+.font-lateef .hero-sub-ar,
+.font-lateef .track-name-ar,
+.font-lateef .verse-arabic,
+.font-lateef .lesson-pair .ar,
+.font-lateef .lesson-pair .ar h3,
+.font-lateef .lesson-block .ar,
+.font-lateef .lesson-block .ar h3 {
+    font-weight: 400;
+}
+
+.font-lateef .hero-sub-ar {
+    font-size: 2rem;
+}
+
+.font-lateef .verse-arabic {
+    font-size: 1.8rem;
+}
+
+.font-lateef .track-name-ar {
     font-size: 1.6rem;
 }
 
@@ -968,7 +1043,7 @@ a.sidebar-unit-label.active {
 
 .lesson-pair .ar p,
 .lesson-block .ar p {
-    font-size: 1.15rem;
+    font-size: 1.725rem;
     line-height: 2;
     margin: 0 0 8px;
 }

@@ -34,10 +34,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function applyFont(font) {
-        if (font === 'nastaleeq') {
-            document.body.classList.add('font-nastaleeq');
-        } else {
-            document.body.classList.remove('font-nastaleeq');
+        var classes = ['font-nastaleeq', 'font-amiri', 'font-scheherazade', 'font-lateef'];
+        classes.forEach(function (cls) {
+            document.body.classList.remove(cls);
+        });
+        if (font && font !== 'naskh') {
+            document.body.classList.add('font-' + font);
         }
     }
 
@@ -72,10 +74,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Font size controls — direct DOM approach
     var AR_BASE = {
-        title: 2.2,
-        body: 1.15,
+        title: 2.6,
+        body: 1.725,
         h3: 1.4,
-        hadith: 1.2
+        hadith: 1.5
     };
     var EN_BASE = {
         title: 2.0,
