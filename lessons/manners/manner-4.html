@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eat on Mat | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../../index.html" class="nav-logo">
+            <img src="../../images/logo.svg" alt="SiratKids logo" class="nav-logo-img">
+            <span class="nav-brand">SiratKids</span>
+        </a>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <div class="font-switcher">
+                <label class="font-switcher-label" for="arabic-font">Script:</label>
+                <select id="arabic-font">
+                    <option value="naskh">Noto Naskh</option>
+                    <option value="nastaleeq">Indopak Nastaleeq</option>
+                </select>
+            </div>
+            <div class="font-size-controls">
+                <div class="font-size-group">
+                    <span class="font-size-group-label">EN</span>
+                    <button class="font-size-btn" id="en-font-size-down">A-</button>
+                    <span class="font-size-label" id="en-font-size-label">100%</span>
+                    <button class="font-size-btn" id="en-font-size-up">A+</button>
+                </div>
+                <div class="font-size-group">
+                    <span class="font-size-group-label">AR</span>
+                    <button class="font-size-btn" id="ar-font-size-down">A-</button>
+                    <span class="font-size-label" id="ar-font-size-label">100%</span>
+                    <button class="font-size-btn" id="ar-font-size-up">A+</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../manners.html">Manners</a>
+        <span class="sep">&#9657;</span>
+        <span class="current">4</span>
+    </div>
+
+    <header class="lesson-hero">
+        <div class="lesson-hero-inner">
+            <div class="hero-illustration">
+                <img src="../../images/illustrations/manner-4.svg" alt="Mat with plates and bowls">
+            </div>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">الْأَكْلُ عَلَى السُّفْرَةِ</span>
+                <span class="en">Eat on a Dining Mat</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+        <aside class="lesson-sidebar">
+            <div class="sidebar-title">Manners</div>
+            <div class="sidebar-unit">
+                <a href="../../manners.html" class="sidebar-unit-label active">Eating Manners</a>
+                <a href="manner-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Wash Hands</a>
+                <a href="manner-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Say Bismillah</a>
+                <a href="manner-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Right Hand</a>
+                <a href="manner-4.html" class="sidebar-lesson active"><span class="sidebar-lesson-num">4</span>Eating Mat</a>
+                <a href="manner-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>Sit Humbly</a>
+            </div>
+        </aside>
+
+
+        <main class="lesson-main">
+            <div class="toggle-bar">
+                <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+                <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+                <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+            </div>
+
+            <div class="content-illustration">
+                <img src="../../images/illustrations/manner-4.svg" alt="Mat with plates and bowls">
+            </div>
+
+            <div class="lesson-block">
+                <div class="ar" dir="rtl"><p class="hadith-text">الْأَكْلُ عَلَى السُّفْرَةِ</p></div>
+                <div class="en translation"><p class="hadith-text">Eating on a dining mat / cloth spread on the floor</p></div>
+                <div class="en transliteration"><p>Al-aklu 'alas-sufrah</p></div>
+                <div class="en tamil"><p>உணவுக் விரிப்பில் அமர்ந்து சாப்பிடுதல்</p></div>
+            </div>
+
+            <div class="lesson-nav">
+                <a href="manner-3.html" class="lesson-nav-prev">&#8592; Previous</a>
+                <a href="manner-5.html" class="lesson-nav-next">Next &#8594;</a>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+    <script src="../../js/main.js"></script>
+</body>
+</html>

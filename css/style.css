@@ -171,6 +171,8 @@ body {
 .font-nastaleeq .lesson-concept-block .ar,
 .font-nastaleeq .lesson-pair .ar,
 .font-nastaleeq .lesson-pair .ar h3,
+.font-nastaleeq .lesson-block .ar,
+.font-nastaleeq .lesson-block .ar h3,
 .font-nastaleeq .lesson-name.ar,
 .font-nastaleeq .section-title .ar,
 .font-nastaleeq .unit-title .ar {
@@ -181,7 +183,9 @@ body {
 .font-nastaleeq .track-name-ar,
 .font-nastaleeq .verse-arabic,
 .font-nastaleeq .lesson-pair .ar,
-.font-nastaleeq .lesson-pair .ar h3 {
+.font-nastaleeq .lesson-pair .ar h3,
+.font-nastaleeq .lesson-block .ar,
+.font-nastaleeq .lesson-block .ar h3 {
     font-weight: 400;
 }
 
@@ -365,8 +369,23 @@ body {
     line-height: 1.5;
 }
 
-.coming-soon { opacity: 0.65; cursor: default; }
+.coming-soon { opacity: 0.65; cursor: default; position: relative; }
 .coming-soon:hover { transform: none; box-shadow: none; }
+
+.coming-soon-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--secondary);
+    color: var(--text-dark);
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    z-index: 1;
+}
 
 /* ---------- Curriculum Section ---------- */
 .curriculum-section {
@@ -583,6 +602,23 @@ body {
     letter-spacing: 0.5px;
     margin-bottom: 6px;
     padding-left: 8px;
+    display: block;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 6px 8px;
+    transition: all var(--transition);
+}
+
+a.sidebar-unit-label:hover {
+    background: #f0f9ff;
+    color: var(--primary-dark);
+}
+
+a.sidebar-unit-label.active {
+    background: linear-gradient(135deg, #e8f4ff, #dbeafe);
+    color: var(--primary-dark);
+    font-weight: 800;
+    border: 1px solid #bfdbfe;
 }
 
 .sidebar-lesson {
@@ -632,8 +668,12 @@ body {
 
 .lesson-hero {
     padding: 100px 32px 40px;
+    min-height: 320px;
     text-align: center;
     background: linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .lesson-hero-inner { max-width: 700px; margin: 0 auto; }
@@ -753,6 +793,31 @@ body {
     display: none;
 }
 
+.lesson-block .tamil p {
+    font-family: 'Noto Sans Tamil', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-medium);
+    margin: 0;
+}
+
+.lesson-block .transliteration p {
+    font-style: italic;
+    color: #8b5cf6;
+    font-size: 0.9rem;
+    font-family: var(--font-en);
+    margin: 0 0 4px;
+}
+
+.lesson-block .tamil h3,
+.lesson-block .transliteration h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 12px 0 6px;
+}
+
+.lesson-block .tamil h3 { color: var(--text-medium); }
+.lesson-block .transliteration h3 { color: #8b5cf6; }
+
 .transliteration p {
     font-style: italic;
     color: #8b5cf6;
@@ -775,12 +840,14 @@ body {
     font-family: 'Noto Sans Tamil', sans-serif;
 }
 
-.font-nastaleeq .lesson-pair .ar {
+.font-nastaleeq .lesson-pair .ar,
+.font-nastaleeq .lesson-block .ar {
     font-family: var(--font-ar-nastaleeq);
     font-weight: 400;
 }
 
-.font-nastaleeq .lesson-pair .ar h3 {
+.font-nastaleeq .lesson-pair .ar h3,
+.font-nastaleeq .lesson-block .ar h3 {
     font-family: var(--font-ar-nastaleeq);
     font-weight: 400;
 }
@@ -821,22 +888,26 @@ body {
     font-size: 1.6rem;
 }
 
-.font-nastaleeq .lesson-pair .ar .hadith-text {
+.font-nastaleeq .lesson-pair .ar .hadith-text,
+.font-nastaleeq .lesson-block .ar .hadith-text {
     font-family: var(--font-ar-nastaleeq);
     font-weight: 400;
 }
 
-.lesson-pair .en .hadith-text {
+.lesson-pair .en .hadith-text,
+.lesson-block .en .hadith-text {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-dark);
 }
 
-.lesson-pair .en .transliteration {
+.lesson-pair .en .transliteration,
+.lesson-block .en .transliteration {
     margin-bottom: 6px;
 }
 
-.lesson-pair .en .tamil {
+.lesson-pair .en .tamil,
+.lesson-block .en .tamil {
     margin-top: 8px;
     padding-top: 8px;
     border-top: 1px solid #f0f0f0;
@@ -866,7 +937,8 @@ body {
 
 .lesson-body p { margin-bottom: 12px; }
 
-.lesson-pair .ar h3 {
+.lesson-pair .ar h3,
+.lesson-block .ar h3 {
     font-size: calc(1.4rem * var(--ar-font-scale));
     font-weight: 700;
     color: var(--primary-dark);
@@ -878,38 +950,45 @@ body {
 .ar-num,
 .font-nastaleeq .ar-num,
 .font-nastaleeq .lesson-pair .ar .ar-num,
-.font-nastaleeq .lesson-pair .ar h3 .ar-num {
+.font-nastaleeq .lesson-pair .ar h3 .ar-num,
+.font-nastaleeq .lesson-block .ar .ar-num,
+.font-nastaleeq .lesson-block .ar h3 .ar-num {
     font-family: 'Noto Naskh Arabic', 'Traditional Arabic', 'Arabic Typesetting', 'Simplified Arabic', serif !important;
     font-weight: 600;
     direction: rtl;
 }
 
-.lesson-pair .en h3 {
+.lesson-pair .en h3,
+.lesson-block .en h3 {
     font-size: 1.15rem;
     font-weight: 700;
     color: var(--primary-dark);
     margin: 24px 0 10px;
 }
 
-.lesson-pair .ar p {
+.lesson-pair .ar p,
+.lesson-block .ar p {
     font-size: 1.15rem;
     line-height: 2;
     margin: 0 0 8px;
 }
 
-.lesson-pair .en p {
+.lesson-pair .en p,
+.lesson-block .en p {
     font-size: 1rem;
     line-height: 1.7;
     margin: 0 0 8px;
 }
 
-.lesson-pair {
+.lesson-pair,
+.lesson-block {
     margin-bottom: 16px;
     padding-bottom: 16px;
     border-bottom: 1px solid #e2e8f0;
 }
 
-.lesson-pair:last-child {
+.lesson-pair:last-child,
+.lesson-block:last-child {
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
@@ -992,5 +1071,129 @@ body {
     font-weight: 700;
     color: #0284c7;
     margin: 0;
+}
+
+/* ---------- Breadcrumbs ---------- */
+.breadcrumb {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px 0;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.breadcrumb a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition);
+}
+
+.breadcrumb a:hover { text-decoration: underline; }
+
+.breadcrumb .sep {
+    margin: 0 6px;
+    color: var(--text-light);
+}
+
+.breadcrumb .current {
+    color: var(--text-medium);
+    font-weight: 600;
+}
+
+/* ---------- Illustrations ---------- */
+.lesson-image {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.lesson-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+}
+
+.hero-illustration {
+    margin: 24px auto;
+    text-align: center;
+}
+
+.hero-illustration img {
+    max-width: 280px;
+    height: auto;
+}
+
+/* ---------- Lesson Block (New Layout) ---------- */
+.lesson-block .ar { margin-bottom: 12px; }
+
+.lesson-block .en.translation { margin-bottom: 6px; }
+.lesson-block .en.tamil { margin-bottom: 6px; }
+.lesson-block .en.transliteration { margin-bottom: 6px; }
+
+/* ---------- Unit Landing Page ---------- */
+.unit-hero {
+    padding: 100px 32px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+}
+
+.unit-hero-inner {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.unit-hero-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.unit-hero-title .ar {
+    font-family: var(--font-ar);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    display: block;
+    margin-top: 4px;
+}
+
+.unit-hero-desc {
+    font-size: 1.1rem;
+    color: var(--text-medium);
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.unit-lessons {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+}
+
+.unit-lessons .lesson-item {
+    margin-bottom: 8px;
+}
+
+/* ---------- Hadith/Manner Individual Page ---------- */
+.content-illustration {
+    text-align: center;
+    margin: 12px 0 20px;
+}
+
+.content-illustration img {
+    max-width: 220px;
+    height: auto;
+    border-radius: var(--radius-sm);
+}
+
+/* ---------- Responsive Additions ---------- */
+@media (max-width: 768px) {
+    .breadcrumb { font-size: 0.8rem; padding: 12px 16px 0; }
+    .lesson-hero { padding: 80px 20px 30px; min-height: 260px; }
+    .unit-hero { padding: 80px 20px 30px; }
+    .unit-hero-title { font-size: 1.7rem; }
+    .unit-lessons { padding: 24px 16px 60px; }
+    .hero-illustration img { max-width: 200px; }
+    .content-illustration img { max-width: 160px; }
 }
 

@@ -93,13 +93,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (enLabel) enLabel.textContent = Math.round(enScale * 100) + '%';
 
     function applyArabicScale(scale) {
-        document.querySelectorAll('.lesson-title .ar').forEach(function (el) {
+        document.querySelectorAll('.lesson-title .ar, .unit-hero-title .ar').forEach(function (el) {
             el.style.fontSize = (AR_BASE.title * scale) + 'rem';
         });
-        document.querySelectorAll('.lesson-pair .ar p').forEach(function (el) {
+        document.querySelectorAll('.lesson-pair .ar p, .lesson-block .ar p, .lesson-concept-block .ar').forEach(function (el) {
             el.style.fontSize = (AR_BASE.body * scale) + 'rem';
         });
-        document.querySelectorAll('.lesson-pair .ar h3').forEach(function (el) {
+        document.querySelectorAll('.lesson-pair .ar h3, .lesson-block .ar h3').forEach(function (el) {
             el.style.fontSize = (AR_BASE.h3 * scale) + 'rem';
         });
         document.querySelectorAll('.hadith-card .ar .hadith-text').forEach(function (el) {
@@ -114,16 +114,19 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.lesson-highlight.ar').forEach(function (el) {
             el.style.fontSize = (1.05 * scale) + 'rem';
         });
+        document.querySelectorAll('.track-name-ar').forEach(function (el) {
+            el.style.fontSize = (1.3 * scale) + 'rem';
+        });
     }
 
     function applyEnglishScale(scale) {
-        document.querySelectorAll('.lesson-title .en').forEach(function (el) {
+        document.querySelectorAll('.lesson-title .en, .hero-title, .unit-hero-title .en').forEach(function (el) {
             el.style.fontSize = (EN_BASE.title * scale) + 'rem';
         });
-        document.querySelectorAll('.lesson-pair .en p').forEach(function (el) {
+        document.querySelectorAll('.lesson-pair .en p, .lesson-block .en p, .lesson-concept-block .en').forEach(function (el) {
             el.style.fontSize = (EN_BASE.body * scale) + 'rem';
         });
-        document.querySelectorAll('.lesson-pair .en h3').forEach(function (el) {
+        document.querySelectorAll('.lesson-pair .en h3, .lesson-block .en h3').forEach(function (el) {
             el.style.fontSize = (EN_BASE.h3 * scale) + 'rem';
         });
         document.querySelectorAll('.hadith-card .en .hadith-text').forEach(function (el) {
@@ -132,8 +135,11 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.lesson-highlight.en').forEach(function (el) {
             el.style.fontSize = (1.05 * scale) + 'rem';
         });
-        document.querySelectorAll('.track-desc').forEach(function (el) {
+        document.querySelectorAll('.track-desc, .hero-sub-en, .unit-hero-desc').forEach(function (el) {
             el.style.fontSize = (0.95 * scale) + 'rem';
+        });
+        document.querySelectorAll('.track-name').forEach(function (el) {
+            el.style.fontSize = (1.5 * scale) + 'rem';
         });
     }
 
@@ -166,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
             enScale = Math.min(enScale + 0.05, 1.5);
             applyEnglishScale(enScale);
             enLabel.textContent = Math.round(enScale * 100) + '%';
-            localStorage.setItem('en-font-size', enScale);
+            localStorage.setItem('en-font-scale', enScale);
         });
     }
     if (enDown) {
@@ -174,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
             enScale = Math.max(enScale - 0.05, 0.7);
             applyEnglishScale(enScale);
             enLabel.textContent = Math.round(enScale * 100) + '%';
-            localStorage.setItem('en-font-size', enScale);
+            localStorage.setItem('en-font-scale', enScale);
         });
     }
 
@@ -186,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Auto-insert Arabic-Indic numbers in lesson Arabic h3 headings
     var arNums = ['\u0661', '\u0662', '\u0663', '\u0664', '\u0665', '\u0666', '\u0667', '\u0668', '\u0669'];
-    var arH3s = document.querySelectorAll('.lesson-pair .ar h3');
+    var arH3s = document.querySelectorAll('.lesson-pair .ar h3, .lesson-block .ar h3');
     var numIndex = 0;
     arH3s.forEach(function (h3) {
         if (numIndex >= arNums.length) return;

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" width="280" height="200">
+  <rect width="280" height="200" fill="#87CEEB"/>
+  <circle cx="230" cy="50" r="30" fill="#f7b955"/>
+  <line x1="230" y1="10" x2="230" y2="5" stroke="#f7b955" stroke-width="3"/>
+  <line x1="260" y1="20" x2="265" y2="15" stroke="#f7b955" stroke-width="3"/>
+  <line x1="260" y1="50" x2="265" y2="50" stroke="#f7b955" stroke-width="3"/>
+  <line x1="200" y1="20" x2="195" y2="15" stroke="#f7b955" stroke-width="3"/>
+  <line x1="200" y1="50" x2="195" y2="50" stroke="#f7b955" stroke-width="3"/>
+  <line x1="245" y1="80" x2="250" y2="85" stroke="#f7b955" stroke-width="3"/>
+  <line x1="215" y1="80" x2="210" y2="85" stroke="#f7b955" stroke-width="3"/>
+  <circle cx="70" cy="40" r="20" fill="white"/>
+  <circle cx="90" cy="45" r="15" fill="white"/>
+  <circle cx="55" cy="45" r="18" fill="white"/>
+  <circle cx="180" cy="35" r="15" fill="white"/>
+  <circle cx="195" cy="40" r="12" fill="white"/>
+  <ellipse cx="140" cy="180" rx="150" ry="40" fill="#4CAF50"/>
+  <ellipse cx="60" cy="170" rx="80" ry="30" fill="#66BB6A"/>
+  <ellipse cx="220" cy="175" rx="70" ry="25" fill="#43A047"/>
+</svg>

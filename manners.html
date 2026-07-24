@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar">
         <a href="index.html" class="nav-logo">
-            <img src="images/logo.svg" alt="" class="nav-logo-img">
+            <img src="images/logo.svg" alt="SiratKids logo" class="nav-logo-img">
             <span class="nav-brand">SiratKids</span>
         </a>
         <div class="nav-links">
@@ -41,9 +41,17 @@
         </div>
     </nav>
 
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <span class="current">Manners</span>
+    </div>
+
     <header class="lesson-hero">
         <div class="lesson-hero-inner">
-            <p class="lesson-unit">Unit 1</p>
+            <div class="hero-illustration">
+                <img src="images/illustrations/manners-collection.svg" alt="Islamic eating manners illustration">
+            </div>
             <h1 class="lesson-title">
                 <span class="ar" dir="rtl">آدَابُ الطَّعَامِ وَالشُّرْبِ</span>
                 <span class="en">Eating &amp; Drinking Manners</span>
@@ -55,75 +63,64 @@
     </header>
 
     <div class="lesson-layout">
-    <aside class="lesson-sidebar">
-        <div class="sidebar-title">Unit 1: Eating Manners</div>
-        <div class="sidebar-unit">
-            <a href="#m1" class="sidebar-lesson active"><span class="sidebar-lesson-num">1</span>Wash Hands</a>
-            <a href="#m2" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Say Bismillah</a>
-            <a href="#m3" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Right Hand</a>
-            <a href="#m4" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Eating Mat</a>
-            <a href="#m5" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>Sit Humbly</a>
-        </div>
-    </aside>
-
-    <main class="lesson-main">
-        <div class="toggle-bar">
-            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
-            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
-            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
-        </div>
-
-        <div class="hadith-card" id="m1">
-            <div class="lesson-pair">
-                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">١.</span> غَسْلُ الْيَدَيْنِ قَبْلَ الطَّعَامِ</p></div>
-                <div class="en transliteration"><p>Ghaslul yadayni qablat-ta'am</p></div>
-                <div class="en translation"><p>1. Washing both hands before eating</p></div>
-                <div class="en tamil"><p>சாப்பிடுவதற்கு முன் இரண்டு கைகளையும் கழுவுதல்</p></div>
+        <aside class="lesson-sidebar">
+            <div class="sidebar-title">Manners</div>
+            <div class="sidebar-unit">
+                <a href="manners.html" class="sidebar-unit-label active">Eating Manners</a>
             </div>
-        </div>
+        </aside>
 
-        <div class="hadith-card" id="m2">
-            <div class="lesson-pair">
-                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٢.</span> قَوْلُ "بِسْمِ اللهِ" قَبْلَ الْأَكْلِ</p></div>
-                <div class="en transliteration"><p>Qawlu "Bismillah" qablal-akl</p></div>
-                <div class="en translation"><p>2. Saying "Bismillah" (In the name of Allah) before eating</p></div>
-                <div class="en tamil"><p>சாப்பிடுவதற்கு முன் "பிஸ்மில்லாஹ்" என்று கூறுதல்</p></div>
+
+        <main class="lesson-main">
+            <div class="unit-lessons">
+                <a href="lessons/manners/manner-1.html" class="lesson-item">
+                    <div class="lesson-num">1</div>
+                    <div class="lesson-info">
+                        <span class="lesson-name">Wash Hands</span>
+                        <span class="lesson-name ar" dir="rtl">غَسْلُ الْيَدَيْنِ قَبْلَ الطَّعَامِ</span>
+                        <span class="lesson-concept">Washing both hands before eating</span>
+                    </div>
+                    <span class="lesson-arrow">&#8594;</span>
+                </a>
+                <a href="lessons/manners/manner-2.html" class="lesson-item">
+                    <div class="lesson-num">2</div>
+                    <div class="lesson-info">
+                        <span class="lesson-name">Say Bismillah</span>
+                        <span class="lesson-name ar" dir="rtl">قَوْلُ "بِسْمِ اللهِ" قَبْلَ الْأَكْلِ</span>
+                        <span class="lesson-concept">Saying Bismillah before eating</span>
+                    </div>
+                    <span class="lesson-arrow">&#8594;</span>
+                </a>
+                <a href="lessons/manners/manner-3.html" class="lesson-item">
+                    <div class="lesson-num">3</div>
+                    <div class="lesson-info">
+                        <span class="lesson-name">Right Hand</span>
+                        <span class="lesson-name ar" dir="rtl">الْأَكْلُ بِالْيَمِينِ</span>
+                        <span class="lesson-concept">Eating with the right hand</span>
+                    </div>
+                    <span class="lesson-arrow">&#8594;</span>
+                </a>
+                <a href="lessons/manners/manner-4.html" class="lesson-item">
+                    <div class="lesson-num">4</div>
+                    <div class="lesson-info">
+                        <span class="lesson-name">Eating Mat</span>
+                        <span class="lesson-name ar" dir="rtl">الْأَكْلُ عَلَى السُّفْرَةِ</span>
+                        <span class="lesson-concept">Eating on a dining mat / cloth on the floor</span>
+                    </div>
+                    <span class="lesson-arrow">&#8594;</span>
+                </a>
+                <a href="lessons/manners/manner-5.html" class="lesson-item">
+                    <div class="lesson-num">5</div>
+                    <div class="lesson-info">
+                        <span class="lesson-name">Sit Humbly</span>
+                        <span class="lesson-name ar" dir="rtl">الْجُلُوسُ تَوَاضُعًا بِغَيْرِ إِتِّكَاءٍ</span>
+                        <span class="lesson-concept">Sitting humbly without leaning</span>
+                    </div>
+                    <span class="lesson-arrow">&#8594;</span>
+                </a>
             </div>
-        </div>
 
-        <div class="hadith-card" id="m3">
-            <div class="lesson-pair">
-                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٣.</span> الْأَكْلُ بِالْيَمِينِ</p></div>
-                <div class="en transliteration"><p>Al-aklu bil-yameen</p></div>
-                <div class="en translation"><p>3. Eating with the right hand</p></div>
-                <div class="en tamil"><p>வலது கையால் சாப்பிடுதல்</p></div>
-            </div>
-        </div>
-
-        <div class="hadith-card" id="m4">
-            <div class="lesson-pair">
-                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٤.</span> الْأَكْلُ عَلَى السُّفْرَةِ</p></div>
-                <div class="en transliteration"><p>Al-aklu 'alas-sufrah</p></div>
-                <div class="en translation"><p>4. Eating on a dining mat / cloth spread on the floor</p></div>
-                <div class="en tamil"><p>உணவுக் விரிப்பில் (சுஃப்ரா) அமர்ந்து சாப்பிடுதல்</p></div>
-            </div>
-        </div>
-
-        <div class="hadith-card" id="m5">
-            <div class="lesson-pair">
-                <div class="ar" dir="rtl"><p class="hadith-text"><span class="ar-num">٥.</span> الْجُلُوسُ تَوَاضُعًا بِغَيْرِ إِتِّكَاءٍ</p></div>
-                <div class="en transliteration"><p>Al-juloosu tawadu'an bi-ghayri ittika'</p></div>
-                <div class="en translation"><p>5. Sitting humbly without leaning</p></div>
-                <div class="en tamil"><p>சாய்ந்து கொள்ளாமல் அடக்கத்தோடு/பணிவோடு அமருதல்</p></div>
-            </div>
-        </div>
-
-        <div class="lesson-nav">
-            <a href="hadith.html" class="lesson-nav-prev">&#8592; Hadith</a>
-            <span></span>
-            <span></span>
-        </div>
-    </main>
+        </main>
     </div>
 
     <footer class="footer">
