@@ -55,7 +55,7 @@
     <header class="lesson-hero">
         <div class="lesson-hero-inner">
             <div class="hero-illustration">
-                <img src="../../images/illustrations/manner-1.svg" alt="Hands being washed with water">
+                <img src="../../assets/default-placeholder.jpg" alt="Hands being washed with water">
             </div>
             <h1 class="lesson-title">
                 <span class="ar" dir="rtl">غَسْلُ الْيَدَيْنِ قَبْلَ الطَّعَامِ</span>
@@ -66,6 +66,10 @@
 
     <div class="lesson-layout">
         <aside class="lesson-sidebar">
+        <button class="sidebar-toggle" aria-label="Toggle sidebar">
+            <span class="sidebar-toggle-icon"></span>
+        </button>
+
             <div class="sidebar-title">Manners</div>
             <div class="sidebar-unit">
                 <a href="../../manners.html" class="sidebar-unit-label active">Eating Manners</a>
@@ -79,14 +83,14 @@
 
 
         <main class="lesson-main">
-            <div class="toggle-bar">
+<div class="toggle-bar">
                 <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
                 <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
                 <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
             </div>
 
             <div class="content-illustration">
-                <img src="../../images/illustrations/manner-1.svg" alt="Hands being washed with water">
+                <img src="../../assets/default-placeholder.jpg" alt="Hands being washed with water">
             </div>
 
             <div class="lesson-block">
@@ -97,10 +101,33 @@
             </div>
 
             <div class="lesson-nav">
-                <a href="manner-5.html" class="lesson-nav-prev">&#8592; Previous</a>
+                <span></span>
                 <a href="manner-2.html" class="lesson-nav-next">Next &#8594;</a>
             </div>
         </main>
+        <aside class="lesson-aside">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="quran-search" placeholder="Search in Quran" dir="auto" autocomplete="off">
+                <div class="search-results" id="search-results"></div>
+            </div>
+
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-group">
+                <label class="speed-pill"><input type="radio" name="audio-speed" value="0.5">0.5x</label>
+                <label class="speed-pill"><input type="radio" name="audio-speed" value="0.75">0.75x</label>
+                <label class="speed-pill active"><input type="radio" name="audio-speed" value="1" checked>1x</label>
+                <label class="speed-pill"><input type="radio" name="audio-speed" value="1.5">1.5x</label>
+                <label class="speed-pill"><input type="radio" name="audio-speed" value="2">2x</label>
+            </div>
+        </div>
+        </aside>
     </div>
 
     <footer class="footer">

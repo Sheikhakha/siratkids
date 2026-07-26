@@ -67,6 +67,10 @@
 
     <div class="lesson-layout">
         <aside class="lesson-sidebar">
+        <button class="sidebar-toggle" aria-label="Toggle sidebar">
+            <span class="sidebar-toggle-icon"></span>
+        </button>
+
             <div class="sidebar-title">Tawheed Lessons</div>
             <div class="sidebar-unit">
                 <a href="unit1.html" class="sidebar-unit-label">Unit 1: Rububiyyah</a>
@@ -81,7 +85,7 @@
 
 
         <main class="lesson-main">
-            <div class="unit-lessons">
+<div class="unit-lessons">
                 <a href="../tawheed-3-1.html" class="lesson-item">
                     <div class="lesson-num">1</div>
                     <div class="lesson-info">
@@ -125,6 +129,29 @@
                 <span></span>
             </div>
         </main>
+        <aside class="lesson-aside">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="quran-search" placeholder="Search in Quran" dir="auto" autocomplete="off">
+                <div class="search-results" id="search-results"></div>
+            </div>
+
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-group">
+                <label class="speed-pill"><input type="radio" name="audio-speed" value="0.5">0.5x</label>
+                <label class="speed-pill"><input type="radio" name="audio-speed" value="0.75">0.75x</label>
+                <label class="speed-pill active"><input type="radio" name="audio-speed" value="1" checked>1x</label>
+                <label class="speed-pill"><input type="radio" name="audio-speed" value="1.5">1.5x</label>
+                <label class="speed-pill"><input type="radio" name="audio-speed" value="2">2x</label>
+            </div>
+        </div>
+        </aside>
     </div>
 
     <footer class="footer">
