@@ -1,5 +1,13 @@
 /* SIRATKIDS — Main JavaScript */
 document.addEventListener('DOMContentLoaded', function () {
+    // Remove disable-onload-animations after DOM mounts
+    document.body.classList.remove('disable-onload-animations');
+
+    // Detect pinned sidebar and add helper class to body
+    if (document.querySelector('.sidenav-with-history-container')) {
+        document.body.classList.add('has-sidenav');
+    }
+
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
@@ -284,6 +292,23 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     });
+
+    // Settings dropdown toggle
+    var settingsDropdown = document.querySelector('.settings-dropdown');
+    if (settingsDropdown) {
+        var settingsBtn = settingsDropdown.querySelector('.settings-toggle-btn');
+        if (settingsBtn) {
+            settingsBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                settingsDropdown.classList.toggle('open');
+            });
+        }
+        document.addEventListener('click', function(e) {
+            if (!settingsDropdown.contains(e.target)) {
+                settingsDropdown.classList.remove('open');
+            }
+        });
+    }
 });
 
 /* ---- Sidebar Toggle (Desktop) ---- */
@@ -331,304 +356,33 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 })();
 
-/* ---- Quran Search (Right Panel, Full Index) ---- */
+/* ---- Pinned Sidebar Toggle (new layout: sidenav-with-history-container) ---- */
 (function() {
-    var searchInput = document.getElementById('quran-search');
-    var resultsContainer = document.getElementById('search-results');
-    if (!searchInput || !resultsContainer) return;
+    var sidenav = document.querySelector('.sidenav-with-history-container');
+    var toggleBtn = document.querySelector('.sidebar-toggle-btn');
+    var iconOpen = toggleBtn ? toggleBtn.querySelector('.icon-sidebar-open') : null;
+    var iconClosed = toggleBtn ? toggleBtn.querySelector('.icon-sidebar-closed') : null;
+    if (!sidenav || !toggleBtn) return;
 
-    var fullIndex = null;
-    var debounceTimer = null;
-    var loading = false;
-
-    // Detect page depth to build correct relative paths
-    var scripts = document.querySelectorAll('script[src]');
-    var jsPath = '';
-    scripts.forEach(function(s) { if (s.src && s.src.indexOf('main.js') !== -1) jsPath = s.getAttribute('src'); });
-    var basePrefix = '';
-    if (jsPath.indexOf('../../') === 0) {
-        basePrefix = '../'; // lessons/subfolder/ pages
-    } else if (jsPath.indexOf('../') === 0) {
-        basePrefix = '';   // lessons/ pages
+    // Restore saved state
+    if (localStorage.getItem('sidebar-collapsed') === 'true') {
+        sidenav.classList.add('collapsed');
     } else {
-        basePrefix = 'lessons/'; // root-level pages
+        sidenav.classList.remove('collapsed');
     }
 
-    // Load full index (lazy)
-    function loadIndex(callback) {
-        if (fullIndex) { callback(); return; }
-        if (loading) return;
-        loading = true;
-        searchInput.placeholder = 'Loading Quran index...';
-        var url = jsPath.replace('main.js', 'quran-full-index.json');
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4) {
-                loading = false;
-                searchInput.placeholder = 'Search in Quran';
-                if (xhr.status === 200) {
-                    try {
-                        fullIndex = JSON.parse(xhr.responseText);
-                        callback();
-                    } catch(e) {
-                        fullIndex = { verses: [], chapters: [], idx: {} };
-                        callback();
-                    }
-                } else {
-                    callback();
-                }
-            }
-        };
-        xhr.send();
+    function updateToggleIcons() {
+        var isCollapsed = sidenav.classList.contains('collapsed');
+        if (iconOpen) iconOpen.style.display = isCollapsed ? 'none' : 'block';
+        if (iconClosed) iconClosed.style.display = isCollapsed ? 'block' : 'none';
     }
 
-    // Normalize Arabic: strip diacritics, normalize alef/hamza/yaa, strip dagger alif, strip definite article
-    function normalizeAr(text) {
-        return (text || '')
-            .replace(/[\u0610-\u061A\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED]/g, '')
-            .replace(/[\u064B-\u065F]/g, '')
-            .replace(/[\u0670]/g, '')
-            .replace(/\u0640/g, '')
-            .replace(/[\u0622\u0623\u0625\u0671]/g, '\u0627')
-            .replace(/[\u0649]/g, '\u064A')
-            .replace(/[\u0629]/g, '\u0647')
-            .replace(/\s+/g, ' ')
-            .trim()
-            .toLowerCase();
-    }
+    updateToggleIcons();
 
-    function normalizeEn(text) {
-        return (text || '').toLowerCase().trim().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
-    }
-
-    function search(query) {
-        if (!fullIndex) return [];
-        var results = [];
-        var seen = {};
-        var qAr = normalizeAr(query);
-        var qEn = normalizeEn(query);
-
-        // 1. Search chapter names (English)
-        if (qEn.length >= 2) {
-            fullIndex.chapters.forEach(function(ch) {
-                var chEn = normalizeEn(ch.en);
-                if (chEn.indexOf(qEn) !== -1 || qEn.indexOf(chEn) !== -1) {
-                    var key = 'ch:' + ch.id;
-                    if (!seen[key]) {
-                        seen[key] = true;
-                        results.push({
-                            type: 'chapter',
-                            ref: ch.id + '',
-                            name_ar: ch.ar,
-                            name_en: ch.en,
-                            verses_count: ch.verses
-                        });
-                    }
-                }
-            });
-        }
-
-        // 2. Search chapter names (Arabic)
-        if (qAr.length >= 2) {
-            fullIndex.chapters.forEach(function(ch) {
-                var chAr = normalizeAr(ch.ar);
-                if (chAr.indexOf(qAr) !== -1 || qAr.indexOf(chAr) !== -1) {
-                    var key = 'ch:' + ch.id;
-                    if (!seen[key]) {
-                        seen[key] = true;
-                        results.push({
-                            type: 'chapter',
-                            ref: ch.id + '',
-                            name_ar: ch.ar,
-                            name_en: ch.en,
-                            verses_count: ch.verses
-                        });
-                    }
-                }
-            });
-        }
-
-        // 3. Search via inverted index (Arabic words)
-        if (qAr.length >= 2) {
-            var verseIndices = [];
-            // Exact word match
-            if (fullIndex.idx[qAr]) {
-                verseIndices = verseIndices.concat(fullIndex.idx[qAr]);
-            }
-            // With/without definite article ال
-            var withAlif = '\u0627\u0644' + qAr;
-            if (fullIndex.idx[withAlif]) {
-                verseIndices = verseIndices.concat(fullIndex.idx[withAlif]);
-            }
-            var withoutAlif = qAr.replace(/^\u0627\u0644/, '');
-            if (withoutAlif !== qAr && fullIndex.idx[withoutAlif]) {
-                verseIndices = verseIndices.concat(fullIndex.idx[withoutAlif]);
-            }
-
-            // Deduplicate and limit
-            var unique = {};
-            verseIndices.forEach(function(vi) {
-                unique[vi] = true;
-            });
-            var indices = Object.keys(unique).map(Number).slice(0, 50);
-
-            indices.forEach(function(vi) {
-                var v = fullIndex.verses[vi];
-                if (!v) return;
-                var key = 'v:' + v.k;
-                if (seen[key]) return;
-                seen[key] = true;
-                results.push({
-                    type: 'verse',
-                    ref: v.k,
-                    surah_name: getSurahName(v.s),
-                    text_ar: v.ar,
-                    text_en: v.en,
-                    lesson: v.lesson || ''
-                });
-            });
-        }
-
-        // 4. Search via inverted index (English words)
-        if (qEn.length >= 3) {
-            var enWords = qEn.split(/\s+/);
-            var verseIndices = [];
-            enWords.forEach(function(w) {
-                if (w.length < 3) return;
-                var enKey = 'en:' + w;
-                if (fullIndex.idx[enKey]) {
-                    verseIndices = verseIndices.concat(fullIndex.idx[enKey]);
-                }
-            });
-
-            // Score: verses matching ALL words rank higher
-            var counts = {};
-            verseIndices.forEach(function(vi) {
-                counts[vi] = (counts[vi] || 0) + 1;
-            });
-            var sorted = Object.keys(counts).map(Number);
-            sorted.sort(function(a, b) { return counts[b] - counts[a]; });
-            sorted = sorted.slice(0, 50);
-
-            sorted.forEach(function(vi) {
-                var v = fullIndex.verses[vi];
-                if (!v) return;
-                var key = 'v:' + v.k;
-                if (seen[key]) return;
-                seen[key] = true;
-                results.push({
-                    type: 'verse',
-                    ref: v.k,
-                    surah_name: getSurahName(v.s),
-                    text_ar: v.ar,
-                    text_en: v.en,
-                    lesson: v.lesson || ''
-                });
-            });
-        }
-
-        return results;
-    }
-
-    function getSurahName(surahId) {
-        if (!fullIndex) return 'Surah ' + surahId;
-        var ch = fullIndex.chapters[surahId - 1];
-        return ch ? ch.en : 'Surah ' + surahId;
-    }
-
-    function renderResults(results) {
-        resultsContainer.innerHTML = '';
-        if (results.length === 0) {
-            resultsContainer.innerHTML = '<div class="search-no-results">No results found</div>';
-            resultsContainer.classList.add('active');
-            return;
-        }
-
-        var maxShow = Math.min(results.length, 20);
-        for (var i = 0; i < maxShow; i++) {
-            var r = results[i];
-            var item = document.createElement('div');
-            item.className = 'search-result-item';
-
-            if (r.type === 'verse') {
-                var html =
-                    '<div class="search-result-ref">' + r.surah_name + ' ' + r.ref + '</div>' +
-                    '<div class="search-result-ar">' + r.text_ar + '</div>' +
-                    '<div class="search-result-en">' + truncate(r.text_en, 120) + '</div>';
-                if (r.lesson) {
-                    html += '<div class="search-result-lesson">In lesson &#8594;</div>';
-                    item.setAttribute('data-href', basePrefix + r.lesson);
-                    item.style.cursor = 'pointer';
-                }
-                item.innerHTML = html;
-            } else {
-                item.innerHTML =
-                    '<div class="search-result-ref">Surah ' + r.ref + '</div>' +
-                    '<div class="search-result-ar">' + r.name_ar + '</div>' +
-                    '<div class="search-result-en">' + r.name_en + ' (' + r.verses_count + ' verses)</div>';
-            }
-
-            resultsContainer.appendChild(item);
-        }
-
-        if (results.length > maxShow) {
-            var more = document.createElement('div');
-            more.className = 'search-no-results';
-            more.textContent = '+' + (results.length - maxShow) + ' more results';
-            resultsContainer.appendChild(more);
-        }
-
-        resultsContainer.classList.add('active');
-    }
-
-    function truncate(text, len) {
-        if (!text) return '';
-        return text.length > len ? text.substring(0, len) + '...' : text;
-    }
-
-    searchInput.addEventListener('input', function() {
-        var query = this.value.trim();
-        clearTimeout(debounceTimer);
-        if (query.length < 2) {
-            resultsContainer.innerHTML = '';
-            resultsContainer.classList.remove('active');
-            return;
-        }
-        debounceTimer = setTimeout(function() {
-            loadIndex(function() {
-                var results = search(query);
-                renderResults(results);
-            });
-        }, 300);
-    });
-
-    searchInput.addEventListener('focus', function() {
-        if (resultsContainer.children.length > 0) {
-            resultsContainer.classList.add('active');
-        }
-    });
-
-    resultsContainer.addEventListener('click', function(e) {
-        var item = e.target.closest('.search-result-item');
-        if (!item) return;
-        var href = item.getAttribute('data-href');
-        if (href) {
-            window.location.href = href;
-        }
-    });
-
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.search-box')) {
-            resultsContainer.classList.remove('active');
-        }
-    });
-
-    searchInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            resultsContainer.classList.remove('active');
-            searchInput.blur();
-        }
+    toggleBtn.addEventListener('click', function() {
+        sidenav.classList.toggle('collapsed');
+        localStorage.setItem('sidebar-collapsed', sidenav.classList.contains('collapsed'));
+        updateToggleIcons();
     });
 })();
 
@@ -653,30 +407,22 @@ document.addEventListener('DOMContentLoaded', function () {
     var blockTexts = [];
     var activeAyahBtn = null;
 
-    /* ---- Speed (radio pills) ---- */
+    /* ---- Speed (select dropdown) ---- */
     var currentSpeed = 1;
-    var speedPills = player.querySelectorAll('.speed-pill');
+    var speedSelect = player.querySelector('.audio-speed-select') || player.querySelector('#audio-speed');
     var savedSpeed = localStorage.getItem('audio-speed');
     if (savedSpeed) currentSpeed = parseFloat(savedSpeed);
 
-    function initSpeedPills() {
-        speedPills.forEach(function(pill) {
-            var val = parseFloat(pill.querySelector('input').value);
-            if (val === currentSpeed) {
-                pill.classList.add('active');
-                pill.querySelector('input').checked = true;
-            }
-            pill.addEventListener('click', function() {
-                speedPills.forEach(function(p) { p.classList.remove('active'); });
-                pill.classList.add('active');
-                pill.querySelector('input').checked = true;
-                currentSpeed = parseFloat(pill.querySelector('input').value);
-                localStorage.setItem('audio-speed', currentSpeed);
-                if (currentUtterance) currentUtterance.rate = currentSpeed;
-            });
+    function initSpeedSelect() {
+        if (!speedSelect) return;
+        speedSelect.value = currentSpeed;
+        speedSelect.addEventListener('change', function() {
+            currentSpeed = parseFloat(this.value);
+            localStorage.setItem('audio-speed', currentSpeed);
+            if (currentUtterance) currentUtterance.rate = currentSpeed;
         });
     }
-    initSpeedPills();
+    initSpeedSelect();
 
     /* ---- Voice Selector (Qari + Standard categories) ---- */
     var arVoices = null;

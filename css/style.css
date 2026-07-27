@@ -38,6 +38,7 @@
     --font-ar-scheherazade: 'Scheherazade New', 'Noto Naskh Arabic', serif;
     --font-ar-lateef: 'Lateef', 'Noto Naskh Arabic', serif;
     --transition: 0.3s ease;
+    --sidebar-width: 260px;
     --ar-font-scale: 1;
     --en-font-scale: 1;
 }
@@ -530,18 +531,21 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 16px 20px;
-    border-radius: var(--radius-sm);
+    padding: 20px 24px;
+    border-radius: 16px;
     text-decoration: none;
     color: var(--text-dark);
-    transition: all var(--transition);
-    border: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid #e2e8f0;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
 .lesson-item:hover {
     background: #f0f9ff;
     border-color: var(--primary);
-    transform: translateX(4px);
+    box-shadow: 0 8px 24px rgba(79,156,247,0.12);
+    transform: translateY(-3px);
 }
 
 .lesson-num {
@@ -603,7 +607,7 @@ body {
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
     .navbar { padding: 10px 20px; }
-    .nav-links { gap: 16px; }
+    .nav-links { gap: 12px; }
     .nav-links a { font-size: 0.85rem; }
     .hero { padding: 120px 20px 80px; }
     .hero-quran { font-size: 2rem; }
@@ -613,12 +617,27 @@ body {
     .track-card { width: 100%; max-width: 400px; }
     .curriculum-section { padding: 48px 20px; }
     .unit-card { padding: 20px 16px; }
-    .lesson-item { padding: 12px 14px; gap: 12px; }
+    .lesson-item { padding: 16px 18px; gap: 12px; }
     .lesson-concept { display: none; }
     .lesson-sidebar { display: none; }
     .lesson-aside { display: none; }
     .sidebar-toggle { display: none; }
     .lesson-layout { padding: 0 16px; }
+
+    /* Pinned sidebar: hidden on mobile */
+    .sidenav-with-history-container { display: none; }
+    .page-content-wrapper { margin-left: 0 !important; }
+    .sidebar-toggle-btn { display: none !important; }
+
+    /* Larger touch targets on mobile */
+    .audio-play-btn { width: 80px; height: 80px; }
+    .audio-play-btn svg { width: 32px; height: 32px; }
+    .lesson-arrow { font-size: 1.8rem; }
+    .audio-speed-select { padding: 8px 12px; font-size: 0.8rem; }
+
+    /* Stack layout on smaller screens */
+    .lesson-layout { flex-direction: column; gap: 24px; }
+    .lesson-aside { display: block; width: 100%; position: static; }
 }
 
 @media (max-width: 480px) {
@@ -640,6 +659,184 @@ body {
 .track-card:nth-child(3) { animation-delay: 0.3s; }
 
 .unit-card { animation: fadeInUp 0.5s ease-out backwards; }
+
+/* ---------- Disable Onload Animations ---------- */
+.disable-onload-animations .hero-content,
+.disable-onload-animations .track-card,
+.disable-onload-animations .unit-card,
+.disable-onload-animations .lesson-item {
+    animation: none !important;
+}
+
+.disable-onload-animations .sidenav-inner {
+    opacity: 1 !important;
+}
+
+/* ---------- Settings Dropdown ---------- */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sidebar-toggle-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-medium);
+    cursor: pointer;
+    transition: all var(--transition);
+    flex-shrink: 0;
+}
+
+.sidebar-toggle-btn:hover {
+    background: #f0f9ff;
+    color: var(--primary);
+}
+
+.has-sidenav .sidebar-toggle-btn {
+    display: flex;
+}
+
+.settings-dropdown {
+    position: relative;
+}
+
+.settings-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    color: var(--text-medium);
+    cursor: pointer;
+    transition: all var(--transition);
+    padding: 0;
+}
+
+.settings-toggle-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.settings-dropdown-content {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: white;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg);
+    padding: 16px;
+    min-width: 260px;
+    z-index: 1001;
+    border: 1px solid #e2e8f0;
+}
+
+.settings-dropdown.open .settings-dropdown-content {
+    display: block;
+}
+
+.settings-dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+}
+
+.settings-dropdown-divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 4px 0;
+}
+
+.settings-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    white-space: nowrap;
+}
+
+/* ---------- Sidebar Toggle Button in Header (old floating style — deprecated) ---------- */
+.sidebar-toggle {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    font-size: 15px;
+    color: #64748b;
+    line-height: 1;
+    padding: 0;
+    transition: box-shadow 0.2s ease, background 0.2s ease;
+    user-select: none;
+}
+
+/* ---------- Pinned Left Sidebar (new layout) ---------- */
+.sidenav-with-history-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    z-index: 900;
+    overflow: hidden;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidenav-with-history-container.collapsed {
+    width: 0;
+}
+
+.sidenav-inner {
+    width: var(--sidebar-width);
+    height: 100%;
+    padding: 80px 14px 24px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #f8f9fa;
+    border-right: 1px solid #e2e8f0;
+    scrollbar-width: none;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.sidenav-inner::-webkit-scrollbar {
+    display: none;
+}
+
+.sidenav-with-history-container.collapsed .sidenav-inner {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ---------- Page Content Wrapper ---------- */
+.page-content-wrapper {
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidenav-with-history-container.collapsed ~ .page-content-wrapper {
+    margin-left: 0;
+}
 
 /* ---------- Lesson Pages ---------- */
 .lesson-layout {
@@ -925,16 +1122,59 @@ a.sidebar-unit-label.active {
 }
 
 .lesson-hero {
-    padding: 100px 32px 40px;
-    min-height: 320px;
+    padding: 60px 32px 32px;
+    min-height: 300px;
     text-align: center;
     background: linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+    background-color: #f0f4ff;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.lesson-hero-inner { max-width: 700px; margin: 0 auto; }
+.lesson-hero-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Hero with background image (all lessons with data-hero-img) */
+.lesson-hero[data-hero-img] {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+/* Tawheed unit-specific overrides */
+.lesson-hero.hero-bg-unit1 {
+    background-image: url('../images/illustrations/unit1-hero.svg'),
+        linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
+}
+
+.lesson-hero.hero-bg-unit2 {
+    background-image: url('../images/illustrations/unit2-hero.svg'),
+        linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
+}
+
+.lesson-hero.hero-bg-unit3 {
+    background-image: url('../images/illustrations/unit3-hero.svg'),
+        linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
+}
+
+.lesson-hero[data-hero-img] .hero-illustration {
+    display: none;
+}
 
 .lesson-unit {
     font-size: 0.9rem;
@@ -990,9 +1230,9 @@ a.sidebar-unit-label.active {
     position: sticky;
     top: 80px;
     align-self: flex-start;
-    width: 260px;
+    width: 280px;
     flex-shrink: 0;
-    padding: 24px 10px 24px 14px;
+    padding: 24px 14px;
     scrollbar-width: none;
     background: #f8f9fa;
     border-radius: 8px;
@@ -1019,8 +1259,8 @@ a.sidebar-unit-label.active {
 
 /* ---------- Audio Player Widget ---------- */
 .audio-player {
-    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
-    border: 2px solid #c8e6c9;
+    background: linear-gradient(135deg, #e8f0ff 0%, #f0e6ff 100%);
+    border: 2px solid #c8d6f0;
     border-radius: 16px;
     padding: 20px 16px;
     text-align: center;
@@ -1030,7 +1270,7 @@ a.sidebar-unit-label.active {
     font-family: var(--font-en);
     font-size: 0.75rem;
     font-weight: 700;
-    color: #2e7d32;
+    color: var(--primary-dark);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 14px;
@@ -1041,7 +1281,7 @@ a.sidebar-unit-label.active {
     height: 72px;
     border-radius: 50%;
     border: none;
-    background: linear-gradient(135deg, #43a047, #2e7d32);
+    background: linear-gradient(135deg, #2e7d32, #1b5e20);
     color: white;
     font-size: 1.8rem;
     cursor: pointer;
@@ -1084,7 +1324,7 @@ a.sidebar-unit-label.active {
 .audio-status {
     font-family: var(--font-en);
     font-size: 0.72rem;
-    color: #558b2f;
+    color: var(--primary-dark);
     margin-top: 10px;
     min-height: 1.4em;
     font-weight: 600;
@@ -1094,7 +1334,7 @@ a.sidebar-unit-label.active {
     font-family: 'Noto Naskh Arabic', var(--font-ar);
     direction: rtl;
     font-size: 0.8rem;
-    color: #33691e;
+    color: var(--text-medium);
     margin-top: 8px;
     line-height: 1.6;
     max-height: 3.2em;
@@ -1103,44 +1343,43 @@ a.sidebar-unit-label.active {
     opacity: 0.8;
 }
 
-/* Speed radio pills */
-.audio-speed-group {
+/* Speed select dropdown */
+.audio-speed-select-wrap {
     display: flex;
-    gap: 4px;
+    align-items: center;
+    gap: 8px;
     justify-content: center;
     margin-top: 14px;
-    flex-wrap: wrap;
 }
 
-.speed-pill {
-    border: 2px solid #c8e6c9;
+.audio-speed-label {
+    font-family: var(--font-en);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.audio-speed-select {
+    padding: 5px 10px;
+    border: 2px solid #c8d6f0;
     border-radius: 6px;
     background: white;
-    padding: 5px 8px;
     font-family: var(--font-en);
-    font-size: 0.65rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    color: #558b2f;
+    color: var(--primary-dark);
     cursor: pointer;
-    transition: all 0.15s ease;
-    line-height: 1;
-    user-select: none;
+    transition: border-color 0.15s ease;
 }
 
-.speed-pill input {
-    display: none;
+.audio-speed-select:hover {
+    border-color: var(--primary);
 }
 
-.speed-pill:hover {
-    border-color: #66bb6a;
-    background: #f1f8e9;
-}
-
-.speed-pill.active {
-    background: #43a047;
-    border-color: #43a047;
-    color: white;
-    box-shadow: 0 2px 6px rgba(67,160,71,0.3);
+.audio-speed-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79,156,247,0.15);
 }
 
 .audio-no-support {
@@ -1155,13 +1394,13 @@ a.sidebar-unit-label.active {
 .audio-voice-select {
     width: 100%;
     padding: 6px 8px;
-    border: 2px solid #c8e6c9;
+    border: 2px solid #c8d6f0;
     border-radius: 8px;
     background: white;
     font-family: var(--font-en);
     font-size: 0.7rem;
     font-weight: 600;
-    color: #33691e;
+    color: var(--text-dark);
     cursor: pointer;
     margin-top: 10px;
     appearance: auto;
@@ -1169,24 +1408,24 @@ a.sidebar-unit-label.active {
 
 .audio-voice-select:focus {
     outline: none;
-    border-color: #43a047;
+    border-color: var(--primary);
 }
 
 .audio-voice-select optgroup {
     font-weight: 700;
     font-style: normal;
-    color: #2e7d32;
+    color: var(--primary-dark);
     padding: 4px 0;
 }
 
 .audio-voice-select optgroup[label*="Qari"] {
-    color: #1b5e20;
-    background: #e8f5e9;
+    color: var(--primary-dark);
+    background: #e8f0ff;
 }
 
 .audio-voice-select optgroup[label*="Standard"] {
-    color: #e65100;
-    background: #fff3e0;
+    color: #7c3aed;
+    background: #f0e6ff;
 }
 
 /* Word highlighting */
@@ -1220,10 +1459,10 @@ a.sidebar-unit-label.active {
     width: 30px;
     height: 30px;
     min-width: 30px;
-    border: 2px solid #c8e6c9;
-    border-radius: 8px;
+    border: 2px solid #a5d6a7;
+    border-radius: 50%;
     background: white;
-    color: #43a047;
+    color: #2e7d32;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -1241,7 +1480,7 @@ a.sidebar-unit-label.active {
 
 .ayah-play-btn:hover {
     background: #e8f5e9;
-    border-color: #43a047;
+    border-color: #2e7d32;
     transform: scale(1.1);
 }
 
@@ -1852,14 +2091,24 @@ body.popup-open {
 
 /* ---------- Unit Landing Page ---------- */
 .unit-hero {
-    padding: 100px 32px 40px;
+    padding: 60px 32px 32px;
     text-align: center;
-    background: linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+    background-color: #f0f4ff;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
 }
 
 .unit-hero-inner {
-    max-width: 700px;
+    max-width: 600px;
     margin: 0 auto;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
 }
 
 .unit-hero-title {
@@ -1891,7 +2140,7 @@ body.popup-open {
 }
 
 .unit-lessons .lesson-item {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 /* ---------- Hadith/Manner Individual Page ---------- */
@@ -1909,12 +2158,18 @@ body.popup-open {
 /* ---------- Responsive Additions ---------- */
 @media (max-width: 768px) {
     .breadcrumb { font-size: 0.8rem; padding: 12px 16px 0; }
-    .lesson-hero { padding: 80px 20px 30px; min-height: 260px; }
-    .unit-hero { padding: 80px 20px 30px; }
+    .lesson-hero { padding: 40px 16px 24px; min-height: 240px; }
+    .unit-hero { padding: 40px 16px 24px; background-position: center; min-height: 240px; }
     .unit-hero-title { font-size: 1.7rem; }
     .unit-lessons { padding: 24px 16px 60px; }
     .hero-illustration img { max-width: 200px; }
     .content-illustration img { max-width: 160px; }
-    .lesson-aside { display: none; }
+    .lesson-aside { display: block; width: 100%; position: static; }
+    .settings-dropdown-content { right: -40px; min-width: 240px; }
+    .settings-dropdown-item { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+
+@media (min-width: 769px) {
+    .sidebar-toggle-btn { display: flex; }
 }
 

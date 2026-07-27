@@ -9,68 +9,70 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="disable-onload-animations">
 
     <nav class="navbar">
-        <a href="../index.html" class="nav-logo">
-            <img src="../images/logo.svg" alt="SiratKids logo" class="nav-logo-img">
-            <span class="nav-brand">SiratKids</span>
-        </a>
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+            </button>
+            <a href="../index.html" class="nav-logo">
+                <img src="../images/logo.svg" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
         <div class="nav-links">
             <a href="../index.html">Home</a>
-            <div class="font-switcher">
-                <label class="font-switcher-label" for="arabic-font">Script:</label>
-                <select id="arabic-font">
-                    <option value="naskh">Noto Naskh</option>
-                    <option value="nastaleeq">Indopak Nastaleeq</option>
-                    <option value="amiri">Amiri</option>
-                    <option value="scheherazade">Scheherazade New</option>
-                    <option value="lateef">Lateef</option>
-                </select>
-            </div>
-            <div class="font-size-controls">
-                <div class="font-size-group">
-                    <span class="font-size-group-label">EN</span>
-                    <button class="font-size-btn" id="en-font-size-down">A-</button>
-                    <span class="font-size-label" id="en-font-size-label">100%</span>
-                    <button class="font-size-btn" id="en-font-size-up">A+</button>
-                </div>
-                <div class="font-size-group">
-                    <span class="font-size-group-label">AR</span>
-                    <button class="font-size-btn" id="ar-font-size-down">A-</button>
-                    <span class="font-size-label" id="ar-font-size-label">100%</span>
-                    <button class="font-size-btn" id="ar-font-size-up">A+</button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="nastaleeq">Indopak Nastaleeq</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group">
+                            <button class="font-size-btn" id="en-font-size-down">A-</button>
+                            <span class="font-size-label" id="en-font-size-label">100%</span>
+                            <button class="font-size-btn" id="en-font-size-up">A+</button>
+                        </div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group">
+                            <button class="font-size-btn" id="ar-font-size-down">A-</button>
+                            <span class="font-size-label" id="ar-font-size-label">100%</span>
+                            <button class="font-size-btn" id="ar-font-size-up">A+</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">&#9657;</span><a href="tawheed/unit3.html">Tawheed</a><span class="sep">&#9657;</span><span class="current">Loving the Companions (Sahabah)</span></div>
-
-    <header class="lesson-hero">
-        <div class="lesson-hero-inner">
-            <div class="hero-illustration">
-                <img src="../images/illustrations/unit3-hero.svg" alt="Loving the Companions (Sahabah)">
-            </div>
-            <p class="lesson-unit">Unit 3</p>
-            <h1 class="lesson-title">
-                <span class="ar" dir="rtl">حُبُّ الصَّحَابَةِ</span>
-                <span class="en">Loving the Companions (Sahabah)</span>
-            </h1>
-            <p class="lesson-concept-block">
-                <span class="ar" dir="rtl">أَنَا أُحِبُّ أَصْحَابَ النَّبِيِّ ﷺ.</span>
-                <span class="en">I love the Companions of the Prophet ﷺ.</span>
-            </p>
-        </div>
-    </header>
-
-    <div class="lesson-layout">
-        <aside class="lesson-sidebar">
-        <button class="sidebar-toggle" aria-label="Toggle sidebar">
-            <span class="sidebar-toggle-icon"></span>
-        </button>
-
-            <div class="sidebar-title">Tawheed Lessons</div>
+    <aside class="sidenav-with-history-container content-loaded collapsed">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Tawheed Lessons</div>
             <div class="sidebar-unit">
                 <a href="tawheed/unit1.html" class="sidebar-unit-label">Unit 1: Rububiyyah</a>
                 <a href="tawheed-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Three Principles</a>
@@ -93,7 +95,28 @@
                 <a href="tawheed-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>Love the Prophet</a>
                 <a href="tawheed-3-4.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">13</span>Love Companions</a>
             </div>
-        </aside>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">&#9657;</span><a href="tawheed/unit3.html">Tawheed</a><span class="sep">&#9657;</span><span class="current" aria-current="page">Tawheed 3-4</span></div></nav>
+
+    <header class="lesson-hero hero-bg-unit3" data-hero-img="../images/illustrations/unit3-hero.svg">
+        <div class="lesson-hero-inner">
+            <div class="hero-illustration">
+                <img src="../images/illustrations/unit3-hero.svg" alt="Loving the Companions (Sahabah)">
+            </div>
+            <p class="lesson-unit">Unit 3</p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">حُبُّ الصَّحَابَةِ</span>
+                <span class="en">Loving the Companions (Sahabah)</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+        
 
 
     <main class="lesson-main">
@@ -138,11 +161,6 @@
         </div>
     </main>
         <aside class="lesson-aside">
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="quran-search" placeholder="Search in Quran" dir="auto" autocomplete="off">
-                <div class="search-results" id="search-results"></div>
-            </div>
 
         <div class="audio-player">
             <div class="audio-player-title">Listen in Arabic</div>
@@ -151,15 +169,20 @@
             </button>
             <div class="audio-status">Tap to play all</div>
             <div class="audio-text-preview"></div>
-            <div class="audio-speed-group">
-                <label class="speed-pill"><input type="radio" name="audio-speed" value="0.5">0.5x</label>
-                <label class="speed-pill"><input type="radio" name="audio-speed" value="0.75">0.75x</label>
-                <label class="speed-pill active"><input type="radio" name="audio-speed" value="1" checked>1x</label>
-                <label class="speed-pill"><input type="radio" name="audio-speed" value="1.5">1.5x</label>
-                <label class="speed-pill"><input type="radio" name="audio-speed" value="2">2x</label>
+                        <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
             </div>
         </div>
         </aside>
+    </div>
+
     </div>
 
     <footer class="footer">
