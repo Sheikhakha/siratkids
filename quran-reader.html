@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran Reader | SiratKids</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quran-reader.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+
+    <nav class="qr-navbar">
+        <div class="qr-nav-left">
+            <button class="qr-sidebar-toggle" id="qr-sidebar-toggle" aria-label="Toggle surah list">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <a href="index.html" class="qr-nav-logo">
+                <img src="images/logo.svg" alt="SiratKids" class="qr-nav-logo-img">
+                <span class="qr-nav-brand">SiratKids Quran</span>
+            </a>
+        </div>
+        <div class="qr-nav-right">
+            <div class="qr-nav-group">
+                <label class="qr-nav-label" for="qr-reciter">Reciter:</label>
+                <select id="qr-reciter" class="qr-nav-select">
+                    <option value="Sudais">Sudais</option>
+                    <option value="Alafasy">Al-Afasy</option>
+                </select>
+            </div>
+            <div class="qr-nav-group">
+                <label class="qr-nav-label" for="qr-translation">Translation:</label>
+                <select id="qr-translation" class="qr-nav-select">
+                    <option value="hilali">Al-Hilali &amp; Khan</option>
+                    <option value="saheeh">Saheeh International</option>
+                </select>
+            </div>
+            <div class="qr-nav-group">
+                <label class="qr-nav-label" for="qr-arabic-font">Script:</label>
+                <select id="qr-arabic-font" class="qr-nav-select">
+                    <option value="naskh">Noto Naskh</option>
+                    <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                    <option value="amiri">Amiri</option>
+                    <option value="scheherazade">Scheherazade New</option>
+                    <option value="lateef">Lateef</option>
+                </select>
+            </div>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <span class="dm-track">
+                    <span class="dm-knob"></span>
+                    <svg class="dm-icon-light" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="dm-icon-dark" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="qr-layout">
+        <aside class="qr-sidebar" id="qr-sidebar">
+            <div class="qr-sidebar-header">
+                <h2>Surahs</h2>
+                <input type="text" class="qr-surah-search" id="qr-surah-search" placeholder="Search surahs...">
+            </div>
+            <div class="qr-surah-list" id="qr-surah-list"></div>
+        </aside>
+
+        <main class="qr-main" id="qr-main">
+            <div class="qr-loading" id="qr-loading">
+                <div class="qr-loading-spinner"></div>
+                <p>Loading Quran...</p>
+            </div>
+            <div class="qr-content" id="qr-content" style="display:none;">
+
+                <!-- Reading progress bar -->
+                <div class="qr-progress-bar" id="qr-progress-bar">
+                    <div class="qr-progress-fill" id="qr-progress-fill"></div>
+                </div>
+
+                <!-- Surah header -->
+                <div class="qr-surah-header" id="qr-surah-header"></div>
+
+                <!-- Play bar -->
+                <div class="qr-play-bar">
+                    <button class="qr-play-surah" id="qr-play-surah">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                        <span>Play Surah</span>
+                    </button>
+                    <div class="qr-playing-indicator" id="qr-playing-indicator" style="display:none;">
+                        <span class="qr-playing-pulse"></span>
+                        <span class="qr-playing-text" id="qr-playing-text">Playing...</span>
+                        <button class="qr-stop-btn" id="qr-stop-btn">&#9632; Stop</button>
+                    </div>
+                </div>
+
+                <!-- Unified verse list -->
+                <div class="qr-verses" id="qr-verses"></div>
+
+            </div>
+            <div class="qr-nav-bottom" id="qr-nav-bottom" style="display:none;">
+                <button class="qr-nav-btn" id="qr-prev-surah">&#8592; Previous</button>
+                <button class="qr-nav-btn qr-nav-btn-primary" id="qr-next-surah">Next &#8594;</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/quran-reader-data.js"></script>
+    <script src="js/quran-saheeh-data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/quran-reader.js"></script>
+</body>
+</html>

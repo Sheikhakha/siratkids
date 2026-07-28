@@ -1,0 +1,262 @@
+[
+  {
+    "id": 1,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abu Hurayrah",
+    "collection": "Sahih al-Bukhari",
+    "number": "39",
+    "sunnah_url": "https://sunnah.com/bukhari/39"
+  },
+  {
+    "id": 2,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Mu'adh ibn Jabal",
+    "collection": "Sahih al-Bukhari",
+    "number": "589",
+    "sunnah_url": "https://sunnah.com/bukhari/589"
+  },
+  {
+    "id": 3,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abu Hurayrah",
+    "collection": "Sahih Muslim",
+    "number": "101",
+    "sunnah_url": "https://sunnah.com/muslim/101"
+  },
+  {
+    "id": 4,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Umar ibn al-Khattab",
+    "collection": "Sahih al-Bukhari",
+    "number": "1",
+    "sunnah_url": "https://sunnah.com/bukhari/1"
+  },
+  {
+    "id": 5,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abu Umamah",
+    "collection": "Sahih Muslim",
+    "number": "38",
+    "sunnah_url": "https://sunnah.com/muslim/38"
+  },
+  {
+    "id": 6,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abdullah ibn Mas'ud",
+    "collection": "Sahih al-Bukhari",
+    "number": "6094",
+    "sunnah_url": "https://sunnah.com/bukhari/6094"
+  },
+  {
+    "id": 7,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abdullah ibn Mas'ud",
+    "collection": "Sahih Muslim",
+    "number": "47",
+    "sunnah_url": "https://sunnah.com/muslim/47"
+  },
+  {
+    "id": 8,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abu Hurayrah",
+    "collection": "Sahih Muslim",
+    "number": "2548",
+    "sunnah_url": "https://sunnah.com/muslim/2548"
+  },
+  {
+    "id": 9,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abdullah ibn Umar",
+    "collection": "Sahih al-Bukhari",
+    "number": "5230",
+    "sunnah_url": "https://sunnah.com/bukhari/5230"
+  },
+  {
+    "id": 10,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abu Hurayrah",
+    "collection": "Sahih Muslim",
+    "number": "101",
+    "sunnah_url": "https://sunnah.com/muslim/101"
+  },
+  {
+    "id": 11,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Jabir",
+    "collection": "Sahih Muslim",
+    "number": "93a",
+    "sunnah_url": "https://sunnah.com/muslim/93a"
+  },
+  {
+    "id": 12,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abu Malik al-Ash'ari",
+    "collection": "Sahih Muslim",
+    "number": "223",
+    "sunnah_url": "https://sunnah.com/muslim/223"
+  },
+  {
+    "id": 13,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abu Malik al-Ash'ari",
+    "collection": "Sahih Muslim",
+    "number": "223",
+    "sunnah_url": "https://sunnah.com/muslim/223"
+  },
+  {
+    "id": 14,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abu Bakr",
+    "collection": "Sahih Muslim",
+    "number": "635a",
+    "sunnah_url": "https://sunnah.com/muslim/635a"
+  },
+  {
+    "id": 15,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abu Malik al-Ash'ari",
+    "collection": "Sahih Muslim",
+    "number": "223",
+    "sunnah_url": "https://sunnah.com/muslim/223"
+  },
+  {
+    "id": 16,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Tamim ad-Dari",
+    "collection": "Sahih Muslim",
+    "number": "55a",
+    "sunnah_url": "https://sunnah.com/muslim/55a"
+  },
+  {
+    "id": 17,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "an-Nu'man ibn Bashir",
+    "collection": "Sunan Abu Dawud",
+    "number": "1479",
+    "sunnah_url": "https://sunnah.com/abudawud/1479"
+  },
+  {
+    "id": 18,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abdullah ibn Salam",
+    "collection": "Sahih Muslim",
+    "number": "216",
+    "sunnah_url": "https://sunnah.com/muslim/216"
+  },
+  {
+    "id": 19,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abu Hurayrah",
+    "collection": "Sahih Muslim",
+    "number": "2222",
+    "sunnah_url": "https://sunnah.com/muslim/2222"
+  },
+  {
+    "id": 20,
+    "arabic": "",
+    "english": "",
+    "grade": "Hasan",
+    "narrator": "Abdullah ibn Abbas",
+    "collection": "Sunan at-Tirmidhi",
+    "number": "2516",
+    "sunnah_url": "https://sunnah.com/tirmidhi/2516"
+  },
+  {
+    "id": 21,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Jaber ibn Abdullah",
+    "collection": "Sahih al-Bukhari",
+    "number": "2989",
+    "sunnah_url": "https://sunnah.com/bukhari/2989"
+  },
+  {
+    "id": 22,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abu Masud al-Ansari",
+    "collection": "Sahih al-Bukhari",
+    "number": "6117",
+    "sunnah_url": "https://sunnah.com/bukhari/6117"
+  },
+  {
+    "id": 23,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Aisha",
+    "collection": "Sahih al-Bukhari",
+    "number": "6924",
+    "sunnah_url": "https://sunnah.com/bukhari/6924"
+  },
+  {
+    "id": 24,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Abdullah ibn Amr",
+    "collection": "Sahih al-Bukhari",
+    "number": "5984",
+    "sunnah_url": "https://sunnah.com/bukhari/5984"
+  },
+  {
+    "id": 25,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Hudhayfah",
+    "collection": "Sahih al-Bukhari",
+    "number": "6056",
+    "sunnah_url": "https://sunnah.com/bukhari/6056"
+  },
+  {
+    "id": 26,
+    "arabic": "",
+    "english": "",
+    "grade": "Sahih",
+    "narrator": "Anas ibn Malik",
+    "collection": "Sahih Muslim",
+    "number": "101",
+    "sunnah_url": "https://sunnah.com/muslim/101"
+  }
+]

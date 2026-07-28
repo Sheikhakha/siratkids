@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
 </head>
 <body class="disable-onload-animations">
 
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
     <!-- ========== NAVBAR ========== -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-left">
             <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
                 <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -31,6 +33,14 @@
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
+            <a href="quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode" style="background:none;border:none;cursor:pointer;padding:2px;">
+                <span class="dm-track" style="display:flex;align-items:center;width:52px;height:26px;background:#cbd5e0;border-radius:13px;position:relative;transition:background 0.3s;">
+                    <span class="dm-knob" style="position:absolute;top:2px;left:2px;width:22px;height:22px;background:white;border-radius:50%;transition:left 0.35s cubic-bezier(0.34,1.56,0.64,1);z-index:2;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></span>
+                    <svg class="dm-icon-light" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:absolute;left:5px;z-index:1;color:#f59e0b;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="dm-icon-dark" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:absolute;right:5px;z-index:1;color:#a78bfa;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </span>
+            </button>
             <div class="settings-dropdown">
                 <button class="settings-toggle-btn" aria-label="Settings">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -53,17 +63,17 @@
                     <div class="settings-dropdown-item">
                         <span class="settings-label">English Size</span>
                         <div class="font-size-group">
-                            <button class="font-size-btn" id="en-font-size-down">A-</button>
+                            <button class="font-size-btn" id="en-font-size-down" aria-label="Decrease English font size">A-</button>
                             <span class="font-size-label" id="en-font-size-label">100%</span>
-                            <button class="font-size-btn" id="en-font-size-up">A+</button>
+                            <button class="font-size-btn" id="en-font-size-up" aria-label="Increase English font size">A+</button>
                         </div>
                     </div>
                     <div class="settings-dropdown-item">
                         <span class="settings-label">Arabic Size</span>
                         <div class="font-size-group">
-                            <button class="font-size-btn" id="ar-font-size-down">A-</button>
+                            <button class="font-size-btn" id="ar-font-size-down" aria-label="Decrease Arabic font size">A-</button>
                             <span class="font-size-label" id="ar-font-size-label">100%</span>
-                            <button class="font-size-btn" id="ar-font-size-up">A+</button>
+                            <button class="font-size-btn" id="ar-font-size-up" aria-label="Increase Arabic font size">A+</button>
                         </div>
                     </div>
                 </div>
@@ -107,6 +117,7 @@
     </aside>
 
     <!-- ========== PAGE CONTENT ========== -->
+    <main id="main-content">
     <div class="page-content-wrapper">
 
         <nav aria-label="Breadcrumb"><div class="breadcrumb">
@@ -137,7 +148,7 @@
                         <div class="lesson-num">1</div>
                         <div class="lesson-info">
                             <span class="lesson-name">Religion is Ease</span>
-                            <span class="lesson-name ar" dir="rtl">&#x627;&#x644;&#x62F;&#x651;&#x64A;&#x646;&#x64F; &#x64A;&#x64F;&#x633;&#x652;&#x631;&#x64C;</span>
+                            <span class="lesson-name ar" dir="rtl">الدِّينُ يُسْرٌ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
@@ -145,7 +156,7 @@
                         <div class="lesson-num">2</div>
                         <div class="lesson-info">
                             <span class="lesson-name">Key to Paradise</span>
-                            <span class="lesson-name ar" dir="rtl">&#x645;&#x650;&#x641;&#x652;&#x62A;&#x64E;&#x627;&#x62D;&#x64F; &#x627;&#x644;&#x62C;&#x652;&#x646;&#x64E;&#x629;&#x650; &#x627;&#x644;&#x635;&#x652;&#x644;&#x64E;&#x627;&#x629;&#x64F;</span>
+                            <span class="lesson-name ar" dir="rtl">مَفْتَاحُ الْجَنَّةِ الصَّلَاةُ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
@@ -153,7 +164,7 @@
                         <div class="lesson-num">3</div>
                         <div class="lesson-info">
                             <span class="lesson-name">Cheating</span>
-                            <span class="lesson-name ar" dir="rtl">&#x645;&#x64E;&#x646;&#x652; &#x63A;&#x64E;&#x634;&#x651;&#x64E; &#x641;&#x64E;&#x644;&#x64A;&#x633;&#x64E; &#x645;&#x650;&#x646;&#x651;&#x64E;&#x646;&#x64E;&#x627;</span>
+                            <span class="lesson-name ar" dir="rtl">مَنْ غَشَّ فَلَيْسَ مِنَّا</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
@@ -161,7 +172,7 @@
                         <div class="lesson-num">4</div>
                         <div class="lesson-info">
                             <span class="lesson-name">Intentions</span>
-                            <span class="lesson-name ar" dir="rtl">&#x625;&#x650;&#x646;&#x652;&#x645;&#x64E;&#x627; &#x627;&#x644;&#x623;&#x64E;&#x639;&#x652;&#x645;&#x64E;&#x627;&#x644;&#x64F; &#x628;&#x650;&#x627;&#x644;&#x646;&#x652;&#x64A;&#x651;&#x64E;&#x627;&#x62A;&#x650;</span>
+                            <span class="lesson-name ar" dir="rtl">إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
@@ -169,7 +180,7 @@
                         <div class="lesson-num">5</div>
                         <div class="lesson-info">
                             <span class="lesson-name">Peace Before Speech</span>
-                            <span class="lesson-name ar" dir="rtl">&#x627;&#x644;&#x633;&#x652;&#x644;&#x64E;&#x627;&#x645;&#x64F; &#x642;&#x64E;&#x628;&#x652;&#x644;&#x64E; &#x627;&#x644;&#x643;&#x652;&#x644;&#x64E;&#x627;&#x645;&#x650;</span>
+                            <span class="lesson-name ar" dir="rtl">السَّلَامُ قَبْلَ الْكَلَامِ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
@@ -177,7 +188,7 @@
                         <div class="lesson-num">6</div>
                         <div class="lesson-info">
                             <span class="lesson-name">Truthfulness</span>
-                            <span class="lesson-name ar" dir="rtl">&#x639;&#x64E;&#x644;&#x64E;&#x64A;&#x643;&#x64F;&#x645;&#x652; &#x628;&#x650;&#x627;&#x644;&#x635;&#x650;&#x62F;&#x652;&#x642;&#x650;</span>
+                            <span class="lesson-name ar" dir="rtl">عَلَيْكُمْ بِالصِّدْقِ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
@@ -185,7 +196,7 @@
                         <div class="lesson-num">7</div>
                         <div class="lesson-info">
                             <span class="lesson-name">Beware of Lying</span>
-                            <span class="lesson-name ar" dir="rtl">&#x625;&#x650;&#x64A;&#x651;&#x64E;&#x627;&#x643;&#x64F;&#x645;&#x652; &#x648;&#x64E; &#x627;&#x644;&#x643;&#x652;&#x630;&#x652;&#x628;&#x64E;</span>
+                            <span class="lesson-name ar" dir="rtl">إِيَّاكُمْ وَ الْكَذِبَ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
@@ -193,7 +204,7 @@
                         <div class="lesson-num">8</div>
                         <div class="lesson-info">
                             <span class="lesson-name">Paradise &amp; Mothers</span>
-                            <span class="lesson-name ar" dir="rtl">&#x627;&#x644;&#x62C;&#x652;&#x646;&#x64E;&#x629;&#x64F; &#x62A;&#x64E;&#x62D;&#x652;&#x62A;&#x64E; &#x623;&#x64E;&#x642;&#x652;&#x62F;&#x64E;&#x627;&#x645;&#x650; &#x627;&#x644;&#x623;&#x64F;&#x645;&#x651;&#x64E;&#x647;&#x64E;&#x627;&#x62A;&#x650;</span>
+                            <span class="lesson-name ar" dir="rtl">الْجَنَّةُ تَحْتَ أَقْدَامِ الْأُمَّهَاتِ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
@@ -201,143 +212,143 @@
                         <div class="lesson-num">9</div>
                         <div class="lesson-info">
                             <span class="lesson-name">Door of Paradise</span>
-                            <span class="lesson-name ar" dir="rtl">&#x627;&#x644;&#x648;&#x64E;&#x627;&#x644;&#x650;&#x62F;&#x64F; &#x623;&#x64E;&#x648;&#x652;&#x633;&#x652;&#x637;&#x64E; &#x623;&#x64E;&#x628;&#x652;&#x648;&#x64E;&#x627;&#x628;&#x650; &#x627;&#x644;&#x62C;&#x652;&#x646;&#x64E;&#x629;&#x650;</span>
+                            <span class="lesson-name ar" dir="rtl">الْوَالِدُ أَوْسَطُ أَبْوَابِ الْجَنَّةِ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-10.html" class="lesson-item">
                         <div class="lesson-num">10</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">None will enter Paradise except a Muslim soul</span>
-                            <span class="lesson-name ar" dir="rtl">&#x644;&#x64E;&#x627; &#x64A;&#x64E;&#x62F;&#x652;&#x62E;&#x64F;&#x644;&#x652; &#x627;&#x644;&#x62C;&#x652;&#x646;&#x64E;&#x629;&#x64E; &#x625;&#x650;&#x644;&#x651;&#x64E;&#x627; &#x646;&#x64E;&#x641;&#x652;&#x633;&#x64C; &#x645;&#x651;&#x64F;&#x633;&#x652;&#x644;&#x64E;&#x645;&#x64E;&#x629;&#x64C;</span>
+                            <span class="lesson-name">None Will Enter Paradise Except a Muslim Soul</span>
+                            <span class="lesson-name ar" dir="rtl">لَا يَدْخُلُ الْجَنَّةَ إِلَّا نَفْسٌ مُسْلَمَةٌ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-11.html" class="lesson-item">
                         <div class="lesson-num">11</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Whoever dies associating will enter Hellfire</span>
-                            <span class="lesson-name ar" dir="rtl">&#x645;&#x64E;&#x646;&#x652; &#x645;&#x64E;&#x627;&#x62A;&#x64E; &#x64A;&#x64F;&#x634;&#x652;&#x631;&#x650;&#x643;&#x64F; &#x628;&#x650;&#x627;&#x644;&#x644;&#x651;&#x64E;&#x647;&#x650; &#x634;&#x650;&#x64A;&#x652;&#x626;&#x64B;&#x627; &#x62F;&#x64E;&#x62E;&#x652;&#x644;&#x64E; &#x627;&#x644;&#x646;&#x651;&#x64E;&#x627;&#x631;&#x64E;</span>
+                            <span class="lesson-name">Whoever Dies Associating Partners with Allah</span>
+                            <span class="lesson-name ar" dir="rtl">مَنْ مَاتَ يُشْرِكُ بِاللَّهِ شَيْئًا دَخَلَ النَّارَ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-12.html" class="lesson-item">
                         <div class="lesson-num">12</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Purity is half of faith</span>
-                            <span class="lesson-name ar" dir="rtl">&#x627;&#x644;&#x637;&#x651;&#x64E;&#x647;&#x64F;&#x648;&#x631;&#x64F; &#x634;&#x64E;&#x637;&#x652;&#x631;&#x64F; &#x627;&#x644;&#x625;&#x650;&#x64A;&#x652;&#x645;&#x64E;&#x627;&#x646;&#x650;</span>
+                            <span class="lesson-name">Purity Is Half of Faith</span>
+                            <span class="lesson-name ar" dir="rtl">الطَّهُورُ شَطْرُ الْإِيمَانِ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-13.html" class="lesson-item">
                         <div class="lesson-num">13</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Prayer is a light</span>
-                            <span class="lesson-name ar" dir="rtl">&#x627;&#x644;&#x635;&#x652;&#x644;&#x64E;&#x627;&#x629;&#x64F; &#x646;&#x64F;&#x648;&#x631&#x64C;</span>
+                            <span class="lesson-name">Prayer Is a Light</span>
+                            <span class="lesson-name ar" dir="rtl">الصَّلَاةُ نُورٌ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-14.html" class="lesson-item">
                         <div class="lesson-num">14</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Whoever prays the two cool prayers will enter Paradise</span>
-                            <span class="lesson-name ar" dir="rtl">&#x645;&#x64E;&#x646;&#x652; &#x635;&#x64E;&#x644;&#x651;&#x64E;&#x649; &#x627;&#x644;&#x628;&#x652;&#x631;&#x64E;&#x62F;&#x64E;&#x64A;&#x646;&#x650; &#x62F;&#x64E;&#x62E;&#x652;&#x644;&#x64E; &#x627;&#x644;&#x62C;&#x652;&#x646;&#x64E;&#x629;&#x64E;</span>
+                            <span class="lesson-name">The Two Cool Prayers: Fajr and Asr</span>
+                            <span class="lesson-name ar" dir="rtl">مَنْ صَلَّى الْبَرْدَيْنِ دَخَلَ الْجَنَّةَ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-15.html" class="lesson-item">
                         <div class="lesson-num">15</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Patience is illumination</span>
-                            <span class="lesson-name ar" dir="rtl">&#x627;&#x644;&#x635;&#x651;&#x64E;&#x628;&#x652;&#x631;&#x64F; &#x636;&#x650;&#x64A;&#x627;&#x621;&#x64C;</span>
+                            <span class="lesson-name">Patience Is Illumination</span>
+                            <span class="lesson-name ar" dir="rtl">الصَّبْرُ ضِيَاءٌ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-16.html" class="lesson-item">
                         <div class="lesson-num">16</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Religion is sincerity</span>
-                            <span class="lesson-name ar" dir="rtl">&#x627;&#x644;&#x62F;&#x651;&#x64A;&#x646;&#x64F; &#x627;&#x644;&#x646;&#x651;&#x64E;&#x635;&#x650;&#x64A;&#x62D;&#x64E;&#x629;&#x64F;</span>
+                            <span class="lesson-name">Religion Is Sincerity</span>
+                            <span class="lesson-name ar" dir="rtl">الدِّينُ النَّصِيحَةُ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-17.html" class="lesson-item">
                         <div class="lesson-num">17</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Supplication is worship</span>
-                            <span class="lesson-name ar" dir="rtl">&#x627;&#x644;&#x62F;&#x651;&#x64F;&#x639;&#x64E;&#x627;&#x621;&#x64F; &#x645;&#x64F;&#x62E;&#x651;&#x64F; &#x627;&#x644;&#x639;&#x650;&#x628;&#x64E;&#x627;&#x62F;&#x64E;&#x629;&#x650;</span>
+                            <span class="lesson-name">Supplication Is Worship</span>
+                            <span class="lesson-name ar" dir="rtl">الدُّعَاءُ مُخُ الْعِبَادَةِ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-18.html" class="lesson-item">
                         <div class="lesson-num">18</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Spread salam among yourselves</span>
-                            <span class="lesson-name ar" dir="rtl">&#x623;&#x64E;&#x641;&#x652;&#x634;&#x64F;&#x648;&#x627; &#x627;&#x644;&#x633;&#x652;&#x644;&#x64E;&#x627;&#x645;&#x64E; &#x628;&#x64E;&#x64A;&#x651;&#x64E;&#x646;&#x64E;&#x643;&#x64F;&#x645;&#x652;</span>
+                            <span class="lesson-name">Spread Salam Among Yourselves</span>
+                            <span class="lesson-name ar" dir="rtl">أَفْشُوا السَّلَامَ بَيْنَكُمْ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-19.html" class="lesson-item">
                         <div class="lesson-num">19</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Strive for that which benefits you</span>
-                            <span class="lesson-name ar" dir="rtl">&#x627;&#x62D;&#x652;&#x631;&#x650;&#x635;&#x652; &#x639;&#x64E;&#x644;&#x64E;&#x649; &#x645;&#x64E;&#x627; &#x64A;&#x64E;&#x646;&#x652;&#x641;&#x64E;&#x639;&#x64F;&#x643;&#x64E;</span>
+                            <span class="lesson-name">Strive for What Benefits You</span>
+                            <span class="lesson-name ar" dir="rtl">احْرِصْ عَلَى مَا يَنْفَعُكَ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-20.html" class="lesson-item">
                         <div class="lesson-num">20</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Seek help from Allah</span>
-                            <span class="lesson-name ar" dir="rtl">&#x627;&#x633;&#x652;&#x62A;&#x64E;&#x639;&#x650;&#x646;&#x652; &#x628;&#x650;&#x627;&#x644;&#x644;&#x651;&#x64E;&#x647;&#x650; &#x648;&#x64E;&#x644;&#x64E;&#x627; &#x62A;&#x64E;&#x639;&#x652;&#x62C;&#x64E;&#x632;&#x652;</span>
+                            <span class="lesson-name">Seek Help from Allah</span>
+                            <span class="lesson-name ar" dir="rtl">اسْتَعِنْ بِاللَّهِ وَلَا تَعْجَزْ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-21.html" class="lesson-item">
                         <div class="lesson-num">21</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Every good deed is charity</span>
-                            <span class="lesson-name ar" dir="rtl">&#x643;&#x64F;&#x644;&#x651;&#x64F; &#x645;&#x64E;&#x639;&#x652;&#x631;&#x64F;&#x648;&#x641;&#x64C; &#x635;&#x64E;&#x62F;&#x64E;&#x642;&#x64E;&#x629;&#x64C;</span>
+                            <span class="lesson-name">Every Good Deed Is Charity</span>
+                            <span class="lesson-name ar" dir="rtl">كُلُّ مَعْرُوفٍ صَدَقَةٌ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-22.html" class="lesson-item">
                         <div class="lesson-num">22</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Modesty brings nothing but good</span>
-                            <span class="lesson-name ar" dir="rtl">&#x627;&#x644;&#x62D;&#x651;&#x64E;&#x64A;&#x64E;&#x627;&#x621;&#x64F; &#x644;&#x64E;&#x627; &#x64A;&#x64E;&#x623;&#x652;&#x62A;&#x650;&#x64A; &#x625;&#x650;&#x644;&#x651;&#x64E;&#x627; &#x628;&#x650;&#x62E;&#x650;&#x64A;&#x631;&#x64D;</span>
+                            <span class="lesson-name">Modesty Brings Nothing but Good</span>
+                            <span class="lesson-name ar" dir="rtl">الْحَيَاءُ لَا يَأْتِي إِلَّا بِخَيْرٍ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-23.html" class="lesson-item">
                         <div class="lesson-num">23</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Allah loves gentleness in all matters</span>
-                            <span class="lesson-name ar" dir="rtl">&#x625;&#x650;&#x646;&#x651;&#x64E; &#x627;&#x644;&#x644;&#x651;&#x64E;&#x647;&#x64E; &#x64A;&#x64F;&#x62D;&#x650;&#x628;&#x651;&#x64F; &#x627;&#x644;&#x62A;&#x651;&#x64E;&#x64A;&#x652;&#x633;&#x650;&#x64A;&#x631;&#x64E; &#x641;&#x64E;&#x64A; &#x643;&#x64F;&#x644;&#x651;&#x650; &#x634;&#x64E;&#x64A;&#x652;&#x621;&#x64D;</span>
+                            <span class="lesson-name">Allah Loves Gentleness</span>
+                            <span class="lesson-name ar" dir="rtl">إِنَّ اللَّهَ يُحِبُّ التَّيْسِيرَ فِي كُلِّ شَيْءٍ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-24.html" class="lesson-item">
                         <div class="lesson-num">24</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">The one who severs family ties will not enter Paradise</span>
-                            <span class="lesson-name ar" dir="rtl">&#x644;&#x64E;&#x627; &#x64A;&#x64E;&#x62F;&#x652;&#x62E;&#x64F;&#x644;&#x652; &#x627;&#x644;&#x62C;&#x652;&#x646;&#x64E;&#x629;&#x64E; &#x642;&#x64E;&#x627;&#x637;&#x650;&#x639;&#x64F; &#x627;&#x644;&#x631;&#x651;&#x64E;&#x62D;&#x650;&#x645;&#x650;</span>
+                            <span class="lesson-name">Do Not Sever Family Ties</span>
+                            <span class="lesson-name ar" dir="rtl">لَا يَدْخُلُ الْجَنَّةَ قَاطِعُ الرَّحِمِ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-25.html" class="lesson-item">
                         <div class="lesson-num">25</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">The talebearer will not enter Paradise</span>
-                            <span class="lesson-name ar" dir="rtl">&#x644;&#x64E;&#x627; &#x64A;&#x64E;&#x62F;&#x652;&#x62E;&#x64F;&#x644;&#x652; &#x627;&#x644;&#x62C;&#x652;&#x646;&#x64E;&#x629;&#x64E; &#x646;&#x64E;&#x645;&#x651;&#x64E;&#x627;&#x645;&#x64C;</span>
+                            <span class="lesson-name">The Talebearer Will Not Enter Paradise</span>
+                            <span class="lesson-name ar" dir="rtl">لَا يَدْخُلُ الْجَنَّةَ نَمَّامٌ</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
                     <a href="lessons/hadith/hadith-26.html" class="lesson-item">
                         <div class="lesson-num">26</div>
                         <div class="lesson-info">
-                            <span class="lesson-name">Whoever cheats us is not from us</span>
-                            <span class="lesson-name ar" dir="rtl">&#x645;&#x64E;&#x646;&#x652; &#x63A;&#x64E;&#x634;&#x651;&#x64E; &#x641;&#x64E;&#x644;&#x64A;&#x633;&#x64E; &#x645;&#x650;&#x646;&#x651;&#x64E;&#x646;&#x64E;&#x627;</span>
+                            <span class="lesson-name">Whoever Cheats Us Is Not from Us</span>
+                            <span class="lesson-name ar" dir="rtl">مَنْ غَشَّ فَلَيْسَ مِنَّا</span>
                         </div>
                         <span class="lesson-arrow">&#8594;</span>
                     </a>
@@ -370,6 +381,7 @@
             <p>&copy; 2026 SiratKids. All rights reserved.</p>
         </footer>
     </div>
+    </main>
 
     <script src="js/main.js"></script>
 </body>

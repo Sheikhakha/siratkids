@@ -29,6 +29,13 @@
         </div>
         <div class="nav-links">
             <a href="../../index.html">Home</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode" style="background:none;border:none;cursor:pointer;padding:2px;">
+                <span class="dm-track" style="display:flex;align-items:center;width:52px;height:26px;background:#cbd5e0;border-radius:13px;position:relative;transition:background 0.3s;">
+                    <span class="dm-knob" style="position:absolute;top:2px;left:2px;width:22px;height:22px;background:white;border-radius:50%;transition:left 0.35s cubic-bezier(0.34,1.56,0.64,1);z-index:2;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></span>
+                    <svg class="dm-icon-light" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:absolute;left:5px;z-index:1;color:#f59e0b;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="dm-icon-dark" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="position:absolute;right:5px;z-index:1;color:#a78bfa;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </span>
+            </button>
             <div class="settings-dropdown">
                 <button class="settings-toggle-btn" aria-label="Settings">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -145,6 +152,11 @@
                 <div class="en translation"><p class="hadith-text">Whoever cheats is not one of us. (Abu Hurayrah, Sahih Muslim, No. 101)</p></div>
             </div>
 
+            <div class="hadith-row">
+<p class="hadith-grade"><strong>Grade:</strong> <span class="hadith-badge sahih">Sahih</span></p>
+            <button class="hadith-read-more" data-hadith-id="3">Read Full Hadith</button>
+</div>
+
             <div class="lesson-nav">
                 <a href="hadith-2.html" class="lesson-nav-prev">&#8592; Previous</a>
                 <a href="hadith-4.html" class="lesson-nav-next">Next &#8594;</a>
@@ -179,5 +191,6 @@
         <p>&copy; 2026 SiratKids. All rights reserved.</p>
     </footer>
     <script src="../../js/main.js"></script>
+    
 </body>
 </html>
