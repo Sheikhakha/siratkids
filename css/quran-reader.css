@@ -108,10 +108,27 @@ html.dark-mode .qr-navbar { background: rgba(15,23,42,0.96); }
     gap: 4px;
 }
 .qr-sidebar-toggle .qr-tv-logo img {
-    height: 24px; width: auto;
+    height: 30px; width: auto;
 }
 .qr-sidebar-toggle .qr-tv-logo span {
     font-size: 0.85rem; font-weight: 800; color: var(--qr-text); white-space: nowrap;
+}
+
+.qr-tv-tooltip {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 8px);
+    transform: translateY(-50%);
+    background: #1e293b;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .qr-nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }

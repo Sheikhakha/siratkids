@@ -930,7 +930,7 @@ html.dark-mode .dm-toggle .dm-knob {
 }
 
 .pv-logo img {
-    height: 28px;
+    height: 40px;
     width: auto;
 }
 
@@ -939,6 +939,23 @@ html.dark-mode .dm-toggle .dm-knob {
     font-weight: 900;
     color: inherit;
     white-space: nowrap;
+}
+
+.pv-tooltip {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e293b;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .settings-dropdown {
@@ -1025,6 +1042,23 @@ html.dark-mode .dm-toggle .dm-knob {
     padding: 0;
     transition: box-shadow 0.2s ease, background 0.2s ease;
     user-select: none;
+}
+
+.fl-tooltip {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e293b;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 /* ---------- Pinned Left Sidebar (new layout) ---------- */

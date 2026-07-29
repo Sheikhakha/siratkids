@@ -757,7 +757,8 @@ document.addEventListener('DOMContentLoaded', function () {
         '<span class="fl-vis fl-base">' + svgBase() + '</span>' +
         '<span class="fl-vis fl-expanded-hover" style="display:none">' + svgExpandedHover() + '</span>' +
         '<span class="fl-vis fl-collapsed-hover" style="display:none">' + svgCollapsedHover() + '</span>' +
-    '</span>';
+    '</span>' +
+    '<span class="fl-tooltip" style="display:none"></span>';
 
     var NAV_HEIGHT = 64;
 
@@ -785,6 +786,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var flBase = toggle.querySelector('.fl-base');
     var flExpHover = toggle.querySelector('.fl-expanded-hover');
     var flColHover = toggle.querySelector('.fl-collapsed-hover');
+    var flTooltip = toggle.querySelector('.fl-tooltip');
 
     function updateFloatingIcons() {
         var isCollapsed = layout.classList.contains('sidebar-collapsed');
@@ -793,7 +795,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (flExpHover) flExpHover.style.display = 'none';
         if (flColHover) flColHover.style.display = 'none';
         toggle.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
-        toggle.title = '';
+        if (flTooltip) flTooltip.style.display = 'none';
     }
 
     toggle.addEventListener('mouseenter', function() {
@@ -801,10 +803,14 @@ document.addEventListener('DOMContentLoaded', function () {
         if (flBase) flBase.style.display = 'none';
         if (flExpHover) flExpHover.style.display = isCollapsed ? 'none' : 'flex';
         if (flColHover) flColHover.style.display = isCollapsed ? 'flex' : 'none';
-        toggle.title = isCollapsed ? 'Open sidebar' : 'Close sidebar';
+        if (flTooltip) {
+            flTooltip.textContent = isCollapsed ? 'Open sidebar' : 'Close sidebar';
+            flTooltip.style.display = 'block';
+        }
     });
 
     toggle.addEventListener('mouseleave', function() {
+        if (flTooltip) flTooltip.style.display = 'none';
         updateFloatingIcons();
     });
 
@@ -839,7 +845,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
             '<rect x="3" y="3" width="18" height="18" rx="3"/>' +
             '<line x1="8" y1="6" x2="8" y2="18"/>' +
-            '<polyline points="10,9 14,12 10,15"/>' +
+            '<polyline points="12,10 15,13 12,16"/>' +
         '</svg>';
     }
 
@@ -853,19 +859,20 @@ document.addEventListener('DOMContentLoaded', function () {
         '<span class="pv-vis pv-base">' + svgBase() + '</span>' +
         '<span class="pv-vis pv-expanded-hover" style="display:none">' + svgExpandedHover() + '</span>' +
         '<span class="pv-vis pv-collapsed-hover" style="display:none">' + svgCollapsedHover() + '</span>' +
-        '<span class="pv-vis pv-logo" style="display:none"></span>';
+        '<span class="pv-vis pv-logo" style="display:none"></span>' +
+        '<span class="pv-tooltip" style="display:none"></span>';
 
     var pvBase = toggleBtn.querySelector('.pv-base');
     var pvExpHover = toggleBtn.querySelector('.pv-expanded-hover');
     var pvColHover = toggleBtn.querySelector('.pv-collapsed-hover');
     var pvLogo = toggleBtn.querySelector('.pv-logo');
+    var tooltipEl = toggleBtn.querySelector('.pv-tooltip');
 
-    // Clone logo content into pv-logo
-    if (navLogo && pvLogo) {
-        var logoImg = navLogo.querySelector('.nav-logo-img');
-        var logoBrand = navLogo.querySelector('.nav-brand');
-        if (logoImg) pvLogo.appendChild(logoImg.cloneNode(true));
-        if (logoBrand) pvLogo.appendChild(logoBrand.cloneNode(true));
+    var navLogoImg = navLogo ? navLogo.querySelector('.nav-logo-img') : null;
+
+    // Clone only logo image into pv-logo (no brand text)
+    if (navLogoImg && pvLogo) {
+        pvLogo.appendChild(navLogoImg.cloneNode(true));
     }
 
     // Restore saved state
@@ -886,13 +893,13 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleBtn.classList.toggle('expanded', !isCollapsed);
         if (isCollapsed) {
             show(pvLogo);
-            if (navLogo) navLogo.style.display = 'none';
+            if (navLogoImg) navLogoImg.style.display = 'none';
         } else {
             show(pvBase);
-            if (navLogo) navLogo.style.display = '';
+            if (navLogoImg) navLogoImg.style.display = '';
         }
         toggleBtn.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
-        toggleBtn.removeAttribute('title');
+        if (tooltipEl) tooltipEl.style.display = 'none';
     }
 
     updatePinnedIcons();
@@ -902,15 +909,18 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isCollapsed) {
             pvColHover.style.display = 'flex';
             if (pvLogo) pvLogo.style.visibility = 'hidden';
-            toggleBtn.title = 'Open sidebar';
         } else {
             show(pvExpHover);
-            toggleBtn.title = 'Close sidebar';
+        }
+        if (tooltipEl) {
+            tooltipEl.textContent = isCollapsed ? 'Open sidebar' : 'Close sidebar';
+            tooltipEl.style.display = 'block';
         }
     });
 
     toggleBtn.addEventListener('mouseleave', function() {
         if (pvLogo) pvLogo.style.visibility = '';
+        if (tooltipEl) tooltipEl.style.display = 'none';
         updatePinnedIcons();
     });
 
