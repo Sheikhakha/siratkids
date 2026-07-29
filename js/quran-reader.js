@@ -17,6 +17,26 @@
     var audioEl = null;
     var audioQueue = [];
     var isPlaying = false;
+    var isPaused = false;
+    var isSinglePlay = false;
+    var singlePlayChapter = null;
+    var lastPlayedVerse = 0;
+    var audioGen = 0;
+
+    var SURAH_LIGATURES = [
+        '\uFC45','\uFC46','\uFC47','\uFC4A','\uFC4B','\uFC4E','\uFC4F','\uFC51','\uFC52','\uFC53',
+        '\uFC55','\uFC56','\uFC58','\uFC5A','\uFC5B','\uFC5C','\uFC5D','\uFC5E','\uFC61','\uFC62',
+        '\uFC64','\uFB51','\uFB52','\uFB54','\uFB55','\uFB57','\uFB58','\uFB5A','\uFB5B','\uFB5D',
+        '\uFB5E','\uFB60','\uFB61','\uFB63','\uFB64','\uFB66','\uFB67','\uFB69','\uFB6A','\uFB6C',
+        '\uFB6D','\uFB6F','\uFB70','\uFB72','\uFB73','\uFB75','\uFB76','\uFB78','\uFB79','\uFB7B',
+        '\uFB7C','\uFB7E','\uFB7F','\uFB81','\uFB82','\uFB84','\uFB85','\uFB87','\uFB88','\uFB8A',
+        '\uFB8B','\uFB8D','\uFB8E','\uFB90','\uFB91','\uFB93','\uFB94','\uFB96','\uFB97','\uFB99',
+        '\uFB9A','\uFB9C','\uFB9D','\uFB9F','\uFBA0','\uFBA2','\uFBA3','\uFBA5','\uFBA6','\uFBA8',
+        '\uFBA9','\uFBAB','\uFBAC','\uFBAE','\uFBAF','\uFBB1','\uFBB2','\uFBB4','\uFBB5','\uFBB7',
+        '\uFBB8','\uFBBA','\uFBBB','\uFBBD','\uFBBE','\uFBC0','\uFBC1','\uFBD3','\uFBD4','\uFBD6',
+        '\uFBD7','\uFBD9','\uFBDA','\uFBDC','\uFBDD','\uFBDF','\uFBE0','\uFBE2','\uFBE3','\uFBE5',
+        '\uFBE6','\uFBE8','\uFBE9','\uFBEB'
+    ];
 
     var els = {
         loading: document.getElementById('qr-loading'),
@@ -28,17 +48,23 @@
         surahSearch: document.getElementById('qr-surah-search'),
         surahHeader: document.getElementById('qr-surah-header'),
         verses: document.getElementById('qr-verses'),
-        progressFill: document.getElementById('qr-progress-fill'),
         navBottom: document.getElementById('qr-nav-bottom'),
         prevBtn: document.getElementById('qr-prev-surah'),
         nextBtn: document.getElementById('qr-next-surah'),
         fontSelect: document.getElementById('qr-arabic-font'),
         reciterSelect: document.getElementById('qr-reciter'),
         translationSelect: document.getElementById('qr-translation'),
-        playSurah: document.getElementById('qr-play-surah'),
-        playingIndicator: document.getElementById('qr-playing-indicator'),
-        playingText: document.getElementById('qr-playing-text'),
-        stopBtn: document.getElementById('qr-stop-btn'),
+
+        fixedPlayBar: document.getElementById('qr-fixed-play-bar'),
+        playbarSurah: document.getElementById('qr-playbar-surah'),
+        playbarVerse: document.getElementById('qr-playbar-verse'),
+        playbarPlayPause: document.getElementById('qr-playbar-playpause'),
+        playbarPrev: document.getElementById('qr-playbar-prev'),
+        playbarNext: document.getElementById('qr-playbar-next'),
+        playbarStop: document.getElementById('qr-playbar-stop'),
+        continuePrompt: document.getElementById('qr-continue-prompt'),
+        continueYes: document.getElementById('qr-continue-yes'),
+        continueNo: document.getElementById('qr-continue-no'),
     };
 
     if (!els.loading || !els.content) return;
@@ -51,7 +77,6 @@
         renderSurahList();
         applyFont();
 
-        /* Restore sidebar */
         if (localStorage.getItem('sidebar-collapsed') === 'true') {
             document.body.classList.add('qr-sidebar-hidden');
         }
@@ -90,16 +115,22 @@
             if (currentSurah < 114) loadSurah(currentSurah + 1);
         });
 
-        els.playSurah.addEventListener('click', function () {
+        els.playbarPlayPause.addEventListener('click', function () {
+            if (isPlaying) { togglePause(); return; }
             if (!currentSurah) return;
             var ch = chapters[currentSurah - 1];
             if (!ch) return;
-            playFromVerse(ch.id, 1);
+            var lastRead = localStorage.getItem('quran-last-read');
+            var startV = 1;
+            if (lastRead) { var p = lastRead.split(':'); if (parseInt(p[0]) === ch.id) startV = parseInt(p[1]) || 1; }
+            playFromVerse(ch.id, startV, false);
         });
+        els.playbarPrev.addEventListener('click', playPrev);
+        els.playbarNext.addEventListener('click', playNext);
+        els.playbarStop.addEventListener('click', stopAudio);
+        els.continueYes.addEventListener('click', continuePlay);
+        els.continueNo.addEventListener('click', function () { stopAudio(); hideContinuePrompt(); });
 
-        els.stopBtn.addEventListener('click', stopAudio);
-
-        /* Restore prefs */
         var savedFont = localStorage.getItem('arabic-font');
         if (savedFont) { els.fontSelect.value = savedFont; applyFont(); }
 
@@ -130,7 +161,7 @@
             html += '<div class="qr-surah-en">' + escapeHtml(ch.en) + '</div>';
             html += '<div class="qr-surah-ar">' + ch.ar + '</div></div>';
             html += '<span class="qr-surah-verses-count">' + ch.verses + '</span>';
-            html += '<span class="qr-bookmark-star" data-surah="' + ch.id + '">&#9733;</span>';
+            html += '<span class="qr-bookmark-star" data-surah="' + ch.id + '"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></span>';
             html += '</button>';
         });
         els.surahList.innerHTML = html;
@@ -153,7 +184,6 @@
 
         localStorage.setItem('quran-last-read', ch.id + ':1');
 
-        /* Update sidebar */
         els.surahList.querySelectorAll('.qr-surah-item').forEach(function (item) {
             item.classList.toggle('active', parseInt(item.getAttribute('data-id')) === id);
         });
@@ -168,9 +198,7 @@
         els.navBottom.style.display = 'flex';
 
         els.main.scrollTop = 0;
-        els.progressFill.style.width = '0%';
 
-        setupProgressObserver(ch);
         updateSidebarBookmarks();
         scrollToLastReadVerse(ch);
     }
@@ -178,7 +206,7 @@
     function renderSurahHeader(ch) {
         var revLabel = ch.revelation_place === 'makkah' ? 'Meccan' : 'Medinan';
         var html = '';
-        html += '<div class="qr-surah-header-name-ar">' + ch.ar + '</div>';
+        html += '<div class="qr-surah-header-name-ar" dir="rtl">' + SURAH_LIGATURES[ch.id - 1] + '</div>';
         html += '<div class="qr-surah-header-name-en">Surah ' + escapeHtml(ch.en) + '</div>';
         html += '<div class="qr-surah-header-meta">';
         html += '<span><span class="meta-label">Verses:</span> <span class="meta-value">' + ch.verses + '</span></span>';
@@ -189,7 +217,7 @@
         html += '</div>';
 
         if (ch.id !== 9) {
-            html += '<div class="qr-surah-header-bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>';
+            html += '<div class="qr-surah-header-bismillah">\u0628\u0650\u0633\u0652\u0645\u0650 \u0671\u0644\u0644\u064e\u0651\u0647\u0650 \u0671\u0644\u0631\u064e\u0651\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0671\u0644\u0631\u064e\u0651\u062d\u0650\u064a\u0645\u0650</div>';
         }
 
         els.surahHeader.innerHTML = html;
@@ -211,18 +239,19 @@
             var transText = (currentTranslation === 'hilali') ? (verse.en || '') : (saheehData[key] || verse.en || '');
             var isBm = bookmarks.indexOf(key) !== -1;
 
-            /* Audio URL: https://verses.quran.com/{reciter}/mp3/{ch:03d}{v:03d}.mp3 */
             var chPad = pad(ch.id, 3);
             var vPad = pad(vnum, 3);
 
             html += '<div class="qr-verse-row" id="row-' + key.replace(':', '-') + '" data-key="' + key + '">';
             html += '<div class="qr-verse-arabic" id="ar-' + key.replace(':', '-') + '" dir="rtl">';
             html += verse.ar;
-            html += '<span class="verse-marker-open">﴿</span><span class="verse-sup">' + vnum + '</span><span class="verse-marker-close">﴾</span>';
+            html += '<span class="verse-num-wrap"><span class="verse-marker-open">\uFD3F</span><span class="verse-sup">' + vnum + '</span><span class="verse-marker-close">\uFD3E</span></span>';
             html += '</div>';
             html += '<div class="qr-verse-controls">';
             html += '<span class="qr-verse-tnum">' + vnum + '</span>';
-            html += '<button class="qr-verse-tbookmark' + (isBm ? ' bookmarked' : '') + '" data-key="' + key + '" aria-label="Bookmark">' + (isBm ? '&#9733;' : '&#9734;') + '</button>';
+            html += '<button class="qr-verse-tbookmark' + (isBm ? ' bookmarked' : '') + '" data-key="' + key + '" aria-label="Bookmark">';
+            html += '<svg viewBox="0 0 24 24" width="14" height="14" fill="' + (isBm ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>';
+            html += '</button>';
             html += '<button class="qr-verse-tplay" data-chapter="' + ch.id + '" data-verse="' + vnum + '" data-chpad="' + chPad + '" data-vpad="' + vPad + '" aria-label="Play"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></button>';
             html += '</div>';
             html += '<div class="qr-verse-translation" id="tr-' + key.replace(':', '-') + '">' + escapeHtml(transText) + '</div>';
@@ -231,7 +260,6 @@
 
         els.verses.innerHTML = html;
 
-        /* Bind events */
         els.verses.querySelectorAll('.qr-verse-tbookmark').forEach(function (btn) {
             btn.addEventListener('click', function (e) { e.stopPropagation(); toggleBookmark(this.getAttribute('data-key')); });
         });
@@ -239,7 +267,7 @@
         els.verses.querySelectorAll('.qr-verse-tplay').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
-                playFromVerse(parseInt(this.getAttribute('data-chapter')), parseInt(this.getAttribute('data-verse')));
+                playFromVerse(parseInt(this.getAttribute('data-chapter')), parseInt(this.getAttribute('data-verse')), true);
             });
         });
     }
@@ -258,7 +286,7 @@
 
         document.querySelectorAll('.qr-verse-tbookmark[data-key="' + key + '"]').forEach(function (btn) {
             var on = bm.indexOf(key) !== -1;
-            btn.innerHTML = on ? '&#9733;' : '&#9734;';
+            btn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="' + (on ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>';
             btn.classList.toggle('bookmarked', on);
         });
         updateSidebarBookmarks();
@@ -274,37 +302,54 @@
     }
 
     /* ---- Audio ---- */
-    function playFromVerse(chapterId, verseNum) {
+
+    function playFromVerse(chapterId, verseNum, singleOnly) {
         stopAudio();
+        hideContinuePrompt();
 
         var ch = chapters[chapterId - 1];
         if (!ch) return;
 
+        isSinglePlay = !!singleOnly;
+        singlePlayChapter = ch;
+
         audioQueue = [];
-        for (var v = verseNum; v <= ch.verses; v++) {
-            audioQueue.push({ chapter: chapterId, verse: v, key: chapterId + ':' + v });
+        if (singleOnly) {
+            audioQueue.push({ chapter: chapterId, verse: verseNum, key: chapterId + ':' + verseNum });
+        } else {
+            for (var v = verseNum; v <= ch.verses; v++) {
+                audioQueue.push({ chapter: chapterId, verse: v, key: chapterId + ':' + v });
+            }
         }
         if (audioQueue.length === 0) return;
         isPlaying = true;
+        isPaused = false;
 
-        els.playingIndicator.style.display = 'flex';
-        els.playingText.textContent = 'Surah ' + ch.en + ' from ' + verseNum;
-        els.playSurah.querySelector('span').textContent = 'Playing...';
-
+        showFixedBar(ch, verseNum);
+        updatePlayPauseIcon();
         playNextAudio();
     }
 
     function playNextAudio() {
-        if (!isPlaying || audioQueue.length === 0) { finishAudio(); return; }
+        var gen = ++audioGen;
+
+        if (!isPlaying || audioQueue.length === 0) {
+            if (isSinglePlay && singlePlayChapter) {
+                showContinuePrompt(singlePlayChapter);
+            } else {
+                finishAudio();
+            }
+            return;
+        }
 
         var item = audioQueue[0];
         var chPad = pad(item.chapter, 3);
         var vPad = pad(item.verse, 3);
         var url = 'https://verses.quran.com/' + currentReciter + '/mp3/' + chPad + vPad + '.mp3';
 
-        /* Remove playing */
         document.querySelectorAll('.qr-verse-row.playing').forEach(function (el) { el.classList.remove('playing'); });
 
+        var ch = chapters[item.chapter - 1];
         var rowId = 'row-' + item.chapter + '-' + item.verse;
         var rowEl = document.getElementById(rowId);
         if (rowEl) {
@@ -312,58 +357,168 @@
             rowEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
         }
 
-        els.playingText.textContent = 'Verse ' + item.verse;
+        updateFixedBar(item, ch);
+        lastPlayedVerse = item.verse;
 
-        audioEl = new Audio(url);
-        audioEl.addEventListener('ended', function () { audioQueue.shift(); playNextAudio(); });
-        audioEl.addEventListener('error', function () { audioQueue.shift(); playNextAudio(); });
-        audioEl.play().catch(function () { audioQueue.shift(); playNextAudio(); });
+        var newAudio = new Audio(url);
+        newAudio.addEventListener('ended', function () {
+            if (gen !== audioGen) return;
+            audioQueue.shift();
+            playNextAudio();
+        });
+        newAudio.addEventListener('error', function () {
+            if (gen !== audioGen) return;
+            audioQueue.shift();
+            playNextAudio();
+        });
+        newAudio.play().catch(function () {
+            if (gen !== audioGen) return;
+            audioQueue.shift();
+            playNextAudio();
+        });
+        audioEl = newAudio;
+    }
+
+    function togglePause() {
+        if (!isPlaying) return;
+        if (isPaused) { resumeAudio(); } else { pauseAudio(); }
+    }
+
+    function pauseAudio() {
+        if (!audioEl || !isPlaying) return;
+        isPaused = true;
+        audioEl.pause();
+        els.fixedPlayBar.classList.remove('playing');
+        updatePlayPauseIcon();
+    }
+
+    function resumeAudio() {
+        if (!isPlaying) return;
+        isPaused = false;
+        if (audioEl) {
+            audioEl.play().catch(function () {});
+        } else if (audioQueue.length > 0) {
+            playNextAudio();
+        }
+        els.fixedPlayBar.classList.add('playing');
+        updatePlayPauseIcon();
+    }
+
+    function playNext() {
+        if (!isPlaying || audioQueue.length <= 1) return;
+        ++audioGen;
+        if (audioEl) { audioEl.pause(); audioEl.src = ''; }
+        audioEl = null;
+        audioQueue.shift();
+        if (audioQueue.length > 0) {
+            isPaused = false;
+            updatePlayPauseIcon();
+            playNextAudio();
+        }
+    }
+
+    function playPrev() {
+        if (!isPlaying || audioQueue.length === 0) return;
+        var first = audioQueue[0];
+        if (!first) return;
+        var prevVerse = first.verse - 1;
+        if (prevVerse < 1) return;
+        var ch = chapters[first.chapter - 1];
+        if (!ch) return;
+        ++audioGen;
+        if (audioEl) { audioEl.pause(); audioEl.src = ''; }
+        audioEl = null;
+        audioQueue.unshift({ chapter: first.chapter, verse: prevVerse, key: first.chapter + ':' + prevVerse });
+        isPaused = false;
+        updatePlayPauseIcon();
+        playNextAudio();
     }
 
     function stopAudio() {
+        ++audioGen;
         isPlaying = false;
+        isPaused = false;
+        isSinglePlay = false;
+        singlePlayChapter = null;
+        lastPlayedVerse = 0;
+        hideContinuePrompt();
         if (audioEl) { audioEl.pause(); audioEl.src = ''; audioEl = null; }
         audioQueue = [];
-        els.playingIndicator.style.display = 'none';
-        var span = els.playSurah.querySelector('span');
-        if (span) span.textContent = 'Play Surah';
         document.querySelectorAll('.qr-verse-row.playing').forEach(function (el) { el.classList.remove('playing'); });
+        els.fixedPlayBar.classList.remove('playing');
+        updatePlayPauseIcon();
     }
 
     function finishAudio() {
+        ++audioGen;
         isPlaying = false;
-        audioEl = null;
-        els.playingIndicator.style.display = 'none';
-        var span = els.playSurah.querySelector('span');
-        if (span) span.textContent = 'Play Surah';
+        isPaused = false;
+        isSinglePlay = false;
+        singlePlayChapter = null;
+        lastPlayedVerse = 0;
+        hideContinuePrompt();
+        if (audioEl) { audioEl.pause(); audioEl.src = ''; audioEl = null; }
+        audioQueue = [];
         document.querySelectorAll('.qr-verse-row.playing').forEach(function (el) { el.classList.remove('playing'); });
+        els.fixedPlayBar.classList.remove('playing');
+        updatePlayPauseIcon();
     }
 
-    /* ---- Progress ---- */
-    var progressObserver = null;
+    /* ---- Fixed play bar UI ---- */
+    function showFixedBar(ch, verseNum) {
+        els.playbarSurah.textContent = ch.en;
+        els.playbarVerse.textContent = 'Verse ' + verseNum;
+        els.fixedPlayBar.classList.add('playing');
+    }
 
-    function setupProgressObserver(ch) {
-        if (progressObserver) { progressObserver.disconnect(); progressObserver = null; }
+    function updateFixedBar(item, ch) {
+        if (ch) els.playbarSurah.textContent = ch.en;
+        els.playbarVerse.textContent = 'Verse ' + item.verse;
+    }
 
-        var verseEls = els.verses.querySelectorAll('.qr-verse-row');
-        if (!verseEls.length) return;
+    function updatePlayPauseIcon() {
+        var pauseIcon = els.playbarPlayPause.querySelector('.qr-playbar-pause-icon');
+        var playIcon = els.playbarPlayPause.querySelector('.qr-playbar-play-icon');
+        if (!pauseIcon || !playIcon) return;
+        if (!isPlaying || isPaused) {
+            pauseIcon.style.display = 'none';
+            playIcon.style.display = 'block';
+            els.playbarPlayPause.setAttribute('aria-label', 'Play');
+            els.fixedPlayBar.classList.remove('playing');
+        } else {
+            pauseIcon.style.display = 'block';
+            playIcon.style.display = 'none';
+            els.playbarPlayPause.setAttribute('aria-label', 'Pause');
+            els.fixedPlayBar.classList.add('playing');
+        }
+    }
 
-        progressObserver = new IntersectionObserver(function (entries) {
-            var visible = 0;
-            entries.forEach(function (entry) { if (entry.isIntersecting) visible++; });
-            var pct = Math.round((visible / verseEls.length) * 100);
-            els.progressFill.style.width = Math.min(pct, 100) + '%';
+    /* ---- Continue prompt ---- */
+    function showContinuePrompt(ch) {
+        if (!els.continuePrompt) return;
+        els.continuePrompt.style.display = 'flex';
+    }
 
-            if (ch) {
-                try {
-                    var prog = JSON.parse(localStorage.getItem('quran-progress')) || {};
-                    prog[ch.id] = { verseCount: verseEls.length, visibleCount: visible };
-                    localStorage.setItem('quran-progress', JSON.stringify(prog));
-                } catch (e) {}
-            }
-        }, { threshold: 0.5, root: els.main });
+    function hideContinuePrompt() {
+        if (els.continuePrompt) els.continuePrompt.style.display = 'none';
+    }
 
-        verseEls.forEach(function (el) { progressObserver.observe(el); });
+    function continuePlay() {
+        hideContinuePrompt();
+        if (!singlePlayChapter) return;
+        var startVerse = lastPlayedVerse > 0 ? lastPlayedVerse + 1 : 1;
+        if (startVerse > singlePlayChapter.verses) { stopAudio(); return; }
+        isSinglePlay = false;
+        audioQueue = [];
+        for (var v = startVerse; v <= singlePlayChapter.verses; v++) {
+            audioQueue.push({ chapter: singlePlayChapter.id, verse: v, key: singlePlayChapter.id + ':' + v });
+        }
+        if (audioQueue.length > 0) {
+            isPlaying = true;
+            isPaused = false;
+            updatePlayPauseIcon();
+            playNextAudio();
+        }
     }
 
     /* ---- Last read ---- */

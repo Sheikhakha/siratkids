@@ -4,6 +4,11 @@
     font-display: swap;
     unicode-range: U+0600-U+065F, U+066A-U+06FF, U+0750-U+077F;
 }
+@font-face {
+    font-family: 'QCF SurahHeader COLOR';
+    src: url('https://static-cdn.tarteel.ai/qul/fonts/surah-names/surah-header/QCF_SurahHeader_COLOR-Regular.ttf') format('truetype');
+    font-display: swap;
+}
 
 :root {
     --qr-primary: #4F46E5;
@@ -21,7 +26,6 @@
     --qr-shadow-md: 0 4px 16px rgba(0,0,0,0.1);
     --qr-mushaf-bg: #fcf9f2;
     --qr-sidebar-width: 280px;
-    --qr-progress: #4F46E5;
     --qr-font-en: 'Nunito', sans-serif;
     --qr-font-en-heading: 'Fredoka', 'Nunito', sans-serif;
     --qr-font-ar: 'Noto Naskh Arabic', serif;
@@ -46,7 +50,6 @@ html.dark-mode {
     --qr-shadow: 0 2px 8px rgba(0,0,0,0.3);
     --qr-shadow-md: 0 4px 16px rgba(0,0,0,0.4);
     --qr-mushaf-bg: #1c1917;
-    --qr-progress: #818cf8;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -186,7 +189,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 .qr-main {
     flex: 1;
     margin-left: var(--qr-sidebar-width);
-    padding: 0;
+    padding: 0 0 60px;
     max-width: 100%;
     transition: margin-left 0.3s ease;
     overflow-y: auto;
@@ -205,31 +208,23 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Progress bar */
-.qr-progress-bar {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--qr-border);
-    z-index: 45;
-}
-.qr-progress-fill { height: 100%; width: 0%; background: var(--qr-progress); transition: width 0.3s ease; }
-
 /* Surah header */
 .qr-surah-header {
     text-align: center;
-    padding: 24px 20px 16px;
+    padding: 16px 20px 8px;
     background: var(--qr-surface);
     border-bottom: 2px solid var(--qr-border);
 }
 html.dark-mode .qr-surah-header { border-bottom-color: #4a3f2f; }
 
 .qr-surah-header-name-ar {
-    font-family: var(--qr-font-ar); font-size: 2.2rem;
-    color: var(--qr-primary-dark); line-height: 1.6; margin-bottom: 4px;
+    font-family: 'QCF SurahHeader COLOR', serif;
+    font-size: clamp(4.5rem, 11vw, 9rem);
+    color: #7A5C00;
+    line-height: 0.9;
+    margin-bottom: 2px;
 }
-html.dark-mode .qr-surah-header-name-ar { color: #a5b4fc; }
+html.dark-mode .qr-surah-header-name-ar { color: #d4a843; }
 .qr-surah-header-name-en {
     font-family: var(--qr-font-en-heading); font-size: 1.1rem;
     font-weight: 700; color: var(--qr-text); margin-bottom: 2px;
@@ -245,43 +240,126 @@ html.dark-mode .qr-surah-header-name-ar { color: #a5b4fc; }
     color: var(--qr-text); margin-top: 12px; direction: rtl; line-height: 2;
 }
 
-/* Play bar */
-.qr-play-bar {
+/* Fixed bottom play bar */
+.qr-fixed-play-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 56px;
+    background: var(--qr-surface);
+    border-top: 1px solid var(--qr-border);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    padding: 10px 20px;
-    background: var(--qr-surface);
-    border-bottom: 1px solid var(--qr-border);
+    padding: 0 16px;
+    z-index: 200;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
 }
-.qr-play-surah {
-    display: flex; align-items: center; gap: 6px;
-    padding: 8px 20px; border: none; border-radius: 8px;
-    background: var(--qr-primary); color: white;
-    font-family: var(--qr-font-en); font-size: 0.85rem; font-weight: 700;
-    cursor: pointer; transition: background 0.2s;
+html.dark-mode .qr-fixed-play-bar { box-shadow: 0 -4px 20px rgba(0,0,0,0.4); }
+.qr-fixed-play-bar:not(.playing) .qr-eq-bar {
+    animation: none;
+    transform: scaleY(0.6);
 }
-.qr-play-surah:hover { background: var(--qr-primary-dark); }
 
-.qr-playing-indicator {
-    display: flex; align-items: center; gap: 8px;
-    padding: 6px 14px; background: #dcfce7; border-radius: 8px;
-    font-size: 0.8rem; font-weight: 600; color: #166534;
+.qr-playbar-eq {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 24px;
 }
-html.dark-mode .qr-playing-indicator { background: #064e3b; color: #86efac; }
-.qr-playing-pulse {
-    width: 8px; height: 8px; background: #22c55e; border-radius: 50%;
-    animation: pulse 1s ease-in-out infinite;
+.qr-eq-bar {
+    width: 3px;
+    background: var(--qr-primary);
+    border-radius: 2px;
+    height: 8px;
+    animation: eq-anim 0.8s ease-in-out infinite alternate;
 }
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
+.qr-eq-bar:nth-child(1) { animation-delay: 0s; height: 12px; }
+.qr-eq-bar:nth-child(2) { animation-delay: 0.2s; height: 20px; }
+.qr-eq-bar:nth-child(3) { animation-delay: 0.4s; height: 14px; }
+
+@keyframes eq-anim {
+    0% { transform: scaleY(0.4); }
+    100% { transform: scaleY(1); }
 }
-.qr-stop-btn {
-    background: none; border: 1px solid currentColor; border-radius: 6px;
-    padding: 2px 10px; font-size: 0.75rem; font-weight: 700; cursor: pointer; color: inherit;
+
+.qr-playbar-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 120px;
 }
+.qr-playbar-surah {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--qr-text);
+    line-height: 1.2;
+}
+.qr-playbar-verse {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--qr-text-light);
+}
+
+.qr-playbar-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.qr-playbar-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--qr-text-medium);
+    padding: 6px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    transition: color 0.2s, background 0.2s, transform 0.15s;
+}
+.qr-playbar-btn:hover { color: var(--qr-primary); background: var(--qr-hover); transform: scale(1.1); }
+.qr-playbar-btn:active { transform: scale(0.95); }
+.qr-playbar-playpause {
+    color: var(--qr-primary);
+    background: rgba(79,70,229,0.08);
+    padding: 8px;
+}
+.qr-playbar-playpause:hover { background: rgba(79,70,229,0.15); color: var(--qr-primary-dark); }
+.qr-playbar-stop { color: #ef4444; }
+.qr-playbar-stop:hover { color: #dc2626; background: rgba(239,68,68,0.08); }
+
+/* Continue prompt */
+.qr-continue-prompt {
+    position: fixed;
+    bottom: 66px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--qr-surface);
+    border: 1px solid var(--qr-border);
+    border-radius: 12px;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 210;
+    box-shadow: var(--qr-shadow-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--qr-text);
+    animation: slideUpPrompt 0.3s ease;
+    white-space: nowrap;
+}
+@keyframes slideUpPrompt {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.qr-continue-prompt button {
+    padding: 4px 14px; border: none; border-radius: 6px;
+    font-size: 0.8rem; font-weight: 700; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+.qr-continue-prompt button:active { transform: scale(0.95); }
+.qr-continue-yes { background: var(--qr-primary); color: white; }
+.qr-continue-yes:hover { background: var(--qr-primary-dark); }
+.qr-continue-no { background: var(--qr-hover); color: var(--qr-text-medium); }
+.qr-continue-no:hover { background: var(--qr-border); }
 
 /* Unified verse list */
 .qr-verses {
@@ -312,15 +390,21 @@ html.dark-mode .qr-verse-row.playing { background: rgba(251,191,36,0.1); }
     text-align: right;
     transition: background 0.2s;
     min-width: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+}
+.qr-verse-arabic .verse-num-wrap {
+    white-space: nowrap;
+    margin-left: 2px;
 }
 html.dark-mode .qr-verse-arabic { color: #e2e8f0; }
 
-.qr-verse-arabic .verse-marker-open { color: #b45309; font-family: var(--qr-font-ar); user-select: none; margin-left: 2px; }
-.qr-verse-arabic .verse-marker-close { color: #b45309; font-family: var(--qr-font-ar); user-select: none; margin-right: 2px; }
+.qr-verse-arabic .verse-marker-open {
+    color: #b45309; font-family: var(--qr-font-ar); user-select: none;
+    font-size: 1.8rem; line-height: 1; vertical-align: middle;
+}
+.qr-verse-arabic .verse-marker-close {
+    color: #b45309; font-family: var(--qr-font-ar); user-select: none;
+    font-size: 1.8rem; line-height: 1; vertical-align: middle;
+}
 html.dark-mode .qr-verse-arabic .verse-marker-open,
 html.dark-mode .qr-verse-arabic .verse-marker-close { color: #d97706; }
 .qr-verse-arabic .verse-sup {
@@ -333,8 +417,10 @@ html.dark-mode .qr-verse-arabic .verse-marker-close { color: #d97706; }
     font-family: var(--qr-font-en);
     user-select: none;
     line-height: 1;
+    vertical-align: middle;
+    margin: 0 3px;
     position: relative;
-    top: -0.5em;
+    top: 1px;
 }
 
 /* Controls column */
@@ -409,22 +495,18 @@ html.dark-mode .qr-verse-controls { background: rgba(30,41,59,0.5); }
 
 /* Arabic font classes */
 .font-nastaleeq .qr-verse-arabic,
-.font-nastaleeq .qr-surah-header-name-ar,
 .font-nastaleeq .qr-surah-header-bismillah {
     font-family: var(--qr-font-ar-nastaleeq);
 }
 .font-amiri .qr-verse-arabic,
-.font-amiri .qr-surah-header-name-ar,
 .font-amiri .qr-surah-header-bismillah {
     font-family: var(--qr-font-ar-amiri);
 }
 .font-scheherazade .qr-verse-arabic,
-.font-scheherazade .qr-surah-header-name-ar,
 .font-scheherazade .qr-surah-header-bismillah {
     font-family: var(--qr-font-ar-scheherazade);
 }
 .font-lateef .qr-verse-arabic,
-.font-lateef .qr-surah-header-name-ar,
 .font-lateef .qr-surah-header-bismillah {
     font-family: var(--qr-font-ar-lateef);
 }
@@ -440,7 +522,7 @@ html.dark-mode .qr-verse-controls { background: rgba(30,41,59,0.5); }
     .qr-sidebar {
         transform: translateX(-100%);
         transition: transform 0.3s;
-        z-index: 200;
+        z-index: 220;
     }
     .qr-sidebar.open { transform: translateX(0); }
     .qr-main { margin-left: 0; }
@@ -463,4 +545,8 @@ html.dark-mode .qr-verse-controls { background: rgba(30,41,59,0.5); }
     .qr-nav-right { gap: 6px; }
     .qr-nav-select { font-size: 0.7rem; padding: 3px 6px; }
     .qr-nav-group { gap: 2px; }
+    .qr-playbar-surah { font-size: 0.75rem; }
+    .qr-playbar-verse { font-size: 0.65rem; }
+    .qr-playbar-info { min-width: 80px; }
+    .qr-fixed-play-bar { gap: 8px; padding: 0 8px; }
 }
