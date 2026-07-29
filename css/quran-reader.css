@@ -35,7 +35,7 @@
     --qr-font-ar-lateef: 'Lateef', 'Noto Naskh Arabic', serif;
 }
 
-html.dark-mode {
+[data-theme="dark"] {
     --qr-primary: #818cf8;
     --qr-primary-dark: #6366f1;
     --qr-bg: #0f172a;
@@ -76,7 +76,7 @@ body {
     z-index: 100;
     height: 52px;
 }
-html.dark-mode .qr-navbar { background: rgba(15,23,42,0.96); }
+[data-theme="dark"] .qr-navbar { background: rgba(15,23,42,0.96); }
 
 .qr-nav-left { display: flex; align-items: center; gap: 10px; }
 .qr-nav-right { display: flex; align-items: center; gap: 12px; }
@@ -158,8 +158,8 @@ html.dark-mode .qr-navbar { background: rgba(15,23,42,0.96); }
     border-color: var(--qr-primary);
     box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
 }
-html.dark-mode .qr-dropdown-trigger:focus-visible,
-html.dark-mode .qr-dropdown.is-open .qr-dropdown-trigger {
+[data-theme="dark"] .qr-dropdown-trigger:focus-visible,
+[data-theme="dark"] .qr-dropdown.is-open .qr-dropdown-trigger {
     box-shadow: 0 0 0 3px rgba(129,140,248,0.25);
 }
 
@@ -197,21 +197,48 @@ html.dark-mode .qr-dropdown.is-open .qr-dropdown-trigger {
 .qr-dropdown-option[aria-selected="true"] { font-weight: 700; color: var(--qr-primary); }
 .qr-dropdown-option-check { display: flex; align-items: center; justify-content: center; width: 16px; flex-shrink: 0; color: var(--qr-primary); }
 
-/* Dark mode toggle */
-.dm-toggle { background: none; border: none; cursor: pointer; padding: 2px; }
-.dm-track {
-    display: flex; align-items: center; width: 52px; height: 26px;
-    background: #cbd5e0; border-radius: 13px; position: relative; transition: background 0.3s;
+/* Dark mode toggle - icon button */
+.dm-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--qr-text-medium);
+    transition: background 0.2s ease, color 0.2s ease;
+    position: relative;
 }
-html.dark-mode .dm-track { background: #475569; }
-.dm-knob {
-    position: absolute; top: 2px; left: 2px; width: 22px; height: 22px;
-    background: white; border-radius: 50%; transition: left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    z-index: 2; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+.dm-toggle:hover {
+    background: var(--qr-hover);
+    color: var(--qr-text);
 }
-html.dark-mode .dm-knob { left: 28px; }
-.dm-icon-light { position: absolute; left: 5px; z-index: 1; color: #f59e0b; }
-.dm-icon-dark { position: absolute; right: 5px; z-index: 1; color: #a78bfa; }
+.dm-toggle svg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    transition: opacity 0.3s ease, transform 0.4s ease;
+}
+.dm-toggle .dm-icon-moon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+.dm-toggle .dm-icon-sun {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+[data-theme="dark"] .dm-toggle .dm-icon-moon {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+[data-theme="dark"] .dm-toggle .dm-icon-sun {
+    opacity: 1;
+    transform: rotate(0deg);
+}
 
 /* Layout */
 .qr-layout {
@@ -310,7 +337,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     background: var(--qr-surface);
     border-bottom: 2px solid var(--qr-border);
 }
-html.dark-mode .qr-surah-header { border-bottom-color: #4a3f2f; }
+[data-theme="dark"] .qr-surah-header { border-bottom-color: #4a3f2f; }
 
 .qr-surah-header-name-ar {
     font-family: 'QCF SurahHeader COLOR', serif;
@@ -321,7 +348,7 @@ html.dark-mode .qr-surah-header { border-bottom-color: #4a3f2f; }
     opacity: 0;
     transition: opacity 0.15s ease;
 }
-html.dark-mode .qr-surah-header-name-ar { color: #d4a843; }
+[data-theme="dark"] .qr-surah-header-name-ar { color: #d4a843; }
 .qr-surah-header-name-en {
     font-family: var(--qr-font-en-heading); font-size: 1.1rem;
     font-weight: 700; color: var(--qr-text); margin-bottom: 2px;
@@ -352,7 +379,7 @@ html.dark-mode .qr-surah-header-name-ar { color: #d4a843; }
     z-index: 200;
     box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
 }
-html.dark-mode .qr-fixed-play-bar { box-shadow: 0 -4px 20px rgba(0,0,0,0.4); }
+[data-theme="dark"] .qr-fixed-play-bar { box-shadow: 0 -4px 20px rgba(0,0,0,0.4); }
 .qr-fixed-play-bar:not(.playing) .qr-eq-bar {
     animation: none;
     transform: scaleY(0.6);
@@ -463,7 +490,7 @@ html.dark-mode .qr-fixed-play-bar { box-shadow: 0 -4px 20px rgba(0,0,0,0.4); }
     padding: 8px 0;
     background: var(--qr-mushaf-bg);
 }
-html.dark-mode .qr-verses { background: #1c1917; }
+[data-theme="dark"] .qr-verses { background: #1c1917; }
 
 /* Each verse row: Arabic | controls | Translation */
 .qr-verse-row {
@@ -474,7 +501,7 @@ html.dark-mode .qr-verses { background: #1c1917; }
 }
 .qr-verse-row:hover { background: var(--qr-hover); }
 .qr-verse-row.playing { background: rgba(251,191,36,0.12); }
-html.dark-mode .qr-verse-row.playing { background: rgba(251,191,36,0.1); }
+[data-theme="dark"] .qr-verse-row.playing { background: rgba(251,191,36,0.1); }
 
 .qr-verse-arabic {
     flex: 1;
@@ -492,7 +519,7 @@ html.dark-mode .qr-verse-row.playing { background: rgba(251,191,36,0.1); }
     white-space: nowrap;
     margin-left: 2px;
 }
-html.dark-mode .qr-verse-arabic { color: #e2e8f0; }
+[data-theme="dark"] .qr-verse-arabic { color: #e2e8f0; }
 
 .qr-verse-arabic .verse-marker-open {
     color: #b45309; font-family: var(--qr-font-ar); user-select: none;
@@ -502,8 +529,8 @@ html.dark-mode .qr-verse-arabic { color: #e2e8f0; }
     color: #b45309; font-family: var(--qr-font-ar); user-select: none;
     font-size: 1.8rem; line-height: 1; vertical-align: middle;
 }
-html.dark-mode .qr-verse-arabic .verse-marker-open,
-html.dark-mode .qr-verse-arabic .verse-marker-close { color: #d97706; }
+[data-theme="dark"] .qr-verse-arabic .verse-marker-open,
+[data-theme="dark"] .qr-verse-arabic .verse-marker-close { color: #d97706; }
 .qr-verse-arabic .verse-sup {
     display: inline-flex;
     align-items: center;
@@ -533,7 +560,7 @@ html.dark-mode .qr-verse-arabic .verse-marker-close { color: #d97706; }
     border-left: 1px solid var(--qr-border);
     border-right: 1px solid var(--qr-border);
 }
-html.dark-mode .qr-verse-controls { background: rgba(30,41,59,0.5); }
+[data-theme="dark"] .qr-verse-controls { background: rgba(30,41,59,0.5); }
 
 .qr-verse-tnum {
     font-size: 0.65rem;

@@ -55,20 +55,77 @@
     --surface-verse: #f0f9ff;
     --surface-popup: #ffffff;
     --surface-flip: #f5f3ff;
+    --surface-sidebar: #f8f9fa;
+    --surface-input: #ffffff;
+    --surface-search: #ffffff;
     --text-verse-ar: #1e293b;
     --text-verse-en: #334155;
     --text-verse-ref: #0284c7;
     --text-vocab-ar: #581c87;
     --text-vocab-example: #7c3aed;
+    --text-footer: #718096;
+    --text-muted: #999999;
+    --text-sidebar-icon: #64748b;
     --border-vocab: #e9d5ff;
     --border-vocab-hover: #c084fc;
     --border-vocab-example: #f3e8ff;
     --border-default: #e2e8f0;
+    --border-control: #e2e8f0;
+    --border-divider: #f0f4f8;
     --border-verse: #e0f2fe;
     --shadow-vocab: rgba(147, 51, 234, 0.15);
+    --bg-hover: #f0f9ff;
+    --hero-gradient: linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+    --hero-inner-bg: rgba(255,255,255,0.8);
+    --sidebar-active-bg: linear-gradient(135deg, #e8f4ff, #dbeafe);
+    --sidebar-active-border: #bfdbfe;
+    --sidebar-label-hover: transparent;
+    --sidebar-lesson-num-bg: #e2e8f0;
+    --popup-overlay: rgba(0,0,0,0.5);
+    --popup-verse-bg: #1e293b;
+    --popup-verse-color: #f8fafc;
+    --popup-border: #e2e8f0;
+    --audio-gradient: linear-gradient(135deg, #e8f0ff 0%, #f0e6ff 100%);
+    --audio-border: #c8d6f0;
+    --audio-play-bg: linear-gradient(135deg, #2e7d32, #1b5e20);
+    --audio-play-shadow: rgba(46,125,50,0.35);
+    --audio-play-shadow-hover: rgba(46,125,50,0.45);
+    --audio-stop-bg: linear-gradient(135deg, #e53935, #c62828);
+    --audio-stop-shadow: rgba(229,57,53,0.35);
+    --skeleton-start: #e2e8f0;
+    --skeleton-end: #f1f5f9;
+    --badge-accent-bg: #e8f0ff;
+    --badge-accent-color: var(--badge-accent-color);    --badge-secondary-bg: #f0e6ff;
+    --highlight-yellow: #fff176;
+    --alert-success-bg: #d1fae5;
+    --alert-success-color: var(--alert-success-color);
+    --alert-success-border: #a5d6a7;
+    --alert-warning-bg: #fef3c7;
+    --alert-warning-color: #92400e;
+    --alert-error-bg: #fce4e4;
+    --alert-error-color: #991b1b;
+    --surah-badge-bg: #eff6ff;
+    --surah-badge-border: #bfdbfe;
+    --surah-badge-color: var(--surah-badge-color);
+    --crossref-bg: #f8fafc;
+    --crossref-border: #e2e8f0;
+    --crossref-hover-bg: #eff6ff;
+    --crossref-hover-border: #bfdbfe;
+    --tooltip-bg: #1e293b;
+    --tooltip-color: #ffffff;
+    --track-tawheed-bg: linear-gradient(135deg, #e8f4ff, #dbeafe);
+    --track-tawheed-border: #bfdbfe;
+    --track-hadith-bg: linear-gradient(135deg, #fef3e2, #fde68a);
+    --track-hadith-border: #fcd34d;
+    --track-manners-bg: linear-gradient(135deg, #fdf2f8, #fbcfe8);
+    --track-manners-border: #f9a8d4;
+    --track-seerah-bg: linear-gradient(135deg, #f5f3ff, #ddd6fe);
+    --track-seerah-border: #c4b5fd;
+    --track-adhkar-bg: linear-gradient(135deg, #ecfdf5, #bbf7d0);
+    --track-adhkar-border: #86efac;
 }
 
-html.dark-mode {
+[data-theme="dark"] {
     --primary: #818cf8;
     --primary-dark: #6366f1;
     --secondary: #fb923c;
@@ -88,17 +145,75 @@ html.dark-mode {
     --surface-verse: #0c4a6e;
     --surface-popup: #1e293b;
     --surface-flip: #1e1b4b;
+    --surface-sidebar: #0f172a;
+    --surface-input: #1e293b;
+    --surface-search: #1e293b;
     --text-verse-ar: #e2e8f0;
     --text-verse-en: #cbd5e1;
     --text-verse-ref: #38bdf8;
     --text-vocab-ar: #c084fc;
     --text-vocab-example: #a78bfa;
+    --text-footer: #64748b;
+    --text-muted: #64748b;
+    --text-sidebar-icon: #94a3b8;
     --border-vocab: #581c87;
     --border-vocab-hover: #7c3aed;
     --border-vocab-example: #4c1d95;
     --border-default: #334155;
+    --border-control: #475569;
+    --border-divider: #1e293b;
     --border-verse: #0c4a6e;
     --shadow-vocab: rgba(192, 132, 252, 0.2);
+    --bg-hover: #1e3a5f;
+    --hero-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #1c1917 100%);
+    --hero-inner-bg: rgba(15,23,42,0.85);
+    --sidebar-active-bg: linear-gradient(135deg, #1e3a5f, #1e293b);
+    --sidebar-active-border: #334155;
+    --sidebar-label-hover: #1e3a5f;
+    --sidebar-lesson-num-bg: #334155;
+    --popup-overlay: rgba(0,0,0,0.7);
+    --popup-verse-bg: #0f172a;
+    --popup-verse-color: #e2e8f0;
+    --popup-border: #334155;
+    --audio-gradient: linear-gradient(135deg, #1e293b 0%, #2e1065 100%);
+    --audio-border: #334155;
+    --audio-play-bg: linear-gradient(135deg, #15803d, #166534);
+    --audio-play-shadow: rgba(21,128,61,0.35);
+    --audio-play-shadow-hover: rgba(21,128,61,0.45);
+    --audio-stop-bg: linear-gradient(135deg, #dc2626, #b91c1c);
+    --audio-stop-shadow: rgba(220,38,38,0.35);
+    --skeleton-start: #334155;
+    --skeleton-end: #1e293b;
+    --badge-accent-bg: #1e1b4b;
+    --badge-accent-color: #a78bfa;
+    --badge-secondary-bg: #2e1065;
+    --highlight-yellow: #713f12;
+    --alert-success-bg: #052e16;
+    --alert-success-color: #86efac;
+    --alert-success-border: #166534;
+    --alert-warning-bg: #422006;
+    --alert-warning-color: #fcd34d;
+    --alert-error-bg: #450a0a;
+    --alert-error-color: #fca5a5;
+    --surah-badge-bg: #1e3a5f;
+    --surah-badge-border: #1e3a5f;
+    --surah-badge-color: #93c5fd;
+    --crossref-bg: #1e293b;
+    --crossref-border: #334155;
+    --crossref-hover-bg: #1e3a5f;
+    --crossref-hover-border: #334155;
+    --tooltip-bg: #1e293b;
+    --tooltip-color: #ffffff;
+    --track-tawheed-bg: linear-gradient(135deg, #1e3a5f, #1e293b);
+    --track-tawheed-border: #2c5282;
+    --track-hadith-bg: linear-gradient(135deg, #422006, #3b2f0a);
+    --track-hadith-border: #78350f;
+    --track-manners-bg: linear-gradient(135deg, #3b1a2e, #2d1b30);
+    --track-manners-border: #6b2144;
+    --track-seerah-bg: linear-gradient(135deg, #1e1b4b, #2e1065);
+    --track-seerah-border: #4c1d95;
+    --track-adhkar-bg: linear-gradient(135deg, #0a3a1a, #0d3d1a);
+    --track-adhkar-border: #166534;
 }
 
 html { scroll-behavior: smooth; }
@@ -111,19 +226,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Dark mode nav background */
-html.dark-mode .navbar {
-    background: rgba(15,23,42,0.96);
-}
-
-/* Dark mode dm-toggle track override for inline-styled toggles */
-html.dark-mode .dm-toggle .dm-track {
-    background: #475569 !important;
-}
-html.dark-mode .dm-toggle .dm-knob {
-    left: 28px !important;
-}
-
 /* ---------- Navbar ---------- */
 .navbar {
     position: fixed;
@@ -132,7 +234,7 @@ html.dark-mode .dm-toggle .dm-knob {
     justify-content: space-between;
     align-items: center;
     padding: 12px 40px;
-    background: rgba(255,255,255,0.96);
+    background: var(--surface-navbar);
     backdrop-filter: blur(12px);
     box-shadow: var(--shadow-sm);
     z-index: 1000;
@@ -169,12 +271,55 @@ html.dark-mode .dm-toggle .dm-knob {
 
 .nav-links a:hover { color: var(--primary); }
 
+/* Dark mode toggle - icon button */
+.dm-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--text-medium);
+    transition: background 0.2s ease, color 0.2s ease;
+    position: relative;
+}
+.dm-toggle:hover {
+    background: var(--bg-hover);
+    color: var(--text-dark);
+}
+.dm-toggle svg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    transition: opacity 0.3s ease, transform 0.4s ease;
+}
+.dm-toggle .dm-icon-moon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+.dm-toggle .dm-icon-sun {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+[data-theme="dark"] .dm-toggle .dm-icon-moon {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+[data-theme="dark"] .dm-toggle .dm-icon-sun {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
 /* ---------- Hero ---------- */
 .hero {
     position: relative;
     padding: 140px 32px 100px;
     text-align: center;
-    background: linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+    background: var(--hero-gradient);
     overflow: hidden;
 }
 
@@ -220,7 +365,7 @@ html.dark-mode .dm-toggle .dm-knob {
     display: inline-block;
     padding: 14px 36px;
     background: var(--primary);
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     font-weight: 700;
     font-size: 1.05rem;
@@ -393,7 +538,7 @@ html.dark-mode .dm-toggle .dm-knob {
     gap: 12px;
     margin-left: 8px;
     padding-left: 12px;
-    border-left: 1px solid #e2e8f0;
+    border-left: 1px solid var(--border-default);
 }
 
 .font-size-group {
@@ -413,9 +558,9 @@ html.dark-mode .dm-toggle .dm-knob {
 .font-size-btn {
     width: 28px;
     height: 28px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--border-control);
     border-radius: 6px;
-    background: white;
+    background: var(--surface-input);
     cursor: pointer;
     font-size: 0.85rem;
     font-weight: 700;
@@ -448,13 +593,13 @@ html.dark-mode .dm-toggle .dm-knob {
 
 .font-switcher select {
     padding: 6px 10px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--border-control);
     border-radius: 8px;
     font-family: var(--font-en);
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-dark);
-    background: white;
+    background: var(--surface-input);
     cursor: pointer;
     outline: none;
     transition: border-color var(--transition);
@@ -527,28 +672,28 @@ html.dark-mode .dm-toggle .dm-knob {
 }
 
 .track-tawheed {
-    background: linear-gradient(135deg, #e8f4ff, #dbeafe);
-    border: 2px solid #bfdbfe;
+    background: var(--track-tawheed-bg);
+    border: 2px solid var(--track-tawheed-border);
 }
 
 .track-hadith {
-    background: linear-gradient(135deg, #fef3e2, #fde68a);
-    border: 2px solid #fcd34d;
+    background: var(--track-hadith-bg);
+    border: 2px solid var(--track-hadith-border);
 }
 
 .track-manners {
-    background: linear-gradient(135deg, #fdf2f8, #fbcfe8);
-    border: 2px solid #f9a8d4;
+    background: var(--track-manners-bg);
+    border: 2px solid var(--track-manners-border);
 }
 
 .track-seerah {
-    background: linear-gradient(135deg, #f5f3ff, #ddd6fe);
-    border: 2px solid #c4b5fd;
+    background: var(--track-seerah-bg);
+    border: 2px solid var(--track-seerah-border);
 }
 
 .track-adhkar {
-    background: linear-gradient(135deg, #ecfdf5, #bbf7d0);
-    border: 2px solid #86efac;
+    background: var(--track-adhkar-bg);
+    border: 2px solid var(--track-adhkar-border);
 }
 
 .track-icon { font-size: 3rem; margin-bottom: 12px; }
@@ -631,7 +776,7 @@ html.dark-mode .dm-toggle .dm-knob {
     border-radius: var(--radius-md);
     padding: 28px;
     box-shadow: var(--shadow-sm);
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-default);
 }
 
 .unit-title {
@@ -639,7 +784,7 @@ html.dark-mode .dm-toggle .dm-knob {
     font-weight: 800;
     margin-bottom: 20px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #e2e8f0;
+    border-bottom: 2px solid var(--border-default);
 }
 
 .unit-number { color: var(--primary); margin-right: 4px; }
@@ -665,14 +810,14 @@ html.dark-mode .dm-toggle .dm-knob {
     text-decoration: none;
     color: var(--text-dark);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid #e2e8f0;
-    background: white;
+    border: 2px solid var(--border-default);
+    background: var(--surface-card);
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     overflow: hidden;
 }
 
 .lesson-item:hover {
-    background: #f0f9ff;
+    background: var(--bg-hover);
     border-color: var(--primary);
     box-shadow: 0 8px 24px rgba(79, 70, 229, 0.12);
     transform: translateY(-3px);
@@ -784,7 +929,7 @@ html.dark-mode .dm-toggle .dm-knob {
     padding: 32px 40px;
     text-align: center;
     background: var(--text-dark);
-    color: #718096;
+    color: var(--text-footer);
     font-size: 0.85rem;
 }
 
@@ -883,7 +1028,7 @@ html.dark-mode .dm-toggle .dm-knob {
 }
 
 .sidebar-toggle-btn:hover {
-    background: #f0f9ff;
+    background: var(--bg-hover);
     color: var(--primary);
 }
 
@@ -896,7 +1041,7 @@ html.dark-mode .dm-toggle .dm-knob {
 }
 
 .sidebar-toggle-btn.collapsed:hover {
-    background: #f0f9ff;
+    background: var(--bg-hover);
     color: var(--primary);
 }
 
@@ -946,8 +1091,8 @@ html.dark-mode .dm-toggle .dm-knob {
     top: calc(100% + 6px);
     left: 50%;
     transform: translateX(-50%);
-    background: #1e293b;
-    color: #fff;
+    background: var(--tooltip-bg);
+    color: var(--tooltip-color);
     font-size: 0.75rem;
     font-weight: 600;
     padding: 4px 10px;
@@ -968,9 +1113,9 @@ html.dark-mode .dm-toggle .dm-knob {
     justify-content: center;
     width: 36px;
     height: 36px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--border-control);
     border-radius: 8px;
-    background: white;
+    background: var(--surface-input);
     color: var(--text-medium);
     cursor: pointer;
     transition: all var(--transition);
@@ -987,13 +1132,13 @@ html.dark-mode .dm-toggle .dm-knob {
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
-    background: white;
+    background: var(--surface-popup);
     border-radius: var(--radius-sm);
     box-shadow: var(--shadow-lg);
     padding: 16px;
     min-width: 260px;
     z-index: 1001;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-default);
 }
 
 .settings-dropdown.open .settings-dropdown-content {
@@ -1010,7 +1155,7 @@ html.dark-mode .dm-toggle .dm-knob {
 
 .settings-dropdown-divider {
     height: 1px;
-    background: #e2e8f0;
+    background: var(--sidebar-lesson-num-bg);
     margin: 4px 0;
 }
 
@@ -1028,7 +1173,7 @@ html.dark-mode .dm-toggle .dm-knob {
     width: 24px;
     height: 24px;
     background: white;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-default);
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -1037,7 +1182,7 @@ html.dark-mode .dm-toggle .dm-knob {
     justify-content: center;
     z-index: 100;
     font-size: 15px;
-    color: #64748b;
+    color: var(--text-light);
     line-height: 1;
     padding: 0;
     transition: box-shadow 0.2s ease, background 0.2s ease;
@@ -1049,8 +1194,8 @@ html.dark-mode .dm-toggle .dm-knob {
     top: calc(100% + 6px);
     left: 50%;
     transform: translateX(-50%);
-    background: #1e293b;
-    color: #fff;
+    background: var(--tooltip-bg);
+    color: var(--tooltip-color);
     font-size: 0.7rem;
     font-weight: 600;
     padding: 3px 8px;
@@ -1083,8 +1228,8 @@ html.dark-mode .dm-toggle .dm-knob {
     padding: 80px 14px 24px;
     overflow-y: auto;
     overflow-x: hidden;
-    background: #f8f9fa;
-    border-right: 1px solid #e2e8f0;
+    background: var(--surface-sidebar);
+    border-right: 1px solid var(--border-default);
     scrollbar-width: none;
     opacity: 1;
     transition: opacity 0.2s ease;
@@ -1130,7 +1275,7 @@ html.dark-mode .dm-toggle .dm-knob {
     max-height: calc(100vh - 100px);
     overflow-y: auto;
     scrollbar-width: none;
-    background: #f8f9fa;
+    background: var(--surface-sidebar);
     border-radius: 8px;
     transition: width 0.3s ease, padding 0.3s ease;
 }
@@ -1172,12 +1317,12 @@ html.dark-mode .dm-toggle .dm-knob {
 .search-box input {
     width: 100%;
     padding: 8px 12px 8px 34px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--border-control);
     border-radius: 8px;
     font-family: var(--font-ar);
     font-size: 0.9rem;
     color: var(--text-dark);
-    background: white;
+    background: var(--surface-input);
     outline: none;
     transition: border-color var(--transition);
     direction: rtl;
@@ -1211,8 +1356,8 @@ html.dark-mode .dm-toggle .dm-knob {
     position: absolute;
     top: 100%;
     left: 0; right: 0;
-    background: white;
-    border: 2px solid #e2e8f0;
+    background: var(--surface-search);
+    border: 2px solid var(--border-default);
     border-radius: 8px;
     max-height: 300px;
     overflow-y: auto;
@@ -1227,13 +1372,13 @@ html.dark-mode .dm-toggle .dm-knob {
 
 .search-result-item {
     padding: 8px 12px;
-    border-bottom: 1px solid #f0f4f8;
+    border-bottom: 1px solid var(--border-divider);
     cursor: pointer;
     transition: background var(--transition);
 }
 
 .search-result-item:hover {
-    background: #f0f9ff;
+    background: var(--bg-hover);
 }
 
 .search-result-item:last-child {
@@ -1300,15 +1445,15 @@ html.dark-mode .dm-toggle .dm-knob {
 }
 
 a.sidebar-unit-label:hover {
-    background: #f0f9ff;
+    background: var(--sidebar-label-hover);
     color: var(--primary-dark);
 }
 
 a.sidebar-unit-label.active {
-    background: linear-gradient(135deg, #e8f4ff, #dbeafe);
+    background: var(--sidebar-active-bg);
     color: var(--primary-dark);
     font-weight: 800;
-    border: 1px solid #bfdbfe;
+    border: 1px solid var(--sidebar-active-border);
 }
 
 .sidebar-lesson {
@@ -1326,15 +1471,15 @@ a.sidebar-unit-label.active {
 }
 
 .sidebar-lesson:hover {
-    background: #f0f9ff;
+    background: var(--bg-hover);
     color: var(--primary);
 }
 
 .sidebar-lesson.active {
-    background: linear-gradient(135deg, #e8f4ff, #dbeafe);
+    background: var(--sidebar-active-bg);
     color: var(--primary-dark);
     font-weight: 700;
-    border: 1px solid #bfdbfe;
+    border: 1px solid var(--sidebar-active-border);
 }
 
 .sidebar-lesson-num {
@@ -1344,7 +1489,7 @@ a.sidebar-unit-label.active {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: #e2e8f0;
+    background: var(--sidebar-lesson-num-bg);
     color: var(--text-medium);
     font-size: 0.7rem;
     font-weight: 800;
@@ -1363,7 +1508,7 @@ a.sidebar-unit-label.active {
     width: 24px;
     height: 24px;
     background: white;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-default);
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -1372,7 +1517,7 @@ a.sidebar-unit-label.active {
     justify-content: center;
     z-index: 100;
     font-size: 15px;
-    color: #64748b;
+    color: var(--text-sidebar-icon);
     line-height: 1;
     padding: 0;
     transition: box-shadow 0.2s ease, background 0.2s ease;
@@ -1381,7 +1526,7 @@ a.sidebar-unit-label.active {
 
 .sidebar-toggle:hover {
     box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-    background: #f8fafc;
+    background: var(--bg-hover);
 }
 
 .sidebar-toggle-icon {
@@ -1403,8 +1548,8 @@ a.sidebar-unit-label.active {
     padding: 60px 32px 32px;
     min-height: 300px;
     text-align: center;
-    background: linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
-    background-color: #f0f4ff;
+    background: var(--hero-gradient);
+    background-color: var(--bg-light);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1414,7 +1559,7 @@ a.sidebar-unit-label.active {
 .lesson-hero-inner {
     max-width: 600px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--hero-inner-bg);
     padding: 20px;
     border-radius: 8px;
 }
@@ -1429,7 +1574,7 @@ a.sidebar-unit-label.active {
 /* Tawheed unit-specific overrides */
 .lesson-hero.hero-bg-unit1 {
     background-image: url('../images/illustrations/unit1-hero.svg'),
-        linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+        var(--hero-gradient);
     background-repeat: no-repeat;
     background-position: right center;
     background-size: contain;
@@ -1437,7 +1582,7 @@ a.sidebar-unit-label.active {
 
 .lesson-hero.hero-bg-unit2 {
     background-image: url('../images/illustrations/unit2-hero.svg'),
-        linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+        var(--hero-gradient);
     background-repeat: no-repeat;
     background-position: right center;
     background-size: contain;
@@ -1445,7 +1590,7 @@ a.sidebar-unit-label.active {
 
 .lesson-hero.hero-bg-unit3 {
     background-image: url('../images/illustrations/unit3-hero.svg'),
-        linear-gradient(135deg, #e0f0ff 0%, #f0e6ff 50%, #fff0e6 100%);
+        var(--hero-gradient);
     background-repeat: no-repeat;
     background-position: right center;
     background-size: contain;
@@ -1513,7 +1658,7 @@ a.sidebar-unit-label.active {
     flex-shrink: 0;
     padding: 24px 14px;
     scrollbar-width: none;
-    background: #f8f9fa;
+    background: var(--surface-sidebar);
     border-radius: 8px;
 }
 
@@ -1538,8 +1683,8 @@ a.sidebar-unit-label.active {
 
 /* ---------- Audio Player Widget ---------- */
 .audio-player {
-    background: linear-gradient(135deg, #e8f0ff 0%, #f0e6ff 100%);
-    border: 2px solid #c8d6f0;
+    background: var(--audio-gradient);
+    border: 2px solid var(--audio-border);
     border-radius: 16px;
     padding: 20px 16px;
     text-align: center;
@@ -1560,14 +1705,14 @@ a.sidebar-unit-label.active {
     height: 72px;
     border-radius: 50%;
     border: none;
-    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    background: var(--audio-play-bg);
     color: white;
     font-size: 1.8rem;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 16px rgba(46,125,50,0.35);
+    box-shadow: 0 4px 16px var(--audio-play-shadow);
     transition: all 0.2s ease;
     position: relative;
     line-height: 1;
@@ -1575,7 +1720,7 @@ a.sidebar-unit-label.active {
 
 .audio-play-btn:hover {
     transform: scale(1.08);
-    box-shadow: 0 6px 24px rgba(46,125,50,0.45);
+    box-shadow: 0 6px 24px var(--audio-play-shadow-hover);
 }
 
 .audio-play-btn:active {
@@ -1583,8 +1728,8 @@ a.sidebar-unit-label.active {
 }
 
 .audio-play-btn.playing {
-    background: linear-gradient(135deg, #e53935, #c62828);
-    box-shadow: 0 4px 16px rgba(229,57,53,0.35);
+    background: var(--audio-stop-bg);
+    box-shadow: 0 4px 16px var(--audio-stop-shadow);
     animation: pulse-ring 1.2s ease infinite;
 }
 
@@ -1603,14 +1748,14 @@ a.sidebar-unit-label.active {
 .audio-status {
     font-family: var(--font-en);
     font-size: 0.72rem;
-    color: var(--primary-dark);
+    color: var(--primary);
     margin-top: 10px;
     min-height: 1.4em;
     font-weight: 600;
 }
 
 .audio-text-preview {
-    font-family: 'Noto Naskh Arabic', var(--font-ar);
+    font-family: var(--font-ar);
     direction: rtl;
     font-size: 0.8rem;
     color: var(--text-medium);
@@ -1640,7 +1785,7 @@ a.sidebar-unit-label.active {
 
 .audio-speed-select {
     padding: 5px 10px;
-    border: 2px solid #c8d6f0;
+    border: 2px solid var(--audio-border);
     border-radius: 6px;
     background: white;
     font-family: var(--font-en);
@@ -1664,7 +1809,7 @@ a.sidebar-unit-label.active {
 .audio-no-support {
     font-family: var(--font-en);
     font-size: 0.72rem;
-    color: #999;
+    color: var(--text-muted);
     padding: 16px 8px;
     line-height: 1.5;
 }
@@ -1673,7 +1818,7 @@ a.sidebar-unit-label.active {
 .audio-voice-select {
     width: 100%;
     padding: 6px 8px;
-    border: 2px solid #c8d6f0;
+    border: 2px solid var(--audio-border);
     border-radius: 8px;
     background: white;
     font-family: var(--font-en);
@@ -1699,13 +1844,12 @@ a.sidebar-unit-label.active {
 
 .audio-voice-select optgroup[label*="Qari"] {
     color: var(--primary-dark);
-    background: #e8f0ff;
+    background: var(--badge-accent-bg);
 }
 
 .audio-voice-select optgroup[label*="Standard"] {
-    color: #7c3aed;
-    background: #f0e6ff;
-}
+    color: var(--badge-accent-color);
+    background: var(--badge-secondary-bg);}
 
 /* Word highlighting */
 .audio-word {
@@ -1715,7 +1859,7 @@ a.sidebar-unit-label.active {
 }
 
 .audio-word-active {
-    background-color: #fff176;
+    background-color: var(--highlight-yellow);
     box-shadow: 0 1px 4px rgba(255,235,59,0.5);
     border-radius: 3px;
     transform: scale(1.05);
@@ -1738,10 +1882,10 @@ a.sidebar-unit-label.active {
     width: 30px;
     height: 30px;
     min-width: 30px;
-    border: 2px solid #a5d6a7;
+    border: 2px solid var(--alert-success-border);
     border-radius: 50%;
     background: white;
-    color: #2e7d32;
+    color: var(--accent-success);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -1758,8 +1902,8 @@ a.sidebar-unit-label.active {
 }
 
 .ayah-play-btn:hover {
-    background: #e8f5e9;
-    border-color: #2e7d32;
+    background: var(--alert-success-bg);
+    border-color: var(--accent-success);
     transform: scale(1.1);
 }
 
@@ -1768,8 +1912,8 @@ a.sidebar-unit-label.active {
 }
 
 .ayah-play-btn.active {
-    background: #e53935;
-    border-color: #e53935;
+    background: var(--alert-error-bg);
+    border-color: var(--alert-error-color);
     color: white;
     animation: pulse-ring-sm 1s ease infinite;
 }
@@ -1793,7 +1937,7 @@ a.sidebar-unit-label.active {
     align-items: center;
     gap: 8px;
     padding: 7px 14px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--border-default);
     border-radius: 24px;
     background: white;
     color: var(--text-medium);
@@ -1818,7 +1962,7 @@ a.sidebar-unit-label.active {
     width: 30px;
     height: 16px;
     border-radius: 8px;
-    background: #cbd5e0;
+    background: var(--border-control);
     position: relative;
     transition: all var(--transition);
     flex-shrink: 0;
@@ -1858,7 +2002,7 @@ a.sidebar-unit-label.active {
 
 .lesson-block .transliteration p {
     font-style: italic;
-    color: #8b5cf6;
+    color: var(--text-vocab-example);
     font-size: 0.9rem;
     font-family: var(--font-en);
     margin: 0 0 4px;
@@ -1872,11 +2016,11 @@ a.sidebar-unit-label.active {
 }
 
 .lesson-block .tamil h3 { color: var(--text-medium); }
-.lesson-block .transliteration h3 { color: #8b5cf6; }
+.lesson-block .transliteration h3 { color: var(--text-vocab-example); }
 
 .transliteration p {
     font-style: italic;
-    color: #8b5cf6;
+    color: var(--text-vocab-example);
     font-size: 0.9rem;
     margin: 0 0 4px;
     font-family: var(--font-en);
@@ -1920,7 +2064,7 @@ a.sidebar-unit-label.active {
 
 .hadith-card {
     background: white;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-default);
     border-radius: var(--radius-md);
     padding: 20px 24px;
     margin-bottom: 14px;
@@ -1966,7 +2110,7 @@ a.sidebar-unit-label.active {
 .lesson-block .en .tamil {
     margin-top: 8px;
     padding-top: 8px;
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid var(--border-divider);
 }
 
 .lesson-body { line-height: 1.8; font-size: 1.05rem; }
@@ -2000,7 +2144,7 @@ a.sidebar-unit-label.active {
     color: var(--primary-dark);
     margin: 24px 0 10px;
     padding-bottom: 6px;
-    border-bottom: 2px solid #e0e7ff;
+    border-bottom: 2px solid var(--border-verse);
 }
 
 .ar-num,
@@ -2040,7 +2184,7 @@ a.sidebar-unit-label.active {
 .lesson-block {
     margin-bottom: 16px;
     padding-bottom: 16px;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border-default);
 }
 
 .lesson-pair:last-child,
@@ -2357,18 +2501,18 @@ body.popup-open {
 }
 
 .hadith-badge.sahih {
-    background: #d1fae5;
-    color: #065f46;
+    background: var(--alert-success-bg);
+    color: var(--alert-success-color);
 }
 
 .hadith-badge.hasan {
-    background: #fef3c7;
-    color: #92400e;
+    background: var(--alert-warning-bg);
+    color: var(--alert-warning-color);
 }
 
 .hadith-badge.daif {
-    background: #fce4e4;
-    color: #991b1b;
+    background: var(--alert-error-bg);
+    color: var(--alert-error-color);
 }
 
 .hadith-read-more {
@@ -2413,7 +2557,7 @@ body.popup-open {
     text-align: center;
     color: var(--text-dark);
     padding: 16px;
-    background: #f8fafc;
+    background: var(--surface-card);
     border-radius: var(--radius-sm);
     margin-bottom: 16px;
 }
@@ -2430,18 +2574,18 @@ body.popup-open {
 }
 
 .hadith-detail-grade.sahih {
-    background: #d1fae5;
-    color: #065f46;
+    background: var(--alert-success-bg);
+    color: var(--alert-success-color);
 }
 
 .hadith-detail-grade.hasan {
-    background: #fef3c7;
-    color: #92400e;
+    background: var(--alert-warning-bg);
+    color: var(--alert-warning-color);
 }
 
 .hadith-detail-grade.daif {
-    background: #fce4e4;
-    color: #991b1b;
+    background: var(--alert-error-bg);
+    color: var(--alert-error-color);
 }
 
 .hadith-detail-english {
@@ -2453,25 +2597,25 @@ body.popup-open {
 
 .hadith-detail-meta {
     font-size: 0.85rem;
-    color: #64748b;
+    color: var(--text-light);
     line-height: 1.6;
 }
 
 .hadith-detail-meta strong {
-    color: #334155;
+    color: var(--text-medium);
 }
 
 .hadith-detail-credit {
     margin-top: 20px;
     padding-top: 16px;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--border-default);
     font-size: 0.75rem;
-    color: #94a3b8;
+    color: var(--text-light);
     text-align: center;
 }
 
 .hadith-detail-credit a {
-    color: #64748b;
+    color: var(--text-light);
     text-decoration: underline;
 }
 
@@ -2515,7 +2659,7 @@ body.popup-open {
 .unit-hero {
     padding: 60px 32px 32px;
     text-align: center;
-    background-color: #f0f4ff;
+    background-color: var(--bg-light);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -2529,7 +2673,7 @@ body.popup-open {
 .unit-hero-inner {
     max-width: 600px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--hero-inner-bg);
     padding: 20px;
     border-radius: 8px;
 }
@@ -2607,7 +2751,7 @@ body.popup-open {
     left: 50%;
     transform: translateX(-50%);
     background: var(--primary);
-    color: #fff;
+    color: var(--popup-verse-color);;
     padding: 12px 24px;
     border-radius: 0 0 var(--radius-sm) var(--radius-sm);
     font-weight: 700;
@@ -2715,14 +2859,13 @@ select:focus-visible {
     font-family: var(--font-ar);
     font-size: 1.4rem;
     line-height: 2.2;
-    color: #1e293b;
-    text-align: right;
+    color: var(--text-verse-ar);   text-align: right;
     direction: rtl;
     padding: 16px;
-    background: #f8fafc;
+    background: var(--surface-card);
     border-radius: var(--radius-sm);
     margin-bottom: 16px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-default);
 }
 
 /* Tafsir tab bar */
@@ -2730,7 +2873,7 @@ select:focus-visible {
     display: flex;
     gap: 0;
     margin-bottom: 12px;
-    border-bottom: 2px solid #e2e8f0;
+    border-bottom: 2px solid var(--border-default);
 }
 
 .popup-tafsir-tab {
@@ -2772,7 +2915,7 @@ select:focus-visible {
 
 .popup-skeleton-line {
     height: 14px;
-    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+    background: linear-gradient(90deg, var(--skeleton-start) 25%, var(--skeleton-end) 50%, var(--skeleton-start) 75%);
     background-size: 200% 100%;
     animation: skeleton-shimmer 1.5s infinite;
     border-radius: 6px;
@@ -2786,7 +2929,7 @@ select:focus-visible {
 
 .popup-skeleton-arabic {
     height: 40px;
-    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+    background: linear-gradient(90deg, var(--skeleton-start) 25%, var(--skeleton-end) 50%, var(--skeleton-start) 75%);
     background-size: 200% 100%;
     animation: skeleton-shimmer 1.5s infinite;
     border-radius: 8px;
@@ -2804,12 +2947,12 @@ select:focus-visible {
     align-items: center;
     gap: 6px;
     padding: 4px 12px;
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
+    background: var(--surah-badge-bg);
+    border: 1px solid var(--surah-badge-border);
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 700;
-    color: #1d4ed8;
+    color: var(--surah-badge-color);
     margin-bottom: 12px;
 }
 
@@ -2822,7 +2965,7 @@ select:focus-visible {
 .popup-cross-refs {
     margin-top: 16px;
     padding-top: 12px;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--border-default);
 }
 
 .popup-cross-refs-title {
@@ -2838,16 +2981,16 @@ select:focus-visible {
     display: block;
     padding: 8px 12px;
     margin-bottom: 6px;
-    background: #f8fafc;
+    background: var(--surface-card);
     border-radius: 8px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-default);
     text-decoration: none;
     transition: all var(--transition);
 }
 
 .popup-cross-ref-item:hover {
-    background: #eff6ff;
-    border-color: #bfdbfe;
+    background: var(--surah-badge-bg);
+    border-color: var(--surah-badge-border);
 }
 
 .popup-cross-ref-key {
@@ -2894,7 +3037,7 @@ select:focus-visible {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #cbd5e1;
+    background: var(--border-default);
     border: none;
     cursor: pointer;
     padding: 0;
