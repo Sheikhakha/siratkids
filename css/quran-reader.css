@@ -28,11 +28,7 @@
     --qr-sidebar-width: 280px;
     --qr-font-en: 'Nunito', sans-serif;
     --qr-font-en-heading: 'Fredoka', 'Nunito', sans-serif;
-    --qr-font-ar: 'Noto Naskh Arabic', serif;
-    --qr-font-ar-nastaleeq: 'Indopak Nastaleeq', 'Noto Naskh Arabic', serif;
-    --qr-font-ar-amiri: 'Amiri', 'Noto Naskh Arabic', serif;
-    --qr-font-ar-scheherazade: 'Scheherazade New', 'Noto Naskh Arabic', serif;
-    --qr-font-ar-lateef: 'Lateef', 'Noto Naskh Arabic', serif;
+    --qr-font-ar-nastaleeq: 'Indopak Nastaleeq', serif;
 }
 
 [data-theme="dark"] {
@@ -298,7 +294,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .qr-surah-ar {
-    font-family: var(--qr-font-ar); font-size: 0.75rem;
+    font-family: var(--qr-font-ar-nastaleeq); font-size: 0.75rem;
     color: var(--qr-text-light); direction: rtl;
 }
 .qr-surah-verses-count { font-size: 0.65rem; color: var(--qr-text-light); font-weight: 600; }
@@ -360,7 +356,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 .qr-surah-header-meta .meta-divider { color: var(--qr-border); margin: 0 6px; }
 
 .qr-surah-header-bismillah {
-    font-family: var(--qr-font-ar); font-size: 1.4rem;
+    font-family: var(--qr-font-ar-nastaleeq); font-size: 1.4rem;
     color: var(--qr-text); margin-top: 12px; direction: rtl; line-height: 2;
 }
 
@@ -506,7 +502,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 .qr-verse-arabic {
     flex: 1;
     padding: 12px 16px;
-    font-family: var(--qr-font-ar);
+    font-family: var(--qr-font-ar-nastaleeq);
     font-size: 1.6rem;
     line-height: 2;
     color: #1e293b;
@@ -515,37 +511,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     transition: background 0.2s;
     min-width: 0;
 }
-.qr-verse-arabic .verse-num-wrap {
-    white-space: nowrap;
-    margin-left: 2px;
-}
 [data-theme="dark"] .qr-verse-arabic { color: #e2e8f0; }
-
-.qr-verse-arabic .verse-marker-open {
-    color: #b45309; font-family: var(--qr-font-ar); user-select: none;
-    font-size: 1.8rem; line-height: 1; vertical-align: middle;
-}
-.qr-verse-arabic .verse-marker-close {
-    color: #b45309; font-family: var(--qr-font-ar); user-select: none;
-    font-size: 1.8rem; line-height: 1; vertical-align: middle;
-}
-[data-theme="dark"] .qr-verse-arabic .verse-marker-open,
-[data-theme="dark"] .qr-verse-arabic .verse-marker-close { color: #d97706; }
-.qr-verse-arabic .verse-sup {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.6rem;
-    font-weight: 700;
-    color: var(--qr-text-light);
-    font-family: var(--qr-font-en);
-    user-select: none;
-    line-height: 1;
-    vertical-align: middle;
-    margin: 0 3px;
-    position: relative;
-    top: 1px;
-}
 
 /* Controls column */
 .qr-verse-controls {
@@ -617,23 +583,238 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 .qr-nav-btn-primary:hover { background: var(--qr-primary-dark); border-color: var(--qr-primary-dark); color: white; }
 .qr-nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* Arabic font classes */
-.font-nastaleeq .qr-verse-arabic,
-.font-nastaleeq .qr-surah-header-bismillah {
+/* Word-by-Word toggle */
+.qr-wbw-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+}
+.qr-wbw-toggle input[type="checkbox"] {
+    display: none;
+}
+.qr-wbw-slider {
+    width: 36px;
+    height: 20px;
+    background: var(--qr-border);
+    border-radius: 10px;
+    position: relative;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+.qr-wbw-slider::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.qr-wbw-toggle input:checked + .qr-wbw-slider {
+    background: var(--qr-primary);
+}
+.qr-wbw-toggle input:checked + .qr-wbw-slider::after {
+    transform: translateX(16px);
+}
+.qr-wbw-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--qr-text-medium);
+    white-space: nowrap;
+}
+
+/* WBW verse layout */
+.qr-verse-row.wbw-active .qr-verse-arabic {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 6px 14px;
+    padding: 8px 16px;
+    line-height: 1.4;
+}
+.qr-word-unit {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 100px;
+}
+.qr-word-arabic {
     font-family: var(--qr-font-ar-nastaleeq);
+    font-size: 1.4rem;
+    line-height: 1.3;
+    color: #1e293b;
 }
-.font-amiri .qr-verse-arabic,
-.font-amiri .qr-surah-header-bismillah {
-    font-family: var(--qr-font-ar-amiri);
+[data-theme="dark"] .qr-word-arabic {
+    color: #e2e8f0;
 }
-.font-scheherazade .qr-verse-arabic,
-.font-scheherazade .qr-surah-header-bismillah {
-    font-family: var(--qr-font-ar-scheherazade);
+.qr-word-trans {
+    font-size: 0.55rem;
+    color: var(--qr-text-light);
+    line-height: 1.1;
+    direction: ltr;
+    margin-top: 1px;
+    max-width: 90px;
+    overflow-wrap: break-word;
 }
-.font-lateef .qr-verse-arabic,
-.font-lateef .qr-surah-header-bismillah {
-    font-family: var(--qr-font-ar-lateef);
+.qr-wbw-loading {
+    font-size: 0.7rem;
+    color: var(--qr-text-light);
+    font-weight: 600;
+    padding: 2px 8px;
+    animation: pulse 1.5s ease-in-out infinite;
 }
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+/* Footnote popup */
+.qr-footnote-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.qr-footnote-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+.qr-footnote-modal {
+    position: relative;
+    background: var(--qr-surface);
+    border-radius: 12px;
+    max-width: 560px;
+    width: 90%;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    z-index: 1;
+}
+.qr-footnote-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--qr-border);
+}
+.qr-footnote-header h3 {
+    font-family: var(--qr-font-en-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--qr-text);
+}
+.qr-footnote-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--qr-text-medium);
+    padding: 0 4px;
+    line-height: 1;
+}
+.qr-footnote-close:hover {
+    color: var(--qr-text);
+}
+.qr-footnote-body {
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--qr-text);
+}
+.qr-footnote-body p {
+    margin-bottom: 8px;
+}
+.qr-footnote-body sup {
+    color: var(--qr-primary);
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+/* Footnote button in translation */
+.qr-verse-footnote-btn {
+    background: none;
+    border: none;
+    color: var(--qr-primary);
+    cursor: pointer;
+    padding: 0 4px;
+    font-size: 0.85rem;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+}
+.qr-verse-footnote-btn:hover {
+    opacity: 1;
+}
+
+/* Clear cache */
+.qr-clear-cache {
+    font-size: 0.65rem;
+    color: var(--qr-text-light);
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 4px 12px;
+    background: none;
+    border: none;
+    font-family: var(--qr-font-en);
+    transition: color 0.2s;
+}
+.qr-clear-cache:hover {
+    color: var(--qr-primary);
+}
+
+/* Attribution */
+.qr-attribution {
+    font-size: 0.6rem;
+    color: var(--qr-text-light);
+    white-space: nowrap;
+}
+.qr-attribution a {
+    color: var(--qr-primary);
+    text-decoration: none;
+}
+.qr-attribution a:hover {
+    text-decoration: underline;
+}
+
+/* WBW loading indicator in nav */
+.qr-wbw-status {
+    font-size: 0.65rem;
+    color: var(--qr-text-light);
+    font-weight: 600;
+}
+
+/* WBW language selector */
+.qr-wbw-lang-select {
+    padding: 4px 6px;
+    border: 2px solid var(--qr-border);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-family: var(--qr-font-en);
+    font-weight: 600;
+    background: var(--qr-surface);
+    color: var(--qr-text);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+    display: none;
+}
+.qr-wbw-lang-select.show { display: inline-block; }
+.qr-wbw-lang-select:focus { border-color: var(--qr-primary); }
+.qr-wbw-lang-select:hover { border-color: var(--qr-primary); }
+.qr-wbw-lang-select option { font-weight: 600; }
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -673,4 +854,6 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     .qr-playbar-verse { font-size: 0.65rem; }
     .qr-playbar-info { min-width: 80px; }
     .qr-fixed-play-bar { gap: 8px; padding: 0 8px; }
+    .qr-wbw-label { display: none; }
+    .qr-wbw-toggle input:checked + .qr-wbw-slider + .qr-wbw-label { display: none; }
 }

@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="css/quran-reader.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="js/quran_source/indopak-nastaleeq-verse.json" as="fetch" crossorigin>
+    <link rel="preload" href="js/quran_source/taqi-ud-din-al-hilali-muhsin-khan-inline-footnotes.json" as="fetch" crossorigin>
 </head>
-<body class="disable-onload-animations">
+<body class="disable-onload-animations font-nastaleeq">
 
     <nav class="qr-navbar">
         <div class="qr-nav-left">
@@ -37,23 +39,24 @@
                 <select id="qr-reciter" class="qr-nav-select">
                     <option value="Sudais">Sudais</option>
                     <option value="Alafasy">Al-Afasy</option>
+                    <option value="MinshawiKids">Minshawi Kids</option>
+                    <option value="YasserAlDosari">Yasser Al-Dosari</option>
                 </select>
             </div>
             <div class="qr-nav-group">
                 <label class="qr-nav-label" for="qr-translation">Translation:</label>
-                <select id="qr-translation" class="qr-nav-select">
-                    <option value="hilali">Al-Hilali &amp; Khan</option>
-                    <option value="saheeh">Saheeh International</option>
-                </select>
+                <select id="qr-translation" class="qr-nav-select"></select>
             </div>
             <div class="qr-nav-group">
-                <label class="qr-nav-label" for="qr-arabic-font">Script:</label>
-                <select id="qr-arabic-font" class="qr-nav-select">
-                    <option value="naskh">Noto Naskh</option>
-                    <option value="nastaleeq" selected>Indopak Nastaleeq</option>
-                    <option value="amiri">Amiri</option>
-                    <option value="scheherazade">Scheherazade New</option>
-                    <option value="lateef">Lateef</option>
+                <label class="qr-wbw-toggle" id="qr-wbw-toggle-label">
+                    <input type="checkbox" id="qr-wbw-toggle">
+                    <span class="qr-wbw-slider"></span>
+                    <span class="qr-wbw-label">Word-by-Word</span>
+                </label>
+                <select id="qr-wbw-lang" class="qr-wbw-lang-select">
+                    <option value="auto">Auto</option>
+                    <option value="en">English</option>
+                    <option value="ta">Tamil</option>
                 </select>
             </div>
             <button class="dm-toggle" aria-label="Toggle dark mode">
@@ -78,16 +81,10 @@
                 <p>Loading Quran...</p>
             </div>
             <div class="qr-content" id="qr-content" style="display:none;">
-
-                <!-- Surah header -->
                 <div class="qr-surah-header" id="qr-surah-header"></div>
-
-                <!-- Unified verse list -->
                 <div class="qr-verses" id="qr-verses"></div>
-
             </div>
 
-            <!-- Fixed bottom play bar -->
             <div class="qr-fixed-play-bar active" id="qr-fixed-play-bar">
                 <div class="qr-playbar-eq" id="qr-playbar-eq">
                     <span class="qr-eq-bar"></span>
@@ -115,7 +112,6 @@
                 </div>
             </div>
 
-            <!-- Continue prompt -->
             <div class="qr-continue-prompt" id="qr-continue-prompt" style="display:none;">
                 <span>Continue continuous recitation?</span>
                 <button class="qr-continue-yes" id="qr-continue-yes">Yes</button>
@@ -125,12 +121,33 @@
             <div class="qr-nav-bottom" id="qr-nav-bottom" style="display:none;">
                 <button class="qr-nav-btn" id="qr-prev-surah">&#8592; Previous</button>
                 <button class="qr-nav-btn qr-nav-btn-primary" id="qr-next-surah">Next &#8594;</button>
+                <span class="qr-clear-cache" id="qr-clear-cache">Clear cached data</span>
+                <span class="qr-attribution">Powered by <a href="https://tarteel.ai" target="_blank" rel="noopener">Tarteel AI</a></span>
             </div>
         </main>
     </div>
 
-    <script src="js/quran-reader-data.js"></script>
-    <script src="js/quran-saheeh-data.js"></script>
+    <div class="qr-footnote-popup" id="qr-footnote-popup" style="display:none;">
+        <div class="qr-footnote-overlay" id="qr-footnote-overlay"></div>
+        <div class="qr-footnote-modal">
+            <div class="qr-footnote-header">
+                <h3>Footnotes</h3>
+                <button class="qr-footnote-close" id="qr-footnote-close">&times;</button>
+            </div>
+            <div class="qr-footnote-body" id="qr-footnote-body"></div>
+        </div>
+    </div>
+
+    <script src="js/quran-chapter-data.js"></script>
+    <script src="js/quran-reader-cache.js"></script>
+    <script>
+        window.__QURAN_TRANSLATIONS = {
+            hilali: { name: "Al-Hilali & Khan", lang: "en", file: "taqi-ud-din-al-hilali-muhsin-khan-inline-footnotes" },
+            saheeh: { name: "Saheeh International", lang: "en", file: "en-sahih-international-simple" },
+            baqavi: { name: "Abdul Hameed Baqavi", lang: "ta", file: "abdul-hameed-baqavi-simple" },
+            omarSharif: { name: "Omar Sharif bin Abdul Salam", lang: "ta", file: "sheikh-omar-sharif-bin-abdul-salam-simple" }
+        };
+    </script>
     <script src="js/main.js"></script>
     <script src="js/quran-reader.js"></script>
 </body>
