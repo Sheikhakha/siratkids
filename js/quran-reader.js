@@ -136,7 +136,7 @@
                 qrShow(qrTvExpHover);
             }
             if (qrTooltipEl) {
-                qrTooltipEl.textContent = isHidden ? 'Open sidebar' : 'Close sidebar';
+                qrTooltipEl.textContent = isHidden ? 'Open surahs' : 'Close surahs';
                 qrTooltipEl.style.display = 'block';
             }
         });
@@ -290,6 +290,10 @@
         }
 
         els.surahHeader.innerHTML = html;
+        document.fonts.ready.then(function() {
+            var el = els.surahHeader.querySelector('.qr-surah-header-name-ar');
+            if (el) el.style.opacity = '1';
+        });
     }
 
     function renderVerses(ch) {
