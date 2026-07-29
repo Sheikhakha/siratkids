@@ -318,11 +318,6 @@ html.dark-mode .qr-surah-header { border-bottom-color: #4a3f2f; }
     color: #7A5C00;
     line-height: 0.9;
     margin-bottom: 2px;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-}
-.qr-surah-header-name-ar.qr-font-ready {
-    opacity: 1;
 }
 html.dark-mode .qr-surah-header-name-ar { color: #d4a843; }
 .qr-surah-header-name-en {
