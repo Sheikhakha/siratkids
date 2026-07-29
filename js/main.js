@@ -732,7 +732,17 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!layout || !toggle || !sidebar) return;
 
     document.body.appendChild(toggle);
-    toggle.innerHTML = '<span class="sidebar-toggle-icon">\u2039</span>';
+    toggle.innerHTML = '<span class="sidebar-toggle-icon">' +
+        '<svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<rect x="2" y="2" width="20" height="20" rx="3"/>' +
+            '<line x1="7" y1="2" x2="7" y2="22"/>' +
+        '</svg>' +
+        '<svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">' +
+            '<rect x="2" y="2" width="20" height="20" rx="3"/>' +
+            '<line x1="7" y1="2" x2="7" y2="22"/>' +
+            '<path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>' +
+        '</svg>' +
+    '</span>';
 
     var NAV_HEIGHT = 64;
 
@@ -757,15 +767,25 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', updateToggle, { passive: true });
     sidebar.addEventListener('transitionend', updateToggle);
 
+    var flIconOpen = toggle ? toggle.querySelector('.icon-sidebar-open') : null;
+    var flIconClosed = toggle ? toggle.querySelector('.icon-sidebar-closed') : null;
+    function updateFloatingIcons() {
+        var isCollapsed = layout.classList.contains('sidebar-collapsed');
+        toggle.classList.toggle('collapsed', isCollapsed);
+        if (flIconOpen) flIconOpen.style.display = isCollapsed ? 'none' : 'block';
+        if (flIconClosed) flIconClosed.style.display = isCollapsed ? 'block' : 'none';
+        toggle.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+    }
+
     if (localStorage.getItem('sidebar-collapsed') === 'true') {
         layout.classList.add('sidebar-collapsed');
-        toggle.classList.add('collapsed');
     }
+    updateFloatingIcons();
 
     toggle.addEventListener('click', function() {
         layout.classList.toggle('sidebar-collapsed');
-        toggle.classList.toggle('collapsed');
         localStorage.setItem('sidebar-collapsed', layout.classList.contains('sidebar-collapsed'));
+        updateFloatingIcons();
     });
 })();
 
@@ -788,6 +808,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var isCollapsed = sidenav.classList.contains('collapsed');
         if (iconOpen) iconOpen.style.display = isCollapsed ? 'none' : 'block';
         if (iconClosed) iconClosed.style.display = isCollapsed ? 'block' : 'none';
+        toggleBtn.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
     }
 
     updateToggleIcons();

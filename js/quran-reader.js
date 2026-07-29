@@ -81,9 +81,20 @@
             document.body.classList.add('qr-sidebar-hidden');
         }
 
+        var qrIconOpen = els.sidebarToggle.querySelector('.icon-sidebar-open');
+        var qrIconClosed = els.sidebarToggle.querySelector('.icon-sidebar-closed');
+        function updateQrToggleIcons() {
+            var isHidden = document.body.classList.contains('qr-sidebar-hidden');
+            if (qrIconOpen) qrIconOpen.style.display = isHidden ? 'none' : 'block';
+            if (qrIconClosed) qrIconClosed.style.display = isHidden ? 'block' : 'none';
+            els.sidebarToggle.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+        }
+        updateQrToggleIcons();
+
         els.sidebarToggle.addEventListener('click', function () {
             document.body.classList.toggle('qr-sidebar-hidden');
             localStorage.setItem('sidebar-collapsed', document.body.classList.contains('qr-sidebar-hidden'));
+            updateQrToggleIcons();
         });
 
         els.surahSearch.addEventListener('input', function () {
@@ -139,6 +150,8 @@
             els.reciterSelect.value = savedReciter;
             currentReciter = savedReciter;
         }
+
+        initDropdowns();
 
         var lastRead = localStorage.getItem('quran-last-read');
         var startSurah = 1;
@@ -555,6 +568,158 @@
     function escapeAttr(str) {
         if (!str) return '';
         return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    /* ---- Custom dropdowns ---- */
+    function initDropdowns() {
+        document.querySelectorAll('.qr-dropdown').forEach(function (container) {
+            var native = container.querySelector('.qr-nav-select');
+            if (!native) return;
+
+            var trigger = document.createElement('button');
+            trigger.type = 'button';
+            trigger.className = 'qr-dropdown-trigger';
+            trigger.setAttribute('aria-haspopup', 'listbox');
+            trigger.setAttribute('aria-expanded', 'false');
+
+            var valueSpan = document.createElement('span');
+            valueSpan.className = 'qr-dropdown-value';
+            trigger.appendChild(valueSpan);
+
+            var chevronNS = 'http://www.w3.org/2000/svg';
+            var chevron = document.createElementNS(chevronNS, 'svg');
+            chevron.setAttribute('viewBox', '0 0 24 24');
+            chevron.setAttribute('width', '14');
+            chevron.setAttribute('height', '14');
+            chevron.setAttribute('fill', 'none');
+            chevron.setAttribute('stroke', 'currentColor');
+            chevron.setAttribute('stroke-width', '2.5');
+            chevron.setAttribute('stroke-linecap', 'round');
+            chevron.classList.add('qr-dropdown-chevron');
+            var polyline = document.createElementNS(chevronNS, 'polyline');
+            polyline.setAttribute('points', '6,9 12,15 18,9');
+            chevron.appendChild(polyline);
+            trigger.appendChild(chevron);
+
+            var menu = document.createElement('ul');
+            menu.className = 'qr-dropdown-menu';
+            menu.setAttribute('role', 'listbox');
+            var menuId = native.id + '-dropdown-menu';
+            menu.id = menuId;
+            trigger.setAttribute('aria-controls', menuId);
+
+            function buildOptions() {
+                menu.innerHTML = '';
+                Array.from(native.options).forEach(function (opt) {
+                    var li = document.createElement('li');
+                    li.className = 'qr-dropdown-option';
+                    li.setAttribute('role', 'option');
+                    li.setAttribute('data-value', opt.value);
+                    var isSel = opt.selected;
+                    li.setAttribute('aria-selected', isSel ? 'true' : 'false');
+
+                    var check = document.createElement('span');
+                    check.className = 'qr-dropdown-option-check';
+                    check.innerHTML = isSel ? '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20,6 9,17 4,12"/></svg>' : '';
+                    li.appendChild(check);
+
+                    var txt = document.createElement('span');
+                    txt.textContent = opt.textContent;
+                    li.appendChild(txt);
+
+                    menu.appendChild(li);
+                });
+            }
+
+            function syncFromNative() {
+                valueSpan.textContent = native.options[native.selectedIndex] ? native.options[native.selectedIndex].textContent : '';
+                buildOptions();
+            }
+
+            syncFromNative();
+
+            container.appendChild(trigger);
+            container.appendChild(menu);
+
+            var isOpen = false;
+            var hlIdx = -1;
+
+            function openMenu() {
+                isOpen = true;
+                container.classList.add('is-open');
+                trigger.setAttribute('aria-expanded', 'true');
+                hlIdx = Array.from(menu.children).findIndex(function (el) {
+                    return el.getAttribute('aria-selected') === 'true';
+                });
+                if (hlIdx < 0) hlIdx = 0;
+                var items = menu.children;
+                for (var i = 0; i < items.length; i++) items[i].classList.toggle('is-highlighted', i === hlIdx);
+                if (items[hlIdx]) items[hlIdx].scrollIntoView({ block: 'nearest' });
+                menu.focus({ preventScroll: true });
+            }
+
+            function closeMenu(restoreFocus) {
+                isOpen = false;
+                container.classList.remove('is-open');
+                trigger.setAttribute('aria-expanded', 'false');
+                menu.querySelectorAll('.is-highlighted').forEach(function (el) { el.classList.remove('is-highlighted'); });
+                if (restoreFocus !== false) trigger.focus();
+            }
+
+            function selectItem(li) {
+                if (!li) return;
+                var val = li.getAttribute('data-value');
+                native.value = val;
+                syncFromNative();
+                native.dispatchEvent(new Event('change', { bubbles: true }));
+                closeMenu();
+            }
+
+            trigger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                isOpen ? closeMenu() : openMenu();
+            });
+
+            menu.addEventListener('click', function (e) {
+                var li = e.target.closest('[role="option"]');
+                if (li) selectItem(li);
+            });
+
+            trigger.addEventListener('keydown', function (e) {
+                if ((e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') && !isOpen) {
+                    e.preventDefault(); openMenu(); return;
+                }
+                if (e.key === 'Escape' && isOpen) { e.preventDefault(); closeMenu(); }
+            });
+
+            menu.addEventListener('keydown', function (e) {
+                var items = menu.querySelectorAll('[role="option"]');
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    hlIdx = Math.min(hlIdx + 1, items.length - 1);
+                    items.forEach(function (el, i) { el.classList.toggle('is-highlighted', i === hlIdx); });
+                    if (items[hlIdx]) items[hlIdx].scrollIntoView({ block: 'nearest' });
+                }
+                if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    hlIdx = Math.max(hlIdx - 1, 0);
+                    items.forEach(function (el, i) { el.classList.toggle('is-highlighted', i === hlIdx); });
+                    if (items[hlIdx]) items[hlIdx].scrollIntoView({ block: 'nearest' });
+                }
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    var hl = menu.querySelector('.is-highlighted');
+                    if (hl) selectItem(hl);
+                }
+                if (e.key === 'Escape') {
+                    e.preventDefault(); closeMenu();
+                }
+            });
+
+            document.addEventListener('click', function (e) {
+                if (isOpen && !container.contains(e.target)) closeMenu(false);
+            });
+        });
     }
 
     /* Mobile sidebar */

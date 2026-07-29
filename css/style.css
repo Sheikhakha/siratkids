@@ -1297,13 +1297,10 @@ a.sidebar-unit-label.active {
 }
 
 .sidebar-toggle-icon {
-    display: block;
-    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-style: normal;
-}
-
-.sidebar-toggle.collapsed .sidebar-toggle-icon {
-    transform: rotate(180deg);
 }
 
 .lesson-hero {
