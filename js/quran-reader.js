@@ -213,6 +213,17 @@
         var startSurah = 1;
         if (lastRead) { var p = lastRead.split(':'); startSurah = parseInt(p[0]) || 1; }
         loadSurah(startSurah);
+
+        // Wait for QCF surah-header font to load, then reveal the name
+        var qrFontReady = false;
+        function revealSurahName() {
+            qrFontReady = true;
+            var el = document.querySelector('.qr-surah-header-name-ar');
+            if (el) el.classList.add('qr-font-ready');
+        }
+        if (document.fonts) {
+            document.fonts.load('1em "QCF SurahHeader COLOR"').then(revealSurahName).catch(revealSurahName);
+        }
     }
 
     function applyFont() {
@@ -275,7 +286,7 @@
     function renderSurahHeader(ch) {
         var revLabel = ch.revelation_place === 'makkah' ? 'Meccan' : 'Medinan';
         var html = '';
-        html += '<div class="qr-surah-header-name-ar" dir="rtl">' + SURAH_LIGATURES[ch.id - 1] + '</div>';
+        html += '<div class="qr-surah-header-name-ar' + (qrFontReady ? ' qr-font-ready' : '') + '" dir="rtl">' + SURAH_LIGATURES[ch.id - 1] + '</div>';
         html += '<div class="qr-surah-header-name-en">Surah ' + escapeHtml(ch.en) + '</div>';
         html += '<div class="qr-surah-header-meta">';
         html += '<span><span class="meta-label">Verses:</span> <span class="meta-value">' + ch.verses + '</span></span>';
