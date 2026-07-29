@@ -6,7 +6,7 @@
 }
 @font-face {
     font-family: 'QCF SurahHeader COLOR';
-    src: url('https://static-cdn.tarteel.ai/qul/fonts/surah-names/surah-header/QCF_SurahHeader_COLOR-Regular.ttf') format('truetype');
+    src: url('../fonts/QCF_SurahHeader_COLOR-Regular.ttf') format('truetype');
     font-display: swap;
 }
 
