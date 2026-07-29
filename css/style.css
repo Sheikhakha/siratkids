@@ -864,18 +864,22 @@ html.dark-mode .dm-toggle .dm-knob {
 }
 
 .sidebar-toggle-btn {
+    position: relative;
     display: none;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
     border: none;
     border-radius: 8px;
     background: transparent;
     color: var(--text-medium);
     cursor: pointer;
-    transition: all var(--transition);
+    transition: background 0.15s ease, color 0.15s ease;
     flex-shrink: 0;
+    padding: 0;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
 }
 
 .sidebar-toggle-btn:hover {
@@ -883,8 +887,58 @@ html.dark-mode .dm-toggle .dm-knob {
     color: var(--primary);
 }
 
+.sidebar-toggle-btn.collapsed {
+    width: auto;
+    min-width: 44px;
+    padding: 0 6px;
+    background: transparent;
+    color: var(--text-dark);
+}
+
+.sidebar-toggle-btn.collapsed:hover {
+    background: #f0f9ff;
+    color: var(--primary);
+}
+
 .has-sidenav .sidebar-toggle-btn {
     display: flex;
+}
+
+/* Pinned toggle internal state containers */
+.pv-vis {
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.pv-vis.pv-base,
+.pv-vis.pv-expanded-hover,
+.pv-vis.pv-collapsed-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.pv-logo {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.pv-logo img {
+    height: 28px;
+    width: auto;
+}
+
+.pv-logo span {
+    font-size: 1rem;
+    font-weight: 900;
+    color: inherit;
+    white-space: nowrap;
 }
 
 .settings-dropdown {
@@ -1302,6 +1356,14 @@ a.sidebar-unit-label.active {
     justify-content: center;
     font-style: normal;
 }
+
+/* Floating toggle internal state containers */
+.fl-vis {
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.fl-base { display: flex; }
 
 .lesson-hero {
     padding: 60px 32px 32px;

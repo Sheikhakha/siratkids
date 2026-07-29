@@ -726,6 +726,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /* ---- Sidebar Toggle (Desktop) ---- */
 (function() {
+    function svgBase() {
+        return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<rect x="3" y="3" width="18" height="18" rx="3"/>' +
+            '<line x1="8" y1="6" x2="8" y2="18"/>' +
+        '</svg>';
+    }
+    function svgExpandedHover() {
+        return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<rect x="3" y="3" width="18" height="18" rx="3"/>' +
+            '<line x1="8" y1="6" x2="8" y2="18"/>' +
+            '<polyline points="14,9 10,12 14,15"/>' +
+        '</svg>';
+    }
+    function svgCollapsedHover() {
+        return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<rect x="3" y="3" width="18" height="18" rx="3"/>' +
+            '<line x1="8" y1="6" x2="8" y2="18"/>' +
+            '<polyline points="10,9 14,12 10,15"/>' +
+        '</svg>';
+    }
+
     var layout = document.querySelector('.lesson-layout');
     var sidebar = document.querySelector('.lesson-sidebar');
     var toggle = document.querySelector('.sidebar-toggle');
@@ -733,15 +754,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.body.appendChild(toggle);
     toggle.innerHTML = '<span class="sidebar-toggle-icon">' +
-        '<svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-            '<rect x="2" y="2" width="20" height="20" rx="3"/>' +
-            '<line x1="7" y1="2" x2="7" y2="22"/>' +
-        '</svg>' +
-        '<svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">' +
-            '<rect x="2" y="2" width="20" height="20" rx="3"/>' +
-            '<line x1="7" y1="2" x2="7" y2="22"/>' +
-            '<path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>' +
-        '</svg>' +
+        '<span class="fl-vis fl-base">' + svgBase() + '</span>' +
+        '<span class="fl-vis fl-expanded-hover" style="display:none">' + svgExpandedHover() + '</span>' +
+        '<span class="fl-vis fl-collapsed-hover" style="display:none">' + svgCollapsedHover() + '</span>' +
     '</span>';
 
     var NAV_HEIGHT = 64;
@@ -767,15 +782,31 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', updateToggle, { passive: true });
     sidebar.addEventListener('transitionend', updateToggle);
 
-    var flIconOpen = toggle ? toggle.querySelector('.icon-sidebar-open') : null;
-    var flIconClosed = toggle ? toggle.querySelector('.icon-sidebar-closed') : null;
+    var flBase = toggle.querySelector('.fl-base');
+    var flExpHover = toggle.querySelector('.fl-expanded-hover');
+    var flColHover = toggle.querySelector('.fl-collapsed-hover');
+
     function updateFloatingIcons() {
         var isCollapsed = layout.classList.contains('sidebar-collapsed');
         toggle.classList.toggle('collapsed', isCollapsed);
-        if (flIconOpen) flIconOpen.style.display = isCollapsed ? 'none' : 'block';
-        if (flIconClosed) flIconClosed.style.display = isCollapsed ? 'block' : 'none';
+        if (flBase) flBase.style.display = 'flex';
+        if (flExpHover) flExpHover.style.display = 'none';
+        if (flColHover) flColHover.style.display = 'none';
         toggle.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+        toggle.title = '';
     }
+
+    toggle.addEventListener('mouseenter', function() {
+        var isCollapsed = layout.classList.contains('sidebar-collapsed');
+        if (flBase) flBase.style.display = 'none';
+        if (flExpHover) flExpHover.style.display = isCollapsed ? 'none' : 'flex';
+        if (flColHover) flColHover.style.display = isCollapsed ? 'flex' : 'none';
+        toggle.title = isCollapsed ? 'Open sidebar' : 'Close sidebar';
+    });
+
+    toggle.addEventListener('mouseleave', function() {
+        updateFloatingIcons();
+    });
 
     if (localStorage.getItem('sidebar-collapsed') === 'true') {
         layout.classList.add('sidebar-collapsed');
@@ -791,32 +822,102 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /* ---- Pinned Sidebar Toggle (new layout: sidenav-with-history-container) ---- */
 (function() {
+    function svgBase() {
+        return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<rect x="3" y="3" width="18" height="18" rx="3"/>' +
+            '<line x1="8" y1="6" x2="8" y2="18"/>' +
+        '</svg>';
+    }
+    function svgExpandedHover() {
+        return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<rect x="3" y="3" width="18" height="18" rx="3"/>' +
+            '<line x1="8" y1="6" x2="8" y2="18"/>' +
+            '<polyline points="14,9 10,12 14,15"/>' +
+        '</svg>';
+    }
+    function svgCollapsedHover() {
+        return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<rect x="3" y="3" width="18" height="18" rx="3"/>' +
+            '<line x1="8" y1="6" x2="8" y2="18"/>' +
+            '<polyline points="10,9 14,12 10,15"/>' +
+        '</svg>';
+    }
+
     var sidenav = document.querySelector('.sidenav-with-history-container');
     var toggleBtn = document.querySelector('.sidebar-toggle-btn');
-    var iconOpen = toggleBtn ? toggleBtn.querySelector('.icon-sidebar-open') : null;
-    var iconClosed = toggleBtn ? toggleBtn.querySelector('.icon-sidebar-closed') : null;
+    var navLogo = document.querySelector('.nav-logo');
     if (!sidenav || !toggleBtn) return;
+
+    // Build state containers inside the button
+    toggleBtn.innerHTML =
+        '<span class="pv-vis pv-base">' + svgBase() + '</span>' +
+        '<span class="pv-vis pv-expanded-hover" style="display:none">' + svgExpandedHover() + '</span>' +
+        '<span class="pv-vis pv-collapsed-hover" style="display:none">' + svgCollapsedHover() + '</span>' +
+        '<span class="pv-vis pv-logo" style="display:none"></span>';
+
+    var pvBase = toggleBtn.querySelector('.pv-base');
+    var pvExpHover = toggleBtn.querySelector('.pv-expanded-hover');
+    var pvColHover = toggleBtn.querySelector('.pv-collapsed-hover');
+    var pvLogo = toggleBtn.querySelector('.pv-logo');
+
+    // Clone logo content into pv-logo
+    if (navLogo && pvLogo) {
+        var logoImg = navLogo.querySelector('.nav-logo-img');
+        var logoBrand = navLogo.querySelector('.nav-brand');
+        if (logoImg) pvLogo.appendChild(logoImg.cloneNode(true));
+        if (logoBrand) pvLogo.appendChild(logoBrand.cloneNode(true));
+    }
 
     // Restore saved state
     if (localStorage.getItem('sidebar-collapsed') === 'true') {
         sidenav.classList.add('collapsed');
-    } else {
-        sidenav.classList.remove('collapsed');
     }
 
-    function updateToggleIcons() {
+    function show(vis) {
+        [pvBase, pvExpHover, pvColHover, pvLogo].forEach(function(el) {
+            if (el) el.style.display = 'none';
+        });
+        if (vis) vis.style.display = 'flex';
+    }
+
+    function updatePinnedIcons() {
         var isCollapsed = sidenav.classList.contains('collapsed');
-        if (iconOpen) iconOpen.style.display = isCollapsed ? 'none' : 'block';
-        if (iconClosed) iconClosed.style.display = isCollapsed ? 'block' : 'none';
+        toggleBtn.classList.toggle('collapsed', isCollapsed);
+        toggleBtn.classList.toggle('expanded', !isCollapsed);
+        if (isCollapsed) {
+            show(pvLogo);
+            if (navLogo) navLogo.style.display = 'none';
+        } else {
+            show(pvBase);
+            if (navLogo) navLogo.style.display = '';
+        }
         toggleBtn.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+        toggleBtn.removeAttribute('title');
     }
 
-    updateToggleIcons();
+    updatePinnedIcons();
+
+    toggleBtn.addEventListener('mouseenter', function() {
+        var isCollapsed = sidenav.classList.contains('collapsed');
+        if (isCollapsed) {
+            pvColHover.style.display = 'flex';
+            if (pvLogo) pvLogo.style.visibility = 'hidden';
+            toggleBtn.title = 'Open sidebar';
+        } else {
+            show(pvExpHover);
+            toggleBtn.title = 'Close sidebar';
+        }
+    });
+
+    toggleBtn.addEventListener('mouseleave', function() {
+        if (pvLogo) pvLogo.style.visibility = '';
+        updatePinnedIcons();
+    });
 
     toggleBtn.addEventListener('click', function() {
         sidenav.classList.toggle('collapsed');
         localStorage.setItem('sidebar-collapsed', sidenav.classList.contains('collapsed'));
-        updateToggleIcons();
+        updatePinnedIcons();
         setTimeout(detectLongNames, 350);
     });
 })();

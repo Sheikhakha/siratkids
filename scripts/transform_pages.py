@@ -24,7 +24,7 @@ NEW_NAVBAR = """    <nav class="navbar">
                 </svg>
             </button>
             <a href="{p}index.html" class="nav-logo">
-                <img src="{p}images/logo.svg" alt="SiratKids logo" class="nav-logo-img">
+                <img src="{p}images/logo.png" alt="SiratKids logo" class="nav-logo-img">
                 <span class="nav-brand">SiratKids</span>
             </a>
         </div>

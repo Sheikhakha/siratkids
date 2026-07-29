@@ -81,15 +81,68 @@
             document.body.classList.add('qr-sidebar-hidden');
         }
 
-        var qrIconOpen = els.sidebarToggle.querySelector('.icon-sidebar-open');
-        var qrIconClosed = els.sidebarToggle.querySelector('.icon-sidebar-closed');
+        // Build new toggle content with state containers
+        var qrSvgBase = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="8" y1="6" x2="8" y2="18"/></svg>';
+        var qrSvgExpHover = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="8" y1="6" x2="8" y2="18"/><polyline points="14,9 10,12 14,15"/></svg>';
+        var qrSvgColHover = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="8" y1="6" x2="8" y2="18"/><polyline points="10,9 14,12 10,15"/></svg>';
+
+        els.sidebarToggle.innerHTML =
+            '<span class="qr-tv qr-tv-base">' + qrSvgBase + '</span>' +
+            '<span class="qr-tv qr-tv-expanded-hover" style="display:none">' + qrSvgExpHover + '</span>' +
+            '<span class="qr-tv qr-tv-collapsed-hover" style="display:none">' + qrSvgColHover + '</span>' +
+            '<span class="qr-tv qr-tv-logo" style="display:none"></span>';
+
+        var qrTvBase = els.sidebarToggle.querySelector('.qr-tv-base');
+        var qrTvExpHover = els.sidebarToggle.querySelector('.qr-tv-expanded-hover');
+        var qrTvColHover = els.sidebarToggle.querySelector('.qr-tv-collapsed-hover');
+        var qrTvLogo = els.sidebarToggle.querySelector('.qr-tv-logo');
+        var qrNavLogo = document.querySelector('.qr-nav-logo');
+
+        // Clone logo content into qr-tv-logo
+        if (qrNavLogo && qrTvLogo) {
+            var qrLogoImg = qrNavLogo.querySelector('.qr-nav-logo-img');
+            var qrLogoBrand = qrNavLogo.querySelector('.qr-nav-brand');
+            if (qrLogoImg) qrTvLogo.appendChild(qrLogoImg.cloneNode(true));
+            if (qrLogoBrand) qrTvLogo.appendChild(qrLogoBrand.cloneNode(true));
+        }
+
+        function qrShow(el) {
+            [qrTvBase, qrTvExpHover, qrTvColHover, qrTvLogo].forEach(function(e) { if (e) e.style.display = 'none'; });
+            if (el) el.style.display = 'flex';
+        }
+
         function updateQrToggleIcons() {
             var isHidden = document.body.classList.contains('qr-sidebar-hidden');
-            if (qrIconOpen) qrIconOpen.style.display = isHidden ? 'none' : 'block';
-            if (qrIconClosed) qrIconClosed.style.display = isHidden ? 'block' : 'none';
+            els.sidebarToggle.classList.toggle('qr-hidden', isHidden);
+            if (isHidden) {
+                qrShow(qrTvLogo);
+                if (qrNavLogo) qrNavLogo.style.display = 'none';
+            } else {
+                qrShow(qrTvBase);
+                if (qrNavLogo) qrNavLogo.style.display = '';
+            }
             els.sidebarToggle.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+            els.sidebarToggle.removeAttribute('title');
         }
+
         updateQrToggleIcons();
+
+        els.sidebarToggle.addEventListener('mouseenter', function() {
+            var isHidden = document.body.classList.contains('qr-sidebar-hidden');
+            if (isHidden) {
+                qrTvColHover.style.display = 'flex';
+                if (qrTvLogo) qrTvLogo.style.visibility = 'hidden';
+                els.sidebarToggle.title = 'Open sidebar';
+            } else {
+                qrShow(qrTvExpHover);
+                els.sidebarToggle.title = 'Close sidebar';
+            }
+        });
+
+        els.sidebarToggle.addEventListener('mouseleave', function() {
+            if (qrTvLogo) qrTvLogo.style.visibility = '';
+            updateQrToggleIcons();
+        });
 
         els.sidebarToggle.addEventListener('click', function () {
             document.body.classList.toggle('qr-sidebar-hidden');

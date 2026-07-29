@@ -82,11 +82,37 @@ html.dark-mode .qr-navbar { background: rgba(15,23,42,0.96); }
 .qr-nav-right { display: flex; align-items: center; gap: 12px; }
 
 .qr-sidebar-toggle {
+    position: relative;
+    width: 44px; min-width: 44px;
+    height: 44px; min-height: 44px;
     display: flex; align-items: center; justify-content: center;
     background: none; border: none; color: var(--qr-text); cursor: pointer;
     padding: 4px; border-radius: 6px; transition: background 0.15s;
 }
+.qr-sidebar-toggle.qr-hidden {
+    width: auto;
+    padding: 4px 8px;
+}
 .qr-sidebar-toggle:hover { background: var(--qr-hover); }
+.qr-sidebar-toggle .qr-tv {
+    display: none; align-items: center; justify-content: center;
+}
+.qr-sidebar-toggle .qr-tv.qr-tv-base,
+.qr-sidebar-toggle .qr-tv.qr-tv-expanded-hover,
+.qr-sidebar-toggle .qr-tv.qr-tv-collapsed-hover {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    margin: auto;
+}
+.qr-sidebar-toggle .qr-tv-logo {
+    gap: 4px;
+}
+.qr-sidebar-toggle .qr-tv-logo img {
+    height: 24px; width: auto;
+}
+.qr-sidebar-toggle .qr-tv-logo span {
+    font-size: 0.85rem; font-weight: 800; color: var(--qr-text); white-space: nowrap;
+}
 
 .qr-nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
 .qr-nav-logo-img { height: 30px; }
