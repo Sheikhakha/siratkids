@@ -477,30 +477,23 @@
 
             // Controls column
             html += '<div class="qr-verse-controls">';
+            html += '<button class="qr-verse-tplay" data-chapter="' + ch.id + '" data-verse="' + v + '" data-chpad="' + chPad + '" data-vpad="' + vPad + '" aria-label="Play"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></button>';
             html += '<span class="qr-verse-tnum">' + v + '</span>';
-            html += '<button class="qr-verse-tbookmark' + (isBm ? ' bookmarked' : '') + '" data-key="' + key + '" aria-label="Bookmark">';
-            html += '<svg viewBox="0 0 24 24" width="14" height="14" fill="' + (isBm ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>';
-            html += '</button>';
-            html += '<button class="qr-verse-tplay" data-chapter="' + ch.id + '" data-verse="' + v + '" data-chpad="' + chPad + '" data-vpad="' + vPad + '" aria-label="Play"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></button>';
             html += '</div>';
 
             // Translation column
-            html += '<div class="qr-verse-translation">';
             if (transText) {
+                html += '<div class="qr-verse-translation">';
                 html += escapeHtml(transText);
                 if (hasFootnotes) {
                     html += '<button class="qr-verse-footnote-btn" data-key="' + key + '" title="View footnotes">\u2139</button>';
                 }
+                html += '</div>';
             }
-            html += '</div>';
             html += '</div>';
         }
 
         els.verses.innerHTML = html;
-
-        els.verses.querySelectorAll('.qr-verse-tbookmark').forEach(function (btn) {
-            btn.addEventListener('click', function (e) { e.stopPropagation(); toggleBookmark(this.getAttribute('data-key')); });
-        });
 
         els.verses.querySelectorAll('.qr-verse-tplay').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
@@ -813,7 +806,7 @@
         var rowEl = document.getElementById(rowId);
         if (rowEl) {
             rowEl.classList.add('playing');
-            rowEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            rowEl.scrollIntoView({ block: 'center', behavior: 'smooth' });
         }
 
         updateFixedBar(item, ch);
@@ -836,10 +829,17 @@
         }
 
         var newAudio = new Audio(url);
+        var lastScrollTime = 0;
         newAudio.addEventListener('timeupdate', function () {
             updateWbwVerseHighlight(item);
             if (isDosari && dosariEntry && dosariEntry.segments) {
                 updateDosariWordHighlight(item, dosariEntry.segments, newAudio.currentTime * 1000);
+            }
+            var now = Date.now();
+            if (now - lastScrollTime > 800) {
+                lastScrollTime = now;
+                var row = document.getElementById(rowId);
+                if (row) row.scrollIntoView({ block: 'center', behavior: 'smooth' });
             }
         });
         newAudio.addEventListener('ended', function () {
