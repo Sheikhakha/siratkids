@@ -736,20 +736,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             try { localStorage.setItem('dark-mode', newTheme === 'dark' ? 'true' : 'false'); } catch (e) {}
         });
-
-        // Listen for OS color scheme changes
-        var mq = window.matchMedia('(prefers-color-scheme: dark)');
-        mq.addEventListener('change', function (e) {
-            var hasPref;
-            try { hasPref = localStorage.getItem('dark-mode'); } catch (e) {}
-            if (!hasPref) {
-                if (e.matches) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                } else {
-                    document.documentElement.removeAttribute('data-theme');
-                }
-            }
-        });
     }
 });
 
