@@ -86,10 +86,30 @@
 
     loadBackgroundTranslations();
 
+    function setupNavToggle() {
+        var qrNavbar = document.querySelector('.qr-navbar');
+        if (!qrNavbar) return;
+        var toggle = document.createElement('button');
+        toggle.className = 'qr-nav-toggle';
+        toggle.setAttribute('aria-label', 'Menu');
+        toggle.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>';
+        qrNavbar.appendChild(toggle);
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            qrNavbar.classList.toggle('qr-nav-open');
+        });
+        document.addEventListener('click', function(e) {
+            if (qrNavbar.classList.contains('qr-nav-open') && !qrNavbar.contains(e.target)) {
+                qrNavbar.classList.remove('qr-nav-open');
+            }
+        });
+    }
+
     function init() {
         renderSurahList();
         populateTranslationDropdown();
         setupSidebarToggle();
+        setupNavToggle();
         setupSearch();
         setupEventListeners();
         setupPlaybar();
@@ -160,8 +180,15 @@
             if (el) el.style.display = 'flex';
         }
 
+        function qrIsHidden() {
+            if (window.innerWidth <= 768) {
+                return !els.sidebar.classList.contains('open');
+            }
+            return document.body.classList.contains('qr-sidebar-hidden');
+        }
+
         function updateQrToggleIcons() {
-            var isHidden = document.body.classList.contains('qr-sidebar-hidden');
+            var isHidden = qrIsHidden();
             els.sidebarToggle.classList.toggle('qr-hidden', isHidden);
             if (isHidden) {
                 qrShow(qrTvLogo);
@@ -174,10 +201,15 @@
             if (qrTooltipEl) qrTooltipEl.style.display = 'none';
         }
 
+        // On mobile start with qr-sidebar-hidden cleared to avoid CSS conflict
+        if (window.innerWidth <= 768) {
+            document.body.classList.remove('qr-sidebar-hidden');
+        }
+
         updateQrToggleIcons();
 
         els.sidebarToggle.addEventListener('mouseenter', function() {
-            var isHidden = document.body.classList.contains('qr-sidebar-hidden');
+            var isHidden = qrIsHidden();
             if (isHidden) {
                 qrTvColHover.style.display = 'flex';
                 if (qrTvLogo) qrTvLogo.style.visibility = 'hidden';
@@ -197,7 +229,11 @@
         });
 
         els.sidebarToggle.addEventListener('click', function () {
-            document.body.classList.toggle('qr-sidebar-hidden');
+            if (window.innerWidth <= 768) {
+                els.sidebar.classList.toggle('open');
+            } else {
+                document.body.classList.toggle('qr-sidebar-hidden');
+            }
             updateQrToggleIcons();
         });
     }
@@ -1200,16 +1236,13 @@
         });
     }
 
-    /* Mobile sidebar */
+    /* Mobile sidebar: tap outside to close */
     document.addEventListener('click', function (e) {
         if (window.innerWidth <= 768) {
             if (els.sidebar.classList.contains('open') && !els.sidebar.contains(e.target) && !els.sidebarToggle.contains(e.target)) {
                 els.sidebar.classList.remove('open');
             }
         }
-    });
-    els.sidebarToggle.addEventListener('click', function () {
-        if (window.innerWidth <= 768) { els.sidebar.classList.toggle('open'); }
     });
 
 })();

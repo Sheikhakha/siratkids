@@ -723,7 +723,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-     /* ---- Dark Mode Toggle ---- */
+    /* ---- Dark Mode Toggle ---- */
     var dmToggle = document.querySelector('.dm-toggle');
     if (dmToggle) {
         dmToggle.addEventListener('click', function () {
@@ -737,6 +737,69 @@ document.addEventListener('DOMContentLoaded', function () {
             try { localStorage.setItem('dark-mode', newTheme === 'dark' ? 'true' : 'false'); } catch (e) {}
         });
     }
+
+    /* ---- Mobile Nav Toggle ---- */
+    var navbar = document.querySelector('.navbar');
+    if (navbar) {
+        var navToggle = document.createElement('button');
+        navToggle.className = 'nav-toggle';
+        navToggle.setAttribute('aria-label', 'Menu');
+        navToggle.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>';
+        navbar.appendChild(navToggle);
+
+        navToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navbar.classList.toggle('nav-open');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (navbar.classList.contains('nav-open') && !navbar.contains(e.target)) {
+                navbar.classList.remove('nav-open');
+            }
+        });
+    }
+
+    /* ---- Mobile Range Sliders for Font Size ---- */
+    var fontGroups = document.querySelectorAll('.settings-dropdown-content .font-size-group');
+    fontGroups.forEach(function(group) {
+        var label = group.querySelector('.font-size-label');
+        if (!label) return;
+        var id = label.id;
+        var isArabic = id && id.indexOf('ar-') === 0;
+        var storageKey = isArabic ? 'ar-font-scale' : 'en-font-scale';
+        var currentScale = parseFloat(localStorage.getItem(storageKey)) || 1;
+
+        var wrap = document.createElement('div');
+        wrap.className = 'font-size-slider-wrap';
+
+        var slider = document.createElement('input');
+        slider.type = 'range';
+        slider.min = '0.7';
+        slider.max = '1.5';
+        slider.step = '0.05';
+        slider.value = currentScale;
+
+        var valDisplay = document.createElement('span');
+        valDisplay.className = 'font-size-slider-value';
+        valDisplay.textContent = Math.round(currentScale * 100) + '%';
+
+        wrap.appendChild(slider);
+        wrap.appendChild(valDisplay);
+        group.appendChild(wrap);
+
+        slider.addEventListener('input', function() {
+            var scale = parseFloat(this.value);
+            valDisplay.textContent = Math.round(scale * 100) + '%';
+            if (label) label.textContent = Math.round(scale * 100) + '%';
+            if (isArabic) {
+                applyArabicScale(scale);
+            } else {
+                applyEnglishScale(scale);
+            }
+            localStorage.setItem(storageKey, scale);
+            if (typeof scheduleDetectLongNames === 'function') scheduleDetectLongNames();
+        });
+    });
 });
 
 /* ---- Sidebar Toggle (Desktop) ---- */
@@ -930,11 +993,34 @@ document.addEventListener('DOMContentLoaded', function () {
         updatePinnedIcons();
     });
 
+    // Create sidebar backdrop for mobile overlay
+    var backdrop = document.createElement('div');
+    backdrop.className = 'sidebar-backdrop';
+    document.body.appendChild(backdrop);
+
+    // Activate backdrop if sidebar is already open on mobile (e.g., hub pages)
+    if (window.innerWidth <= 768 && sidenav.classList.contains('open')) {
+        backdrop.classList.add('active');
+    }
+
     toggleBtn.addEventListener('click', function() {
-        sidenav.classList.toggle('collapsed');
-        updatePinnedIcons();
-        setTimeout(detectLongNames, 350);
+        if (window.innerWidth <= 768) {
+            sidenav.classList.toggle('open');
+            backdrop.classList.toggle('active');
+            var navbar = document.querySelector('.navbar');
+            if (navbar) navbar.classList.remove('nav-open');
+        } else {
+            sidenav.classList.toggle('collapsed');
+            updatePinnedIcons();
+            setTimeout(detectLongNames, 350);
+        }
     });
+
+    // Backdrop close disabled for now (side effect: layout shifting)
+    // backdrop.addEventListener('click', function() {
+    //     sidenav.classList.remove('open');
+    //     backdrop.classList.remove('active');
+    // });
 })();
 
 /* ---- Audio Player Widget (Web Speech API) ---- */
