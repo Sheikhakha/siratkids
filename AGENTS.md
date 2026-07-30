@@ -71,7 +71,7 @@ Options: `--verbose` for failed check details, `--json report.json` for machine-
 - **4 Quran Popups**: popup-2152 (2:152), popup-3962 (39:62), popup-5156 (51:56), popup-319 (3:19)
 - **Featured Verse**: Surah At-Tahrim 66:6 on homepage
 - **Audio System**: Web Speech API with word highlighting, speed control (0.5x-2x), voice selection
-- **localStorage keys**: arabic-font, toggle-translation, toggle-tamil, toggle-transliteration, ar-font-scale, en-font-scale, audio-speed, audio-voice-name, sidebar-collapsed
+- **localStorage keys**: arabic-font, toggle-translation, toggle-tamil, toggle-transliteration, ar-font-scale, en-font-scale, audio-speed, audio-voice-name
 
 ## Testing
 - Run `python scripts/validate_content.py` for automated content validation

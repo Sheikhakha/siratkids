@@ -829,14 +829,10 @@ document.addEventListener('DOMContentLoaded', function () {
         updateFloatingIcons();
     });
 
-    if (localStorage.getItem('sidebar-collapsed') === 'true') {
-        layout.classList.add('sidebar-collapsed');
-    }
     updateFloatingIcons();
 
     toggle.addEventListener('click', function() {
         layout.classList.toggle('sidebar-collapsed');
-        localStorage.setItem('sidebar-collapsed', layout.classList.contains('sidebar-collapsed'));
         updateFloatingIcons();
     });
 })();
@@ -890,11 +886,6 @@ document.addEventListener('DOMContentLoaded', function () {
         pvLogo.appendChild(navLogoImg.cloneNode(true));
     }
 
-    // Restore saved state
-    if (localStorage.getItem('sidebar-collapsed') === 'true') {
-        sidenav.classList.add('collapsed');
-    }
-
     function show(vis) {
         [pvBase, pvExpHover, pvColHover, pvLogo].forEach(function(el) {
             if (el) el.style.display = 'none';
@@ -941,7 +932,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     toggleBtn.addEventListener('click', function() {
         sidenav.classList.toggle('collapsed');
-        localStorage.setItem('sidebar-collapsed', sidenav.classList.contains('collapsed'));
         updatePinnedIcons();
         setTimeout(detectLongNames, 350);
     });
