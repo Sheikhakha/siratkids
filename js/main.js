@@ -495,11 +495,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var arScale = parseFloat(localStorage.getItem('ar-font-scale')) || 1;
     var enScale = parseFloat(localStorage.getItem('en-font-scale')) || 1;
 
-    var arLabel = document.getElementById('ar-font-size-label');
-    var enLabel = document.getElementById('en-font-size-label');
-    if (arLabel) arLabel.textContent = Math.round(arScale * 100) + '%';
-    if (enLabel) enLabel.textContent = Math.round(enScale * 100) + '%';
-
     function applyArabicScale(scale) {
         document.querySelectorAll('.lesson-title .ar, .unit-hero-title .ar').forEach(function (el) {
             el.style.fontSize = (AR_BASE.title * scale) + 'rem';
@@ -559,48 +554,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     applyArabicScale(arScale);
     applyEnglishScale(enScale);
-
-    var arUp = document.getElementById('ar-font-size-up');
-    var arDown = document.getElementById('ar-font-size-down');
-    var enUp = document.getElementById('en-font-size-up');
-    var enDown = document.getElementById('en-font-size-down');
-
-    if (arUp) {
-        arUp.addEventListener('click', function () {
-            arScale = Math.min(arScale + 0.05, 1.5);
-            applyArabicScale(arScale);
-            arLabel.textContent = Math.round(arScale * 100) + '%';
-            localStorage.setItem('ar-font-scale', arScale);
-            scheduleDetectLongNames();
-        });
-    }
-    if (arDown) {
-        arDown.addEventListener('click', function () {
-            arScale = Math.max(arScale - 0.05, 0.7);
-            applyArabicScale(arScale);
-            arLabel.textContent = Math.round(arScale * 100) + '%';
-            localStorage.setItem('ar-font-scale', arScale);
-            scheduleDetectLongNames();
-        });
-    }
-    if (enUp) {
-        enUp.addEventListener('click', function () {
-            enScale = Math.min(enScale + 0.05, 1.5);
-            applyEnglishScale(enScale);
-            enLabel.textContent = Math.round(enScale * 100) + '%';
-            localStorage.setItem('en-font-scale', enScale);
-            scheduleDetectLongNames();
-        });
-    }
-    if (enDown) {
-        enDown.addEventListener('click', function () {
-            enScale = Math.max(enScale - 0.05, 0.7);
-            applyEnglishScale(enScale);
-            enLabel.textContent = Math.round(enScale * 100) + '%';
-            localStorage.setItem('en-font-scale', enScale);
-            scheduleDetectLongNames();
-        });
-    }
 
     // Add Noto Sans Tamil font
     var tamilLink = document.createElement('link');
@@ -759,13 +712,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /* ---- Mobile Range Sliders for Font Size ---- */
+    /* ---- Range Sliders for Font Size ---- */
     var fontGroups = document.querySelectorAll('.settings-dropdown-content .font-size-group');
     fontGroups.forEach(function(group) {
-        var label = group.querySelector('.font-size-label');
-        if (!label) return;
-        var id = label.id;
-        var isArabic = id && id.indexOf('ar-') === 0;
+        var item = group.closest('.settings-dropdown-item');
+        var labelText = item ? (item.querySelector('.settings-label')?.textContent || '') : '';
+        var isArabic = labelText.toLowerCase().indexOf('arabic') !== -1;
         var storageKey = isArabic ? 'ar-font-scale' : 'en-font-scale';
         var currentScale = parseFloat(localStorage.getItem(storageKey)) || 1;
 
@@ -790,7 +742,6 @@ document.addEventListener('DOMContentLoaded', function () {
         slider.addEventListener('input', function() {
             var scale = parseFloat(this.value);
             valDisplay.textContent = Math.round(scale * 100) + '%';
-            if (label) label.textContent = Math.round(scale * 100) + '%';
             if (isArabic) {
                 applyArabicScale(scale);
             } else {

@@ -547,44 +547,6 @@ body {
     gap: 4px;
 }
 
-.font-size-group-label {
-    font-size: 0.7rem;
-    color: var(--text-light);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.font-size-btn {
-    width: 28px;
-    height: 28px;
-    border: 2px solid var(--border-control);
-    border-radius: 6px;
-    background: var(--surface-input);
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-medium);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition);
-    font-family: var(--font-en);
-}
-
-.font-size-btn:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-}
-
-.font-size-label {
-    font-size: 0.75rem;
-    color: var(--text-light);
-    font-weight: 600;
-    min-width: 28px;
-    text-align: center;
-}
-
 .font-switcher-label {
     font-size: 0.85rem;
     color: var(--text-medium);
@@ -967,6 +929,49 @@ body {
     pointer-events: auto;
 }
 
+/* Font size range sliders (injected by JS) */
+.font-size-slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+.font-size-slider-wrap input[type="range"] {
+    flex: 1;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--border-control);
+    border-radius: 3px;
+    outline: none;
+}
+.font-size-slider-wrap input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    border: 2px solid var(--surface-popup);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.font-size-slider-wrap input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    border: 2px solid var(--surface-popup);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.font-size-slider-value {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-medium);
+    min-width: 36px;
+    text-align: center;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
     .navbar { padding: 10px 20px; }
@@ -1059,51 +1064,6 @@ body {
         gap: 4px;
     }
 
-
-    /* Font size range sliders (injected by JS) */
-    .nav-links .font-size-btn { display: none; }
-    .nav-links .font-size-label { display: none; }
-    .font-size-slider-wrap {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        width: 100%;
-    }
-    .font-size-slider-wrap input[type="range"] {
-        flex: 1;
-        height: 6px;
-        -webkit-appearance: none;
-        appearance: none;
-        background: var(--border-control);
-        border-radius: 3px;
-        outline: none;
-    }
-    .font-size-slider-wrap input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: var(--primary);
-        cursor: pointer;
-        border: 2px solid var(--surface-popup);
-        box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    }
-    .font-size-slider-wrap input[type="range"]::-moz-range-thumb {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: var(--primary);
-        cursor: pointer;
-        border: 2px solid var(--surface-popup);
-        box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    }
-    .font-size-slider-value {
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: var(--text-medium);
-        min-width: 36px;
-        text-align: center;
-    }
 
     /* Larger touch targets on mobile */
     .audio-play-btn { width: 80px; height: 80px; }
@@ -2939,11 +2899,6 @@ select:focus-visible {
 }
 
 /* ---------- Touch Target Minimum 44x44px ---------- */
-.font-size-btn {
-    min-width: 44px;
-    min-height: 44px;
-}
-
 .sidebar-toggle-btn {
     min-width: 44px;
     min-height: 44px;
