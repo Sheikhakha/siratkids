@@ -1,3 +1,5 @@
 generate_lessons.py
 scripts/_quran_cache.json
+scripts/.qul_cache/
+scripts/__pycache__/
 .git/

@@ -1,0 +1,1912 @@
+{
+  "generated": "2026-08-07T19:07:08",
+  "methodology": "For every verse: the set of DISTINCT QUL word-segment indices is compared against {1..N} where N is the number of Indopak Nastaleeq units of char_type 'word' (end/pause/sign units such as the ۟ end-marker are excluded). A verse MATCHES when the segment set is exactly {1..N}. Duplicate indices (repeated segments, seen in Afasy/Dussary data where a phrase is recited twice) are allowed and do not break word-by-word playback. A mismatch is recorded for gaps (missing indices -> words with no timing), indices beyond N, or verses with no word data at all.",
+  "summary": {
+    "sudais": {
+      "recitation_api_id": 3,
+      "resource_id": 102,
+      "mode": "ayah",
+      "verses_compared": 6236,
+      "matched": 6224,
+      "mismatched": 12,
+      "with_duplicate_indices": 0,
+      "no_word_data": 0,
+      "mismatch_gaps": 11,
+      "mismatch_out_of_range": 1
+    },
+    "shuraim": {
+      "recitation_api_id": 10,
+      "resource_id": 107,
+      "mode": "surah",
+      "verses_compared": 6236,
+      "matched": 6236,
+      "mismatched": 0,
+      "with_duplicate_indices": 438,
+      "no_word_data": 0,
+      "mismatch_gaps": 0,
+      "mismatch_out_of_range": 0
+    },
+    "afasy": {
+      "recitation_api_id": 7,
+      "resource_id": 411,
+      "mode": "surah",
+      "verses_compared": 6236,
+      "matched": 6236,
+      "mismatched": 0,
+      "with_duplicate_indices": 688,
+      "no_word_data": 0,
+      "mismatch_gaps": 0,
+      "mismatch_out_of_range": 0
+    },
+    "dussary": {
+      "recitation_api_id": 174,
+      "resource_id": 422,
+      "mode": "surah",
+      "verses_compared": 6236,
+      "matched": 6232,
+      "mismatched": 4,
+      "with_duplicate_indices": 1061,
+      "no_word_data": 0,
+      "mismatch_gaps": 4,
+      "mismatch_out_of_range": 0
+    }
+  },
+  "edge_cases": {
+    "sudais": {
+      "2:282": {
+        "verse_key": "2:282",
+        "segment_count": 128,
+        "distinct_segment_count": 128,
+        "char_word_count": 128,
+        "max_segment_index": 128,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            330,
+            1450
+          ],
+          [
+            128,
+            116140,
+            116890
+          ]
+        ]
+      },
+      "1:1": {
+        "verse_key": "1:1",
+        "segment_count": 4,
+        "distinct_segment_count": 4,
+        "char_word_count": 4,
+        "max_segment_index": 4,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            380,
+            730
+          ],
+          [
+            4,
+            740,
+            3082
+          ]
+        ]
+      },
+      "2:1": {
+        "verse_key": "2:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            170,
+            6400
+          ]
+        ]
+      },
+      "3:1": {
+        "verse_key": "3:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            130,
+            6650
+          ]
+        ]
+      },
+      "4:1": {
+        "verse_key": "4:1",
+        "segment_count": 28,
+        "distinct_segment_count": 28,
+        "char_word_count": 28,
+        "max_segment_index": 28,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            100,
+            1310
+          ],
+          [
+            28,
+            29000,
+            29940
+          ]
+        ]
+      },
+      "20:1": {
+        "verse_key": "20:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            240,
+            1340
+          ]
+        ]
+      },
+      "36:1": {
+        "verse_key": "36:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            120,
+            3090
+          ]
+        ]
+      },
+      "42:1": {
+        "verse_key": "42:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            240,
+            4040
+          ]
+        ]
+      },
+      "2:255": {
+        "verse_key": "2:255",
+        "segment_count": 50,
+        "distinct_segment_count": 50,
+        "char_word_count": 50,
+        "max_segment_index": 50,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            50,
+            980
+          ],
+          [
+            50,
+            36540,
+            37500
+          ]
+        ]
+      },
+      "9:128": {
+        "verse_key": "9:128",
+        "segment_count": 14,
+        "distinct_segment_count": 14,
+        "char_word_count": 14,
+        "max_segment_index": 14,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            350,
+            830
+          ],
+          [
+            14,
+            13010,
+            14450
+          ]
+        ]
+      },
+      "9:129": {
+        "verse_key": "9:129",
+        "segment_count": 15,
+        "distinct_segment_count": 15,
+        "char_word_count": 15,
+        "max_segment_index": 15,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            170,
+            880
+          ],
+          [
+            15,
+            12560,
+            15160
+          ]
+        ]
+      },
+      "73:20": {
+        "verse_key": "73:20",
+        "segment_count": 78,
+        "distinct_segment_count": 78,
+        "char_word_count": 78,
+        "max_segment_index": 78,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            170,
+            960
+          ],
+          [
+            78,
+            74850,
+            76990
+          ]
+        ]
+      },
+      "112:1": {
+        "verse_key": "112:1",
+        "segment_count": 4,
+        "distinct_segment_count": 4,
+        "char_word_count": 4,
+        "max_segment_index": 4,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            100,
+            500
+          ],
+          [
+            4,
+            1940,
+            2800
+          ]
+        ]
+      },
+      "112:4": {
+        "verse_key": "112:4",
+        "segment_count": 5,
+        "distinct_segment_count": 5,
+        "char_word_count": 5,
+        "max_segment_index": 5,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            110,
+            660
+          ],
+          [
+            5,
+            3280,
+            4250
+          ]
+        ]
+      },
+      "114:6": {
+        "verse_key": "114:6",
+        "segment_count": 3,
+        "distinct_segment_count": 3,
+        "char_word_count": 3,
+        "max_segment_index": 3,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            80,
+            500
+          ],
+          [
+            3,
+            2240,
+            5760
+          ]
+        ]
+      }
+    },
+    "shuraim": {
+      "2:282": {
+        "verse_key": "2:282",
+        "segment_count": 132,
+        "distinct_segment_count": 128,
+        "char_word_count": 128,
+        "max_segment_index": 128,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": true,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            5011123,
+            5012990
+          ],
+          [
+            128,
+            5112840,
+            5114274
+          ]
+        ]
+      },
+      "1:1": {
+        "verse_key": "1:1",
+        "segment_count": 4,
+        "distinct_segment_count": 4,
+        "char_word_count": 4,
+        "max_segment_index": 4,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            630
+          ],
+          [
+            4,
+            2120,
+            2318
+          ]
+        ]
+      },
+      "2:1": {
+        "verse_key": "2:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            6300
+          ]
+        ]
+      },
+      "3:1": {
+        "verse_key": "3:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            5447
+          ]
+        ]
+      },
+      "4:1": {
+        "verse_key": "4:1",
+        "segment_count": 28,
+        "distinct_segment_count": 28,
+        "char_word_count": 28,
+        "max_segment_index": 28,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            1350
+          ],
+          [
+            28,
+            23440,
+            24042
+          ]
+        ]
+      },
+      "20:1": {
+        "verse_key": "20:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            1305
+          ]
+        ]
+      },
+      "36:1": {
+        "verse_key": "36:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            2150
+          ]
+        ]
+      },
+      "42:1": {
+        "verse_key": "42:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            3092
+          ]
+        ]
+      },
+      "2:255": {
+        "verse_key": "2:255",
+        "segment_count": 50,
+        "distinct_segment_count": 50,
+        "char_word_count": 50,
+        "max_segment_index": 50,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            4422604,
+            4423550
+          ],
+          [
+            50,
+            4458040,
+            4459809
+          ]
+        ]
+      },
+      "9:128": {
+        "verse_key": "9:128",
+        "segment_count": 14,
+        "distinct_segment_count": 14,
+        "char_word_count": 14,
+        "max_segment_index": 14,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            2126280,
+            2126870
+          ],
+          [
+            14,
+            2137920,
+            2138557
+          ]
+        ]
+      },
+      "9:129": {
+        "verse_key": "9:129",
+        "segment_count": 15,
+        "distinct_segment_count": 15,
+        "char_word_count": 15,
+        "max_segment_index": 15,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            2139080,
+            2139710
+          ],
+          [
+            15,
+            2148440,
+            2150348
+          ]
+        ]
+      },
+      "73:20": {
+        "verse_key": "73:20",
+        "segment_count": 78,
+        "distinct_segment_count": 78,
+        "char_word_count": 78,
+        "max_segment_index": 78,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            105840,
+            105990
+          ],
+          [
+            21,
+            166493,
+            167889
+          ]
+        ]
+      },
+      "112:1": {
+        "verse_key": "112:1",
+        "segment_count": 4,
+        "distinct_segment_count": 4,
+        "char_word_count": 4,
+        "max_segment_index": 4,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            470
+          ],
+          [
+            4,
+            1360,
+            1790
+          ]
+        ]
+      },
+      "112:4": {
+        "verse_key": "112:4",
+        "segment_count": 5,
+        "distinct_segment_count": 5,
+        "char_word_count": 5,
+        "max_segment_index": 5,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            6200,
+            6590
+          ],
+          [
+            5,
+            8360,
+            9247
+          ]
+        ]
+      },
+      "114:6": {
+        "verse_key": "114:6",
+        "segment_count": 3,
+        "distinct_segment_count": 3,
+        "char_word_count": 3,
+        "max_segment_index": 3,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            16360,
+            16750
+          ],
+          [
+            3,
+            17127,
+            19984
+          ]
+        ]
+      }
+    },
+    "afasy": {
+      "2:282": {
+        "verse_key": "2:282",
+        "segment_count": 128,
+        "distinct_segment_count": 128,
+        "char_word_count": 128,
+        "max_segment_index": 128,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            6964520,
+            6967390
+          ],
+          [
+            128,
+            7107240,
+            7108777
+          ]
+        ]
+      },
+      "1:1": {
+        "verse_key": "1:1",
+        "segment_count": 4,
+        "distinct_segment_count": 4,
+        "char_word_count": 4,
+        "max_segment_index": 4,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            750
+          ],
+          [
+            4,
+            2760,
+            5484
+          ]
+        ]
+      },
+      "2:1": {
+        "verse_key": "2:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            7369
+          ]
+        ]
+      },
+      "3:1": {
+        "verse_key": "3:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            6320
+          ]
+        ]
+      },
+      "4:1": {
+        "verse_key": "4:1",
+        "segment_count": 31,
+        "distinct_segment_count": 28,
+        "char_word_count": 28,
+        "max_segment_index": 28,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": true,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            3670
+          ],
+          [
+            28,
+            39680,
+            40792
+          ]
+        ]
+      },
+      "20:1": {
+        "verse_key": "20:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            1325
+          ]
+        ]
+      },
+      "36:1": {
+        "verse_key": "36:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            2371
+          ]
+        ]
+      },
+      "42:1": {
+        "verse_key": "42:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            8920
+          ]
+        ]
+      },
+      "2:255": {
+        "verse_key": "2:255",
+        "segment_count": 50,
+        "distinct_segment_count": 50,
+        "char_word_count": 50,
+        "max_segment_index": 50,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            6153560,
+            6154030
+          ],
+          [
+            50,
+            6202720,
+            6204700
+          ]
+        ]
+      },
+      "9:128": {
+        "verse_key": "9:128",
+        "segment_count": 16,
+        "distinct_segment_count": 14,
+        "char_word_count": 14,
+        "max_segment_index": 14,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": true,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            3580600,
+            3581270
+          ],
+          [
+            14,
+            3601000,
+            3603171
+          ]
+        ]
+      },
+      "9:129": {
+        "verse_key": "9:129",
+        "segment_count": 15,
+        "distinct_segment_count": 15,
+        "char_word_count": 15,
+        "max_segment_index": 15,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            3603840,
+            3605150
+          ],
+          [
+            15,
+            3618800,
+            3624594
+          ]
+        ]
+      },
+      "73:20": {
+        "verse_key": "73:20",
+        "segment_count": 78,
+        "distinct_segment_count": 78,
+        "char_word_count": 78,
+        "max_segment_index": 78,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            150560,
+            150750
+          ],
+          [
+            21,
+            235160,
+            238994
+          ]
+        ]
+      },
+      "112:1": {
+        "verse_key": "112:1",
+        "segment_count": 4,
+        "distinct_segment_count": 4,
+        "char_word_count": 4,
+        "max_segment_index": 4,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            470
+          ],
+          [
+            4,
+            1800,
+            2579
+          ]
+        ]
+      },
+      "112:4": {
+        "verse_key": "112:4",
+        "segment_count": 5,
+        "distinct_segment_count": 5,
+        "char_word_count": 5,
+        "max_segment_index": 5,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            8720,
+            9350
+          ],
+          [
+            5,
+            11560,
+            13349
+          ]
+        ]
+      },
+      "114:6": {
+        "verse_key": "114:6",
+        "segment_count": 3,
+        "distinct_segment_count": 3,
+        "char_word_count": 3,
+        "max_segment_index": 3,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            32960,
+            33390
+          ],
+          [
+            3,
+            35480,
+            40908
+          ]
+        ]
+      }
+    },
+    "dussary": {
+      "2:282": {
+        "verse_key": "2:282",
+        "segment_count": 128,
+        "distinct_segment_count": 128,
+        "char_word_count": 128,
+        "max_segment_index": 128,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            6943560,
+            6946383
+          ],
+          [
+            128,
+            7083885,
+            7084610
+          ]
+        ]
+      },
+      "1:1": {
+        "verse_key": "1:1",
+        "segment_count": 4,
+        "distinct_segment_count": 4,
+        "char_word_count": 4,
+        "max_segment_index": 4,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            830
+          ],
+          [
+            4,
+            2480,
+            2779
+          ]
+        ]
+      },
+      "2:1": {
+        "verse_key": "2:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            9709
+          ]
+        ]
+      },
+      "3:1": {
+        "verse_key": "3:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            6884
+          ]
+        ]
+      },
+      "4:1": {
+        "verse_key": "4:1",
+        "segment_count": 33,
+        "distinct_segment_count": 28,
+        "char_word_count": 28,
+        "max_segment_index": 28,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": true,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            3710
+          ],
+          [
+            28,
+            40640,
+            41180
+          ]
+        ]
+      },
+      "20:1": {
+        "verse_key": "20:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            1227
+          ]
+        ]
+      },
+      "36:1": {
+        "verse_key": "36:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            4119
+          ]
+        ]
+      },
+      "42:1": {
+        "verse_key": "42:1",
+        "segment_count": 1,
+        "distinct_segment_count": 1,
+        "char_word_count": 1,
+        "max_segment_index": 1,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            4561
+          ]
+        ]
+      },
+      "2:255": {
+        "verse_key": "2:255",
+        "segment_count": 53,
+        "distinct_segment_count": 50,
+        "char_word_count": 50,
+        "max_segment_index": 50,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": true,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            6077080,
+            6077710
+          ],
+          [
+            50,
+            6129880,
+            6130788
+          ]
+        ]
+      },
+      "9:128": {
+        "verse_key": "9:128",
+        "segment_count": 18,
+        "distinct_segment_count": 14,
+        "char_word_count": 14,
+        "max_segment_index": 14,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": true,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            3165990,
+            3166330
+          ],
+          [
+            14,
+            3181449,
+            3182180
+          ]
+        ]
+      },
+      "9:129": {
+        "verse_key": "9:129",
+        "segment_count": 24,
+        "distinct_segment_count": 15,
+        "char_word_count": 15,
+        "max_segment_index": 15,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": true,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            3182181,
+            3183642
+          ],
+          [
+            15,
+            3205866,
+            3210423
+          ]
+        ]
+      },
+      "73:20": {
+        "verse_key": "73:20",
+        "segment_count": 86,
+        "distinct_segment_count": 78,
+        "char_word_count": 78,
+        "max_segment_index": 78,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": true,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            137240,
+            137550
+          ],
+          [
+            78,
+            217040,
+            221466
+          ]
+        ]
+      },
+      "112:1": {
+        "verse_key": "112:1",
+        "segment_count": 4,
+        "distinct_segment_count": 4,
+        "char_word_count": 4,
+        "max_segment_index": 4,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            0,
+            390
+          ],
+          [
+            4,
+            1480,
+            2115
+          ]
+        ]
+      },
+      "112:4": {
+        "verse_key": "112:4",
+        "segment_count": 5,
+        "distinct_segment_count": 5,
+        "char_word_count": 5,
+        "max_segment_index": 5,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            7280,
+            7790
+          ],
+          [
+            5,
+            9760,
+            11424
+          ]
+        ]
+      },
+      "114:6": {
+        "verse_key": "114:6",
+        "segment_count": 3,
+        "distinct_segment_count": 3,
+        "char_word_count": 3,
+        "max_segment_index": 3,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": true,
+        "segments_sample": [
+          [
+            1,
+            29320,
+            29670
+          ],
+          [
+            3,
+            30960,
+            35736
+          ]
+        ]
+      }
+    }
+  },
+  "mismatches": {
+    "sudais": [
+      {
+        "verse_key": "2:14",
+        "segment_count": 15,
+        "distinct_segment_count": 15,
+        "char_word_count": 16,
+        "max_segment_index": 16,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          2
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            70,
+            1040
+          ],
+          [
+            16,
+            13360,
+            15440
+          ]
+        ]
+      },
+      {
+        "verse_key": "2:181",
+        "segment_count": 13,
+        "distinct_segment_count": 13,
+        "char_word_count": 14,
+        "max_segment_index": 13,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          14
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            40,
+            950
+          ],
+          [
+            13,
+            11950,
+            13140
+          ]
+        ]
+      },
+      {
+        "verse_key": "2:278",
+        "segment_count": 12,
+        "distinct_segment_count": 12,
+        "char_word_count": 13,
+        "max_segment_index": 13,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          5
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            360,
+            1700
+          ],
+          [
+            13,
+            9560,
+            10930
+          ]
+        ]
+      },
+      {
+        "verse_key": "5:95",
+        "segment_count": 49,
+        "distinct_segment_count": 49,
+        "char_word_count": 50,
+        "max_segment_index": 50,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          38
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            550,
+            1800
+          ],
+          [
+            50,
+            39970,
+            42220
+          ]
+        ]
+      },
+      {
+        "verse_key": "8:6",
+        "segment_count": 11,
+        "distinct_segment_count": 11,
+        "char_word_count": 12,
+        "max_segment_index": 11,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          12
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            210,
+            1620
+          ],
+          [
+            11,
+            7940,
+            9230
+          ]
+        ]
+      },
+      {
+        "verse_key": "10:49",
+        "segment_count": 21,
+        "distinct_segment_count": 21,
+        "char_word_count": 22,
+        "max_segment_index": 22,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          5
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            90,
+            530
+          ],
+          [
+            22,
+            18280,
+            20050
+          ]
+        ]
+      },
+      {
+        "verse_key": "13:37",
+        "segment_count": 19,
+        "distinct_segment_count": 19,
+        "char_word_count": 20,
+        "max_segment_index": 19,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          20
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            90,
+            1140
+          ],
+          [
+            19,
+            16560,
+            17380
+          ]
+        ]
+      },
+      {
+        "verse_key": "37:130",
+        "segment_count": 4,
+        "distinct_segment_count": 4,
+        "char_word_count": 3,
+        "max_segment_index": 4,
+        "missing_indices_count": 0,
+        "missing_indices": [],
+        "extra_indices": [
+          4
+        ],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            170,
+            960
+          ],
+          [
+            4,
+            1820,
+            2730
+          ]
+        ]
+      },
+      {
+        "verse_key": "42:10",
+        "segment_count": 14,
+        "distinct_segment_count": 14,
+        "char_word_count": 15,
+        "max_segment_index": 15,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          4
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            130,
+            470
+          ],
+          [
+            15,
+            12280,
+            13220
+          ]
+        ]
+      },
+      {
+        "verse_key": "45:10",
+        "segment_count": 18,
+        "distinct_segment_count": 18,
+        "char_word_count": 19,
+        "max_segment_index": 19,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          11
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            250,
+            930
+          ],
+          [
+            19,
+            16780,
+            17460
+          ]
+        ]
+      },
+      {
+        "verse_key": "68:1",
+        "segment_count": 2,
+        "distinct_segment_count": 2,
+        "char_word_count": 4,
+        "max_segment_index": 4,
+        "missing_indices_count": 2,
+        "missing_indices": [
+          2,
+          3
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            440,
+            970
+          ],
+          [
+            4,
+            980,
+            7610
+          ]
+        ]
+      },
+      {
+        "verse_key": "77:27",
+        "segment_count": 6,
+        "distinct_segment_count": 6,
+        "char_word_count": 7,
+        "max_segment_index": 7,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          4
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": false,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            240,
+            1150
+          ],
+          [
+            7,
+            7610,
+            8620
+          ]
+        ]
+      }
+    ],
+    "shuraim": [],
+    "afasy": [],
+    "dussary": [
+      {
+        "verse_key": "21:87",
+        "segment_count": 23,
+        "distinct_segment_count": 22,
+        "char_word_count": 23,
+        "max_segment_index": 23,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          9
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": true,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            1054800,
+            1055550
+          ],
+          [
+            23,
+            1082352,
+            1083511
+          ]
+        ]
+      },
+      {
+        "verse_key": "40:40",
+        "segment_count": 23,
+        "distinct_segment_count": 22,
+        "char_word_count": 23,
+        "max_segment_index": 23,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          20
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": true,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            662760,
+            663110
+          ],
+          [
+            23,
+            690594,
+            691487
+          ]
+        ]
+      },
+      {
+        "verse_key": "49:11",
+        "segment_count": 43,
+        "distinct_segment_count": 38,
+        "char_word_count": 39,
+        "max_segment_index": 39,
+        "missing_indices_count": 1,
+        "missing_indices": [
+          33
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": true,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            213360,
+            216750
+          ],
+          [
+            39,
+            266672,
+            267589
+          ]
+        ]
+      },
+      {
+        "verse_key": "74:31",
+        "segment_count": 66,
+        "distinct_segment_count": 55,
+        "char_word_count": 57,
+        "max_segment_index": 57,
+        "missing_indices_count": 2,
+        "missing_indices": [
+          45,
+          46
+        ],
+        "extra_indices": [],
+        "has_duplicate_indices": true,
+        "no_word_data": false,
+        "matched": false,
+        "segments_sample": [
+          [
+            1,
+            97040,
+            97632
+          ],
+          [
+            57,
+            165428,
+            165993
+          ]
+        ]
+      }
+    ]
+  },
+  "juhani_162_scan": {
+    "chapters_fetched": 114,
+    "total_verses": 6236,
+    "verses_with_word_segments": 0,
+    "empty_chapters": []
+  }
+}

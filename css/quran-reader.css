@@ -800,7 +800,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     overflow-wrap: break-word;
 }
 
-/* Uthmani word spans used during Alafasy word-synced playback */
+/* Uthmani word spans used during word-synced playback */
 .qr-ut-word {
     display: inline;
     transition: color 0.2s, background 0.2s;
@@ -813,6 +813,17 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     color: #b45309;
     background: rgba(251,191,36,0.25);
     box-shadow: 0 0 0 2px rgba(251,191,36,0.35);
+}
+
+/* Word-synced playback highlighting on the WBW word cards */
+.qr-word-unit.done .qr-word-arabic {
+    color: var(--qr-text-light);
+}
+.qr-word-unit.active .qr-word-arabic {
+    color: #b45309;
+    background: rgba(251,191,36,0.25);
+    box-shadow: 0 0 0 2px rgba(251,191,36,0.35);
+    border-radius: 4px;
 }
 .qr-wbw-loading {
     font-size: 0.7rem;

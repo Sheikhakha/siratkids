@@ -37,14 +37,14 @@
         });
     };
 
-    window.loadFromCacheOrFetch = function (fileKey, url, callback) {
+    window.loadFromCacheOrFetch = function (fileKey, url, callback, scriptKey) {
         if (window.__QURAN_CACHE[fileKey]) {
             if (callback) setTimeout(function () { callback(window.__QURAN_CACHE[fileKey]); }, 0);
             return;
         }
         openQuranDb(function (db) {
             if (!db) {
-                loadScriptAndCache(fileKey, url, callback);
+                loadScriptAndCache(fileKey, url, callback, scriptKey);
                 return;
             }
             var tx = db.transaction(STORE_NAME, 'readonly');
@@ -54,11 +54,11 @@
                     window.__QURAN_CACHE[fileKey] = req.result;
                     if (callback) callback(req.result);
                 } else {
-                    loadScriptAndCache(fileKey, url, callback);
+                    loadScriptAndCache(fileKey, url, callback, scriptKey);
                 }
             };
             req.onerror = function () {
-                loadScriptAndCache(fileKey, url, callback);
+                loadScriptAndCache(fileKey, url, callback, scriptKey);
             };
         });
     };
@@ -66,11 +66,14 @@
     // Load a wrapped data script (window.__QURAN_DATA[<basename>]) via a <script>
     // tag. Works over HTTP and from file:// (where fetch/XHR of local JSON is
     // blocked), which is why the data files ship as .js instead of .json.
-    function loadScriptAndCache(fileKey, url, callback) {
+    // scriptKey overrides the basename used for the __QURAN_DATA lookup when the
+    // wrapped key differs from the file name (e.g. segments/sudais.js wraps as
+    // "segments-sudais").
+    function loadScriptAndCache(fileKey, url, callback, scriptKey) {
         var script = document.createElement('script');
         script.src = url;
         script.onload = function () {
-            var base = (url || '').split('/').pop().replace(/\.(json|js)$/i, '');
+            var base = scriptKey || (url || '').split('/').pop().replace(/\.(json|js)$/i, '');
             var data = window.__QURAN_DATA ? window.__QURAN_DATA[base] : null;
             if (script.parentNode) script.parentNode.removeChild(script);
             if (data) {

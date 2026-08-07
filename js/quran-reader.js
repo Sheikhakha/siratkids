@@ -16,14 +16,16 @@
     var dataLoaded = false;
 
     var RECITER_CFG = {
-        Sudais:       { url: 'https://verses.quran.com/Sudais/mp3/',     padCh: true,  padVr: true,  type: 'per-verse' },
-        Alafasy:      { url: 'https://cdn.islamic.network/quran/audio/128/ar.alafasy/', padCh: true, padVr: true, type: 'per-verse' },
-        YasserAlDosari: { url: 'https://audio-cdn.tarteel.ai/quran/yasserAlDosari/', padCh: true, padVr: true, type: 'per-verse' }
+        Sudais:  { segKey: 'segments-sudais',  segFile: 'js/quran_source/segments/sudais.js',  mode: 'ayah' },
+        Shuraim: { segKey: 'segments-shuraim', segFile: 'js/quran_source/segments/shuraim.js', mode: 'surah' },
+        Alafasy: { segKey: 'segments-afasy',   segFile: 'js/quran_source/segments/afasy.js',   mode: 'surah' },
+        YasserAlDosari: { segKey: 'segments-dussary', segFile: 'js/quran_source/segments/dussary.js', mode: 'surah' }
     };
 
     var arabicOrigMap = {};
-    var _currentHighlightKey = null;
-    var _timingsCache = {};
+    var _segCache = {};
+    var _wordTimingCache = {};
+    var _surahAudioSrc = null;
 
     var SURAH_LIGATURES = [
         '\uFC45','\uFC46','\uFC47','\uFC4A','\uFC4B','\uFC4E','\uFC4F','\uFC51','\uFC52','\uFC53',
@@ -118,7 +120,7 @@
         setupWbwToggle();
 
         var savedReciter = localStorage.getItem('audio-voice-name');
-        if (savedReciter === 'Sudais' || savedReciter === 'Alafasy' || savedReciter === 'YasserAlDosari') {
+        if (savedReciter && RECITER_CFG[savedReciter]) {
             els.reciterSelect.value = savedReciter;
             currentReciter = savedReciter;
         }
@@ -259,6 +261,7 @@
         els.reciterSelect.addEventListener('change', function () {
             currentReciter = this.value;
             localStorage.setItem('audio-voice-name', this.value);
+            _wordTimingCache = {};
             stopAudio();
         });
 
@@ -473,7 +476,7 @@
 
             // Head row: play, verse number
             html += '<div class="qr-verse-head">';
-            html += '<button class="qr-verse-tplay" data-chapter="' + ch.id + '" data-verse="' + v + '" data-chpad="' + chPad + '" data-vpad="' + vPad + '" aria-label="Play"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></button>';
+            html += '<button class="qr-verse-tplay" data-chapter="' + ch.id + '" data-verse="' + v + '" data-chpad="' + chPad + '" data-vpad="' + vPad + '" aria-label="Play"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></button>';
             html += '<span class="qr-verse-tnum">' + v + '</span>';
             html += '</div>';
 
@@ -488,7 +491,7 @@
                     var wbwTrans = wbwTransData[key + ':' + wIdx] || '';
                     var isArabicLetter = /[\u0600-\u06FF]/.test(wordObj.text);
                     if (!isArabicLetter && !wbwTrans) { wIdx++; continue; }
-                    html += '<span class="qr-word-unit">';
+                    html += '<span class="qr-word-unit" data-wi="' + wIdx + '">';
                     html += '<span class="qr-word-arabic">' + wordObj.text + '</span>';
                     if (wbwTrans) {
                         html += '<span class="qr-word-trans">' + escapeHtml(wbwTrans) + '</span>';
@@ -614,9 +617,13 @@
     function getAudioUrl(item) {
         var cfg = RECITER_CFG[currentReciter];
         if (!cfg) return null;
-        var chPad = cfg.padCh ? pad(item.chapter, 3) : String(item.chapter);
-        var vrPad = cfg.padVr ? pad(item.verse, 3) : String(item.verse);
-        return cfg.url + chPad + vrPad + '.mp3';
+        var seg = _segCache[cfg.segKey];
+        if (!seg) return null;
+        if (cfg.mode === 'surah') {
+            return seg.audio[String(item.chapter)] || null;
+        }
+        var entry = seg.verses[item.key];
+        return (entry && entry.audio) || null;
     }
 
     function loadWbwData(callback) {
@@ -1009,8 +1016,14 @@
         }
 
         var item = audioQueue[0];
-        var url = getAudioUrl(item);
+        els.playbarVerse.textContent = 'Loading...';
+        ensureSegmentData(function () {
+            if (gen !== audioGen) return;
+            startVersePlayback(item, gen);
+        });
+    }
 
+    function startVersePlayback(item, gen) {
         restoreArabic();
         document.querySelectorAll('.qr-verse-row.playing').forEach(function (el) { el.classList.remove('playing'); });
 
@@ -1025,23 +1038,39 @@
         updateFixedBar(item, ch);
         lastPlayedVerse = item.verse;
 
-        var isAlafasy = currentReciter === 'Alafasy';
-
-        if (isAlafasy && !(els.wbwToggle && els.wbwToggle.checked)) {
-            renderUthmaniWordSpans(item);
+        var wbwOn = els.wbwToggle && els.wbwToggle.checked;
+        if (!wbwOn) {
+            renderWordSpans(item);
         }
 
+        var entry = getSegmentEntry(item);
+        var url = getAudioUrl(item);
+        if (!url || !entry) {
+            restoreArabic();
+            audioQueue.shift();
+            playNextAudio();
+            return;
+        }
+
+        var cfg = RECITER_CFG[currentReciter];
+        if (cfg.mode === 'surah') {
+            startSurahVerse(item, entry, url, gen);
+        } else {
+            startPerVerseAudio(item, url, gen);
+        }
+    }
+
+    function startPerVerseAudio(item, url, gen) {
         var newAudio = new Audio(url);
         var lastScrollTime = 0;
-        var timings = isAlafasy ? getTimingEntry(item) : null;
         newAudio.addEventListener('timeupdate', function () {
-            if (isAlafasy && timings && timings.words) {
-                updateWordHighlight(item, timings, newAudio.currentTime * 1000);
-            }
+            if (gen !== audioGen) return;
+            var entry = getSegmentEntry(item);
+            if (entry) updateWordHighlight(item, newAudio.currentTime * 1000);
             var now = Date.now();
             if (now - lastScrollTime > 800) {
                 lastScrollTime = now;
-                var row = document.getElementById(rowId);
+                var row = document.getElementById('row-' + item.chapter + '-' + item.verse);
                 if (row) row.scrollIntoView({ block: 'center', behavior: 'smooth' });
             }
         });
@@ -1064,61 +1093,160 @@
             playNextAudio();
         });
         audioEl = newAudio;
+        _surahAudioSrc = null;
     }
 
-    function getTimingEntry(item) {
-        var fileKey = 'alafasy-timings-' + pad(item.chapter, 3);
-        var data = _timingsCache[item.chapter];
-        if (!data) {
-            data = getCachedData(fileKey);
-            if (data) _timingsCache[item.chapter] = data;
+    function startSurahVerse(item, entry, url, gen) {
+        if (audioEl && _surahAudioSrc === url) {
+            audioEl.currentTime = entry.start / 1000;
+            if (audioEl.paused) audioEl.play().catch(function () {});
+            return;
         }
-        if (!data) {
-            loadFromCacheOrFetch(fileKey, 'js/quran_source/timings/alafasy/' + pad(item.chapter, 3) + '.js', function (d) {
-                if (d) _timingsCache[item.chapter] = d;
-            });
-            return null;
-        }
-        var entry = data.data ? data.data[String(item.verse)] : null;
-        return entry && entry.words ? entry : null;
+
+        _surahAudioSrc = url;
+        var newAudio = new Audio(url);
+        audioEl = newAudio;
+        var lastScrollTime = 0;
+
+        newAudio.addEventListener('timeupdate', function () {
+            if (!isPlaying) return;
+            var cfg = RECITER_CFG[currentReciter];
+            if (!cfg || cfg.mode !== 'surah') return;
+            var curItem = audioQueue[0];
+            if (!curItem) return;
+            var curEntry = getSegmentEntry(curItem);
+            if (curEntry) {
+                updateWordHighlight(curItem, newAudio.currentTime * 1000);
+                if (newAudio.currentTime * 1000 >= curEntry.end) {
+                    if (audioQueue.length === 1 && isSinglePlay && audioEl) audioEl.pause();
+                    restoreArabic();
+                    audioQueue.shift();
+                    playNextAudio();
+                }
+            }
+            var now = Date.now();
+            if (now - lastScrollTime > 800) {
+                lastScrollTime = now;
+                var row = document.getElementById('row-' + curItem.chapter + '-' + curItem.verse);
+                if (row) row.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            }
+        });
+        newAudio.addEventListener('ended', function () {
+            if (!isPlaying) return;
+            if (audioQueue.length === 0) { finishAudio(); return; }
+            var curItem = audioQueue[0];
+            var curEntry = getSegmentEntry(curItem);
+            if (curEntry) {
+                audioEl.currentTime = curEntry.start / 1000;
+                audioEl.play().catch(function () {});
+            } else {
+                finishAudio();
+            }
+        });
+        newAudio.addEventListener('error', function () {
+            if (!isPlaying) return;
+            restoreArabic();
+            audioQueue.shift();
+            playNextAudio();
+        });
+        newAudio.currentTime = entry.start / 1000;
+        newAudio.play().catch(function () {
+            if (!isPlaying) return;
+            restoreArabic();
+            audioQueue.shift();
+            playNextAudio();
+        });
     }
 
-    function renderUthmaniWordSpans(item) {
+    function getSegmentEntry(item) {
+        var cfg = RECITER_CFG[currentReciter];
+        if (!cfg) return null;
+        var seg = _segCache[cfg.segKey];
+        return seg && seg.verses[item.key] ? seg.verses[item.key] : null;
+    }
+
+    function getWordTimingMap(item) {
+        var cacheKey = currentReciter + ':' + item.key;
+        if (_wordTimingCache[cacheKey]) return _wordTimingCache[cacheKey];
+        var entry = getSegmentEntry(item);
+        if (!entry) return null;
+        var map = {};
+        for (var i = 0; i < entry.segments.length; i++) {
+            var seg = entry.segments[i];
+            map[seg[0]] = [seg[1], seg[2]];
+        }
+        _wordTimingCache[cacheKey] = map;
+        return map;
+    }
+
+    function ensureSegmentData(callback) {
+        var cfg = RECITER_CFG[currentReciter];
+        if (!cfg) { if (callback) callback(); return; }
+        if (_segCache[cfg.segKey]) { ensureWordData(callback); return; }
+        loadFromCacheOrFetch(cfg.segKey, cfg.segFile, function (data) {
+            if (data) _segCache[cfg.segKey] = data;
+            ensureWordData(callback);
+        }, cfg.segKey);
+    }
+
+    function ensureWordData(callback) {
+        if (getCachedData('indopak-nastaleeq-word')) { if (callback) callback(); return; }
+        loadFromCacheOrFetch('indopak-nastaleeq-word', 'js/quran_source/indopak-nastaleeq-word.js', function () {
+            if (callback) callback();
+        });
+    }
+
+    function renderWordSpans(item) {
         var rowId = 'row-' + item.chapter + '-' + item.verse;
         var rowEl = document.getElementById(rowId);
         if (!rowEl) return;
         var arEl = rowEl.querySelector('.qr-verse-arabic');
         if (!arEl) return;
+        var wordData = getCachedData('indopak-nastaleeq-word');
+        if (!wordData) return;
         if (!arabicOrigMap[rowId]) {
             arabicOrigMap[rowId] = arEl.innerHTML;
         }
-        var entry = getTimingEntry(item);
-        if (!entry || !entry.words || entry.words.length === 0) return;
-        var words = entry.words;
         var spans = [];
-        for (var i = 0; i < words.length; i++) {
-            spans.push('<span class="qr-ut-word" data-wi="' + (i + 1) + '">' + words[i].w + '</span>');
+        var w = 1;
+        var unit;
+        while ((unit = wordData[item.key + ':' + w]) && unit.char_type === 'word') {
+            spans.push('<span class="qr-ut-word" data-wi="' + w + '">' + unit.text + '</span>');
+            w++;
         }
-        arEl.innerHTML = spans.join(' ');
+        if (spans.length > 0) arEl.innerHTML = spans.join(' ');
     }
 
-    function updateWordHighlight(item, entry, currentTimeMs) {
+    function updateWordHighlight(item, currentTimeMs) {
+        var entry = getSegmentEntry(item);
+        if (!entry) return;
+        var cfg = RECITER_CFG[currentReciter];
+        if (!cfg) return;
+        var t = cfg.mode === 'surah' ? currentTimeMs : currentTimeMs - entry.start;
+        var map = getWordTimingMap(item);
+        if (!map) return;
         var rowId = 'row-' + item.chapter + '-' + item.verse;
         var rowEl = document.getElementById(rowId);
         if (!rowEl) return;
-        if (_currentHighlightKey !== item.key) _currentHighlightKey = item.key;
-        var words = entry.words;
-        var activeIdx = -1;
-        for (var i = 0; i < words.length; i++) {
-            if (currentTimeMs >= words[i].s && currentTimeMs < words[i].e) { activeIdx = i; break; }
-        }
-        var utWords = rowEl.querySelectorAll('.qr-ut-word');
-        for (var j = 0; j < utWords.length; j++) {
-            var el = utWords[j];
-            el.classList.remove('active', 'done');
-            if (activeIdx === -1) continue;
-            if (j < activeIdx) el.classList.add('done');
-            else if (j === activeIdx) el.classList.add('active');
+        var wbwOn = els.wbwToggle && els.wbwToggle.checked;
+        var targets = wbwOn ? rowEl.querySelectorAll('.qr-word-unit[data-wi]') : rowEl.querySelectorAll('.qr-ut-word');
+        for (var j = 0; j < targets.length; j++) {
+            var el = targets[j];
+            var wi = parseInt(el.getAttribute('data-wi'), 10);
+            var tm = wi ? map[wi] : null;
+            if (!tm) {
+                el.classList.remove('active', 'done');
+                continue;
+            }
+            if (t >= tm[1]) {
+                el.classList.add('done');
+                el.classList.remove('active');
+            } else if (t >= tm[0]) {
+                el.classList.add('active');
+                el.classList.remove('done');
+            } else {
+                el.classList.remove('active', 'done');
+            }
         }
     }
 
@@ -1129,7 +1257,9 @@
             if (arEl) arEl.innerHTML = arabicOrigMap[rowId];
         });
         arabicOrigMap = {};
-        _currentHighlightKey = null;
+        document.querySelectorAll('.qr-word-unit.active, .qr-word-unit.done, .qr-ut-word.active, .qr-ut-word.done').forEach(function (el) {
+            el.classList.remove('active', 'done');
+        });
     }
 
     function togglePause() {
@@ -1160,6 +1290,16 @@
     function playNext() {
         if (!isPlaying || audioQueue.length <= 1) return;
         ++audioGen;
+        var cfg = RECITER_CFG[currentReciter];
+        if (cfg && cfg.mode === 'surah') {
+            audioQueue.shift();
+            if (audioQueue.length > 0) {
+                isPaused = false;
+                updatePlayPauseIcon();
+                playNextAudio();
+            }
+            return;
+        }
         if (audioEl) { audioEl.pause(); audioEl.src = ''; }
         audioEl = null;
         audioQueue.shift();
@@ -1179,9 +1319,16 @@
         var ch = chapters[first.chapter - 1];
         if (!ch) return;
         ++audioGen;
+        var cfg = RECITER_CFG[currentReciter];
+        audioQueue.unshift({ chapter: first.chapter, verse: prevVerse, key: first.chapter + ':' + prevVerse });
+        if (cfg && cfg.mode === 'surah') {
+            isPaused = false;
+            updatePlayPauseIcon();
+            playNextAudio();
+            return;
+        }
         if (audioEl) { audioEl.pause(); audioEl.src = ''; }
         audioEl = null;
-        audioQueue.unshift({ chapter: first.chapter, verse: prevVerse, key: first.chapter + ':' + prevVerse });
         isPaused = false;
         updatePlayPauseIcon();
         playNextAudio();
@@ -1196,6 +1343,7 @@
         lastPlayedVerse = 0;
         hideContinuePrompt();
         if (audioEl) { audioEl.pause(); audioEl.src = ''; audioEl = null; }
+        _surahAudioSrc = null;
         audioQueue = [];
         restoreArabic();
         document.querySelectorAll('.qr-verse-row.playing').forEach(function (el) { el.classList.remove('playing'); });
@@ -1212,6 +1360,7 @@
         lastPlayedVerse = 0;
         hideContinuePrompt();
         if (audioEl) { audioEl.pause(); audioEl.src = ''; audioEl = null; }
+        _surahAudioSrc = null;
         audioQueue = [];
         restoreArabic();
         document.querySelectorAll('.qr-verse-row.playing').forEach(function (el) { el.classList.remove('playing'); });
