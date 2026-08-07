@@ -863,7 +863,7 @@
             html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
             html += '</button>';
             html += '<button class="qr-theme-book" type="button" data-key="' + key + '" aria-label="Theme for verse ' + v + '" title="Theme">';
-            html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/><path d="M7.5 16h9"/></svg>';
+            html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>';
             html += '</button>';
             html += '<button class="qr-sim-book" type="button" data-key="' + key + '" aria-label="Similar Ayat for verse ' + v + '" title="Similar Ayat">';
             html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
@@ -1337,6 +1337,7 @@
         var existing = btn.parentNode.querySelector('.qr-ayah-theme-text');
         if (existing) {
             existing.remove();
+            btn.classList.remove('is-active');
             return;
         }
         var show = function () {
@@ -1346,6 +1347,7 @@
             span.className = 'qr-ayah-theme-text';
             span.textContent = txt;
             btn.parentNode.appendChild(span);
+            btn.classList.add('is-active');
         };
         if (getQulBundle('ayah-themes')) {
             show();

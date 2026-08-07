@@ -648,7 +648,12 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     transition: all 0.2s;
     flex: none;
 }
-.qr-sim-book:hover, .qr-muta-book:hover {
+.qr-sim-book:hover, .qr-muta-book:hover, .qr-theme-book:hover {
+    color: #fff;
+    background: var(--qr-primary);
+    border-color: var(--qr-primary);
+}
+.qr-theme-book.is-active {
     color: #fff;
     background: var(--qr-primary);
     border-color: var(--qr-primary);
