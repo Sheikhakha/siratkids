@@ -92,12 +92,6 @@
         }
         .f1a-word { font-size: 1.75rem; line-height: 1.35; color: #111827; }
         .f1a-gl { font-size: 0.7rem; color: #64748b; line-height: 1.25; direction: ltr; margin-top: 5px; max-width: 200px; overflow-wrap: break-word; }
-        .f1a-vnum {
-            display: flex; align-items: center; justify-content: center; min-width: 30px; height: 30px;
-            padding: 0 7px; border-radius: 50%; background: #ecfdf5; border: 1px solid #a7f3d0;
-            font-size: 0.72rem; font-weight: 800; color: #047857; font-family: 'Nunito', sans-serif;
-            margin: 2px 6px 0 0; flex: none;
-        }
 
         /* ===== Fix 2 ===== */
         .pv-actrow { display: flex; align-items: center; gap: 12px; padding: 0 16px 10px; }
@@ -178,11 +172,11 @@
 
         /* ===== Fix 3 ===== */
         .pv-fn-sup {
-            font-size: 0.62em; font-weight: 800; color: #047857; background: #d1fae5;
-            border-radius: 5px; padding: 0 4px; cursor: pointer; vertical-align: super; line-height: 1;
-            margin: 0 1px; border: 1px solid #a7f3d0;
+            font-size: 0.62em; font-weight: 700; color: #047857; background: none;
+            border: none; padding: 0; margin: 0 1px; cursor: pointer; line-height: 1;
+            vertical-align: super; text-decoration: none;
         }
-        .pv-fn-sup:hover { background: #10b981; color: #fff; }
+        .pv-fn-sup:hover { color: #10b981; text-decoration: underline; }
         .pv-fn-tooltip {
             position: fixed; display: none; max-width: 300px; background: #0f172a; color: #f8fafc;
             font-size: 0.78rem; line-height: 1.5; padding: 10px 12px; border-radius: 10px; z-index: 500;
@@ -227,9 +221,9 @@
     <section class="pv-fix" id="fix1">
         <h2><span class="pv-kicker">FIX 1 ·</span> Word-by-word layout</h2>
         <p class="pv-desc">
-            Today each word+gloss pair is a max-width (not min-width) item in one continuous RTL wrap row, with the verse-number badge kept in a separate head row.
+            Today each word+gloss pair is a max-width (not min-width) item in one continuous RTL wrap row.
             Proposed: each pair is its own <code>flex</code> item with a fixed <code>min-width</code> and generous gaps; RTL order is preserved (rightmost = first word);
-            pairs wrap as whole units (word + gloss never split); the verse-number circle badge becomes its own item at the end of the word row; Arabic text is clearly larger than the gloss.
+            pairs wrap as whole units (word + gloss never split); Arabic text is clearly larger than the gloss; the verse number stays in the head row (no in-row badge).
         </p>
         <div class="pv-cols">
             <div class="pv-pane pv-before">
@@ -431,7 +425,6 @@
                 a += '<span class="f1a-unit"><span class="f1a-word">' + p.text + '</span>'
                     + (p.trans ? '<span class="f1a-gl">' + esc(p.trans) + '</span>' : '') + '</span>';
             });
-            a += '<span class="f1a-vnum">' + v + '</span>';
             a += '</div></div>';
             afterHtml += a;
         });

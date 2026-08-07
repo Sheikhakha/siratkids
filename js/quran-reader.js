@@ -567,7 +567,7 @@
                 if (piece.note) {
                     var fnKey = key + ':fn' + (pi + 1);
                     _fnNotes[fnKey] = { verseKey: key, text: piece.note };
-                    transHtml += '<span class="qr-fn-wrap"><button class="qr-fn-sup" type="button" data-fnkey="' + fnKey + '" data-verse="' + v + '" data-num="' + (pi + 1) + '" aria-label="Footnote ' + (pi + 1) + '">' + (pi + 1) + '</button></span>';
+                    transHtml += '<sup class="qr-fn-sup" role="button" tabindex="0" data-fnkey="' + fnKey + '" data-verse="' + v + '" data-num="' + (pi + 1) + '" aria-label="Footnote ' + (pi + 1) + '" title="Footnote ' + (pi + 1) + '">' + (pi + 1) + '</sup>';
                 }
             }
             if (!transHtml && transText) transHtml = escapeHtml(transText);
@@ -584,7 +584,6 @@
             html += '<div class="qr-verse-body">';
             html += '<div class="qr-verse-arabic" id="ar-' + key.replace(':', '-') + '" dir="rtl">';
             if (wbwMode && wbwWordData && wbwTransData) {
-                html += '<span class="qr-wbw-vnum">' + v + '</span>';
                 var wIdx = 1;
                 var anyWordRendered = false;
                 while (wbwWordData[key + ':' + wIdx]) {
@@ -633,11 +632,18 @@
             });
         });
 
-        els.verses.querySelectorAll('.qr-fn-sup').forEach(function (btn) {
-            btn.addEventListener('click', function (e) {
+        els.verses.querySelectorAll('.qr-fn-sup').forEach(function (sup) {
+            sup.addEventListener('click', function (e) {
                 e.stopPropagation();
                 e.preventDefault();
                 showFnTooltip(this);
+            });
+            sup.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showFnTooltip(this);
+                }
             });
         });
 
@@ -885,8 +891,8 @@
 
     function updateModalHeader() {
         if (!tafsirState) return;
-        if (els.tafsirSurahAr) els.tafsirSurahAr.textContent = tafsirState.ch.nameAr || '';
-        if (els.tafsirSurahEn) els.tafsirSurahEn.textContent = tafsirState.ch.name || '';
+        if (els.tafsirSurahAr) els.tafsirSurahAr.textContent = tafsirState.ch.ar || '';
+        if (els.tafsirSurahEn) els.tafsirSurahEn.textContent = tafsirState.ch.en || '';
         if (els.tafsirVerse) els.tafsirVerse.textContent = tafsirState.ch.id + ':' + tafsirState.ayah;
         if (els.tafsirPrev) els.tafsirPrev.disabled = tafsirState.ayah <= 1;
         if (els.tafsirNext) els.tafsirNext.disabled = tafsirState.ayah >= tafsirState.ch.verses;

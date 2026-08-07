@@ -609,27 +609,29 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     border-color: var(--qr-primary);
 }
 
-/* Inline footnote markers inside the translation text */
+/* Inline footnote markers inside the translation text (minimal, non-breaking) */
 .qr-fn-sup {
     font-size: 0.62em;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--qr-primary-dark);
-    background: var(--qr-active-bg);
-    border: 1px solid var(--qr-border);
-    border-radius: 5px;
-    padding: 0 4px;
-    cursor: pointer;
-    vertical-align: super;
-    line-height: 1;
+    background: none;
+    border: none;
+    padding: 0;
     margin: 0 1px;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: super;
 }
 [data-theme="dark"] .qr-fn-sup {
     color: var(--qr-primary);
 }
-.qr-fn-sup:hover {
-    color: #fff;
-    background: var(--qr-primary);
-    border-color: var(--qr-primary);
+.qr-fn-sup:hover,
+.qr-fn-sup:focus-visible {
+    color: var(--qr-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    outline: none;
 }
 
 /* Footnote tooltip (shown near the marker) */
@@ -1010,33 +1012,6 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     margin-top: 5px;
     max-width: 200px;
     overflow-wrap: break-word;
-}
-/* Verse-number badge rendered inline inside the WBW word flow */
-.qr-wbw-vnum {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 30px;
-    height: 30px;
-    padding: 0 7px;
-    border-radius: 50%;
-    background: #ecfdf5;
-    border: 1px solid #a7f3d0;
-    font-family: var(--qr-font-en-heading);
-    font-size: 0.72rem;
-    font-weight: 800;
-    color: #047857;
-    margin: 2px 6px 0 0;
-    flex: none;
-}
-[data-theme="dark"] .qr-wbw-vnum {
-    background: #064e3b;
-    border-color: #047857;
-    color: #d1fae5;
-}
-/* Hide the standalone verse-number span while WBW layout is active */
-.qr-verse-row.wbw-active .qr-verse-tnum {
-    display: none;
 }
 
 /* Uthmani word spans used during word-synced playback */
