@@ -884,7 +884,7 @@
         if (!els.tafsirJump || !tafsirState) return;
         var opts = '';
         for (var a = 1; a <= tafsirState.ch.verses; a++) {
-            opts += '<option value="' + a + '"' + (a === tafsirState.ayah ? ' selected' : '') + '>V: ' + a + '</option>';
+            opts += '<option value="' + a + '"' + (a === tafsirState.ayah ? ' selected' : '') + '>' + tafsirState.ch.id + ':' + a + '</option>';
         }
         els.tafsirJump.innerHTML = opts;
     }

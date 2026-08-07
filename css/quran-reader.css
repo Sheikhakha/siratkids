@@ -27,6 +27,7 @@
     --qr-font-en: 'Nunito', sans-serif;
     --qr-font-en-heading: 'Fredoka', 'Nunito', sans-serif;
     --qr-font-ar-nastaleeq: 'Indopak Nastaleeq', serif;
+    --qr-font-ar: 'Noto Naskh Arabic', 'Amiri', 'Scheherazade New', 'Lateef', serif;
 }
 
 [data-theme="dark"] {
@@ -729,6 +730,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 }
 .qr-tafsir-modal-title-ar {
     font-family: var(--qr-font-ar);
+    font-weight: 700;
     color: var(--qr-primary-dark);
     margin-right: 4px;
 }
@@ -806,6 +808,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 .qr-tafsir-modal-controls {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 16px;
     padding: 10px 16px;
     border-bottom: 1px solid var(--qr-border);
