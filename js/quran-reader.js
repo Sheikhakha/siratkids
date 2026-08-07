@@ -27,7 +27,8 @@
         'surah-info-en': 'js/quran_source/surah-info-en.js',
         'surah-info-ta': 'js/quran_source/surah-info-ta.js',
         'ayah-themes': 'js/quran_source/ayah-themes.js',
-        'mutashabihat': 'js/quran_source/mutashabihat.js'
+        'mutashabihat': 'js/quran_source/mutashabihat.js',
+        'similar-ayah': 'js/quran_source/similar-ayah.js'
     };
 
     var RECITER_CFG = {
@@ -1025,16 +1026,19 @@
             }
             html += '</div>';
 
-            // Action row: Tafsir book-icon trigger + Similar Ayat trigger
+            // Action row: Tafsir book-icon trigger + Theme + Similar Ayat trigger
             html += '<div class="qr-verse-action">';
             html += '<button class="qr-tafsir-book" type="button" data-key="' + key + '" aria-label="Tafsir for verse ' + v + '" title="Tafsir">';
             html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
+            html += '</button>';
+            html += '<button class="qr-theme-book" type="button" data-key="' + key + '" aria-label="Theme for verse ' + v + '" title="Theme">';
+            html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/><path d="M7.5 16h9"/></svg>';
             html += '</button>';
             html += '<button class="qr-sim-book" type="button" data-key="' + key + '" aria-label="Similar Ayat for verse ' + v + '" title="Similar Ayat">';
             html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
             html += '</button>';
             html += '<button class="qr-muta-book" type="button" data-key="' + key + '" aria-label="Mutashabihat for verse ' + v + '" title="Mutashabihat">';
-            html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 13a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0-3.5 3.5V13a1.5 1.5 0 1 1-3 0V8a3.5 3.5 0 1 0-3.5-3.5"/><path d="M12 16.5a4.5 4.5 0 0 1 0-9 4.5 4.5 0 0 1 9 0v6.5a2.5 2.5 0 0 1-2.5 2.5H10a2.5 2.5 0 0 1 0-5"/></svg>';
+            html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6" height="14" rx="1.5"/><rect x="9" y="3" width="6" height="14" rx="1.5"/></svg>';
             html += '</button>';
             html += '</div>';
 
@@ -1094,6 +1098,12 @@
                 e.stopPropagation();
                 var parts = this.getAttribute('data-key').split(':');
                 openMutashabihatFor(chapters[parseInt(parts[0], 10) - 1], parseInt(parts[1], 10));
+            });
+        });
+        els.verses.querySelectorAll('.qr-theme-book').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                toggleAyahTheme(this);
             });
         });
     }
@@ -1410,7 +1420,7 @@
     }
 
     function openSimilarAyatFor(ch, ayah) {
-        openSimModal(ch, ayah, 'curated');
+        openSimModal(ch, ayah, 'similar');
     }
 
     function openMutashabihatFor(ch, ayah) {
@@ -1425,8 +1435,10 @@
         if (els.simSurahEn) els.simSurahEn.textContent = ch.en || '';
         if (els.simVerse) els.simVerse.textContent = simState.key;
         if (els.simSource) els.simSource.textContent = mode === 'qul'
-            ? 'Verses sharing repeated phrases with this ayah \u00b7 Across the Quran'
-            : 'Curated similar & related verses \u00b7 Project cross-references';
+            ? 'Verses sharing repeated phrases with this ayah \u00b7 Mutashabihat are verses or passages that closely resemble each other in wording or phrasing, often with subtle differences.'
+            : (mode === 'similar'
+                ? 'Similar Ayat \u00b7 word-overlap matches across the Quran, sorted by similarity score'
+                : 'Curated similar & related verses \u00b7 Project cross-references');
         if (els.simBody) els.simBody.innerHTML = '<p class="qr-sim-empty">Loading \u2026</p>';
         els.simBackdrop.hidden = false;
         document.body.style.overflow = 'hidden';
@@ -1434,6 +1446,8 @@
         var renderNow = function () { renderSimBody(); };
         if (mode === 'qul') {
             loadQulBundle('mutashabihat', renderNow);
+        } else if (mode === 'similar') {
+            loadQulBundle('similar-ayah', renderNow);
         } else {
             renderNow();
         }
@@ -1458,27 +1472,192 @@
         return refs;
     }
 
-    function getQulRefs(key, max) {
+    function getSimilarAyahRefs(key, max) {
         var refs = [];
-        var seen = {};
-        var mb = getQulBundle('mutashabihat');
-        if (!mb || !mb.byAyah) return refs;
-        var phrases = mb.phrases || {};
-        var entries = mb.byAyah[key] || [];
+        var sa = getQulBundle('similar-ayah');
+        if (!sa) return refs;
+        var matches = sa[key] || [];
         max = max || 12;
-        var added = 0;
-        for (var i = 0; i < entries.length && added < max; i++) {
-            var ph = phrases[String(entries[i][0])];
-            if (!ph || !ph.refs) continue;
-            for (var j = 0; j < ph.refs.length && added < max; j++) {
-                var rk = ph.refs[j];
-                if (rk === key || seen[rk]) continue;
-                seen[rk] = true;
-                added++;
-                refs.push({ key: rk, phrase: ph.text || '', qul: true });
-            }
+        for (var i = 0; i < matches.length && i < max; i++) {
+            var m = matches[i];
+            var mk = m.matched_ayah_key;
+            if (!mk || mk === key) continue;
+            refs.push({ key: mk, similar: true, match: m });
         }
         return refs;
+    }
+
+    function getAyahTheme(ch, ayah) {
+        var themes = getQulBundle('ayah-themes');
+        if (!themes) return '';
+        var list = themes[String(ch.id)] || [];
+        for (var i = 0; i < list.length; i++) {
+            if (ayah >= list[i].from && ayah <= list[i].to) return list[i].theme || '';
+        }
+        return '';
+    }
+
+    function toggleAyahTheme(btn) {
+        if (!btn) return;
+        var key = btn.getAttribute('data-key');
+        var parts = key.split(':');
+        var ch = chapters[parseInt(parts[0], 10) - 1];
+        var ayah = parseInt(parts[1], 10);
+        var existing = btn.parentNode.querySelector('.qr-ayah-theme-text');
+        if (existing) {
+            existing.remove();
+            return;
+        }
+        var show = function () {
+            var theme = getAyahTheme(ch, ayah);
+            var txt = 'theme: ' + (theme || 'No specific theme recorded for this verse.');
+            var span = document.createElement('span');
+            span.className = 'qr-ayah-theme-text';
+            span.textContent = txt;
+            btn.parentNode.appendChild(span);
+        };
+        if (getQulBundle('ayah-themes')) {
+            show();
+        } else {
+            loadQulBundle('ayah-themes', show);
+        }
+    }
+
+    function highlightMatchedWords(text, ranges, cls) {
+        if (!text || !ranges || !ranges.length) return escapeHtml(text);
+        cls = cls || 'qr-sim-highlight';
+        var words = text.split(/\s+/).filter(Boolean);
+        var out = [];
+        for (var i = 0; i < words.length; i++) {
+            var inRange = false;
+            for (var ri = 0; ri < ranges.length; ri++) {
+                var lo = ranges[ri][0], hi = ranges[ri][1];
+                if ((i + 1) >= lo && (i + 1) <= hi) {
+                    inRange = true;
+                    break;
+                }
+            }
+            out.push(inRange
+                ? '<span class="' + cls + '">' + escapeHtml(words[i]) + '</span>'
+                : escapeHtml(words[i]));
+        }
+        return out.join(' ');
+    }
+
+    var QUL_HL_CLASSES = ['qr-sim-hl-0', 'qr-sim-hl-1', 'qr-sim-hl-2',
+                          'qr-sim-hl-3', 'qr-sim-hl-4', 'qr-sim-hl-5'];
+
+    function getQulPhraseEntries(key) {
+        var entries = [];
+        var mb = getQulBundle('mutashabihat');
+        if (!mb || !mb.byAyah || !mb.phrases) return entries;
+        (mb.byAyah[key] || []).forEach(function (e) {
+            var ph = mb.phrases[String(e[0])];
+            if (!ph) return;
+            entries.push({ pid: String(e[0]), ranges: e[1] || [], ph: ph });
+        });
+        return entries;
+    }
+
+    // Pick the highlight slot (phrase card index) covering a 1-based word
+    // position in the current ayah. Overlapping phrases resolve to the
+    // narrowest range (mirrors the QUL preview, where a sub-phrase keeps its
+    // own colour inside a longer phrase).
+    function qulCoverSlot(entries, idx) {
+        var best = -1, bestLen = Infinity;
+        for (var s = 0; s < entries.length; s++) {
+            var ranges = entries[s].ranges;
+            for (var r = 0; r < ranges.length; r++) {
+                var lo = ranges[r][0], hi = ranges[r][1];
+                if (idx >= lo && idx <= hi) {
+                    var len = hi - lo;
+                    if (len < bestLen) { bestLen = len; best = s; }
+                }
+            }
+        }
+        return best;
+    }
+
+    function renderColoredVerse(text, entries) {
+        if (!text) return '';
+        var words = text.split(/\s+/).filter(Boolean);
+        var out = [];
+        for (var i = 0; i < words.length; i++) {
+            var slot = qulCoverSlot(entries, i + 1);
+            if (slot >= 0) {
+                out.push('<span class="' + QUL_HL_CLASSES[slot % QUL_HL_CLASSES.length] + '">'
+                    + escapeHtml(words[i]) + '</span>');
+            } else {
+                out.push(escapeHtml(words[i]));
+            }
+        }
+        return out.join(' ');
+    }
+
+    function renderPhraseWords(text, slot) {
+        var words = (text || '').split(/\s+/).filter(Boolean);
+        var cls = QUL_HL_CLASSES[slot % QUL_HL_CLASSES.length];
+        return words.map(function (wd) {
+            return '<span class="qr-sim-pill ' + cls + '">' + escapeHtml(wd) + '</span>';
+        }).join(' ');
+    }
+
+    function renderRefAyah(key, ranges) {
+        var verseData = getCachedData('indopak-nastaleeq-verse');
+        var rArabic = verseData && verseData[key] ? verseData[key].text : '';
+        var parts = key.split(':');
+        var rSurah = chapters[parseInt(parts[0], 10) - 1];
+        var html = '<div class="qr-sim-ref-ayah" data-key="' + key + '">';
+        html += '<div class="qr-sim-ref-ayah-key">' + key
+            + (rSurah ? ' \u00b7 ' + escapeHtml(rSurah.en) : '') + '</div>';
+        if (rArabic) {
+            html += '<div class="qr-sim-ref-ayah-arabic" dir="rtl">'
+                + highlightMatchedWords(rArabic, ranges || []) + '</div>';
+        }
+        html += '</div>';
+        return html;
+    }
+
+    function renderQulBody(key) {
+        var entries = getQulPhraseEntries(key);
+        if (!entries.length) return '';
+        var verseData = getCachedData('indopak-nastaleeq-verse');
+        var arabic = verseData && verseData[key] ? verseData[key].text : '';
+        var html = '';
+        if (arabic) {
+            html += '<div class="qr-sim-qul-current" dir="rtl">'
+                + renderColoredVerse(arabic, entries) + '</div>';
+        }
+        html += '<div class="qr-sim-section-title">' + escapeHtml('Phrases in ' + key) + '</div>';
+        html += '<div class="qr-sim-list">';
+        for (var s = 0; s < entries.length; s++) {
+            var en = entries[s];
+            var ph = en.ph;
+            var n = ph.count, a = ph.ayahs, su = ph.surahs;
+            var statsTxt = 'This phrase is repeated ' + n + ' times in ' + a
+                + ' ayah' + (a === 1 ? '' : 's') + ' across ' + su + ' surah'
+                + (su === 1 ? '' : 's') + '.';
+            html += '<div class="qr-sim-phrase-card">';
+            html += '<div class="qr-sim-phrase-pills" dir="rtl">'
+                + renderPhraseWords(ph.text, s) + '</div>';
+            html += '<div class="qr-sim-phrase-stats">' + escapeHtml(statsTxt) + '</div>';
+            html += '<button class="qr-sim-viewall" type="button" data-phr="' + en.pid + '">View all</button>';
+            html += '<div class="qr-sim-phrase-ayahs" data-phr-panel="' + en.pid + '" hidden>';
+            var rangeMap = ph.ranges || {};
+            var refKeys = Object.keys(rangeMap).length ? Object.keys(rangeMap) : (ph.refs || []);
+            refKeys = refKeys.slice().sort(function (ka, kb) {
+                var pa = ka.split(':'), pb = kb.split(':');
+                return (parseInt(pa[0], 10) - parseInt(pb[0], 10))
+                    || (parseInt(pa[1], 10) - parseInt(pb[1], 10));
+            });
+            for (var j = 0; j < refKeys.length; j++) {
+                html += renderRefAyah(refKeys[j], rangeMap[refKeys[j]]);
+            }
+            html += '</div>';
+            html += '</div>';
+        }
+        html += '</div>';
+        return html;
     }
 
     function renderSimItem(r, verseData, transData) {
@@ -1491,52 +1670,28 @@
             snippet = extractTranslationText(transData[r.key].t || '');
         }
         var html = '<button class="qr-sim-item" type="button" data-key="' + r.key + '">';
-        if (rArabic) html += '<div class="qr-sim-item-arabic" dir="rtl">' + rArabic + '</div>';
+        var arabicHtml = rArabic;
+        if (r.similar && r.match && rArabic) {
+            arabicHtml = highlightMatchedWords(rArabic, r.match.match_words || []);
+        }
+        if (arabicHtml) html += '<div class="qr-sim-item-arabic" dir="rtl">' + arabicHtml + '</div>';
         if (r.phrase) html += '<div class="qr-sim-item-phrase" dir="rtl">' + escapeHtml(r.phrase) + '</div>';
         html += '<div class="qr-sim-item-meta">';
         html += '<span class="qr-sim-item-key">' + r.key + '</span>';
         if (rSurah) html += '<span class="qr-sim-item-surah">' + escapeHtml(rSurah.en) + '</span>';
         html += '</div>';
+        if (r.similar && r.match) {
+            var m = r.match;
+            var summ = m.matched_words_count + ' words matched \u00b7 ' + m.coverage + '% overlap \u00b7 score ' + m.score;
+            html += '<div class="qr-sim-item-summary">' + escapeHtml(summ) + '</div>';
+        }
         if (snippet) html += '<div class="qr-sim-item-snippet">' + escapeHtml(snippet) + '</div>';
         html += '</button>';
         return html;
     }
 
-    function renderSimBody() {
-        if (!simState || !els.simBody) return;
-        var key = simState.key;
-        var verseData = getCachedData('indopak-nastaleeq-verse');
-        var transData = getCurrentTranslationData();
-        var arabic = verseData && verseData[key] ? verseData[key].text : '';
-        var html = '';
-
-        html += '<div class="qr-sim-current">';
-        html += '<span class="qr-sim-current-label">' + escapeHtml('Current verse') + '</span>';
-        if (arabic) html += '<div class="qr-sim-current-arabic" dir="rtl">' + arabic + '</div>';
-        html += '<div class="qr-sim-current-key">' + key + '</div>';
-        html += '</div>';
-
-        var mode = simState.mode === 'qul' ? 'qul' : 'curated';
-        var refs = (mode === 'qul') ? getQulRefs(key, 16) : getCuratedRefs(key);
-        var emptyMsg = mode === 'qul'
-            ? 'No Mutashabihat (repeated-phrase) matches are recorded for this verse.'
-            : 'No curated similar verses are recorded for this verse yet. Check the Mutashabihat button for repeated-phrase matches across the Quran.';
-        if (!refs.length) {
-            html += '<p class="qr-sim-empty">' + escapeHtml(emptyMsg) + '</p>';
-        } else {
-            var sectionTitle = mode === 'qul'
-                ? 'Mutashabihat \u2014 verses sharing repeated phrases with this ayah'
-                : 'Curated similar / related verses (project-reviewed cross-references)';
-            html += '<div class="qr-sim-section">';
-            html += '<div class="qr-sim-section-title">' + escapeHtml(sectionTitle) + '</div>';
-            html += '<div class="qr-sim-list">';
-            refs.forEach(function (r) { html += renderSimItem(r, verseData, transData); });
-            html += '</div>';
-            html += '</div>';
-        }
-        els.simBody.innerHTML = html;
-
-        els.simBody.querySelectorAll('.qr-sim-item').forEach(function (item) {
+    function bindSimNavigation(root) {
+        root.querySelectorAll('.qr-sim-item, .qr-sim-ref-ayah[data-key]').forEach(function (item) {
             item.addEventListener('click', function () {
                 var k = this.getAttribute('data-key');
                 var p = k.split(':');
@@ -1548,6 +1703,78 @@
                 }, 150);
             });
         });
+    }
+
+    function bindQulViewAll(root) {
+        root.querySelectorAll('.qr-sim-viewall').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var pid = this.getAttribute('data-phr');
+                var panel = root.querySelector('[data-phr-panel="' + pid + '"]');
+                if (!panel) return;
+                var hidden = panel.hidden;
+                panel.hidden = !hidden;
+                this.textContent = hidden ? 'Hide ayahs' : 'View all';
+            });
+        });
+    }
+
+    function renderSimBody() {
+        if (!simState || !els.simBody) return;
+        var key = simState.key;
+        var verseData = getCachedData('indopak-nastaleeq-verse');
+        var transData = getCurrentTranslationData();
+        var arabic = verseData && verseData[key] ? verseData[key].text : '';
+        var mode = simState.mode === 'qul' ? 'qul' : (simState.mode === 'similar' ? 'similar' : 'curated');
+        var html = '';
+
+        html += '<div class="qr-sim-current">';
+        html += '<span class="qr-sim-current-label">' + escapeHtml('Current verse') + '</span>';
+        if (mode === 'qul') {
+            var entries = getQulPhraseEntries(key);
+            if (arabic) html += '<div class="qr-sim-current-arabic" dir="rtl">' + renderColoredVerse(arabic, entries) + '</div>';
+        } else if (arabic) {
+            html += '<div class="qr-sim-current-arabic" dir="rtl">' + arabic + '</div>';
+        }
+        html += '<div class="qr-sim-current-key">' + key + '</div>';
+        html += '</div>';
+
+        if (mode === 'qul') {
+            var qulEntries = getQulPhraseEntries(key);
+            if (!qulEntries.length) {
+                html += '<p class="qr-sim-empty">No Mutashabihat (repeated-phrase) matches are recorded for this verse.</p>';
+            } else {
+                html += renderQulBody(key);
+            }
+            els.simBody.innerHTML = html;
+            bindQulViewAll(els.simBody);
+            bindSimNavigation(els.simBody);
+            return;
+        }
+
+        var refs = (mode === 'similar') ? getSimilarAyahRefs(key, 1000) : getCuratedRefs(key);
+        var emptyMsg = mode === 'similar'
+            ? 'No similar-word matches are recorded for this verse.'
+            : 'No curated similar verses are recorded for this verse yet. Check the Mutashabihat button for repeated-phrase matches across the Quran.';
+        if (!refs.length) {
+            html += '<p class="qr-sim-empty">' + escapeHtml(emptyMsg) + '</p>';
+        } else {
+            if (mode === 'similar') {
+                html += '<div class="qr-sim-count-banner">'
+                    + escapeHtml(key + ' has ' + refs.length + ' similar ayah' + (refs.length === 1 ? '' : 's'))
+                    + '</div>';
+            }
+            var sectionTitle = mode === 'similar'
+                ? 'Similar Ayat \u2014 word-overlap matches across the Quran'
+                : 'Curated similar / related verses (project-reviewed cross-references)';
+            html += '<div class="qr-sim-section">';
+            html += '<div class="qr-sim-section-title">' + escapeHtml(sectionTitle) + '</div>';
+            html += '<div class="qr-sim-list">';
+            refs.forEach(function (r) { html += renderSimItem(r, verseData, transData); });
+            html += '</div>';
+            html += '</div>';
+        }
+        els.simBody.innerHTML = html;
+        bindSimNavigation(els.simBody);
     }
 
     /* ---- Surah Information modal (full bilingual overview) ---- */
@@ -1632,7 +1859,7 @@
         entry = entry && entry[String(ch.id)];
         var s = entry && (entry.text || entry.short_text);
         if (!s) return '';
-        return '<div class="qr-info-rich" dir="rtl">' + asRichHtml(s) + '</div>';
+        return '<div class="qr-info-rich" dir="auto">' + asRichHtml(s) + '</div>';
     }
 
     function asRichHtml(s) {
@@ -1680,7 +1907,7 @@
         html += infoRichHtmlEn(ch);
         html += '</div>';
 
-        html += '<div class="qr-info-section" data-lang="ta"' + (lang === 'ta' ? '' : ' hidden') + ' dir="rtl">';
+        html += '<div class="qr-info-section" data-lang="ta"' + (lang === 'ta' ? '' : ' hidden') + ' dir="auto">';
         if (info.ta.full) html += '<p class="qr-info-summary">' + escapeHtml(info.ta.full) + '</p>';
         var taChips = info.ta.themes || [];
         if (taChips.length) {

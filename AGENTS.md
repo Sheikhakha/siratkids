@@ -19,7 +19,7 @@ Static HTML/CSS/JavaScript website for children's Islamic education. Bilingual (
 - `js/main.js` - Vanilla JavaScript (~1043 lines)
 - `js/quran-full-index.json` - Full Quran search index (6236 verses)
 - `js/quran-search-index.json` - Lightweight chapter metadata index
-- `js/quran_source/*.js` + `js/quran_source/segments/{sudais,shuraim,afasy,dussary}.js` + `js/tafsir/*.js` - Reader data (Quran text, translations, WBW, per-reciter word/verse segment bundles, per-surah tafsir) shipped as wrapped `.js` scripts (`window.__QURAN_DATA[<basename>] = {...}`) loaded via `<script>` tags so double-clicked `file://` pages work. Do NOT convert back to plain `.json` — `fetch()` of local JSON is blocked on `file://`. Segment bundles are keyed `segments-{name}` and drive word-synced playback highlighting (Sudais = per-verse audio; Shuraim/Al-Afasy/Yasser Al-Dosari = whole-surah audio).
+- `js/quran_source/*.js` + `js/quran_source/segments/{sudais,shuraim,afasy,dussary}.js` + `js/tafsir/*.js` - Reader data (Quran text, translations, WBW, per-reciter word/verse segment bundles, per-surah tafsir) shipped as wrapped `.js` scripts (`window.__QURAN_DATA[<basename>] = {...}`) loaded via `<script>` tags so double-clicked `file://` pages work. Do NOT convert back to plain `.json` — `fetch()` of local JSON is blocked on `file://`. Segment bundles are keyed `segments-{name}` and drive word-synced playback highlighting (Sudais = per-verse audio; Shuraim/Al-Afasy/Yasser Al-Dosari = whole-surah audio). Reader enrichment bundles (built by `scripts/build_qul_resources.py` from `data/qul/` exports, then loaded via script tags for `file://` support): `surah-info-en`, `surah-info-ta`, `ayah-themes`, `mutashabihat` (from `Mutashabihat ul Quran.json` + `indopak-nastaleeq.json`), and `similar-ayah` (from `matching-ayah.json`).
 - `scripts/validate_content.py` - Content preservation validation suite
 - `scripts/inject_audio_player.py` - Batch audio player injector
 - `scripts/build_full_index.py` - Quran index builder from quran.com API v4
@@ -72,6 +72,7 @@ Options: `--verbose` for failed check details, `--json report.json` for machine-
 - **4 Quran Popups**: popup-2152 (2:152), popup-3962 (39:62), popup-5156 (51:56), popup-319 (3:19)
 - **Featured Verse**: Surah At-Tahrim 66:6 on homepage
 - **Audio System**: Web Speech API with word highlighting, speed control (0.5x-2x), voice selection
+- **Quran Reader** (`quran-reader.html`): Surah info modal (English + Tamil, aligned via `dir="auto"`); Similar Ayat (QUL word-overlap matches, matched words highlighted); Mutashabihat (shared repeated phrases); per-ayah **Theme** button next to Tafsir (`theme:` inline lookup across the verse's theme group). See `/docs/data-model` for the QUL `mutashabihat` (`phrases.json`/`phrase_verses.json`) and `similar-ayah` schemas.
 - **localStorage keys**: arabic-font, toggle-translation, toggle-tamil, toggle-transliteration, ar-font-scale, en-font-scale, audio-speed, audio-voice-name
 
 ## Testing

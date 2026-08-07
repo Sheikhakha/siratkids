@@ -9,6 +9,7 @@ Usage:
   python scripts/validate_arabic_content.py [--verbose]
 """
 
+import io
 import json
 import os
 import re
@@ -142,6 +143,179 @@ def check_vocabulary(verbose):
     return errors
 
 
+def check_qul_reader_features(verbose):
+    # Validate the QURAN-reader enrichment features tied to QUL bundles:
+    # similar-ayah rendering, per-ayah theme button, Mutashabihat icon + popup text,
+    # Tamil alignment, and the builder/preload wiring.
+    errors = []
+    reader_js = os.path.join(BASE, 'js', 'quran-reader.js')
+    html = os.path.join(BASE, 'quran-reader.html')
+    css = os.path.join(BASE, 'css', 'quran-reader.css')
+    builder = os.path.join(BASE, 'scripts', 'build_qul_resources.py')
+    sim_bundle = os.path.join(BASE, 'js', 'quran_source', 'similar-ayah.js')
+    auto_dir = 'dir=' + chr(34) + 'auto' + chr(34)
+
+    def has(path):
+        if not os.path.exists(path):
+            return ''
+        try:
+            return read_file(path)
+        except Exception:
+            return ''
+
+    js = has(reader_js)
+    if not os.path.exists(sim_bundle):
+        errors.append('similar-ayah.js bundle missing (run build_qul_resources.py)')
+    else:
+        data = has(sim_bundle)
+        if len(data) < 100 or '__QURAN_DATA' not in data:
+            errors.append('similar-ayah.js bundle is empty or not wrapped')
+    if 'similar-ayah' not in has(builder):
+        errors.append('build_qul_resources.py does not emit similar-ayah')
+    if 'similar-ayah.js' not in has(html):
+        errors.append('quran-reader.html does not preload similar-ayah.js')
+    if 'getSimilarAyahRefs' not in js:
+        errors.append('quran-reader.js missing getSimilarAyahRefs')
+    if 'similar-ayah' not in js:
+        errors.append('quran-reader.js missing similar-ayah bundle registration')
+    if 'qr-theme-book' not in js:
+        errors.append('quran-reader.js missing qr-theme-book theme button')
+    if 'highlightMatchedWords' not in js:
+        errors.append('quran-reader.js missing highlightMatchedWords for Similar Ayat')
+    if 'Mutashabihat are verses' not in js:
+        errors.append('quran-reader.js missing Mutashabihat definition text in popup')
+    if 'M17.5' in js:
+        errors.append('quran-reader.js still uses the old Mutashabihat icon path (M17.5)')
+    if auto_dir not in js:
+        errors.append('quran-reader.js Tamil info section should use dir=auto (not rtl)')
+    styles = has(css)
+    if 'qr-sim-highlight' not in styles:
+        errors.append('quran-reader.css missing .qr-sim-highlight')
+    if 'qr-theme-book' not in styles:
+        errors.append('quran-reader.css missing .qr-theme-book styling')
+    if verbose:
+        print('  [OK] QUL reader features checked')
+    return errors
+
+
+def load_wrapped_bundle(path, key):
+    """Extract the JSON payload from a __QURAN_DATA wrapped .js bundle."""
+    if not os.path.exists(path):
+        return None
+    try:
+        with io.open(path, encoding='utf-8') as fh:
+            text = fh.read()
+    except Exception:
+        return None
+    head = '__QURAN_DATA["%s"]=' % key
+    i = text.find(head)
+    j = text.rfind(';})(self);')
+    if i < 0 or j < 0 or j <= i:
+        return None
+    try:
+        return json.loads(text[i + len(head):j])
+    except ValueError:
+        return None
+
+
+def check_mutashabihat_bundles(verbose):
+    """Validate the rebuilt QUL mutashabihat / similar-ayah data bundles.
+
+    Verifies the bundle wrapper, the key QA mappings (1:1, 27:30, 2:112),
+    partial-phrase recovery, and that every word range stays inside its ayah.
+    """
+    errors = []
+    src_dir = os.path.join(BASE, 'js', 'quran_source')
+    mut_path = os.path.join(src_dir, 'mutashabihat.js')
+    sim_path = os.path.join(src_dir, 'similar-ayah.js')
+
+    mut = load_wrapped_bundle(mut_path, 'mutashabihat')
+    if mut is None:
+        errors.append('mutashabihat.js missing or not wrapped (run build_qul_resources.py)')
+    else:
+        if not mut.get('byAyah') or not mut.get('phrases'):
+            errors.append('mutashabihat.js bundle missing phrases/byAyah keys')
+        expect = {
+            '1:1': [('11313', [[1, 4]])],
+            '27:30': [('11313', [[5, 8]])],
+            '2:112': {
+                '858': [[12, 15]],
+                '13963': [[2, 7]],
+                '3601': [[9, 17]],
+            },
+        }
+        for akey, want in expect.items():
+            got = {str(e[0]): e[1] for e in mut['byAyah'].get(akey, [])}
+            if isinstance(want, dict):
+                for pid, ranges in want.items():
+                    if got.get(pid) != ranges:
+                        errors.append('%s: phrase %s ranges %r != expected %r'
+                                      % (akey, pid, got.get(pid), ranges))
+            elif got.get(want[0][0]) != want[0][1]:
+                errors.append('%s: expected phrase %s ranges %r, got %r'
+                              % (akey, want[0][0], want[0][1],
+                                 got.get(want[0][0])))
+        if '447' in mut['phrases']:
+            p = mut['phrases']['447']
+            if p['refs'] != ['2:26'] or p['ranges'] != {'2:26': [[17, 19]]}:
+                errors.append('partial phrase 447 not recovered (2:26 [17,19])')
+        else:
+            errors.append('mutashabihat bundle missing partial phrase 447')
+
+        # Range bounds: every range must fit inside its ayah's word count.
+        verses = load_wrapped_bundle(
+            os.path.join(src_dir, 'indopak-nastaleeq-verse.js'),
+            'indopak-nastaleeq-verse') or {}
+        word_count = {}
+        for akey, v in verses.items():
+            if v and v.get('text'):
+                word_count[akey] = len(v['text'].split())
+        bad = 0
+        for akey, entries in mut['byAyah'].items():
+            wc = word_count.get(akey)
+            for _pid, ranges in entries:
+                for (lo, hi) in ranges:
+                    if wc is None:
+                        errors.append('%s: ayah has no verse text for range bounds'
+                                      % akey)
+                        break
+                    if lo < 1 or hi < lo or hi > wc:
+                        bad += 1
+                        if bad <= 20:
+                            errors.append('%s: range [%d,%d] out of bounds (words=%d)'
+                                          % (akey, lo, hi, wc))
+            if wc is None:
+                break
+        if bad:
+            errors.append('range bounds: %d out-of-bounds ranges total' % bad)
+
+    sim = load_wrapped_bundle(sim_path, 'similar-ayah')
+    if sim is None:
+        errors.append('similar-ayah.js missing or not wrapped (run build_qul_resources.py)')
+    else:
+        if len(sim) < 1000:
+            errors.append('similar-ayah.js has only %d verse keys (expected > 1000)'
+                          % len(sim))
+        for akey in ('1:1', '2:1'):
+            rows = sim.get(akey)
+            if not rows:
+                errors.append('similar-ayah.js missing matches for %s' % akey)
+            else:
+                for r in rows:
+                    if not r.get('matched_ayah_key') or \
+                            not isinstance(r.get('match_words'), list):
+                        errors.append('similar-ayah.js %s: malformed match row %r'
+                                      % (akey, r))
+
+    if verbose:
+        n_mut = len(mut['byAyah']) if mut else 0
+        n_phr = len(mut['phrases']) if mut else 0
+        n_sim = len(sim) if sim else 0
+        print('  [OK] mutashabihat.js: phrases=%d byAyah=%d, similar-ayah.js: %d verse keys'
+              % (n_phr, n_mut, n_sim))
+    return errors
+
+
 def check_unit_vocab_sections(verbose):
     """Check that unit pages have vocab-section elements."""
     errors = []
@@ -208,6 +382,14 @@ def main():
     # Check unit vocab sections
     print("\n--- Unit Vocab Sections ---")
     all_errors.extend(check_unit_vocab_sections(verbose))
+
+    # Check QUL reader enrichment features
+    print("\n--- QUL Reader Features ---")
+    all_errors.extend(check_qul_reader_features(verbose))
+
+    # Check QUL mutashabihat / similar-ayah data bundles
+    print("\n--- QUL Data Bundles ---")
+    all_errors.extend(check_mutashabihat_bundles(verbose))
 
     # Summary
     print("\n" + "=" * 60)
