@@ -567,7 +567,7 @@
                 if (piece.note) {
                     var fnKey = key + ':fn' + (pi + 1);
                     _fnNotes[fnKey] = { verseKey: key, text: piece.note };
-                    transHtml += '<sup class="qr-fn-sup" role="button" tabindex="0" data-fnkey="' + fnKey + '" data-verse="' + v + '" data-num="' + (pi + 1) + '" aria-label="Footnote ' + (pi + 1) + '" title="Footnote ' + (pi + 1) + '">' + (pi + 1) + '</sup>';
+                    transHtml += '<sup class="qr-fn-sup" role="button" tabindex="0" data-fnkey="' + fnKey + '" data-verse="' + v + '" data-num="' + (pi + 1) + '" aria-label="Footnote ' + (pi + 1) + '">' + (pi + 1) + '</sup>';
                 }
             }
             if (!transHtml && transText) transHtml = escapeHtml(transText);
@@ -633,16 +633,24 @@
         });
 
         els.verses.querySelectorAll('.qr-fn-sup').forEach(function (sup) {
-            sup.addEventListener('click', function (e) {
+            sup.addEventListener('mouseenter', function (e) {
                 e.stopPropagation();
-                e.preventDefault();
                 showFnTooltip(this);
             });
+            sup.addEventListener('mouseleave', function (e) {
+                e.stopPropagation();
+                hideFnTooltip();
+            });
+            sup.addEventListener('focus', function () {
+                showFnTooltip(this);
+            });
+            sup.addEventListener('blur', function () {
+                hideFnTooltip();
+            });
             sup.addEventListener('keydown', function (e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
+                if (e.key === 'Escape') {
                     e.stopPropagation();
-                    showFnTooltip(this);
+                    hideFnTooltip();
                 }
             });
         });
@@ -824,19 +832,23 @@
         var note = _fnNotes[fnKey] ? _fnNotes[fnKey].text : '';
         if (!note) return;
         els.fnTooltip.innerHTML = '<span class="qr-fn-tooltip-label">Footnote ' + num + '</span> ' + escapeHtml(note);
-        var vr = btn.getBoundingClientRect();
+        els.fnTooltip.style.display = 'block';
+        els.fnTooltip.style.visibility = 'hidden';
+        els.fnTooltip.style.top = '0px';
+        els.fnTooltip.style.left = '0px';
         var tw = els.fnTooltip.offsetWidth;
+        var th = els.fnTooltip.offsetHeight;
+        var vr = btn.getBoundingClientRect();
         var top = vr.bottom + 10;
         var left = vr.left + vr.width / 2 - tw / 2;
         if (left < 8) left = 8;
         if (left + tw > window.innerWidth - 8) left = window.innerWidth - tw - 8;
-        var bottom = top + els.fnTooltip.offsetHeight + 10;
-        if (bottom > window.innerHeight - 8) {
-            top = Math.max(8, vr.top - els.fnTooltip.offsetHeight - 10);
+        if (top + th + 10 > window.innerHeight - 8) {
+            top = Math.max(8, vr.top - th - 10);
         }
         els.fnTooltip.style.top = top + 'px';
         els.fnTooltip.style.left = left + 'px';
-        els.fnTooltip.style.display = 'block';
+        els.fnTooltip.style.visibility = 'visible';
     }
 
     function hideFnTooltip() {

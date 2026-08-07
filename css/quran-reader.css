@@ -636,7 +636,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     outline: none;
 }
 
-/* Footnote tooltip (shown near the marker) */
+/* Footnote tooltip (shown near the marker, out of the document flow) */
 .qr-fn-tooltip {
     position: fixed;
     display: none;
@@ -649,6 +649,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     padding: 10px 12px;
     border-radius: 10px;
     box-shadow: var(--qr-shadow-md);
+    pointer-events: none;
 }
 .qr-fn-tooltip-label {
     display: block;
