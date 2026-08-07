@@ -156,6 +156,13 @@
         var startSurah = 1;
         if (lastRead) { var p = lastRead.split(':'); startSurah = parseInt(p[0]) || 1; }
         loadSurah(startSurah);
+
+        if (els.wbwToggle.checked) {
+            loadWbwData(function () {
+                var ch = chapters[currentSurah - 1];
+                if (ch && els.wbwToggle.checked) renderVerses(ch);
+            });
+        }
     }
 
     function setupSidebarToggle() {
@@ -1039,7 +1046,7 @@
         lastPlayedVerse = item.verse;
 
         var wbwOn = els.wbwToggle && els.wbwToggle.checked;
-        if (!wbwOn) {
+        if (!wbwOn || (rowEl && !rowEl.querySelector('.qr-word-unit'))) {
             renderWordSpans(item);
         }
 
@@ -1228,8 +1235,7 @@
         var rowId = 'row-' + item.chapter + '-' + item.verse;
         var rowEl = document.getElementById(rowId);
         if (!rowEl) return;
-        var wbwOn = els.wbwToggle && els.wbwToggle.checked;
-        var targets = wbwOn ? rowEl.querySelectorAll('.qr-word-unit[data-wi]') : rowEl.querySelectorAll('.qr-ut-word');
+        var targets = rowEl.querySelectorAll('.qr-word-unit[data-wi], .qr-ut-word');
         for (var j = 0; j < targets.length; j++) {
             var el = targets[j];
             var wi = parseInt(el.getAttribute('data-wi'), 10);
