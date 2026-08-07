@@ -508,10 +508,10 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 }
 .qr-verse-row:hover { background: var(--qr-hover); }
 
-/* Playing highlight is scoped to the verse text only (Arabic + Translation),
-   never the whole row, action row, or verse-number badge. */
-.qr-verse-row.playing .qr-verse-arabic,
-.qr-verse-row.playing .qr-verse-translation {
+/* Playing highlight covers the whole verse row: play button, verse number,
+   Arabic text, translation, and tafsir icon. The left border sits at the
+   row's true left edge, not the edge of the text column. */
+.qr-verse-row.playing {
     background: var(--bg-hover);
     box-shadow: inset 3px 0 0 var(--qr-primary);
     transition: background 0.25s ease, box-shadow 0.25s ease;
