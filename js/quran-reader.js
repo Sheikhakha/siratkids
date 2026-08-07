@@ -19,6 +19,16 @@
     var tafsirState = null;
     var tafsirPinned = false;
     var tafsirSize = 16;
+    var simState = null;
+    var infoState = null;
+    var mushafState = { ch: null, page: 1, pages: [] };
+
+    var QUL_BUNDLES = {
+        'surah-info-en': 'js/quran_source/surah-info-en.js',
+        'surah-info-ta': 'js/quran_source/surah-info-ta.js',
+        'ayah-themes': 'js/quran_source/ayah-themes.js',
+        'mutashabihat': 'js/quran_source/mutashabihat.js'
+    };
 
     var RECITER_CFG = {
         Sudais:  { segKey: 'segments-sudais',  segFile: 'js/quran_source/segments/sudais.js',  mode: 'ayah' },
@@ -46,6 +56,150 @@
         '\uFBD7','\uFBD9','\uFBDA','\uFBDC','\uFBDD','\uFBDF','\uFBE0','\uFBE2','\uFBE3','\uFBE5',
         '\uFBE6','\uFBE8','\uFBE9','\uFBEB'
     ];
+
+    /* Bilingual Surah overviews (English + Tamil). Curated child-friendly
+       summaries and core themes for the surahs most studied by young
+       learners. Any surah without a curated entry falls back to a factual
+       blurb built from the existing chapter metadata in renderSurahInfoCard. */
+    var SURAH_INFO = {
+        "1": {
+            en: { summary: 'The Opening of the Quran and the essence of Salah, recited in every unit of prayer. It praises Allah, affirms His Lordship and Mercy, and asks Him alone to guide us upon the straight path.',
+                  themes: ['Praise of Allah', 'Lordship & Mercy', 'Seeking Guidance'] },
+            ta: { summary: 'குர்ஆனின் துவக்கமும், தொழுகையின் ஒவ்வொரு ரக்அத்திலும் ஓதப்படும் மையப் பகுதியும் இதுவாகும். இது அல்லாஹ்வைப் போற்றி, அவனுடைய இறைமையையும் கருணையையும் உறுதிசெய்து, நேரான பாதைக்கு வழிகாட்டுமாறு அவனிடமே கேட்கிறது.',
+                  themes: ['அல்லாஹ்வைப் போற்றுதல்', 'இறைமை & கருணை', 'நேர்வழியைத் தேடல்'] }
+        },
+        "2": {
+            en: { summary: 'The longest surah of the Quran, revealed in Madinah. It lays the foundation of Islamic belief and law, tells the story of the Children of Israel, and emphasises taqwa, worship and patience.',
+                  themes: ['Faith & Taqwa', 'Laws & Guidance', 'Stories of Bani Isra\u2019il'] },
+            ta: { summary: 'குர்ஆனின் மிக நீண்ட சூரா, மதீனாவில் இறங்கியது. இஸ்லாமிய நம்பிக்கை மற்றும் சட்டங்களின் அடித்தளத்தை அமைக்கிறது; பனூ இஸ்ராயீலின் கதையைக் கூறுகிறது; தக்வா, வணக்கம், பொறுமை ஆகியவற்றை வலியுறுத்துகிறது.',
+                  themes: ['நம்பிக்கை & தக்வா', 'சட்டங்கள் & வழிகாட்டல்', 'பனூ இஸ்ராயீல் கதை'] }
+        },
+        "3": {
+            en: { summary: 'Revealed in Madinah, this surah tells of the family of Imran, including Maryam and \u2018Isa (peace be upon them). It calls the People of the Book to the truth of Islam and teaches firmness in faith and unity.',
+                  themes: ['Family of Imran', 'People of the Book', 'Unity & Steadfastness'] },
+            ta: { summary: 'மதீனாவில் இறங்கிய இந்தச் சூரா, இம்ரான் குடும்பத்தின் கதையை \u2014 மர்யம், ஈசா (அலை) ஆகியோரை \u2014 கூறுகிறது. வேதக்காரர்களை இஸ்லாத்தின் உண்மைக்கு அழைத்து, உறுதியான நம்பிக்கையையும் ஒற்றுமையையும் கற்பிக்கிறது.',
+                  themes: ['இம்ரான் குடும்பம்', 'வேதக்காரர்கள்', 'ஒற்றுமை & உறுதி'] }
+        },
+        "4": {
+            en: { summary: 'A Madinan surah focusing on justice, the rights of women and orphans, family law, and the importance of unity among Muslims. It teaches that all believers are one community.',
+                  themes: ['Rights & Justice', 'Women & Family', 'Community Unity'] },
+            ta: { summary: 'மதீனாவில் இறங்கிய இந்தச் சூரா, நீதியை, பெண்கள் மற்றும் அநாதைகளின் உரிமைகளை, குடும்பச் சட்டங்களை வலியுறுத்துகிறது. அனைத்து இறைநம்பிக்கையாளர்களும் ஒரே சமுதாயம் என்பதைக் கற்பிக்கிறது.',
+                  themes: ['உரிமைகள் & நீதி', 'பெண்கள் & குடும்பம்', 'சமுதாய ஒற்றுமை'] }
+        },
+        "5": {
+            en: { summary: 'A Madinan surah that completes the religion of Islam and teaches lawful and unlawful matters of food, the covenants with the People of the Book, and justice. It contains the famous verse about the completion of the religion (5:3).',
+                  themes: ['Halal & Haram', 'Covenants', 'Completing the Religion'] },
+            ta: { summary: 'மதீனாவில் இறங்கிய இந்தச் சூரா, இஸ்லாம் மார்க்கத்தைப் பூர்த்தி செய்யும் புகழ்பெற்ற வசனத்தைக் (5:3) கொண்டுள்ளது. உணவின் அனுமதிக்கப்பட்ட, தடைசெய்யப்பட்ட விஷயங்களையும், வேதக்காரர்களுடனான உடன்படிக்கைகளையும், நீதியையும் கற்பிக்கிறது.',
+                  themes: ['ஹலால் & ஹராம்', 'உடன்படிக்கைகள்', 'மார்க்கத்தின் பூர்த்தி'] }
+        },
+        "6": {
+            en: { summary: 'A Makkan surah that firmly establishes Tawhid, refutes shirk and idol-worship, and tells the story of Prophet Ibrahim (peace be upon him) searching for his Lord through His creation.',
+                  themes: ['Tawhid', 'Refuting Shirk', 'Story of Ibrahim'] },
+            ta: { summary: 'மக்காவில் இறங்கிய இந்தச் சூரா, ஏகத்துவத்தை உறுதிப்படுத்தி, இணைவைப்பையும் சிலை வணக்கத்தையும் மறுக்கிறது. நபி இப்ராஹீம் (அலை) படைப்பின் மூலம் தம் இறைவனைத் தேடிய கதையைக் கூறுகிறது.',
+                  themes: ['ஏகத்துவம்', 'இணைவைப்பு மறுப்பு', 'இப்ராஹீமின் கதை'] }
+        },
+        "18": {
+            en: { summary: 'A Makkan surah containing four famous stories: the People of the Cave, the owner of the two gardens, Musa and Khidr, and Dhul-Qarnayn. It is recommended to recite every Friday for protection from trials.',
+                  themes: ['People of the Cave', 'Musa & Khidr', 'Dhul-Qarnayn', 'Trials & Faith'] },
+            ta: { summary: 'மக்காவில் இறங்கிய இந்தச் சூராவில் நான்கு புகழ்பெற்ற கதைகள் உள்ளன: குகையினர், இரு தோட்டங்களின் உரிமையாளர், மூஸா & கிழ்ர், துல்கர்னைன். சோதனைகளிலிருந்து பாதுகாப்புக்காக ஒவ்வொரு வெள்ளியும் ஓத பரிந்துரைக்கப்படுகிறது.',
+                  themes: ['குகையினர்', 'மூஸா & கிழ்ர்', 'துல்கர்னைன்', 'சோதனை & நம்பிக்கை'] }
+        },
+        "36": {
+            en: { summary: 'Called the heart of the Quran, this Makkan surah affirms the Quran as revelation, tells of a town\u2019s messengers, and powerfully describes resurrection and the Hereafter.',
+                  themes: ['Heart of the Quran', 'Prophethood', 'Resurrection & Hereafter'] },
+            ta: { summary: 'குர்ஆனின் இதயம் என அழைக்கப்படும் இந்த மக்கா சூரா, குர்ஆன் வஹீ என்பதை உறுதிப்படுத்தி, ஒரு ஊருக்கு வந்த தூதர்களின் கதையைக் கூறி, உயிர்த்தெழுதலையும் மறுமை வாழ்வையும் விவரிக்கிறது.',
+                  themes: ['குர்ஆனின் இதயம்', 'நபித்துவம்', 'மறுமை & உயிர்த்தெழுதல்'] }
+        },
+        "55": {
+            en: { summary: 'A Makkan surah that counts the countless blessings of Allah \u2014 the Quran, creation, mercy and paradise \u2014 and repeatedly asks: \u2018Which of the favours of your Lord will you deny?\u2019',
+                  themes: ['Countless Blessings', 'Mercy of Allah', 'Paradise & Favours'] },
+            ta: { summary: 'மக்காவில் இறங்கிய இந்தச் சூரா, அல்லாஹ்வின் எண்ணற்ற அருள்களை \u2014 குர்ஆன், படைப்பு, கருணை, சொர்க்கம் \u2014 விவரித்து, \u2018உங்கள் இறைவனின் எந்த அருளை நீங்கள் மறுப்பீர்கள்?\u2019 எனத் திரும்பத் திரும்பக் கேட்கிறது.',
+                  themes: ['எண்ணற்ற அருள்கள்', 'அல்லாஹ்வின் கருணை', 'சொர்க்கம் & அருட்கொடைகள்'] }
+        },
+        "67": {
+            en: { summary: 'A Makkan surah that begins with Allah\u2019s blessed sovereignty and the wisdom of creation, warns of the Fire for those who disbelieve, and is recommended to recite every night for protection from the punishment of the grave.',
+                  themes: ['Sovereignty of Allah', 'Purpose of Creation', 'Protection from Punishment'] },
+            ta: { summary: 'மக்காவில் இறங்கிய இந்தச் சூரா, அல்லாஹ்வின் மிகவும் பாக்கியமான ஆட்சியையும் படைப்பின் ஞானத்தையும் கூறி, இறைமறுப்பாளர்களை நரகம் பற்றி எச்சரிக்கிறது. ஒவ்வொரு இரவும் ஓத பரிந்துரைக்கப்படுகிறது.',
+                  themes: ['அல்லாஹ்வின் ஆட்சி', 'படைப்பின் நோக்கம்', 'தண்டனையிலிருந்து பாதுகாப்பு'] }
+        },
+        "112": {
+            en: { summary: 'A short Makkan surah that summarises Tawhid: Allah is One, Self-Sufficient, He does not beget nor is He begotten, and there is none comparable to Him. It is equal to a third of the Quran in reward.',
+                  themes: ['Tawhid', 'Oneness of Allah', 'Sincerity'] },
+            ta: { summary: 'மக்காவில் இறங்கிய சிறிய சூரா. அல்லாஹ் ஒருவன், தேவையற்றவன்; அவன் யாரையும் பெறவில்லை, பெறப்படவுமில்லை; அவனுக்கு நிகரானவர் யாருமில்லை என ஏகத்துவத்தைச் சுருக்கமாகக் கூறுகிறது. குர்ஆனின் மூன்றில் ஒரு பங்கிற்கு சமமான நன்மையுள்ளது.',
+                  themes: ['ஏகத்துவம்', 'அல்லாஹ்வின் ஒருமை', 'கலப்பற்ற நம்பிக்கை'] }
+        },
+        "113": {
+            en: { summary: 'A Makkan surah, one of the two \u2018Protections\u2019 (al-Mu\u2019awwidhatayn), in which we seek refuge in Allah from the evil of what He created, from darkness, and from the harm of envious people.',
+                  themes: ['Seeking Refuge', 'Protection from Evil', 'Trust in Allah'] },
+            ta: { summary: 'மக்காவில் இறங்கிய சூரா; இரண்டு \u2018பாதுகாப்பு\u2019 சூராக்களில் (அல்-முஅவ்விதத்தைன்) ஒன்று. படைக்கப்பட்டவற்றின் தீமையிலிருந்தும், இருளிலிருந்தும், பொறாமைக்காரர்களின் தீங்கிலிருந்தும் அல்லாஹ்விடம் பாதுகாப்புக் கேட்கிறோம்.',
+                  themes: ['பாதுகாப்பு வேண்டல்', 'தீமையிலிருந்து பாதுகாப்பு', 'அல்லாஹ்வின் மீது நம்பிக்கை'] }
+        },
+        "114": {
+            en: { summary: 'The final surah of the Quran, one of the two \u2018Protections.\u2019 We seek refuge in the Lord of Mankind from the whispering of the Shaytan who plants evil thoughts in people\u2019s hearts.',
+                  themes: ['Seeking Refuge', 'Lord of Mankind', 'Protection from Shaytan'] },
+            ta: { summary: 'குர்ஆனின் இறுதிச் சூரா; இரண்டு \u2018பாதுகாப்பு\u2019 சூராக்களில் ஒன்று. மனிதர்களின் இதயங்களில் தீய எண்ணங்களைப் போடும் ஷைத்தானின் கிசுகிசுப்பிலிருந்து, மனிதர்களின் இறைவனிடம் பாதுகாப்புக் கேட்கிறோம்.',
+                  themes: ['பாதுகாப்பு வேண்டல்', 'மனிதர்களின் இறைவன்', 'ஷைத்தானிடமிருந்து பாதுகாப்பு'] }
+        }
+    };
+
+    /* Verified similar / related verses (mutashabihat) for Hifz and
+       comparative study. Pairs mirror the project\u2019s own reviewed
+       cross-references so the connections shown are consistent with the
+       study popups already on the site. Verses without an entry show a
+       graceful empty state. */
+    var MUTASHABIHAT = {
+        "2:152": [
+            { key: "6:102", snippet: "Such is Allah, your Lord! None has the right to be worshipped but He, the Creator of all things. So worship Him (Alone)." },
+            { key: "39:62", snippet: "Allah is the Creator of all things, and He is the Wakil (Trustee, Disposer of affairs, Guardian) over all things." },
+            { key: "20:14", snippet: "Verily! I am Allah! La ilaha illa Ana (none has the right to be worshipped but I), so worship Me (Alone), and perform As-Salat for My Remembrance." }
+        ],
+        "39:62": [
+            { key: "6:102", snippet: "Such is Allah, your Lord! The Creator of all things. So worship Him (Alone)." },
+            { key: "13:16", snippet: "Allah is the Creator of all things, and He is the Wakil over all things." },
+            { key: "35:3", snippet: "O mankind! Remember the Grace of Allah. There is no creator besides Allah." }
+        ],
+        "51:56": [
+            { key: "36:22", snippet: "And why should I not worship Him Who has created me and to Whom you shall be returned." },
+            { key: "19:65", snippet: "Lord of the heavens and the earth, and all that is between them, so worship Him (Alone) and be constant and patient in His worship." },
+            { key: "53:62", snippet: "So fall you down in prostration to Allah and worship Him (Alone)." }
+        ],
+        "3:19": [
+            { key: "2:163", snippet: "And your Ilah (God) is one Ilah (God - Allah). None has the right to be worshipped but He, the Most Gracious, the Most Merciful." },
+            { key: "3:83", snippet: "Do they seek other than the religion of Allah, while to Him has submitted all that is in the heavens and the earth, willingly or unwillingly?" },
+            { key: "22:34", snippet: "For each We have appointed a way of worship which they follow. So let them not dispute with you about the matter." }
+        ],
+        "6:102": [
+            { key: "2:152", snippet: "So remember Me; I will remember you. And be grateful to Me and do not deny Me." },
+            { key: "39:62", snippet: "Allah is the Creator of all things, and He is the Wakil (Trustee, Disposer of affairs, Guardian) over all things." }
+        ],
+        "13:16": [
+            { key: "39:62", snippet: "Allah is the Creator of all things, and He is the Wakil (Trustee, Disposer of affairs, Guardian) over all things." }
+        ],
+        "35:3": [
+            { key: "39:62", snippet: "Allah is the Creator of all things, and He is the Wakil (Trustee, Disposer of affairs, Guardian) over all things." }
+        ],
+        "20:14": [
+            { key: "2:152", snippet: "So remember Me; I will remember you. And be grateful to Me and do not deny Me." }
+        ],
+        "36:22": [
+            { key: "51:56", snippet: "And I did not create the jinn and mankind except to worship Me." }
+        ],
+        "19:65": [
+            { key: "51:56", snippet: "And I did not create the jinn and mankind except to worship Me." }
+        ],
+        "53:62": [
+            { key: "51:56", snippet: "And I did not create the jinn and mankind except to worship Me." }
+        ],
+        "2:163": [
+            { key: "3:19", snippet: "Truly, the religion with Allah is Islam..." }
+        ],
+        "3:83": [
+            { key: "3:19", snippet: "Truly, the religion with Allah is Islam..." }
+        ],
+        "22:34": [
+            { key: "3:19", snippet: "Truly, the religion with Allah is Islam..." }
+        ]
+    };
 
     var els = {
         loading: document.getElementById('qr-loading'),
@@ -95,6 +249,32 @@
         tafsirSizeDown: document.getElementById('qr-tafsir-size-down'),
         tafsirSizeUp: document.getElementById('qr-tafsir-size-up'),
         clearCache: document.getElementById('qr-clear-cache'),
+
+        simBackdrop: document.getElementById('qr-mutashabihat-modal-backdrop'),
+        simModal: document.getElementById('qr-mutashabihat-modal'),
+        simBody: document.getElementById('qr-sim-modal-body'),
+        simClose: document.getElementById('qr-sim-close'),
+        simSurahAr: document.getElementById('qr-sim-surah-ar'),
+        simSurahEn: document.getElementById('qr-sim-surah-en'),
+        simVerse: document.getElementById('qr-sim-verse'),
+        simSource: document.getElementById('qr-sim-modal-source'),
+
+        infoBackdrop: document.getElementById('qr-surah-info-modal-backdrop'),
+        infoModal: document.getElementById('qr-surah-info-modal'),
+        infoBody: document.getElementById('qr-info-modal-body'),
+        infoClose: document.getElementById('qr-info-modal-close'),
+        infoSurahAr: document.getElementById('qr-info-surah-ar'),
+        infoSurahEn: document.getElementById('qr-info-surah-en'),
+        infoSource: document.getElementById('qr-info-modal-source'),
+
+        mushafBackdrop: document.getElementById('qr-mushaf-backdrop'),
+        mushafFrame: document.getElementById('qr-mushaf-frame'),
+        mushafTitle: document.getElementById('qr-mushaf-title'),
+        mushafPageInfo: document.getElementById('qr-mushaf-pageinfo'),
+        mushafPrev: document.getElementById('qr-mushaf-prev'),
+        mushafNext: document.getElementById('qr-mushaf-next'),
+        mushafClose: document.getElementById('qr-mushaf-close'),
+        mushafPageEl: document.getElementById('qr-mushaf-page'),
     };
 
     if (!els.loading || !els.content) return;
@@ -104,6 +284,7 @@
     });
 
     loadBackgroundTranslations();
+    preloadQulBundles();
 
     function setupNavToggle() {
         var qrNavbar = document.querySelector('.qr-navbar');
@@ -136,6 +317,9 @@
         setupFnTooltip();
         setupClearCache();
         setupWbwToggle();
+        setupMutashabihatModal();
+        setupSurahInfoModal();
+        setupMushaf();
 
         var savedReciter = localStorage.getItem('audio-voice-name');
         if (savedReciter && RECITER_CFG[savedReciter]) {
@@ -475,6 +659,9 @@
         currentSurah = id;
         stopAudio();
         if (els.tafsirModalBackdrop && !els.tafsirModalBackdrop.hidden) closeTafsirModal();
+        if (els.simBackdrop && !els.simBackdrop.hidden) closeMutashabihatModal();
+        if (els.infoBackdrop && !els.infoBackdrop.hidden) closeSurahInfoModal();
+        if (els.mushafBackdrop && !els.mushafBackdrop.hidden) closeMushaf();
         hideFnTooltip();
 
         var ch = chapters[id - 1];
@@ -506,6 +693,12 @@
         var html = '';
         html += '<div class="qr-surah-header-name-ar" dir="rtl">' + SURAH_LIGATURES[ch.id - 1] + '</div>';
         html += '<div class="qr-surah-header-name-en">Surah ' + escapeHtml(ch.en) + '</div>';
+        html += '<div class="qr-surah-header-info-wrap">';
+        html += '<button class="qr-surah-info-btn" type="button" title="Surah Information (English &amp; Tamil)" aria-label="Surah Information">';
+        html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>';
+        html += '<span>Surah Info</span>';
+        html += '</button>';
+        html += '</div>';
         html += '<div class="qr-surah-header-meta">';
         html += '<span><span class="meta-label">Verses:</span> <span class="meta-value">' + ch.verses + '</span></span>';
         html += '<span class="meta-divider">|</span>';
@@ -513,6 +706,8 @@
         html += '<span class="meta-divider">|</span>';
         html += '<span><span class="meta-label">Order:</span> <span class="meta-value">' + ch.revelation_order + '</span></span>';
         html += '</div>';
+
+        html += renderSurahInfoCard(ch);
 
         if (ch.id !== 9) {
             html += '<div class="qr-surah-header-bismillah">\u0628\u0650\u0633\u0652\u0645\u0650 \u0671\u0644\u0644\u064e\u0651\u0647\u0650 \u0671\u0644\u0631\u064e\u0651\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0671\u0644\u0631\u064e\u0651\u062d\u0650\u064a\u0645\u0650</div>';
@@ -523,6 +718,223 @@
             var el = els.surahHeader.querySelector('.qr-surah-header-name-ar');
             if (el) el.style.opacity = '1';
         });
+
+        wireSurahInfoCard();
+        ensureSurahInfoBundles(ch);
+    }
+
+    // The card renders with whatever bundles are loaded at paint time. For
+    // non-curated surahs (and for curated surahs whose ayah-themes bundle
+    // hasn't loaded yet) we refresh the card in place once the QUL
+    // surah-info/ayah-themes bundles arrive so the full summary, theme chips
+    // and "Themes by section" list all appear.
+    var _surahInfoRefreshed = {};
+
+    function ensureSurahInfoBundles(ch) {
+        var want = ['surah-info-en', 'surah-info-ta', 'ayah-themes'];
+        var need = want.filter(function (k) { return !getQulBundle(k); });
+        if (!need.length) return;
+        var done = 0;
+        need.forEach(function (key) {
+            loadQulBundle(key, function () {
+                done++;
+                if (done < need.length) return;
+                var stamp = ch.id + ':' + ch.verses;
+                if (_surahInfoRefreshed[stamp]) return;
+                _surahInfoRefreshed[stamp] = true;
+                refreshSurahInfoCard();
+            });
+        });
+    }
+
+    function refreshSurahInfoCard() {
+        if (!currentSurah) return;
+        var ch = chapters[currentSurah - 1];
+        if (!ch) return;
+        var card = els.surahHeader.querySelector('.qr-surah-info-card');
+        if (!card) return;
+        var parent = card.parentNode;
+        var tmp = document.createElement('div');
+        tmp.innerHTML = renderSurahInfoCard(ch);
+        var fresh = tmp.firstElementChild;
+        if (!fresh) return;
+        parent.replaceChild(fresh, card);
+        wireSurahInfoCard();
+    }
+
+    function ordinal(n) {
+        var mod100 = n % 100;
+        if (mod100 >= 11 && mod100 <= 13) return n + 'th';
+        var mod10 = n % 10;
+        if (mod10 === 1) return n + 'st';
+        if (mod10 === 2) return n + 'nd';
+        if (mod10 === 3) return n + 'rd';
+        return n + 'th';
+    }
+
+    function getSurahInfo(ch) {
+        var curated = SURAH_INFO[String(ch.id)];
+        if (curated) return curated;
+
+        var enData = getQulBundle('surah-info-en');
+        var taData = getQulBundle('surah-info-ta');
+        var enEntry = enData && enData[String(ch.id)];
+        var taEntry = taData && taData[String(ch.id)];
+        if (enEntry || taEntry) {
+            var enSrc = (enEntry && (enEntry.short_text || enEntry.text)) || '';
+            var taSrc = (taEntry && (taEntry.short_text || taEntry.text)) || '';
+            return {
+                en: {
+                    summary: truncateText(stripHtml(enSrc), 440),
+                    themes: getSurahThemeChips(ch)
+                },
+                ta: {
+                    summary: truncateText(stripHtml(taSrc), 440),
+                    themes: []
+                }
+            };
+        }
+
+        var place = ch.revelation_place === 'makkah' ? 'Meccan' : 'Medinan';
+        var taPlace = ch.revelation_place === 'makkah' ? 'மக்கா' : 'மதீனா';
+        var enSummary = 'Surah ' + ch.en + ' is a ' + place + ' surah with ' + ch.verses + ' verses. It was the ' + ordinal(ch.revelation_order) + ' surah to be revealed. Read the verses below with translation, tafsir and word-by-word learning.';
+        var taSummary = 'சூரா ' + ch.en + ' ஒரு ' + taPlace + ' சூரா. இதில் ' + ch.verses + ' வசனங்கள் உள்ளன. கீழே உள்ள வசனங்களை மொழிபெயர்ப்பு, தப்ஸீர் மற்றும் சொல்-வாரியாகக் கற்றுக் கொள்ளலாம்.';
+        return {
+            en: { summary: enSummary, themes: [] },
+            ta: { summary: taSummary, themes: [] }
+        };
+    }
+
+    // Short theme chips from the ayah-themes bundle (used when a surah has no
+    // curated SURAH_INFO entry): the first few range themes, truncated.
+    function getSurahThemeChips(ch) {
+        var themes = getQulBundle('ayah-themes');
+        if (!themes) return [];
+        var list = themes[String(ch.id)] || [];
+        var chips = [];
+        for (var i = 0; i < list.length && chips.length < 4; i++) {
+            var theme = list[i].theme || '';
+            if (theme.length > 64) theme = theme.slice(0, 61) + '\u2026';
+            if (chips.indexOf(theme) === -1) chips.push(theme);
+        }
+        return chips;
+    }
+
+    function renderSurahInfoCard(ch) {
+        var info = getSurahInfo(ch);
+        var en = info.en || {}, ta = info.ta || {};
+        var collapsed = localStorage.getItem('quran-surah-info-collapsed') === '1';
+        var lang = localStorage.getItem('quran-surah-info-lang') === 'ta' ? 'ta' : 'en';
+
+        var html = '<div class="qr-surah-info-card">';
+        html += '<div class="qr-surah-info-head">';
+        html += '<button class="qr-surah-info-toggle" type="button" aria-expanded="' + (!collapsed) + '">';
+        html += '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
+        html += '<span class="qr-surah-info-title">Surah Overview &amp; Themes</span>';
+        html += '<span class="qr-surah-info-title-ta" dir="rtl">சூரா அறிமுகம் &amp; கருப்பொருள்கள்</span>';
+        html += '<svg class="qr-surah-info-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>';
+        html += '</button>';
+        html += '<div class="qr-surah-info-lang" role="group" aria-label="Language">';
+        html += '<button type="button" data-lang="en" class="' + (lang === 'en' ? 'active' : '') + '">EN</button>';
+        html += '<button type="button" data-lang="ta" class="' + (lang === 'ta' ? 'active' : '') + '">த</button>';
+        html += '</div>';
+        html += '</div>';
+        html += '<div class="qr-surah-info-body"' + (collapsed ? ' hidden' : '') + '>';
+        html += '<p class="qr-surah-info-summary" data-lang="en"' + (lang === 'en' ? '' : ' hidden') + '>' + escapeHtml(en.summary || '') + '</p>';
+        html += '<p class="qr-surah-info-summary ta" data-lang="ta"' + (lang === 'ta' ? '' : ' hidden') + ' dir="rtl">' + escapeHtml(ta.summary || '') + '</p>';
+        var enThemes = en.themes || [], taThemes = ta.themes || [];
+        if (enThemes.length || taThemes.length) {
+            html += '<div class="qr-surah-info-themes" data-lang="en"' + (lang === 'en' ? '' : ' hidden') + '>';
+            enThemes.forEach(function (t) { html += '<span class="qr-surah-theme">' + escapeHtml(t) + '</span>'; });
+            html += '</div>';
+            html += '<div class="qr-surah-info-themes" data-lang="ta"' + (lang === 'ta' ? '' : ' hidden') + ' dir="rtl">';
+            taThemes.forEach(function (t) { html += '<span class="qr-surah-theme">' + escapeHtml(t) + '</span>'; });
+            html += '</div>';
+        }
+
+        var themeSections = getSurahThemeSections(ch);
+        if (themeSections.length) {
+            var shown = themeSections.slice(0, 8);
+            var rest = themeSections.slice(8);
+            html += '<div class="qr-surah-theme-sections" data-lang="en"' + (lang === 'en' ? '' : ' hidden') + '>';
+            html += '<div class="qr-surah-theme-sections-title">Themes by section</div>';
+            html += '<ul class="qr-surah-theme-list">';
+            shown.forEach(function (t) { html += themeSectionItem(t); });
+            if (rest.length) {
+                html += '<div class="qr-surah-theme-rest" hidden>';
+                rest.forEach(function (t) { html += themeSectionItem(t); });
+                html += '</div>';
+                html += '<button class="qr-surah-theme-more" type="button" data-expanded="false">Show ' + rest.length + ' more \u2026</button>';
+            }
+            html += '</ul>';
+            html += '</div>';
+        }
+
+        html += '</div>';
+        html += '</div>';
+        return html;
+    }
+
+    function themeSectionItem(t) {
+        return '<li class="qr-surah-theme-item"><span class="qr-surah-theme-range">' + t.range + '</span>' + escapeHtml(t.theme) + '</li>';
+    }
+
+    function getSurahThemeSections(ch) {
+        var themes = getQulBundle('ayah-themes');
+        if (!themes) return [];
+        var list = themes[String(ch.id)] || [];
+        var out = [];
+        for (var i = 0; i < list.length; i++) {
+            var from = list[i].from, to = list[i].to, theme = list[i].theme || '';
+            out.push({ range: from === to ? String(from) : from + '\u2013' + to, theme: theme });
+        }
+        return out;
+    }
+
+    function wireSurahInfoCard() {
+        var card = els.surahHeader.querySelector('.qr-surah-info-card');
+        var infoBtn = els.surahHeader.querySelector('.qr-surah-info-btn');
+        if (infoBtn) {
+            infoBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                if (currentSurah) openSurahInfoModal(chapters[currentSurah - 1]);
+            });
+        }
+        if (!card) return;
+        var toggle = card.querySelector('.qr-surah-info-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', function () {
+                var body = card.querySelector('.qr-surah-info-body');
+                if (!body) return;
+                var nowExpanded = body.hidden;
+                body.hidden = !nowExpanded;
+                toggle.setAttribute('aria-expanded', nowExpanded ? 'true' : 'false');
+                localStorage.setItem('quran-surah-info-collapsed', nowExpanded ? '0' : '1');
+            });
+        }
+        card.querySelectorAll('.qr-surah-info-lang button').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var lang = this.getAttribute('data-lang');
+                localStorage.setItem('quran-surah-info-lang', lang);
+                card.querySelectorAll('.qr-surah-info-lang button').forEach(function (b) {
+                    b.classList.toggle('active', b === btn);
+                });
+                card.querySelectorAll('[data-lang]').forEach(function (el) {
+                    el.hidden = el.getAttribute('data-lang') !== lang;
+                });
+            });
+        });
+        var moreBtn = card.querySelector('.qr-surah-theme-more');
+        if (moreBtn) {
+            moreBtn.addEventListener('click', function () {
+                var rest = card.querySelector('.qr-surah-theme-rest');
+                var expanded = this.getAttribute('data-expanded') === 'true';
+                if (rest) rest.hidden = expanded;
+                this.setAttribute('data-expanded', expanded ? 'false' : 'true');
+                var count = rest ? rest.querySelectorAll('.qr-surah-theme-item').length : 0;
+                this.textContent = expanded ? ('Show ' + count + ' more \u2026') : 'Show less';
+            });
+        }
     }
 
     function renderVerses(ch) {
@@ -613,10 +1025,16 @@
             }
             html += '</div>';
 
-            // Action row: Tafsir book-icon trigger
+            // Action row: Tafsir book-icon trigger + Similar Ayat trigger
             html += '<div class="qr-verse-action">';
             html += '<button class="qr-tafsir-book" type="button" data-key="' + key + '" aria-label="Tafsir for verse ' + v + '" title="Tafsir">';
             html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
+            html += '</button>';
+            html += '<button class="qr-sim-book" type="button" data-key="' + key + '" aria-label="Similar Ayat for verse ' + v + '" title="Similar Ayat">';
+            html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+            html += '</button>';
+            html += '<button class="qr-muta-book" type="button" data-key="' + key + '" aria-label="Mutashabihat for verse ' + v + '" title="Mutashabihat">';
+            html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 13a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0-3.5 3.5V13a1.5 1.5 0 1 1-3 0V8a3.5 3.5 0 1 0-3.5-3.5"/><path d="M12 16.5a4.5 4.5 0 0 1 0-9 4.5 4.5 0 0 1 9 0v6.5a2.5 2.5 0 0 1-2.5 2.5H10a2.5 2.5 0 0 1 0-5"/></svg>';
             html += '</button>';
             html += '</div>';
 
@@ -663,6 +1081,62 @@
                 openTafsirFor(chapters[parseInt(parts[0], 10) - 1], parseInt(parts[1], 10));
             });
         });
+
+        els.verses.querySelectorAll('.qr-sim-book').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var parts = this.getAttribute('data-key').split(':');
+                openSimilarAyatFor(chapters[parseInt(parts[0], 10) - 1], parseInt(parts[1], 10));
+            });
+        });
+        els.verses.querySelectorAll('.qr-muta-book').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var parts = this.getAttribute('data-key').split(':');
+                openMutashabihatFor(chapters[parseInt(parts[0], 10) - 1], parseInt(parts[1], 10));
+            });
+        });
+    }
+
+    /* ---- QUL enriched resources (surah overviews, ayah themes, similar ayat) ---- */
+
+    function getQulBundle(key) {
+        var d = window.__QURAN_DATA;
+        return (d && d[key]) || getCachedData(key) || null;
+    }
+
+    function loadQulBundle(key, cb) {
+        if (getQulBundle(key)) {
+            if (cb) setTimeout(cb, 0);
+            return;
+        }
+        loadFromCacheOrFetch(key, QUL_BUNDLES[key], cb);
+    }
+
+    // Warm the QUL bundles in the background after the reader is usable.
+    function preloadQulBundles() {
+        for (var key in QUL_BUNDLES) {
+            if (getQulBundle(key)) continue;
+            loadQulBundle(key, function () {});
+        }
+    }
+
+    // Strip HTML tags/entities to plain text for compact card summaries.
+    function stripHtml(html) {
+        if (!html) return '';
+        var div = document.createElement('div');
+        div.innerHTML = html;
+        return (div.textContent || div.innerText || '').replace(/\s+/g, ' ').trim();
+    }
+
+    // Truncate long summaries at a word boundary with an ellipsis.
+    function truncateText(text, max) {
+        if (!text) return '';
+        if (text.length <= max) return text;
+        var cut = text.slice(0, max);
+        var sp = cut.lastIndexOf(' ');
+        if (sp > max * 0.6) cut = cut.slice(0, sp);
+        return cut.replace(/\s+$/, '') + '\u2026';
     }
 
     /* ---- Data loading ---- */
@@ -917,6 +1391,429 @@
         if (!tafsirState || !els.tafsirModalBody) return;
         var lang = getDefaultTafsirLang();
         loadTafsirContent(tafsirState.ch.id + ':' + tafsirState.ayah, tafsirState.ch.id, tafsirState.ayah, tafsirState.ch, lang, els.tafsirModalBody, els.tafsirModalSource);
+    }
+
+    /* ---- Mutashabihat / Similar Ayat modal ---- */
+
+    function setupMutashabihatModal() {
+        if (!els.simBackdrop) return;
+        if (els.simClose) els.simClose.addEventListener('click', closeMutashabihatModal);
+        els.simBackdrop.addEventListener('click', function (e) {
+            if (e.target === els.simBackdrop) closeMutashabihatModal();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (els.simBackdrop && !els.simBackdrop.hidden && e.key === 'Escape') {
+                e.preventDefault();
+                closeMutashabihatModal();
+            }
+        });
+    }
+
+    function openSimilarAyatFor(ch, ayah) {
+        openSimModal(ch, ayah, 'curated');
+    }
+
+    function openMutashabihatFor(ch, ayah) {
+        openSimModal(ch, ayah, 'qul');
+    }
+
+    function openSimModal(ch, ayah, mode) {
+        if (!els.simBackdrop) return;
+        if (els.simModal) els.simModal.setAttribute('aria-label', mode === 'qul' ? 'Mutashabihat' : 'Similar Ayat');
+        simState = { ch: ch, ayah: ayah, key: ch.id + ':' + ayah, mode: mode || 'curated' };
+        if (els.simSurahAr) els.simSurahAr.textContent = ch.ar || '';
+        if (els.simSurahEn) els.simSurahEn.textContent = ch.en || '';
+        if (els.simVerse) els.simVerse.textContent = simState.key;
+        if (els.simSource) els.simSource.textContent = mode === 'qul'
+            ? 'Verses sharing repeated phrases with this ayah \u00b7 Across the Quran'
+            : 'Curated similar & related verses \u00b7 Project cross-references';
+        if (els.simBody) els.simBody.innerHTML = '<p class="qr-sim-empty">Loading \u2026</p>';
+        els.simBackdrop.hidden = false;
+        document.body.style.overflow = 'hidden';
+        if (els.simBody) els.simBody.focus && els.simBody.focus();
+        var renderNow = function () { renderSimBody(); };
+        if (mode === 'qul') {
+            loadQulBundle('mutashabihat', renderNow);
+        } else {
+            renderNow();
+        }
+    }
+
+    function closeMutashabihatModal() {
+        if (!els.simBackdrop) return;
+        els.simBackdrop.hidden = true;
+        document.body.style.overflow = '';
+        simState = null;
+    }
+
+    function getCuratedRefs(key) {
+        var refs = [];
+        var seen = {};
+        (MUTASHABIHAT[key] || []).forEach(function (r) {
+            if (!seen[r.key]) {
+                seen[r.key] = true;
+                refs.push(r);
+            }
+        });
+        return refs;
+    }
+
+    function getQulRefs(key, max) {
+        var refs = [];
+        var seen = {};
+        var mb = getQulBundle('mutashabihat');
+        if (!mb || !mb.byAyah) return refs;
+        var phrases = mb.phrases || {};
+        var entries = mb.byAyah[key] || [];
+        max = max || 12;
+        var added = 0;
+        for (var i = 0; i < entries.length && added < max; i++) {
+            var ph = phrases[String(entries[i][0])];
+            if (!ph || !ph.refs) continue;
+            for (var j = 0; j < ph.refs.length && added < max; j++) {
+                var rk = ph.refs[j];
+                if (rk === key || seen[rk]) continue;
+                seen[rk] = true;
+                added++;
+                refs.push({ key: rk, phrase: ph.text || '', qul: true });
+            }
+        }
+        return refs;
+    }
+
+    function renderSimItem(r, verseData, transData) {
+        var rData = verseData && verseData[r.key] ? verseData[r.key] : null;
+        var rArabic = rData ? rData.text : '';
+        var parts = r.key.split(':');
+        var rSurah = chapters[parseInt(parts[0], 10) - 1];
+        var snippet = r.snippet;
+        if (!snippet && transData && transData[r.key]) {
+            snippet = extractTranslationText(transData[r.key].t || '');
+        }
+        var html = '<button class="qr-sim-item" type="button" data-key="' + r.key + '">';
+        if (rArabic) html += '<div class="qr-sim-item-arabic" dir="rtl">' + rArabic + '</div>';
+        if (r.phrase) html += '<div class="qr-sim-item-phrase" dir="rtl">' + escapeHtml(r.phrase) + '</div>';
+        html += '<div class="qr-sim-item-meta">';
+        html += '<span class="qr-sim-item-key">' + r.key + '</span>';
+        if (rSurah) html += '<span class="qr-sim-item-surah">' + escapeHtml(rSurah.en) + '</span>';
+        html += '</div>';
+        if (snippet) html += '<div class="qr-sim-item-snippet">' + escapeHtml(snippet) + '</div>';
+        html += '</button>';
+        return html;
+    }
+
+    function renderSimBody() {
+        if (!simState || !els.simBody) return;
+        var key = simState.key;
+        var verseData = getCachedData('indopak-nastaleeq-verse');
+        var transData = getCurrentTranslationData();
+        var arabic = verseData && verseData[key] ? verseData[key].text : '';
+        var html = '';
+
+        html += '<div class="qr-sim-current">';
+        html += '<span class="qr-sim-current-label">' + escapeHtml('Current verse') + '</span>';
+        if (arabic) html += '<div class="qr-sim-current-arabic" dir="rtl">' + arabic + '</div>';
+        html += '<div class="qr-sim-current-key">' + key + '</div>';
+        html += '</div>';
+
+        var mode = simState.mode === 'qul' ? 'qul' : 'curated';
+        var refs = (mode === 'qul') ? getQulRefs(key, 16) : getCuratedRefs(key);
+        var emptyMsg = mode === 'qul'
+            ? 'No Mutashabihat (repeated-phrase) matches are recorded for this verse.'
+            : 'No curated similar verses are recorded for this verse yet. Check the Mutashabihat button for repeated-phrase matches across the Quran.';
+        if (!refs.length) {
+            html += '<p class="qr-sim-empty">' + escapeHtml(emptyMsg) + '</p>';
+        } else {
+            var sectionTitle = mode === 'qul'
+                ? 'Mutashabihat \u2014 verses sharing repeated phrases with this ayah'
+                : 'Curated similar / related verses (project-reviewed cross-references)';
+            html += '<div class="qr-sim-section">';
+            html += '<div class="qr-sim-section-title">' + escapeHtml(sectionTitle) + '</div>';
+            html += '<div class="qr-sim-list">';
+            refs.forEach(function (r) { html += renderSimItem(r, verseData, transData); });
+            html += '</div>';
+            html += '</div>';
+        }
+        els.simBody.innerHTML = html;
+
+        els.simBody.querySelectorAll('.qr-sim-item').forEach(function (item) {
+            item.addEventListener('click', function () {
+                var k = this.getAttribute('data-key');
+                var p = k.split(':');
+                closeMutashabihatModal();
+                loadSurah(parseInt(p[0], 10));
+                setTimeout(function () {
+                    var row = document.getElementById('row-' + p[0] + '-' + p[1]);
+                    if (row) row.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                }, 150);
+            });
+        });
+    }
+
+    /* ---- Surah Information modal (full bilingual overview) ---- */
+
+    function setupSurahInfoModal() {
+        if (!els.infoBackdrop) return;
+        if (els.infoClose) els.infoClose.addEventListener('click', closeSurahInfoModal);
+        els.infoBackdrop.addEventListener('click', function (e) {
+            if (e.target === els.infoBackdrop) closeSurahInfoModal();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (els.infoBackdrop && !els.infoBackdrop.hidden && e.key === 'Escape') {
+                e.preventDefault();
+                closeSurahInfoModal();
+            }
+        });
+    }
+
+    function loadSurahInfoBundles(cb) {
+        var need = ['surah-info-en', 'surah-info-ta', 'ayah-themes'].filter(function (k) {
+            return !getQulBundle(k);
+        });
+        if (!need.length) {
+            if (cb) setTimeout(cb, 0);
+            return;
+        }
+        var pending = need.length, done = function () {
+            pending--;
+            if (pending <= 0 && cb) cb();
+        };
+        need.forEach(function (key) { loadQulBundle(key, done); });
+    }
+
+    function openSurahInfoModal(ch) {
+        if (!els.infoBackdrop) return;
+        infoState = { ch: ch };
+        if (els.infoSurahAr) els.infoSurahAr.textContent = ch.ar || '';
+        if (els.infoSurahEn) els.infoSurahEn.textContent = 'Surah ' + (ch.en || '');
+        if (els.infoSource) els.infoSource.textContent = 'Detailed Surah Overview \u00b7 English & Tamil';
+        if (els.infoBody) els.infoBody.innerHTML = '<p class="qr-sim-empty">Loading surah information \u2026</p>';
+        els.infoBackdrop.hidden = false;
+        document.body.style.overflow = 'hidden';
+        loadSurahInfoBundles(function () { renderInfoBody(ch); });
+    }
+
+    function closeSurahInfoModal() {
+        if (!els.infoBackdrop) return;
+        els.infoBackdrop.hidden = true;
+        document.body.style.overflow = '';
+        infoState = null;
+    }
+
+    function getSurahInfoFull(ch) {
+        var curated = SURAH_INFO[String(ch.id)];
+        var enEntry = getQulBundle('surah-info-en');
+        var taEntry = getQulBundle('surah-info-ta');
+        enEntry = enEntry && enEntry[String(ch.id)];
+        taEntry = taEntry && taEntry[String(ch.id)];
+        var enFull = '', taFull = '', enChips = [], taChips = [];
+        if (curated) {
+            enFull = curated.en.summary; taFull = curated.ta.summary;
+            enChips = curated.en.themes || []; taChips = curated.ta.themes || [];
+        }
+        if (enEntry) {
+            if (!curated) enFull = stripHtml(enEntry.short_text || enEntry.text);
+            enChips = enChips.length ? enChips : getSurahThemeChips(ch);
+        }
+        if (taEntry) taFull = taFull || stripHtml(taEntry.short_text || taEntry.text);
+        return { en: { full: enFull, themes: enChips }, ta: { full: taFull, themes: taChips } };
+    }
+
+    function infoRichHtmlEn(ch) {
+        var entry = getQulBundle('surah-info-en');
+        entry = entry && entry[String(ch.id)];
+        var s = entry && (entry.text || entry.short_text);
+        if (!s) return '';
+        return '<div class="qr-info-rich">' + asRichHtml(s) + '</div>';
+    }
+
+    function infoRichHtmlTa(ch) {
+        var entry = getQulBundle('surah-info-ta');
+        entry = entry && entry[String(ch.id)];
+        var s = entry && (entry.text || entry.short_text);
+        if (!s) return '';
+        return '<div class="qr-info-rich" dir="rtl">' + asRichHtml(s) + '</div>';
+    }
+
+    function asRichHtml(s) {
+        return s.replace(/<h2>/gi, '<h4 class="qr-info-sub">')
+                .replace(/<\/h2>/gi, '</h4>')
+                .replace(/<p align="center"/gi, '<p class="qr-info-center"');
+    }
+
+    function themeSectionsHtml(ch) {
+        var themes = getQulBundle('ayah-themes');
+        if (!themes) return '';
+        var list = themes[String(ch.id)] || [];
+        if (!list.length) return '';
+        var html = '<div class="qr-info-theme-sections">';
+        html += '<div class="qr-info-theme-title">Themes by section</div>';
+        html += '<ul class="qr-surah-theme-list">';
+        list.forEach(function (t) {
+            var range = t.from === t.to ? String(t.from) : (t.from + '\u2013' + t.to);
+            html += '<li class="qr-surah-theme-item"><span class="qr-surah-theme-range">' + range + '</span>' + escapeHtml(t.theme || '') + '</li>';
+        });
+        html += '</ul>';
+        html += '</div>';
+        return html;
+    }
+
+    function renderInfoBody(ch) {
+        if (!els.infoBody) return;
+        var info = getSurahInfoFull(ch);
+        var lang = localStorage.getItem('quran-surah-info-lang') === 'ta' ? 'ta' : 'en';
+        var html = '';
+        html += '<div class="qr-info-lang-tabs" role="group" aria-label="Language">';
+        html += '<button type="button" data-lang="en" class="' + (lang === 'en' ? 'active' : '') + '">English</button>';
+        html += '<button type="button" data-lang="ta" class="' + (lang === 'ta' ? 'active' : '') + '">தமிழ்</button>';
+        html += '</div>';
+
+        html += '<div class="qr-info-section" data-lang="en"' + (lang === 'en' ? '' : ' hidden') + '>';
+        if (info.en.full) html += '<p class="qr-info-summary">' + escapeHtml(info.en.full) + '</p>';
+        var enChips = info.en.themes || [];
+        if (enChips.length) {
+            html += '<div class="qr-surah-info-themes">';
+            enChips.forEach(function (t) { html += '<span class="qr-surah-theme">' + escapeHtml(t) + '</span>'; });
+            html += '</div>';
+        }
+        html += themeSectionsHtml(ch);
+        html += infoRichHtmlEn(ch);
+        html += '</div>';
+
+        html += '<div class="qr-info-section" data-lang="ta"' + (lang === 'ta' ? '' : ' hidden') + ' dir="rtl">';
+        if (info.ta.full) html += '<p class="qr-info-summary">' + escapeHtml(info.ta.full) + '</p>';
+        var taChips = info.ta.themes || [];
+        if (taChips.length) {
+            html += '<div class="qr-surah-info-themes">';
+            taChips.forEach(function (t) { html += '<span class="qr-surah-theme">' + escapeHtml(t) + '</span>'; });
+            html += '</div>';
+        }
+        html += infoRichHtmlTa(ch);
+        html += '</div>';
+
+        els.infoBody.innerHTML = html;
+
+        var selfEl = els.infoBody;
+        selfEl.querySelectorAll('[data-lang]').forEach(function (el) {
+            el.hidden = el.getAttribute('data-lang') !== lang;
+        });
+        selfEl.querySelectorAll('.qr-info-lang-tabs button').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var bl = this.getAttribute('data-lang');
+                localStorage.setItem('quran-surah-info-lang', bl);
+                selfEl.querySelectorAll('.qr-info-lang-tabs button').forEach(function (b) {
+                    b.classList.toggle('active', b === btn);
+                });
+                selfEl.querySelectorAll('.qr-info-section').forEach(function (sec) {
+                    sec.hidden = sec.getAttribute('data-lang') !== bl;
+                });
+            });
+        });
+    }
+
+    /* ---- Mushaf view ---- */
+
+    function setupMushaf() {
+        if (!els.mushafBackdrop) return;
+        var openBtn = document.getElementById('qr-mushaf-open');
+        var fab = document.getElementById('qr-mushaf-fab');
+        if (openBtn) openBtn.addEventListener('click', openMushaf);
+        if (fab) fab.addEventListener('click', openMushaf);
+        if (els.mushafClose) els.mushafClose.addEventListener('click', closeMushaf);
+        if (els.mushafPrev) els.mushafPrev.addEventListener('click', function () { mushafPage(-1); });
+        if (els.mushafNext) els.mushafNext.addEventListener('click', function () { mushafPage(1); });
+        els.mushafBackdrop.addEventListener('click', function (e) {
+            if (e.target === els.mushafBackdrop) closeMushaf();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (els.mushafBackdrop && !els.mushafBackdrop.hidden) {
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    closeMushaf();
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    mushafPage(e.key === 'ArrowRight' ? 1 : -1);
+                }
+            }
+        });
+    }
+
+    function buildMushafPages(ch) {
+        var verseData = getCachedData('indopak-nastaleeq-verse');
+        var verses = [];
+        for (var v = 1; v <= ch.verses; v++) {
+            var entry = verseData ? verseData[ch.id + ':' + v] : null;
+            verses.push({ n: v, text: entry ? entry.text : '' });
+        }
+        var pages = [];
+        var current = [];
+        var currentLen = 0;
+        var MAX_LEN = 1800;
+        verses.forEach(function (item) {
+            if (current.length > 0 && currentLen + item.text.length > MAX_LEN) {
+                pages.push(current);
+                current = [];
+                currentLen = 0;
+            }
+            current.push(item);
+            currentLen += item.text.length + 4;
+        });
+        if (current.length) pages.push(current);
+        if (!pages.length) pages.push([]);
+        return pages;
+    }
+
+    function renderMushafPage() {
+        if (!mushafState.ch || !els.mushafPageEl) return;
+        var ch = mushafState.ch;
+        var page = mushafState.pages[mushafState.page - 1] || [];
+        var html = '';
+        if (mushafState.page === 1) {
+            html += '<div class="qr-mushaf-surah-head">';
+            html += '<div class="qr-mushaf-surah-ar" dir="rtl">' + (SURAH_LIGATURES[ch.id - 1] || '') + '</div>';
+            html += '<div class="qr-mushaf-surah-en">Surah ' + escapeHtml(ch.en) + '</div>';
+            if (ch.id !== 9) {
+                html += '<div class="qr-mushaf-bismillah" dir="rtl">\u0628\u0650\u0633\u0652\u0645\u0650 \u0671\u0644\u0644\u064e\u0651\u0647\u0650 \u0671\u0644\u0631\u064e\u0651\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0671\u0644\u0631\u064e\u0651\u062d\u0650\u064a\u0645\u0650</div>';
+            }
+            html += '</div>';
+        }
+        page.forEach(function (item) {
+            html += '<div class="qr-mushaf-verse">';
+            html += '<span class="qr-mushaf-verse-text">' + item.text + '</span>';
+            html += '<span class="qr-mushaf-verse-num" aria-hidden="true">' + item.n + '</span>';
+            html += '</div>';
+        });
+        els.mushafPageEl.innerHTML = html;
+        if (els.mushafTitle) els.mushafTitle.textContent = 'Surah ' + ch.en + ' \u00b7 Mushaf view';
+        if (els.mushafPageInfo) els.mushafPageInfo.textContent = mushafState.page + ' / ' + mushafState.pages.length;
+        if (els.mushafPrev) els.mushafPrev.disabled = mushafState.page <= 1;
+        if (els.mushafNext) els.mushafNext.disabled = mushafState.page >= mushafState.pages.length;
+        if (els.mushafPageEl) els.mushafPageEl.scrollTop = 0;
+    }
+
+    function mushafPage(delta) {
+        if (!mushafState.ch) return;
+        var next = mushafState.page + delta;
+        if (next < 1 || next > mushafState.pages.length) return;
+        mushafState.page = next;
+        renderMushafPage();
+    }
+
+    function openMushaf() {
+        if (!els.mushafBackdrop) return;
+        var ch = chapters[currentSurah - 1];
+        if (!ch) return;
+        mushafState = { ch: ch, page: 1, pages: buildMushafPages(ch) };
+        renderMushafPage();
+        els.mushafBackdrop.hidden = false;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMushaf() {
+        if (!els.mushafBackdrop) return;
+        els.mushafBackdrop.hidden = true;
+        document.body.style.overflow = '';
+        mushafState = { ch: null, page: 1, pages: [] };
     }
 
     function tafsirContentCurrent(surah, ayah, lang) {
