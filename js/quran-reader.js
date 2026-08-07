@@ -17,14 +17,13 @@
 
     var RECITER_CFG = {
         Sudais:       { url: 'https://verses.quran.com/Sudais/mp3/',     padCh: true,  padVr: true,  type: 'per-verse' },
-        Alafasy:      { url: 'https://verses.quran.com/Alafasy/mp3/',    padCh: true,  padVr: true,  type: 'per-verse' },
-        MinshawiKids: { url: 'https://download.quranicaudio.com/qdc/siddiq_minshawi/kids_repeat/', padCh: false, padVr: false, type: 'per-surah' },
+        Alafasy:      { url: 'https://cdn.islamic.network/quran/audio/128/ar.alafasy/', padCh: true, padVr: true, type: 'per-verse' },
         YasserAlDosari: { url: 'https://audio-cdn.tarteel.ai/quran/yasserAlDosari/', padCh: true, padVr: true, type: 'per-verse' }
     };
 
-    var SURAH_META = {};
-    var DOSARI_META = {};
-    var _reciterMetaLoading = {};
+    var arabicOrigMap = {};
+    var _currentHighlightKey = null;
+    var _timingsCache = {};
 
     var SURAH_LIGATURES = [
         '\uFC45','\uFC46','\uFC47','\uFC4A','\uFC4B','\uFC4E','\uFC4F','\uFC51','\uFC52','\uFC53',
@@ -75,6 +74,13 @@
         footnoteOverlay: document.getElementById('qr-footnote-overlay'),
         footnoteBody: document.getElementById('qr-footnote-body'),
         footnoteClose: document.getElementById('qr-footnote-close'),
+        tafsirLangSelect: document.getElementById('qr-tafsir-lang'),
+        tafsirPopup: document.getElementById('qr-tafsir-popup'),
+        tafsirOverlay: document.getElementById('qr-tafsir-overlay'),
+        tafsirClose: document.getElementById('qr-tafsir-close'),
+        tafsirTitle: document.getElementById('qr-tafsir-title'),
+        tafsirBody: document.getElementById('qr-tafsir-body'),
+        tafsirSource: document.getElementById('qr-tafsir-source'),
         clearCache: document.getElementById('qr-clear-cache'),
     };
 
@@ -114,11 +120,12 @@
         setupEventListeners();
         setupPlaybar();
         setupFootnotePopup();
+        setupTafsirPopup();
         setupClearCache();
         setupWbwToggle();
 
         var savedReciter = localStorage.getItem('audio-voice-name');
-        if (savedReciter === 'Sudais' || savedReciter === 'Alafasy') {
+        if (savedReciter === 'Sudais' || savedReciter === 'Alafasy' || savedReciter === 'YasserAlDosari') {
             els.reciterSelect.value = savedReciter;
             currentReciter = savedReciter;
         }
@@ -138,6 +145,11 @@
         if (els.wbwLangSelect) {
             var savedWbwLang = localStorage.getItem('quran-wbw-lang') || 'auto';
             els.wbwLangSelect.value = savedWbwLang;
+        }
+
+        if (els.tafsirLangSelect) {
+            var savedTafsirLang = localStorage.getItem('quran-tafsir-lang') || 'ta';
+            els.tafsirLangSelect.value = savedTafsirLang;
         }
 
         initDropdowns();
@@ -254,9 +266,14 @@
         els.reciterSelect.addEventListener('change', function () {
             currentReciter = this.value;
             localStorage.setItem('audio-voice-name', this.value);
-            loadReciterMetadata(this.value);
             stopAudio();
         });
+
+        if (els.tafsirLangSelect) {
+            els.tafsirLangSelect.addEventListener('change', function () {
+                localStorage.setItem('quran-tafsir-lang', this.value);
+            });
+        }
 
         els.translationSelect.addEventListener('change', function () {
             currentTranslation = this.value;
@@ -448,6 +465,13 @@
 
             html += '<div class="qr-verse-row' + (wbwMode ? ' wbw-active' : '') + '" id="row-' + key.replace(':', '-') + '" data-key="' + key + '">';
 
+            // Head row: play, verse number, tafsir
+            html += '<div class="qr-verse-head">';
+            html += '<button class="qr-verse-tplay" data-chapter="' + ch.id + '" data-verse="' + v + '" data-chpad="' + chPad + '" data-vpad="' + vPad + '" aria-label="Play"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></button>';
+            html += '<span class="qr-verse-tnum">' + v + '</span>';
+            html += '<button class="qr-verse-tafsir" data-key="' + key + '" title="View Tafsir Ibn Kathir">Tafsir</button>';
+            html += '</div>';
+
             // Arabic column
             html += '<div class="qr-verse-arabic" id="ar-' + key.replace(':', '-') + '" dir="rtl">';
             if (wbwMode && wbwWordData && wbwTransData) {
@@ -473,12 +497,6 @@
             } else {
                 html += verse ? verse.text : '';
             }
-            html += '</div>';
-
-            // Controls column
-            html += '<div class="qr-verse-controls">';
-            html += '<button class="qr-verse-tplay" data-chapter="' + ch.id + '" data-verse="' + v + '" data-chpad="' + chPad + '" data-vpad="' + vPad + '" aria-label="Play"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></button>';
-            html += '<span class="qr-verse-tnum">' + v + '</span>';
             html += '</div>';
 
             // Translation column
@@ -512,6 +530,13 @@
                 if (notes.length > 0) {
                     showFootnotePopup(notes);
                 }
+            });
+        });
+
+        els.verses.querySelectorAll('.qr-verse-tafsir').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                openTafsirPopup(this.getAttribute('data-key'));
             });
         });
     }
@@ -563,40 +588,9 @@
         }
     }
 
-    function loadReciterMetadata(reciter, callback) {
-        if (_reciterMetaLoading[reciter]) return;
-        _reciterMetaLoading[reciter] = true;
-        var cfg = RECITER_CFG[reciter];
-        if (!cfg || reciter === 'Sudais' || reciter === 'Alafasy') {
-            if (callback) callback();
-            return;
-        }
-        if (reciter === 'MinshawiKids') {
-            loadFromCacheOrFetch('surah-json', 'js/quran_source/surah.json', function (data) {
-                if (data) SURAH_META = data;
-                _reciterMetaLoading[reciter] = false;
-                if (callback) callback();
-            });
-        } else if (reciter === 'YasserAlDosari') {
-            loadFromCacheOrFetch('dosari-json', 'js/quran_source/ayah-recitation-yasser-al-dosari-murattal-hafs-961.json', function (data) {
-                if (data) DOSARI_META = data;
-                _reciterMetaLoading[reciter] = false;
-                if (callback) callback();
-            });
-        } else {
-            _reciterMetaLoading[reciter] = false;
-            if (callback) callback();
-        }
-    }
-
     function getAudioUrl(item) {
         var cfg = RECITER_CFG[currentReciter];
         if (!cfg) return null;
-        if (cfg.type === 'per-surah') {
-            var meta = SURAH_META[String(item.chapter)];
-            if (meta && meta.audio_url) return meta.audio_url;
-            return null;
-        }
         var chPad = cfg.padCh ? pad(item.chapter, 3) : String(item.chapter);
         var vrPad = cfg.padVr ? pad(item.verse, 3) : String(item.verse);
         return cfg.url + chPad + vrPad + '.mp3';
@@ -724,6 +718,46 @@
         els.footnotePopup.style.display = 'none';
     }
 
+    function setupTafsirPopup() {
+        if (!els.tafsirPopup) return;
+        els.tafsirOverlay.addEventListener('click', closeTafsirPopup);
+        els.tafsirClose.addEventListener('click', closeTafsirPopup);
+    }
+
+    function openTafsirPopup(key) {
+        if (!els.tafsirPopup) return;
+        var parts = key.split(':');
+        var surahNum = parseInt(parts[0], 10);
+        var ayahNum = parseInt(parts[1], 10);
+        var ch = chapters[surahNum - 1];
+        var lang = els.tafsirLangSelect ? els.tafsirLangSelect.value : 'ta';
+        var langLabel = lang === 'en' ? 'English' : 'Tamil';
+
+        els.tafsirTitle.textContent = 'Tafsir Ibn Kathir (' + langLabel + ') \u2014 Surah ' + (ch ? ch.en : surahNum) + ' : Ayah ' + ayahNum;
+        els.tafsirSource.textContent = lang === 'en'
+            ? 'Source: Tafsir Ibn Kathir (Abridged) \u00b7 quran.com'
+            : 'Source: Tafsir Ibn Kathir (Tamil) \u00b7 tamililquran.com';
+        els.tafsirBody.innerHTML = '<p class="qr-tafsir-loading">Loading tafsir...</p>';
+        els.tafsirBody.dir = lang === 'en' ? 'ltr' : 'auto';
+        els.tafsirPopup.style.display = 'flex';
+
+        var fileKey = 'tafsir-' + lang + '-' + pad(surahNum, 3);
+        var filePath = 'js/tafsir/' + (lang === 'en' ? 'english' : 'tamil') + '-' + pad(surahNum, 3) + '.json';
+        loadFromCacheOrFetch(fileKey, filePath, function (data) {
+            if (!els.tafsirPopup || els.tafsirPopup.style.display === 'none') return;
+            var entry = data && data.data ? data.data[String(ayahNum)] : null;
+            if (entry && entry.html) {
+                els.tafsirBody.innerHTML = entry.html;
+            } else {
+                els.tafsirBody.innerHTML = '<p class="qr-tafsir-missing">Tafsir Ibn Kathir (' + langLabel + ') is not yet available for this verse. Switch the tafsir language in the navigation bar or check back later.</p>';
+            }
+        });
+    }
+
+    function closeTafsirPopup() {
+        if (els.tafsirPopup) els.tafsirPopup.style.display = 'none';
+    }
+
     /* ---- Bookmarks ---- */
 
     function getBookmarks() {
@@ -799,6 +833,7 @@
         var item = audioQueue[0];
         var url = getAudioUrl(item);
 
+        restoreArabic();
         document.querySelectorAll('.qr-verse-row.playing').forEach(function (el) { el.classList.remove('playing'); });
 
         var ch = chapters[item.chapter - 1];
@@ -812,28 +847,18 @@
         updateFixedBar(item, ch);
         lastPlayedVerse = item.verse;
 
-        var cfg = RECITER_CFG[currentReciter];
-        var isPerSurah = cfg && cfg.type === 'per-surah';
-        var isDosari = currentReciter === 'YasserAlDosari';
-        var dosariEntry = isDosari ? (DOSARI_META[item.key] || null) : null;
+        var isAlafasy = currentReciter === 'Alafasy';
 
-        if (isPerSurah && audioEl && audioEl.src && audioEl.src.indexOf(String(item.chapter) + '.mp3') !== -1 && !audioEl.ended) {
-            updateWbwVerseHighlight(item);
-            audioQueue.shift();
-            if (audioQueue.length > 0 && audioQueue[0].chapter === item.chapter) {
-                setTimeout(playNextAudio, 200);
-            } else {
-                playNextAudio();
-            }
-            return;
+        if (isAlafasy && !(els.wbwToggle && els.wbwToggle.checked)) {
+            renderUthmaniWordSpans(item);
         }
 
         var newAudio = new Audio(url);
         var lastScrollTime = 0;
+        var timings = isAlafasy ? getTimingEntry(item) : null;
         newAudio.addEventListener('timeupdate', function () {
-            updateWbwVerseHighlight(item);
-            if (isDosari && dosariEntry && dosariEntry.segments) {
-                updateDosariWordHighlight(item, dosariEntry.segments, newAudio.currentTime * 1000);
+            if (isAlafasy && timings && timings.words) {
+                updateWordHighlight(item, timings, newAudio.currentTime * 1000);
             }
             var now = Date.now();
             if (now - lastScrollTime > 800) {
@@ -844,66 +869,89 @@
         });
         newAudio.addEventListener('ended', function () {
             if (gen !== audioGen) return;
+            restoreArabic();
             audioQueue.shift();
             playNextAudio();
         });
         newAudio.addEventListener('error', function () {
             if (gen !== audioGen) return;
+            restoreArabic();
             audioQueue.shift();
             playNextAudio();
         });
         newAudio.play().catch(function () {
             if (gen !== audioGen) return;
+            restoreArabic();
             audioQueue.shift();
             playNextAudio();
         });
         audioEl = newAudio;
     }
 
-    function updateWbwVerseHighlight(item) {
-        var rowId = 'row-' + item.chapter + '-' + item.verse;
-        var rowEl = document.getElementById(rowId);
-        if (rowEl) {
-            rowEl.classList.add('playing');
+    function getTimingEntry(item) {
+        var fileKey = 'alafasy-timings-' + pad(item.chapter, 3);
+        var data = _timingsCache[item.chapter];
+        if (!data) {
+            data = getCachedData(fileKey);
+            if (data) _timingsCache[item.chapter] = data;
         }
-        var cfg = RECITER_CFG[currentReciter];
-        if (!cfg || cfg.type !== 'per-surah') return;
-        var ch = chapters[item.chapter - 1];
-        if (!ch) return;
-        var meta = SURAH_META[String(item.chapter)];
-        if (!meta || !meta.duration) return;
-        if (!audioEl || audioEl.duration <= 0) return;
-        var progress = (audioEl.currentTime / meta.duration) * 100;
-        var verseDur = 100 / ch.verses;
-        var expectedVerse = Math.floor(progress / verseDur) + 1;
-        if (expectedVerse > ch.verses) expectedVerse = ch.verses;
-        if (expectedVerse !== item.verse) {
-            var nextRowId = 'row-' + item.chapter + '-' + expectedVerse;
-            var nextRow = document.getElementById(nextRowId);
-            if (nextRow) nextRow.classList.add('playing');
+        if (!data) {
+            loadFromCacheOrFetch(fileKey, 'js/quran_source/timings/alafasy/' + pad(item.chapter, 3) + '.json', function (d) {
+                if (d) _timingsCache[item.chapter] = d;
+            });
+            return null;
         }
+        var entry = data.data ? data.data[String(item.verse)] : null;
+        return entry && entry.words ? entry : null;
     }
 
-    function updateDosariWordHighlight(item, segments, currentTimeMs) {
+    function renderUthmaniWordSpans(item) {
         var rowId = 'row-' + item.chapter + '-' + item.verse;
         var rowEl = document.getElementById(rowId);
         if (!rowEl) return;
-        var activeWord = null;
-        for (var i = 0; i < segments.length; i++) {
-            var seg = segments[i];
-            if (currentTimeMs >= seg[1] && currentTimeMs < seg[2]) {
-                activeWord = seg[0];
-                break;
-            }
+        var arEl = rowEl.querySelector('.qr-verse-arabic');
+        if (!arEl) return;
+        if (!arabicOrigMap[rowId]) {
+            arabicOrigMap[rowId] = arEl.innerHTML;
         }
-        var wordUnits = rowEl.querySelectorAll('.qr-word-unit');
-        wordUnits.forEach(function (w, idx) {
-            if (activeWord !== null && idx + 1 === activeWord) {
-                w.style.background = 'rgba(79,70,229,0.2)';
-            } else {
-                w.style.background = '';
-            }
+        var entry = getTimingEntry(item);
+        if (!entry || !entry.words || entry.words.length === 0) return;
+        var words = entry.words;
+        var spans = [];
+        for (var i = 0; i < words.length; i++) {
+            spans.push('<span class="qr-ut-word" data-wi="' + (i + 1) + '">' + words[i].w + '</span>');
+        }
+        arEl.innerHTML = spans.join(' ');
+    }
+
+    function updateWordHighlight(item, entry, currentTimeMs) {
+        var rowId = 'row-' + item.chapter + '-' + item.verse;
+        var rowEl = document.getElementById(rowId);
+        if (!rowEl) return;
+        if (_currentHighlightKey !== item.key) _currentHighlightKey = item.key;
+        var words = entry.words;
+        var activeIdx = -1;
+        for (var i = 0; i < words.length; i++) {
+            if (currentTimeMs >= words[i].s && currentTimeMs < words[i].e) { activeIdx = i; break; }
+        }
+        var utWords = rowEl.querySelectorAll('.qr-ut-word');
+        for (var j = 0; j < utWords.length; j++) {
+            var el = utWords[j];
+            el.classList.remove('active', 'done');
+            if (activeIdx === -1) continue;
+            if (j < activeIdx) el.classList.add('done');
+            else if (j === activeIdx) el.classList.add('active');
+        }
+    }
+
+    function restoreArabic() {
+        Object.keys(arabicOrigMap).forEach(function (rowId) {
+            var rowEl = document.getElementById(rowId);
+            var arEl = rowEl ? rowEl.querySelector('.qr-verse-arabic') : null;
+            if (arEl) arEl.innerHTML = arabicOrigMap[rowId];
         });
+        arabicOrigMap = {};
+        _currentHighlightKey = null;
     }
 
     function togglePause() {
@@ -971,6 +1019,7 @@
         hideContinuePrompt();
         if (audioEl) { audioEl.pause(); audioEl.src = ''; audioEl = null; }
         audioQueue = [];
+        restoreArabic();
         document.querySelectorAll('.qr-verse-row.playing').forEach(function (el) { el.classList.remove('playing'); });
         els.fixedPlayBar.classList.remove('playing');
         updatePlayPauseIcon();
@@ -986,6 +1035,7 @@
         hideContinuePrompt();
         if (audioEl) { audioEl.pause(); audioEl.src = ''; audioEl = null; }
         audioQueue = [];
+        restoreArabic();
         document.querySelectorAll('.qr-verse-row.playing').forEach(function (el) { el.classList.remove('playing'); });
         els.fixedPlayBar.classList.remove('playing');
         updatePlayPauseIcon();

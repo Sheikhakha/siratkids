@@ -39,13 +39,19 @@
                 <select id="qr-reciter" class="qr-nav-select">
                     <option value="Sudais">Sudais</option>
                     <option value="Alafasy">Al-Afasy</option>
-                    <option value="MinshawiKids">Minshawi Kids</option>
                     <option value="YasserAlDosari">Yasser Al-Dosari</option>
                 </select>
             </div>
             <div class="qr-nav-group">
                 <label class="qr-nav-label" for="qr-translation">Translation:</label>
                 <select id="qr-translation" class="qr-nav-select"></select>
+            </div>
+            <div class="qr-nav-group">
+                <label class="qr-nav-label" for="qr-tafsir-lang">Tafsir:</label>
+                <select id="qr-tafsir-lang" class="qr-nav-select">
+                    <option value="ta">Tamil</option>
+                    <option value="en">English</option>
+                </select>
             </div>
             <div class="qr-nav-group">
                 <label class="qr-wbw-toggle" id="qr-wbw-toggle-label">
@@ -137,6 +143,18 @@
                 <button class="qr-footnote-close" id="qr-footnote-close">&times;</button>
             </div>
             <div class="qr-footnote-body" id="qr-footnote-body"></div>
+        </div>
+    </div>
+
+    <div class="qr-tafsir-popup" id="qr-tafsir-popup" style="display:none;">
+        <div class="qr-tafsir-overlay" id="qr-tafsir-overlay"></div>
+        <div class="qr-tafsir-modal">
+            <div class="qr-tafsir-header">
+                <h3 id="qr-tafsir-title">Tafsir Ibn Kathir</h3>
+                <button class="qr-tafsir-close" id="qr-tafsir-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="qr-tafsir-body" id="qr-tafsir-body"></div>
+            <div class="qr-tafsir-source" id="qr-tafsir-source"></div>
         </div>
     </div>
 

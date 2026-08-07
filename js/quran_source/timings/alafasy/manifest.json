@@ -1,0 +1,630 @@
+{
+ "reciter": "Alafasy",
+ "source": "quranlab/quran-audio-text (config: mishary-alafasy)",
+ "total_surahs": 114,
+ "total_verses": 6236,
+ "covered_verses": 6206,
+ "missing_verses": 30,
+ "total_words": 76717,
+ "surahs": {
+  "1": {
+   "verses": 7,
+   "words": 29,
+   "missing": []
+  },
+  "2": {
+   "verses": 286,
+   "words": 6078,
+   "missing": [
+    20,
+    181
+   ]
+  },
+  "3": {
+   "verses": 200,
+   "words": 3481,
+   "missing": []
+  },
+  "4": {
+   "verses": 176,
+   "words": 3696,
+   "missing": [
+    39,
+    78
+   ]
+  },
+  "5": {
+   "verses": 120,
+   "words": 2773,
+   "missing": [
+    4
+   ]
+  },
+  "6": {
+   "verses": 165,
+   "words": 3035,
+   "missing": [
+    104
+   ]
+  },
+  "7": {
+   "verses": 206,
+   "words": 3221,
+   "missing": [
+    38,
+    40,
+    43
+   ]
+  },
+  "8": {
+   "verses": 75,
+   "words": 1222,
+   "missing": [
+    6
+   ]
+  },
+  "9": {
+   "verses": 129,
+   "words": 2476,
+   "missing": [
+    60
+   ]
+  },
+  "10": {
+   "verses": 109,
+   "words": 1828,
+   "missing": [
+    1
+   ]
+  },
+  "11": {
+   "verses": 123,
+   "words": 1871,
+   "missing": [
+    21,
+    29,
+    69
+   ]
+  },
+  "12": {
+   "verses": 111,
+   "words": 1745,
+   "missing": [
+    53,
+    59
+   ]
+  },
+  "13": {
+   "verses": 43,
+   "words": 688,
+   "missing": [
+    1,
+    11,
+    16,
+    31,
+    37
+   ]
+  },
+  "14": {
+   "verses": 52,
+   "words": 796,
+   "missing": [
+    21
+   ]
+  },
+  "15": {
+   "verses": 99,
+   "words": 655,
+   "missing": []
+  },
+  "16": {
+   "verses": 128,
+   "words": 1844,
+   "missing": []
+  },
+  "17": {
+   "verses": 111,
+   "words": 1556,
+   "missing": []
+  },
+  "18": {
+   "verses": 110,
+   "words": 1579,
+   "missing": []
+  },
+  "19": {
+   "verses": 98,
+   "words": 961,
+   "missing": []
+  },
+  "20": {
+   "verses": 135,
+   "words": 1309,
+   "missing": [
+    71
+   ]
+  },
+  "21": {
+   "verses": 112,
+   "words": 1156,
+   "missing": [
+    31
+   ]
+  },
+  "22": {
+   "verses": 78,
+   "words": 1274,
+   "missing": []
+  },
+  "23": {
+   "verses": 118,
+   "words": 1050,
+   "missing": []
+  },
+  "24": {
+   "verses": 64,
+   "words": 1316,
+   "missing": []
+  },
+  "25": {
+   "verses": 77,
+   "words": 893,
+   "missing": []
+  },
+  "26": {
+   "verses": 227,
+   "words": 1318,
+   "missing": []
+  },
+  "27": {
+   "verses": 93,
+   "words": 1151,
+   "missing": []
+  },
+  "28": {
+   "verses": 88,
+   "words": 1430,
+   "missing": []
+  },
+  "29": {
+   "verses": 69,
+   "words": 976,
+   "missing": []
+  },
+  "30": {
+   "verses": 60,
+   "words": 817,
+   "missing": []
+  },
+  "31": {
+   "verses": 34,
+   "words": 546,
+   "missing": []
+  },
+  "32": {
+   "verses": 30,
+   "words": 372,
+   "missing": []
+  },
+  "33": {
+   "verses": 73,
+   "words": 1257,
+   "missing": [
+    35
+   ]
+  },
+  "34": {
+   "verses": 54,
+   "words": 883,
+   "missing": []
+  },
+  "35": {
+   "verses": 45,
+   "words": 775,
+   "missing": []
+  },
+  "36": {
+   "verses": 83,
+   "words": 725,
+   "missing": []
+  },
+  "37": {
+   "verses": 182,
+   "words": 861,
+   "missing": []
+  },
+  "38": {
+   "verses": 88,
+   "words": 733,
+   "missing": []
+  },
+  "39": {
+   "verses": 75,
+   "words": 1172,
+   "missing": []
+  },
+  "40": {
+   "verses": 85,
+   "words": 1198,
+   "missing": [
+    64
+   ]
+  },
+  "41": {
+   "verses": 54,
+   "words": 794,
+   "missing": []
+  },
+  "42": {
+   "verses": 53,
+   "words": 860,
+   "missing": []
+  },
+  "43": {
+   "verses": 89,
+   "words": 830,
+   "missing": []
+  },
+  "44": {
+   "verses": 59,
+   "words": 346,
+   "missing": []
+  },
+  "45": {
+   "verses": 37,
+   "words": 488,
+   "missing": []
+  },
+  "46": {
+   "verses": 35,
+   "words": 643,
+   "missing": []
+  },
+  "47": {
+   "verses": 38,
+   "words": 539,
+   "missing": []
+  },
+  "48": {
+   "verses": 29,
+   "words": 560,
+   "missing": []
+  },
+  "49": {
+   "verses": 18,
+   "words": 347,
+   "missing": []
+  },
+  "50": {
+   "verses": 45,
+   "words": 368,
+   "missing": [
+    34
+   ]
+  },
+  "51": {
+   "verses": 60,
+   "words": 360,
+   "missing": []
+  },
+  "52": {
+   "verses": 49,
+   "words": 312,
+   "missing": []
+  },
+  "53": {
+   "verses": 62,
+   "words": 360,
+   "missing": []
+  },
+  "54": {
+   "verses": 55,
+   "words": 342,
+   "missing": []
+  },
+  "55": {
+   "verses": 78,
+   "words": 351,
+   "missing": []
+  },
+  "56": {
+   "verses": 96,
+   "words": 379,
+   "missing": []
+  },
+  "57": {
+   "verses": 29,
+   "words": 574,
+   "missing": []
+  },
+  "58": {
+   "verses": 22,
+   "words": 472,
+   "missing": []
+  },
+  "59": {
+   "verses": 24,
+   "words": 445,
+   "missing": []
+  },
+  "60": {
+   "verses": 13,
+   "words": 348,
+   "missing": []
+  },
+  "61": {
+   "verses": 14,
+   "words": 186,
+   "missing": [
+    14
+   ]
+  },
+  "62": {
+   "verses": 11,
+   "words": 175,
+   "missing": []
+  },
+  "63": {
+   "verses": 11,
+   "words": 180,
+   "missing": []
+  },
+  "64": {
+   "verses": 18,
+   "words": 241,
+   "missing": []
+  },
+  "65": {
+   "verses": 12,
+   "words": 253,
+   "missing": [
+    11
+   ]
+  },
+  "66": {
+   "verses": 12,
+   "words": 249,
+   "missing": []
+  },
+  "67": {
+   "verses": 30,
+   "words": 333,
+   "missing": []
+  },
+  "68": {
+   "verses": 52,
+   "words": 300,
+   "missing": []
+  },
+  "69": {
+   "verses": 52,
+   "words": 258,
+   "missing": []
+  },
+  "70": {
+   "verses": 44,
+   "words": 217,
+   "missing": []
+  },
+  "71": {
+   "verses": 28,
+   "words": 226,
+   "missing": []
+  },
+  "72": {
+   "verses": 28,
+   "words": 285,
+   "missing": []
+  },
+  "73": {
+   "verses": 20,
+   "words": 199,
+   "missing": []
+  },
+  "74": {
+   "verses": 56,
+   "words": 255,
+   "missing": []
+  },
+  "75": {
+   "verses": 40,
+   "words": 164,
+   "missing": []
+  },
+  "76": {
+   "verses": 31,
+   "words": 243,
+   "missing": []
+  },
+  "77": {
+   "verses": 50,
+   "words": 181,
+   "missing": []
+  },
+  "78": {
+   "verses": 40,
+   "words": 173,
+   "missing": []
+  },
+  "79": {
+   "verses": 46,
+   "words": 179,
+   "missing": []
+  },
+  "80": {
+   "verses": 42,
+   "words": 133,
+   "missing": []
+  },
+  "81": {
+   "verses": 29,
+   "words": 104,
+   "missing": []
+  },
+  "82": {
+   "verses": 19,
+   "words": 80,
+   "missing": []
+  },
+  "83": {
+   "verses": 36,
+   "words": 169,
+   "missing": []
+  },
+  "84": {
+   "verses": 25,
+   "words": 107,
+   "missing": []
+  },
+  "85": {
+   "verses": 22,
+   "words": 109,
+   "missing": []
+  },
+  "86": {
+   "verses": 17,
+   "words": 61,
+   "missing": []
+  },
+  "87": {
+   "verses": 19,
+   "words": 72,
+   "missing": []
+  },
+  "88": {
+   "verses": 26,
+   "words": 92,
+   "missing": []
+  },
+  "89": {
+   "verses": 30,
+   "words": 137,
+   "missing": []
+  },
+  "90": {
+   "verses": 20,
+   "words": 82,
+   "missing": []
+  },
+  "91": {
+   "verses": 15,
+   "words": 54,
+   "missing": []
+  },
+  "92": {
+   "verses": 21,
+   "words": 71,
+   "missing": []
+  },
+  "93": {
+   "verses": 11,
+   "words": 40,
+   "missing": []
+  },
+  "94": {
+   "verses": 8,
+   "words": 27,
+   "missing": []
+  },
+  "95": {
+   "verses": 8,
+   "words": 34,
+   "missing": []
+  },
+  "96": {
+   "verses": 19,
+   "words": 72,
+   "missing": []
+  },
+  "97": {
+   "verses": 5,
+   "words": 30,
+   "missing": []
+  },
+  "98": {
+   "verses": 8,
+   "words": 94,
+   "missing": []
+  },
+  "99": {
+   "verses": 8,
+   "words": 36,
+   "missing": []
+  },
+  "100": {
+   "verses": 11,
+   "words": 40,
+   "missing": []
+  },
+  "101": {
+   "verses": 11,
+   "words": 36,
+   "missing": []
+  },
+  "102": {
+   "verses": 8,
+   "words": 28,
+   "missing": []
+  },
+  "103": {
+   "verses": 3,
+   "words": 14,
+   "missing": []
+  },
+  "104": {
+   "verses": 9,
+   "words": 33,
+   "missing": []
+  },
+  "105": {
+   "verses": 5,
+   "words": 23,
+   "missing": []
+  },
+  "106": {
+   "verses": 4,
+   "words": 17,
+   "missing": []
+  },
+  "107": {
+   "verses": 7,
+   "words": 25,
+   "missing": []
+  },
+  "108": {
+   "verses": 3,
+   "words": 10,
+   "missing": []
+  },
+  "109": {
+   "verses": 6,
+   "words": 26,
+   "missing": []
+  },
+  "110": {
+   "verses": 3,
+   "words": 19,
+   "missing": []
+  },
+  "111": {
+   "verses": 5,
+   "words": 23,
+   "missing": []
+  },
+  "112": {
+   "verses": 4,
+   "words": 15,
+   "missing": []
+  },
+  "113": {
+   "verses": 5,
+   "words": 23,
+   "missing": []
+  },
+  "114": {
+   "verses": 6,
+   "words": 20,
+   "missing": []
+  }
+ }
+}

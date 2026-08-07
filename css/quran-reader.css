@@ -503,52 +503,50 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 }
 [data-theme="dark"] .qr-verses { background: #1c1917; }
 
-/* Each verse row: Arabic | controls | Translation */
+/* Each verse row: stacked head | Arabic | Translation */
 .qr-verse-row {
     display: flex;
-    align-items: stretch;
+    flex-direction: column;
     border-bottom: 1px solid var(--qr-border);
     transition: background 0.15s;
 }
 .qr-verse-row:hover { background: var(--qr-hover); }
 .qr-verse-row.playing {
-    background: rgba(251,191,36,0.1);
-    box-shadow: 0 0 22px 6px rgba(251,191,36,0.28), inset 0 0 0 1px rgba(251,191,36,0.2);
+    background: #ffffff;
+    box-shadow: inset 0 0 0 1px var(--qr-border);
     transition: box-shadow 0.25s ease;
 }
 [data-theme="dark"] .qr-verse-row.playing {
-    background: rgba(251,191,36,0.08);
-    box-shadow: 0 0 22px 6px rgba(251,191,36,0.22), inset 0 0 0 1px rgba(251,191,36,0.15);
+    background: var(--qr-surface-card);
+}
+.qr-verse-row.playing .qr-verse-arabic {
+    color: var(--qr-primary-dark);
+}
+[data-theme="dark"] .qr-verse-row.playing .qr-verse-arabic {
+    color: var(--qr-primary);
+}
+
+/* Head row: play | verse num | tafsir */
+.qr-verse-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px 0;
 }
 
 .qr-verse-arabic {
     flex: 1;
-    padding: 12px 16px;
+    padding: 10px 16px;
     font-family: var(--qr-font-ar-nastaleeq);
     font-size: 1.6rem;
     line-height: 2;
     color: #1e293b;
     direction: rtl;
     text-align: right;
-    transition: background 0.2s;
+    transition: color 0.2s;
     min-width: 0;
 }
 [data-theme="dark"] .qr-verse-arabic { color: #e2e8f0; }
-
-/* Controls column */
-.qr-verse-controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 8px 8px;
-    min-width: 40px;
-    background: var(--qr-surface);
-    border-left: 1px solid var(--qr-border);
-    border-right: 1px solid var(--qr-border);
-}
-[data-theme="dark"] .qr-verse-controls { background: rgba(30,41,59,0.5); }
 
 .qr-verse-tnum {
     font-size: 0.7rem;
@@ -580,10 +578,29 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     border-color: var(--qr-primary);
 }
 
+.qr-verse-tafsir {
+    background: none;
+    border: 1px solid var(--qr-border);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 4px 10px;
+    font-family: var(--qr-font-en);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--qr-text-medium);
+    margin-left: auto;
+    transition: all 0.2s;
+}
+.qr-verse-tafsir:hover {
+    color: #fff;
+    background: var(--qr-primary);
+    border-color: var(--qr-primary);
+}
+
 /* Translation column */
 .qr-verse-translation {
     flex: 1;
-    padding: 12px 16px;
+    padding: 2px 16px 12px;
     font-size: 0.92rem;
     color: var(--qr-text-medium);
     line-height: 1.7;
@@ -669,16 +686,16 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: flex-start;
-    gap: 6px 14px;
-    padding: 8px 16px;
-    line-height: 1.4;
+    gap: 12px 28px;
+    padding: 10px 16px;
+    line-height: 1.5;
 }
 .qr-word-unit {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-width: 100px;
+    max-width: 170px;
 }
 .qr-word-arabic {
     font-family: var(--qr-font-ar-nastaleeq);
@@ -690,13 +707,28 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     color: #e2e8f0;
 }
 .qr-word-trans {
-    font-size: 0.55rem;
-    color: var(--qr-text-light);
-    line-height: 1.1;
+    font-size: 0.8rem;
+    color: var(--qr-text-medium);
+    line-height: 1.2;
     direction: ltr;
-    margin-top: 1px;
-    max-width: 90px;
+    margin-top: 2px;
+    max-width: 160px;
     overflow-wrap: break-word;
+}
+
+/* Uthmani word spans used during Alafasy word-synced playback */
+.qr-ut-word {
+    display: inline;
+    transition: color 0.2s, background 0.2s;
+    border-radius: 4px;
+}
+.qr-ut-word.done {
+    color: var(--qr-text-light);
+}
+.qr-ut-word.active {
+    color: #b45309;
+    background: rgba(251,191,36,0.25);
+    box-shadow: 0 0 0 2px rgba(251,191,36,0.35);
 }
 .qr-wbw-loading {
     font-size: 0.7rem;
@@ -794,6 +826,85 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     opacity: 1;
 }
 
+/* Tafsir popup */
+.qr-tafsir-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 510;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.qr-tafsir-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+.qr-tafsir-modal {
+    position: relative;
+    background: var(--qr-surface);
+    border-radius: 12px;
+    max-width: 640px;
+    width: 90%;
+    max-height: 75vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    z-index: 1;
+}
+.qr-tafsir-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--qr-border);
+}
+.qr-tafsir-header h3 {
+    font-family: var(--qr-font-en-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--qr-text);
+}
+.qr-tafsir-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--qr-text-medium);
+    padding: 0 4px;
+    line-height: 1;
+}
+.qr-tafsir-close:hover {
+    color: var(--qr-text);
+}
+.qr-tafsir-body {
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--qr-text);
+}
+.qr-tafsir-body p {
+    margin-bottom: 10px;
+}
+.qr-tafsir-body h2,
+.qr-tafsir-body h3 {
+    font-family: var(--qr-font-en-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--qr-primary-dark);
+    margin: 12px 0 6px;
+}
+.qr-tafsir-loading,
+.qr-tafsir-missing {
+    color: var(--qr-text-medium);
+    font-style: italic;
+}
+.qr-tafsir-source {
+    padding: 10px 20px 16px;
+    border-top: 1px solid var(--qr-border);
+    font-size: 0.7rem;
+    color: var(--qr-text-light);
+}
+
 /* Clear cache */
 .qr-clear-cache {
     font-size: 0.65rem;
@@ -869,18 +980,23 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     .qr-verse-row { flex-direction: column; }
     .qr-verse-arabic {
         font-size: 1.2rem;
-        padding: 10px 12px;
-        border-bottom: 1px solid var(--qr-border);
+        padding: 8px 12px;
     }
-    .qr-verse-controls {
-        flex-direction: row;
-        min-width: auto;
-        padding: 4px 12px;
-        border-left: none;
-        border-right: none;
-        border-bottom: 1px solid var(--qr-border);
+    .qr-verse-head {
+        padding: 8px 12px 0;
+        flex-wrap: wrap;
     }
-    .qr-verse-translation { padding: 10px 12px; }
+    .qr-verse-translation { padding: 2px 12px 10px; }
+    .qr-verse-row.wbw-active .qr-verse-arabic {
+        gap: 8px 16px;
+    }
+    .qr-word-unit {
+        max-width: 130px;
+    }
+    .qr-word-trans {
+        font-size: 0.7rem;
+        max-width: 120px;
+    }
     .qr-nav-right { gap: 6px; }
     .qr-dropdown-trigger { font-size: 0.7rem; padding: 3px 6px; }
     .qr-nav-group { gap: 2px; }

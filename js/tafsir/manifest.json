@@ -1,0 +1,593 @@
+{
+ "source": "https://www.tamililquran.com/tafsiribnkathir.php",
+ "generated": "Sun Aug  2 22:58:39 2026",
+ "surahs": {
+  "1": {
+   "verses": 7,
+   "count": 7,
+   "missing": [],
+   "english": {
+    "verses": 7,
+    "count": 7,
+    "missing": []
+   }
+  },
+  "2": {
+   "verses": 286,
+   "count": 286,
+   "missing": [],
+   "english": {
+    "verses": 286,
+    "count": 286,
+    "missing": []
+   }
+  },
+  "3": {
+   "verses": 200,
+   "count": 200,
+   "missing": []
+  },
+  "4": {
+   "verses": 176,
+   "count": 176,
+   "missing": []
+  },
+  "5": {
+   "verses": 120,
+   "count": 120,
+   "missing": []
+  },
+  "6": {
+   "verses": 165,
+   "count": 165,
+   "missing": []
+  },
+  "7": {
+   "verses": 206,
+   "count": 206,
+   "missing": []
+  },
+  "8": {
+   "verses": 75,
+   "count": 75,
+   "missing": []
+  },
+  "9": {
+   "verses": 129,
+   "count": 129,
+   "missing": []
+  },
+  "10": {
+   "verses": 109,
+   "count": 109,
+   "missing": []
+  },
+  "11": {
+   "verses": 123,
+   "count": 123,
+   "missing": []
+  },
+  "12": {
+   "verses": 111,
+   "count": 111,
+   "missing": []
+  },
+  "13": {
+   "verses": 43,
+   "count": 43,
+   "missing": []
+  },
+  "14": {
+   "verses": 52,
+   "count": 52,
+   "missing": []
+  },
+  "15": {
+   "verses": 99,
+   "count": 99,
+   "missing": []
+  },
+  "16": {
+   "verses": 128,
+   "count": 128,
+   "missing": []
+  },
+  "17": {
+   "verses": 111,
+   "count": 111,
+   "missing": []
+  },
+  "18": {
+   "verses": 110,
+   "count": 110,
+   "missing": []
+  },
+  "19": {
+   "verses": 98,
+   "count": 98,
+   "missing": []
+  },
+  "20": {
+   "verses": 135,
+   "count": 135,
+   "missing": []
+  },
+  "21": {
+   "verses": 112,
+   "count": 112,
+   "missing": []
+  },
+  "22": {
+   "verses": 78,
+   "count": 78,
+   "missing": []
+  },
+  "23": {
+   "verses": 118,
+   "count": 118,
+   "missing": []
+  },
+  "24": {
+   "verses": 64,
+   "count": 64,
+   "missing": []
+  },
+  "25": {
+   "verses": 77,
+   "count": 77,
+   "missing": []
+  },
+  "26": {
+   "verses": 227,
+   "count": 227,
+   "missing": []
+  },
+  "27": {
+   "verses": 93,
+   "count": 93,
+   "missing": []
+  },
+  "28": {
+   "verses": 88,
+   "count": 88,
+   "missing": []
+  },
+  "29": {
+   "verses": 69,
+   "count": 69,
+   "missing": []
+  },
+  "30": {
+   "verses": 60,
+   "count": 60,
+   "missing": []
+  },
+  "31": {
+   "verses": 34,
+   "count": 34,
+   "missing": []
+  },
+  "32": {
+   "verses": 30,
+   "count": 30,
+   "missing": []
+  },
+  "33": {
+   "verses": 73,
+   "count": 73,
+   "missing": []
+  },
+  "34": {
+   "verses": 54,
+   "count": 54,
+   "missing": []
+  },
+  "35": {
+   "verses": 45,
+   "count": 45,
+   "missing": []
+  },
+  "36": {
+   "verses": 83,
+   "count": 83,
+   "missing": []
+  },
+  "37": {
+   "verses": 182,
+   "count": 182,
+   "missing": []
+  },
+  "38": {
+   "verses": 88,
+   "count": 88,
+   "missing": []
+  },
+  "39": {
+   "verses": 75,
+   "count": 75,
+   "missing": []
+  },
+  "40": {
+   "verses": 85,
+   "count": 85,
+   "missing": []
+  },
+  "41": {
+   "verses": 54,
+   "count": 54,
+   "missing": []
+  },
+  "42": {
+   "verses": 53,
+   "count": 53,
+   "missing": []
+  },
+  "43": {
+   "verses": 89,
+   "count": 89,
+   "missing": []
+  },
+  "44": {
+   "verses": 59,
+   "count": 59,
+   "missing": []
+  },
+  "45": {
+   "verses": 37,
+   "count": 37,
+   "missing": []
+  },
+  "46": {
+   "verses": 35,
+   "count": 35,
+   "missing": []
+  },
+  "47": {
+   "verses": 38,
+   "count": 38,
+   "missing": []
+  },
+  "48": {
+   "verses": 29,
+   "count": 29,
+   "missing": []
+  },
+  "49": {
+   "verses": 18,
+   "count": 18,
+   "missing": []
+  },
+  "50": {
+   "verses": 45,
+   "count": 45,
+   "missing": []
+  },
+  "51": {
+   "verses": 60,
+   "count": 60,
+   "missing": []
+  },
+  "52": {
+   "verses": 49,
+   "count": 49,
+   "missing": []
+  },
+  "53": {
+   "verses": 62,
+   "count": 62,
+   "missing": []
+  },
+  "54": {
+   "verses": 55,
+   "count": 55,
+   "missing": []
+  },
+  "55": {
+   "verses": 78,
+   "count": 78,
+   "missing": []
+  },
+  "56": {
+   "verses": 96,
+   "count": 96,
+   "missing": []
+  },
+  "57": {
+   "verses": 29,
+   "count": 29,
+   "missing": []
+  },
+  "58": {
+   "verses": 22,
+   "count": 22,
+   "missing": []
+  },
+  "59": {
+   "verses": 24,
+   "count": 24,
+   "missing": []
+  },
+  "60": {
+   "verses": 13,
+   "count": 13,
+   "missing": []
+  },
+  "61": {
+   "verses": 14,
+   "count": 14,
+   "missing": []
+  },
+  "62": {
+   "verses": 11,
+   "count": 11,
+   "missing": []
+  },
+  "63": {
+   "verses": 11,
+   "count": 11,
+   "missing": []
+  },
+  "64": {
+   "verses": 18,
+   "count": 18,
+   "missing": []
+  },
+  "65": {
+   "verses": 12,
+   "count": 12,
+   "missing": []
+  },
+  "66": {
+   "verses": 12,
+   "count": 12,
+   "missing": []
+  },
+  "67": {
+   "verses": 30,
+   "count": 30,
+   "missing": []
+  },
+  "68": {
+   "verses": 52,
+   "count": 52,
+   "missing": []
+  },
+  "69": {
+   "verses": 52,
+   "count": 52,
+   "missing": []
+  },
+  "70": {
+   "verses": 44,
+   "count": 44,
+   "missing": []
+  },
+  "71": {
+   "verses": 28,
+   "count": 28,
+   "missing": []
+  },
+  "72": {
+   "verses": 28,
+   "count": 28,
+   "missing": []
+  },
+  "73": {
+   "verses": 20,
+   "count": 20,
+   "missing": []
+  },
+  "74": {
+   "verses": 56,
+   "count": 56,
+   "missing": []
+  },
+  "75": {
+   "verses": 40,
+   "count": 40,
+   "missing": []
+  },
+  "76": {
+   "verses": 31,
+   "count": 31,
+   "missing": []
+  },
+  "77": {
+   "verses": 50,
+   "count": 50,
+   "missing": []
+  },
+  "78": {
+   "verses": 40,
+   "count": 40,
+   "missing": []
+  },
+  "79": {
+   "verses": 46,
+   "count": 46,
+   "missing": []
+  },
+  "80": {
+   "verses": 42,
+   "count": 42,
+   "missing": []
+  },
+  "81": {
+   "verses": 29,
+   "count": 29,
+   "missing": []
+  },
+  "82": {
+   "verses": 19,
+   "count": 19,
+   "missing": []
+  },
+  "83": {
+   "verses": 36,
+   "count": 36,
+   "missing": []
+  },
+  "84": {
+   "verses": 25,
+   "count": 25,
+   "missing": []
+  },
+  "85": {
+   "verses": 22,
+   "count": 22,
+   "missing": []
+  },
+  "86": {
+   "verses": 17,
+   "count": 17,
+   "missing": []
+  },
+  "87": {
+   "verses": 19,
+   "count": 19,
+   "missing": []
+  },
+  "88": {
+   "verses": 26,
+   "count": 26,
+   "missing": []
+  },
+  "89": {
+   "verses": 30,
+   "count": 30,
+   "missing": []
+  },
+  "90": {
+   "verses": 20,
+   "count": 20,
+   "missing": []
+  },
+  "91": {
+   "verses": 15,
+   "count": 15,
+   "missing": []
+  },
+  "92": {
+   "verses": 21,
+   "count": 21,
+   "missing": []
+  },
+  "93": {
+   "verses": 11,
+   "count": 11,
+   "missing": []
+  },
+  "94": {
+   "verses": 8,
+   "count": 8,
+   "missing": []
+  },
+  "95": {
+   "verses": 8,
+   "count": 8,
+   "missing": []
+  },
+  "96": {
+   "verses": 19,
+   "count": 19,
+   "missing": []
+  },
+  "97": {
+   "verses": 5,
+   "count": 5,
+   "missing": []
+  },
+  "98": {
+   "verses": 8,
+   "count": 8,
+   "missing": []
+  },
+  "99": {
+   "verses": 8,
+   "count": 8,
+   "missing": []
+  },
+  "100": {
+   "verses": 11,
+   "count": 11,
+   "missing": []
+  },
+  "101": {
+   "verses": 11,
+   "count": 11,
+   "missing": []
+  },
+  "102": {
+   "verses": 8,
+   "count": 8,
+   "missing": []
+  },
+  "103": {
+   "verses": 3,
+   "count": 3,
+   "missing": []
+  },
+  "104": {
+   "verses": 9,
+   "count": 9,
+   "missing": []
+  },
+  "105": {
+   "verses": 5,
+   "count": 5,
+   "missing": []
+  },
+  "106": {
+   "verses": 4,
+   "count": 4,
+   "missing": []
+  },
+  "107": {
+   "verses": 7,
+   "count": 7,
+   "missing": []
+  },
+  "108": {
+   "verses": 3,
+   "count": 3,
+   "missing": []
+  },
+  "109": {
+   "verses": 6,
+   "count": 6,
+   "missing": []
+  },
+  "110": {
+   "verses": 3,
+   "count": 3,
+   "missing": []
+  },
+  "111": {
+   "verses": 5,
+   "count": 5,
+   "missing": []
+  },
+  "112": {
+   "verses": 4,
+   "count": 4,
+   "missing": []
+  },
+  "113": {
+   "verses": 5,
+   "count": 5,
+   "missing": []
+  },
+  "114": {
+   "verses": 6,
+   "count": 6,
+   "missing": []
+  }
+ },
+ "total_ok": 6236,
+ "total_missing": 0,
+ "english": {
+  "source": "Tafsir Ibn Kathir (Abridged) - quran.com",
+  "updated": "2026-08-03 04:55:00",
+  "total_verses": 293
+ }
+}
