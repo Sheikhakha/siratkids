@@ -609,7 +609,7 @@
             html += '</div>';
 
             if (transHtml) {
-                html += '<div class="qr-verse-translation">' + transHtml + '</div>';
+                html += '<div class="qr-verse-translation"><span class="qr-verse-translation-inner">' + transHtml + '</span></div>';
             }
             html += '</div>';
 

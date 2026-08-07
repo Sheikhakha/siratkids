@@ -610,8 +610,9 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     border-color: var(--qr-primary);
 }
 
-/* Inline footnote markers inside the translation text (minimal, non-breaking) */
+/* Inline footnote markers inside the translation text (true inline <sup>) */
 .qr-fn-sup {
+    display: inline;
     font-size: 0.62em;
     font-weight: 700;
     color: var(--qr-primary-dark);
@@ -905,6 +906,13 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     display: flex;
     align-items: center;
     min-width: 0;
+}
+/* Inner wrapper keeps footnote <sup> markers inside a normal inline flow
+   (a flex container would blockify them into separate flex items). */
+.qr-verse-translation-inner {
+    display: block;
+    min-width: 0;
+    flex: 1;
 }
 
 .qr-nav-center {
