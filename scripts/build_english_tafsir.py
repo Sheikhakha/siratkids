@@ -12,7 +12,7 @@ Workflow (English tafsir is generated incrementally, one surah at a time):
   Repeat until every ayah of the surah is covered; the file is rewritten
   only when a new stage is merged, so progress is never lost.
 
-Output file schema (js/tafsir/english-{NNN}.json):
+Output file schema (js/tafsir/english-{NNN}.js):
   {
     "sura": 1,
     "name_ar": "الفاتحة",
@@ -39,6 +39,26 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TAFSIR_DIR = os.path.join(REPO_ROOT, 'js', 'tafsir')
 CHAPTER_DATA = os.path.join(REPO_ROOT, 'js', 'quran-chapter-data.js')
 ENGLISH_SOURCE = 'Tafsir Ibn Kathir (Abridged) - quran.com'
+
+
+def write_data_js(path, payload):
+    """Write a data payload as a wrapped .js file (loaded via <script>, works on file://)."""
+    name = os.path.splitext(os.path.basename(path))[0]
+    body = json.dumps(payload, ensure_ascii=False, separators=(',', ':'))
+    with open(path, 'w', encoding='utf-8') as fh:
+        fh.write('(function(g){g.__QURAN_DATA=g.__QURAN_DATA||{};g.__QURAN_DATA["')
+        fh.write(name)
+        fh.write('"]=')
+        fh.write(body)
+        fh.write(';})(self);\n')
+
+
+def read_data_js(path):
+    """Parse a wrapped .js data file back into a dict."""
+    with open(path, 'r', encoding='utf-8') as fh:
+        text = fh.read()
+    body = text.split('"]=', 1)[1].rsplit(';})(self);', 1)[0]
+    return json.loads(body)
 
 
 def load_chapters():
@@ -125,12 +145,11 @@ def merge_stage(stage_path, surah_num, chapters, force=False):
     ch = chapters[surah_num - 1]
     verses = int(ch['verses'])
     pad = '{:03d}'.format(surah_num)
-    target = os.path.join(TAFSIR_DIR, 'english-' + pad + '.json')
+    target = os.path.join(TAFSIR_DIR, 'english-' + pad + '.js')
 
     payload = None
     if os.path.exists(target) and not force:
-        with open(target, 'r', encoding='utf-8') as fh:
-            payload = json.load(fh)
+        payload = read_data_js(target)
 
     if payload is None:
         payload = {
@@ -155,8 +174,7 @@ def merge_stage(stage_path, surah_num, chapters, force=False):
     payload['count'] = len(payload['data'])
     payload['missing'] = [v for v in range(1, verses + 1) if str(v) not in payload['data']]
 
-    with open(target, 'w', encoding='utf-8') as fh:
-        json.dump(payload, fh, ensure_ascii=False, separators=(',', ':'))
+    write_data_js(target, payload)
     print('{}: {}/{} ayahs covered, missing={}'.format(
         pad, payload['count'], verses, payload['missing'] or '-'))
     print('wrote', os.path.relpath(target, REPO_ROOT))
@@ -192,10 +210,9 @@ def update_manifest(payload):
 def show_status(chapters):
     for sid in range(1, 115):
         pad = '{:03d}'.format(sid)
-        target = os.path.join(TAFSIR_DIR, 'english-' + pad + '.json')
+        target = os.path.join(TAFSIR_DIR, 'english-' + pad + '.js')
         if os.path.exists(target):
-            with open(target, 'r', encoding='utf-8') as fh:
-                payload = json.load(fh)
+            payload = read_data_js(target)
             print('{} {}: {}/{}'.format(
                 pad, chapters[sid - 1]['en'], payload.get('count', 0), payload.get('verses', 0)))
         else:

@@ -13,7 +13,6 @@
 :root {
     --qr-primary: #4F46E5;
     --qr-primary-dark: #3730A3;
-    --qr-bg: #f0f9ff;
     --qr-surface: #ffffff;
     --qr-surface-card: #f8fafc;
     --qr-text: #1a202c;
@@ -24,7 +23,6 @@
     --qr-active-bg: #eff6ff;
     --qr-shadow: 0 2px 8px rgba(0,0,0,0.08);
     --qr-shadow-md: 0 4px 16px rgba(0,0,0,0.1);
-    --qr-mushaf-bg: #fcf9f2;
     --qr-sidebar-width: 280px;
     --qr-font-en: 'Nunito', sans-serif;
     --qr-font-en-heading: 'Fredoka', 'Nunito', sans-serif;
@@ -34,7 +32,6 @@
 [data-theme="dark"] {
     --qr-primary: #818cf8;
     --qr-primary-dark: #6366f1;
-    --qr-bg: #0f172a;
     --qr-surface: #1e293b;
     --qr-surface-card: #0f172a;
     --qr-text: #e2e8f0;
@@ -45,7 +42,6 @@
     --qr-active-bg: #1e3a5f;
     --qr-shadow: 0 2px 8px rgba(0,0,0,0.3);
     --qr-shadow-md: 0 4px 16px rgba(0,0,0,0.4);
-    --qr-mushaf-bg: #1c1917;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -54,7 +50,7 @@ html { scroll-behavior: smooth; }
 body {
     font-family: var(--qr-font-en);
     color: var(--qr-text);
-    background: var(--qr-bg);
+    background: var(--surface-page);
     line-height: 1.6;
 }
 
@@ -252,7 +248,7 @@ body {
 /* Sidebar */
 .qr-sidebar {
     width: var(--qr-sidebar-width);
-    background: var(--qr-surface);
+    background: var(--surface-page);
     border-right: 1px solid var(--qr-border);
     position: fixed;
     top: 52px;
@@ -499,11 +495,9 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 /* Unified verse list */
 .qr-verses {
     padding: 8px 0;
-    background: var(--qr-mushaf-bg);
 }
-[data-theme="dark"] .qr-verses { background: #1c1917; }
 
-/* Each verse row: stacked head | Arabic | Translation */
+/* Each verse row: stacked head | body (Arabic + Translation) | action */
 .qr-verse-row {
     display: flex;
     flex-direction: column;
@@ -511,13 +505,14 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     transition: background 0.15s;
 }
 .qr-verse-row:hover { background: var(--qr-hover); }
-.qr-verse-row.playing {
-    background: #ffffff;
-    box-shadow: inset 0 0 0 1px var(--qr-border);
-    transition: box-shadow 0.25s ease;
-}
-[data-theme="dark"] .qr-verse-row.playing {
-    background: var(--qr-surface-card);
+
+/* Playing highlight is scoped to the verse text only (Arabic + Translation),
+   never the whole row, action row, or verse-number badge. */
+.qr-verse-row.playing .qr-verse-arabic,
+.qr-verse-row.playing .qr-verse-translation {
+    background: var(--bg-hover);
+    box-shadow: inset 3px 0 0 var(--qr-primary);
+    transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 .qr-verse-row.playing .qr-verse-arabic {
     color: var(--qr-primary-dark);
@@ -578,23 +573,112 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     border-color: var(--qr-primary);
 }
 
-.qr-verse-tafsir {
+/* Verse body: single container wrapping Arabic + Translation */
+.qr-verse-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* Action row under the verse text: Tafsir link + footnote references */
+.qr-verse-action {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px 10px;
+    min-width: 0;
+}
+.qr-tafsir-link {
     background: none;
-    border: 1px solid var(--qr-border);
-    border-radius: 8px;
+    border: none;
+    padding: 0;
+    font-family: var(--qr-font-en);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--qr-primary);
     cursor: pointer;
-    padding: 4px 10px;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+.qr-tafsir-link:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+.qr-verse-fn-ref {
+    background: var(--qr-hover);
+    border: 1px solid var(--qr-border);
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 0 5px;
     font-family: var(--qr-font-en);
     font-size: 0.7rem;
     font-weight: 700;
     color: var(--qr-text-medium);
-    margin-left: auto;
+    line-height: 1.4;
     transition: all 0.2s;
 }
-.qr-verse-tafsir:hover {
+.qr-verse-fn-ref:hover {
     color: #fff;
     background: var(--qr-primary);
     border-color: var(--qr-primary);
+}
+
+/* Inline tafsir panel */
+.qr-verse-tafsir-panel {
+    background: var(--qr-surface);
+    border-top: 1px solid var(--qr-border);
+    padding: 12px 16px;
+    max-height: 380px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--qr-text);
+}
+.qr-tafsir-panel-tabs {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.qr-tafsir-panel-tabs label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    color: var(--qr-text-medium);
+}
+.qr-tafsir-panel-tabs input[type="radio"] {
+    accent-color: var(--qr-primary);
+    cursor: pointer;
+}
+.qr-tafsir-panel-body { min-width: 0; }
+.qr-tafsir-panel-body p {
+    margin-bottom: 10px;
+}
+.qr-tafsir-panel-body h1,
+.qr-tafsir-panel-body h2,
+.qr-tafsir-panel-body h3 {
+    font-family: var(--qr-font-en-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--qr-primary-dark);
+    margin: 12px 0 6px;
+}
+[data-theme="dark"] .qr-tafsir-panel-body h1,
+[data-theme="dark"] .qr-tafsir-panel-body h2,
+[data-theme="dark"] .qr-tafsir-panel-body h3 {
+    color: var(--qr-primary);
+}
+.qr-tafsir-panel-source {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--qr-border);
+    font-size: 0.7rem;
+    color: var(--qr-text-light);
 }
 
 /* Translation column */
@@ -807,102 +891,11 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     margin-right: 4px;
 }
 
-/* Footnote button in translation */
-.qr-verse-footnote-btn {
-    background: none;
-    border: none;
-    color: var(--qr-primary);
-    cursor: pointer;
-    padding: 0 4px;
-    font-size: 0.85rem;
-    vertical-align: middle;
-    display: inline-flex;
-    align-items: center;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-    flex-shrink: 0;
-}
-.qr-verse-footnote-btn:hover {
-    opacity: 1;
-}
-
-/* Tafsir popup */
-.qr-tafsir-popup {
-    position: fixed;
-    inset: 0;
-    z-index: 510;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.qr-tafsir-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-}
-.qr-tafsir-modal {
-    position: relative;
-    background: var(--qr-surface);
-    border-radius: 12px;
-    max-width: 640px;
-    width: 90%;
-    max-height: 75vh;
-    overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    z-index: 1;
-}
-.qr-tafsir-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--qr-border);
-}
-.qr-tafsir-header h3 {
-    font-family: var(--qr-font-en-heading);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--qr-text);
-}
-.qr-tafsir-close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--qr-text-medium);
-    padding: 0 4px;
-    line-height: 1;
-}
-.qr-tafsir-close:hover {
-    color: var(--qr-text);
-}
-.qr-tafsir-body {
-    padding: 16px 20px;
-    font-size: 0.9rem;
-    line-height: 1.8;
-    color: var(--qr-text);
-}
-.qr-tafsir-body p {
-    margin-bottom: 10px;
-}
-.qr-tafsir-body h2,
-.qr-tafsir-body h3 {
-    font-family: var(--qr-font-en-heading);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--qr-primary-dark);
-    margin: 12px 0 6px;
-}
+/* Tafsir loading / missing states (inline panel) */
 .qr-tafsir-loading,
 .qr-tafsir-missing {
     color: var(--qr-text-medium);
     font-style: italic;
-}
-.qr-tafsir-source {
-    padding: 10px 20px 16px;
-    border-top: 1px solid var(--qr-border);
-    font-size: 0.7rem;
-    color: var(--qr-text-light);
 }
 
 /* Clear cache */
@@ -987,6 +980,8 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
         flex-wrap: wrap;
     }
     .qr-verse-translation { padding: 2px 12px 10px; }
+    .qr-verse-action { padding: 0 12px 10px; gap: 10px; }
+    .qr-verse-tafsir-panel { padding: 10px 12px; }
     .qr-verse-row.wbw-active .qr-verse-arabic {
         gap: 8px 16px;
     }

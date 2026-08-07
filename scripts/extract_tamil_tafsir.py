@@ -4,7 +4,7 @@
 Extract Tamil Tafsir (Ibn Kathir) for every ayah of the Quran from
 https://www.tamililquran.com/tafsiribnkathir.php?sura={s}&ayah={a}
 
-Output: one JSON file per surah under js/tafsir/ plus a manifest.
+Output: one wrapped .js file per surah under js/tafsir/ plus a manifest.
 Resumable: skips ayahs already written. Uses stdlib only.
 """
 
@@ -73,12 +73,33 @@ def verse_key(sura, ayah):
     return f"{sura}:{ayah}"
 
 
+def write_data_js(path, payload):
+    """Write a data payload as a wrapped .js file (loaded via <script>, works on file://)."""
+    name = os.path.splitext(os.path.basename(path))[0]
+    body = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        f.write('(function(g){g.__QURAN_DATA=g.__QURAN_DATA||{};g.__QURAN_DATA["')
+        f.write(name)
+        f.write('"]=')
+        f.write(body)
+        f.write(';})(self);\n')
+    os.replace(tmp, path)
+
+
+def read_data_js(path):
+    """Parse a wrapped .js data file back into a dict."""
+    with open(path, encoding="utf-8") as f:
+        text = f.read()
+    body = text.split('"]=', 1)[1].rsplit(';})(self);', 1)[0]
+    return json.loads(body)
+
+
 def load_done(path):
     """Load already-extracted ayah numbers from an existing output file."""
     if not os.path.exists(path):
         return set(), {}
-    with open(path, encoding="utf-8") as f:
-        data = json.load(f)
+    data = read_data_js(path)
     done = {int(a) for a in data.get("data", {})}
     missing = set(data.get("missing", []))
     return done, missing
@@ -101,7 +122,7 @@ def process_one(chapters, sura, ayah, log):
 def scrape_surah(chapters, sura, workers, delay, force, log):
     ch = chapters[sura]
     total = ch["verses"]
-    out_path = os.path.join(OUT_DIR, f"tamil-{sura:03d}.json")
+    out_path = os.path.join(OUT_DIR, f"tamil-{sura:03d}.js")
     done, missing = load_done(out_path)
     pending = []
     for a in range(1, total + 1):
@@ -136,8 +157,7 @@ def scrape_surah(chapters, sura, workers, delay, force, log):
 
     # merge with previously stored data for resume-safety
     if os.path.exists(out_path) and not force:
-        with open(out_path, encoding="utf-8") as f:
-            prev = json.load(f)
+        prev = read_data_js(out_path)
         data = {**prev.get("data", {}), **data}
         missing = set(prev.get("missing", [])) | missing
 
@@ -151,10 +171,7 @@ def scrape_surah(chapters, sura, workers, delay, force, log):
         "missing": sorted(int(x) for x in missing),
         "data": {str(k): v for k, v in sorted(data.items())},
     }
-    tmp = out_path + ".tmp"
-    with open(tmp, "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
-    os.replace(tmp, out_path)
+    write_data_js(out_path, out)
     log.write(f"sura {sura}: saved {len(data)}/{total} -> {out_path}\n")
     log.flush()
 
@@ -190,10 +207,9 @@ def main():
     total_ok = 0
     total_missing = 0
     for sura in range(1, 115):
-        p = os.path.join(OUT_DIR, f"tamil-{sura:03d}.json")
+        p = os.path.join(OUT_DIR, f"tamil-{sura:03d}.js")
         if os.path.exists(p):
-            with open(p, encoding="utf-8") as f:
-                d = json.load(f)
+            d = read_data_js(p)
             manifest["surahs"][sura] = {"verses": d["verses"], "count": d["count"], "missing": d["missing"]}
             total_ok += d["count"]
             total_missing += len(d["missing"])

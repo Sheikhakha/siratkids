@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="preload" href="js/quran_source/indopak-nastaleeq-verse.json" as="fetch" crossorigin>
-    <link rel="preload" href="js/quran_source/taqi-ud-din-al-hilali-muhsin-khan-inline-footnotes.json" as="fetch" crossorigin>
+    <link rel="preload" href="js/quran_source/indopak-nastaleeq-verse.js" as="script">
+    <link rel="preload" href="js/quran_source/taqi-ud-din-al-hilali-muhsin-khan-inline-footnotes.js" as="script">
 </head>
 <body class="disable-onload-animations font-nastaleeq">
 
@@ -143,18 +143,6 @@
                 <button class="qr-footnote-close" id="qr-footnote-close">&times;</button>
             </div>
             <div class="qr-footnote-body" id="qr-footnote-body"></div>
-        </div>
-    </div>
-
-    <div class="qr-tafsir-popup" id="qr-tafsir-popup" style="display:none;">
-        <div class="qr-tafsir-overlay" id="qr-tafsir-overlay"></div>
-        <div class="qr-tafsir-modal">
-            <div class="qr-tafsir-header">
-                <h3 id="qr-tafsir-title">Tafsir Ibn Kathir</h3>
-                <button class="qr-tafsir-close" id="qr-tafsir-close" aria-label="Close">&times;</button>
-            </div>
-            <div class="qr-tafsir-body" id="qr-tafsir-body"></div>
-            <div class="qr-tafsir-source" id="qr-tafsir-source"></div>
         </div>
     </div>
 

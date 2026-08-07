@@ -75,12 +75,6 @@
         footnoteBody: document.getElementById('qr-footnote-body'),
         footnoteClose: document.getElementById('qr-footnote-close'),
         tafsirLangSelect: document.getElementById('qr-tafsir-lang'),
-        tafsirPopup: document.getElementById('qr-tafsir-popup'),
-        tafsirOverlay: document.getElementById('qr-tafsir-overlay'),
-        tafsirClose: document.getElementById('qr-tafsir-close'),
-        tafsirTitle: document.getElementById('qr-tafsir-title'),
-        tafsirBody: document.getElementById('qr-tafsir-body'),
-        tafsirSource: document.getElementById('qr-tafsir-source'),
         clearCache: document.getElementById('qr-clear-cache'),
     };
 
@@ -120,7 +114,6 @@
         setupEventListeners();
         setupPlaybar();
         setupFootnotePopup();
-        setupTafsirPopup();
         setupClearCache();
         setupWbwToggle();
 
@@ -272,6 +265,19 @@
         if (els.tafsirLangSelect) {
             els.tafsirLangSelect.addEventListener('change', function () {
                 localStorage.setItem('quran-tafsir-lang', this.value);
+                var newLang = this.value;
+                document.querySelectorAll('.qr-verse-tafsir-panel:not([hidden])').forEach(function (panel) {
+                    var key = panel.getAttribute('data-key');
+                    var parts = (key || '').split(':');
+                    if (parts.length !== 2) return;
+                    panel.querySelectorAll('input[type="radio"]').forEach(function (r) {
+                        if (r.value === newLang) r.checked = true;
+                    });
+                    var ch = chapters[parseInt(parts[0], 10) - 1];
+                    loadTafsirContent(key, parseInt(parts[0], 10), parseInt(parts[1], 10), ch, newLang,
+                        panel.querySelector('.qr-tafsir-panel-body'),
+                        panel.querySelector('.qr-tafsir-panel-source'));
+                });
             });
         }
 
@@ -465,14 +471,14 @@
 
             html += '<div class="qr-verse-row' + (wbwMode ? ' wbw-active' : '') + '" id="row-' + key.replace(':', '-') + '" data-key="' + key + '">';
 
-            // Head row: play, verse number, tafsir
+            // Head row: play, verse number
             html += '<div class="qr-verse-head">';
             html += '<button class="qr-verse-tplay" data-chapter="' + ch.id + '" data-verse="' + v + '" data-chpad="' + chPad + '" data-vpad="' + vPad + '" aria-label="Play"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></button>';
             html += '<span class="qr-verse-tnum">' + v + '</span>';
-            html += '<button class="qr-verse-tafsir" data-key="' + key + '" title="View Tafsir Ibn Kathir">Tafsir</button>';
             html += '</div>';
 
-            // Arabic column
+            // Verse body: Arabic + Translation in a single container
+            html += '<div class="qr-verse-body">';
             html += '<div class="qr-verse-arabic" id="ar-' + key.replace(':', '-') + '" dir="rtl">';
             if (wbwMode && wbwWordData && wbwTransData) {
                 var wIdx = 1;
@@ -499,15 +505,32 @@
             }
             html += '</div>';
 
-            // Translation column
             if (transText) {
-                html += '<div class="qr-verse-translation">';
-                html += escapeHtml(transText);
-                if (hasFootnotes) {
-                    html += '<button class="qr-verse-footnote-btn" data-key="' + key + '" title="View footnotes">\u2139</button>';
-                }
-                html += '</div>';
+                html += '<div class="qr-verse-translation">' + escapeHtml(transText) + '</div>';
             }
+            html += '</div>';
+
+            // Action row: Tafsir link + numbered footnote references
+            html += '<div class="qr-verse-action">';
+            html += '<button class="qr-tafsir-link" data-key="' + key + '" aria-expanded="false" aria-controls="tafsir-' + key.replace(':', '-') + '">Tafsir</button>';
+            if (hasFootnotes) {
+                var notes = extractFootnotes(transEntry);
+                for (var fi = 0; fi < notes.length; fi++) {
+                    html += '<button class="qr-verse-fn-ref" data-key="' + key + '" title="View footnote ' + (fi + 1) + '"><sup>' + (fi + 1) + '</sup></button>';
+                }
+            }
+            html += '</div>';
+
+            // Inline tafsir panel (hidden until Tafsir is clicked)
+            html += '<div class="qr-verse-tafsir-panel" id="tafsir-' + key.replace(':', '-') + '" data-key="' + key + '" hidden>';
+            html += '<div class="qr-tafsir-panel-tabs">';
+            html += '<label><input type="radio" name="tafsir-lang-' + key.replace(':', '-') + '" value="ta" checked> Tamil</label>';
+            html += '<label><input type="radio" name="tafsir-lang-' + key.replace(':', '-') + '" value="en"> English</label>';
+            html += '</div>';
+            html += '<div class="qr-tafsir-panel-body"></div>';
+            html += '<div class="qr-tafsir-panel-source"></div>';
+            html += '</div>';
+
             html += '</div>';
         }
 
@@ -520,7 +543,7 @@
             });
         });
 
-        els.verses.querySelectorAll('.qr-verse-footnote-btn').forEach(function (btn) {
+        els.verses.querySelectorAll('.qr-verse-fn-ref').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
                 var key = this.getAttribute('data-key');
@@ -533,10 +556,10 @@
             });
         });
 
-        els.verses.querySelectorAll('.qr-verse-tafsir').forEach(function (btn) {
+        els.verses.querySelectorAll('.qr-tafsir-link').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
-                openTafsirPopup(this.getAttribute('data-key'));
+                toggleTafsirPanel(this);
             });
         });
     }
@@ -554,7 +577,7 @@
 
         loadFromCacheOrFetch(
             'indopak-nastaleeq-verse',
-            'js/quran_source/indopak-nastaleeq-verse.json',
+            'js/quran_source/indopak-nastaleeq-verse.js',
             function () { checkDone(); }
         );
 
@@ -562,7 +585,7 @@
         if (defaultTrans) {
             loadFromCacheOrFetch(
                 defaultTrans.file,
-                'js/quran_source/' + defaultTrans.file + '.json',
+                'js/quran_source/' + defaultTrans.file + '.js',
                 function () { checkDone(); }
             );
         } else {
@@ -577,14 +600,14 @@
             var t = registry[key];
             if (t.file === 'taqi-ud-din-al-hilali-muhsin-khan-inline-footnotes') return;
             if (getCachedData(t.file)) return;
-            loadFromCacheOrFetch(t.file, 'js/quran_source/' + t.file + '.json', function () {});
+            loadFromCacheOrFetch(t.file, 'js/quran_source/' + t.file + '.js', function () {});
         });
 
         if (!getCachedData('english-wbw-translation')) {
-            loadFromCacheOrFetch('english-wbw-translation', 'js/quran_source/english-wbw-translation.json', function () {});
+            loadFromCacheOrFetch('english-wbw-translation', 'js/quran_source/english-wbw-translation.js', function () {});
         }
         if (!getCachedData('tamil-wbw-translation')) {
-            loadFromCacheOrFetch('tamil-wbw-translation', 'js/quran_source/tamil-wbw-translation.json', function () {});
+            loadFromCacheOrFetch('tamil-wbw-translation', 'js/quran_source/tamil-wbw-translation.js', function () {});
         }
     }
 
@@ -624,34 +647,39 @@
 
         if (!cachedWord) {
             if (typeof Worker !== 'undefined') {
-                var worker = new Worker('js/quran-loader-worker.js');
-                worker.postMessage({
-                    file: wordKey,
-                    url: 'js/quran_source/indopak-nastaleeq-word.json'
-                });
-                worker.onmessage = function (e) {
-                    if (e.data.status === 'done') {
-                        window.__QURAN_CACHE[wordKey] = e.data.data;
+                try {
+                    var worker = new Worker('js/quran-loader-worker.js');
+                    worker.postMessage({
+                        file: wordKey,
+                        url: 'js/quran_source/indopak-nastaleeq-word.js'
+                    });
+                    worker.onmessage = function (e) {
+                        if (e.data.status === 'done') {
+                            window.__QURAN_CACHE[wordKey] = e.data.data;
+                            worker.terminate();
+                            checkWbwDone();
+                        } else if (e.data.status === 'error') {
+                            worker.terminate();
+                            loadFromCacheOrFetch(wordKey, 'js/quran_source/indopak-nastaleeq-word.js', function () { checkWbwDone(); });
+                        }
+                    };
+                    worker.onerror = function () {
                         worker.terminate();
-                        checkWbwDone();
-                    } else if (e.data.status === 'error') {
-                        worker.terminate();
-                        fetchAndCacheFallback(wordKey, 'js/quran_source/indopak-nastaleeq-word.json', checkWbwDone);
-                    }
-                };
-                worker.onerror = function () {
-                    worker.terminate();
-                    fetchAndCacheFallback(wordKey, 'js/quran_source/indopak-nastaleeq-word.json', checkWbwDone);
-                };
+                        loadFromCacheOrFetch(wordKey, 'js/quran_source/indopak-nastaleeq-word.js', function () { checkWbwDone(); });
+                    };
+                } catch (e) {
+                    // file:// blocks Workers — fall back to main-thread script load
+                    loadFromCacheOrFetch(wordKey, 'js/quran_source/indopak-nastaleeq-word.js', function () { checkWbwDone(); });
+                }
             } else {
-                fetchAndCacheFallback(wordKey, 'js/quran_source/indopak-nastaleeq-word.json', checkWbwDone);
+                loadFromCacheOrFetch(wordKey, 'js/quran_source/indopak-nastaleeq-word.js', function () { checkWbwDone(); });
             }
         } else {
             checkWbwDone();
         }
 
         if (!cachedWbw) {
-            loadFromCacheOrFetch(wbwFile, 'js/quran_source/' + wbwFile + '.json', function () {
+            loadFromCacheOrFetch(wbwFile, 'js/quran_source/' + wbwFile + '.js', function () {
                 checkWbwDone();
             });
         } else {
@@ -660,13 +688,7 @@
     }
 
     function fetchAndCacheFallback(fileKey, url, callback) {
-        fetch(url)
-            .then(function (r) { return r.json(); })
-            .then(function (data) {
-                window.__QURAN_CACHE[fileKey] = data;
-                if (callback) callback(data);
-            })
-            .catch(function () { if (callback) callback(null); });
+        loadFromCacheOrFetch(fileKey, url, callback);
     }
 
     /* ---- Translation helpers ---- */
@@ -718,44 +740,200 @@
         els.footnotePopup.style.display = 'none';
     }
 
-    function setupTafsirPopup() {
-        if (!els.tafsirPopup) return;
-        els.tafsirOverlay.addEventListener('click', closeTafsirPopup);
-        els.tafsirClose.addEventListener('click', closeTafsirPopup);
+    /* ---- Inline per-verse tafsir panel ---- */
+
+    function getDefaultTafsirLang() {
+        if (els.tafsirLangSelect && els.tafsirLangSelect.value) return els.tafsirLangSelect.value;
+        return localStorage.getItem('quran-tafsir-lang') || 'ta';
     }
 
-    function openTafsirPopup(key) {
-        if (!els.tafsirPopup) return;
+    function toggleTafsirPanel(linkBtn) {
+        var key = linkBtn.getAttribute('data-key');
+        var panel = document.getElementById('tafsir-' + key.replace(':', '-'));
+        if (!panel) return;
+        if (panel.hidden) {
+            document.querySelectorAll('.qr-verse-tafsir-panel:not([hidden])').forEach(function (p) {
+                closeTafsirPanel(p);
+            });
+            openTafsirPanel(panel, linkBtn);
+        } else {
+            closeTafsirPanel(panel);
+        }
+    }
+
+    function closeTafsirPanel(panel) {
+        panel.hidden = true;
+        var link = document.querySelector('.qr-tafsir-link[data-key="' + panel.getAttribute('data-key') + '"]');
+        if (link) link.setAttribute('aria-expanded', 'false');
+    }
+
+    function openTafsirPanel(panel, linkBtn) {
+        var key = panel.getAttribute('data-key');
         var parts = key.split(':');
         var surahNum = parseInt(parts[0], 10);
         var ayahNum = parseInt(parts[1], 10);
         var ch = chapters[surahNum - 1];
-        var lang = els.tafsirLangSelect ? els.tafsirLangSelect.value : 'ta';
-        var langLabel = lang === 'en' ? 'English' : 'Tamil';
 
-        els.tafsirTitle.textContent = 'Tafsir Ibn Kathir (' + langLabel + ') \u2014 Surah ' + (ch ? ch.en : surahNum) + ' : Ayah ' + ayahNum;
-        els.tafsirSource.textContent = lang === 'en'
-            ? 'Source: Tafsir Ibn Kathir (Abridged) \u00b7 quran.com'
-            : 'Source: Tafsir Ibn Kathir (Tamil) \u00b7 tamililquran.com';
-        els.tafsirBody.innerHTML = '<p class="qr-tafsir-loading">Loading tafsir...</p>';
-        els.tafsirBody.dir = lang === 'en' ? 'ltr' : 'auto';
-        els.tafsirPopup.style.display = 'flex';
+        var defaultLang = getDefaultTafsirLang();
+        var radios = panel.querySelectorAll('input[type="radio"]');
+        radios.forEach(function (r) { r.checked = r.value === defaultLang; });
 
-        var fileKey = 'tafsir-' + lang + '-' + pad(surahNum, 3);
-        var filePath = 'js/tafsir/' + (lang === 'en' ? 'english' : 'tamil') + '-' + pad(surahNum, 3) + '.json';
-        loadFromCacheOrFetch(fileKey, filePath, function (data) {
-            if (!els.tafsirPopup || els.tafsirPopup.style.display === 'none') return;
-            var entry = data && data.data ? data.data[String(ayahNum)] : null;
-            if (entry && entry.html) {
-                els.tafsirBody.innerHTML = entry.html;
-            } else {
-                els.tafsirBody.innerHTML = '<p class="qr-tafsir-missing">Tafsir Ibn Kathir (' + langLabel + ') is not yet available for this verse. Switch the tafsir language in the navigation bar or check back later.</p>';
-            }
+        panel.hidden = false;
+        if (linkBtn) linkBtn.setAttribute('aria-expanded', 'true');
+
+        var bodyEl = panel.querySelector('.qr-tafsir-panel-body');
+        var srcEl = panel.querySelector('.qr-tafsir-panel-source');
+        loadTafsirContent(key, surahNum, ayahNum, ch, defaultLang, bodyEl, srcEl);
+
+        radios.forEach(function (r) {
+            r.onchange = function () {
+                if (r.checked) loadTafsirContent(key, surahNum, ayahNum, ch, r.value, bodyEl, srcEl);
+            };
         });
     }
 
-    function closeTafsirPopup() {
-        if (els.tafsirPopup) els.tafsirPopup.style.display = 'none';
+    function loadTafsirContent(key, surahNum, ayahNum, ch, lang, bodyEl, srcEl) {
+        if (!bodyEl) return;
+        var langLabel = lang === 'en' ? 'English' : 'Tamil';
+        bodyEl.innerHTML = '<p class="qr-tafsir-loading">Loading tafsir...</p>';
+        bodyEl.dir = lang === 'en' ? 'ltr' : 'auto';
+        if (srcEl) {
+            srcEl.textContent = lang === 'en'
+                ? 'Source: Tafsir Ibn Kathir (Abridged) \u00b7 quran.com'
+                : 'Source: Tafsir Ibn Kathir (Tamil) \u00b7 tamililquran.com';
+        }
+
+        if (lang === 'en') {
+            loadEnglishTafsir(surahNum, ayahNum, function (html) {
+                if (tafsirPanelHidden(key)) return;
+                if (html) {
+                    bodyEl.innerHTML = html;
+                } else {
+                    bodyEl.innerHTML = '<p class="qr-tafsir-missing">Tafsir Ibn Kathir (English) is not yet available for this verse. Switch the tafsir language to Tamil or check back later.</p>';
+                }
+            });
+        } else {
+            var fileKey = 'tafsir-ta-' + pad(surahNum, 3);
+            var filePath = 'js/tafsir/tamil-' + pad(surahNum, 3) + '.js';
+            loadFromCacheOrFetch(fileKey, filePath, function (data) {
+                if (tafsirPanelHidden(key)) return;
+                var entry = data && data.data ? data.data[String(ayahNum)] : null;
+                if (entry && entry.html) {
+                    bodyEl.innerHTML = entry.html;
+                } else {
+                    bodyEl.innerHTML = '<p class="qr-tafsir-missing">Tafsir Ibn Kathir (Tamil) is not yet available for this verse. Switch the tafsir language to English or check back later.</p>';
+                }
+            });
+        }
+    }
+
+    function tafsirPanelHidden(key) {
+        var panel = document.getElementById('tafsir-' + key.replace(':', '-'));
+        return !panel || panel.hidden;
+    }
+
+    /* ---- MCP English tafsir (live quran.ai) ---- */
+
+    var MCP_ENDPOINT = 'https://mcp.quran.ai/';
+    var mcpSessionId = null;
+    var mcpNonce = null;
+    var mcpReady = null;
+    var mcpSeq = 100;
+
+    function parseSseText(text) {
+        var lines = text.split(/\r?\n/);
+        var dataParts = [];
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            if (line.indexOf('data:') === 0) dataParts.push(line.slice(5).trim());
+        }
+        return JSON.parse(dataParts.join('\n'));
+    }
+
+    function mcpExtractText(msg) {
+        if (msg && msg.result && msg.result.content && msg.result.content.length) {
+            return msg.result.content[0].text || '';
+        }
+        return '';
+    }
+
+    function mcpHeaders() {
+        var headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json, text/event-stream'
+        };
+        if (mcpSessionId) headers['mcp-session-id'] = mcpSessionId;
+        return headers;
+    }
+
+    function mcpRequest(method, params) {
+        var body = JSON.stringify({ jsonrpc: '2.0', id: ++mcpSeq, method: method, params: params || {} });
+        return fetch(MCP_ENDPOINT, { method: 'POST', headers: mcpHeaders(), body: body }).then(function (resp) {
+            if (!resp.ok) throw new Error('MCP HTTP ' + resp.status);
+            var sid = resp.headers.get('mcp-session-id');
+            if (sid) mcpSessionId = sid;
+            return resp.text().then(function (t) {
+                if (!t) return {};
+                var ct = resp.headers.get('content-type') || '';
+                if (ct.indexOf('text/event-stream') !== -1) return parseSseText(t);
+                return JSON.parse(t);
+            });
+        });
+    }
+
+    function mcpNotify(method, params) {
+        var body = JSON.stringify({ jsonrpc: '2.0', method: method, params: params || {} });
+        return fetch(MCP_ENDPOINT, { method: 'POST', headers: mcpHeaders(), body: body })
+            .then(function () {})
+            .catch(function () {});
+    }
+
+    function mcpInit() {
+        if (mcpReady) return mcpReady;
+        mcpReady = mcpRequest('initialize', {
+            protocolVersion: '2025-03-26',
+            capabilities: {},
+            clientInfo: { name: 'siratkids-quran-reader', version: '1.0.0' }
+        }).then(function () {
+            mcpNotify('notifications/initialized', {});
+            return mcpRequest('tools/call', { name: 'fetch_grounding_rules', arguments: {} });
+        }).then(function (msg) {
+            var m = /grounding_nonce>([^<]+)<\/grounding_nonce>/.exec(mcpExtractText(msg));
+            mcpNonce = m ? m[1] : null;
+            return mcpNonce;
+        }).catch(function (err) {
+            mcpReady = null;
+            throw err;
+        });
+        return mcpReady;
+    }
+
+    function mcpFetchTafsir(surah, ayah) {
+        return mcpInit().then(function () {
+            return mcpRequest('tools/call', {
+                name: 'fetch_tafsir',
+                arguments: { ayahs: surah + ':' + ayah, editions: 'en-ibn-kathir', grounding_nonce: mcpNonce }
+            });
+        }).then(function (msg) {
+            var txt = mcpExtractText(msg);
+            if (!txt) return null;
+            var data;
+            try { data = JSON.parse(txt); } catch (e) { return null; }
+            var res = data && data.results && data.results['en-ibn-kathir'];
+            return (res && res.length > 0 && res[0].text) ? res[0].text : null;
+        });
+    }
+
+    function loadEnglishTafsir(surah, ayah, callback) {
+        var fileKey = 'tafsir-en-mcp-' + pad(surah, 3) + '-' + pad(ayah, 3);
+        var cached = getCachedData(fileKey);
+        if (cached) { callback(cached); return; }
+        mcpFetchTafsir(surah, ayah).then(function (html) {
+            if (html && window.putCachedData) window.putCachedData(fileKey, html);
+            callback(html);
+        }).catch(function () {
+            callback(null);
+        });
     }
 
     /* ---- Bookmarks ---- */
@@ -896,7 +1074,7 @@
             if (data) _timingsCache[item.chapter] = data;
         }
         if (!data) {
-            loadFromCacheOrFetch(fileKey, 'js/quran_source/timings/alafasy/' + pad(item.chapter, 3) + '.json', function (d) {
+            loadFromCacheOrFetch(fileKey, 'js/quran_source/timings/alafasy/' + pad(item.chapter, 3) + '.js', function (d) {
                 if (d) _timingsCache[item.chapter] = d;
             });
             return null;

@@ -9,7 +9,7 @@ Each verse row provides:
   - segments: [{word_start, word_end, word_position (1-based), start_ms, end_ms}]
 
 Output layout (written under --out, default js/quran_source/timings/alafasy):
-  001.json ... 114.json      per-surah timing data
+  001.js ... 114.js          per-surah timing data (wrapped .js data scripts)
   manifest.json              coverage summary
 
 Per-surah file schema:
@@ -44,6 +44,26 @@ DATASET_URL = (
     'mishary-alafasy/train-00000-of-00001.parquet'
 )
 SOURCE_LABEL = 'quranlab/quran-audio-text (config: mishary-alafasy)'
+
+
+def write_data_js(path, payload):
+    """Write a data payload as a wrapped .js file (loaded via <script>, works on file://)."""
+    name = os.path.splitext(os.path.basename(path))[0]
+    body = json.dumps(payload, ensure_ascii=False, separators=(',', ':'))
+    with open(path, 'w', encoding='utf-8') as fh:
+        fh.write('(function(g){g.__QURAN_DATA=g.__QURAN_DATA||{};g.__QURAN_DATA["')
+        fh.write(name)
+        fh.write('"]=')
+        fh.write(body)
+        fh.write(';})(self);\n')
+
+
+def read_data_js(path):
+    """Parse a wrapped .js data file back into a dict."""
+    with open(path, 'r', encoding='utf-8') as fh:
+        text = fh.read()
+    body = text.split('"]=', 1)[1].rsplit(';})(self);', 1)[0]
+    return json.loads(body)
 
 
 def fetch_parquet(cache_dir):
@@ -111,10 +131,9 @@ def build(path, out_dir, only_surah=None, force=False):
             continue
         verses = by_surah[sid]
         pad = '{:03d}'.format(sid)
-        out_path = os.path.join(out_dir, pad + '.json')
+        out_path = os.path.join(out_dir, pad + '.js')
         if os.path.exists(out_path) and not force:
-            with open(out_path, 'r', encoding='utf-8') as fh:
-                existing = json.load(fh)
+            existing = read_data_js(out_path)
             manifest['surahs'][str(sid)] = {
                 'verses': len(verses),
                 'words': existing.get('word_total', 0),
@@ -147,8 +166,7 @@ def build(path, out_dir, only_surah=None, force=False):
             'missing': missing,
             'word_total': word_total,
         }
-        with open(out_path, 'w', encoding='utf-8') as fh:
-            json.dump(payload, fh, ensure_ascii=False, separators=(',', ':'))
+        write_data_js(out_path, payload)
         manifest['surahs'][str(sid)] = {
             'verses': len(verses),
             'words': word_total,

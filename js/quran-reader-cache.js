@@ -6,6 +6,7 @@
     var DB_VERSION = 1;
 
     window.__QURAN_CACHE = window.__QURAN_CACHE || {};
+    window.__QURAN_DATA = window.__QURAN_DATA || {};
 
     function openQuranDb(callback) {
         var req = indexedDB.open(DB_NAME, DB_VERSION);
@@ -23,6 +24,19 @@
         return window.__QURAN_CACHE[fileKey] || null;
     };
 
+    window.putCachedData = function (fileKey, data, callback) {
+        window.__QURAN_CACHE[fileKey] = data;
+        openQuranDb(function (db) {
+            if (db) {
+                try {
+                    var tx = db.transaction(STORE_NAME, 'readwrite');
+                    tx.objectStore(STORE_NAME).put(data, fileKey);
+                } catch (e) {}
+            }
+            if (callback) callback();
+        });
+    };
+
     window.loadFromCacheOrFetch = function (fileKey, url, callback) {
         if (window.__QURAN_CACHE[fileKey]) {
             if (callback) setTimeout(function () { callback(window.__QURAN_CACHE[fileKey]); }, 0);
@@ -30,7 +44,7 @@
         }
         openQuranDb(function (db) {
             if (!db) {
-                fetchAndCache(fileKey, url, callback);
+                loadScriptAndCache(fileKey, url, callback);
                 return;
             }
             var tx = db.transaction(STORE_NAME, 'readonly');
@@ -40,22 +54,26 @@
                     window.__QURAN_CACHE[fileKey] = req.result;
                     if (callback) callback(req.result);
                 } else {
-                    fetchAndCache(fileKey, url, callback);
+                    loadScriptAndCache(fileKey, url, callback);
                 }
             };
             req.onerror = function () {
-                fetchAndCache(fileKey, url, callback);
+                loadScriptAndCache(fileKey, url, callback);
             };
         });
     };
 
-    function fetchAndCache(fileKey, url, callback) {
-        fetch(url)
-            .then(function (r) {
-                if (!r.ok) throw new Error('HTTP ' + r.status);
-                return r.json();
-            })
-            .then(function (data) {
+    // Load a wrapped data script (window.__QURAN_DATA[<basename>]) via a <script>
+    // tag. Works over HTTP and from file:// (where fetch/XHR of local JSON is
+    // blocked), which is why the data files ship as .js instead of .json.
+    function loadScriptAndCache(fileKey, url, callback) {
+        var script = document.createElement('script');
+        script.src = url;
+        script.onload = function () {
+            var base = (url || '').split('/').pop().replace(/\.(json|js)$/i, '');
+            var data = window.__QURAN_DATA ? window.__QURAN_DATA[base] : null;
+            if (script.parentNode) script.parentNode.removeChild(script);
+            if (data) {
                 window.__QURAN_CACHE[fileKey] = data;
                 openQuranDb(function (db) {
                     if (db) {
@@ -65,12 +83,17 @@
                         } catch (e) {}
                     }
                 });
-                if (callback) callback(data);
-            })
-            .catch(function (err) {
-                console.error('Failed to load ' + fileKey + ':', err);
-                if (callback) callback(null);
-            });
+            } else {
+                console.error('Failed to load ' + fileKey + ': no data in ' + url);
+            }
+            if (callback) callback(data);
+        };
+        script.onerror = function () {
+            console.error('Failed to load ' + fileKey + ':', url);
+            if (script.parentNode) script.parentNode.removeChild(script);
+            if (callback) callback(null);
+        };
+        document.head.appendChild(script);
     }
 
     window.clearQuranCache = function (callback) {

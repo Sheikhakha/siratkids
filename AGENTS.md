@@ -19,6 +19,7 @@ Static HTML/CSS/JavaScript website for children's Islamic education. Bilingual (
 - `js/main.js` - Vanilla JavaScript (~1043 lines)
 - `js/quran-full-index.json` - Full Quran search index (6236 verses)
 - `js/quran-search-index.json` - Lightweight chapter metadata index
+- `js/quran_source/*.js` + `js/tafsir/*.js` - Reader data (Quran text, translations, WBW, Alafasy timings, per-surah tafsir) shipped as wrapped `.js` scripts (`window.__QURAN_DATA[<basename>] = {...}`) loaded via `<script>` tags so double-clicked `file://` pages work. Do NOT convert back to plain `.json` — `fetch()` of local JSON is blocked on `file://`.
 - `scripts/validate_content.py` - Content preservation validation suite
 - `scripts/inject_audio_player.py` - Batch audio player injector
 - `scripts/build_full_index.py` - Quran index builder from quran.com API v4
