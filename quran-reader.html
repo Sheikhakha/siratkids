@@ -136,14 +136,41 @@
         </main>
     </div>
 
-    <div class="qr-footnote-popup" id="qr-footnote-popup" style="display:none;">
-        <div class="qr-footnote-overlay" id="qr-footnote-overlay"></div>
-        <div class="qr-footnote-modal">
-            <div class="qr-footnote-header">
-                <h3>Footnotes</h3>
-                <button class="qr-footnote-close" id="qr-footnote-close">&times;</button>
+    <!-- Footnote tooltip (inline footnote popups) -->
+    <div class="qr-fn-tooltip" id="qr-fn-tooltip"></div>
+
+    <!-- Tafsir modal popup -->
+    <div class="qr-tafsir-modal-backdrop" id="qr-tafsir-modal-backdrop" hidden>
+        <div class="qr-tafsir-modal" id="qr-tafsir-modal" role="dialog" aria-modal="true" aria-label="Tafsir">
+            <div class="qr-tafsir-modal-head">
+                <button class="qr-tafsir-nav" id="qr-tafsir-prev" aria-label="Previous verse" title="Previous verse">&#8249;</button>
+                <div class="qr-tafsir-modal-title">
+                    <span class="qr-tafsir-modal-title-ar" id="qr-tafsir-surah-ar"></span>
+                    <span id="qr-tafsir-surah-en"></span>
+                    <span class="qr-tafsir-modal-title-sep">&#183;</span>
+                    <span id="qr-tafsir-verse"></span>
+                </div>
+                <select class="qr-tafsir-jump" id="qr-tafsir-jump" aria-label="Jump to verse"></select>
+                <button class="qr-tafsir-nav" id="qr-tafsir-next" aria-label="Next verse" title="Next verse">&#8250;</button>
+                <button class="qr-tafsir-pin" id="qr-tafsir-pin" aria-pressed="false" title="Pin (keep open)"></button>
+                <button class="qr-tafsir-close" id="qr-tafsir-close" aria-label="Close tafsir">&#10005;</button>
             </div>
-            <div class="qr-footnote-body" id="qr-footnote-body"></div>
+            <div class="qr-tafsir-modal-controls">
+                <label class="qr-tafsir-modal-lang">
+                    <span class="qr-tafsir-modal-label">Language:</span>
+                    <select id="qr-tafsir-modal-lang" aria-label="Tafsir language">
+                        <option value="ta">Tamil</option>
+                        <option value="en">English</option>
+                    </select>
+                </label>
+                <div class="qr-tafsir-size">
+                    <span class="qr-tafsir-size-aa">Aa</span>
+                    <button id="qr-tafsir-size-down" aria-label="Decrease text size">A&#8722;</button>
+                    <button id="qr-tafsir-size-up" aria-label="Increase text size">A+</button>
+                </div>
+            </div>
+            <div class="qr-tafsir-modal-body" id="qr-tafsir-modal-body"></div>
+            <div class="qr-tafsir-modal-source" id="qr-tafsir-modal-source"></div>
         </div>
     </div>
 

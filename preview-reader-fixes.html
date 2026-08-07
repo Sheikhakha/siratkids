@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiratKids Quran Reader — UI Fix Preview (2:2, 2:3)</title>
+    <style>
+        @font-face {
+            font-family: 'Indopak Nastaleeq';
+            src: url('fonts/IndopakNastaleeq.ttf') format('truetype');
+        }
+        :root {
+            --qr-primary: #10b981;
+            --qr-text-medium: #64748b;
+        }
+        * { box-sizing: border-box; }
+        [hidden] { display: none !important; }
+        body {
+            margin: 0;
+            padding: 24px 20px 60px;
+            background: #f1f5f9;
+            color: #0f172a;
+            font-family: 'Nunito', 'Segoe UI', sans-serif;
+        }
+        .pv-wrap { max-width: 1120px; margin: 0 auto; }
+
+        .pv-header h1 { margin: 0 0 6px; font-size: 1.5rem; }
+        .pv-header p { margin: 0 0 10px; color: #475569; font-size: 0.92rem; }
+        .pv-note {
+            background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px;
+            padding: 10px 14px; font-size: 0.84rem; color: #92400e; margin-bottom: 26px;
+        }
+        .pv-note b { color: #78350f; }
+
+        .pv-fix { margin-bottom: 44px; }
+        .pv-fix > h2 { font-size: 1.15rem; margin: 0 0 4px; }
+        .pv-fix > h2 .pv-kicker { font-size: 0.7rem; color: #64748b; font-weight: 800; letter-spacing: .06em; }
+        .pv-desc { color: #475569; font-size: 0.88rem; margin: 0 0 14px; max-width: 820px; line-height: 1.55; }
+        .pv-desc code { background: #eef2f7; padding: 1px 5px; border-radius: 5px; font-size: 0.82rem; }
+
+        .pv-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+        @media (max-width: 920px) { .pv-cols { grid-template-columns: 1fr; } }
+
+        .pv-pane { background: #fff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; }
+        .pv-pane-title {
+            padding: 7px 14px; font-size: 0.72rem; font-weight: 800; letter-spacing: .07em;
+            text-transform: uppercase; display: flex; align-items: center; justify-content: space-between;
+        }
+        .pv-before .pv-pane-title { background: #f8fafc; color: #64748b; border-bottom: 1px solid #e2e8f0; }
+        .pv-after  .pv-pane-title { background: #ecfdf5; color: #047857; border-bottom: 1px solid #a7f3d0; }
+        .pv-pane-inner { padding: 14px; }
+        .pv-legend { font-size: 0.7rem; font-weight: 600; }
+        .pv-legend .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+        .pv-before .pv-legend .dot { background: #cbd5e1; }
+        .pv-after  .pv-legend .dot { background: #34d399; }
+
+        /* verse card */
+        .pv-verse { border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 16px; overflow: hidden; background: #fff; }
+        .pv-verse:last-child { margin-bottom: 0; }
+        .pv-verse-head { display: flex; align-items: center; gap: 8px; padding: 8px 12px 0; }
+        .pv-play {
+            width: 34px; height: 30px; border-radius: 8px; border: 1px solid #e2e8f0; background: #f1f5f9;
+            color: #64748b; display: inline-flex; align-items: center; justify-content: center; font-size: 11px;
+            flex: none;
+        }
+        .pv-tnum {
+            font-size: 0.7rem; font-weight: 800; color: #64748b; background: #f1f5f9;
+            border-radius: 6px; padding: 2px 6px; min-width: 22px; text-align: center; line-height: 1.3;
+        }
+        .pv-verse-label { margin-left: auto; font-size: 0.66rem; font-weight: 800; color: #94a3b8; letter-spacing: .05em; text-transform: uppercase; }
+        .pv-ar { padding: 10px 16px; font-family: 'Indopak Nastaleeq', 'Noto Naskh Arabic', serif; font-size: 1.6rem; line-height: 2; color: #1e293b; direction: rtl; text-align: right; }
+        .pv-trans { padding: 0 16px 8px; font-size: 0.86rem; color: #334155; line-height: 1.6; }
+
+        /* ===== Fix 1 ===== */
+        .f1b-ar {
+            display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: flex-start;
+            gap: 12px 28px; padding: 10px 16px; line-height: 1.5; direction: rtl;
+            font-family: 'Indopak Nastaleeq', 'Noto Naskh Arabic', serif; font-size: 1.6rem; color: #1e293b;
+        }
+        .f1b-unit { display: inline-flex; flex-direction: column; align-items: center; text-align: center; max-width: 170px; }
+        .f1b-word { font-size: 1.4rem; line-height: 1.3; color: #1e293b; }
+        .f1b-gl { font-size: 0.8rem; color: #64748b; line-height: 1.2; direction: ltr; margin-top: 2px; max-width: 160px; overflow-wrap: break-word; }
+
+        .f1a-ar {
+            display: flex; flex-wrap: wrap; direction: rtl; justify-content: flex-start; align-items: flex-start;
+            gap: 16px 24px; padding: 12px 16px; font-family: 'Indopak Nastaleeq', 'Noto Naskh Arabic', serif; color: #1e293b;
+            background: #fbfefe;
+        }
+        .f1a-unit {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-width: 96px; max-width: 210px; padding: 4px 6px; text-align: center;
+        }
+        .f1a-word { font-size: 1.75rem; line-height: 1.35; color: #111827; }
+        .f1a-gl { font-size: 0.7rem; color: #64748b; line-height: 1.25; direction: ltr; margin-top: 5px; max-width: 200px; overflow-wrap: break-word; }
+        .f1a-vnum {
+            display: flex; align-items: center; justify-content: center; min-width: 30px; height: 30px;
+            padding: 0 7px; border-radius: 50%; background: #ecfdf5; border: 1px solid #a7f3d0;
+            font-size: 0.72rem; font-weight: 800; color: #047857; font-family: 'Nunito', sans-serif;
+            margin: 2px 6px 0 0; flex: none;
+        }
+
+        /* ===== Fix 2 ===== */
+        .pv-actrow { display: flex; align-items: center; gap: 12px; padding: 0 16px 10px; }
+        .pv-taf-link {
+            background: none; border: none; padding: 0; font-family: inherit; font-size: 0.75rem;
+            font-weight: 700; color: #10b981; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; opacity: 0.85;
+        }
+        .pv-taf-link:hover { opacity: 1; }
+        .pv-book-btn {
+            background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer;
+            width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center;
+            color: #475569; transition: all 0.2s; flex: none;
+        }
+        .pv-book-btn:hover { color: #fff; background: #10b981; border-color: #10b981; }
+        .pv-fn-ref {
+            background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer;
+            padding: 0 5px; font-size: 0.7rem; font-weight: 700; color: #64748b; line-height: 1.4;
+        }
+        .pv-fn-ref:hover { color: #fff; background: #10b981; border-color: #10b981; }
+        .pv-none { font-size: 0.7rem; color: #94a3b8; font-style: italic; }
+
+        /* inline tafsir panel (current behavior) */
+        .pv-taf-panel { background: #fbfcfd; border-top: 1px solid #e2e8f0; padding: 12px 16px; max-height: 380px; overflow-y: auto; }
+        .pv-taf-tabs { display: flex; gap: 14px; font-size: 0.75rem; font-weight: 700; color: #475569; margin-bottom: 10px; }
+        .pv-taf-tabs label { cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
+        .pv-taf-body { font-size: 0.86rem; line-height: 1.65; color: #1e293b; }
+        .pv-taf-body p { margin: 0 0 10px; }
+        .pv-taf-src { margin-top: 10px; font-size: 0.68rem; color: #94a3b8; }
+        .pv-taf-loading { color: #64748b; }
+        .pv-taf-missing { color: #b45309; }
+
+        /* tafsir modal (proposed) */
+        .pv-tmodal-backdrop {
+            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.55); z-index: 900;
+            display: flex; align-items: center; justify-content: center; padding: 20px;
+        }
+        .pv-tmodal {
+            background: #fff; border-radius: 14px; box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
+            width: min(720px, 100%); max-height: 84vh; display: flex; flex-direction: column; overflow: hidden;
+        }
+        .pv-tmodal-head {
+            display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid #e2e8f0;
+            background: #fbfcfd;
+        }
+        .pv-tmodal-title { font-weight: 800; font-size: 0.95rem; color: #0f172a; white-space: nowrap; }
+        .pv-tmodal-title .ar { color: #047857; font-family: 'Indopak Nastaleeq', 'Noto Naskh Arabic', serif; font-size: 1.05rem; margin-right: 4px; }
+        .pv-tnav {
+            background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; width: 32px; height: 32px;
+            cursor: pointer; font-size: 1rem; line-height: 1; color: #475569; flex: none;
+        }
+        .pv-tnav:hover:not(:disabled) { background: #10b981; color: #fff; border-color: #10b981; }
+        .pv-tnav:disabled { opacity: 0.35; cursor: default; }
+        .pv-tjump { font-size: 0.8rem; padding: 5px 8px; border: 1px solid #e2e8f0; border-radius: 8px; color: #334155; background: #fff; flex: none; }
+        .pv-tpin {
+            background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; width: 32px; height: 32px;
+            cursor: pointer; color: #64748b; display: inline-flex; align-items: center; justify-content: center; flex: none;
+        }
+        .pv-tpin[aria-pressed="true"] { background: #ecfdf5; border-color: #10b981; color: #047857; }
+        .pv-tclose {
+            background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; width: 32px; height: 32px;
+            cursor: pointer; color: #64748b; font-size: 0.9rem; line-height: 1; margin-left: auto; flex: none;
+        }
+        .pv-tclose:hover { background: #fee2e2; color: #b91c1c; border-color: #fecaca; }
+        .pv-tmodal-controls {
+            display: flex; align-items: center; gap: 16px; padding: 10px 16px; border-bottom: 1px solid #e2e8f0; background: #fff;
+        }
+        .pv-tlang { font-size: 0.8rem; padding: 5px 8px; border: 1px solid #e2e8f0; border-radius: 8px; color: #334155; background: #fff; }
+        .pv-tsize { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+        .pv-aa { font-size: 0.82rem; font-weight: 800; color: #64748b; margin-right: 2px; }
+        .pv-tsize button {
+            background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 6px; padding: 3px 9px;
+            cursor: pointer; font-size: 0.75rem; font-weight: 800; color: #475569; line-height: 1.3;
+        }
+        .pv-tsize button:hover { background: #10b981; color: #fff; border-color: #10b981; }
+        .pv-tmodal-body { padding: 16px; overflow-y: auto; font-size: 1rem; line-height: 1.7; color: #1e293b; }
+        .pv-tmodal-body p { margin: 0 0 12px; }
+        .pv-tmodal-src { padding: 0 16px 12px; font-size: 0.68rem; color: #94a3b8; }
+
+        /* ===== Fix 3 ===== */
+        .pv-fn-sup {
+            font-size: 0.62em; font-weight: 800; color: #047857; background: #d1fae5;
+            border-radius: 5px; padding: 0 4px; cursor: pointer; vertical-align: super; line-height: 1;
+            margin: 0 1px; border: 1px solid #a7f3d0;
+        }
+        .pv-fn-sup:hover { background: #10b981; color: #fff; }
+        .pv-fn-tooltip {
+            position: fixed; display: none; max-width: 300px; background: #0f172a; color: #f8fafc;
+            font-size: 0.78rem; line-height: 1.5; padding: 10px 12px; border-radius: 10px; z-index: 500;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
+        }
+        .pv-fn-pane { position: relative; }
+
+        .pv-fnmodal-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4); z-index: 800; }
+        .pv-fnmodal {
+            position: fixed; left: 50%; top: 40%; transform: translate(-50%, -50%); z-index: 810;
+            background: #fff; border-radius: 12px; width: min(560px, 92vw); max-height: 60vh; display: flex; flex-direction: column;
+            box-shadow: 0 18px 46px rgba(15, 23, 42, 0.35); overflow: hidden;
+        }
+        .pv-fnmodal-head {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 14px; border-bottom: 1px solid #e2e8f0; background: #fbfcfd;
+        }
+        .pv-fnmodal-head h3 { margin: 0; font-size: 0.85rem; font-weight: 800; }
+        .pv-fnmodal-close { background: none; border: none; cursor: pointer; font-size: 1.1rem; color: #64748b; line-height: 1; }
+        .pv-fnmodal-body { padding: 12px 14px; overflow-y: auto; font-size: 0.82rem; color: #334155; line-height: 1.6; }
+        .pv-fnmodal-body p { margin: 0 0 10px; }
+        .pv-fnmodal-body p:last-child { margin-bottom: 0; }
+
+        footer.pv-foot { margin-top: 30px; font-size: 0.75rem; color: #94a3b8; line-height: 1.6; }
+    </style>
+</head>
+<body>
+<div class="pv-wrap">
+
+    <header class="pv-header">
+        <h1>Quran Reader — UI Fix Preview (Surah Al-Baqarah 2:2 &amp; 2:3)</h1>
+        <p>Layout / interaction only. Segment data, timing &amp; highlight logic, reciter loading, and translation / tafsir content are untouched.</p>
+        <div class="pv-note">
+            <b>Data findings before building:</b>
+            1) Tafsir — we only carry <b>one source: Tafsir Ibn Kathir</b> (English abridged · quran.com via live per-verse fetch, cached; Tamil · tamililquran.com from local files). Per your rule “only show tabs for sources we actually have”, the modal shows <b>no source tabs</b>; the Tamil/English language selector remains. All surah-2 verses are present (<code>missing: []</code>).
+            2) Footnotes — the data is already <b>per-marker</b>: <code>[[ … ]]</code> sits inline inside the translation string at the exact annotated phrase, so inline superscripts are real, not placeholders. Note <b>2:2 carries no footnotes</b> in the data (its “Al-Muttaqûn […]” parenthetical is single-bracket translation text); 2:3 has 3 markers.
+            3) There is <b>no existing copy/share/edit icon row</b> in the reader — the only per-verse actions today are the Tafsir text link + footnote ref buttons. The book-icon button is therefore placed in that same action row.
+        </div>
+    </header>
+
+    <!-- ================= Fix 1 ================= -->
+    <section class="pv-fix" id="fix1">
+        <h2><span class="pv-kicker">FIX 1 ·</span> Word-by-word layout</h2>
+        <p class="pv-desc">
+            Today each word+gloss pair is a max-width (not min-width) item in one continuous RTL wrap row, with the verse-number badge kept in a separate head row.
+            Proposed: each pair is its own <code>flex</code> item with a fixed <code>min-width</code> and generous gaps; RTL order is preserved (rightmost = first word);
+            pairs wrap as whole units (word + gloss never split); the verse-number circle badge becomes its own item at the end of the word row; Arabic text is clearly larger than the gloss.
+        </p>
+        <div class="pv-cols">
+            <div class="pv-pane pv-before">
+                <div class="pv-pane-title">Before <span class="pv-legend"><span class="dot"></span>current rendering</span></div>
+                <div class="pv-pane-inner" id="f1-before"></div>
+            </div>
+            <div class="pv-pane pv-after">
+                <div class="pv-pane-title">After <span class="pv-legend"><span class="dot"></span>proposed layout</span></div>
+                <div class="pv-pane-inner" id="f1-after"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= Fix 2 ================= -->
+    <section class="pv-fix" id="fix2">
+        <h2><span class="pv-kicker">FIX 2 ·</span> Tafsir as a popup, not inline</h2>
+        <p class="pv-desc">
+            Today “Tafsir” expands a panel inline below the verse. Proposed: a dimmed centered modal whose header has surah name + verse number, a verse-jump dropdown,
+            prev/next arrows, a pin (keep-open) toggle and a close X; below it a language selector and an “Aa” text-size control. No source tabs (single Ibn Kathir source).
+            The trigger becomes a book-icon button in the verse action row. Closing returns to reading view — scroll and any playing audio are unaffected.
+            Preview loads the local surah-2 tafsir files; on the live site English is fetched per-verse from quran.ai and cached (same Ibn Kathir source).
+        </p>
+        <div class="pv-cols">
+            <div class="pv-pane pv-before">
+                <div class="pv-pane-title">Before <span class="pv-legend"><span class="dot"></span>inline expanding panel</span></div>
+                <div class="pv-pane-inner" id="f2-before"></div>
+            </div>
+            <div class="pv-pane pv-after">
+                <div class="pv-pane-title">After <span class="pv-legend"><span class="dot"></span>modal popup</span></div>
+                <div class="pv-pane-inner" id="f2-after"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= Fix 3 ================= -->
+    <section class="pv-fix" id="fix3">
+        <h2><span class="pv-kicker">FIX 3 ·</span> Footnotes as inline popups, not an aggregated list</h2>
+        <p class="pv-desc">
+            Today footnotes are stripped out of the translation text and re-listed as numbered buttons that open one popup containing <b>all</b> notes for the verse.
+            Proposed: superscript numbers inline inside the translation text, directly after the annotated phrase; each opens a small tooltip near the marker showing <b>only that footnote</b>;
+            the aggregated list is removed. 2:2 has no footnotes in the data; 2:3 has three inline markers.
+        </p>
+        <div class="pv-cols">
+            <div class="pv-pane pv-before">
+                <div class="pv-pane-title">Before <span class="pv-legend"><span class="dot"></span>aggregated list popup</span></div>
+                <div class="pv-pane-inner" id="f3-before"></div>
+            </div>
+            <div class="pv-pane pv-after">
+                <div class="pv-pane-title">After <span class="pv-legend"><span class="dot"></span>inline markers + per-marker tooltip</span></div>
+                <div class="pv-pane-inner pv-fn-pane" id="f3-after"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="pv-foot">
+        This preview loads the site's real data files (<code>indopak-nastaleeq-word.js</code>, <code>english-wbw-translation.js</code>,
+        <code>taqi-ud-din-al-hilali-muhsin-khan-inline-footnotes.js</code>, <code>js/tafsir/english-002.js</code>, <code>js/tafsir/tamil-002.js</code>).
+        Nothing is written back to the reader yet — review and approve before site-wide changes are applied.
+    </footer>
+
+</div>
+
+<!-- ================= Tafsir modal (proposed) ================= -->
+<div class="pv-tmodal-backdrop" id="tmodal-backdrop" hidden>
+    <div class="pv-tmodal" id="tmodal" role="dialog" aria-modal="true" aria-label="Tafsir popup">
+        <div class="pv-tmodal-head">
+            <button class="pv-tnav" id="tm-prev" aria-label="Previous verse">&#8249;</button>
+            <div class="pv-tmodal-title"><span class="ar" id="tm-surah-ar"></span><span id="tm-surah-en">Al-Baqarah</span> &#183; <span id="tm-verse">2:2</span></div>
+            <select class="pv-tjump" id="tm-jump" aria-label="Jump to verse"></select>
+            <button class="pv-tnav" id="tm-next" aria-label="Next verse">&#8250;</button>
+            <button class="pv-tpin" id="tm-pin" aria-pressed="false" title="Pin (keep open)"></button>
+            <button class="pv-tclose" id="tm-close" aria-label="Close">&#10005;</button>
+        </div>
+        <div class="pv-tmodal-controls">
+            <select class="pv-tlang" id="tm-lang" aria-label="Tafsir language">
+                <option value="ta">Tamil</option>
+                <option value="en">English</option>
+            </select>
+            <div class="pv-tsize">
+                <span class="pv-aa">Aa</span>
+                <button id="tm-sz-down" aria-label="Decrease text size">A&#8722;</button>
+                <button id="tm-sz-up" aria-label="Increase text size">A+</button>
+            </div>
+        </div>
+        <div class="pv-tmodal-body" id="tm-body"></div>
+        <div class="pv-tmodal-src" id="tm-src"></div>
+    </div>
+</div>
+
+<!-- ================= Footnote tooltip (proposed) ================= -->
+<div class="pv-fn-tooltip" id="pv-fn-tip"></div>
+
+<!-- ================= Footnote aggregate modal (current) ================= -->
+<div class="pv-fnmodal-backdrop" id="pv-fnmodal-backdrop" hidden></div>
+<div class="pv-fnmodal" id="pv-fnmodal" hidden role="dialog" aria-modal="true" aria-label="Footnotes">
+    <div class="pv-fnmodal-head"><h3>Footnotes</h3><button class="pv-fnmodal-close" id="pv-fnmodal-close" aria-label="Close">&times;</button></div>
+    <div class="pv-fnmodal-body" id="pv-fnmodal-body"></div>
+</div>
+
+<script src="js/quran-chapter-data.js"></script>
+<script src="js/quran_source/indopak-nastaleeq-word.js"></script>
+<script src="js/quran_source/english-wbw-translation.js"></script>
+<script src="js/quran_source/taqi-ud-din-al-hilali-muhsin-khan-inline-footnotes.js"></script>
+<script src="js/tafsir/english-002.js"></script>
+<script src="js/tafsir/tamil-002.js"></script>
+<script>
+(function () {
+    'use strict';
+
+    function $(id) { return document.getElementById(id); }
+    function esc(s) {
+        return String(s == null ? '' : s)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    var CH = (window.__QURAN_CHAPTERS || []).filter(function (c) { return c.id === 2; })[0];
+    var W  = window.__QURAN_DATA['indopak-nastaleeq-word'];
+    var G  = window.__QURAN_DATA['english-wbw-translation'];
+    var TR = window.__QURAN_DATA['taqi-ud-din-al-hilali-muhsin-khan-inline-footnotes'];
+    var TEN = window.__QURAN_DATA['english-002'];
+    var TTA = window.__QURAN_DATA['tamil-002'];
+
+    if (!W || !G || !TR || !TEN || !TTA) {
+        document.body.insertAdjacentHTML('afterbegin',
+            '<p style="color:#b91c1c;background:#fee2e2;padding:10px;border-radius:8px;font-size:0.85rem;">' +
+            'One or more data files failed to load — open this page from the repo root, not from a subfolder.</p>');
+        return;
+    }
+
+    var SUP = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+        + '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
+    var PIN = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+        + '<path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1z"/></svg>';
+
+    function verseArabic(key) {
+        var parts = [], w = 1;
+        while (W[key + ':' + w]) { parts.push(W[key + ':' + w].text); w++; }
+        return parts.join(' ');
+    }
+    function strippedTrans(key) {
+        return TR[key] ? TR[key].t.replace(/\[\[[^\]]*\]\]/g, '').trim() : '';
+    }
+    function hasFootnotes(key) { return TR[key] && TR[key].t.indexOf('[[') !== -1; }
+    function extractNotes(key) {
+        var notes = [];
+        if (!TR[key]) return notes;
+        TR[key].t.replace(/\[\[([^\]]*)\]\]/g, function (m, c) { notes.push(c.trim()); return m; });
+        return notes;
+    }
+    var fnNotes = {};
+    function transWithMarkers(key) {
+        var t = TR[key].t, out = '', re = /\[\[([^\]]*)\]\]/g, m, num = 0, last = 0;
+        while ((m = re.exec(t))) {
+            out += esc(t.slice(last, m.index));
+            num++;
+            out += '<sup class="pv-fn-sup" data-key="' + key + '" data-fn="' + num + '">' + num + '</sup>';
+            fnNotes[key + ':' + num] = m[1].trim();
+            last = m.index + m[0].length;
+        }
+        out += esc(t.slice(last));
+        return out;
+    }
+
+    function head(key, label) {
+        var v = key.split(':')[1];
+        return '<div class="pv-verse-head">'
+            + '<span class="pv-play">&#9654;</span>'
+            + '<span class="pv-tnum">' + v + '</span>'
+            + '<span class="pv-verse-label">' + esc(label) + '</span>'
+            + '</div>';
+    }
+
+    /* ---------- Fix 1 ---------- */
+    function renderFix1() {
+        var beforeHtml = '', afterHtml = '';
+        [2, 3].forEach(function (v) {
+            var key = '2:' + v, pairs = [], w = 1;
+            while (W[key + ':' + w]) {
+                var o = W[key + ':' + w], gl = G[key + ':' + w] || '';
+                var isAr = /[\u0600-\u06FF]/.test(o.text);
+                if (!isAr && !gl) { w++; continue; }
+                pairs.push({ text: o.text, trans: gl });
+                w++;
+            }
+
+            var b = '<div class="pv-verse">' + head(key, 'verse ' + v);
+            b += '<div class="f1b-ar" dir="rtl">';
+            pairs.forEach(function (p) {
+                b += '<span class="f1b-unit"><span class="f1b-word">' + p.text + '</span>'
+                    + (p.trans ? '<span class="f1b-gl">' + esc(p.trans) + '</span>' : '') + '</span>';
+            });
+            b += '</div></div>';
+            beforeHtml += b;
+
+            var a = '<div class="pv-verse">' + head(key, 'verse ' + v);
+            a += '<div class="f1a-ar" dir="rtl">';
+            pairs.forEach(function (p) {
+                a += '<span class="f1a-unit"><span class="f1a-word">' + p.text + '</span>'
+                    + (p.trans ? '<span class="f1a-gl">' + esc(p.trans) + '</span>' : '') + '</span>';
+            });
+            a += '<span class="f1a-vnum">' + v + '</span>';
+            a += '</div></div>';
+            afterHtml += a;
+        });
+        $('f1-before').innerHTML = beforeHtml;
+        $('f1-after').innerHTML = afterHtml;
+    }
+
+    /* ---------- Fix 2 ---------- */
+    var tafData = { ta: TTA, en: TEN };
+    var tafSrc = {
+        ta: 'Source: Tafsir Ibn Kathir (Tamil) \u00b7 tamililquran.com',
+        en: 'Source: Tafsir Ibn Kathir (Abridged) \u00b7 quran.com'
+    };
+    function loadTafsirInto(key, lang, bodyEl, srcEl) {
+        var v = parseInt(key.split(':')[1], 10);
+        bodyEl.innerHTML = '<p class="pv-taf-loading">Loading tafsir...</p>';
+        bodyEl.dir = lang === 'en' ? 'ltr' : 'auto';
+        if (srcEl) srcEl.textContent = tafSrc[lang] || '';
+        var data = tafData[lang] || {};
+        var e = data && data.data ? data.data[String(v)] : null;
+        if (e && e.html) {
+            bodyEl.innerHTML = e.html;
+        } else {
+            bodyEl.innerHTML = '<p class="pv-taf-missing">Tafsir Ibn Kathir (' + (lang === 'en' ? 'English' : 'Tamil') + ') is not yet available for this verse.</p>';
+        }
+    }
+
+    function renderFix2() {
+        /* BEFORE — inline panel (faithful reproduction) */
+        var b = '';
+        [2, 3].forEach(function (v) {
+            var key = '2:' + v;
+            var notes = hasFootnotes(key) ? extractNotes(key) : [];
+            b += '<div class="pv-verse">' + head(key, 'inline panel');
+            b += '<div class="pv-ar" dir="rtl">' + verseArabic(key) + '</div>';
+            b += '<div class="pv-trans">' + esc(strippedTrans(key)) + '</div>';
+            b += '<div class="pv-actrow">';
+            b += '<button class="pv-taf-link" data-key="' + key + '" aria-expanded="false">Tafsir</button>';
+            if (notes.length) {
+                for (var fi = 0; fi < notes.length; fi++) {
+                    b += '<button class="pv-fn-ref" data-key="' + key + '" title="View footnote ' + (fi + 1) + '"><sup>' + (fi + 1) + '</sup></button>';
+                }
+            }
+            b += '</div>';
+            b += '<div class="pv-taf-panel" data-key="' + key + '" hidden>';
+            b += '<div class="pv-taf-tabs">'
+                + '<label><input type="radio" name="tb-' + key.replace(':', '-') + '" value="ta" checked> Tamil</label>'
+                + '<label><input type="radio" name="tb-' + key.replace(':', '-') + '" value="en"> English</label>'
+                + '</div>';
+            b += '<div class="pv-taf-body"></div><div class="pv-taf-src"></div>';
+            b += '</div></div>';
+        });
+        $('f2-before').innerHTML = b;
+
+        $('f2-before').querySelectorAll('.pv-taf-link').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var key = btn.getAttribute('data-key');
+                var panel = $('f2-before').querySelector('.pv-taf-panel[data-key="' + key + '"]');
+                if (!panel) return;
+                if (panel.hidden) {
+                    $('f2-before').querySelectorAll('.pv-taf-panel').forEach(function (p) { p.hidden = true; });
+                    $('f2-before').querySelectorAll('.pv-taf-link').forEach(function (l) { l.setAttribute('aria-expanded', 'false'); });
+                    panel.hidden = false;
+                    btn.setAttribute('aria-expanded', 'true');
+                    var bodyEl = panel.querySelector('.pv-taf-body');
+                    var srcEl = panel.querySelector('.pv-taf-src');
+                    loadTafsirInto(key, 'ta', bodyEl, srcEl);
+                    panel.querySelectorAll('input[type="radio"]').forEach(function (r) {
+                        r.onchange = function () { if (r.checked) loadTafsirInto(key, r.value, bodyEl, srcEl); };
+                    });
+                } else {
+                    panel.hidden = true;
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        /* AFTER — book-icon button opening a modal */
+        var a = '';
+        [2, 3].forEach(function (v) {
+            var key = '2:' + v;
+            a += '<div class="pv-verse">' + head(key, 'modal popup');
+            a += '<div class="pv-ar" dir="rtl">' + verseArabic(key) + '</div>';
+            a += '<div class="pv-trans">' + transWithMarkers(key) + '</div>';
+            a += '<div class="pv-actrow">';
+            a += '<button class="pv-book-btn" data-key="' + key + '" aria-label="Open tafsir" title="Tafsir">' + SUP + '</button>';
+            a += '</div></div>';
+        });
+        $('f2-after').innerHTML = a;
+
+        $('f2-after').querySelectorAll('.pv-book-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                openTafsirModal(parseInt(this.getAttribute('data-key').split(':')[1], 10));
+            });
+        });
+    }
+
+    /* ---------- Tafsir modal ---------- */
+    var tmState = { verse: 2, lang: 'ta', size: 1, pinned: false };
+    function openTafsirModal(v) {
+        tmState.verse = v;
+        $('tmodal-backdrop').hidden = false;
+        $('tmodal').hidden = false;
+        tmUpdate();
+    }
+    function closeTafsirModal() {
+        $('tmodal-backdrop').hidden = true;
+        $('tmodal').hidden = true;
+    }
+    function tmUpdate() {
+        if (CH) {
+            $('tm-surah-ar').textContent = CH.ar || '';
+            $('tm-surah-en').textContent = CH.en || 'Al-Baqarah';
+        }
+        $('tm-verse').textContent = '2:' + tmState.verse;
+        $('tm-jump').value = String(tmState.verse);
+        $('tm-prev').disabled = tmState.verse <= 1;
+        $('tm-next').disabled = tmState.verse >= (CH ? CH.verses : 286);
+        $('tm-lang').value = tmState.lang;
+        var pin = $('tm-pin');
+        pin.setAttribute('aria-pressed', String(tmState.pinned));
+        pin.innerHTML = PIN;
+        loadTafsirInto('2:' + tmState.verse, tmState.lang, $('tm-body'), $('tm-src'));
+        $('tm-body').style.fontSize = tmState.size + 'rem';
+    }
+    function wireModal() {
+        var maxV = CH ? CH.verses : 286;
+        var jump = $('tm-jump');
+        for (var v = 1; v <= maxV; v++) {
+            var opt = document.createElement('option');
+            opt.value = String(v);
+            opt.textContent = '2:' + v;
+            jump.appendChild(opt);
+        }
+        $('tm-prev').addEventListener('click', function () {
+            if (tmState.verse > 1) { tmState.verse--; tmUpdate(); }
+        });
+        $('tm-next').addEventListener('click', function () {
+            if (tmState.verse < maxV) { tmState.verse++; tmUpdate(); }
+        });
+        jump.addEventListener('change', function () {
+            tmState.verse = parseInt(jump.value, 10);
+            tmUpdate();
+        });
+        $('tm-pin').addEventListener('click', function () {
+            tmState.pinned = !tmState.pinned;
+            tmUpdate();
+        });
+        $('tm-close').addEventListener('click', closeTafsirModal);
+        $('tm-lang').addEventListener('change', function () {
+            tmState.lang = this.value;
+            tmUpdate();
+        });
+        $('tm-sz-down').addEventListener('click', function () {
+            tmState.size = Math.max(0.8, +(tmState.size - 0.1).toFixed(1));
+            $('tm-body').style.fontSize = tmState.size + 'rem';
+        });
+        $('tm-sz-up').addEventListener('click', function () {
+            tmState.size = Math.min(1.5, +(tmState.size + 0.1).toFixed(1));
+            $('tm-body').style.fontSize = tmState.size + 'rem';
+        });
+        $('tmodal-backdrop').addEventListener('click', function (e) {
+            if (e.target === $('tmodal-backdrop') && !tmState.pinned) closeTafsirModal();
+        });
+        $('tmodal').addEventListener('click', function (e) { e.stopPropagation(); });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !$('tmodal-backdrop').hidden) {
+                if (!tmState.pinned) closeTafsirModal();
+            }
+        });
+    }
+
+    /* ---------- Fix 3 ---------- */
+    function showFnTooltip(marker) {
+        var key = marker.getAttribute('data-key');
+        var num = marker.getAttribute('data-fn');
+        var text = fnNotes[key + ':' + num] || '';
+        var tip = $('pv-fn-tip');
+        tip.innerHTML = esc(text);
+        tip.style.display = 'block';
+        var mr = marker.getBoundingClientRect();
+        var left = Math.max(8, mr.left - 14);
+        left = Math.min(left, window.innerWidth - tip.offsetWidth - 8);
+        var top = mr.top - tip.offsetHeight - 8;
+        if (top < 0) top = mr.bottom + 10;
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+    }
+    function hideFnTooltip() {
+        $('pv-fn-tip').style.display = 'none';
+    }
+
+    function renderFix3() {
+        /* BEFORE — stripped text + numbered refs + aggregated popup */
+        var b = '';
+        [2, 3].forEach(function (v) {
+            var key = '2:' + v;
+            var notes = hasFootnotes(key) ? extractNotes(key) : [];
+            b += '<div class="pv-verse">' + head(key, 'aggregated list');
+            b += '<div class="pv-trans">' + esc(strippedTrans(key)) + '</div>';
+            b += '<div class="pv-actrow">';
+            if (notes.length) {
+                for (var fi = 0; fi < notes.length; fi++) {
+                    b += '<button class="pv-fn-ref" data-key="' + key + '" title="View footnote ' + (fi + 1) + '"><sup>' + (fi + 1) + '</sup></button>';
+                }
+            } else {
+                b += '<span class="pv-none">no [[footnotes]] in this verse\u2019s data</span>';
+            }
+            b += '</div></div>';
+        });
+        $('f3-before').innerHTML = b;
+
+        $('f3-before').querySelectorAll('.pv-fn-ref').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var key = btn.getAttribute('data-key');
+                var notes = extractNotes(key);
+                var html = notes.map(function (n, i) {
+                    return '<p><sup>' + (i + 1) + '</sup> ' + esc(n) + '</p>';
+                }).join('');
+                $('pv-fnmodal-body').innerHTML = html;
+                $('pv-fnmodal-backdrop').hidden = false;
+                $('pv-fnmodal').hidden = false;
+            });
+        });
+
+        /* AFTER — inline superscript markers + per-marker tooltip */
+        var a = '';
+        [2, 3].forEach(function (v) {
+            var key = '2:' + v;
+            a += '<div class="pv-verse">' + head(key, 'inline markers');
+            a += '<div class="pv-trans">' + transWithMarkers(key) + '</div>';
+            a += '</div>';
+        });
+        $('f3-after').innerHTML = a;
+    }
+
+    function wireFootnoteTooltip() {
+        document.addEventListener('click', function (e) {
+            var sup = e.target.closest ? e.target.closest('.pv-fn-sup') : null;
+            if (sup) { showFnTooltip(sup); return; }
+            hideFnTooltip();
+        });
+        document.addEventListener('scroll', hideFnTooltip, true);
+    }
+    function wireFootnoteModal() {
+        $('pv-fnmodal-close').addEventListener('click', function () {
+            $('pv-fnmodal-backdrop').hidden = true;
+            $('pv-fnmodal').hidden = true;
+        });
+        $('pv-fnmodal-backdrop').addEventListener('click', function () {
+            $('pv-fnmodal-backdrop').hidden = true;
+            $('pv-fnmodal').hidden = true;
+        });
+    }
+
+    renderFix1();
+    renderFix2();
+    renderFix3();
+    wireModal();
+    wireFootnoteTooltip();
+    wireFootnoteModal();
+})();
+</script>
+</body>
+</html>

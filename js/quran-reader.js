@@ -15,6 +15,11 @@
     var audioGen = 0;
     var dataLoaded = false;
 
+    var _fnNotes = {};
+    var tafsirState = null;
+    var tafsirPinned = false;
+    var tafsirSize = 16;
+
     var RECITER_CFG = {
         Sudais:  { segKey: 'segments-sudais',  segFile: 'js/quran_source/segments/sudais.js',  mode: 'ayah' },
         Shuraim: { segKey: 'segments-shuraim', segFile: 'js/quran_source/segments/shuraim.js', mode: 'surah' },
@@ -72,11 +77,23 @@
         continueYes: document.getElementById('qr-continue-yes'),
         continueNo: document.getElementById('qr-continue-no'),
 
-        footnotePopup: document.getElementById('qr-footnote-popup'),
-        footnoteOverlay: document.getElementById('qr-footnote-overlay'),
-        footnoteBody: document.getElementById('qr-footnote-body'),
-        footnoteClose: document.getElementById('qr-footnote-close'),
         tafsirLangSelect: document.getElementById('qr-tafsir-lang'),
+        fnTooltip: document.getElementById('qr-fn-tooltip'),
+        tafsirModalBackdrop: document.getElementById('qr-tafsir-modal-backdrop'),
+        tafsirModal: document.getElementById('qr-tafsir-modal'),
+        tafsirModalBody: document.getElementById('qr-tafsir-modal-body'),
+        tafsirModalSource: document.getElementById('qr-tafsir-modal-source'),
+        tafsirSurahAr: document.getElementById('qr-tafsir-surah-ar'),
+        tafsirSurahEn: document.getElementById('qr-tafsir-surah-en'),
+        tafsirVerse: document.getElementById('qr-tafsir-verse'),
+        tafsirJump: document.getElementById('qr-tafsir-jump'),
+        tafsirPrev: document.getElementById('qr-tafsir-prev'),
+        tafsirNext: document.getElementById('qr-tafsir-next'),
+        tafsirPin: document.getElementById('qr-tafsir-pin'),
+        tafsirClose: document.getElementById('qr-tafsir-close'),
+        tafsirModalLang: document.getElementById('qr-tafsir-modal-lang'),
+        tafsirSizeDown: document.getElementById('qr-tafsir-size-down'),
+        tafsirSizeUp: document.getElementById('qr-tafsir-size-up'),
         clearCache: document.getElementById('qr-clear-cache'),
     };
 
@@ -115,7 +132,8 @@
         setupSearch();
         setupEventListeners();
         setupPlaybar();
-        setupFootnotePopup();
+        setupTafsirModal();
+        setupFnTooltip();
         setupClearCache();
         setupWbwToggle();
 
@@ -146,6 +164,16 @@
             var savedTafsirLang = localStorage.getItem('quran-tafsir-lang') || 'ta';
             els.tafsirLangSelect.value = savedTafsirLang;
         }
+        if (els.tafsirModalLang) {
+            els.tafsirModalLang.value = localStorage.getItem('quran-tafsir-lang') || 'ta';
+        }
+        tafsirPinned = localStorage.getItem('quran-tafsir-pinned') === 'true';
+        updatePinButton();
+        var savedTafsirSize = parseInt(localStorage.getItem('quran-tafsir-size'), 10);
+        if (!isNaN(savedTafsirSize) && savedTafsirSize >= 12 && savedTafsirSize <= 28) {
+            tafsirSize = savedTafsirSize;
+        }
+        applyTafsirSize();
 
         initDropdowns();
 
@@ -275,19 +303,15 @@
         if (els.tafsirLangSelect) {
             els.tafsirLangSelect.addEventListener('change', function () {
                 localStorage.setItem('quran-tafsir-lang', this.value);
-                var newLang = this.value;
-                document.querySelectorAll('.qr-verse-tafsir-panel:not([hidden])').forEach(function (panel) {
-                    var key = panel.getAttribute('data-key');
-                    var parts = (key || '').split(':');
-                    if (parts.length !== 2) return;
-                    panel.querySelectorAll('input[type="radio"]').forEach(function (r) {
-                        if (r.value === newLang) r.checked = true;
-                    });
-                    var ch = chapters[parseInt(parts[0], 10) - 1];
-                    loadTafsirContent(key, parseInt(parts[0], 10), parseInt(parts[1], 10), ch, newLang,
-                        panel.querySelector('.qr-tafsir-panel-body'),
-                        panel.querySelector('.qr-tafsir-panel-source'));
-                });
+                if (els.tafsirModalLang) els.tafsirModalLang.value = this.value;
+                if (tafsirState) loadTafsirIntoModal();
+            });
+        }
+        if (els.tafsirModalLang) {
+            els.tafsirModalLang.addEventListener('change', function () {
+                localStorage.setItem('quran-tafsir-lang', this.value);
+                if (els.tafsirLangSelect) els.tafsirLangSelect.value = this.value;
+                if (tafsirState) loadTafsirIntoModal();
             });
         }
 
@@ -336,9 +360,49 @@
         els.continueNo.addEventListener('click', function () { stopAudio(); hideContinuePrompt(); });
     }
 
-    function setupFootnotePopup() {
-        els.footnoteOverlay.addEventListener('click', closeFootnotePopup);
-        els.footnoteClose.addEventListener('click', closeFootnotePopup);
+    function setupTafsirModal() {
+        if (!els.tafsirModalBackdrop) return;
+        els.tafsirClose.addEventListener('click', closeTafsirModal);
+        els.tafsirPrev.addEventListener('click', function () { tafsirStep(-1); });
+        els.tafsirNext.addEventListener('click', function () { tafsirStep(1); });
+        els.tafsirPin.addEventListener('click', function () {
+            tafsirPinned = !tafsirPinned;
+            localStorage.setItem('quran-tafsir-pinned', tafsirPinned ? 'true' : 'false');
+            updatePinButton();
+        });
+        els.tafsirJump.addEventListener('change', function () {
+            var val = parseInt(this.value, 10);
+            if (!isNaN(val) && tafsirState) {
+                tafsirState.ayah = val;
+                openTafsirFor(tafsirState.ch, val);
+            }
+        });
+        els.tafsirSizeDown.addEventListener('click', function () { adjustTafsirSize(-1); });
+        els.tafsirSizeUp.addEventListener('click', function () { adjustTafsirSize(1); });
+        els.tafsirModalBackdrop.addEventListener('click', function (e) {
+            if (e.target === els.tafsirModalBackdrop && !tafsirPinned) closeTafsirModal();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (!els.tafsirModalBackdrop || els.tafsirModalBackdrop.hidden) return;
+            if (e.key === 'Escape' && !tafsirPinned) {
+                e.preventDefault();
+                closeTafsirModal();
+            } else if (e.key === 'ArrowLeft' && tafsirState) {
+                tafsirStep(-1);
+            } else if (e.key === 'ArrowRight' && tafsirState) {
+                tafsirStep(1);
+            }
+        });
+    }
+
+    function setupFnTooltip() {
+        if (!els.fnTooltip) return;
+        els.fnTooltip.addEventListener('mousedown', function (e) { e.preventDefault(); });
+        document.addEventListener('click', function (e) {
+            if (e.target.closest && e.target.closest('.qr-fn-sup')) return;
+            hideFnTooltip();
+        });
+        window.addEventListener('scroll', hideFnTooltip, true);
     }
 
     function setupClearCache() {
@@ -410,6 +474,8 @@
         if (id < 1 || id > 114) return;
         currentSurah = id;
         stopAudio();
+        if (els.tafsirModalBackdrop && !els.tafsirModalBackdrop.hidden) closeTafsirModal();
+        hideFnTooltip();
 
         var ch = chapters[id - 1];
         if (!ch) return;
@@ -472,12 +538,39 @@
             var key = ch.id + ':' + v;
             var verse = indopakData ? indopakData[key] : null;
             var transEntry = transData ? transData[key] : null;
-            var transText = transEntry ? extractTranslationText(transEntry.t || '') : '';
-            var hasFootnotes = transEntry && transEntry.t && transEntry.t.indexOf('[[') !== -1;
             var isBm = bookmarks.indexOf(key) !== -1;
 
             var chPad = pad(ch.id, 3);
             var vPad = pad(v, 3);
+
+            // Parse inline [[footnote]] markers once per verse into [seg, note] pairs
+            var fnParts = [];
+            var src = transEntry ? (transEntry.t || '') : '';
+            if (src.indexOf('[[') !== -1) {
+                var r = /\[\[([^\]]*)\]\]/g;
+                var m;
+                var lastPos = 0;
+                while ((m = r.exec(src)) !== null) {
+                    fnParts.push({ seg: src.slice(lastPos, m.index), note: m[1].trim() });
+                    lastPos = r.lastIndex;
+                }
+                fnParts.push({ seg: src.slice(lastPos), note: '' });
+            } else {
+                fnParts.push({ seg: src, note: '' });
+            }
+            var transText = extractTranslationText(src);
+
+            var transHtml = '';
+            for (var pi = 0; pi < fnParts.length; pi++) {
+                var piece = fnParts[pi];
+                if (piece.seg) transHtml += escapeHtml(piece.seg);
+                if (piece.note) {
+                    var fnKey = key + ':fn' + (pi + 1);
+                    _fnNotes[fnKey] = { verseKey: key, text: piece.note };
+                    transHtml += '<span class="qr-fn-wrap"><button class="qr-fn-sup" type="button" data-fnkey="' + fnKey + '" data-verse="' + v + '" data-num="' + (pi + 1) + '" aria-label="Footnote ' + (pi + 1) + '">' + (pi + 1) + '</button></span>';
+                }
+            }
+            if (!transHtml && transText) transHtml = escapeHtml(transText);
 
             html += '<div class="qr-verse-row' + (wbwMode ? ' wbw-active' : '') + '" id="row-' + key.replace(':', '-') + '" data-key="' + key + '">';
 
@@ -491,6 +584,7 @@
             html += '<div class="qr-verse-body">';
             html += '<div class="qr-verse-arabic" id="ar-' + key.replace(':', '-') + '" dir="rtl">';
             if (wbwMode && wbwWordData && wbwTransData) {
+                html += '<span class="qr-wbw-vnum">' + v + '</span>';
                 var wIdx = 1;
                 var anyWordRendered = false;
                 while (wbwWordData[key + ':' + wIdx]) {
@@ -515,30 +609,16 @@
             }
             html += '</div>';
 
-            if (transText) {
-                html += '<div class="qr-verse-translation">' + escapeHtml(transText) + '</div>';
+            if (transHtml) {
+                html += '<div class="qr-verse-translation">' + transHtml + '</div>';
             }
             html += '</div>';
 
-            // Action row: Tafsir link + numbered footnote references
+            // Action row: Tafsir book-icon trigger
             html += '<div class="qr-verse-action">';
-            html += '<button class="qr-tafsir-link" data-key="' + key + '" aria-expanded="false" aria-controls="tafsir-' + key.replace(':', '-') + '">Tafsir</button>';
-            if (hasFootnotes) {
-                var notes = extractFootnotes(transEntry);
-                for (var fi = 0; fi < notes.length; fi++) {
-                    html += '<button class="qr-verse-fn-ref" data-key="' + key + '" title="View footnote ' + (fi + 1) + '"><sup>' + (fi + 1) + '</sup></button>';
-                }
-            }
-            html += '</div>';
-
-            // Inline tafsir panel (hidden until Tafsir is clicked)
-            html += '<div class="qr-verse-tafsir-panel" id="tafsir-' + key.replace(':', '-') + '" data-key="' + key + '" hidden>';
-            html += '<div class="qr-tafsir-panel-tabs">';
-            html += '<label><input type="radio" name="tafsir-lang-' + key.replace(':', '-') + '" value="ta" checked> Tamil</label>';
-            html += '<label><input type="radio" name="tafsir-lang-' + key.replace(':', '-') + '" value="en"> English</label>';
-            html += '</div>';
-            html += '<div class="qr-tafsir-panel-body"></div>';
-            html += '<div class="qr-tafsir-panel-source"></div>';
+            html += '<button class="qr-tafsir-book" type="button" data-key="' + key + '" aria-label="Tafsir for verse ' + v + '" title="Tafsir">';
+            html += '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
+            html += '</button>';
             html += '</div>';
 
             html += '</div>';
@@ -553,23 +633,20 @@
             });
         });
 
-        els.verses.querySelectorAll('.qr-verse-fn-ref').forEach(function (btn) {
+        els.verses.querySelectorAll('.qr-fn-sup').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
-                var key = this.getAttribute('data-key');
-                var transData = getCurrentTranslationData();
-                var entry = transData ? transData[key] : null;
-                var notes = extractFootnotes(entry);
-                if (notes.length > 0) {
-                    showFootnotePopup(notes);
-                }
+                e.preventDefault();
+                showFnTooltip(this);
             });
         });
 
-        els.verses.querySelectorAll('.qr-tafsir-link').forEach(function (btn) {
+        els.verses.querySelectorAll('.qr-tafsir-book').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
-                toggleTafsirPanel(this);
+                var key = this.getAttribute('data-key');
+                var parts = key.split(':');
+                openTafsirFor(chapters[parseInt(parts[0], 10) - 1], parseInt(parts[1], 10));
             });
         });
     }
@@ -732,83 +809,125 @@
         return text.replace(/\[\[[^\]]*\]\]/g, '').trim();
     }
 
-    function extractFootnotes(entry) {
-        if (!entry || !entry.t) return [];
-        var notes = [];
-        entry.t.replace(/\[\[([^\]]*)\]\]/g, function (match, content) {
-            notes.push(content.trim());
-            return '';
-        });
-        return notes;
+    /* ---- Inline footnote tooltips ---- */
+
+    function showFnTooltip(btn) {
+        if (!els.fnTooltip) return;
+        var fnKey = btn.getAttribute('data-fnkey');
+        var num = btn.getAttribute('data-num') || '1';
+        var note = _fnNotes[fnKey] ? _fnNotes[fnKey].text : '';
+        if (!note) return;
+        els.fnTooltip.innerHTML = '<span class="qr-fn-tooltip-label">Footnote ' + num + '</span> ' + escapeHtml(note);
+        var vr = btn.getBoundingClientRect();
+        var tw = els.fnTooltip.offsetWidth;
+        var top = vr.bottom + 10;
+        var left = vr.left + vr.width / 2 - tw / 2;
+        if (left < 8) left = 8;
+        if (left + tw > window.innerWidth - 8) left = window.innerWidth - tw - 8;
+        var bottom = top + els.fnTooltip.offsetHeight + 10;
+        if (bottom > window.innerHeight - 8) {
+            top = Math.max(8, vr.top - els.fnTooltip.offsetHeight - 10);
+        }
+        els.fnTooltip.style.top = top + 'px';
+        els.fnTooltip.style.left = left + 'px';
+        els.fnTooltip.style.display = 'block';
     }
 
-    function showFootnotePopup(notes) {
-        var html = notes.map(function (n, i) {
-            return '<p><sup>' + (i + 1) + '</sup> ' + escapeHtml(n) + '</p>';
-        }).join('');
-        els.footnoteBody.innerHTML = html;
-        els.footnotePopup.style.display = 'flex';
+    function hideFnTooltip() {
+        if (els.fnTooltip) els.fnTooltip.style.display = 'none';
     }
 
-    function closeFootnotePopup() {
-        els.footnotePopup.style.display = 'none';
-    }
-
-    /* ---- Inline per-verse tafsir panel ---- */
+    /* ---- Tafsir modal popup ---- */
 
     function getDefaultTafsirLang() {
         if (els.tafsirLangSelect && els.tafsirLangSelect.value) return els.tafsirLangSelect.value;
         return localStorage.getItem('quran-tafsir-lang') || 'ta';
     }
 
-    function toggleTafsirPanel(linkBtn) {
-        var key = linkBtn.getAttribute('data-key');
-        var panel = document.getElementById('tafsir-' + key.replace(':', '-'));
-        if (!panel) return;
-        if (panel.hidden) {
-            document.querySelectorAll('.qr-verse-tafsir-panel:not([hidden])').forEach(function (p) {
-                closeTafsirPanel(p);
-            });
-            openTafsirPanel(panel, linkBtn);
-        } else {
-            closeTafsirPanel(panel);
+    function openTafsirFor(ch, ayah) {
+        if (!els.tafsirModalBackdrop) return;
+        tafsirState = { ch: ch, ayah: ayah };
+        updateJumpSelect();
+        if (els.tafsirModalLang) els.tafsirModalLang.value = getDefaultTafsirLang();
+        updateModalHeader();
+        loadTafsirIntoModal();
+        els.tafsirModalBackdrop.hidden = false;
+        document.body.style.overflow = 'hidden';
+        els.tafsirModalBody.focus && els.tafsirModalBody.focus();
+    }
+
+    function closeTafsirModal() {
+        if (!els.tafsirModalBackdrop) return;
+        els.tafsirModalBackdrop.hidden = true;
+        document.body.style.overflow = '';
+        tafsirState = null;
+    }
+
+    function tafsirStep(delta) {
+        if (!tafsirState) return;
+        var next = tafsirState.ayah + delta;
+        if (next < 1 || next > tafsirState.ch.verses) return;
+        tafsirState.ayah = next;
+        els.tafsirJump.value = String(next);
+        updateModalHeader();
+        loadTafsirIntoModal();
+        els.tafsirModalBody.scrollTop = 0;
+    }
+
+    function updateJumpSelect() {
+        if (!els.tafsirJump || !tafsirState) return;
+        var opts = '';
+        for (var a = 1; a <= tafsirState.ch.verses; a++) {
+            opts += '<option value="' + a + '"' + (a === tafsirState.ayah ? ' selected' : '') + '>V: ' + a + '</option>';
+        }
+        els.tafsirJump.innerHTML = opts;
+    }
+
+    function updateModalHeader() {
+        if (!tafsirState) return;
+        if (els.tafsirSurahAr) els.tafsirSurahAr.textContent = tafsirState.ch.nameAr || '';
+        if (els.tafsirSurahEn) els.tafsirSurahEn.textContent = tafsirState.ch.name || '';
+        if (els.tafsirVerse) els.tafsirVerse.textContent = tafsirState.ch.id + ':' + tafsirState.ayah;
+        if (els.tafsirPrev) els.tafsirPrev.disabled = tafsirState.ayah <= 1;
+        if (els.tafsirNext) els.tafsirNext.disabled = tafsirState.ayah >= tafsirState.ch.verses;
+        if (els.tafsirJump && els.tafsirJump.value !== String(tafsirState.ayah)) {
+            els.tafsirJump.value = String(tafsirState.ayah);
         }
     }
 
-    function closeTafsirPanel(panel) {
-        panel.hidden = true;
-        var link = document.querySelector('.qr-tafsir-link[data-key="' + panel.getAttribute('data-key') + '"]');
-        if (link) link.setAttribute('aria-expanded', 'false');
+    function loadTafsirIntoModal() {
+        if (!tafsirState || !els.tafsirModalBody) return;
+        var lang = getDefaultTafsirLang();
+        loadTafsirContent(tafsirState.ch.id + ':' + tafsirState.ayah, tafsirState.ch.id, tafsirState.ayah, tafsirState.ch, lang, els.tafsirModalBody, els.tafsirModalSource);
     }
 
-    function openTafsirPanel(panel, linkBtn) {
-        var key = panel.getAttribute('data-key');
-        var parts = key.split(':');
-        var surahNum = parseInt(parts[0], 10);
-        var ayahNum = parseInt(parts[1], 10);
-        var ch = chapters[surahNum - 1];
+    function tafsirContentCurrent(surah, ayah, lang) {
+        if (!tafsirState) return false;
+        return tafsirState.ch.id === surah && tafsirState.ayah === ayah && getDefaultTafsirLang() === lang;
+    }
 
-        var defaultLang = getDefaultTafsirLang();
-        var radios = panel.querySelectorAll('input[type="radio"]');
-        radios.forEach(function (r) { r.checked = r.value === defaultLang; });
+    function updatePinButton() {
+        if (!els.tafsirPin) return;
+        els.tafsirPin.classList.toggle('is-pinned', tafsirPinned);
+        els.tafsirPin.setAttribute('aria-pressed', tafsirPinned ? 'true' : 'false');
+        els.tafsirPin.innerHTML = tafsirPinned
+            ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v2l-1 1v4l2 3v2H6v-2l2-3V7L7 6V4zm3 16h4v-3h-4v3z"/></svg>'
+            : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v2l-1 1v4l2 3v2H6v-2l2-3V7L7 6V4zm3 16h4v-3h-4v3z"/></svg>';
+        els.tafsirPin.title = tafsirPinned ? 'Unpin (closes with X)' : 'Pin (keep open)';
+    }
 
-        panel.hidden = false;
-        if (linkBtn) linkBtn.setAttribute('aria-expanded', 'true');
+    function applyTafsirSize() {
+        if (els.tafsirModalBody) els.tafsirModalBody.style.fontSize = tafsirSize + 'px';
+    }
 
-        var bodyEl = panel.querySelector('.qr-tafsir-panel-body');
-        var srcEl = panel.querySelector('.qr-tafsir-panel-source');
-        loadTafsirContent(key, surahNum, ayahNum, ch, defaultLang, bodyEl, srcEl);
-
-        radios.forEach(function (r) {
-            r.onchange = function () {
-                if (r.checked) loadTafsirContent(key, surahNum, ayahNum, ch, r.value, bodyEl, srcEl);
-            };
-        });
+    function adjustTafsirSize(delta) {
+        tafsirSize = Math.max(12, Math.min(28, tafsirSize + delta));
+        localStorage.setItem('quran-tafsir-size', String(tafsirSize));
+        applyTafsirSize();
     }
 
     function loadTafsirContent(key, surahNum, ayahNum, ch, lang, bodyEl, srcEl) {
         if (!bodyEl) return;
-        var langLabel = lang === 'en' ? 'English' : 'Tamil';
         bodyEl.innerHTML = '<p class="qr-tafsir-loading">Loading tafsir...</p>';
         bodyEl.dir = lang === 'en' ? 'ltr' : 'auto';
         if (srcEl) {
@@ -819,7 +938,7 @@
 
         if (lang === 'en') {
             loadEnglishTafsir(surahNum, ayahNum, function (html) {
-                if (tafsirPanelHidden(key)) return;
+                if (!tafsirContentCurrent(surahNum, ayahNum, 'en')) return;
                 if (html) {
                     bodyEl.innerHTML = html;
                 } else {
@@ -830,7 +949,7 @@
             var fileKey = 'tafsir-ta-' + pad(surahNum, 3);
             var filePath = 'js/tafsir/tamil-' + pad(surahNum, 3) + '.js';
             loadFromCacheOrFetch(fileKey, filePath, function (data) {
-                if (tafsirPanelHidden(key)) return;
+                if (!tafsirContentCurrent(surahNum, ayahNum, 'ta')) return;
                 var entry = data && data.data ? data.data[String(ayahNum)] : null;
                 if (entry && entry.html) {
                     bodyEl.innerHTML = entry.html;
@@ -839,11 +958,6 @@
                 }
             });
         }
-    }
-
-    function tafsirPanelHidden(key) {
-        var panel = document.getElementById('tafsir-' + key.replace(':', '-'));
-        return !panel || panel.hidden;
     }
 
     /* ---- MCP English tafsir (live quran.ai) ---- */
