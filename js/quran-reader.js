@@ -21,6 +21,7 @@
     var tafsirSize = 16;
     var simState = null;
     var infoState = null;
+    var infoSize = 16;
     var mushafState = { ch: null, page: 1, pages: [] };
 
     var QUL_BUNDLES = {
@@ -60,8 +61,8 @@
 
     /* Bilingual Surah overviews (English + Tamil). Curated child-friendly
        summaries and core themes for the surahs most studied by young
-       learners. Any surah without a curated entry falls back to a factual
-       blurb built from the existing chapter metadata in renderSurahInfoCard. */
+       learners. Any surah without a curated entry falls back to the QUL
+       surah-info bundles or a factual blurb built from chapter metadata. */
     var SURAH_INFO = {
         "1": {
             en: { summary: 'The Opening of the Quran and the essence of Salah, recited in every unit of prayer. It praises Allah, affirms His Lordship and Mercy, and asks Him alone to guide us upon the straight path.',
@@ -267,6 +268,9 @@
         infoSurahAr: document.getElementById('qr-info-surah-ar'),
         infoSurahEn: document.getElementById('qr-info-surah-en'),
         infoSource: document.getElementById('qr-info-modal-source'),
+        infoLangSelect: document.getElementById('qr-info-modal-lang'),
+        infoSizeDown: document.getElementById('qr-info-size-down'),
+        infoSizeUp: document.getElementById('qr-info-size-up'),
 
         mushafBackdrop: document.getElementById('qr-mushaf-backdrop'),
         mushafFrame: document.getElementById('qr-mushaf-frame'),
@@ -359,6 +363,15 @@
             tafsirSize = savedTafsirSize;
         }
         applyTafsirSize();
+
+        if (els.infoLangSelect) {
+            els.infoLangSelect.value = localStorage.getItem('quran-info-lang') || 'en';
+        }
+        var savedInfoSize = parseInt(localStorage.getItem('quran-info-size'), 10);
+        if (!isNaN(savedInfoSize) && savedInfoSize >= 12 && savedInfoSize <= 28) {
+            infoSize = savedInfoSize;
+        }
+        applyInfoSize();
 
         initDropdowns();
 
@@ -708,8 +721,6 @@
         html += '<span><span class="meta-label">Order:</span> <span class="meta-value">' + ch.revelation_order + '</span></span>';
         html += '</div>';
 
-        html += renderSurahInfoCard(ch);
-
         if (ch.id !== 9) {
             html += '<div class="qr-surah-header-bismillah">\u0628\u0650\u0633\u0652\u0645\u0650 \u0671\u0644\u0644\u064e\u0651\u0647\u0650 \u0671\u0644\u0631\u064e\u0651\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0671\u0644\u0631\u064e\u0651\u062d\u0650\u064a\u0645\u0650</div>';
         }
@@ -720,47 +731,7 @@
             if (el) el.style.opacity = '1';
         });
 
-        wireSurahInfoCard();
-        ensureSurahInfoBundles(ch);
-    }
-
-    // The card renders with whatever bundles are loaded at paint time. For
-    // non-curated surahs (and for curated surahs whose ayah-themes bundle
-    // hasn't loaded yet) we refresh the card in place once the QUL
-    // surah-info/ayah-themes bundles arrive so the full summary, theme chips
-    // and "Themes by section" list all appear.
-    var _surahInfoRefreshed = {};
-
-    function ensureSurahInfoBundles(ch) {
-        var want = ['surah-info-en', 'surah-info-ta', 'ayah-themes'];
-        var need = want.filter(function (k) { return !getQulBundle(k); });
-        if (!need.length) return;
-        var done = 0;
-        need.forEach(function (key) {
-            loadQulBundle(key, function () {
-                done++;
-                if (done < need.length) return;
-                var stamp = ch.id + ':' + ch.verses;
-                if (_surahInfoRefreshed[stamp]) return;
-                _surahInfoRefreshed[stamp] = true;
-                refreshSurahInfoCard();
-            });
-        });
-    }
-
-    function refreshSurahInfoCard() {
-        if (!currentSurah) return;
-        var ch = chapters[currentSurah - 1];
-        if (!ch) return;
-        var card = els.surahHeader.querySelector('.qr-surah-info-card');
-        if (!card) return;
-        var parent = card.parentNode;
-        var tmp = document.createElement('div');
-        tmp.innerHTML = renderSurahInfoCard(ch);
-        var fresh = tmp.firstElementChild;
-        if (!fresh) return;
-        parent.replaceChild(fresh, card);
-        wireSurahInfoCard();
+        wireSurahInfoButton();
     }
 
     function ordinal(n) {
@@ -771,39 +742,6 @@
         if (mod10 === 2) return n + 'nd';
         if (mod10 === 3) return n + 'rd';
         return n + 'th';
-    }
-
-    function getSurahInfo(ch) {
-        var curated = SURAH_INFO[String(ch.id)];
-        if (curated) return curated;
-
-        var enData = getQulBundle('surah-info-en');
-        var taData = getQulBundle('surah-info-ta');
-        var enEntry = enData && enData[String(ch.id)];
-        var taEntry = taData && taData[String(ch.id)];
-        if (enEntry || taEntry) {
-            var enSrc = (enEntry && (enEntry.short_text || enEntry.text)) || '';
-            var taSrc = (taEntry && (taEntry.short_text || taEntry.text)) || '';
-            return {
-                en: {
-                    summary: truncateText(stripHtml(enSrc), 440),
-                    themes: getSurahThemeChips(ch)
-                },
-                ta: {
-                    summary: truncateText(stripHtml(taSrc), 440),
-                    themes: []
-                }
-            };
-        }
-
-        var place = ch.revelation_place === 'makkah' ? 'Meccan' : 'Medinan';
-        var taPlace = ch.revelation_place === 'makkah' ? 'மக்கா' : 'மதீனா';
-        var enSummary = 'Surah ' + ch.en + ' is a ' + place + ' surah with ' + ch.verses + ' verses. It was the ' + ordinal(ch.revelation_order) + ' surah to be revealed. Read the verses below with translation, tafsir and word-by-word learning.';
-        var taSummary = 'சூரா ' + ch.en + ' ஒரு ' + taPlace + ' சூரா. இதில் ' + ch.verses + ' வசனங்கள் உள்ளன. கீழே உள்ள வசனங்களை மொழிபெயர்ப்பு, தப்ஸீர் மற்றும் சொல்-வாரியாகக் கற்றுக் கொள்ளலாம்.';
-        return {
-            en: { summary: enSummary, themes: [] },
-            ta: { summary: taSummary, themes: [] }
-        };
     }
 
     // Short theme chips from the ayah-themes bundle (used when a surah has no
@@ -821,119 +759,12 @@
         return chips;
     }
 
-    function renderSurahInfoCard(ch) {
-        var info = getSurahInfo(ch);
-        var en = info.en || {}, ta = info.ta || {};
-        var collapsed = localStorage.getItem('quran-surah-info-collapsed') === '1';
-        var lang = localStorage.getItem('quran-surah-info-lang') === 'ta' ? 'ta' : 'en';
-
-        var html = '<div class="qr-surah-info-card">';
-        html += '<div class="qr-surah-info-head">';
-        html += '<button class="qr-surah-info-toggle" type="button" aria-expanded="' + (!collapsed) + '">';
-        html += '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
-        html += '<span class="qr-surah-info-title">Surah Overview &amp; Themes</span>';
-        html += '<span class="qr-surah-info-title-ta" dir="rtl">சூரா அறிமுகம் &amp; கருப்பொருள்கள்</span>';
-        html += '<svg class="qr-surah-info-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>';
-        html += '</button>';
-        html += '<div class="qr-surah-info-lang" role="group" aria-label="Language">';
-        html += '<button type="button" data-lang="en" class="' + (lang === 'en' ? 'active' : '') + '">EN</button>';
-        html += '<button type="button" data-lang="ta" class="' + (lang === 'ta' ? 'active' : '') + '">த</button>';
-        html += '</div>';
-        html += '</div>';
-        html += '<div class="qr-surah-info-body"' + (collapsed ? ' hidden' : '') + '>';
-        html += '<p class="qr-surah-info-summary" data-lang="en"' + (lang === 'en' ? '' : ' hidden') + '>' + escapeHtml(en.summary || '') + '</p>';
-        html += '<p class="qr-surah-info-summary ta" data-lang="ta"' + (lang === 'ta' ? '' : ' hidden') + ' dir="rtl">' + escapeHtml(ta.summary || '') + '</p>';
-        var enThemes = en.themes || [], taThemes = ta.themes || [];
-        if (enThemes.length || taThemes.length) {
-            html += '<div class="qr-surah-info-themes" data-lang="en"' + (lang === 'en' ? '' : ' hidden') + '>';
-            enThemes.forEach(function (t) { html += '<span class="qr-surah-theme">' + escapeHtml(t) + '</span>'; });
-            html += '</div>';
-            html += '<div class="qr-surah-info-themes" data-lang="ta"' + (lang === 'ta' ? '' : ' hidden') + ' dir="rtl">';
-            taThemes.forEach(function (t) { html += '<span class="qr-surah-theme">' + escapeHtml(t) + '</span>'; });
-            html += '</div>';
-        }
-
-        var themeSections = getSurahThemeSections(ch);
-        if (themeSections.length) {
-            var shown = themeSections.slice(0, 8);
-            var rest = themeSections.slice(8);
-            html += '<div class="qr-surah-theme-sections" data-lang="en"' + (lang === 'en' ? '' : ' hidden') + '>';
-            html += '<div class="qr-surah-theme-sections-title">Themes by section</div>';
-            html += '<ul class="qr-surah-theme-list">';
-            shown.forEach(function (t) { html += themeSectionItem(t); });
-            if (rest.length) {
-                html += '<div class="qr-surah-theme-rest" hidden>';
-                rest.forEach(function (t) { html += themeSectionItem(t); });
-                html += '</div>';
-                html += '<button class="qr-surah-theme-more" type="button" data-expanded="false">Show ' + rest.length + ' more \u2026</button>';
-            }
-            html += '</ul>';
-            html += '</div>';
-        }
-
-        html += '</div>';
-        html += '</div>';
-        return html;
-    }
-
-    function themeSectionItem(t) {
-        return '<li class="qr-surah-theme-item"><span class="qr-surah-theme-range">' + t.range + '</span>' + escapeHtml(t.theme) + '</li>';
-    }
-
-    function getSurahThemeSections(ch) {
-        var themes = getQulBundle('ayah-themes');
-        if (!themes) return [];
-        var list = themes[String(ch.id)] || [];
-        var out = [];
-        for (var i = 0; i < list.length; i++) {
-            var from = list[i].from, to = list[i].to, theme = list[i].theme || '';
-            out.push({ range: from === to ? String(from) : from + '\u2013' + to, theme: theme });
-        }
-        return out;
-    }
-
-    function wireSurahInfoCard() {
-        var card = els.surahHeader.querySelector('.qr-surah-info-card');
+    function wireSurahInfoButton() {
         var infoBtn = els.surahHeader.querySelector('.qr-surah-info-btn');
         if (infoBtn) {
             infoBtn.addEventListener('click', function (e) {
                 e.stopPropagation();
                 if (currentSurah) openSurahInfoModal(chapters[currentSurah - 1]);
-            });
-        }
-        if (!card) return;
-        var toggle = card.querySelector('.qr-surah-info-toggle');
-        if (toggle) {
-            toggle.addEventListener('click', function () {
-                var body = card.querySelector('.qr-surah-info-body');
-                if (!body) return;
-                var nowExpanded = body.hidden;
-                body.hidden = !nowExpanded;
-                toggle.setAttribute('aria-expanded', nowExpanded ? 'true' : 'false');
-                localStorage.setItem('quran-surah-info-collapsed', nowExpanded ? '0' : '1');
-            });
-        }
-        card.querySelectorAll('.qr-surah-info-lang button').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var lang = this.getAttribute('data-lang');
-                localStorage.setItem('quran-surah-info-lang', lang);
-                card.querySelectorAll('.qr-surah-info-lang button').forEach(function (b) {
-                    b.classList.toggle('active', b === btn);
-                });
-                card.querySelectorAll('[data-lang]').forEach(function (el) {
-                    el.hidden = el.getAttribute('data-lang') !== lang;
-                });
-            });
-        });
-        var moreBtn = card.querySelector('.qr-surah-theme-more');
-        if (moreBtn) {
-            moreBtn.addEventListener('click', function () {
-                var rest = card.querySelector('.qr-surah-theme-rest');
-                var expanded = this.getAttribute('data-expanded') === 'true';
-                if (rest) rest.hidden = expanded;
-                this.setAttribute('data-expanded', expanded ? 'false' : 'true');
-                var count = rest ? rest.querySelectorAll('.qr-surah-theme-item').length : 0;
-                this.textContent = expanded ? ('Show ' + count + ' more \u2026') : 'Show less';
             });
         }
     }
@@ -1510,7 +1341,7 @@
         }
         var show = function () {
             var theme = getAyahTheme(ch, ayah);
-            var txt = 'theme: ' + (theme || 'No specific theme recorded for this verse.');
+            var txt = theme || 'No specific theme recorded for this verse.';
             var span = document.createElement('span');
             span.className = 'qr-ayah-theme-text';
             span.textContent = txt;
@@ -1791,6 +1622,14 @@
                 closeSurahInfoModal();
             }
         });
+        if (els.infoLangSelect) {
+            els.infoLangSelect.addEventListener('change', function () {
+                localStorage.setItem('quran-info-lang', this.value);
+                if (infoState && infoState.ch) renderInfoBody(infoState.ch);
+            });
+        }
+        if (els.infoSizeDown) els.infoSizeDown.addEventListener('click', function () { adjustInfoSize(-1); });
+        if (els.infoSizeUp) els.infoSizeUp.addEventListener('click', function () { adjustInfoSize(1); });
     }
 
     function loadSurahInfoBundles(cb) {
@@ -1868,74 +1707,46 @@
                 .replace(/<p align="center"/gi, '<p class="qr-info-center"');
     }
 
-    function themeSectionsHtml(ch) {
-        var themes = getQulBundle('ayah-themes');
-        if (!themes) return '';
-        var list = themes[String(ch.id)] || [];
-        if (!list.length) return '';
-        var html = '<div class="qr-info-theme-sections">';
-        html += '<div class="qr-info-theme-title">Themes by section</div>';
-        html += '<ul class="qr-surah-theme-list">';
-        list.forEach(function (t) {
-            var range = t.from === t.to ? String(t.from) : (t.from + '\u2013' + t.to);
-            html += '<li class="qr-surah-theme-item"><span class="qr-surah-theme-range">' + range + '</span>' + escapeHtml(t.theme || '') + '</li>';
-        });
-        html += '</ul>';
-        html += '</div>';
-        return html;
-    }
-
     function renderInfoBody(ch) {
         if (!els.infoBody) return;
         var info = getSurahInfoFull(ch);
-        var lang = localStorage.getItem('quran-surah-info-lang') === 'ta' ? 'ta' : 'en';
+        var lang = els.infoLangSelect ? els.infoLangSelect.value : 'en';
         var html = '';
-        html += '<div class="qr-info-lang-tabs" role="group" aria-label="Language">';
-        html += '<button type="button" data-lang="en" class="' + (lang === 'en' ? 'active' : '') + '">English</button>';
-        html += '<button type="button" data-lang="ta" class="' + (lang === 'ta' ? 'active' : '') + '">தமிழ்</button>';
-        html += '</div>';
 
-        html += '<div class="qr-info-section" data-lang="en"' + (lang === 'en' ? '' : ' hidden') + '>';
-        if (info.en.full) html += '<p class="qr-info-summary">' + escapeHtml(info.en.full) + '</p>';
-        var enChips = info.en.themes || [];
-        if (enChips.length) {
-            html += '<div class="qr-surah-info-themes">';
-            enChips.forEach(function (t) { html += '<span class="qr-surah-theme">' + escapeHtml(t) + '</span>'; });
-            html += '</div>';
+        html += '<div class="qr-info-section" dir="' + (lang === 'ta' ? 'auto' : 'ltr') + '">';
+        if (lang === 'en') {
+            if (info.en.full) html += '<p class="qr-info-summary">' + escapeHtml(info.en.full) + '</p>';
+            var enChips = info.en.themes || [];
+            if (enChips.length) {
+                html += '<div class="qr-surah-info-themes">';
+                enChips.forEach(function (t) { html += '<span class="qr-surah-theme">' + escapeHtml(t) + '</span>'; });
+                html += '</div>';
+            }
+            html += infoRichHtmlEn(ch);
+        } else {
+            if (info.ta.full) html += '<p class="qr-info-summary">' + escapeHtml(info.ta.full) + '</p>';
+            var taChips = info.ta.themes || [];
+            if (taChips.length) {
+                html += '<div class="qr-surah-info-themes">';
+                taChips.forEach(function (t) { html += '<span class="qr-surah-theme">' + escapeHtml(t) + '</span>'; });
+                html += '</div>';
+            }
+            html += infoRichHtmlTa(ch);
         }
-        html += themeSectionsHtml(ch);
-        html += infoRichHtmlEn(ch);
-        html += '</div>';
-
-        html += '<div class="qr-info-section" data-lang="ta"' + (lang === 'ta' ? '' : ' hidden') + ' dir="auto">';
-        if (info.ta.full) html += '<p class="qr-info-summary">' + escapeHtml(info.ta.full) + '</p>';
-        var taChips = info.ta.themes || [];
-        if (taChips.length) {
-            html += '<div class="qr-surah-info-themes">';
-            taChips.forEach(function (t) { html += '<span class="qr-surah-theme">' + escapeHtml(t) + '</span>'; });
-            html += '</div>';
-        }
-        html += infoRichHtmlTa(ch);
         html += '</div>';
 
         els.infoBody.innerHTML = html;
+        els.infoBody.style.fontSize = infoSize + 'px';
+    }
 
-        var selfEl = els.infoBody;
-        selfEl.querySelectorAll('[data-lang]').forEach(function (el) {
-            el.hidden = el.getAttribute('data-lang') !== lang;
-        });
-        selfEl.querySelectorAll('.qr-info-lang-tabs button').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var bl = this.getAttribute('data-lang');
-                localStorage.setItem('quran-surah-info-lang', bl);
-                selfEl.querySelectorAll('.qr-info-lang-tabs button').forEach(function (b) {
-                    b.classList.toggle('active', b === btn);
-                });
-                selfEl.querySelectorAll('.qr-info-section').forEach(function (sec) {
-                    sec.hidden = sec.getAttribute('data-lang') !== bl;
-                });
-            });
-        });
+    function applyInfoSize() {
+        if (els.infoBody) els.infoBody.style.fontSize = infoSize + 'px';
+    }
+
+    function adjustInfoSize(delta) {
+        infoSize = Math.max(12, Math.min(28, infoSize + delta));
+        localStorage.setItem('quran-info-size', String(infoSize));
+        applyInfoSize();
     }
 
     /* ---- Mushaf view ---- */
