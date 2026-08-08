@@ -241,7 +241,6 @@
         continueYes: document.getElementById('qr-continue-yes'),
         continueNo: document.getElementById('qr-continue-no'),
 
-        tafsirLangSelect: document.getElementById('qr-tafsir-lang'),
         fnTooltip: document.getElementById('qr-fn-tooltip'),
         tafsirModalBackdrop: document.getElementById('qr-tafsir-modal-backdrop'),
         tafsirModal: document.getElementById('qr-tafsir-modal'),
@@ -371,10 +370,6 @@
             els.wbwLangSelect.value = savedWbwLang;
         }
 
-        if (els.tafsirLangSelect) {
-            var savedTafsirLang = localStorage.getItem('quran-tafsir-lang') || 'ta';
-            els.tafsirLangSelect.value = savedTafsirLang;
-        }
         if (els.tafsirModalLang) {
             els.tafsirModalLang.value = localStorage.getItem('quran-tafsir-lang') || 'ta';
         }
@@ -609,17 +604,9 @@
             stopAudio();
         });
 
-        if (els.tafsirLangSelect) {
-            els.tafsirLangSelect.addEventListener('change', function () {
-                localStorage.setItem('quran-tafsir-lang', this.value);
-                if (els.tafsirModalLang) els.tafsirModalLang.value = this.value;
-                if (tafsirState) loadTafsirIntoModal();
-            });
-        }
         if (els.tafsirModalLang) {
             els.tafsirModalLang.addEventListener('change', function () {
                 localStorage.setItem('quran-tafsir-lang', this.value);
-                if (els.tafsirLangSelect) els.tafsirLangSelect.value = this.value;
                 if (tafsirState) loadTafsirIntoModal();
             });
         }
@@ -1325,7 +1312,6 @@
     /* ---- Tafsir modal popup ---- */
 
     function getDefaultTafsirLang() {
-        if (els.tafsirLangSelect && els.tafsirLangSelect.value) return els.tafsirLangSelect.value;
         return localStorage.getItem('quran-tafsir-lang') || 'ta';
     }
 
@@ -2067,7 +2053,7 @@
     function loadTafsirContent(key, surahNum, ayahNum, ch, lang, bodyEl, srcEl) {
         if (!bodyEl) return;
         bodyEl.innerHTML = '<p class="qr-tafsir-loading">Loading tafsir...</p>';
-        bodyEl.dir = lang === 'en' ? 'ltr' : 'auto';
+        bodyEl.dir = 'ltr';
         if (srcEl) {
             srcEl.textContent = lang === 'en'
                 ? 'Source: Tafsir Ibn Kathir (Abridged) \u00b7 quran.com'
