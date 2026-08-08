@@ -195,6 +195,30 @@ def check_qul_reader_features(verbose):
         errors.append('quran-reader.css missing .qr-sim-highlight')
     if 'qr-theme-book' not in styles:
         errors.append('quran-reader.css missing .qr-theme-book styling')
+    if 'qurandisp' not in js:
+        errors.append('quran-reader.js missing scraped tafsir link (qurandisp) interception')
+    if 'quran-sim-size' not in js:
+        errors.append('quran-reader.js missing sim modal font-size persistence (quran-sim-size)')
+    if 'qr-sim-size-up' not in has(html):
+        errors.append('quran-reader.html missing sim modal font-size controls (qr-sim-size-up)')
+    if 'Search surah' not in has(html):
+        errors.append('quran-reader.html sidebar search placeholder should be "Search surah..."')
+    if '<h2>Surahs</h2>' in has(html):
+        errors.append('quran-reader.html sidebar still has <h2>Surahs</h2> heading')
+    if 'qr-goto-btn' not in has(html):
+        errors.append('quran-reader.html missing Go to surah & verse button (qr-goto-btn)')
+    if 'qr-nav-toast' not in has(html) or 'role="status"' not in has(html):
+        errors.append('quran-reader.html missing navigation toast (qr-nav-toast, role="status")')
+    if 'scrollToVerse' not in js:
+        errors.append('quran-reader.js missing scrollToVerse (jump scroll + flash + focus)')
+    if 'showNavToast' not in js:
+        errors.append('quran-reader.js missing showNavToast (verse-jump indicator)')
+    if 'qr-flash-target' not in styles:
+        errors.append('quran-reader.css missing verse flash highlight (qr-flash-target)')
+    if '--qr-flash-bg' not in styles:
+        errors.append('quran-reader.css missing --qr-flash-bg theme variable')
+    if 'margin-left: auto' not in styles:
+        errors.append('quran-reader.css sim modal font-size controls not right-aligned')
     if verbose:
         print('  [OK] QUL reader features checked')
     return errors

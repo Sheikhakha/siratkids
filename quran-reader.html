@@ -85,8 +85,12 @@
     <div class="qr-layout">
         <aside class="qr-sidebar" id="qr-sidebar">
             <div class="qr-sidebar-header">
-                <h2>Surahs</h2>
-                <input type="text" class="qr-surah-search" id="qr-surah-search" placeholder="Search surahs...">
+                <div class="qr-surah-search-wrap">
+                    <input type="text" class="qr-surah-search" id="qr-surah-search" placeholder="Search surah...">
+                    <button type="button" class="qr-goto-btn" id="qr-goto-btn" aria-label="Go to surah and verse" title="Go to surah &amp; verse">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="7"/><line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="21"/></svg>
+                    </button>
+                </div>
             </div>
             <div class="qr-surah-list" id="qr-surah-list"></div>
         </aside>
@@ -200,6 +204,13 @@
                 </div>
                 <button class="qr-tafsir-close" id="qr-sim-close" aria-label="Close similar ayat">&#10005;</button>
             </div>
+            <div class="qr-tafsir-modal-controls">
+                <div class="qr-tafsir-size">
+                    <span class="qr-tafsir-size-aa">Aa</span>
+                    <button id="qr-sim-size-down" aria-label="Decrease text size">A&#8722;</button>
+                    <button id="qr-sim-size-up" aria-label="Increase text size">A+</button>
+                </div>
+            </div>
             <div class="qr-sim-modal-body" id="qr-sim-modal-body"></div>
             <div class="qr-tafsir-modal-source" id="qr-sim-modal-source"></div>
         </div>
@@ -251,6 +262,26 @@
             <div class="qr-mushaf-page" id="qr-mushaf-page" dir="rtl"></div>
         </div>
     </div>
+
+    <!-- Go to surah & verse dialog -->
+    <div class="qr-goto-backdrop" id="qr-goto-backdrop" hidden>
+        <div class="qr-goto-dialog" role="dialog" aria-modal="true" aria-label="Go to surah and verse">
+            <div class="qr-goto-head">
+                <div class="qr-goto-title">Go to surah &amp; verse</div>
+                <button type="button" class="qr-tafsir-close" id="qr-goto-close" aria-label="Close go to dialog">&#10005;</button>
+            </div>
+            <div class="qr-goto-body">
+                <label class="qr-goto-label" for="qr-goto-surah">Surah</label>
+                <select class="qr-goto-select" id="qr-goto-surah"></select>
+                <label class="qr-goto-label" for="qr-goto-verse">Verse</label>
+                <input type="number" class="qr-goto-verse" id="qr-goto-verse" min="1" max="7" value="" aria-label="Verse number">
+                <button type="button" class="qr-goto-go" id="qr-goto-go">Go</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation toast: shown when a link jumps from one verse to another -->
+    <div class="qr-nav-toast" id="qr-nav-toast" role="status" hidden></div>
 
     <script src="js/quran-chapter-data.js"></script>
     <script src="js/quran-reader-cache.js"></script>

@@ -20,6 +20,9 @@
     var tafsirPinned = false;
     var tafsirSize = 16;
     var simState = null;
+    var simSize = 16;
+    var _flashTimer = null;
+    var _toastTimer = null;
     var infoState = null;
     var infoSize = 16;
     var mushafState = { ch: null, page: 1, pages: [] };
@@ -265,6 +268,16 @@
         simSurahEn: document.getElementById('qr-sim-surah-en'),
         simVerse: document.getElementById('qr-sim-verse'),
         simSource: document.getElementById('qr-sim-modal-source'),
+        simSizeDown: document.getElementById('qr-sim-size-down'),
+        simSizeUp: document.getElementById('qr-sim-size-up'),
+
+        navToast: document.getElementById('qr-nav-toast'),
+        gotoBtn: document.getElementById('qr-goto-btn'),
+        gotoBackdrop: document.getElementById('qr-goto-backdrop'),
+        gotoSurah: document.getElementById('qr-goto-surah'),
+        gotoVerse: document.getElementById('qr-goto-verse'),
+        gotoGo: document.getElementById('qr-goto-go'),
+        gotoClose: document.getElementById('qr-goto-close'),
 
         infoBackdrop: document.getElementById('qr-surah-info-modal-backdrop'),
         infoModal: document.getElementById('qr-surah-info-modal'),
@@ -330,6 +343,7 @@
         setupMutashabihatModal();
         setupSurahInfoModal();
         setupMushaf();
+        setupGotoDialog();
 
         var savedReciter = localStorage.getItem('audio-voice-name');
         if (savedReciter && RECITER_CFG[savedReciter]) {
@@ -377,6 +391,12 @@
             infoSize = savedInfoSize;
         }
         applyInfoSize();
+
+        var savedSimSize = parseInt(localStorage.getItem('quran-sim-size'), 10);
+        if (!isNaN(savedSimSize) && savedSimSize >= 12 && savedSimSize <= 28) {
+            simSize = savedSimSize;
+        }
+        applySimSize();
 
         initDropdowns();
 
@@ -495,6 +515,64 @@
         });
     }
 
+    function setupGotoDialog() {
+        if (!els.gotoBackdrop) return;
+        els.gotoBtn.addEventListener('click', openGotoDialog);
+        els.gotoClose.addEventListener('click', closeGotoDialog);
+        els.gotoBackdrop.addEventListener('click', function (e) {
+            if (e.target === els.gotoBackdrop) closeGotoDialog();
+        });
+        populateGotoSurahs();
+        els.gotoSurah.addEventListener('change', function () {
+            var ch = chapters[parseInt(this.value, 10) - 1];
+            els.gotoVerse.max = ch ? ch.verses : 1;
+            if (parseInt(els.gotoVerse.value, 10) > els.gotoVerse.max) els.gotoVerse.value = els.gotoVerse.max;
+        });
+        els.gotoGo.addEventListener('click', gotoSubmit);
+        els.gotoVerse.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') gotoSubmit();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && els.gotoBackdrop && !els.gotoBackdrop.hidden) closeGotoDialog();
+        });
+    }
+
+    function populateGotoSurahs() {
+        if (!els.gotoSurah) return;
+        var opts = '<option value="">Select surah</option>';
+        for (var i = 1; i <= 114; i++) {
+            var ch = chapters[i - 1];
+            opts += '<option value="' + i + '">' + i + '. ' + escapeHtml(ch.en) + '</option>';
+        }
+        els.gotoSurah.innerHTML = opts;
+    }
+
+    function openGotoDialog() {
+        if (!els.gotoBackdrop) return;
+        els.gotoBackdrop.hidden = false;
+        if (!els.gotoSurah.value) els.gotoSurah.value = String(currentSurah || 1);
+        els.gotoSurah.dispatchEvent(new Event('change'));
+        setTimeout(function () { if (els.gotoVerse) els.gotoVerse.focus(); }, 0);
+    }
+
+    function closeGotoDialog() {
+        if (els.gotoBackdrop) els.gotoBackdrop.hidden = true;
+        if (els.gotoBtn) els.gotoBtn.focus();
+    }
+
+    function gotoSubmit() {
+        if (!els.gotoSurah || !els.gotoVerse) return;
+        var sid = parseInt(els.gotoSurah.value, 10);
+        var vn = parseInt(els.gotoVerse.value, 10);
+        var ch = chapters[sid - 1];
+        if (!ch || !vn || vn < 1 || vn > ch.verses) {
+            if (els.gotoVerse) els.gotoVerse.focus();
+            return;
+        }
+        closeGotoDialog();
+        loadSurah(sid, vn);
+    }
+
     function setupEventListeners() {
         els.reciterSelect.addEventListener('change', function () {
             currentReciter = this.value;
@@ -582,6 +660,32 @@
         });
         els.tafsirSizeDown.addEventListener('click', function () { adjustTafsirSize(-1); });
         els.tafsirSizeUp.addEventListener('click', function () { adjustTafsirSize(1); });
+
+        // Scraped tafsir data (tamililquran.com) contains internal ayah links
+        // like qurandisp.php?sura=15&ayah=87 that point to invalid URLs when
+        // served from this site. Intercept them and navigate the reader to the
+        // same verse instead.
+        if (els.tafsirModalBody) {
+            els.tafsirModalBody.addEventListener('click', function (e) {
+                var a = e.target && e.target.closest ? e.target.closest('a') : null;
+                if (!a) return;
+                var href = a.getAttribute('href') || '';
+                var mSura = /\bsura=(\d+)/i.exec(href);
+                var mAyah = /\bayah=(\d+)/i.exec(href);
+                if (!mSura || !mAyah) return;
+                var s = parseInt(mSura[1], 10);
+                var ay = parseInt(mAyah[1], 10);
+                var ch = chapters[s - 1];
+                if (!ch || ay < 1 || ay > ch.verses) return;
+                e.preventDefault();
+                e.stopPropagation();
+                var srcKey = tafsirState ? tafsirState.ch.id + ':' + tafsirState.ayah : '';
+                closeTafsirModal();
+                loadSurah(s, ay);
+                if (srcKey) showNavToast(srcKey, s + ':' + ay);
+            });
+        }
+
         els.tafsirModalBackdrop.addEventListener('click', function (e) {
             if (e.target === els.tafsirModalBackdrop && !tafsirPinned) closeTafsirModal();
         });
@@ -673,7 +777,7 @@
         });
     }
 
-    function loadSurah(id) {
+    function loadSurah(id, targetVerse) {
         if (id < 1 || id > 114) return;
         currentSurah = id;
         stopAudio();
@@ -686,7 +790,7 @@
         var ch = chapters[id - 1];
         if (!ch) return;
 
-        localStorage.setItem('quran-last-read', ch.id + ':1');
+        localStorage.setItem('quran-last-read', ch.id + ':' + (targetVerse || 1));
 
         els.surahList.querySelectorAll('.qr-surah-item').forEach(function (item) {
             item.classList.toggle('active', parseInt(item.getAttribute('data-id')) === id);
@@ -704,7 +808,11 @@
         els.main.scrollTop = 0;
 
         updateSidebarBookmarks();
-        scrollToLastReadVerse(ch);
+        if (targetVerse) {
+            scrollToVerse(ch.id, targetVerse);
+        } else {
+            scrollToLastReadVerse(ch);
+        }
     }
 
     function renderSurahHeader(ch) {
@@ -823,10 +931,10 @@
 
             html += '<div class="qr-verse-row' + (wbwMode ? ' wbw-active' : '') + '" id="row-' + key.replace(':', '-') + '" data-key="' + key + '">';
 
-            // Head row: play, verse number
+            // Head row: verse number (surah:verse), play
             html += '<div class="qr-verse-head">';
+            html += '<span class="qr-verse-tnum">' + ch.id + ':' + v + '</span>';
             html += '<button class="qr-verse-tplay" data-chapter="' + ch.id + '" data-verse="' + v + '" data-chpad="' + chPad + '" data-vpad="' + vPad + '" aria-label="Play"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></button>';
-            html += '<span class="qr-verse-tnum">' + v + '</span>';
             html += '</div>';
 
             // Verse body: Arabic + Translation in a single container
@@ -1245,6 +1353,8 @@
     function setupMutashabihatModal() {
         if (!els.simBackdrop) return;
         if (els.simClose) els.simClose.addEventListener('click', closeMutashabihatModal);
+        if (els.simSizeDown) els.simSizeDown.addEventListener('click', function () { adjustSimSize(-1); });
+        if (els.simSizeUp) els.simSizeUp.addEventListener('click', function () { adjustSimSize(1); });
         els.simBackdrop.addEventListener('click', function (e) {
             if (e.target === els.simBackdrop) closeMutashabihatModal();
         });
@@ -1254,6 +1364,16 @@
                 closeMutashabihatModal();
             }
         });
+    }
+
+    function applySimSize() {
+        if (els.simBody) els.simBody.style.fontSize = simSize + 'px';
+    }
+
+    function adjustSimSize(delta) {
+        simSize = Math.max(12, Math.min(28, simSize + delta));
+        localStorage.setItem('quran-sim-size', String(simSize));
+        applySimSize();
     }
 
     function openSimilarAyatFor(ch, ayah) {
@@ -1553,12 +1673,10 @@
             item.addEventListener('click', function () {
                 var k = this.getAttribute('data-key');
                 var p = k.split(':');
+                var srcKey = simState ? simState.key : '';
                 closeMutashabihatModal();
-                loadSurah(parseInt(p[0], 10));
-                setTimeout(function () {
-                    var row = document.getElementById('row-' + p[0] + '-' + p[1]);
-                    if (row) row.scrollIntoView({ block: 'center', behavior: 'smooth' });
-                }, 150);
+                loadSurah(parseInt(p[0], 10), parseInt(p[1], 10));
+                if (srcKey) showNavToast(srcKey, k);
             });
         });
     }
@@ -1606,6 +1724,7 @@
             els.simBody.innerHTML = html;
             bindQulViewAll(els.simBody);
             bindSimNavigation(els.simBody);
+            applySimSize();
             return;
         }
 
@@ -1633,6 +1752,7 @@
         }
         els.simBody.innerHTML = html;
         bindSimNavigation(els.simBody);
+        applySimSize();
     }
 
     /* ---- Surah Information modal (full bilingual overview) ---- */
@@ -2540,6 +2660,57 @@
                 setTimeout(function () { rowEl.style.background = ''; }, 1500);
             }, 300);
         }
+    }
+
+    function clearVerseFlash() {
+        document.querySelectorAll('.qr-flash-target').forEach(function (el) {
+            el.classList.remove('qr-flash-target');
+        });
+    }
+
+    function scrollToVerse(sid, vn) {
+        var ch = chapters[sid - 1];
+        if (!ch || vn < 1 || vn > ch.verses) return;
+        var rowEl = document.getElementById('row-' + sid + '-' + vn);
+        if (!rowEl) return;
+        clearVerseFlash();
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        setTimeout(function () {
+            rowEl.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' });
+            rowEl.setAttribute('tabindex', '-1');
+            rowEl.classList.add('qr-flash-target');
+            try { rowEl.focus({ preventScroll: true }); } catch (e) { rowEl.focus(); }
+            clearTimeout(_flashTimer);
+            _flashTimer = setTimeout(clearVerseFlash, 2400);
+        }, 60);
+    }
+
+    function showNavToast(srcKey, tgtKey) {
+        if (!els.navToast) return;
+        var sp = srcKey.split(':'), tp = tgtKey.split(':');
+        var srcSid = parseInt(sp[0], 10), srcVn = parseInt(sp[1], 10);
+        var tgtSid = parseInt(tp[0], 10), tgtVn = parseInt(tp[1], 10);
+        var srcCh = chapters[srcSid - 1], tgtCh = chapters[tgtSid - 1];
+        if (!srcCh || !tgtCh || !srcVn || !tgtVn) return;
+        els.navToast.innerHTML =
+            '<span class="qr-nav-toast-msg">Jumped from <strong>' + srcKey + '</strong> to <strong>' + tgtKey + '</strong></span>' +
+            '<button type="button" class="qr-nav-toast-back" id="qr-nav-toast-back">Back to ' + srcKey + '</button>' +
+            '<button type="button" class="qr-nav-toast-close" id="qr-nav-toast-close" aria-label="Dismiss">&#10005;</button>';
+        els.navToast.hidden = false;
+        var backBtn = els.navToast.querySelector('#qr-nav-toast-back');
+        var closeBtn = els.navToast.querySelector('#qr-nav-toast-close');
+        backBtn.onclick = function () {
+            hideNavToast();
+            loadSurah(srcSid, srcVn);
+        };
+        closeBtn.onclick = hideNavToast;
+        clearTimeout(_toastTimer);
+        _toastTimer = setTimeout(hideNavToast, 6000);
+    }
+
+    function hideNavToast() {
+        clearTimeout(_toastTimer);
+        if (els.navToast) els.navToast.hidden = true;
     }
 
     /* ---- Helpers ---- */
