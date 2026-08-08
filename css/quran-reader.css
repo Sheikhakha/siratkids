@@ -282,7 +282,13 @@ body {
 body.qr-sidebar-hidden .qr-sidebar { transform: translateX(-100%); }
 body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 
-.qr-sidebar-header { padding: 14px; border-bottom: 1px solid var(--qr-border); }
+.qr-sidebar-header {
+    position: sticky; top: 0;
+    z-index: 3;
+    padding: 14px;
+    border-bottom: 1px solid var(--qr-border);
+    background: var(--surface-page);
+}
 .qr-surah-search-wrap { position: relative; }
 .qr-surah-search {
     width: 100%; padding: 6px 40px 6px 10px; border: 2px solid var(--qr-border);

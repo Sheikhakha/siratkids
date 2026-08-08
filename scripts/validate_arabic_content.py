@@ -219,6 +219,22 @@ def check_qul_reader_features(verbose):
         errors.append('quran-reader.css missing --qr-flash-bg theme variable')
     if 'margin-left: auto' not in styles:
         errors.append('quran-reader.css sim modal font-size controls not right-aligned')
+    if 'saveLastRead' not in js:
+        errors.append('quran-reader.js missing saveLastRead helper (last-read writer)')
+    if 'trackScrollPosition' not in js:
+        errors.append('quran-reader.js missing trackScrollPosition (scroll-position memory)')
+    if 'setupScrollTracking' not in js:
+        errors.append('quran-reader.js missing setupScrollTracking (scroll + pagehide hooks)')
+    if 'loadSurah(startSurah, startVerse' not in js:
+        errors.append('quran-reader.js init must resume saved verse via loadSurah(startSurah, startVerse)')
+    if 'startVerse = parseInt(p[1])' not in js:
+        errors.append('quran-reader.js init does not parse the saved verse from quran-last-read')
+    if "gotoVerse.value = ''" not in js:
+        errors.append('quran-reader.js Go-to dialog must clear the verse field on open')
+    if 'position: sticky' not in styles or '.qr-sidebar-header' not in styles:
+        errors.append('quran-reader.css sidebar search box is not sticky/frozen')
+    if 'saveLastRead(item.chapter' not in js:
+        errors.append('quran-reader.js missing audio position tracking in startVersePlayback')
     if verbose:
         print('  [OK] QUL reader features checked')
     return errors

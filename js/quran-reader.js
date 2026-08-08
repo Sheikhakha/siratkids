@@ -344,6 +344,7 @@
         setupSurahInfoModal();
         setupMushaf();
         setupGotoDialog();
+        setupScrollTracking();
 
         var savedReciter = localStorage.getItem('audio-voice-name');
         if (savedReciter && RECITER_CFG[savedReciter]) {
@@ -404,9 +405,9 @@
         els.content.style.display = 'block';
 
         var lastRead = localStorage.getItem('quran-last-read');
-        var startSurah = 1;
-        if (lastRead) { var p = lastRead.split(':'); startSurah = parseInt(p[0]) || 1; }
-        loadSurah(startSurah);
+        var startSurah = 1, startVerse = 0;
+        if (lastRead) { var p = lastRead.split(':'); startSurah = parseInt(p[0]) || 1; startVerse = parseInt(p[1]) || 0; }
+        loadSurah(startSurah, startVerse > 0 ? startVerse : undefined);
 
         if (els.wbwToggle.checked) {
             loadWbwData(function () {
@@ -549,8 +550,9 @@
 
     function openGotoDialog() {
         if (!els.gotoBackdrop) return;
+        els.gotoSurah.value = String(currentSurah || 1);
+        els.gotoVerse.value = '';
         els.gotoBackdrop.hidden = false;
-        if (!els.gotoSurah.value) els.gotoSurah.value = String(currentSurah || 1);
         els.gotoSurah.dispatchEvent(new Event('change'));
         setTimeout(function () { if (els.gotoVerse) els.gotoVerse.focus(); }, 0);
     }
@@ -790,7 +792,7 @@
         var ch = chapters[id - 1];
         if (!ch) return;
 
-        localStorage.setItem('quran-last-read', ch.id + ':' + (targetVerse || 1));
+        saveLastRead(ch.id, targetVerse || 1);
 
         els.surahList.querySelectorAll('.qr-surah-item').forEach(function (item) {
             item.classList.toggle('active', parseInt(item.getAttribute('data-id')) === id);
@@ -2258,6 +2260,7 @@
 
         updateFixedBar(item, ch);
         lastPlayedVerse = item.verse;
+        saveLastRead(item.chapter, item.verse);
 
         var wbwOn = els.wbwToggle && els.wbwToggle.checked;
         if (!wbwOn || (rowEl && !rowEl.querySelector('.qr-word-unit'))) {
@@ -2711,6 +2714,41 @@
     function hideNavToast() {
         clearTimeout(_toastTimer);
         if (els.navToast) els.navToast.hidden = true;
+    }
+
+    function saveLastRead(sid, vn) {
+        if (!sid || !vn || sid < 1 || sid > 114) return;
+        localStorage.setItem('quran-last-read', sid + ':' + vn);
+    }
+
+    var _scrollSaveTimer = null;
+
+    function trackScrollPosition() {
+        clearTimeout(_scrollSaveTimer);
+        _scrollSaveTimer = null;
+        if (!els.main || !currentSurah) return;
+        var rows = els.main.querySelectorAll('.qr-verse-row');
+        if (!rows.length) return;
+        var mainTop = els.main.getBoundingClientRect().top;
+        var vn = 1;
+        for (var i = 0; i < rows.length; i++) {
+            if (rows[i].getBoundingClientRect().bottom - mainTop > 0) { vn = i + 1; break; }
+        }
+        if (vn >= 1 && vn <= rows.length) saveLastRead(currentSurah, vn);
+    }
+
+    function setupScrollTracking() {
+        if (!els.main) return;
+        els.main.addEventListener('scroll', function () {
+            clearTimeout(_scrollSaveTimer);
+            _scrollSaveTimer = setTimeout(trackScrollPosition, 350);
+        }, { passive: true });
+        window.addEventListener('pagehide', function () {
+            trackScrollPosition();
+            if (isPlaying && singlePlayChapter && lastPlayedVerse > 0) {
+                saveLastRead(singlePlayChapter.id, lastPlayedVerse);
+            }
+        });
     }
 
     /* ---- Helpers ---- */
