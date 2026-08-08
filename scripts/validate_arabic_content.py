@@ -180,8 +180,10 @@ def check_qul_reader_features(verbose):
         errors.append('quran-reader.js missing similar-ayah bundle registration')
     if 'qr-theme-book' not in js:
         errors.append('quran-reader.js missing qr-theme-book theme button')
-    if 'highlightMatchedWords' not in js:
-        errors.append('quran-reader.js missing highlightMatchedWords for Similar Ayat')
+    if 'renderWordsSpans' not in js:
+        errors.append('quran-reader.js missing renderWordsSpans for Similar Ayat highlighting')
+    if 'getQpcWords' not in js:
+        errors.append('quran-reader.js missing getQpcWords (QPC-Hafs word spans)')
     if 'Mutashabihat are verses' not in js:
         errors.append('quran-reader.js missing Mutashabihat definition text in popup')
     if 'M17.5' in js:

@@ -29,8 +29,13 @@
         'surah-info-ta': 'js/quran_source/surah-info-ta.js',
         'ayah-themes': 'js/quran_source/ayah-themes.js',
         'mutashabihat': 'js/quran_source/mutashabihat.js',
-        'similar-ayah': 'js/quran_source/similar-ayah.js'
+        'similar-ayah': 'js/quran_source/similar-ayah.js',
+        'qpc-hafs-word': 'js/quran_source/qpc-hafs-word.js'
     };
+
+    // Bundles loaded on demand only (the QPC word data is large and is only
+    // needed inside the Mutashabihat / Similar Ayat popup).
+    var QUL_LAZY_KEYS = { 'qpc-hafs-word': 1 };
 
     var RECITER_CFG = {
         Sudais:  { segKey: 'segments-sudais',  segFile: 'js/quran_source/segments/sudais.js',  mode: 'ayah' },
@@ -957,6 +962,7 @@
     // Warm the QUL bundles in the background after the reader is usable.
     function preloadQulBundles() {
         for (var key in QUL_BUNDLES) {
+            if (QUL_LAZY_KEYS[key]) continue;
             if (getQulBundle(key)) continue;
             loadQulBundle(key, function () {});
         }
@@ -1274,13 +1280,20 @@
         els.simBackdrop.hidden = false;
         document.body.style.overflow = 'hidden';
         if (els.simBody) els.simBody.focus && els.simBody.focus();
-        var renderNow = function () { renderSimBody(); };
+        var renderNow = function () {
+            try { if (document.fonts && document.fonts.load) document.fonts.load('30px qpc-hafs'); } catch (e) {}
+            renderSimBody();
+        };
         if (mode === 'qul') {
-            loadQulBundle('mutashabihat', renderNow);
+            loadQulBundle('mutashabihat', function () {
+                loadQulBundle('qpc-hafs-word', renderNow);
+            });
         } else if (mode === 'similar') {
-            loadQulBundle('similar-ayah', renderNow);
+            loadQulBundle('similar-ayah', function () {
+                loadQulBundle('qpc-hafs-word', renderNow);
+            });
         } else {
-            renderNow();
+            loadQulBundle('qpc-hafs-word', renderNow);
         }
     }
 
@@ -1356,29 +1369,37 @@
         }
     }
 
-    function highlightMatchedWords(text, ranges, cls) {
-        if (!text || !ranges || !ranges.length) return escapeHtml(text);
-        cls = cls || 'qr-sim-highlight';
-        var words = text.split(/\s+/).filter(Boolean);
+    // QPC-Hafs Uthmani words for an ayah (array positions are the 1-based
+    // range indices the build clamps spans against). Falls back to the stored
+    // Indopak verse text split on whitespace so the popup still renders if the
+    // bundle has not loaded yet.
+    function getQpcWords(key, fallbackText) {
+        var b = getQulBundle('qpc-hafs-word');
+        var words = b && b[key];
+        if (words && words.length) return words;
+        return (fallbackText || '').split(/\s+/).filter(Boolean);
+    }
+
+    // Render an ayah's words as spans; ranges ([[from,to]]) apply to array
+    // positions and get the given css class. Empty cls renders plain words.
+    function renderWordsSpans(words, ranges, cls) {
         var out = [];
         for (var i = 0; i < words.length; i++) {
             var inRange = false;
-            for (var ri = 0; ri < ranges.length; ri++) {
-                var lo = ranges[ri][0], hi = ranges[ri][1];
-                if ((i + 1) >= lo && (i + 1) <= hi) {
-                    inRange = true;
-                    break;
+            if (ranges && ranges.length) {
+                for (var ri = 0; ri < ranges.length; ri++) {
+                    var lo = ranges[ri][0], hi = ranges[ri][1];
+                    if ((i + 1) >= lo && (i + 1) <= hi) { inRange = true; break; }
                 }
             }
-            out.push(inRange
+            out.push(inRange && cls
                 ? '<span class="' + cls + '">' + escapeHtml(words[i]) + '</span>'
                 : escapeHtml(words[i]));
         }
         return out.join(' ');
     }
 
-    var QUL_HL_CLASSES = ['qr-sim-hl-0', 'qr-sim-hl-1', 'qr-sim-hl-2',
-                          'qr-sim-hl-3', 'qr-sim-hl-4', 'qr-sim-hl-5'];
+    var QUL_HL_CLASSES = ['qr-sim-hl-0', 'qr-sim-hl-1', 'qr-sim-hl-2'];
 
     function getQulPhraseEntries(key) {
         var entries = [];
@@ -1411,9 +1432,9 @@
         return best;
     }
 
-    function renderColoredVerse(text, entries) {
-        if (!text) return '';
-        var words = text.split(/\s+/).filter(Boolean);
+    function renderColoredVerse(key, entries, fallbackText) {
+        var words = getQpcWords(key, fallbackText);
+        if (!words.length) return '';
         var out = [];
         for (var i = 0; i < words.length; i++) {
             var slot = qulCoverSlot(entries, i + 1);
@@ -1427,40 +1448,43 @@
         return out.join(' ');
     }
 
-    function renderPhraseWords(text, slot) {
-        var words = (text || '').split(/\s+/).filter(Boolean);
+    function renderPhraseWords(ph, slot) {
+        var src = ph.src || [];
+        var skey = src[0];
+        var words = skey ? getQpcWords(skey, ph.text) : (ph.text || '').split(/\s+/).filter(Boolean);
+        var lo = Math.max(0, (src[1] || 1) - 1);
+        var hi = Math.min(words.length, src[2] || words.length);
         var cls = QUL_HL_CLASSES[slot % QUL_HL_CLASSES.length];
-        return words.map(function (wd) {
-            return '<span class="qr-sim-pill ' + cls + '">' + escapeHtml(wd) + '</span>';
-        }).join(' ');
+        var out = [];
+        for (var i = lo; i < hi && i < words.length; i++) {
+            out.push('<span class="qr-sim-pill ' + cls + '">' + escapeHtml(words[i]) + '</span>');
+        }
+        return out.length ? out.join(' ') : escapeHtml(ph.text || '');
     }
 
-    function renderRefAyah(key, ranges) {
-        var verseData = getCachedData('indopak-nastaleeq-verse');
-        var rArabic = verseData && verseData[key] ? verseData[key].text : '';
+    function renderRefAyah(key, ranges, cls, transData) {
         var parts = key.split(':');
         var rSurah = chapters[parseInt(parts[0], 10) - 1];
         var html = '<div class="qr-sim-ref-ayah" data-key="' + key + '">';
         html += '<div class="qr-sim-ref-ayah-key">' + key
             + (rSurah ? ' \u00b7 ' + escapeHtml(rSurah.en) : '') + '</div>';
-        if (rArabic) {
-            html += '<div class="qr-sim-ref-ayah-arabic" dir="rtl">'
-                + highlightMatchedWords(rArabic, ranges || []) + '</div>';
+        var arabicHtml = renderWordsSpans(getQpcWords(key), ranges || [], cls || 'qr-sim-highlight');
+        if (arabicHtml) {
+            html += '<div class="qr-sim-ref-ayah-arabic" dir="rtl">' + arabicHtml + '</div>';
+        }
+        if (transData && transData[key] && transData[key].t) {
+            var snippet = extractTranslationText(transData[key].t);
+            if (snippet) html += '<div class="qr-sim-ref-ayah-en">' + escapeHtml(snippet) + '</div>';
         }
         html += '</div>';
         return html;
     }
 
-    function renderQulBody(key) {
+    function renderQulBody(key, transData) {
         var entries = getQulPhraseEntries(key);
         if (!entries.length) return '';
         var verseData = getCachedData('indopak-nastaleeq-verse');
-        var arabic = verseData && verseData[key] ? verseData[key].text : '';
         var html = '';
-        if (arabic) {
-            html += '<div class="qr-sim-qul-current" dir="rtl">'
-                + renderColoredVerse(arabic, entries) + '</div>';
-        }
         html += '<div class="qr-sim-section-title">' + escapeHtml('Phrases in ' + key) + '</div>';
         html += '<div class="qr-sim-list">';
         for (var s = 0; s < entries.length; s++) {
@@ -1472,7 +1496,7 @@
                 + (su === 1 ? '' : 's') + '.';
             html += '<div class="qr-sim-phrase-card">';
             html += '<div class="qr-sim-phrase-pills" dir="rtl">'
-                + renderPhraseWords(ph.text, s) + '</div>';
+                + renderPhraseWords(ph, s) + '</div>';
             html += '<div class="qr-sim-phrase-stats">' + escapeHtml(statsTxt) + '</div>';
             html += '<button class="qr-sim-viewall" type="button" data-phr="' + en.pid + '">View all</button>';
             html += '<div class="qr-sim-phrase-ayahs" data-phr-panel="' + en.pid + '" hidden>';
@@ -1483,8 +1507,9 @@
                 return (parseInt(pa[0], 10) - parseInt(pb[0], 10))
                     || (parseInt(pa[1], 10) - parseInt(pb[1], 10));
             });
+            var cls = QUL_HL_CLASSES[s % QUL_HL_CLASSES.length];
             for (var j = 0; j < refKeys.length; j++) {
-                html += renderRefAyah(refKeys[j], rangeMap[refKeys[j]]);
+                html += renderRefAyah(refKeys[j], rangeMap[refKeys[j]], cls, transData);
             }
             html += '</div>';
             html += '</div>';
@@ -1503,10 +1528,10 @@
             snippet = extractTranslationText(transData[r.key].t || '');
         }
         var html = '<button class="qr-sim-item" type="button" data-key="' + r.key + '">';
-        var arabicHtml = rArabic;
-        if (r.similar && r.match && rArabic) {
-            arabicHtml = highlightMatchedWords(rArabic, r.match.match_words || []);
-        }
+        var arabicHtml = renderWordsSpans(
+            getQpcWords(r.key, rArabic),
+            (r.similar && r.match) ? (r.match.match_words || []) : null,
+            'qr-sim-highlight');
         if (arabicHtml) html += '<div class="qr-sim-item-arabic" dir="rtl">' + arabicHtml + '</div>';
         if (r.phrase) html += '<div class="qr-sim-item-phrase" dir="rtl">' + escapeHtml(r.phrase) + '</div>';
         html += '<div class="qr-sim-item-meta">';
@@ -1564,9 +1589,9 @@
         html += '<span class="qr-sim-current-label">' + escapeHtml('Current verse') + '</span>';
         if (mode === 'qul') {
             var entries = getQulPhraseEntries(key);
-            if (arabic) html += '<div class="qr-sim-current-arabic" dir="rtl">' + renderColoredVerse(arabic, entries) + '</div>';
-        } else if (arabic) {
-            html += '<div class="qr-sim-current-arabic" dir="rtl">' + arabic + '</div>';
+            html += '<div class="qr-sim-current-arabic" dir="rtl">' + renderColoredVerse(key, entries, arabic) + '</div>';
+        } else {
+            html += '<div class="qr-sim-current-arabic" dir="rtl">' + renderWordsSpans(getQpcWords(key, arabic), null, '') + '</div>';
         }
         html += '<div class="qr-sim-current-key">' + key + '</div>';
         html += '</div>';
@@ -1576,7 +1601,7 @@
             if (!qulEntries.length) {
                 html += '<p class="qr-sim-empty">No Mutashabihat (repeated-phrase) matches are recorded for this verse.</p>';
             } else {
-                html += renderQulBody(key);
+                html += renderQulBody(key, transData);
             }
             els.simBody.innerHTML = html;
             bindQulViewAll(els.simBody);

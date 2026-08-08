@@ -12,15 +12,24 @@ Inputs (relative to repo root):
                                     falls back to the stale public zip)
   data/qul/Mutashabihat ul Quran.json - zip: repeated phrases (fallback only)
   data/qul/matching-ayah.json          - quran.com similar-ayah word-coincidence rows
-  js/quran_source/indopak-nastaleeq-word.js  - word data (phrase text + validation)
+  data/qul/qpc-hafs-word-by-word.json  - QUL QPC-Hafs Uthmani word data (used to
+                                         rebuild phrase text and to clamp ranges)
   js/quran_source/indopak-nastaleeq-verse.js - verse text (validation)
 
 Outputs (wrapped .js bundles under js/quran_source/):
   surah-info-en.js    -> __QURAN_DATA["surah-info-en"]    { "1": {surah_number,surah_name,text,short_text}, ... }
   surah-info-ta.js    -> __QURAN_DATA["surah-info-ta"]    same in Tamil
   ayah-themes.js      -> __QURAN_DATA["ayah-themes"]      { "2": [{from,to,theme}, ...], ... }
+  qpc-hafs-word.js    -> __QURAN_DATA["qpc-hafs-word"]    { "2:112": ["بَلَىٰۚ","مَنۡ","أَسۡلَمَ",...], ... }
   mutashabihat.js     -> __QURAN_DATA["mutashabihat"]     { phrases: {...}, byAyah: {...} }
   similar-ayah.js     -> __QURAN_DATA["similar-ayah"]     { "1:1": [{matched_ayah_key,matched_words_count,coverage,score,match_words}], ... }
+
+Mutashabihat rebuild rules: every phrase (including partial/failed scrapes) is
+rebuilt from its source range in the QPC-Hafs script; every span range is
+clamped to the ayah word count (QUL ranges are 1-based over ALL spans,
+including the trailing ayah-number marker, so raw ranges can exceed the word
+count); phrases that yield no valid ref range are dropped; byAyah duplicate
+cards (identical rebuilt text) are removed per ayah.
 
 Do NOT convert the outputs back to .json - the reader loads them via <script>
 injection (file:// compatible), exactly like the existing data bundles.
@@ -113,6 +122,54 @@ def build_ayah_themes():
     return themes
 
 
+def load_qpc_word_texts():
+    """Per-ayah ordered word-text lists from the QUL QPC-Hafs word data.
+
+    The QUL phrase ranges are 1-based over ALL spans, including the trailing
+    ayah-number marker span, so callers must clamp spans against these lists
+    (see clamp_span). Ayal-number marker spans are excluded here.
+    """
+    path = os.path.join(QUL, 'qpc-hafs-word-by-word.json')
+    with io.open(path, encoding='utf-8') as fh:
+        data = json.load(fh)
+    per_ayah = {}
+    for loc, w in data.items():
+        key = loc[:loc.rfind(':')]
+        txt = (w or {}).get('text', '')
+        if txt and all('\u0660' <= c <= '\u0669' for c in txt):
+            continue
+        per_ayah.setdefault(key, []).append(txt)
+    return per_ayah
+
+
+def build_qpc_words():
+    """Build qpc-hafs-word.js: per-ayah word-text arrays in the QUL QPC-Hafs
+    Uthmani script. Array positions are the 1-based range indices the reader
+    uses to highlight Mutashabihat / Similar-Ayat words."""
+    per_ayah = load_qpc_word_texts()
+    path = write_wrapped_js('qpc-hafs-word.js', 'qpc-hafs-word', per_ayah)
+    return path, len(per_ayah), sum(len(v) for v in per_ayah.values())
+
+
+def clamp_span(lo, hi, wc):
+    """Clamp a 1-based span to a word count; returns None when invalid.
+
+    QUL ranges are 1-based over all spans (words + the trailing ayah-number
+    marker), so `hi` is often word_count+1. Clamping drops the marker and
+    discards spans that live entirely beyond the word count.
+    """
+    try:
+        lo = int(lo)
+        hi = int(hi)
+    except (TypeError, ValueError):
+        return None
+    lo = min(max(lo, 1), wc)
+    hi = min(hi, wc)
+    if lo > hi:
+        return None
+    return [lo, hi]
+
+
 def build_mutashabihat():
     # Prefer the live scrape (current server data, includes phrases missing
     # from the stale public export); fall back to the zip for offline builds.
@@ -123,7 +180,8 @@ def build_mutashabihat():
         with io.open(live_path, encoding='utf-8') as fh:
             payload = json.load(fh)
         phrases = payload['phrases']
-        phrase_verses = payload['phrase_verses']
+        # phrase_verses.json maps ayahKey -> [phrase ids]; cross-check only
+        phrase_verses = payload.get('phrase_verses', {})
     else:
         source_name = 'zip'
         with zipfile.ZipFile(zip_path) as zf:
@@ -131,28 +189,7 @@ def build_mutashabihat():
             # phrase_verses.json maps ayahKey -> [phrase ids]; cross-check only
             phrase_verses = json.loads(zf.read('phrase_verses.json'))
 
-    words = load_wrapped_js(os.path.join(SRC, 'indopak-nastaleeq-word.js'),
-                            'indopak-nastaleeq-word')
-    verses = load_wrapped_js(os.path.join(SRC, 'indopak-nastaleeq-verse.js'),
-                             'indopak-nastaleeq-verse')
-
-    # real-word texts per ayah (skip end/word-number markers)
-    word_texts = {}
-    for key in words:
-        if key.count(':') != 2:
-            continue
-        ayah_key = key[:key.rfind(':')]
-        w = words[key]
-        if w.get('char_type') == 'word':
-            word_texts.setdefault(ayah_key, []).append(w.get('text', ''))
-
-    verse_norm_cache = {}
-
-    def verse_norm(akey):
-        if akey not in verse_norm_cache:
-            v = verses.get(akey)
-            verse_norm_cache[akey] = norm_arabic(v.get('text', '')) if v else ''
-        return verse_norm_cache[akey]
+    qpc = load_qpc_word_texts()
 
     def sort_key(r):
         try:
@@ -161,92 +198,103 @@ def build_mutashabihat():
         except (ValueError, AttributeError):
             return (0, 0)
 
-    def pick_phrase_text(sf, st, src_norm, refs_norm, wl):
-        """Choose the display text for a phrase.
-
-        Tries the exact source range first; only falls back to neighbouring
-        variants when the exact range is not a substring of the source ayah
-        (index/tokenization drift). Among the valid candidates that occur in
-        the source ayah, prefer ones that also occur in every ref ayah, then
-        the shortest span, then the exact source range. This fixes phrases
-        being over-extended beyond their true source range (e.g. id 13963).
-        Returns (text, chosen_range_or_None, exact_used_bool).
-        """
-        ordered = [(sf, st), (sf, st - 1), (sf + 1, st), (sf, st + 1),
-                   (sf + 1, st - 1), (sf, st - 2), (sf + 1, st + 1)]
-        candidates = []
-        seen = set()
-        for (f, t) in ordered:
-            if (f, t) in seen or f < 1 or t < 1 or f > t or t > len(wl):
-                continue
-            seen.add((f, t))
-            cand = ' '.join(wl[f - 1:t])
-            ntxt = norm_arabic(cand)
-            if ntxt:
-                candidates.append((f, t, cand, ntxt))
-        if not candidates:
-            return '', None, False
-        in_src = [c for c in candidates if c[3] in src_norm]
-        if not in_src:
-            # Nothing matches the source ayah: keep the raw exact range as a
-            # best-effort (reported as an issue by the caller).
-            return candidates[0][2], (sf, st), False
-        uniform = [c for c in in_src if all(c[3] in rn for rn in refs_norm)]
-        pool = uniform if uniform else in_src
-        pool.sort(key=lambda c: (0 if (c[0], c[1]) == (sf, st) else 1,
-                                 c[1] - c[0], len(c[2])))
-        best = pool[0]
-        return best[2], (best[0], best[1]), (best[0], best[1]) == (sf, st)
-
     out_phrases = {}
     by_ayah = {}
-    issues = []
-    uniform_count = 0
+    stats = {'dropped_invalid': 0, 'fallback_source': 0, 'rebuilt_text': 0}
 
     for pid, phrase in phrases.items():
         src = phrase.get('source') or {}
         skey = src.get('key', '')
-        sf = int(src.get('from', 1))
-        st = int(src.get('to', 1))
-        refs = list(phrase.get('ayah', {}).keys())
-        src_norm = verse_norm(skey)
-        wl = word_texts.get(skey, [])
-        refs_norm = [verse_norm(r) for r in refs]
 
-        exact_cand = ' '.join(wl[sf - 1:st]) if wl and sf >= 1 and st <= len(wl) and sf <= st else ''
-        if exact_cand and all(norm_arabic(exact_cand) in rn for rn in refs_norm):
-            uniform_count += 1
+        # Clamp every ref range to the ayah word count.
+        raw_map = phrase.get('ayah', {}) or {}
+        final_map = {}
+        for akey, ranges in raw_map.items():
+            wc = len(qpc.get(akey, []))
+            if not wc:
+                continue
+            cleaned = []
+            if isinstance(ranges, list):
+                for rng in ranges:
+                    if not isinstance(rng, (list, tuple)) or len(rng) < 2:
+                        continue
+                    span = clamp_span(rng[0], rng[1], wc)
+                    if span:
+                        cleaned.append(span)
+            if cleaned:
+                final_map[akey] = cleaned
+        if not final_map:
+            stats['dropped_invalid'] += 1
+            continue
 
-        best_text, chosen_range, exact_used = pick_phrase_text(sf, st, src_norm, refs_norm, wl)
-        if not best_text:
-            issues.append('%s: empty phrase text' % pid)
-        elif not exact_used:
-            issues.append('%s: phrase text taken from range %s (source range %s-%s)' % (
-                pid, chosen_range, sf, st))
+        # Canonical text: rebuild from the source range in the QPC-Hafs script
+        # (clamped), falling back to the first valid ref range for the rare
+        # phrase whose source range is broken (e.g. id 14570).
+        chosen = None
+        src_span = None
+        wl = qpc.get(skey, [])
+        if wl:
+            sfrom = int(src.get('from', 1))
+            sto = int(src.get('to', 1))
+            span = clamp_span(sfrom, sto, len(wl))
+            if span:
+                src_span = span
+                chosen = ' '.join(wl[span[0] - 1:span[1]])
+        if chosen is None:
+            for akey in sorted(final_map.keys(), key=sort_key):
+                wl2 = qpc.get(akey, [])
+                if wl2 and final_map[akey]:
+                    lo, hi = final_map[akey][0]
+                    if lo <= hi <= len(wl2):
+                        chosen = ' '.join(wl2[lo - 1:hi])
+                        src_span = [lo, hi]
+                        stats['fallback_source'] += 1
+                        break
+        if chosen is None:
+            stats['dropped_invalid'] += 1
+            continue
 
-        surahs = set()
-        for r in refs:
-            surahs.add(r.split(':')[0])
+        if phrase.get('text') != chosen:
+            stats['rebuilt_text'] += 1
+
+        refs = sorted(final_map.keys(), key=sort_key)
+        surahs = {r.split(':')[0] for r in refs}
+        src_ref = skey if skey else refs[0]
         out_phrases[pid] = {
-            'text': best_text,
-            'count': phrase.get('count'),
-            'surahs': phrase.get('surahs', len(surahs)),
-            'ayahs': phrase.get('ayahs', len(refs)),
-            'refs': sorted(refs, key=sort_key),
-            'ranges': phrase.get('ayah', {}),
+            'text': chosen,
+            'src': [src_ref, src_span[0], src_span[1]],
+            'count': len(refs),
+            'surahs': len(surahs),
+            'ayahs': len(refs),
+            'refs': refs,
+            'ranges': final_map,
         }
-        for akey, ranges in phrase.get('ayah', {}).items():
+        for akey, ranges in final_map.items():
             by_ayah.setdefault(akey, []).append([pid, ranges])
 
-    # Deterministic ordering of byAyah entries by phrase id
+    # Dedupe byAyah cards whose displayed (rebuilt) text is identical, keeping
+    # the lowest phrase id. The dropped phrase stays in `phrases` for its other
+    # ayahs where it is unique.
+    dup_removed = 0
     for akey in by_ayah:
         by_ayah[akey].sort(key=lambda e: int(e[0]))
+        seen = {}
+        kept = []
+        for pid, ranges in by_ayah[akey]:
+            txt = out_phrases[pid]['text']
+            if txt in seen:
+                dup_removed += 1
+                continue
+            seen[txt] = True
+            kept.append([pid, ranges])
+        by_ayah[akey] = kept
+    stats['dup_cards_removed'] = dup_removed
 
     meta = {'source': source_name}
     if source_name == 'live':
         meta['partial'] = sorted(payload.get('partial', []))
         meta['failed'] = sorted(payload.get('failed', []))
-    return {'phrases': out_phrases, 'byAyah': by_ayah, 'meta': meta}, issues, uniform_count
+    return {'phrases': out_phrases, 'byAyah': by_ayah, 'meta': meta}, stats
 
 
 def norm_match_ranges(raw):
@@ -260,11 +308,17 @@ def norm_match_ranges(raw):
     if isinstance(raw, (list, tuple)):
         out = []
         for r in raw:
-            if isinstance(r, (list, tuple)) and len(r) >= 2:
-                try:
+            if not isinstance(r, (list, tuple)):
+                continue
+            try:
+                if len(r) == 1:
+                    pos = int(r[0])
+                    if pos >= 1:
+                        out.append([pos, pos])
+                elif len(r) >= 2:
                     out.append([int(r[0]), int(r[1])])
-                except (TypeError, ValueError):
-                    continue
+            except (TypeError, ValueError):
+                continue
         return out
     if isinstance(raw, str):
         out = []
@@ -274,6 +328,13 @@ def norm_match_ranges(raw):
                 a, _, b = part.partition('-')
                 try:
                     out.append([int(a), int(b)])
+                except ValueError:
+                    continue
+            else:
+                try:
+                    pos = int(part)
+                    if pos >= 1:
+                        out.append([pos, pos])
                 except ValueError:
                     continue
         return out
@@ -333,7 +394,14 @@ def main():
     total_themes = sum(len(v) for v in themes.values())
     results['ayah-themes'] = {'file': path, 'surahs': len(themes), 'themes': total_themes}
 
-    mut, issues, uniform_count = build_mutashabihat()
+    qpc_path, qpc_ayahs, qpc_words = build_qpc_words()
+    results['qpc-hafs-word'] = {
+        'file': qpc_path,
+        'ayahs': qpc_ayahs,
+        'words': qpc_words,
+    }
+
+    mut, stats = build_mutashabihat()
     mut_payload = {'phrases': mut['phrases'], 'byAyah': mut['byAyah']}
     path = write_wrapped_js('mutashabihat.js', 'mutashabihat', mut_payload)
     results['mutashabihat'] = {
@@ -341,8 +409,7 @@ def main():
         'source': mut['meta']['source'],
         'phrases': len(mut['phrases']),
         'ayahs': len(mut['byAyah']),
-        'uniform': uniform_count,
-        'issues': issues,
+        'stats': stats,
     }
     if 'partial' in mut['meta']:
         results['mutashabihat']['partial'] = mut['meta']['partial']
@@ -363,15 +430,15 @@ def main():
 
     for key, r in results.items():
         if key == 'mutashabihat':
-            print('mutashabihat.js: source=%s phrases=%d byAyah=%d issues=%d' % (
-                r['source'], r['phrases'], r['ayahs'], len(r['issues'])))
+            print('mutashabihat.js: source=%s phrases=%d byAyah=%d stats=%s' % (
+                r['source'], r['phrases'], r['ayahs'], r['stats']))
             if 'failed' in r:
                 print('   partial=%d failed=%d' % (len(r['partial']), len(r['failed'])))
-            for iss in issues[:20]:
-                print('   - %s' % iss)
         elif key == 'similar-ayah':
             print('similar-ayah.js: verses=%d matches=%d skipped=%d' % (
                 r['verses'], r['matches'], r['skipped_null']))
+        elif key == 'qpc-hafs-word':
+            print('qpc-hafs-word.js: ayahs=%d words=%d' % (r['ayahs'], r['words']))
         else:
             print('%s: %s' % (os.path.basename(r['file']), r))
     return 0
