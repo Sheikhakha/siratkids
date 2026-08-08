@@ -271,11 +271,14 @@
                 <button type="button" class="qr-tafsir-close" id="qr-goto-close" aria-label="Close go to dialog">&#10005;</button>
             </div>
             <div class="qr-goto-body">
-                <label class="qr-goto-label" for="qr-goto-surah">Surah</label>
-                <select class="qr-goto-select" id="qr-goto-surah"></select>
-                <label class="qr-goto-label" for="qr-goto-verse">Verse</label>
-                <input type="number" class="qr-goto-verse" id="qr-goto-verse" min="1" max="7" value="" aria-label="Verse number">
-                <button type="button" class="qr-goto-go" id="qr-goto-go">Go</button>
+                <form id="qr-goto-form" novalidate>
+                    <label class="qr-goto-label" for="qr-goto-surah">Surah</label>
+                    <select class="qr-goto-select" id="qr-goto-surah"></select>
+                    <label class="qr-goto-label" for="qr-goto-verse">Verse</label>
+                    <input type="number" class="qr-goto-verse" id="qr-goto-verse" min="1" max="7" placeholder="1 - 7" value="" aria-label="Verse number" aria-describedby="qr-goto-error">
+                    <div class="qr-goto-error" id="qr-goto-error" role="alert" hidden></div>
+                    <button type="submit" class="qr-goto-go" id="qr-goto-go">Go</button>
+                </form>
             </div>
         </div>
     </div>

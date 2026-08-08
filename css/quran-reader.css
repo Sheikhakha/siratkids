@@ -1334,6 +1334,9 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     display: flex; flex-direction: column; gap: 6px;
     padding: 16px;
 }
+.qr-goto-body form {
+    display: flex; flex-direction: column; gap: 6px;
+}
 .qr-goto-label { font-size: 0.78rem; font-weight: 600; color: var(--qr-text-medium); }
 .qr-goto-select, .qr-goto-verse {
     width: 100%;
@@ -1356,6 +1359,13 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 }
 .qr-goto-go:hover { background: var(--qr-primary-dark); }
 .qr-goto-go:focus-visible { outline: 2px solid var(--qr-primary); outline-offset: 2px; }
+.qr-goto-error {
+    color: #dc2626;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-top: 2px;
+}
+[data-theme="dark"] .qr-goto-error { color: #f87171; }
 
 /* Navigation toast (jump from one verse to another) */
 .qr-nav-toast {

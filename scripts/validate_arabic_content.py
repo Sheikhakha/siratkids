@@ -209,6 +209,12 @@ def check_qul_reader_features(verbose):
         errors.append('quran-reader.html missing Go to surah & verse button (qr-goto-btn)')
     if 'qr-nav-toast' not in has(html) or 'role="status"' not in has(html):
         errors.append('quran-reader.html missing navigation toast (qr-nav-toast, role="status")')
+    if 'qr-goto-form' not in has(html):
+        errors.append('quran-reader.html Go-to dialog must wrap fields in a form (qr-goto-form)')
+    if 'qr-goto-error' not in has(html) or 'role="alert"' not in has(html):
+        errors.append('quran-reader.html Go-to dialog missing error message (qr-goto-error, role="alert")')
+    if 'qr-goto-go' not in has(html) or 'type="submit"' not in has(html):
+        errors.append('quran-reader.html Go-to dialog Go button must be type="submit"')
     if 'scrollToVerse' not in js:
         errors.append('quran-reader.js missing scrollToVerse (jump scroll + flash + focus)')
     if 'showNavToast' not in js:
@@ -235,6 +241,16 @@ def check_qul_reader_features(verbose):
         errors.append('quran-reader.css sidebar search box is not sticky/frozen')
     if 'saveLastRead(item.chapter' not in js:
         errors.append('quran-reader.js missing audio position tracking in startVersePlayback')
+    if '.qr-goto-error' not in styles:
+        errors.append('quran-reader.css missing Go-to dialog error styling (.qr-goto-error)')
+    if 'gotoForm.addEventListener' not in js:
+        errors.append('quran-reader.js Go-to dialog must submit via form (gotoForm.addEventListener)')
+    if 'gotoVerse.placeholder' not in js:
+        errors.append('quran-reader.js missing verse range placeholder in Go-to dialog')
+    if 'setGotoError' not in js or 'clearGotoError' not in js:
+        errors.append('quran-reader.js missing Go-to dialog error helpers (setGotoError/clearGotoError)')
+    if 'sb.scrollTop = target' not in js:
+        errors.append('quran-reader.js must center the active surah in the sidebar (sb.scrollTop)')
     if verbose:
         print('  [OK] QUL reader features checked')
     return errors

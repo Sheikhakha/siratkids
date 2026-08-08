@@ -277,6 +277,8 @@
         gotoSurah: document.getElementById('qr-goto-surah'),
         gotoVerse: document.getElementById('qr-goto-verse'),
         gotoGo: document.getElementById('qr-goto-go'),
+        gotoForm: document.getElementById('qr-goto-form'),
+        gotoError: document.getElementById('qr-goto-error'),
         gotoClose: document.getElementById('qr-goto-close'),
 
         infoBackdrop: document.getElementById('qr-surah-info-modal-backdrop'),
@@ -527,12 +529,16 @@
         els.gotoSurah.addEventListener('change', function () {
             var ch = chapters[parseInt(this.value, 10) - 1];
             els.gotoVerse.max = ch ? ch.verses : 1;
+            els.gotoVerse.placeholder = ch ? ('1 - ' + ch.verses) : '1 - 7';
             if (parseInt(els.gotoVerse.value, 10) > els.gotoVerse.max) els.gotoVerse.value = els.gotoVerse.max;
+            clearGotoError();
         });
-        els.gotoGo.addEventListener('click', gotoSubmit);
-        els.gotoVerse.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') gotoSubmit();
-        });
+        if (els.gotoForm) {
+            els.gotoForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                gotoSubmit();
+            });
+        }
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && els.gotoBackdrop && !els.gotoBackdrop.hidden) closeGotoDialog();
         });
@@ -553,6 +559,7 @@
         els.gotoSurah.value = String(currentSurah || 1);
         els.gotoVerse.value = '';
         els.gotoBackdrop.hidden = false;
+        clearGotoError();
         els.gotoSurah.dispatchEvent(new Event('change'));
         setTimeout(function () { if (els.gotoVerse) els.gotoVerse.focus(); }, 0);
     }
@@ -562,15 +569,34 @@
         if (els.gotoBtn) els.gotoBtn.focus();
     }
 
+    function setGotoError(msg) {
+        if (!els.gotoError) return;
+        els.gotoError.textContent = msg;
+        els.gotoError.hidden = false;
+    }
+
+    function clearGotoError() {
+        if (!els.gotoError) return;
+        els.gotoError.textContent = '';
+        els.gotoError.hidden = true;
+    }
+
     function gotoSubmit() {
         if (!els.gotoSurah || !els.gotoVerse) return;
         var sid = parseInt(els.gotoSurah.value, 10);
         var vn = parseInt(els.gotoVerse.value, 10);
         var ch = chapters[sid - 1];
-        if (!ch || !vn || vn < 1 || vn > ch.verses) {
+        if (!ch) {
+            setGotoError('Select a surah.');
+            if (els.gotoSurah) els.gotoSurah.focus();
+            return;
+        }
+        if (!vn || vn < 1 || vn > ch.verses) {
+            setGotoError('Enter a verse between 1 and ' + ch.verses + '.');
             if (els.gotoVerse) els.gotoVerse.focus();
             return;
         }
+        clearGotoError();
         closeGotoDialog();
         loadSurah(sid, vn);
     }
@@ -798,7 +824,17 @@
             item.classList.toggle('active', parseInt(item.getAttribute('data-id')) === id);
         });
         var activeItem = els.surahList.querySelector('.qr-surah-item.active');
-        if (activeItem) activeItem.scrollIntoView({ block: 'nearest' });
+        if (activeItem && els.sidebar) {
+            var sb = els.sidebar;
+            var headerEl = sb.querySelector('.qr-sidebar-header');
+            var headerH = headerEl ? headerEl.offsetHeight : 0;
+            var sbRect = sb.getBoundingClientRect();
+            var itemRect = activeItem.getBoundingClientRect();
+            var visibleH = sb.clientHeight - headerH;
+            var target = sb.scrollTop + (itemRect.top - sbRect.top) - (visibleH - itemRect.height) / 2;
+            target = Math.max(0, Math.min(target, sb.scrollHeight - sb.clientHeight));
+            sb.scrollTop = target;
+        }
 
         renderSurahHeader(ch);
         renderVerses(ch);
