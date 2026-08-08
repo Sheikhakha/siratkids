@@ -2052,7 +2052,7 @@
 
     function loadTafsirContent(key, surahNum, ayahNum, ch, lang, bodyEl, srcEl) {
         if (!bodyEl) return;
-        bodyEl.innerHTML = '<p class="qr-tafsir-loading">Loading tafsir...</p>';
+        bodyEl.innerHTML = '<div class="qr-tafsir-content"><p class="qr-tafsir-loading">Loading tafsir...</p></div>';
         bodyEl.dir = 'ltr';
         if (srcEl) {
             srcEl.textContent = lang === 'en'
@@ -2064,9 +2064,9 @@
             loadEnglishTafsir(surahNum, ayahNum, function (html) {
                 if (!tafsirContentCurrent(surahNum, ayahNum, 'en')) return;
                 if (html) {
-                    bodyEl.innerHTML = html;
+                    bodyEl.innerHTML = '<div class="qr-tafsir-content">' + html + '</div>';
                 } else {
-                    bodyEl.innerHTML = '<p class="qr-tafsir-missing">Tafsir Ibn Kathir (English) is not yet available for this verse. Switch the tafsir language to Tamil or check back later.</p>';
+                    bodyEl.innerHTML = '<div class="qr-tafsir-content"><p class="qr-tafsir-missing">Tafsir Ibn Kathir (English) is not yet available for this verse. Switch the tafsir language to Tamil or check back later.</p></div>';
                 }
             });
         } else {
@@ -2076,9 +2076,9 @@
                 if (!tafsirContentCurrent(surahNum, ayahNum, 'ta')) return;
                 var entry = data && data.data ? data.data[String(ayahNum)] : null;
                 if (entry && entry.html) {
-                    bodyEl.innerHTML = entry.html;
+                    bodyEl.innerHTML = '<div class="qr-tafsir-content">' + entry.html + '</div>';
                 } else {
-                    bodyEl.innerHTML = '<p class="qr-tafsir-missing">Tafsir Ibn Kathir (Tamil) is not yet available for this verse. Switch the tafsir language to English or check back later.</p>';
+                    bodyEl.innerHTML = '<div class="qr-tafsir-content"><p class="qr-tafsir-missing">Tafsir Ibn Kathir (Tamil) is not yet available for this verse. Switch the tafsir language to English or check back later.</p></div>';
                 }
             });
         }
