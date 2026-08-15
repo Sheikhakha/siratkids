@@ -7,6 +7,7 @@
     <title>Quran Reader | SiratKids</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/quran-reader.css">
+    <link rel="stylesheet" href="css/qul-mushaf-fonts.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
@@ -64,6 +65,18 @@
                 <svg id="qr-mushaf-icon-trans" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M4 5h16"/><path d="M4 10h16"/><path d="M4 15h10"/><path d="M4 20h7"/></svg>
                 <span id="qr-mushaf-btn-label">Mushaf</span>
             </button>
+            <div class="qr-nav-group qr-mushaf-group" id="qr-mushaf-group" hidden>
+                <label class="qr-nav-label" for="qr-mushaf-layout">Layout:</label>
+                <select id="qr-mushaf-layout" class="qr-nav-select" aria-label="Mushaf layout"></select>
+                <button type="button" class="qr-mushaf-page-btn" id="qr-mushaf-page-prev" aria-label="Previous page" title="Previous page">&#8249;</button>
+                <span class="qr-mushaf-page-label" id="qr-mushaf-page-label">Page 1</span>
+                <button type="button" class="qr-mushaf-page-btn" id="qr-mushaf-page-next" aria-label="Next page" title="Next page">&#8250;</button>
+                <label class="qr-mushaf-tajweed-toggle" id="qr-mushaf-tajweed-label" title="Tajweed coloring">
+                    <input type="checkbox" id="qr-mushaf-tajweed" checked>
+                    <span class="qr-mushaf-tajweed-slider"></span>
+                    <span class="qr-mushaf-tajweed-label-text">Tajweed</span>
+                </label>
+            </div>
             <button class="dm-toggle" aria-label="Toggle dark mode">
                 <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -76,7 +89,7 @@
                     </svg>
                 </button>
                 <div class="settings-dropdown-content">
-                    <div class="settings-dropdown-item">
+                    <div class="settings-dropdown-item" data-qr-mushaf-hide>
                         <span class="settings-label">English Size</span>
                         <div class="qr-font-size-group" data-qr-scale="en"></div>
                     </div>
@@ -84,7 +97,7 @@
                         <span class="settings-label">Arabic Size</span>
                         <div class="qr-font-size-group" data-qr-scale="ar"></div>
                     </div>
-                    <div class="settings-dropdown-item">
+                    <div class="settings-dropdown-item" data-qr-mushaf-hide>
                         <span class="settings-label">Word-by-Word Size</span>
                         <div class="qr-font-size-group" data-qr-scale="wbw"></div>
                     </div>
@@ -114,6 +127,13 @@
             <div class="qr-content" id="qr-content" style="display:none;">
                 <div class="qr-surah-header" id="qr-surah-header"></div>
                 <div class="qr-verses" id="qr-verses"></div>
+            </div>
+
+            <!-- Mushaf (page-based layout) view: rendered from QUL layout bundles -->
+            <div class="qr-mushaf" id="qr-mushaf" dir="rtl" hidden>
+                <div class="qr-mushaf-inner" id="qr-mushaf-inner"></div>
+                <!-- Tajweed color legend (built at runtime, hidden unless enabled) -->
+                <div class="qr-mushaf-legend" id="qr-mushaf-legend" hidden></div>
             </div>
 
             <div class="qr-fixed-play-bar active" id="qr-fixed-play-bar">

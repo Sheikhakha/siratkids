@@ -440,6 +440,166 @@ def check_mutashabihat_bundles(verbose):
     return errors
 
 
+def check_mushaf_layout(verbose):
+    """Validate the QUL mushaf page-layout + tajweed-coloring feature.
+
+    Verifies the layout bundles (page counts, ayah map, line data), the
+    tajweed-rules bundle (rule classes are a known set, sample words correct),
+    the generated font/tajweed CSS, the reader HTML container + nav group, and
+    the quran-reader.js wiring.
+    """
+    errors = []
+    src_dir = os.path.join(BASE, 'js', 'quran_source')
+
+    def has(path):
+        if not os.path.exists(path):
+            return ''
+        try:
+            return read_file(path)
+        except Exception:
+            return ''
+
+    # -- generated files --------------------------------------------------
+    for rel in [
+        'css/qul-mushaf-fonts.css',
+        'js/quran_source/mushaf-meta.js',
+        'js/quran_source/mushaf-layout-7.js',
+        'js/quran_source/mushaf-layout-17.js',
+        'js/quran_source/mushaf-layout-18.js',
+        'js/quran_source/tajweed-rules.js',
+        'fonts/indopak-nastaleeq-waqf-lazim.woff2',
+        'fonts/indopak-nastaleeq-hanafi-compressed.woff2',
+        'fonts/indopak-nastaleeq-madinah-normal.woff2',
+        'fonts/surah-name-v4.woff2',
+    ]:
+        if not os.path.exists(os.path.join(BASE, rel)):
+            errors.append('mushaf: missing generated file %s (run scripts/build_qul_mushaf.py)' % rel)
+
+    # -- layout bundles ---------------------------------------------------
+    known_rules = {
+        'ghunnah', 'ham_wasl', 'slnt', 'laam_shamsiyah', 'idgham_ghunnah',
+        'idgham_mutajanisayn', 'idgham_mutaqaribayn', 'idgham_shafawi',
+        'idgham_wo_ghunnah', 'ikhafa', 'ikhafa_shafawi', 'iqlab', 'izhar',
+        'izhar_shafawi', 'madda_necessary', 'madda_normal', 'madda_obligatory',
+        'madda_obligatory_mottasel', 'madda_obligatory_monfasel',
+        'madda_permissible', 'qalaqah', 'tafkheem',
+    }
+    for lid in ('17', '18', '7'):
+        bundle = load_wrapped_bundle(os.path.join(src_dir, 'mushaf-layout-%s.js' % lid),
+                                     'mushaf-layout-%s' % lid)
+        if bundle is None:
+            errors.append('mushaf-layout-%s.js missing or not wrapped' % lid)
+            continue
+        if bundle.get('layout_id') != int(lid):
+            errors.append('mushaf-layout-%s.js layout_id mismatch' % lid)
+        if bundle.get('page_count', 0) < 400:
+            errors.append('mushaf-layout-%s.js page_count too small (%s)' % (lid, bundle.get('page_count')))
+        if len(bundle.get('pages', [])) != bundle.get('page_count'):
+            errors.append('mushaf-layout-%s.js pages length != page_count' % lid)
+        if len(bundle.get('ayah_page', {})) < 6200:
+            errors.append('mushaf-layout-%s.js ayah_page has %d keys (expected ~6236)'
+                          % (lid, len(bundle.get('ayah_page', {}))))
+        first = bundle.get('page_first', {}).get('1')
+        last = bundle.get('page_last', {}).get(str(bundle.get('page_count')))
+        if first != '1:1' or last != '114:6':
+            errors.append('mushaf-layout-%s.js page boundaries wrong (first=%r last=%r)' % (lid, first, last))
+        # every page must have at least one line
+        for i, p in enumerate(bundle.get('pages', [])):
+            if not p.get('lines'):
+                errors.append('mushaf-layout-%s.js page %d has no lines' % (lid, i + 1))
+                break
+
+    meta = load_wrapped_bundle(os.path.join(src_dir, 'mushaf-meta.js'), 'mushaf-meta')
+    if meta is None:
+        errors.append('mushaf-meta.js missing or not wrapped')
+    else:
+        if str(meta.get('default_layout')) not in meta.get('layouts', {}):
+            errors.append('mushaf-meta.js default_layout not in layouts')
+        for lid in ('17', '18', '7'):
+            if lid not in meta.get('layouts', {}):
+                errors.append('mushaf-meta.js missing layout %s' % lid)
+
+    # -- tajweed rules bundle ----------------------------------------------
+    rules = load_wrapped_bundle(os.path.join(src_dir, 'tajweed-rules.js'), 'tajweed-rules')
+    if rules is None:
+        errors.append('tajweed-rules.js missing or not wrapped (run build_qul_mushaf.py)')
+    else:
+        if len(rules) < 40000:
+            errors.append('tajweed-rules.js has only %d words (expected > 40000)' % len(rules))
+        bad_rules = set()
+        for loc, rule_list in rules.items():
+            if not isinstance(rule_list, list):
+                bad_rules.add(repr(rule_list))
+                continue
+            for r in rule_list:
+                if r not in known_rules:
+                    bad_rules.add(r)
+        if bad_rules:
+            errors.append('tajweed-rules.js unknown rule classes: %s' % sorted(bad_rules)[:8])
+        for loc, want in (('2:255:12', ['madda_necessary', 'izhar']),
+                          ('2:255:1', ['ham_wasl']),
+                          ('1:1:3', ['ham_wasl', 'tafkheem', 'madda_normal'])):
+            if rules.get(loc) != want:
+                errors.append('tajweed-rules.js %s expected %r got %r'
+                              % (loc, want, rules.get(loc)))
+
+    # -- html / js / css wiring -------------------------------------------
+    html = has(os.path.join(BASE, 'quran-reader.html'))
+    if 'qr-mushaf' not in html or 'qr-mushaf-inner' not in html:
+        errors.append('quran-reader.html missing #qr-mushaf mushaf container')
+    if 'qr-mushaf-group' not in html or 'qr-mushaf-layout' not in html:
+        errors.append('quran-reader.html missing .qr-mushaf-group nav controls')
+    if 'qr-mushaf-tajweed' not in html:
+        errors.append('quran-reader.html missing tajweed on/off switch (qr-mushaf-tajweed)')
+    if 'qr-mushaf-legend' not in html:
+        errors.append('quran-reader.html missing mushaf legend container (qr-mushaf-legend)')
+    if 'data-qr-mushaf-hide' not in html:
+        errors.append('quran-reader.html settings sliders missing data-qr-mushaf-hide (English/WBW must hide in Mushaf view)')
+    if 'qul-mushaf-fonts.css' not in html:
+        errors.append('quran-reader.html missing qul-mushaf-fonts.css stylesheet link')
+
+    js = has(os.path.join(BASE, 'js', 'quran-reader.js'))
+    for token in ('renderMushafPage', 'jumpToAyah', 'updateMushafWordHighlight',
+                  'ensureMushafPageForAyah', 'switchMushafLayout',
+                  'mushaf-layout-', 'mushaf-meta', 'tajweed-rules',
+                  'DEFAULT_MUSHAF_LAYOUT', 'mushafTajweed', 'buildMushafLegend',
+                  'RULE_LABELS', 'qr-mushaf-hidden', 'qr-mushaf-mode',
+                  'mushafAnchor', 'qr-mushaf-legend-text'):
+        if token not in js:
+            errors.append('quran-reader.js missing %s' % token)
+
+    css = has(os.path.join(BASE, 'css', 'quran-reader.css'))
+    for token in ('.qr-mushaf-page', '.qr-mushaf-line', '.qr-mushaf-word',
+                  '.qr-mushaf-group', '.qr-mushaf-page-btn', '.qr-mushaf-page-label',
+                  '.qr-mushaf-tajweed-toggle', '.qr-mushaf-legend', '.qr-mushaf-legend-text',
+                  'repeating-linear-gradient', '.qr-mushaf-page::before',
+                  'body.qr-mushaf-mode .qr-sidebar-toggle', '.qr-nav-bottom.qr-mushaf-hidden'):
+        if token not in css:
+            errors.append('quran-reader.css missing %s styling' % token)
+
+    mcss = has(os.path.join(BASE, 'css', 'qul-mushaf-fonts.css'))
+    for family in ('indopak-nastaleeq', 'indopak-nastaleeq-hanafi-compressed',
+                   'indopak-nastaleeq-madinah-normal', 'surah-name-v4'):
+        if "font-family: '%s'" % family not in mcss and '@font-face' not in mcss:
+            errors.append('qul-mushaf-fonts.css missing @font-face for %s' % family)
+    for rule in ('izhar', 'ikhafa', 'iqlab', 'ghunnah', 'qalaqah', 'idgham_ghunnah',
+                 'idgham_wo_ghunnah', 'idgham_shafawi', 'madda_necessary',
+                 'madda_normal', 'madda_permissible', 'tafkheem', 'ham_wasl', 'slnt'):
+        if ('.qr-mushaf-page .%s' % rule) not in mcss:
+            errors.append('qul-mushaf-fonts.css missing tajweed class .%s' % rule)
+    for layout_cls in ('.qr-mushaf-layout-17', '.qr-mushaf-layout-18', '.qr-mushaf-layout-7'):
+        if layout_cls not in mcss:
+            errors.append('qul-mushaf-fonts.css missing %s font-family' % layout_cls)
+    for swatch in ('.qr-mushaf-legend-swatch.izhar', '.qr-mushaf-legend-swatch.ikhafa',
+                   '.qr-mushaf-legend-swatch.madda_normal'):
+        if swatch not in mcss:
+            errors.append('qul-mushaf-fonts.css missing %s legend swatch' % swatch)
+
+    if verbose:
+        print('  [OK] mushaf layout bundles + tajweed rules checked')
+    return errors
+
+
 def check_unit_vocab_sections(verbose):
     """Check that unit pages have vocab-section elements."""
     errors = []
@@ -669,6 +829,10 @@ def main():
     # Check QUL mutashabihat / similar-ayah data bundles
     print("\n--- QUL Data Bundles ---")
     all_errors.extend(check_mutashabihat_bundles(verbose))
+
+    # Check QUL mushaf layout + tajweed bundles
+    print("\n--- QUL Mushaf Layouts ---")
+    all_errors.extend(check_mushaf_layout(verbose))
 
     # Golden snapshot: every hub/lesson file unchanged
     print("\n--- Golden Snapshot Files ---")

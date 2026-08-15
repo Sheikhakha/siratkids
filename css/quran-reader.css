@@ -1532,6 +1532,297 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     display: none;
 }
 
+/* ---- Mushaf page view (QUL page-layout bundles) ---- */
+
+/* Full-page mushaf: hide the sidebar toggle and the bottom surah nav while
+   Mushaf view is active (the sidebar itself collapses via body.qr-sidebar-hidden). */
+body.qr-mushaf-mode .qr-sidebar-toggle {
+    display: none;
+}
+.qr-nav-bottom.qr-mushaf-hidden {
+    display: none !important;
+}
+
+.qr-mushaf-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.qr-mushaf-page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--qr-border);
+    background: var(--qr-hover);
+    color: var(--qr-text);
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex: none;
+}
+.qr-mushaf-page-btn:hover:not(:disabled) {
+    background: var(--qr-primary);
+    border-color: var(--qr-primary);
+    color: #fff;
+}
+.qr-mushaf-page-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+.qr-mushaf-page-label {
+    font-family: var(--qr-font-en-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--qr-text-medium);
+    white-space: nowrap;
+    min-width: 82px;
+    text-align: center;
+}
+
+.qr-mushaf {
+    padding: 18px 12px 44px;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+.qr-mushaf-inner {
+    flex: 1;
+    min-width: 0;
+}
+.qr-mushaf-page {
+    /* Aged-paper feel: mottled stains + fine fibers + vignette + hairline
+       frame, so Mushaf view reads as an old manuscript, not a plain card. */
+    position: relative;
+    background-color: #f1e6c8;
+    background-image:
+        radial-gradient(ellipse 40% 30% at 18% 12%, rgba(150, 120, 70, 0.14), transparent 60%),
+        radial-gradient(ellipse 35% 25% at 85% 80%, rgba(150, 120, 70, 0.12), transparent 55%),
+        radial-gradient(ellipse 25% 20% at 70% 25%, rgba(180, 150, 95, 0.10), transparent 50%),
+        radial-gradient(ellipse 20% 15% at 30% 85%, rgba(130, 100, 60, 0.09), transparent 45%),
+        repeating-linear-gradient(0deg, rgba(120, 95, 55, 0.05) 0px, rgba(120, 95, 55, 0.05) 1px, transparent 1px, transparent 3px);
+    border: 1px solid #d8c69b;
+    border-radius: 14px;
+    box-shadow:
+        0 1px 2px rgba(90, 70, 40, 0.3),
+        0 14px 36px rgba(90, 70, 40, 0.22),
+        inset 0 0 70px rgba(140, 110, 65, 0.12);
+    padding: 26px 30px 32px;
+    min-height: 480px;
+}
+.qr-mushaf-page::before {
+    content: '';
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    bottom: 9px;
+    left: 9px;
+    border: 1px solid rgba(146, 118, 74, 0.4);
+    border-radius: 8px;
+    pointer-events: none;
+}
+[data-theme="dark"] .qr-mushaf-page {
+    background-color: #241e14;
+    background-image:
+        radial-gradient(ellipse 40% 30% at 18% 12%, rgba(180, 150, 95, 0.08), transparent 60%),
+        radial-gradient(ellipse 35% 25% at 85% 80%, rgba(180, 150, 95, 0.07), transparent 55%),
+        radial-gradient(ellipse 25% 20% at 70% 25%, rgba(160, 130, 80, 0.06), transparent 50%),
+        repeating-linear-gradient(0deg, rgba(220, 190, 130, 0.03) 0px, rgba(220, 190, 130, 0.03) 1px, transparent 1px, transparent 3px);
+    border-color: #3d3321;
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.4),
+        0 14px 36px rgba(0, 0, 0, 0.5),
+        inset 0 0 70px rgba(0, 0, 0, 0.35);
+}
+[data-theme="dark"] .qr-mushaf-page::before {
+    border-color: rgba(200, 170, 110, 0.22);
+}
+.qr-mushaf-line {
+    /* Justified like a real mushaf: words stretch edge to edge, no side gaps. */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    direction: rtl;
+    margin: 0 0 0.5em;
+    line-height: 1.9;
+}
+.qr-mushaf-word {
+    font-size: calc(1.5rem * var(--qr-ar-scale));
+    color: #241c14;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+}
+[data-theme="dark"] .qr-mushaf-word {
+    color: var(--qr-text);
+}
+.qr-mushaf-word:hover {
+    background: var(--qr-hover);
+}
+.qr-mushaf-word.active {
+    background: var(--qr-flash-bg);
+}
+.qr-mushaf-word.done {
+    color: var(--qr-primary-dark);
+}
+[data-theme="dark"] .qr-mushaf-word.done {
+    color: var(--qr-primary);
+}
+
+/* Per-layout text density (line counts differ: 13 / 17 / 16) */
+.qr-mushaf-layout-17 .qr-mushaf-line { line-height: 2.0; }
+.qr-mushaf-layout-17 .qr-mushaf-word { font-size: calc(1.6rem * var(--qr-ar-scale)); }
+.qr-mushaf-layout-18 .qr-mushaf-line { line-height: 1.62; }
+.qr-mushaf-layout-18 .qr-mushaf-word { font-size: calc(1.22rem * var(--qr-ar-scale)); }
+.qr-mushaf-layout-7 .qr-mushaf-line { line-height: 1.8; }
+.qr-mushaf-layout-7 .qr-mushaf-word { font-size: calc(1.42rem * var(--qr-ar-scale)); }
+
+.qr-mushaf-surah-line {
+    justify-content: center;
+    margin: 8px 0 16px;
+}
+.qr-mushaf-surah-name {
+    font-family: 'surah-name-v4', var(--qr-font-ar-nastaleeq), serif;
+    font-size: 3rem;
+    line-height: 1.3;
+    color: var(--qr-text);
+}
+.qr-mushaf-bismillah-line {
+    justify-content: center;
+    margin: 4px 0 16px;
+    font-family: var(--qr-font-ar-nastaleeq), serif;
+    font-size: 2rem;
+    line-height: 1.5;
+    color: #241c14;
+}
+[data-theme="dark"] .qr-mushaf-bismillah-line {
+    color: var(--qr-text);
+}
+
+/* Tajweed on/off switch (navbar, visible only in Mushaf view) */
+.qr-mushaf-tajweed-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+}
+.qr-mushaf-tajweed-toggle input[type="checkbox"] {
+    display: none;
+}
+.qr-mushaf-tajweed-slider {
+    width: 36px;
+    height: 20px;
+    background: var(--qr-border);
+    border-radius: 10px;
+    position: relative;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+.qr-mushaf-tajweed-slider::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.qr-mushaf-tajweed-toggle input:checked + .qr-mushaf-tajweed-slider {
+    background: var(--qr-primary);
+}
+.qr-mushaf-tajweed-toggle input:checked + .qr-mushaf-tajweed-slider::after {
+    transform: translateX(16px);
+}
+.qr-mushaf-tajweed-label-text {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--qr-text-medium);
+    white-space: nowrap;
+}
+
+/* Tajweed color legend: stacked list in the side column (left of the page in
+   RTL, mirroring QUL's legend panel). Uses the space that used to be empty. */
+.qr-mushaf-legend {
+    direction: ltr;
+    width: 210px;
+    flex-shrink: 0;
+    margin: 0;
+    position: sticky;
+    top: 70px;
+    padding: 14px 16px;
+    border: 1px solid var(--qr-border);
+    border-radius: 12px;
+    background: var(--qr-surface-card);
+}
+.qr-mushaf-legend-title {
+    font-family: var(--qr-font-en-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--qr-text-medium);
+    margin-bottom: 12px;
+}
+.qr-mushaf-legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.qr-mushaf-legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.78rem;
+    line-height: 1.35;
+}
+.qr-mushaf-legend-swatch {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+.qr-mushaf-legend-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+.qr-mushaf-legend-ar {
+    font-family: var(--qr-font-ar);
+    color: var(--qr-text);
+    direction: rtl;
+    text-align: right;
+    font-size: 0.8rem;
+    line-height: 1.35;
+}
+.qr-mushaf-legend-en {
+    color: var(--qr-text-light);
+    font-size: 0.68rem;
+    line-height: 1.35;
+}
+
+@media (max-width: 900px) {
+    /* No side gap on narrow screens: legend stacks under the page. */
+    .qr-mushaf { flex-direction: column; }
+    .qr-mushaf-legend { width: 100%; position: static; }
+}
+
+@media (max-width: 720px) {
+    .qr-mushaf { padding: 10px 4px 40px; }
+    .qr-mushaf-page { padding: 16px 14px 20px; }
+}
+
 @media (max-width: 420px) {
     .qr-nav-right .settings-dropdown-content { min-width: 210px; }
 }
