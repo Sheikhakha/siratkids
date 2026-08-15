@@ -1669,32 +1669,38 @@ a.sidebar-unit-label.active {
 .lesson-hero[data-hero-img] {
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: right center;
+    background-position: center;
+}
+
+/* Full-bleed banner heroes (wide uploaded PNGs) */
+.lesson-hero.hero-bg-cover {
+    background-size: cover;
+    background-position: center;
 }
 
 /* Tawheed unit-specific overrides */
 .lesson-hero.hero-bg-unit1 {
-    background-image: url('../images/illustrations/unit1-hero.svg'),
+    background-image: url('../images/UNIT 1.png'),
         var(--hero-gradient);
     background-repeat: no-repeat;
-    background-position: right center;
-    background-size: contain;
+    background-position: center;
+    background-size: cover;
 }
 
 .lesson-hero.hero-bg-unit2 {
-    background-image: url('../images/illustrations/unit2-hero.svg'),
+    background-image: url('../images/UNIT 2.png'),
         var(--hero-gradient);
     background-repeat: no-repeat;
-    background-position: right center;
-    background-size: contain;
+    background-position: center;
+    background-size: cover;
 }
 
 .lesson-hero.hero-bg-unit3 {
-    background-image: url('../images/illustrations/unit3-hero.svg'),
+    background-image: url('../images/UNIT 3.png'),
         var(--hero-gradient);
     background-repeat: no-repeat;
-    background-position: right center;
-    background-size: contain;
+    background-position: center;
+    background-size: cover;
 }
 
 .lesson-hero[data-hero-img] .hero-illustration {
