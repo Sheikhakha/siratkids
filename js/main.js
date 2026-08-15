@@ -1405,11 +1405,59 @@ function scheduleDetectLongNames() {
     _detectLongNamesTimer = setTimeout(detectLongNames, 100);
 }
 
+    initLessonCarousels();
+
 document.fonts.ready.then(function () {
     detectLongNames();
 });
 
 window.addEventListener('resize', scheduleDetectLongNames);
+
+/* ---- Lesson Image Carousel ---- */
+function initLessonCarousels() {
+    document.querySelectorAll('.lesson-carousel').forEach(function (carousel) {
+        var track = carousel.querySelector('.lesson-carousel-track');
+        var slides = track ? track.children : [];
+        var dots = carousel.querySelectorAll('.lesson-carousel-dot');
+        var prevBtn = carousel.querySelector('.lesson-carousel-prev');
+        var nextBtn = carousel.querySelector('.lesson-carousel-next');
+        if (!track || slides.length < 2) return;
+
+        var index = 0;
+
+        function goTo(i) {
+            index = (i + slides.length) % slides.length;
+            track.style.transform = 'translateX(-' + index * 100 + '%)';
+            dots.forEach(function (dot, d) {
+                var isActive = d === index;
+                dot.classList.toggle('active', isActive);
+                if (isActive) {
+                    dot.setAttribute('aria-current', 'true');
+                } else {
+                    dot.removeAttribute('aria-current');
+                }
+            });
+            if (prevBtn) {
+                prevBtn.setAttribute('aria-label', 'Previous image (slide ' + (index + 1) + ' of ' + slides.length + ')');
+            }
+            if (nextBtn) {
+                nextBtn.setAttribute('aria-label', 'Next image (slide ' + (index + 1) + ' of ' + slides.length + ')');
+            }
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', function () { goTo(index - 1); });
+        if (nextBtn) nextBtn.addEventListener('click', function () { goTo(index + 1); });
+
+        dots.forEach(function (dot, d) {
+            dot.addEventListener('click', function () { goTo(d); });
+        });
+
+        carousel.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(index - 1); }
+            if (e.key === 'ArrowRight') { e.preventDefault(); goTo(index + 1); }
+        });
+    });
+}
 
 /* Shared utility: detect relative base path from link/script tags */
 function getBasePath() {

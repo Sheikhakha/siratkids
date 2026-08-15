@@ -2745,6 +2745,103 @@ body.popup-open {
     border-radius: var(--radius-sm);
 }
 
+/* Uniform 16:10 display box — fit without cropping */
+.lesson-image.lesson-image-fitted {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+}
+
+.lesson-image.lesson-image-fitted > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Rotated image (e.g. artwork saved sideways) */
+.lesson-image.lesson-image-rotate > img {
+    transform: rotate(270deg) scale(1.4);
+}
+
+/* Carousel for lessons with multiple images */
+.lesson-image.lesson-carousel {
+    position: relative;
+}
+
+.lesson-carousel-viewport {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.lesson-carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.35s ease;
+}
+
+.lesson-carousel-track img {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.lesson-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.lesson-carousel-btn:hover {
+    background: var(--primary-dark);
+}
+
+.lesson-carousel-prev {
+    left: 12px;
+}
+
+.lesson-carousel-next {
+    right: 12px;
+}
+
+.lesson-carousel-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+}
+
+.lesson-carousel-dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.lesson-carousel-dot.active {
+    background: var(--primary);
+}
+
 .hero-illustration {
     margin: 24px auto;
     text-align: center;
