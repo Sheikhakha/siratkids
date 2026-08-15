@@ -1,7 +1,7 @@
 /* SIRATKIDS — Main JavaScript */
 
 /* ============================================
-   Inline Data — Quran Cache, Featured Verses, Vocabulary
+   Inline Data — Quran Cache, Vocabulary
    Loaded directly to avoid XHR failures on file:// protocol
    ============================================ */
 /* Inline Hadith Data — avoids XHR failures on file:// protocol */
@@ -285,79 +285,6 @@ var __QURAN_CACHE = {
   }
 };
 
-var __FEATURED_VERSES = [
-  {
-    "verse_key": "66:6",
-    "surah_number": 66,
-    "ayah_number": 6,
-    "surah_name_en": "At-Tahrim",
-    "surah_name_ar": "\u0627\u0644\u062a\u0651\u062d\u0631\u0650\u064a\u0645",
-    "arabic": "\u064a\u064e\u0640\u0661\u064e\u064a\u0651\u064f\u0647\u064e\u0627 \u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u0623\u064e\u0640\u0645\u064e\u0646\u064f\u0648\u0670\u0627 \u0642\u064f\u0648\u0670\u0621\u064e \u0627\u064e\u0646\u0652\u0641\u064f\u0633\u064e\u0643\u064f\u0645\u0670 \u0648\u064e\u0627\u064e\u0647\u0652\u0644\u0650\u064a\u0643\u064f\u0645\u0670 \u0646\u064e\u0627\u0631\u064b\u064b\u064b\u064b\u064b\u064b \u0648\u0651\u064e\u0642\u064f\u0648\u0670\u062f\u064f\u0647\u064e\u0627 \u0627\u0644\u0652\u0646\u064e\u0627\u0633\u064f \u0648\u064e\u0627\u0644\u0652\u062d\u0650\u062c\u064e\u0627\u0631\u064e\u0629\u064f \u0639\u064e\u0644\u064e\u064a\u0670\u0647\u064e\u0627 \u0645\u064e\u0644\u064e\u0661\u064e\u0646\u0650\u0643\u064e\u0629\u064c \u063a\u0650\u0644\u064e\u0627\u0638\u064c \u0634\u0650\u062f\u064e\u0627\u062f\u064c \u0644\u0651\u064e\u0627 \u064a\u064e\u0639\u0652\u0635\u064f\u0648\u0646\u064e \u0627\u0644\u0652\u0644\u0651\u064e\u0647\u064e \u0645\u064e\u0640\u0661 \u0623\u064e\u0645\u064e\u0631\u064e\u0647\u064f\u0645\u0670 \u0648\u064e\u064a\u0652\u0641\u0651\u064e\u0639\u064e\u0644\u064f\u0648\u0646\u064e \u0645\u064e\u0640\u0661 \u064a\u064f\u0624\u0652\u0645\u064e\u0631\u064f\u0648\u0646\u064e",
-    "translation_en": "O you who have believed, protect yourselves and your families from a Fire whose fuel is people and stones, over which are [appointed] angels, harsh and severe; they do not disobey Allah in what He commands them but do what they are commanded.",
-    "translation_source": "Saheeh International"
-  },
-  {
-    "verse_key": "2:286",
-    "surah_number": 2,
-    "ayah_number": 286,
-    "surah_name_en": "Al-Baqarah",
-    "surah_name_ar": "\u0627\u0644\u0628\u0642\u0631\u0629",
-    "arabic": "\u0644\u064e\u0627 \u064a\u064f\u0643\u064e\u0644\u0651\u0650\u0641\u064f \u0627\u0644\u0652\u0644\u0651\u064e\u0647\u064f \u0646\u064e\u0641\u0633\u064b\u064b\u0627 \u0625\u0650\u0644\u0651\u064e\u0627 \u0648\u064f\u0633\u0651\u064e\u0647\u064e\u0627\u064b\u065d \u0644\u064e\u0647\u064e\u0627 \u0645\u064e\u0627 \u0643\u064e\u0633\u064e\u0628\u064e\u062a\u0652 \u0648\u064e\u0639\u064e\u0644\u064e\u064a\u0670\u0647\u064e\u0627 \u0645\u064e\u0627 \u0627\u064e\u0643\u0652\u062a\u064e\u0633\u064e\u0628\u064e\u062a\u0652 \u0631\u064e\u0628\u0651\u064e\u0646\u064e\u0627 \u0644\u064e\u0627 \u062a\u064f\u0622\u064e\u062e\u0650\u0630\u0652\u0646\u0650\u0627 \u0625\u0650\u0646\u0652 \u0646\u0651\u064e\u0633\u0650\u064a\u0646\u064e\u0627 \u0623\u064e\u0648\u0652 \u0623\u064e\u062e\u0652\u0637\u064e\u0623\u064e\u0646\u064e\u0627 \u0631\u064e\u0628\u0651\u064e\u0646\u064e\u0627 \u0648\u064e\u0644\u064e\u0627 \u062a\u064d\u062d\u0645\u0651\u0650\u0644\u0652\u0646\u064e\u0627 \u0639\u064e\u0644\u064e\u064a\u0670\u0646\u064e\u0627 \u0625\u0650\u0635\u0631\u064b\u064b\u064b\u064b \u0643\u064e\u0645\u064e\u0627 \u062d\u064e\u0645\u064e\u0644\u0652\u062a\u0647\u064f \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0630\u0650\u064a\u0646\u064e \u0645\u0650\u0646 \u0642\u064e\u0628\u0652\u0644\u0650\u0646\u064e\u0627 \u0631\u064e\u0628\u0651\u064e\u0646\u064e\u0627 \u0648\u064e\u0644\u064e\u0627 \u062a\u064d\u062d\u0645\u0651\u0650\u0644\u0652\u0646\u064e\u0627 \u0645\u064e\u0627 \u0644\u064e\u0627 \u0637\u064e\u0627\u0642\u064e\u0629\u064e \u0644\u064e\u0646\u064e\u0627 \u0628\u064a\u0647\u0650 \u0648\u064e\u0627\u0639\u0651\u064f \u0639\u064e\u0646\u0651\u064e\u0627 \u0648\u064e\u0627\u063a\u0651\u064e\u0641\u0650\u0631\u0652 \u0644\u064e\u0646\u064e\u0627 \u0648\u064e\u0627\u0631\u0652\u062d\u064e\u0645\u0652\u0646\u064e\u0627 \u0623\u064e\u0646\u0652\u062a\u064e \u0645\u064e\u0648\u0652\u0644\u064e\u0649\u064e\u0646\u064e\u0627 \u0641\u064e\u0627\u0646\u0652\u0635\u064f\u0631\u0652\u0646\u064e\u0627 \u0639\u064e\u0644\u064e\u0649 \u0627\u0644\u0652\u0642\u064e\u0648\u0652\u0645\u0650 \u0627\u0644\u0652\u0643\u064e\u0641\u064e\u0627\u0631\u0650\u064a\u0646\u064e",
-    "translation_en": "Allah burdens not a person beyond his scope. He gets reward for that (good) which he has earned, and he is punished for that (evil) which he has earned. \"Our Lord! Punish us not if we forget or fall into error, our Lord! Lay not on us a burden like that which You did lay on those before us (Jews and Christians); our Lord! Put not on us a burden greater than we have strength to bear. Pardon us and grant us Forgiveness. Have mercy on us. You are our Maula (Patron, Supporter and Protector, etc.) and give us victory over the disbelieving people.\"",
-    "translation_source": "Al-Hilali-Khan"
-  },
-  {
-    "verse_key": "94:5-6",
-    "surah_number": 94,
-    "ayah_number": 5,
-    "surah_name_en": "Ash-Sharh",
-    "surah_name_ar": "\u0627\u0644\u0634\u0651\u064e\u0631\u0652\u062d",
-    "arabic": "\u0641\u064e\u0625\u0650\u0646\u0651\u064e \u0645\u064e\u0639\u064e \u0627\u0644\u0652\u0639\u064f\u0633\u0631\u0650 \u064a\u064f\u0633\u0631\u064b\u064b\u064b \u0601\u0605 \u0625\u0650\u0646\u0651\u064e \u0645\u064e\u0639\u064e \u0627\u0644\u0652\u0639\u064f\u0633\u0631\u0650 \u064a\u064f\u0633\u0631\u064b\u064b\u064b",
-    "translation_en": "Verily, along with every hardship is relief. Verily, along with every hardship is relief (i.e. there is one hardship with two reliefs, so one hardship cannot overcome two reliefs).",
-    "translation_source": "Al-Hilali-Khan"
-  },
-  {
-    "verse_key": "29:69",
-    "surah_number": 29,
-    "ayah_number": 69,
-    "surah_name_en": "Al-Ankabut",
-    "surah_name_ar": "\u0627\u0644\u0639\u064e\u0646\u0652\u0643\u064e\u0628\u064f\u0648\u062a",
-    "arabic": "\u0648\u064e\u0627\u0644\u0651\u064e\u0630\u0650\u064a\u0646\u064e \u062c\u064e\u0627\u0647\u064e\u062f\u064f\u0648\u0627 \u0641\u0650\u064a\u0646\u064e\u0627 \u0644\u064e\u0646\u064e\u0647\u0652\u0647\u0650\u062f\u0650\u064a\u0646\u0651\u064e\u0646\u0651\u064e\u0647\u064f\u0645\u0652 \u0633\u064f\u0628\u064f\u0644\u064e\u0646\u064e\u0627\u064b\u065d \u0648\u064e\u0625\u0650\u0646\u0651\u064e \u0627\u0644\u0652\u0644\u0651\u064e\u0647\u064e \u0644\u064e\u0645\u064e\u0639\u064e \u0627\u0644\u0652\u0645\u064f\u062d\u0633\u0650\u0646\u0650\u064a\u0646\u064e",
-    "translation_en": "As for those who strive hard in Us (Our Cause), We will surely guide them to Our Paths (i.e. Allah's religion - Islamic Monotheism). And verily, Allah is with the Muhsinun (good doers).",
-    "translation_source": "Al-Hilali-Khan"
-  },
-  {
-    "verse_key": "12:4",
-    "surah_number": 12,
-    "ayah_number": 4,
-    "surah_name_en": "Yusuf",
-    "surah_name_ar": "\u064a\u064f\u0648\u0633\u064f\u0641",
-    "arabic": "\u0625\u0650\u0630\u0652 \u0642\u064e\u0627\u0644\u064e \u064a\u064f\u0648\u0633\u064f\u0641\u064f \u0644\u0650\u0623\u064e\u0628\u0655\u0650\u0647\u0650 \u064a\u064e\u0627 \u0623\u064e\u0628\u064e\u062a\u0655\u0650 \u0625\u0650\u0646\u0651\u0650\u064a \u0631\u064e\u0623\u064e\u064a\u0652\u062a\u064f \u0623\u064e\u062d\u064e\u062f\u064e \u0639\u064e\u0634\u064e\u0631\u064e \u0643\u064e\u0648\u0643\u064e\u0628\u064b\u064b\u064b\u064b\u064b \u0648\u064e\u0627\u0644\u0652\u0634\u064e\u0645\u0633\u064e \u0648\u064e\u0627\u0644\u0652\u0642\u064e\u0645\u0631\u064e \u0631\u064e\u0623\u064e\u064a\u0652\u062a\u064f\u0647\u064f\u0645\u0652 \u0644\u0650\u064a \u0633\u064e\u0627\u062c\u0650\u062f\u0650\u064a\u0646\u064e",
-    "translation_en": "(Remember) when Yusuf (Joseph) said to his father: \"O my father! Verily, I saw (in a dream) eleven stars and the sun and the moon - I saw them prostrating themselves to me.\"",
-    "translation_source": "Al-Hilali-Khan"
-  },
-  {
-    "verse_key": "3:185",
-    "surah_number": 3,
-    "ayah_number": 185,
-    "surah_name_en": "Ali Imran",
-    "surah_name_ar": "\u0622\u0644\u0650 \u0639\u0650\u0645\u0652\u0631\u064e\u0627\u0646",
-    "arabic": "\u0643\u064f\u0644\u0651\u064f \u0646\u064e\u0641\u0633\u064d \u0630\u064e\u0627\u0626\u0650\u0642\u064e\u0629\u064f \u0627\u0644\u0652\u0645\u064e\u0648\u062a\u0650\u065d \u0648\u064e\u0625\u0650\u0646\u0651\u064e\u0645\u064e\u0627 \u062a\u064f\u0648\u064e\u0641\u0651\u064e\u0641\u064e\u0648\u0652\u0646\u064e \u0623\u064e\u062c\u064f\u0648\u0631\u064e\u0643\u064f\u0645\u0652 \u064a\u064e\u0648\u0652\u0645\u064e \u0627\u0644\u0652\u0642\u0650\u064a\u064e\u0627\u0645\u064e\u0629\u0650 \u06d7 \u0641\u064e\u0645\u064e\u0646 \u0632\u064e\u062d\u0652\u0632\u0650\u062d\u064e \u0639\u064e\u0646 \u0627\u0644\u0652\u0646\u064e\u0627\u0631\u0650 \u0648\u064e\u0623\u064f\u062f\u0652\u062e\u0650\u0644\u064e \u0627\u0644\u0652\u062c\u064e\u0646\u0651\u064e\u0629\u064e \u0641\u064e\u0642\u064e\u062f \u0641\u064e\u0627\u0632\u064e\u0640\u0621\u064e \u0671 \u0648\u064e\u0645\u064e\u0627 \u0627\u0644\u0652\u062d\u064e\u064a\u0627\u0629\u064f \u0627\u0644\u0652\u062f\u0651\u064f\u0646\u064e\u064a\u0627 \u0625\u0650\u0644\u0651\u064e\u0627 \u0645\u064e\u062a\u064e\u0627\u0639\u064f \u0627\u0644\u0652\u063a\u064f\u0631\u064f\u0648\u0631\u0650",
-    "translation_en": "Everyone shall taste death. And only on the Day of Resurrection shall you be paid your wages in full. And whoever is removed away from the Fire and admitted to Paradise, he indeed is successful. The life of this world is only the enjoyment of deception (a deceiving thing).",
-    "translation_source": "Al-Hilali-Khan"
-  },
-  {
-    "verse_key": "112:1-4",
-    "surah_number": 112,
-    "ayah_number": 1,
-    "surah_name_en": "Al-Ikhlas",
-    "surah_name_ar": "\u0627\u0644\u0625\u0650\u062e\u0652\u0644\u064e\u0627\u0635",
-    "arabic": "\u0642\u064f\u0644\u0652 \u0647\u064f\u0648\u064e \u0627\u0644\u0652\u0644\u0651\u064e\u0647\u064f \u0623\u064e\u062d\u064e\u062f\u064c \u0601\u0601 \u0627\u0644\u0652\u0644\u0651\u064e\u0647\u064f \u0627\u0644\u0652\u0635\u064e\u0645\u064e\u062f\u064f \u0601\u0602 \u0644\u064e\u0645\u0652 \u064a\u064e\u0644\u0650\u062f\u0652 \u0648\u064e\u0644\u064e\u0645 \u064a\u064f\u0648\u0644\u064e\u062f\u0652 \u0601\u0603 \u0648\u064e\u0644\u064e\u0645 \u064a\u064e\u0643\u0652\u0646\u0652 \u0644\u0651\u064e\u0647\u064f \u0643\u064f\u0641\u064f\u0648\u064e\u064b \u0623\u064e\u062d\u064e\u062f\u064c \u0601\u0604\u064b",
-    "translation_en": "Say (O Muhammad): \"He is Allah, (the) One. Allah-us-Samad [Allah the Self-Sufficient Master, Whom all creatures need, (He neither eats nor drinks)]. He begets not, nor was He begotten. And there is none co-equal or comparable unto Him.\"",
-    "translation_source": "Al-Hilali-Khan"
-  }
-];
-
 var __VOCABULARY_DATA = {
   "unit1": {
     "title_en": "Rububiyyah",
@@ -507,9 +434,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         document.querySelectorAll('.hadith-card .ar .hadith-text').forEach(function (el) {
             el.style.fontSize = (AR_BASE.hadith * scale) + 'rem';
-        });
-        document.querySelectorAll('.verse-arabic').forEach(function (el) {
-            el.style.fontSize = (1.5 * scale) + 'rem';
         });
         document.querySelectorAll('.hero-sub-ar').forEach(function (el) {
             el.style.fontSize = (1.6 * scale) + 'rem';
@@ -974,97 +898,130 @@ document.addEventListener('DOMContentLoaded', function () {
     // });
 })();
 
-/* ---- Audio Player Widget (Web Speech API) ----
-   Per-sentence players sit under each Arabic block (Arabic text on top, a slim
-   control bar with play / scrub / time directly beneath it). A play-all button
-   and a stepped speed control live in the right-hand column (lesson-aside). On
-   narrow viewports the column collapses into a sticky bottom bar (see CSS). */
-(function() {
+/* ============================================
+   Audio Player (Lesson Pages)
+   MP3-first: per-block MP3s built by scripts/build_lesson_audio.py
+   (data in js/audio-manifests.js, loaded on demand), with Web Speech
+   API fallback per block when no MP3 entry exists. The aside play-all
+   button steps through every .lesson-block .ar in order; per-sentence
+   .lp-play-btn buttons are injected under each block. Word highlighting
+   is driven by requestAnimationFrame over MP3 currentTime/duration and by
+   speechSynthesis.onboundary for the TTS fallback.
+   ============================================ */
+(function () {
+    'use strict';
+
     var player = document.querySelector('.audio-player');
     if (!player) return;
-    if (!('speechSynthesis' in window)) {
-        player.innerHTML = '<div class="audio-no-support">Audio is not supported in this browser.</div>';
-        return;
-    }
 
     var playBtn = player.querySelector('.audio-play-btn');
     var statusEl = player.querySelector('.audio-status');
     var previewEl = player.querySelector('.audio-text-preview');
-    var isPlayingAll = false;
-    var currentUtterance = null;
-    var uttGen = 0;
-    var blocks = [];
-    var blockData = [];
-    var activeBlockIdx = -1;
-
-    /* ---- Speed (stepped select dropdown) ---- */
-    var currentSpeed = 1;
     var speedSelect = player.querySelector('.audio-speed-select') || player.querySelector('#audio-speed');
+
+    /* ---- state ---- */
+    var currentRate = 1;
     var savedSpeed = localStorage.getItem('audio-speed');
-    if (savedSpeed) currentSpeed = parseFloat(savedSpeed);
-
-    function initSpeedSelect() {
-        if (!speedSelect) return;
-        speedSelect.value = currentSpeed;
-        speedSelect.addEventListener('change', function() {
-            currentSpeed = parseFloat(this.value) || 1;
-            localStorage.setItem('audio-speed', currentSpeed);
-            if (currentUtterance) currentUtterance.rate = currentSpeed;
-        });
+    if (savedSpeed && speedSelect) {
+        speedSelect.value = savedSpeed;
+        currentRate = parseFloat(savedSpeed) || 1;
     }
-    initSpeedSelect();
+    var isPlayingAll = false;
+    var currentBlockIndex = -1;
+    var audioEl = null;
+    var manifest = null;
+    var manifestReady = false;
+    var rafId = null;
 
-    /* ---- Auto Arabic voice selection ---- */
-    var arVoices = null;
-
-    function getArabicVoices() {
-        if (arVoices) return arVoices;
-        var all = speechSynthesis.getVoices();
-        arVoices = all.filter(function(v) { return v.lang && v.lang.toLowerCase().indexOf('ar') === 0; });
-        return arVoices;
+    function setStatus(msg) {
+        if (statusEl) statusEl.textContent = msg;
     }
 
-    function findArabicVoice() {
-        var voices = getArabicVoices();
-        if (!voices.length) return null;
-        for (var i = 0; i < voices.length; i++) {
-            if (voices[i].default) return voices[i];
+    function updatePreview(text) {
+        if (previewEl) previewEl.textContent = text || '';
+    }
+
+    function shortText(text) {
+        text = text || '';
+        return text.length > 60 ? text.substring(0, 60) + '...' : text;
+    }
+
+    /* ---- js/ asset base, resolved from this script's own src so both
+       http(s):// and file:// pages find audio-manifests.js correctly ---- */
+    function getBasePath() {
+        if (document.currentScript && document.currentScript.src) {
+            var src = document.currentScript.src;
+            return src.substring(0, src.lastIndexOf('/') + 1);
         }
-        return voices[0];
+        var depth = Math.max(0, (location.pathname.split('/').length - 2) - 1);
+        return Array(depth + 1).join('../');
     }
 
-    /* ---- Word collection & wrapping ---- */
+    /* ---- load the pre-rendered audio manifest (js/audio-manifests.js) ---- */
+    function pageKey() {
+        return (location.pathname.split('/').pop() || '').replace(/\.html$/, '');
+    }
+
+    function loadManifest() {
+        if (window.__AUDIO_MANIFESTS) {
+            manifest = window.__AUDIO_MANIFESTS[pageKey()] || null;
+            manifestReady = true;
+            return;
+        }
+        var sc = document.createElement('script');
+        sc.src = getBasePath() + 'audio-manifests.js';
+        sc.onload = function () {
+            manifest = window.__AUDIO_MANIFESTS[pageKey()] || null;
+            manifestReady = true;
+            setStatus('Tap to play all');
+        };
+        sc.onerror = function () {
+            manifestReady = false;
+            setStatus('Tap to play all');
+        };
+        document.head.appendChild(sc);
+    }
+
+    /* ---- blocks: one `.ar` per `.lesson-block`, in document order
+       (the same order scripts/build_lesson_audio.py emits entries for) ---- */
     function collectBlocks() {
         var main = document.querySelector('.lesson-main');
         if (!main) return [];
         return Array.prototype.slice.call(main.querySelectorAll('.lesson-block .ar'));
     }
 
+    function getBlockText(block) {
+        var node = block.cloneNode(true);
+        node.querySelectorAll('.meaning-btn').forEach(function (b) { b.remove(); });
+        node.querySelectorAll('.audio-word').forEach(function (s) {
+            s.replaceWith(document.createTextNode(s.textContent));
+        });
+        return node.textContent.replace(/\s+/g, ' ').trim();
+    }
+
+    /* ---- wrap plain text nodes into .audio-word spans for highlighting ---- */
     function wrapWords(block) {
         var ps = block.querySelectorAll('p');
         var totalWords = 0;
-        ps.forEach(function(p) {
+        ps.forEach(function (p) {
             var walker = document.createTreeWalker(p, NodeFilter.SHOW_TEXT, null);
             var textNodes = [];
             while (walker.nextNode()) textNodes.push(walker.currentNode);
-
-            textNodes.forEach(function(node) {
+            textNodes.forEach(function (node) {
                 if (node.parentNode.closest && node.parentNode.closest('.meaning-btn')) return;
                 if (node.parentNode.closest && node.parentNode.closest('.audio-word')) return;
-
                 var text = node.textContent;
                 if (!text.trim()) return;
-
                 var words = text.split(/(\s+)/);
                 var frag = document.createDocumentFragment();
-                words.forEach(function(word) {
+                words.forEach(function (word) {
                     if (word.trim()) {
                         var span = document.createElement('span');
                         span.className = 'audio-word';
                         span.dataset.wi = totalWords;
                         span.textContent = word;
-                        frag.appendChild(span);
                         totalWords++;
+                        frag.appendChild(span);
                     } else {
                         frag.appendChild(document.createTextNode(word));
                     }
@@ -1075,47 +1032,80 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function unwrapWords(block) {
-        var words = block.querySelectorAll('.audio-word');
-        words.forEach(function(span) {
-            var parent = span.parentNode;
-            parent.replaceChild(document.createTextNode(span.textContent), span);
-            parent.normalize();
+        block.querySelectorAll('.audio-word').forEach(function (span) {
+            span.replaceWith(document.createTextNode(span.textContent));
         });
-        removeHighlight(block);
     }
 
-    /* ---- Word highlighting (same colors as Quran-reader playback) ---- */
+    /* ---- word highlighting (proportional bit-space; shared MP3 + TTS) ---- */
+    function blockTotalBits(block) {
+        var total = 0;
+        block.querySelectorAll('.audio-word').forEach(function (w) {
+            total += 1 + w.textContent.length;
+        });
+        return total;
+    }
+
     function highlightWord(block, charIndex, blockText) {
-        var words = blockText.split(/\s+/);
+        var text = blockText || '';
+        if (!block || !text) return;
+        var words = block.querySelectorAll('.audio-word');
+        var totalBits = 0;
+        var starts = [];
+        words.forEach(function (w) {
+            starts.push(totalBits);
+            totalBits += 1 + w.textContent.length;
+        });
+        if (totalBits <= 0) return;
         var activeIdx = -1;
-        var offset = 0;
-        for (var i = 0; i < words.length; i++) {
-            var end = offset + words[i].length;
-            if (charIndex >= offset && charIndex < end) { activeIdx = i; break; }
-            offset = end + 1;
-        }
-        var spans = block.querySelectorAll('.audio-word');
-        for (var j = 0; j < spans.length; j++) {
-            var wi = parseInt(spans[j].dataset.wi, 10);
-            spans[j].classList.toggle('audio-word-active', wi === activeIdx);
-            spans[j].classList.toggle('audio-word-done', activeIdx >= 0 && wi < activeIdx);
-        }
+        words.forEach(function (w, i) {
+            var start = starts[i];
+            var end = start + 1 + w.textContent.length;
+            if (charIndex >= totalBits || charIndex >= end) {
+                w.classList.add('audio-word-done');
+                w.classList.remove('audio-word-active');
+            } else if (charIndex >= start) {
+                w.classList.add('audio-word-active');
+                w.classList.remove('audio-word-done');
+                if (activeIdx < 0) activeIdx = i;
+            } else {
+                w.classList.remove('audio-word-active');
+                w.classList.remove('audio-word-done');
+            }
+        });
         if (activeIdx >= 0) {
             var el = block.querySelector('.audio-word[data-wi="' + activeIdx + '"]');
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     }
 
     function removeHighlight(block) {
-        block.querySelectorAll('.audio-word-active, .audio-word-done').forEach(function(el) {
-            el.classList.remove('audio-word-active', 'audio-word-done');
+        if (!block) return;
+        block.querySelectorAll('.audio-word-active, .audio-word-done').forEach(function (w) {
+            w.classList.remove('audio-word-active', 'audio-word-done');
         });
     }
 
-    /* ---- Per-sentence play buttons ---- */
+    function pickArabicVoice() {
+        if (!window.speechSynthesis || !speechSynthesis.getVoices) return null;
+        var voices = Array.prototype.slice.call(speechSynthesis.getVoices());
+        var matches = [];
+        for (var j = 0; j < voices.length; j++) {
+            var v = voices[j];
+            if ((v.lang || '').toLowerCase().indexOf('ar') === 0) matches.push(v);
+        }
+        for (var k = 0; k < matches.length; k++) {
+            if (matches[k].default) return matches[k];
+        }
+        return matches.length ? matches[0] : null;
+    }
+
+    /* ---- per-sentence play buttons ---- */
     function injectPlayButtons() {
-        blocks.forEach(function(block, i) {
-            if (block.parentNode.querySelector('.lp-play-btn')) return;
+        var blocks = collectBlocks();
+        blocks.forEach(function (block, i) {
+            var parent = block.parentNode;
+            if (!parent || parent.querySelector('.lp-play-btn')) return;
             var btn = document.createElement('button');
             btn.className = 'lp-play-btn';
             btn.type = 'button';
@@ -1131,589 +1121,252 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.innerHTML = playing
             ? '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>'
             : '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
-        btn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+        btn.setAttribute('aria-label', playing ? 'Pause' : 'Play this sentence');
     }
 
     function resetAllButtons() {
-        document.querySelectorAll('.lp-play-btn').forEach(function(btn) {
+        document.querySelectorAll('.lp-play-btn').forEach(function (btn) {
             btn.classList.remove('playing', 'active');
             setPlayIcon(btn, false);
         });
     }
 
     function setActiveButton(blockIdx) {
-        blockData.forEach(function(data, i) {
-            var active = (i === blockIdx);
-            data.playBtn.classList.toggle('playing', active);
-            data.playBtn.classList.toggle('active', active);
-            setPlayIcon(data.playBtn, active);
+        document.querySelectorAll('.lp-play-btn').forEach(function (btn) {
+            var active = parseInt(btn.dataset.lpIdx, 10) === blockIdx;
+            btn.classList.toggle('playing', active);
+            btn.classList.toggle('active', active);
+            setPlayIcon(btn, active);
         });
     }
 
-    /* ---- Playback state helpers ---- */
-    var spokenPrefixLen = 0;
-
-    function setStatus(msg) {
-        if (statusEl) statusEl.textContent = msg;
-    }
-
-    function updatePreview(text) {
-        if (previewEl) previewEl.textContent = text || '';
-    }
-
-    function shortText(text) {
-        text = text || '';
-        return text.length > 60 ? text.substring(0, 60) + '...' : text;
-    }
-
-    /* ---- Playback ---- */
-    function speakFromWord(blockIdx, startWord) {
-        var data = blockData[blockIdx];
-        if (!data || !data.words.length) return;
-        var gen = ++uttGen;
-        speechSynthesis.cancel();
-
-        var words = data.words;
-        var fullText = words.join(' ');
-        startWord = Math.max(0, Math.min(startWord, words.length - 1));
-        var prefix = words.slice(0, startWord).join(' ');
-        var prefixLen = prefix.length ? prefix.length + 1 : 0;
-
-        activeBlockIdx = blockIdx;
-        spokenPrefixLen = prefixLen;
-
-        var utt = new SpeechSynthesisUtterance(words.slice(startWord).join(' '));
-        utt.lang = 'ar';
-        utt.rate = currentSpeed;
-        var voice = findArabicVoice();
-        if (voice) utt.voice = voice;
-
-        utt.onboundary = function(e) {
-            if (gen !== uttGen) return;
-            if (e.name === 'word') highlightWord(data.block, spokenPrefixLen + e.charIndex, fullText);
+    /* ---- TTS fallback (Web Speech API path) ---- */
+    function makeUtterance(block, onAdvance) {
+        var text = getBlockText(block);
+        var utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'ar-SA';
+        utter.rate = currentRate;
+        var arVoice = pickArabicVoice();
+        if (arVoice) utter.voice = arVoice;
+        var lastChar = -1;
+        utter.onboundary = function (e) {
+            var idx = e.charIndex;
+            if (idx === lastChar) return;
+            lastChar = idx;
+            idx = Math.min(idx, text.length - 1);
+            highlightWord(block, idx, text);
         };
-        utt.onend = function() {
-            if (gen !== uttGen) return;
-            removeHighlight(data.block);
-            advance();
+        utter.onend = onAdvance;
+        utter.onerror = function () {
+            setStatus('Speech error; moving on.');
+            onAdvance();
         };
-        utt.onerror = function() {
-            if (gen !== uttGen) return;
-            removeHighlight(data.block);
-            advance();
-        };
-
-        currentUtterance = utt;
-        speechSynthesis.speak(utt);
-
-        setActiveButton(blockIdx);
-        updatePreview(shortText(fullText));
+        return utter;
     }
 
-    function advance() {
-        if (isPlayingAll) {
-            var next = activeBlockIdx + 1;
-            if (next < blockData.length) {
-                setStatus('Playing ' + (next + 1) + ' / ' + blockData.length);
-                speakFromWord(next, 0);
+    function speak(block, onAdvance) {
+        if (!block) return;
+        if (!window.speechSynthesis) {
+            setStatus('Audio not supported.');
+            return;
+        }
+        speechSynthesis.speak(makeUtterance(block, onAdvance));
+    }
+
+    /* ---- MP3 path (pre-rendered audio) ---- */
+    function cancelRaf() {
+        if (rafId !== null) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+        }
+    }
+
+    function playMp3(block, entry) {
+        if (!block || !entry || !entry.f) return false;
+        var text = getBlockText(block);
+        var totalBits = blockTotalBits(block);
+        if (!audioEl) {
+            audioEl = new Audio();
+            audioEl.style.display = 'none';
+            document.body.appendChild(audioEl);
+        }
+        cancelRaf();
+        audioEl.src = entry.f;
+        audioEl.playbackRate = currentRate;
+        var tick = function () {
+            if (!audioEl || audioEl.paused) {
+                cancelRaf();
                 return;
             }
+            var dur = entry.d || 0;
+            var pct = dur > 0 ? Math.min(1, Math.max(0, audioEl.currentTime / dur)) : 0;
+            highlightWord(block, Math.floor(pct * (totalBits > 0 ? totalBits : text.length)), text);
+            rafId = requestAnimationFrame(tick);
+        };
+        rafId = requestAnimationFrame(tick);
+        audioEl.ontimeupdate = function () {
+            var dur = entry.d || 0;
+            var pct = dur > 0 ? Math.min(1, Math.max(0, audioEl.currentTime / dur)) : 0;
+            highlightWord(block, Math.floor(pct * (totalBits > 0 ? totalBits : text.length)), text);
+        };
+        audioEl.onended = function () { advance(); };
+        audioEl.onerror = function () {
+            setStatus('Audio unavailable; trying TTS.');
+            speak(block, function () { advance(); });
+        };
+        var p = audioEl.play();
+        if (p && p.catch) {
+            p.catch(function () {
+                setStatus('Audio unavailable; trying TTS.');
+                speak(block, function () { advance(); });
+            });
         }
-        finish();
+        return true;
     }
 
-    function prepBlock(blockIdx) {
-        var block = blocks[blockIdx];
+    function playBlock(index) {
+        var blocks = collectBlocks();
+        if (blocks.length === 0) return;
+        var block = blocks[index];
         if (!block) return;
-        wrapWords(block);
-        var words = [];
-        block.querySelectorAll('.audio-word').forEach(function(s) { words.push(s.textContent); });
-        blockData[blockIdx] = {
-            block: block,
-            playBtn: block.parentNode.querySelector('.lp-play-btn'),
-            words: words
-        };
+        cancelRaf();
+        blocks.forEach(function (b) { removeHighlight(b); });
+        if (!block.querySelector('.audio-word')) wrapWords(block);
+        currentBlockIndex = index;
+        setActiveButton(index);
+        updatePreview(shortText(getBlockText(block)));
+        var entry = (manifestReady && manifest && manifest[index]) || null;
+        if (entry && entry.f) {
+            playMp3(block, entry);
+        } else {
+            speak(block, function () { advance(); });
+        }
+        setStatus('Playing ' + (index + 1) + ' of ' + blocks.length);
     }
 
     function playAll() {
-        blocks = collectBlocks();
-        if (!blocks.length) { setStatus('No Arabic text found'); return; }
-        if (isPlayingAll) { stopAll(); return; }
-
-        stopAll();
-        blockData = [];
-        for (var i = 0; i < blocks.length; i++) prepBlock(i);
-        if (!blockData.length) { setStatus('No Arabic text found'); return; }
-
-        isPlayingAll = true;
-        playBtn.classList.add('playing');
-        setPlayIcon(playBtn, true);
-        setStatus('Playing 1 / ' + blockData.length);
-        speakFromWord(0, 0);
-    }
-
-    function playBlock(blockIdx) {
-        if (!isPlayingAll && activeBlockIdx === blockIdx) { stopAll(); return; }
-        stopAll();
-        isPlayingAll = false;
-        prepBlock(blockIdx);
-        setStatus('Reading...');
-        speakFromWord(blockIdx, 0);
-    }
-
-    function stopAll() {
-        ++uttGen;
-        speechSynthesis.cancel();
-        currentUtterance = null;
-        isPlayingAll = false;
-        if (activeBlockIdx >= 0 && blockData[activeBlockIdx]) {
-            removeHighlight(blockData[activeBlockIdx].block);
+        var blocks = collectBlocks();
+        if (blocks.length === 0) {
+            setStatus('No Arabic text found.');
+            return;
         }
-        activeBlockIdx = -1;
-        playBtn.classList.remove('playing');
-        setPlayIcon(playBtn, false);
-        setStatus('Tap to play all');
-        updatePreview('');
-        blocks.forEach(function(block) { unwrapWords(block); });
-        blockData = [];
+        isPlayingAll = true;
+        setMainIcon(true);
+        currentBlockIndex = -1;
+        advance();
+    }
+
+    function advance() {
+        var blocks = collectBlocks();
+        if (blocks.length === 0) {
+            finish();
+            return;
+        }
+        if (isPlayingAll && currentBlockIndex < blocks.length - 1) {
+            currentBlockIndex++;
+            playBlock(currentBlockIndex);
+        } else {
+            finish();
+        }
+    }
+
+    function teardown() {
+        cancelRaf();
+        isPlayingAll = false;
+        if (audioEl) {
+            audioEl.pause();
+            audioEl.removeAttribute('src');
+            audioEl.onerror = null;
+            audioEl.onended = null;
+            audioEl.ontimeupdate = null;
+        }
+        if (window.speechSynthesis) speechSynthesis.cancel();
+        removeHighlight(collectBlocks()[currentBlockIndex] || null);
+        collectBlocks().forEach(function (block) { unwrapWords(block); });
         resetAllButtons();
     }
 
     function finish() {
-        ++uttGen;
-        speechSynthesis.cancel();
-        currentUtterance = null;
-        isPlayingAll = false;
-        if (activeBlockIdx >= 0 && blockData[activeBlockIdx]) {
-            removeHighlight(blockData[activeBlockIdx].block);
-        }
-        activeBlockIdx = -1;
-        playBtn.classList.remove('playing');
-        setPlayIcon(playBtn, false);
-        setStatus('Tap to play all');
-        updatePreview('');
-        blocks.forEach(function(block) { unwrapWords(block); });
-        blockData = [];
-        resetAllButtons();
+        teardown();
+        setStatus('Playback finished');
+        setMainIcon(false);
     }
 
-    /* ---- Event Listeners ---- */
-    playBtn.addEventListener('click', function() {
-        if (isPlayingAll) stopAll(); else playAll();
+    function stopAll() {
+        teardown();
+        setStatus('Stopped');
+        setMainIcon(false);
+    }
+
+    function setMainIcon(playing) {
+        playBtn.classList.toggle('playing', playing);
+        playBtn.innerHTML = playing
+            ? '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>'
+            : '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
+    }
+
+    playBtn.addEventListener('click', function () {
+        if (playBtn.classList.contains('playing')) {
+            stopAll();
+        } else {
+            playAll();
+        }
     });
 
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         if (!e.target || !e.target.closest) return;
         var btn = e.target.closest('.lp-play-btn');
         if (!btn) return;
         var idx = parseInt(btn.dataset.lpIdx, 10);
+        var blocks = collectBlocks();
         if (isNaN(idx) || idx < 0 || idx >= blocks.length) return;
+        var isActive = currentBlockIndex === idx && !audioEl.paused;
+        if (isActive) {
+            stopAll();
+            return;
+        }
+        isPlayingAll = false;
+        teardown();
+        setMainIcon(true);
         playBlock(idx);
     });
 
-    /* ---- Init ---- */
-    blocks = collectBlocks();
-    injectPlayButtons();
-    if (blocks.length) {
-        updatePreview(shortText(blocks[0].textContent.trim().replace(/\s+/g, ' ')));
+    if (speedSelect) {
+        speedSelect.addEventListener('change', function () {
+            currentRate = parseFloat(this.value) || 1;
+            localStorage.setItem('audio-speed', this.value);
+            if (audioEl && !audioEl.paused) audioEl.playbackRate = currentRate;
+        });
     }
 
-    arVoices = null;
-    if (speechSynthesis.onvoiceschanged !== undefined) {
-        speechSynthesis.onvoiceschanged = function() {
-            arVoices = null;
-            getArabicVoices();
-        };
-    }
-    speechSynthesis.getVoices();
-})();
-
-/* ---- Detect Long Lesson Names (auto-stack) ---- */
-function detectLongNames() {
-    document.querySelectorAll('.lesson-item').forEach(function (item) {
-        var en = item.querySelector('.lesson-name:not(.ar)');
-        var ar = item.querySelector('.lesson-name.ar');
-        if (!en || !ar) return;
-
-        var containerWidth = item.offsetWidth;
-        var num = item.querySelector('.lesson-num');
-        var arrow = item.querySelector('.lesson-arrow');
-        var numW = num ? num.offsetWidth : 0;
-        var arrowW = arrow ? arrow.offsetWidth : 0;
-        var gap = 16;
-        var totalNeeded = numW + gap + en.offsetWidth + gap + ar.offsetWidth + gap + arrowW;
-
-        if (totalNeeded > containerWidth) {
-            item.classList.add('stacked');
+    function init() {
+        injectPlayButtons();
+        var blocks = collectBlocks();
+        if (blocks.length) {
+            updatePreview(shortText(getBlockText(blocks[0])));
+            loadManifest();
         } else {
-            item.classList.remove('stacked');
+            manifestReady = false;
         }
-    });
-}
+    }
 
-var _detectLongNamesTimer = null;
-function scheduleDetectLongNames() {
-    clearTimeout(_detectLongNamesTimer);
-    _detectLongNamesTimer = setTimeout(detectLongNames, 100);
-}
-
-    initLessonCarousels();
-
-document.fonts.ready.then(function () {
-    detectLongNames();
-});
-
-window.addEventListener('resize', scheduleDetectLongNames);
-
-/* ---- Lesson Image Carousel ---- */
-function initLessonCarousels() {
-    document.querySelectorAll('.lesson-carousel').forEach(function (carousel) {
-        var track = carousel.querySelector('.lesson-carousel-track');
-        var slides = track ? track.children : [];
-        var dots = carousel.querySelectorAll('.lesson-carousel-dot');
-        var prevBtn = carousel.querySelector('.lesson-carousel-prev');
-        var nextBtn = carousel.querySelector('.lesson-carousel-next');
-        if (!track || slides.length < 2) return;
-
-        var index = 0;
-
-        function goTo(i) {
-            index = (i + slides.length) % slides.length;
-            track.style.transform = 'translateX(-' + index * 100 + '%)';
-            dots.forEach(function (dot, d) {
-                var isActive = d === index;
-                dot.classList.toggle('active', isActive);
-                if (isActive) {
-                    dot.setAttribute('aria-current', 'true');
-                } else {
-                    dot.removeAttribute('aria-current');
-                }
-            });
-            if (prevBtn) {
-                prevBtn.setAttribute('aria-label', 'Previous image (slide ' + (index + 1) + ' of ' + slides.length + ')');
+    /* Late hook: expose the audio API so init scripts can trigger playback. */
+    window.__lessonAudioAPI = {
+        playAll: function () {
+            playAll();
+        },
+        playBlock: function (i) {
+            var blocks = collectBlocks();
+            if (blocks.length > 0 && blocks[i - 1]) {
+                isPlayingAll = false;
+                teardown();
+                setMainIcon(true);
+                playBlock(i - 1);
             }
-            if (nextBtn) {
-                nextBtn.setAttribute('aria-label', 'Next image (slide ' + (index + 1) + ' of ' + slides.length + ')');
-            }
-        }
+        },
+        get audio() { return audioEl; },
+        get activeBlock() { return currentBlockIndex; }
+    };
 
-        if (prevBtn) prevBtn.addEventListener('click', function () { goTo(index - 1); });
-        if (nextBtn) nextBtn.addEventListener('click', function () { goTo(index + 1); });
-
-        dots.forEach(function (dot, d) {
-            dot.addEventListener('click', function () { goTo(d); });
-        });
-
-        carousel.addEventListener('keydown', function (e) {
-            if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(index - 1); }
-            if (e.key === 'ArrowRight') { e.preventDefault(); goTo(index + 1); }
-        });
-    });
-}
-
-/* Shared utility: detect relative base path from link/script tags */
-function getBasePath() {
-    var link = document.querySelector('link[href*="css/style.css"]');
-    if (link) {
-        var href = link.getAttribute('href');
-        var match = href.match(/^((\.\.\/)+)/);
-        return match ? match[1] : '';
-    }
-    var script = document.querySelector('script[src*="js/main.js"]');
-    if (script) {
-        var src = script.getAttribute('src');
-        var match2 = src.match(/^((\.\.\/)+)/);
-        return match2 ? match2[1] : '';
-    }
-    return '';
-}
-
-/* ============================================
-   renderPopupContent — enriches popup body with cache data
-   Called from DOMContentLoaded handler (inserts content before opening)
-   ============================================ */
-function renderPopupContent(verseKey, data, body) {
-    var meta = data.surah_meta || {};
-    var html = '';
-
-    html += '<div class="popup-surah-badge">';
-    html += '<span class="surah-badge-ar">' + (meta.name_ar || '') + '</span>';
-    html += '<span>' + (meta.name_en || '') + ' ' + verseKey.split(':')[1] + '</span>';
-    if (meta.revelation) html += ' &middot; ' + meta.revelation;
-    html += '</div>';
-
-    html += '<div class="popup-arabic-verse">' + data.arabic + '</div>';
-
-    html += '<h3>Translation</h3>';
-    html += '<div class="popup-translation-text">' + (data.translation.hilali || '') + '</div>';
-    html += '<div style="font-size:0.75rem;color:#a0aec0;margin-top:4px;">Al-Hilali-Khan</div>';
-
-    var tafsirEditions = [
-        { key: 'ibn_kathir', label: 'Ibn Kathir' },
-        { key: 'maarif', label: "Ma'arif" },
-        { key: 'tazkirul', label: 'Tazkirul' }
-    ];
-    var availableEditions = tafsirEditions.filter(function (ed) {
-        return data.tafsir[ed.key] && data.tafsir[ed.key].indexOf('not available') === -1;
-    });
-
-    if (availableEditions.length > 0) {
-        html += '<h3>Tafsir</h3>';
-        html += '<div class="popup-tafsir-tabs">';
-        availableEditions.forEach(function (ed, i) {
-            html += '<button class="popup-tafsir-tab' + (i === 0 ? ' active' : '') + '" data-tafsir="' + ed.key + '">' + ed.label + '</button>';
-        });
-        html += '</div>';
-        availableEditions.forEach(function (ed, i) {
-            html += '<div class="popup-tafsir-panel' + (i === 0 ? ' active' : '') + '" data-tafsir-panel="' + ed.key + '">';
-            html += '<div class="popup-tafsir-text">' + data.tafsir[ed.key] + '</div>';
-            html += '</div>';
-        });
-    }
-
-    if (data.cross_references && data.cross_references.length > 0) {
-        html += '<div class="popup-cross-refs">';
-        html += '<div class="popup-cross-refs-title">Related Verses</div>';
-        data.cross_references.forEach(function (ref) {
-            html += '<a class="popup-cross-ref-item" href="#" data-cross-ref="' + ref.verse_key + '">';
-            html += '<div class="popup-cross-ref-key">' + ref.verse_key + '</div>';
-            html += '<div class="popup-cross-ref-snippet">' + ref.snippet_en + '</div>';
-            html += '</a>';
-        });
-        html += '</div>';
-    }
-
-    body.innerHTML = html;
-
-    body.querySelectorAll('.popup-tafsir-tab').forEach(function (tab) {
-        tab.addEventListener('click', function () {
-            body.querySelectorAll('.popup-tafsir-tab').forEach(function (t) { t.classList.remove('active'); });
-            body.querySelectorAll('.popup-tafsir-panel').forEach(function (p) { p.classList.remove('active'); });
-            tab.classList.add('active');
-            var panel = body.querySelector('[data-tafsir-panel="' + tab.getAttribute('data-tafsir') + '"]');
-            if (panel) panel.classList.add('active');
-        });
-    });
-}
-
-/* ============================================
-   Phase 4: Featured Verse Rotation (inline data)
-   ============================================ */
-(function () {
-    var verses = __FEATURED_VERSES;
-    if (!verses || verses.length === 0) return;
-
-    var section = document.querySelector('.verse-section');
-    if (!section) return;
-    var container = section.querySelector('.verse-container');
-    if (!container) return;
-
-    var currentIndex = 0;
-    var interval = 8000;
-
-    var dotsDiv = document.createElement('div');
-    dotsDiv.className = 'verse-dots';
-    verses.forEach(function (_, i) {
-        var dot = document.createElement('button');
-        dot.className = 'verse-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Verse ' + (i + 1));
-        dot.addEventListener('click', function () {
-            goToVerse(i);
-            resetInterval();
-        });
-        dotsDiv.appendChild(dot);
-    });
-    section.appendChild(dotsDiv);
-
-    function goToVerse(index) {
-        if (index === currentIndex) return;
-        container.classList.add('fade-out');
-        setTimeout(function () {
-            currentIndex = index;
-            var v = verses[index];
-            container.innerHTML =
-                '<p class="verse-arabic" dir="rtl">' + v.arabic + '</p>' +
-                '<p class="verse-translation">"' + v.translation_en + '"</p>' +
-                '<p class="verse-reference">— Surah ' + v.surah_name_en + ' (' + v.verse_key + ') | ' + v.translation_source + '</p>';
-            updateDots();
-            container.classList.remove('fade-out');
-        }, 400);
-    }
-
-    function updateDots() {
-        dotsDiv.querySelectorAll('.verse-dot').forEach(function (d, i) {
-            d.classList.toggle('active', i === currentIndex);
-        });
-    }
-
-    var timer = setInterval(function () {
-        goToVerse((currentIndex + 1) % verses.length);
-    }, interval);
-
-    function resetInterval() {
-        clearInterval(timer);
-        timer = setInterval(function () {
-            goToVerse((currentIndex + 1) % verses.length);
-        }, interval);
-    }
-})();
-
-/* ============================================
-   Phase 7: Vocabulary Cards (inline data)
-   ============================================ */
-(function () {
-    var vocabData = __VOCABULARY_DATA;
-
-    document.querySelectorAll('.vocab-card').forEach(function (card) {
-        card.addEventListener('click', function () {
-            card.classList.toggle('flipped');
-        });
-    });
-
-    var vocabSection = document.querySelector('.vocab-section');
-    if (!vocabSection) return;
-
-    var unitMatch = window.location.pathname.match(/unit(\d+)\.html/);
-    if (!unitMatch) return;
-    var unitKey = 'unit' + unitMatch[1];
-    if (!vocabData[unitKey]) return;
-
-    var unit = vocabData[unitKey];
-    var grid = vocabSection.querySelector('.vocab-grid');
-    if (!grid) return;
-
-    var titleEl = vocabSection.querySelector('.vocab-section-title');
-    var subEl = vocabSection.querySelector('.vocab-section-subtitle');
-    if (titleEl) titleEl.textContent = 'Vocabulary: ' + unit.title_en;
-    if (subEl) subEl.textContent = unit.title_ar;
-
-    grid.innerHTML = '';
-    unit.words.forEach(function (w) {
-        var card = document.createElement('div');
-        card.className = 'vocab-card';
-        card.innerHTML =
-            '<span class="vocab-flip-hint">tap to reveal</span>' +
-            '<div class="vocab-card-ar">' + w.ar + '</div>' +
-            '<div class="vocab-card-en">' + w.en + '</div>' +
-            '<div class="vocab-card-root">Root: ' + w.root + '</div>' +
-            '<div class="vocab-card-example">' +
-            '<div class="vocab-card-example-ar">' + w.example_ar + '</div>' +
-            '<div class="vocab-card-example-en">' + w.example_en + '</div>' +
-            '</div>';
-        card.addEventListener('click', function () {
-            card.classList.toggle('flipped');
-        });
-        grid.appendChild(card);
-    });
-})();
-
-/* ============================================
-   Phase 6: Hadith Detail Modal
-   ============================================ */
-(function () {
-    var readMoreBtns = document.querySelectorAll('.hadith-read-more');
-    if (!readMoreBtns.length) return;
-
-    function createModal(data) {
-        var overlay = document.createElement('div');
-        overlay.className = 'popup-overlay hadith-detail-modal';
-        overlay.setAttribute('role', 'dialog');
-        overlay.setAttribute('aria-modal', 'true');
-        overlay.setAttribute('aria-label', 'Hadith detail');
-
-        var gradeClass = (data.grade || '').toLowerCase().replace(/[^a-z]/g, '');
-        if (gradeClass !== 'sahih' && gradeClass !== 'hasan' && gradeClass !== 'daif') gradeClass = 'sahih';
-
-        var fullAr = data.fullArabic || data.arabic || '';
-        var fullEn = data.fullEnglish || data.english || '';
-        var refUrl = 'https://sunnah.com';
-        if (data.collection && data.number) {
-            var c = data.collection.toLowerCase();
-            if (c.indexOf('bukhari') > -1) refUrl = 'https://sunnah.com/bukhari:' + data.number;
-            else if (c.indexOf('muslim') > -1) refUrl = 'https://sunnah.com/muslim:' + data.number;
-            else if (c.indexOf('tirmidhi') > -1) refUrl = 'https://sunnah.com/tirmidhi:' + data.number;
-            else if (c.indexOf('nasa') > -1) refUrl = 'https://sunnah.com/nasai:' + data.number;
-            else if (c.indexOf('abu dawud') > -1) refUrl = 'https://sunnah.com/abudawud:' + data.number;
-        }
-
-        overlay.innerHTML =
-            '<div class="popup-modal">' +
-                '<div class="popup-header">' +
-                    '<span>Hadith of the Prophet \uFDFA</span>' +
-                    '<button class="popup-close" aria-label="Close">&times;</button>' +
-                '</div>' +
-                '<div class="popup-body">' +
-                    '<div class="hadith-detail-grade ' + gradeClass + '">' +
-                        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> ' +
-                        (data.grade || 'Sahih') +
-                    '</div>' +
-                    '<div class="hadith-detail-arabic" dir="rtl">' + fullAr + '</div>' +
-                    '<div class="hadith-detail-english">' + fullEn + '</div>' +
-                    '<div class="hadith-detail-meta">' +
-                        '<strong>Narrator:</strong> ' + (data.narrator || '') + '<br>' +
-                        '<strong>Source:</strong> ' + (data.collection || '') + ', No. ' + (data.number || '') +
-                        (data.book ? '<br><strong>Book:</strong> ' + data.book : '') +
-                    '</div>' +
-                    '<div class="hadith-detail-credit">' +
-                        'Source: <a href="' + refUrl + '" target="_blank" rel="noopener">' + refUrl + '</a>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="popup-footer">' +
-                    '<button class="popup-close">Close</button>' +
-                '</div>' +
-            '</div>';
-
-        return overlay;
-    }
-
-    function openModal(data) {
-        var existing = document.querySelector('.hadith-detail-modal');
-        if (existing) existing.remove();
-
-        var modal = createModal(data);
-        document.body.appendChild(modal);
-
-        requestAnimationFrame(function () {
-            modal.classList.add('active');
-            document.body.classList.add('popup-open');
-            var closeBtn = modal.querySelector('.popup-close');
-            if (closeBtn) closeBtn.focus();
-        });
-
-        function close() {
-            modal.classList.remove('active');
-            document.body.classList.remove('popup-open');
-            setTimeout(function () { modal.remove(); }, 200);
-        }
-
-        modal.addEventListener('click', function (e) {
-            if (e.target === modal || e.target.classList.contains('popup-close')) {
-                close();
-            }
-        });
-
-        document.addEventListener('keydown', function handler(e) {
-            if (e.key === 'Escape') {
-                close();
-                document.removeEventListener('keydown', handler);
-            }
-        });
-    }
-
-    readMoreBtns.forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            var id = parseInt(btn.getAttribute('data-hadith-id'), 10);
-            if (!id) return;
-            var data = __HADITH_DATA;
-            var item;
-            if (Array.isArray(data)) {
-                item = data.find(function (h) { return h.id === id; });
-            } else if (data && data.id === id) {
-                item = data;
-            }
-            if (item) openModal(item);
-        });
-    });
-
+    init();
 })();

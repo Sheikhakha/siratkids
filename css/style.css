@@ -52,15 +52,12 @@
     --surface-card: #ffffff;
     --surface-navbar: rgba(255,255,255,0.96);
     --surface-vocab: #faf5ff;
-    --surface-verse: #f0f9ff;
     --surface-popup: #ffffff;
     --surface-flip: #f5f3ff;
     --surface-sidebar: #f8f9fa;
     --surface-input: #ffffff;
     --surface-search: #ffffff;
     --text-verse-ar: #1e293b;
-    --text-verse-en: #334155;
-    --text-verse-ref: #0284c7;
     --text-vocab-ar: #581c87;
     --text-vocab-example: #7c3aed;
     --text-footer: #718096;
@@ -135,15 +132,12 @@
     --surface-card: #1e293b;
     --surface-navbar: rgba(15,23,42,0.96);
     --surface-vocab: #2e1065;
-    --surface-verse: #0c4a6e;
     --surface-popup: #1e293b;
     --surface-flip: #1e1b4b;
     --surface-sidebar: #0f172a;
     --surface-input: #1e293b;
     --surface-search: #1e293b;
     --text-verse-ar: #e2e8f0;
-    --text-verse-en: #cbd5e1;
-    --text-verse-ref: #38bdf8;
     --text-vocab-ar: #c084fc;
     --text-vocab-example: #a78bfa;
     --text-footer: #64748b;
@@ -398,7 +392,6 @@ body {
 .font-nastaleeq .hero-quran,
 .font-nastaleeq .hero-sub-ar,
 .font-nastaleeq .track-name-ar,
-.font-nastaleeq .verse-arabic,
 .font-nastaleeq .lesson-title .ar,
 .font-nastaleeq .lesson-concept-block .ar,
 .font-nastaleeq .lesson-pair .ar,
@@ -415,7 +408,6 @@ body {
 
 .font-nastaleeq .hero-sub-ar,
 .font-nastaleeq .track-name-ar,
-.font-nastaleeq .verse-arabic,
 .font-nastaleeq .lesson-pair .ar,
 .font-nastaleeq .lesson-pair .ar h3,
 .font-nastaleeq .lesson-block .ar,
@@ -427,10 +419,6 @@ body {
     font-size: 2rem;
 }
 
-.font-nastaleeq .verse-arabic {
-    font-size: 1.8rem;
-}
-
 .font-nastaleeq .track-name-ar {
     font-size: 1.6rem;
 }
@@ -438,7 +426,6 @@ body {
 .font-amiri .hero-quran,
 .font-amiri .hero-sub-ar,
 .font-amiri .track-name-ar,
-.font-amiri .verse-arabic,
 .font-amiri .lesson-title .ar,
 .font-amiri .lesson-concept-block .ar,
 .font-amiri .lesson-pair .ar,
@@ -456,7 +443,6 @@ body {
 .font-scheherazade .hero-quran,
 .font-scheherazade .hero-sub-ar,
 .font-scheherazade .track-name-ar,
-.font-scheherazade .verse-arabic,
 .font-scheherazade .lesson-title .ar,
 .font-scheherazade .lesson-concept-block .ar,
 .font-scheherazade .lesson-pair .ar,
@@ -474,7 +460,6 @@ body {
 .font-lateef .hero-quran,
 .font-lateef .hero-sub-ar,
 .font-lateef .track-name-ar,
-.font-lateef .verse-arabic,
 .font-lateef .lesson-title .ar,
 .font-lateef .lesson-concept-block .ar,
 .font-lateef .lesson-pair .ar,
@@ -491,7 +476,6 @@ body {
 
 .font-lateef .hero-sub-ar,
 .font-lateef .track-name-ar,
-.font-lateef .verse-arabic,
 .font-lateef .lesson-pair .ar,
 .font-lateef .lesson-pair .ar h3,
 .font-lateef .lesson-block .ar,
@@ -501,10 +485,6 @@ body {
 
 .font-lateef .hero-sub-ar {
     font-size: 2rem;
-}
-
-.font-lateef .verse-arabic {
-    font-size: 1.8rem;
 }
 
 .font-lateef .track-name-ar {
@@ -1916,14 +1896,6 @@ a.sidebar-unit-label.active {
     outline: none;
 }
 
-.audio-no-support {
-    font-family: var(--font-en);
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    padding: 16px 8px;
-    line-height: 1.5;
-}
-
 /* ---------- Per-sentence play button ---------- */
 .lp-play-btn {
     width: 34px;
@@ -2278,46 +2250,6 @@ a.sidebar-unit-label.active {
     height: 60px;
     width: auto;
     margin-bottom: 12px;
-}
-
-.verse-section {
-    padding: 40px 20px;
-    background-color: var(--surface-verse);
-    display: flex;
-    justify-content: center;
-}
-
-.verse-container {
-    max-width: 800px;
-    background: var(--surface-card);
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    border: 1px solid var(--border-verse);
-}
-
-.verse-arabic {
-    font-family: var(--font-ar);
-    font-size: 1.5rem;
-    line-height: 2.2;
-    color: var(--text-verse-ar);
-    margin-bottom: 20px;
-}
-
-.verse-translation {
-    font-size: 1.05rem;
-    color: var(--text-verse-en);
-    font-style: italic;
-    line-height: 1.6;
-    margin-bottom: 12px;
-}
-
-.verse-reference {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text-verse-ref);
-    margin: 0;
 }
 
 /* ---------- Breadcrumbs ---------- */
@@ -3155,50 +3087,6 @@ select:focus-visible {
     color: var(--text-medium);
     line-height: 1.4;
     margin-top: 2px;
-}
-
-/* ============================================
-   Phase 4: Featured Verse Rotation
-   ============================================ */
-
-.verse-section {
-    position: relative;
-    overflow: hidden;
-    flex-direction: column;
-    align-items: center;
-}
-
-.verse-container {
-    transition: opacity 0.5s ease;
-}
-
-.verse-container.fade-out {
-    opacity: 0;
-}
-
-/* Verse dots navigation */
-.verse-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 16px;
-}
-
-.verse-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--border-default);
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: all var(--transition);
-}
-
-.verse-dot.active {
-    background: var(--primary);
-    width: 24px;
-    border-radius: 4px;
 }
 
 /* ============================================

@@ -1,0 +1,1015 @@
+{
+ "adhkar-1": {
+  "file": "lessons/adhkar/adhkar-1.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "اللَّهُ يُحِبُّ مَنْ يَذْكُرُهُ.",
+    "clean": "اللَّهُ يُحِبُّ مَنْ يَذْكُرُهُ.",
+    "file": "../../audio/lessons/adhkar-1/block-1.mp3",
+    "dur": 1.881
+   },
+   {
+    "index": 2,
+    "raw": "قَالَ اللَّهُ تَعَالَى: ﴿فَاذْكُرُونِي أَذْكُرْكُمْ﴾ [الْبَقَرَةُ: ١٥٢]",
+    "clean": "قَالَ اللَّهُ تَعَالَى: فَاذْكُرُونِي أَذْكُرْكُمْ الْبَقَرَةُ: 152",
+    "file": "../../audio/lessons/adhkar-1/block-2.mp3",
+    "dur": 3.402
+   }
+  ],
+  "count": 2
+ },
+ "adhkar-10": {
+  "file": "lessons/adhkar/adhkar-10.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "تَحِيَّةُ الْإِسْلَامِ: «السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ»",
+    "clean": "تَحِيَّةُ الْإِسْلَامِ: السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ",
+    "file": "../../audio/lessons/adhkar-10/block-1.mp3",
+    "dur": 3.936
+   },
+   {
+    "index": 2,
+    "raw": "رَدُّ التَّحِيَّةِ: «وَعَلَيْكُمُ السَّلَامُ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ»",
+    "clean": "رَدُّ التَّحِيَّةِ: وَعَلَيْكُمُ السَّلَامُ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ",
+    "file": "../../audio/lessons/adhkar-10/block-2.mp3",
+    "dur": 4.214
+   }
+  ],
+  "count": 2
+ },
+ "adhkar-11": {
+  "file": "lessons/adhkar/adhkar-11.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "إِذَا فَعَلَ أَحَدٌ لِي مَعْرُوفًا أَقُولُ لَهُ: «جَزَاكَ اللَّهُ خَيْرًا»",
+    "clean": "إِذَا فَعَلَ أَحَدٌ لِي مَعْرُوفًا أَقُولُ لَهُ: جَزَاكَ اللَّهُ خَيْرًا",
+    "file": "../../audio/lessons/adhkar-11/block-1.mp3",
+    "dur": 3.715
+   }
+  ],
+  "count": 1
+ },
+ "adhkar-2": {
+  "file": "lessons/adhkar/adhkar-2.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "إِذَا أَرَدْتُ أَنْ أَنَامَ أَقُولُ: «اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا»",
+    "clean": "إِذَا أَرَدْتُ أَنْ أَنَامَ أَقُولُ: اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا",
+    "file": "../../audio/lessons/adhkar-2/block-1.mp3",
+    "dur": 3.576
+   }
+  ],
+  "count": 1
+ },
+ "adhkar-3": {
+  "file": "lessons/adhkar/adhkar-3.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "إِذَا اسْتَيْقَظْتُ مِنَ النَّوْمِ أَقُولُ: «الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ»",
+    "clean": "إِذَا اسْتَيْقَظْتُ مِنَ النَّوْمِ أَقُولُ: الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+    "file": "../../audio/lessons/adhkar-3/block-1.mp3",
+    "dur": 5.747
+   }
+  ],
+  "count": 1
+ },
+ "adhkar-4": {
+  "file": "lessons/adhkar/adhkar-4.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "إِذَا سَمِعْتُ صِيَاحَ الدِّيكِ أَقُولُ: «اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ»",
+    "clean": "إِذَا سَمِعْتُ صِيَاحَ الدِّيكِ أَقُولُ: اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",
+    "file": "../../audio/lessons/adhkar-4/block-1.mp3",
+    "dur": 4.168
+   }
+  ],
+  "count": 1
+ },
+ "adhkar-5": {
+  "file": "lessons/adhkar/adhkar-5.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "إِذَا سَمِعْتُ نَهِيقَ الْحِمَارِ أَقُولُ: «أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ»",
+    "clean": "إِذَا سَمِعْتُ نَهِيقَ الْحِمَارِ أَقُولُ: أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",
+    "file": "../../audio/lessons/adhkar-5/block-1.mp3",
+    "dur": 4.574
+   }
+  ],
+  "count": 1
+ },
+ "adhkar-6": {
+  "file": "lessons/adhkar/adhkar-6.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "إِذَا نَزَلَ الْمَطَرُ أَقُولُ: «مُطِرْنَا بِفَضْلِ اللَّهِ وَرَحْمَتِهِ»",
+    "clean": "إِذَا نَزَلَ الْمَطَرُ أَقُولُ: مُطِرْنَا بِفَضْلِ اللَّهِ وَرَحْمَتِهِ",
+    "file": "../../audio/lessons/adhkar-6/block-1.mp3",
+    "dur": 3.669
+   }
+  ],
+  "count": 1
+ },
+ "adhkar-7": {
+  "file": "lessons/adhkar/adhkar-7.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "صِيغَةُ التَّسْبِيحِ: «سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ»",
+    "clean": "صِيغَةُ التَّسْبِيحِ: سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ",
+    "file": "../../audio/lessons/adhkar-7/block-1.mp3",
+    "dur": 4.203
+   }
+  ],
+  "count": 1
+ },
+ "adhkar-8": {
+  "file": "lessons/adhkar/adhkar-8.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "إِذَا أَرَدْتُ أَنْ آكُلَ أَقُولُ: «بِسْمِ اللَّهِ»",
+    "clean": "إِذَا أَرَدْتُ أَنْ آكُلَ أَقُولُ: بِسْمِ اللَّهِ",
+    "file": "../../audio/lessons/adhkar-8/block-1.mp3",
+    "dur": 2.519
+   },
+   {
+    "index": 2,
+    "raw": "آكُلُ بِيَدِي الْيُمْنَى.",
+    "clean": "آكُلُ بِيَدِي الْيُمْنَى.",
+    "file": "../../audio/lessons/adhkar-8/block-2.mp3",
+    "dur": 1.556
+   },
+   {
+    "index": 3,
+    "raw": "آكُلُ مِمَّا يَلِينِي (مِنْ أَمَامِي).",
+    "clean": "آكُلُ مِمَّا يَلِينِي مِنْ أَمَامِي.",
+    "file": "../../audio/lessons/adhkar-8/block-3.mp3",
+    "dur": 2.206
+   },
+   {
+    "index": 4,
+    "raw": "إِذَا انْتَهَيْتُ مِنَ الطَّعَامِ أَقُولُ: «الْحَمْدُ لِلَّهِ»",
+    "clean": "إِذَا انْتَهَيْتُ مِنَ الطَّعَامِ أَقُولُ: الْحَمْدُ لِلَّهِ",
+    "file": "../../audio/lessons/adhkar-8/block-4.mp3",
+    "dur": 2.891
+   }
+  ],
+  "count": 4
+ },
+ "adhkar-9": {
+  "file": "lessons/adhkar/adhkar-9.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "مِنْ آدَابِ الشَّرْبِ:",
+    "clean": "مِنْ آدَابِ الشَّرْبِ:",
+    "file": "../../audio/lessons/adhkar-9/block-1.mp3",
+    "dur": 1.265
+   },
+   {
+    "index": 2,
+    "raw": "أَشْرَبُ بِيَدِي الْيُمْنَى.",
+    "clean": "أَشْرَبُ بِيَدِي الْيُمْنَى.",
+    "file": "../../audio/lessons/adhkar-9/block-2.mp3",
+    "dur": 1.602
+   },
+   {
+    "index": 3,
+    "raw": "أَشْرَبُ جَالِسًا عَلَى ثَلَاثِ مَرَّاتٍ.",
+    "clean": "أَشْرَبُ جَالِسًا عَلَى ثَلَاثِ مَرَّاتٍ.",
+    "file": "../../audio/lessons/adhkar-9/block-3.mp3",
+    "dur": 2.45
+   },
+   {
+    "index": 4,
+    "raw": "لَا أَتَنَفَّسُ فِي الْإِنَاءِ.",
+    "clean": "لَا أَتَنَفَّسُ فِي الْإِنَاءِ.",
+    "file": "../../audio/lessons/adhkar-9/block-4.mp3",
+    "dur": 1.707
+   },
+   {
+    "index": 5,
+    "raw": "إِذَا انْتَهَيْتُ مِنَ الشَّرْبِ أَقُولُ: «الْحَمْدُ لِلَّهِ»",
+    "clean": "إِذَا انْتَهَيْتُ مِنَ الشَّرْبِ أَقُولُ: الْحَمْدُ لِلَّهِ",
+    "file": "../../audio/lessons/adhkar-9/block-5.mp3",
+    "dur": 2.833
+   }
+  ],
+  "count": 5
+ },
+ "hadith-1": {
+  "file": "lessons/hadith/hadith-1.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الدِّينُ يُسْرٌ",
+    "clean": "الدِّينُ يُسْرٌ",
+    "file": "../../audio/lessons/hadith-1/block-1.mp3",
+    "dur": 1.149
+   }
+  ],
+  "count": 1
+ },
+ "hadith-10": {
+  "file": "lessons/hadith/hadith-10.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "لَا يَدْخُلُ الْجَنَّةَ إِلَّا نَفْسٌ مُسْلِمَةٌ",
+    "clean": "لَا يَدْخُلُ الْجَنَّةَ إِلَّا نَفْسٌ مُسْلِمَةٌ",
+    "file": "../../audio/lessons/hadith-10/block-1.mp3",
+    "dur": 2.601
+   }
+  ],
+  "count": 1
+ },
+ "hadith-11": {
+  "file": "lessons/hadith/hadith-11.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "مَنْ مَاتَ يُشْرِكُ بِاللَّهِ شَيْئًا دَخَلَ النَّارَ",
+    "clean": "مَنْ مَاتَ يُشْرِكُ بِاللَّهِ شَيْئًا دَخَلَ النَّارَ",
+    "file": "../../audio/lessons/hadith-11/block-1.mp3",
+    "dur": 2.694
+   }
+  ],
+  "count": 1
+ },
+ "hadith-12": {
+  "file": "lessons/hadith/hadith-12.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الطَّهُورُ شَطْرُ الْإِيمَانِ",
+    "clean": "الطَّهُورُ شَطْرُ الْإِيمَانِ",
+    "file": "../../audio/lessons/hadith-12/block-1.mp3",
+    "dur": 1.556
+   }
+  ],
+  "count": 1
+ },
+ "hadith-13": {
+  "file": "lessons/hadith/hadith-13.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الصَّلَاةُ نُورٌ",
+    "clean": "الصَّلَاةُ نُورٌ",
+    "file": "../../audio/lessons/hadith-13/block-1.mp3",
+    "dur": 1.184
+   }
+  ],
+  "count": 1
+ },
+ "hadith-14": {
+  "file": "lessons/hadith/hadith-14.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "مَنْ صَلَّى الْبَرْدَيْنِ دَخَلَ الْجَنَّةَ",
+    "clean": "مَنْ صَلَّى الْبَرْدَيْنِ دَخَلَ الْجَنَّةَ",
+    "file": "../../audio/lessons/hadith-14/block-1.mp3",
+    "dur": 2.183
+   }
+  ],
+  "count": 1
+ },
+ "hadith-15": {
+  "file": "lessons/hadith/hadith-15.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الصَّبْرُ ضِيَاءٌ",
+    "clean": "الصَّبْرُ ضِيَاءٌ",
+    "file": "../../audio/lessons/hadith-15/block-1.mp3",
+    "dur": 1.184
+   }
+  ],
+  "count": 1
+ },
+ "hadith-16": {
+  "file": "lessons/hadith/hadith-16.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الدِّينُ النَّصِيحَةُ",
+    "clean": "الدِّينُ النَّصِيحَةُ",
+    "file": "../../audio/lessons/hadith-16/block-1.mp3",
+    "dur": 1.265
+   }
+  ],
+  "count": 1
+ },
+ "hadith-17": {
+  "file": "lessons/hadith/hadith-17.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الدُّعَاءُ هُوَ الْعِبَادَةُ",
+    "clean": "الدُّعَاءُ هُوَ الْعِبَادَةُ",
+    "file": "../../audio/lessons/hadith-17/block-1.mp3",
+    "dur": 1.649
+   }
+  ],
+  "count": 1
+ },
+ "hadith-18": {
+  "file": "lessons/hadith/hadith-18.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "أَفْشُوا السَّلَامَ بَيْنَكُمْ",
+    "clean": "أَفْشُوا السَّلَامَ بَيْنَكُمْ",
+    "file": "../../audio/lessons/hadith-18/block-1.mp3",
+    "dur": 1.509
+   }
+  ],
+  "count": 1
+ },
+ "hadith-19": {
+  "file": "lessons/hadith/hadith-19.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "احْرِصْ عَلَى مَا يَنْفَعُكَ",
+    "clean": "احْرِصْ عَلَى مَا يَنْفَعُكَ",
+    "file": "../../audio/lessons/hadith-19/block-1.mp3",
+    "dur": 1.567
+   }
+  ],
+  "count": 1
+ },
+ "hadith-2": {
+  "file": "lessons/hadith/hadith-2.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "مِفْتَاحُ الْجَنَّةِ الصَّلَاةُ",
+    "clean": "مِفْتَاحُ الْجَنَّةِ الصَّلَاةُ",
+    "file": "../../audio/lessons/hadith-2/block-1.mp3",
+    "dur": 1.683
+   }
+  ],
+  "count": 1
+ },
+ "hadith-20": {
+  "file": "lessons/hadith/hadith-20.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "اسْتَعِنْ بِاللَّهِ وَلَا تَعْجِزْ",
+    "clean": "اسْتَعِنْ بِاللَّهِ وَلَا تَعْجِزْ",
+    "file": "../../audio/lessons/hadith-20/block-1.mp3",
+    "dur": 1.8
+   }
+  ],
+  "count": 1
+ },
+ "hadith-21": {
+  "file": "lessons/hadith/hadith-21.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "كُلُّ مَعْرُوفٍ صَدَقَةٌ",
+    "clean": "كُلُّ مَعْرُوفٍ صَدَقَةٌ",
+    "file": "../../audio/lessons/hadith-21/block-1.mp3",
+    "dur": 1.707
+   }
+  ],
+  "count": 1
+ },
+ "hadith-22": {
+  "file": "lessons/hadith/hadith-22.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الْحَيَاءُ كُلُّهُ خَيْرٌ",
+    "clean": "الْحَيَاءُ كُلُّهُ خَيْرٌ",
+    "file": "../../audio/lessons/hadith-22/block-1.mp3",
+    "dur": 1.683
+   }
+  ],
+  "count": 1
+ },
+ "hadith-23": {
+  "file": "lessons/hadith/hadith-23.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "إِنَّ اللَّهَ يُحِبُّ الرِّفْقَ فِي الْأَمْرِ كُلِّهِ",
+    "clean": "إِنَّ اللَّهَ يُحِبُّ الرِّفْقَ فِي الْأَمْرِ كُلِّهِ",
+    "file": "../../audio/lessons/hadith-23/block-1.mp3",
+    "dur": 2.566
+   }
+  ],
+  "count": 1
+ },
+ "hadith-24": {
+  "file": "lessons/hadith/hadith-24.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "لَا يَدْخُلُ الْجَنَّةَ قَاطِعٌ",
+    "clean": "لَا يَدْخُلُ الْجَنَّةَ قَاطِعٌ",
+    "file": "../../audio/lessons/hadith-24/block-1.mp3",
+    "dur": 1.846
+   }
+  ],
+  "count": 1
+ },
+ "hadith-25": {
+  "file": "lessons/hadith/hadith-25.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "لَا يَدْخُلُ الْجَنَّةَ قَتَّاتٌ",
+    "clean": "لَا يَدْخُلُ الْجَنَّةَ قَتَّاتٌ",
+    "file": "../../audio/lessons/hadith-25/block-1.mp3",
+    "dur": 1.904
+   }
+  ],
+  "count": 1
+ },
+ "hadith-26": {
+  "file": "lessons/hadith/hadith-26.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "مَنْ غَشَّنَا فَلَيْسَ مِنَّا",
+    "clean": "مَنْ غَشَّنَا فَلَيْسَ مِنَّا",
+    "file": "../../audio/lessons/hadith-26/block-1.mp3",
+    "dur": 1.788
+   }
+  ],
+  "count": 1
+ },
+ "hadith-3": {
+  "file": "lessons/hadith/hadith-3.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "مَنْ غَشَّ فَلَيْسَ مِنَّا",
+    "clean": "مَنْ غَشَّ فَلَيْسَ مِنَّا",
+    "file": "../../audio/lessons/hadith-3/block-1.mp3",
+    "dur": 1.649
+   }
+  ],
+  "count": 1
+ },
+ "hadith-4": {
+  "file": "lessons/hadith/hadith-4.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ",
+    "clean": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ",
+    "file": "../../audio/lessons/hadith-4/block-1.mp3",
+    "dur": 1.695
+   }
+  ],
+  "count": 1
+ },
+ "hadith-5": {
+  "file": "lessons/hadith/hadith-5.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "السَّلَامُ قَبْلَ الْكَلَامِ",
+    "clean": "السَّلَامُ قَبْلَ الْكَلَامِ",
+    "file": "../../audio/lessons/hadith-5/block-1.mp3",
+    "dur": 1.591
+   }
+  ],
+  "count": 1
+ },
+ "hadith-6": {
+  "file": "lessons/hadith/hadith-6.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "عَلَيْكُمْ بِالصِّدْقِ",
+    "clean": "عَلَيْكُمْ بِالصِّدْقِ",
+    "file": "../../audio/lessons/hadith-6/block-1.mp3",
+    "dur": 1.161
+   }
+  ],
+  "count": 1
+ },
+ "hadith-7": {
+  "file": "lessons/hadith/hadith-7.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "إِيَّاكُمْ وَ الْكِذْبَ",
+    "clean": "إِيَّاكُمْ وَ الْكِذْبَ",
+    "file": "../../audio/lessons/hadith-7/block-1.mp3",
+    "dur": 1.207
+   }
+  ],
+  "count": 1
+ },
+ "hadith-8": {
+  "file": "lessons/hadith/hadith-8.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الْجَنَّةُ تَحْتَ أَقْدَامِ الْأُمَّهَاتِ",
+    "clean": "الْجَنَّةُ تَحْتَ أَقْدَامِ الْأُمَّهَاتِ",
+    "file": "../../audio/lessons/hadith-8/block-1.mp3",
+    "dur": 2.264
+   }
+  ],
+  "count": 1
+ },
+ "hadith-9": {
+  "file": "lessons/hadith/hadith-9.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الْوَالِدُ أَوْسَطُ أَبْوَابِ الْجَنَّةِ",
+    "clean": "الْوَالِدُ أَوْسَطُ أَبْوَابِ الْجَنَّةِ",
+    "file": "../../audio/lessons/hadith-9/block-1.mp3",
+    "dur": 2.299
+   }
+  ],
+  "count": 1
+ },
+ "manner-1": {
+  "file": "lessons/manners/manner-1.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "غَسْلُ الْيَدَيْنِ قَبْلَ الطَّعَامِ",
+    "clean": "غَسْلُ الْيَدَيْنِ قَبْلَ الطَّعَامِ",
+    "file": "../../audio/lessons/manner-1/block-1.mp3",
+    "dur": 1.916
+   }
+  ],
+  "count": 1
+ },
+ "manner-2": {
+  "file": "lessons/manners/manner-2.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "قَوْلُ \"بِسْمِ اللهِ\" قَبْلَ الْأَكْلِ",
+    "clean": "قَوْلُ \"بِسْمِ اللهِ\" قَبْلَ الْأَكْلِ",
+    "file": "../../audio/lessons/manner-2/block-1.mp3",
+    "dur": 1.869
+   }
+  ],
+  "count": 1
+ },
+ "manner-3": {
+  "file": "lessons/manners/manner-3.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الْأَكْلُ بِالْيَمِينِ",
+    "clean": "الْأَكْلُ بِالْيَمِينِ",
+    "file": "../../audio/lessons/manner-3/block-1.mp3",
+    "dur": 1.184
+   }
+  ],
+  "count": 1
+ },
+ "manner-4": {
+  "file": "lessons/manners/manner-4.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الْأَكْلُ عَلَى السُّفْرَةِ",
+    "clean": "الْأَكْلُ عَلَى السُّفْرَةِ",
+    "file": "../../audio/lessons/manner-4/block-1.mp3",
+    "dur": 1.44
+   }
+  ],
+  "count": 1
+ },
+ "manner-5": {
+  "file": "lessons/manners/manner-5.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الْجُلُوسُ تَوَاضُعًا بِغَيْرِ إِتِّكَاءٍ",
+    "clean": "الْجُلُوسُ تَوَاضُعًا بِغَيْرِ إِتِّكَاءٍ",
+    "file": "../../audio/lessons/manner-5/block-1.mp3",
+    "dur": 2.496
+   }
+  ],
+  "count": 1
+ },
+ "seerah-1": {
+  "file": "lessons/seerah/seerah-1.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "نَبِيِّي اسْمُهُ: مُحَمَّدُ بْنُ عَبْدِ اللَّهِ بْنِ عَبْدِ الْمُطَّلِبِ ﷺ.",
+    "clean": "نَبِيِّي اسْمُهُ: مُحَمَّدُ بْنُ عَبْدِ اللَّهِ بْنِ عَبْدِ الْمُطَّلِبِ صلى الله عليه وسلم.",
+    "file": "../../audio/lessons/seerah-1/block-1.mp3",
+    "dur": 5.097
+   },
+   {
+    "index": 2,
+    "raw": "وُلِدَ النَّبِيُّ ﷺ فِي مَكَّةَ فِي عَامِ الْفِيلِ.",
+    "clean": "وُلِدَ النَّبِيُّ صلى الله عليه وسلم فِي مَكَّةَ فِي عَامِ الْفِيلِ.",
+    "file": "../../audio/lessons/seerah-1/block-2.mp3",
+    "dur": 3.843
+   },
+   {
+    "index": 3,
+    "raw": "أُمُّهُ: آمِنَةُ.",
+    "clean": "أُمُّهُ: آمِنَةُ.",
+    "file": "../../audio/lessons/seerah-1/block-3.mp3",
+    "dur": 1.161
+   },
+   {
+    "index": 4,
+    "raw": "عَاشَ فِي مَكَّةَ بَعْدَمَا صَارَ نَبِيًّا ثَلَاثَ عَشْرَةَ سَنَةً.",
+    "clean": "عَاشَ فِي مَكَّةَ بَعْدَمَا صَارَ نَبِيًّا ثَلَاثَ عَشْرَةَ سَنَةً.",
+    "file": "../../audio/lessons/seerah-1/block-4.mp3",
+    "dur": 3.982
+   }
+  ],
+  "count": 4
+ },
+ "seerah-2": {
+  "file": "lessons/seerah/seerah-2.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "هَاجَرَ النَّبِيُّ ﷺ مِنْ مَكَّةَ إِلَى الْمَدِينَةِ.",
+    "clean": "هَاجَرَ النَّبِيُّ صلى الله عليه وسلم مِنْ مَكَّةَ إِلَى الْمَدِينَةِ.",
+    "file": "../../audio/lessons/seerah-2/block-1.mp3",
+    "dur": 3.878
+   },
+   {
+    "index": 2,
+    "raw": "عَاشَ فِي الْمَدِينَةِ عَشْرَ سَنِينَ.",
+    "clean": "عَاشَ فِي الْمَدِينَةِ عَشْرَ سَنِينَ.",
+    "file": "../../audio/lessons/seerah-2/block-2.mp3",
+    "dur": 2.032
+   },
+   {
+    "index": 3,
+    "raw": "مَاتَ وَعُمْرُهُ ثَلَاثٌ وَسِتُّونَ سَنَةً.",
+    "clean": "مَاتَ وَعُمْرُهُ ثَلَاثٌ وَسِتُّونَ سَنَةً.",
+    "file": "../../audio/lessons/seerah-2/block-3.mp3",
+    "dur": 2.74
+   }
+  ],
+  "count": 3
+ },
+ "seerah-3": {
+  "file": "lessons/seerah/seerah-3.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "أُمَّهَاتُ الْمُؤْمِنِينَ هُنَّ زَوْجَاتُ رَسُولِ اللَّهِ ﷺ.",
+    "clean": "أُمَّهَاتُ الْمُؤْمِنِينَ هُنَّ زَوْجَاتُ رَسُولِ اللَّهِ صلى الله عليه وسلم.",
+    "file": "../../audio/lessons/seerah-3/block-1.mp3",
+    "dur": 4.133
+   }
+  ],
+  "count": 1
+ },
+ "tawheed-1-1": {
+  "file": "lessons/tawheed-1-1.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "اللَّهُ رَبِّي.",
+    "clean": "اللَّهُ رَبِّي.",
+    "file": "../audio/lessons/tawheed-1-1/block-1.mp3",
+    "dur": 1.068
+   },
+   {
+    "index": 2,
+    "raw": "الْإِسْلَامُ دِينِي.",
+    "clean": "الْإِسْلَامُ دِينِي.",
+    "file": "../audio/lessons/tawheed-1-1/block-2.mp3",
+    "dur": 1.184
+   },
+   {
+    "index": 3,
+    "raw": "مُحَمَّدٌ ﷺ نَبِيِّي.",
+    "clean": "مُحَمَّدٌ صلى الله عليه وسلم نَبِيِّي.",
+    "file": "../audio/lessons/tawheed-1-1/block-3.mp3",
+    "dur": 2.763
+   }
+  ],
+  "count": 3
+ },
+ "tawheed-1-2": {
+  "file": "lessons/tawheed-1-2.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "اللَّهُ الَّذِي خَلَقَنِي وَخَلَقَ جَمِيعَ النَّاسِ.",
+    "clean": "اللَّهُ الَّذِي خَلَقَنِي وَخَلَقَ جَمِيعَ النَّاسِ.",
+    "file": "../audio/lessons/tawheed-1-2/block-1.mp3",
+    "dur": 2.961
+   },
+   {
+    "index": 2,
+    "raw": "اللَّهُ الَّذِي خَلَقَ الْحَيَوَانَاتِ وَالطُّيُورَ.",
+    "clean": "اللَّهُ الَّذِي خَلَقَ الْحَيَوَانَاتِ وَالطُّيُورَ.",
+    "file": "../audio/lessons/tawheed-1-2/block-2.mp3",
+    "dur": 2.775
+   },
+   {
+    "index": 3,
+    "raw": "اللَّهُ الَّذِي خَلَقَ الشَّمْسَ وَالْقَمَرَ.",
+    "clean": "اللَّهُ الَّذِي خَلَقَ الشَّمْسَ وَالْقَمَرَ.",
+    "file": "../audio/lessons/tawheed-1-2/block-3.mp3",
+    "dur": 2.403
+   },
+   {
+    "index": 4,
+    "raw": "اللَّهُ الَّذِي خَلَقَ كُلَّ شَيْءٍ.",
+    "clean": "اللَّهُ الَّذِي خَلَقَ كُلَّ شَيْءٍ.",
+    "file": "../audio/lessons/tawheed-1-2/block-4.mp3",
+    "dur": 2.067
+   },
+   {
+    "index": 5,
+    "raw": "قَالَ اللَّهُ تَعَالَى: ﴿اللَّهُ خَالِقُ كُلِّ شَيْءٍ﴾ [الزُّمَرُ: ٦٢]",
+    "clean": "قَالَ اللَّهُ تَعَالَى: اللَّهُ خَالِقُ كُلِّ شَيْءٍ الزُّمَرُ: 62",
+    "file": "../audio/lessons/tawheed-1-2/block-5.mp3",
+    "dur": 3.367
+   }
+  ],
+  "count": 5
+ },
+ "tawheed-1-3": {
+  "file": "lessons/tawheed-1-3.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "اللَّهُ الَّذِي خَلَقَنِي.",
+    "clean": "اللَّهُ الَّذِي خَلَقَنِي.",
+    "file": "../audio/lessons/tawheed-1-3/block-1.mp3",
+    "dur": 1.579
+   },
+   {
+    "index": 2,
+    "raw": "اللَّهُ الَّذِي خَلَقَ سَمْعِي وَبَصَرِي.",
+    "clean": "اللَّهُ الَّذِي خَلَقَ سَمْعِي وَبَصَرِي.",
+    "file": "../audio/lessons/tawheed-1-3/block-2.mp3",
+    "dur": 2.345
+   }
+  ],
+  "count": 2
+ },
+ "tawheed-1-4": {
+  "file": "lessons/tawheed-1-4.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "مَنْ الَّذِي يَمْلِكُ السَّمَاوَاتِ وَالْأَرْضَ؟",
+    "clean": "مَنْ الَّذِي يَمْلِكُ السَّمَاوَاتِ وَالْأَرْضَ؟",
+    "file": "../audio/lessons/tawheed-1-4/block-1.mp3",
+    "dur": 2.345
+   },
+   {
+    "index": 2,
+    "raw": "الْجَوَابُ: اللَّهُ مَالِكُ السَّمَاوَاتِ وَالْأَرْضِ وَمَالِكُ كُلِّ شَيْءٍ.",
+    "clean": "الْجَوَابُ: اللَّهُ مَالِكُ السَّمَاوَاتِ وَالْأَرْضِ وَمَالِكُ كُلِّ شَيْءٍ.",
+    "file": "../audio/lessons/tawheed-1-4/block-2.mp3",
+    "dur": 3.982
+   }
+  ],
+  "count": 2
+ },
+ "tawheed-1-5": {
+  "file": "lessons/tawheed-1-5.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "لَا رَازِقَ إِلَّا اللَّهُ.",
+    "clean": "لَا رَازِقَ إِلَّا اللَّهُ.",
+    "file": "../audio/lessons/tawheed-1-5/block-1.mp3",
+    "dur": 1.463
+   },
+   {
+    "index": 2,
+    "raw": "اللَّهُ الَّذِي يَرْزُقُنَا الطَّعَامَ وَالشَّرَابَ.",
+    "clean": "اللَّهُ الَّذِي يَرْزُقُنَا الطَّعَامَ وَالشَّرَابَ.",
+    "file": "../audio/lessons/tawheed-1-5/block-2.mp3",
+    "dur": 2.554
+   },
+   {
+    "index": 3,
+    "raw": "اللَّهُ الَّذِي يَرْزُقُ جَمِيعَ الْمَخْلُوقَاتِ.",
+    "clean": "اللَّهُ الَّذِي يَرْزُقُ جَمِيعَ الْمَخْلُوقَاتِ.",
+    "file": "../audio/lessons/tawheed-1-5/block-3.mp3",
+    "dur": 2.624
+   }
+  ],
+  "count": 3
+ },
+ "tawheed-2-1": {
+  "file": "lessons/tawheed-2-1.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "سُؤَالٌ: لِمَاذَا خَلَقَنَا اللَّهُ؟",
+    "clean": "سُؤَالٌ: لِمَاذَا خَلَقَنَا اللَّهُ؟",
+    "file": "../audio/lessons/tawheed-2-1/block-1.mp3",
+    "dur": 1.939
+   },
+   {
+    "index": 2,
+    "raw": "الْجَوَابُ: خَلَقَنَا اللَّهُ لِتَوْحِيدِهِ وَعِبَادَتِهِ.",
+    "clean": "الْجَوَابُ: خَلَقَنَا اللَّهُ لِتَوْحِيدِهِ وَعِبَادَتِهِ.",
+    "file": "../audio/lessons/tawheed-2-1/block-2.mp3",
+    "dur": 3.239
+   },
+   {
+    "index": 3,
+    "raw": "قَالَ اللَّهُ تَعَالَى: ﴿وَمَا خَلَقْتُ الْجِنَّ وَالْإِنْسَ إِلَّا لِيَعْبُدُونِ﴾ [الذَّارِيَاتُ: ٥٦]",
+    "clean": "قَالَ اللَّهُ تَعَالَى: وَمَا خَلَقْتُ الْجِنَّ وَالْإِنْسَ إِلَّا لِيَعْبُدُونِ الذَّارِيَاتُ: 56",
+    "file": "../audio/lessons/tawheed-2-1/block-3.mp3",
+    "dur": 4.516
+   }
+  ],
+  "count": 3
+ },
+ "tawheed-2-2": {
+  "file": "lessons/tawheed-2-2.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "كَلِمَةُ التَّوْحِيدِ هِيَ: «لَا إِلَهَ إِلَّا اللَّهُ»",
+    "clean": "كَلِمَةُ التَّوْحِيدِ هِيَ: لَا إِلَهَ إِلَّا اللَّهُ",
+    "file": "../audio/lessons/tawheed-2-2/block-1.mp3",
+    "dur": 2.752
+   },
+   {
+    "index": 2,
+    "raw": "مَعْنَى لَا إِلَهَ إِلَّا اللَّهُ: «لَا مَعْبُودَ بِحَقٍّ إِلَّا اللَّهُ»",
+    "clean": "مَعْنَى لَا إِلَهَ إِلَّا اللَّهُ: لَا مَعْبُودَ بِحَقٍّ إِلَّا اللَّهُ",
+    "file": "../audio/lessons/tawheed-2-2/block-2.mp3",
+    "dur": 4.168
+   }
+  ],
+  "count": 2
+ },
+ "tawheed-2-3": {
+  "file": "lessons/tawheed-2-3.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "أَنَا مُسْلِمٌ:",
+    "clean": "أَنَا مُسْلِمٌ:",
+    "file": "../audio/lessons/tawheed-2-3/block-1.mp3",
+    "dur": 0.94
+   },
+   {
+    "index": 2,
+    "raw": "أُطِيعُ اللَّهَ رَبِّي.",
+    "clean": "أُطِيعُ اللَّهَ رَبِّي.",
+    "file": "../audio/lessons/tawheed-2-3/block-2.mp3",
+    "dur": 1.347
+   },
+   {
+    "index": 3,
+    "raw": "أَدْعُو اللَّهَ وَحْدَهُ.",
+    "clean": "أَدْعُو اللَّهَ وَحْدَهُ.",
+    "file": "../audio/lessons/tawheed-2-3/block-3.mp3",
+    "dur": 1.463
+   },
+   {
+    "index": 4,
+    "raw": "أُصَلِّي وَأَصُومُ لِلَّهِ وَحْدَهُ.",
+    "clean": "أُصَلِّي وَأَصُومُ لِلَّهِ وَحْدَهُ.",
+    "file": "../audio/lessons/tawheed-2-3/block-4.mp3",
+    "dur": 2.194
+   }
+  ],
+  "count": 4
+ },
+ "tawheed-2-4": {
+  "file": "lessons/tawheed-2-4.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "أَنَا أُحِبُّ اللَّهَ رَبِّي الَّذِي خَلَقَنِي.",
+    "clean": "أَنَا أُحِبُّ اللَّهَ رَبِّي الَّذِي خَلَقَنِي.",
+    "file": "../audio/lessons/tawheed-2-4/block-1.mp3",
+    "dur": 2.705
+   },
+   {
+    "index": 2,
+    "raw": "أَنَا أُحِبُّ اللَّهَ رَبِّي الَّذِي جَعَلَنِي مِنَ الْمُسْلِمِينَ.",
+    "clean": "أَنَا أُحِبُّ اللَّهَ رَبِّي الَّذِي جَعَلَنِي مِنَ الْمُسْلِمِينَ.",
+    "file": "../audio/lessons/tawheed-2-4/block-2.mp3",
+    "dur": 3.367
+   },
+   {
+    "index": 3,
+    "raw": "أَنَا أَعْبُدُ اللَّهَ وَحْدَهُ لَا شَرِيكَ لَهُ.",
+    "clean": "أَنَا أَعْبُدُ اللَّهَ وَحْدَهُ لَا شَرِيكَ لَهُ.",
+    "file": "../audio/lessons/tawheed-2-4/block-3.mp3",
+    "dur": 2.589
+   }
+  ],
+  "count": 3
+ },
+ "tawheed-3-1": {
+  "file": "lessons/tawheed-3-1.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "الْإِسْلَامُ هُوَ الدِّينُ الْحَقُّ.",
+    "clean": "الْإِسْلَامُ هُوَ الدِّينُ الْحَقُّ.",
+    "file": "../audio/lessons/tawheed-3-1/block-1.mp3",
+    "dur": 1.765
+   },
+   {
+    "index": 2,
+    "raw": "قَالَ اللَّهُ تَعَالَى: ﴿إِنَّ الدِّينَ عِنْدَ اللَّهِ الْإِسْلَامُ﴾ [آلُ عِمْرَانَ: ١٩]",
+    "clean": "قَالَ اللَّهُ تَعَالَى: إِنَّ الدِّينَ عِنْدَ اللَّهِ الْإِسْلَامُ آلُ عِمْرَانَ: 19",
+    "file": "../audio/lessons/tawheed-3-1/block-2.mp3",
+    "dur": 3.866
+   }
+  ],
+  "count": 2
+ },
+ "tawheed-3-2": {
+  "file": "lessons/tawheed-3-2.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "أَتَعَلَّمُ الشَّهَادَتَيْنِ: «لَا إِلَهَ إِلَّا اللَّهُ، مُحَمَّدٌ رَسُولُ اللَّهِ»",
+    "clean": "أَتَعَلَّمُ الشَّهَادَتَيْنِ: لَا إِلَهَ إِلَّا اللَّهُ، مُحَمَّدٌ رَسُولُ اللَّهِ",
+    "file": "../audio/lessons/tawheed-3-2/block-1.mp3",
+    "dur": 4.319
+   }
+  ],
+  "count": 1
+ },
+ "tawheed-3-3": {
+  "file": "lessons/tawheed-3-3.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "أُحِبُّ نَبِيِّي مُحَمَّدًا ﷺ.",
+    "clean": "أُحِبُّ نَبِيِّي مُحَمَّدًا صلى الله عليه وسلم.",
+    "file": "../audio/lessons/tawheed-3-3/block-1.mp3",
+    "dur": 2.844
+   },
+   {
+    "index": 2,
+    "raw": "نَبِيِّي مُحَمَّدٌ ﷺ خَيْرُ الْبَشَرِ.",
+    "clean": "نَبِيِّي مُحَمَّدٌ صلى الله عليه وسلم خَيْرُ الْبَشَرِ.",
+    "file": "../audio/lessons/tawheed-3-3/block-2.mp3",
+    "dur": 3.262
+   }
+  ],
+  "count": 2
+ },
+ "tawheed-3-4": {
+  "file": "lessons/tawheed-3-4.html",
+  "blocks": [
+   {
+    "index": 1,
+    "raw": "أَنَا أُحِبُّ أَصْحَابَ النَّبِيِّ ﷺ.",
+    "clean": "أَنَا أُحِبُّ أَصْحَابَ النَّبِيِّ صلى الله عليه وسلم.",
+    "file": "../audio/lessons/tawheed-3-4/block-1.mp3",
+    "dur": 3.1
+   },
+   {
+    "index": 2,
+    "raw": "أَنَا أَكْرَهُ مَنْ يَشْتُمُ الصَّحَابَةَ.",
+    "clean": "أَنَا أَكْرَهُ مَنْ يَشْتُمُ الصَّحَابَةَ.",
+    "file": "../audio/lessons/tawheed-3-4/block-2.mp3",
+    "dur": 2.368
+   },
+   {
+    "index": 3,
+    "raw": "أَنَا أُحِبُّ أَبَا بَكْرٍ الصِّدِّيقَ رَضِيَ اللَّهُ عَنْهُ.",
+    "clean": "أَنَا أُحِبُّ أَبَا بَكْرٍ الصِّدِّيقَ رَضِيَ اللَّهُ عَنْهُ.",
+    "file": "../audio/lessons/tawheed-3-4/block-3.mp3",
+    "dur": 3.762
+   },
+   {
+    "index": 4,
+    "raw": "أَنَا أُحِبُّ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ.",
+    "clean": "أَنَا أُحِبُّ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ.",
+    "file": "../audio/lessons/tawheed-3-4/block-4.mp3",
+    "dur": 3.193
+   }
+  ],
+  "count": 4
+ }
+}
