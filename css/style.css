@@ -196,6 +196,101 @@
     --track-adhkar-border: #166534;
 }
 
+/* ============================================
+   Accent theme colors (data-accent on <html>)
+   Blue is the default; green / purple / teal are
+   selectable from the navbar settings dropdown.
+   Light mode uses deep shades (AA contrast for the
+   accent-as-text pattern), dark mode uses bright
+   tints that stay legible on dark surfaces.
+   ============================================ */
+:root[data-accent="green"] {
+    --primary: #15803D;
+    --primary-dark: #166534;
+    --bg-hover: #f0fdf4;
+    --badge-accent-bg: #dcfce7;
+    --sidebar-active-bg: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    --sidebar-active-border: #86efac;
+    --surah-badge-bg: #f0fdf4;
+    --surah-badge-border: #86efac;
+    --crossref-hover-bg: #f0fdf4;
+    --crossref-hover-border: #86efac;
+    --track-tawheed-bg: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    --track-tawheed-border: #86efac;
+}
+[data-theme="dark"][data-accent="green"] {
+    --primary: #4ADE80;
+    --primary-dark: #22C55E;
+    --bg-hover: #14532d;
+    --badge-accent-bg: #052e16;
+    --sidebar-active-bg: linear-gradient(135deg, #14532d, #1e293b);
+    --sidebar-active-border: #166534;
+    --surah-badge-bg: #14532d;
+    --surah-badge-border: #14532d;
+    --crossref-hover-bg: #14532d;
+    --crossref-hover-border: #166534;
+    --track-tawheed-bg: linear-gradient(135deg, #14532d, #1e293b);
+    --track-tawheed-border: #15803d;
+}
+
+:root[data-accent="purple"] {
+    --primary: #7E22CE;
+    --primary-dark: #6B21A8;
+    --bg-hover: #faf5ff;
+    --badge-accent-bg: #f3e8ff;
+    --sidebar-active-bg: linear-gradient(135deg, #f5f3ff, #ddd6fe);
+    --sidebar-active-border: #c4b5fd;
+    --surah-badge-bg: #f5f3ff;
+    --surah-badge-border: #c4b5fd;
+    --crossref-hover-bg: #f5f3ff;
+    --crossref-hover-border: #c4b5fd;
+    --track-tawheed-bg: linear-gradient(135deg, #f5f3ff, #ddd6fe);
+    --track-tawheed-border: #c4b5fd;
+}
+[data-theme="dark"][data-accent="purple"] {
+    --primary: #C084FC;
+    --primary-dark: #A855F7;
+    --bg-hover: #2e1065;
+    --badge-accent-bg: #2e1065;
+    --sidebar-active-bg: linear-gradient(135deg, #2e1065, #1e293b);
+    --sidebar-active-border: #4c1d95;
+    --surah-badge-bg: #2e1065;
+    --surah-badge-border: #2e1065;
+    --crossref-hover-bg: #2e1065;
+    --crossref-hover-border: #4c1d95;
+    --track-tawheed-bg: linear-gradient(135deg, #2e1065, #1e293b);
+    --track-tawheed-border: #581c87;
+}
+
+:root[data-accent="teal"] {
+    --primary: #0F766E;
+    --primary-dark: #115E59;
+    --bg-hover: #f0fdfa;
+    --badge-accent-bg: #ccfbf1;
+    --sidebar-active-bg: linear-gradient(135deg, #ccfbf1, #99f6e4);
+    --sidebar-active-border: #5eead4;
+    --surah-badge-bg: #f0fdfa;
+    --surah-badge-border: #5eead4;
+    --crossref-hover-bg: #f0fdfa;
+    --crossref-hover-border: #5eead4;
+    --track-tawheed-bg: linear-gradient(135deg, #ccfbf1, #99f6e4);
+    --track-tawheed-border: #5eead4;
+}
+[data-theme="dark"][data-accent="teal"] {
+    --primary: #2DD4BF;
+    --primary-dark: #14B8A6;
+    --bg-hover: #134e4a;
+    --badge-accent-bg: #042f2e;
+    --sidebar-active-bg: linear-gradient(135deg, #134e4a, #1e293b);
+    --sidebar-active-border: #115e59;
+    --surah-badge-bg: #134e4a;
+    --surah-badge-border: #134e4a;
+    --crossref-hover-bg: #134e4a;
+    --crossref-hover-border: #115e59;
+    --track-tawheed-bg: linear-gradient(135deg, #134e4a, #1e293b);
+    --track-tawheed-border: #0f766e;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -1265,6 +1360,57 @@ body {
     font-weight: 600;
     color: var(--text-medium);
     white-space: nowrap;
+}
+
+/* ---------- Theme Color Swatches ---------- */
+.accent-swatches {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.accent-swatch {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease;
+}
+
+.accent-swatch:hover {
+    transform: scale(1.1);
+}
+
+.accent-swatch-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--border-control);
+    display: block;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.accent-swatch[data-accent="blue"] .accent-swatch-dot { background: #4F46E5; }
+.accent-swatch[data-accent="green"] .accent-swatch-dot { background: #15803D; }
+.accent-swatch[data-accent="purple"] .accent-swatch-dot { background: #7E22CE; }
+.accent-swatch[data-accent="teal"] .accent-swatch-dot { background: #0F766E; }
+
+[data-theme="dark"] .accent-swatch-dot { border-color: #475569; }
+
+.accent-swatch[aria-checked="true"] {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--bg-hover);
+}
+
+.accent-swatch[aria-checked="true"] .accent-swatch-dot {
+    border-color: var(--primary);
 }
 
 /* ---------- Sidebar Toggle Button in Header (old floating style — deprecated) ---------- */

@@ -36,6 +36,7 @@
     --qr-font-ar-nastaleeq: 'Indopak Nastaleeq', serif;
     --qr-font-ar: 'Noto Naskh Arabic', 'Amiri', 'Scheherazade New', 'Lateef', serif;
     --qr-font-ar-uthmani: 'qpc-hafs', 'Noto Naskh Arabic', 'Amiri', 'Scheherazade New', serif;
+    --qr-reader-scale: 1;
 }
 
 [data-theme="dark"] {
@@ -53,6 +54,44 @@
     --qr-shadow: 0 2px 8px rgba(0,0,0,0.3);
     --qr-shadow-md: 0 4px 16px rgba(0,0,0,0.4);
     --qr-shadow-lg: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* Accent theme colors (data-accent on <html>) — mirrors style.css */
+:root[data-accent="green"] {
+    --qr-primary: #15803D;
+    --qr-primary-dark: #166534;
+    --qr-flash-bg: rgba(21, 128, 61, 0.15);
+    --qr-active-bg: #f0fdf4;
+}
+[data-theme="dark"][data-accent="green"] {
+    --qr-primary: #4ADE80;
+    --qr-primary-dark: #22C55E;
+    --qr-flash-bg: rgba(74, 222, 128, 0.22);
+    --qr-active-bg: #14532d;
+}
+:root[data-accent="purple"] {
+    --qr-primary: #7E22CE;
+    --qr-primary-dark: #6B21A8;
+    --qr-flash-bg: rgba(126, 34, 206, 0.15);
+    --qr-active-bg: #f5f3ff;
+}
+[data-theme="dark"][data-accent="purple"] {
+    --qr-primary: #C084FC;
+    --qr-primary-dark: #A855F7;
+    --qr-flash-bg: rgba(192, 132, 252, 0.22);
+    --qr-active-bg: #2e1065;
+}
+:root[data-accent="teal"] {
+    --qr-primary: #0F766E;
+    --qr-primary-dark: #115E59;
+    --qr-flash-bg: rgba(15, 118, 110, 0.15);
+    --qr-active-bg: #f0fdfa;
+}
+[data-theme="dark"][data-accent="teal"] {
+    --qr-primary: #2DD4BF;
+    --qr-primary-dark: #14B8A6;
+    --qr-flash-bg: rgba(45, 212, 191, 0.22);
+    --qr-active-bg: #134e4a;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -402,7 +441,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 .qr-surah-header-meta .meta-divider { color: var(--qr-border); margin: 0 6px; }
 
 .qr-surah-header-bismillah {
-    font-family: var(--qr-font-ar-nastaleeq); font-size: 1.4rem;
+    font-family: var(--qr-font-ar-nastaleeq); font-size: calc(1.4rem * var(--qr-reader-scale));
     color: var(--qr-text); margin-top: 12px; direction: rtl; line-height: 2;
 }
 
@@ -604,7 +643,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     flex: 1;
     padding: 10px 16px;
     font-family: var(--qr-font-ar-nastaleeq);
-    font-size: 1.6rem;
+    font-size: calc(1.6rem * var(--qr-reader-scale));
     line-height: 2;
     color: #1e293b;
     direction: rtl;
@@ -1486,6 +1525,40 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     border-color: var(--qr-primary);
 }
 
+/* Reader Text Size control (settings dropdown) */
+.qr-reader-size {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.qr-reader-size-btn {
+    background: var(--qr-hover);
+    border: 1px solid var(--qr-border);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--qr-font-en);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--qr-text-medium);
+    padding: 2px 8px;
+    min-width: 30px;
+}
+.qr-reader-size-btn:hover {
+    color: #fff;
+    background: var(--qr-primary);
+    border-color: var(--qr-primary);
+}
+.qr-reader-size-val {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--qr-text-medium);
+    min-width: 40px;
+    text-align: center;
+}
+@media (max-width: 420px) {
+    .qr-nav-right .settings-dropdown-content { min-width: 210px; }
+}
+
 /* Mushaf reading mode: reflows the verse rows into a flowing, right-aligned
    Arabic column with circular verse medallions. The verse-row DOM (ids,
    .qr-verse-arabic, word spans) is untouched, so audio playback, word-synced
@@ -1518,7 +1591,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 
 #qr-content.qr-mushaf-mode .qr-verse-arabic {
     font-family: var(--qr-font-ar-nastaleeq);
-    font-size: 1.9rem;
+    font-size: calc(1.9rem * var(--qr-reader-scale));
     line-height: 2.1;
     color: #1e293b;
     text-align: right;
@@ -1545,7 +1618,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 .qr-verse-translation {
     flex: 1;
     padding: 2px 16px 12px;
-    font-size: 0.92rem;
+    font-size: calc(0.92rem * var(--qr-reader-scale));
     color: var(--qr-text-medium);
     line-height: 1.7;
     display: flex;
@@ -1773,7 +1846,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .qr-verse-arabic { font-size: 1.3rem; }
+    .qr-verse-arabic { font-size: calc(1.3rem * var(--qr-reader-scale)); }
 }
 .qr-nav-toggle { display: none; }
 
@@ -1813,7 +1886,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     .qr-tafsir-modal-controls { flex-wrap: wrap; }
     .qr-tafsir-modal-body { padding: 12px 14px; }
     .qr-sim-modal-body { padding: 12px 14px; }
-    #qr-content.qr-mushaf-mode .qr-verse-arabic { font-size: 1.5rem; }
+    #qr-content.qr-mushaf-mode .qr-verse-arabic { font-size: calc(1.5rem * var(--qr-reader-scale)); }
     .qr-nav-right { gap: 6px; }
     .qr-dropdown-trigger { font-size: 0.7rem; padding: 3px 6px; }
     .qr-nav-group { gap: 2px; }
@@ -1865,5 +1938,12 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
         transform: translateY(0);
         opacity: 1;
         pointer-events: auto;
+    }
+
+    /* Keep the settings dropdown inside the fixed mobile panel
+       (site rule sets right:-40px which would push it off-screen) */
+    .qr-nav-right .settings-dropdown-content {
+        right: 0;
+        top: calc(100% + 6px);
     }
 }

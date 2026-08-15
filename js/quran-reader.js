@@ -26,6 +26,7 @@
     var infoState = null;
     var infoSize = 16;
     var mushafMode = false;
+    var readerScale = 1;
 
     var QUL_BUNDLES = {
         'surah-info-en': 'js/quran_source/surah-info-en.js',
@@ -335,6 +336,7 @@
         setupMutashabihatModal();
         setupSurahInfoModal();
         setupMushaf();
+        setupReaderSize();
         setupGotoDialog();
         setupScrollTracking();
 
@@ -1938,6 +1940,40 @@
 
     function toggleMushaf() {
         setMushafMode(!mushafMode);
+    }
+
+    /* ---- Reader Text Size (A- / A+) ---- */
+
+    var READER_SCALE_MIN = 0.85;
+    var READER_SCALE_MAX = 1.30;
+    var READER_SCALE_STEP = 0.05;
+
+    function setupReaderSize() {
+        var down = document.getElementById('qr-reader-size-down');
+        var up = document.getElementById('qr-reader-size-up');
+        if (!down || !up) return;
+
+        var saved = parseFloat(localStorage.getItem('quran-font-scale')) || 1;
+        if (isNaN(saved) || saved < READER_SCALE_MIN || saved > READER_SCALE_MAX) saved = 1;
+        readerScale = saved;
+        applyReaderScale();
+
+        down.addEventListener('click', function () { adjustReaderScale(-READER_SCALE_STEP); });
+        up.addEventListener('click', function () { adjustReaderScale(READER_SCALE_STEP); });
+    }
+
+    function adjustReaderScale(delta) {
+        var next = Math.round((readerScale + delta) * 100) / 100;
+        next = Math.max(READER_SCALE_MIN, Math.min(READER_SCALE_MAX, next));
+        readerScale = next;
+        applyReaderScale();
+        try { localStorage.setItem('quran-font-scale', String(readerScale)); } catch (e) {}
+    }
+
+    function applyReaderScale() {
+        document.documentElement.style.setProperty('--qr-reader-scale', String(readerScale));
+        var valEl = document.getElementById('qr-reader-size-val');
+        if (valEl) valEl.textContent = Math.round(readerScale * 100) + '%';
     }
 
     function tafsirContentCurrent(surah, ayah, lang) {

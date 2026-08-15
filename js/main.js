@@ -1,6 +1,22 @@
 /* SIRATKIDS — Main JavaScript */
 
 /* ============================================
+   Theme Accent Color — applied immediately so the
+   chosen accent (data-accent on <html>) is active
+   before the first paint. Works with the swatches
+   injected into .settings-dropdown-content below.
+   ============================================ */
+!function () {
+    var ACCENTS = ['blue', 'green', 'purple', 'teal'];
+    try {
+        var saved = localStorage.getItem('accent-color');
+        if (ACCENTS.indexOf(saved) !== -1) {
+            document.documentElement.setAttribute('data-accent', saved);
+        }
+    } catch (e) {}
+}();
+
+/* ============================================
    Inline Data — Quran Cache, Vocabulary
    Loaded directly to avoid XHR failures on file:// protocol
    ============================================ */
@@ -599,6 +615,89 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    /* ---- Theme Accent Color Swatches ---- */
+    var ACCENT_LIST = [
+        { key: 'blue', label: 'Blue' },
+        { key: 'green', label: 'Green' },
+        { key: 'purple', label: 'Purple' },
+        { key: 'teal', label: 'Teal' }
+    ];
+
+    document.querySelectorAll('.settings-dropdown-content').forEach(function(content) {
+        if (content.querySelector('.accent-swatches')) return;
+
+        var row = document.createElement('div');
+        row.className = 'settings-dropdown-item';
+
+        var label = document.createElement('span');
+        label.className = 'settings-label';
+        label.textContent = 'Theme Color';
+
+        var swatches = document.createElement('div');
+        swatches.className = 'accent-swatches';
+        swatches.setAttribute('role', 'radiogroup');
+        swatches.setAttribute('aria-label', 'Theme color');
+
+        var current = document.documentElement.getAttribute('data-accent') || 'blue';
+        var btns = [];
+        ACCENT_LIST.forEach(function(accent) {
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'accent-swatch';
+            btn.setAttribute('data-accent', accent.key);
+            btn.setAttribute('role', 'radio');
+            btn.setAttribute('aria-checked', accent.key === current ? 'true' : 'false');
+            btn.setAttribute('aria-label', accent.label);
+
+            var dot = document.createElement('span');
+            dot.className = 'accent-swatch-dot';
+            btn.appendChild(dot);
+
+            btn.addEventListener('click', function() {
+                setAccent(accent.key);
+            });
+            btns.push(btn);
+            swatches.appendChild(btn);
+        });
+
+        function setAccent(key) {
+            document.documentElement.setAttribute('data-accent', key);
+            try { localStorage.setItem('accent-color', key); } catch (e) {}
+            btns.forEach(function(b) {
+                b.setAttribute('aria-checked', b.getAttribute('data-accent') === key ? 'true' : 'false');
+            });
+        }
+
+        swatches.addEventListener('keydown', function(e) {
+            var idx = btns.indexOf(document.activeElement);
+            if (idx === -1) return;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                var dir = e.key === 'ArrowRight' ? 1 : -1;
+                var next = btns[(idx + dir + btns.length) % btns.length];
+                next.focus();
+                setAccent(next.getAttribute('data-accent'));
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                btns[0].focus();
+                setAccent(btns[0].getAttribute('data-accent'));
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                btns[btns.length - 1].focus();
+                setAccent(btns[btns.length - 1].getAttribute('data-accent'));
+            }
+        });
+
+        row.appendChild(label);
+        row.appendChild(swatches);
+
+        var divider = document.createElement('div');
+        divider.className = 'settings-dropdown-divider';
+
+        content.insertBefore(divider, content.firstChild);
+        content.insertBefore(row, content.firstChild);
+    });
 
     /* ---- Dark Mode Toggle ---- */
     var dmToggle = document.querySelector('.dm-toggle');
