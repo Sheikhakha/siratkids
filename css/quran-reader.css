@@ -36,7 +36,9 @@
     --qr-font-ar-nastaleeq: 'Indopak Nastaleeq', serif;
     --qr-font-ar: 'Noto Naskh Arabic', 'Amiri', 'Scheherazade New', 'Lateef', serif;
     --qr-font-ar-uthmani: 'qpc-hafs', 'Noto Naskh Arabic', 'Amiri', 'Scheherazade New', serif;
-    --qr-reader-scale: 1;
+    --qr-ar-scale: 1;
+    --qr-en-scale: 1;
+    --qr-wbw-scale: 1;
 }
 
 [data-theme="dark"] {
@@ -441,7 +443,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 .qr-surah-header-meta .meta-divider { color: var(--qr-border); margin: 0 6px; }
 
 .qr-surah-header-bismillah {
-    font-family: var(--qr-font-ar-nastaleeq); font-size: calc(1.4rem * var(--qr-reader-scale));
+    font-family: var(--qr-font-ar-nastaleeq); font-size: calc(1.4rem * var(--qr-ar-scale));
     color: var(--qr-text); margin-top: 12px; direction: rtl; line-height: 2;
 }
 
@@ -643,7 +645,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     flex: 1;
     padding: 10px 16px;
     font-family: var(--qr-font-ar-nastaleeq);
-    font-size: calc(1.6rem * var(--qr-reader-scale));
+    font-size: calc(1.6rem * var(--qr-ar-scale));
     line-height: 2;
     color: #1e293b;
     direction: rtl;
@@ -654,7 +656,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 [data-theme="dark"] .qr-verse-arabic { color: #e2e8f0; }
 
 .qr-verse-tnum {
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--qr-en-scale));
     font-weight: 800;
     color: var(--qr-text-medium);
     background: var(--qr-hover);
@@ -1525,36 +1527,11 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     border-color: var(--qr-primary);
 }
 
-/* Reader Text Size control (settings dropdown) */
-.qr-reader-size {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+/* Hide Translation / Word-by-Word navbar groups while Mushaf view is active */
+.qr-nav-right .qr-nav-group.hidden {
+    display: none;
 }
-.qr-reader-size-btn {
-    background: var(--qr-hover);
-    border: 1px solid var(--qr-border);
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: var(--qr-font-en);
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--qr-text-medium);
-    padding: 2px 8px;
-    min-width: 30px;
-}
-.qr-reader-size-btn:hover {
-    color: #fff;
-    background: var(--qr-primary);
-    border-color: var(--qr-primary);
-}
-.qr-reader-size-val {
-    font-size: 0.78rem;
-    font-weight: 800;
-    color: var(--qr-text-medium);
-    min-width: 40px;
-    text-align: center;
-}
+
 @media (max-width: 420px) {
     .qr-nav-right .settings-dropdown-content { min-width: 210px; }
 }
@@ -1591,7 +1568,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 
 #qr-content.qr-mushaf-mode .qr-verse-arabic {
     font-family: var(--qr-font-ar-nastaleeq);
-    font-size: calc(1.9rem * var(--qr-reader-scale));
+    font-size: calc(1.9rem * var(--qr-ar-scale));
     line-height: 2.1;
     color: #1e293b;
     text-align: right;
@@ -1618,7 +1595,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 .qr-verse-translation {
     flex: 1;
     padding: 2px 16px 12px;
-    font-size: calc(0.92rem * var(--qr-reader-scale));
+    font-size: calc(0.92rem * var(--qr-en-scale));
     color: var(--qr-text-medium);
     line-height: 1.7;
     display: flex;
@@ -1726,7 +1703,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 }
 .qr-word-arabic {
     font-family: var(--qr-font-ar-nastaleeq);
-    font-size: 1.75rem;
+    font-size: calc(1.75rem * var(--qr-ar-scale));
     line-height: 1.35;
     color: #1e293b;
 }
@@ -1734,7 +1711,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     color: #e2e8f0;
 }
 .qr-word-trans {
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--qr-wbw-scale));
     color: var(--qr-text-medium);
     line-height: 1.25;
     direction: ltr;
@@ -1846,7 +1823,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .qr-verse-arabic { font-size: calc(1.3rem * var(--qr-reader-scale)); }
+    .qr-verse-arabic { font-size: calc(1.3rem * var(--qr-ar-scale)); }
 }
 .qr-nav-toggle { display: none; }
 
@@ -1886,7 +1863,7 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     .qr-tafsir-modal-controls { flex-wrap: wrap; }
     .qr-tafsir-modal-body { padding: 12px 14px; }
     .qr-sim-modal-body { padding: 12px 14px; }
-    #qr-content.qr-mushaf-mode .qr-verse-arabic { font-size: calc(1.5rem * var(--qr-reader-scale)); }
+    #qr-content.qr-mushaf-mode .qr-verse-arabic { font-size: calc(1.5rem * var(--qr-ar-scale)); }
     .qr-nav-right { gap: 6px; }
     .qr-dropdown-trigger { font-size: 0.7rem; padding: 3px 6px; }
     .qr-nav-group { gap: 2px; }

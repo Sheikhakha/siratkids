@@ -48,11 +48,11 @@
                     <option value="YasserAlDosari">Yasser Al-Dosari</option>
                 </select>
             </div>
-            <div class="qr-nav-group">
+            <div class="qr-nav-group" id="qr-translation-group">
                 <label class="qr-nav-label" for="qr-translation">Translation:</label>
                 <select id="qr-translation" class="qr-nav-select"></select>
             </div>
-            <div class="qr-nav-group">
+            <div class="qr-nav-group" id="qr-wbw-group">
                 <label class="qr-wbw-toggle" id="qr-wbw-toggle-label">
                     <input type="checkbox" id="qr-wbw-toggle">
                     <span class="qr-wbw-slider"></span>
@@ -82,12 +82,16 @@
                 </button>
                 <div class="settings-dropdown-content">
                     <div class="settings-dropdown-item">
-                        <span class="settings-label">Text Size</span>
-                        <div class="qr-reader-size" id="qr-reader-size">
-                            <button type="button" class="qr-reader-size-btn" id="qr-reader-size-down" aria-label="Decrease text size" title="Decrease text size">A&#8722;</button>
-                            <span class="qr-reader-size-val" id="qr-reader-size-val" aria-live="polite">100%</span>
-                            <button type="button" class="qr-reader-size-btn" id="qr-reader-size-up" aria-label="Increase text size" title="Increase text size">A+</button>
-                        </div>
+                        <span class="settings-label">English Size</span>
+                        <div class="qr-font-size-group" data-qr-scale="en"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="qr-font-size-group" data-qr-scale="ar"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Word-by-Word Size</span>
+                        <div class="qr-font-size-group" data-qr-scale="wbw"></div>
                     </div>
                 </div>
             </div>

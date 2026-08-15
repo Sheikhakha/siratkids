@@ -26,7 +26,6 @@
     var infoState = null;
     var infoSize = 16;
     var mushafMode = false;
-    var readerScale = 1;
 
     var QUL_BUNDLES = {
         'surah-info-en': 'js/quran_source/surah-info-en.js',
@@ -227,6 +226,8 @@
         nextBtn: document.getElementById('qr-next-surah'),
         reciterSelect: document.getElementById('qr-reciter'),
         translationSelect: document.getElementById('qr-translation'),
+        translationGroup: document.getElementById('qr-translation-group'),
+        wbwGroup: document.getElementById('qr-wbw-group'),
         wbwToggle: document.getElementById('qr-wbw-toggle'),
         wbwToggleLabel: document.getElementById('qr-wbw-toggle-label'),
         wbwLangSelect: document.getElementById('qr-wbw-lang'),
@@ -336,7 +337,7 @@
         setupMutashabihatModal();
         setupSurahInfoModal();
         setupMushaf();
-        setupReaderSize();
+        setupFontSliders();
         setupGotoDialog();
         setupScrollTracking();
 
@@ -1929,6 +1930,7 @@
             openBtn.classList.toggle('is-active', mushafMode);
             openBtn.setAttribute('aria-pressed', mushafMode ? 'true' : 'false');
             openBtn.setAttribute('aria-label', mushafMode ? 'Exit Mushaf view' : 'Open Mushaf view');
+            openBtn.setAttribute('title', mushafMode ? 'Translation view' : 'Mushaf view');
             var label = document.getElementById('qr-mushaf-btn-label');
             if (label) label.textContent = mushafMode ? 'Translation' : 'Mushaf';
             var iconM = document.getElementById('qr-mushaf-icon-mushaf');
@@ -1936,44 +1938,80 @@
             if (iconM) iconM.style.display = mushafMode ? 'none' : '';
             if (iconT) iconT.style.display = mushafMode ? '' : 'none';
         }
+        if (els.translationGroup) els.translationGroup.classList.toggle('hidden', mushafMode);
+        if (els.wbwGroup) els.wbwGroup.classList.toggle('hidden', mushafMode);
     }
 
     function toggleMushaf() {
         setMushafMode(!mushafMode);
     }
 
-    /* ---- Reader Text Size (A- / A+) ---- */
+    /* ---- Reader Font-Size Sliders (English / Arabic / Word-by-Word) ---- */
 
-    var READER_SCALE_MIN = 0.85;
-    var READER_SCALE_MAX = 1.30;
-    var READER_SCALE_STEP = 0.05;
+    var QR_SCALE_MIN = 0.7;
+    var QR_SCALE_MAX = 1.5;
+    var QR_SCALE_STEP = 0.05;
+    var QR_SCALE_KEYS = { en: 'en-font-scale', ar: 'ar-font-scale', wbw: 'quran-wbw-scale' };
+    var QR_SCALE_VARS = { en: '--qr-en-scale', ar: '--qr-ar-scale', wbw: '--qr-wbw-scale' };
 
-    function setupReaderSize() {
-        var down = document.getElementById('qr-reader-size-down');
-        var up = document.getElementById('qr-reader-size-up');
-        if (!down || !up) return;
+    function setupFontSliders() {
+        var groups = document.querySelectorAll('.qr-font-size-group');
+        if (!groups.length) return;
 
-        var saved = parseFloat(localStorage.getItem('quran-font-scale')) || 1;
-        if (isNaN(saved) || saved < READER_SCALE_MIN || saved > READER_SCALE_MAX) saved = 1;
-        readerScale = saved;
-        applyReaderScale();
+        // One-time migration: old global A- / A+ scale seeds the Arabic slider
+        // if the user has never touched the per-language controls.
+        if (localStorage.getItem('ar-font-scale') === null) {
+            var legacy = parseFloat(localStorage.getItem('quran-font-scale'));
+            if (!isNaN(legacy) && legacy >= QR_SCALE_MIN && legacy <= QR_SCALE_MAX) {
+                localStorage.setItem('ar-font-scale', String(legacy));
+            }
+        }
 
-        down.addEventListener('click', function () { adjustReaderScale(-READER_SCALE_STEP); });
-        up.addEventListener('click', function () { adjustReaderScale(READER_SCALE_STEP); });
+        groups.forEach(function (group) {
+            var target = group.getAttribute('data-qr-scale');
+            if (!target || !QR_SCALE_KEYS[target]) return;
+            var storageKey = QR_SCALE_KEYS[target];
+            var cssVar = QR_SCALE_VARS[target];
+            var current = parseFloat(localStorage.getItem(storageKey)) || 1;
+            if (isNaN(current) || current < QR_SCALE_MIN || current > QR_SCALE_MAX) current = 1;
+
+            var wrap = document.createElement('div');
+            wrap.className = 'font-size-slider-wrap';
+
+            var slider = document.createElement('input');
+            slider.type = 'range';
+            slider.min = String(QR_SCALE_MIN);
+            slider.max = String(QR_SCALE_MAX);
+            slider.step = String(QR_SCALE_STEP);
+            slider.value = String(current);
+            slider.setAttribute('aria-label', group.closest('.settings-dropdown-item').querySelector('.settings-label').textContent);
+
+            var valDisplay = document.createElement('span');
+            valDisplay.className = 'font-size-slider-value';
+            valDisplay.textContent = Math.round(current * 100) + '%';
+
+            wrap.appendChild(slider);
+            wrap.appendChild(valDisplay);
+            group.appendChild(wrap);
+
+            slider.addEventListener('input', function () {
+                var scale = parseFloat(this.value);
+                if (isNaN(scale)) return;
+                valDisplay.textContent = Math.round(scale * 100) + '%';
+                document.documentElement.style.setProperty(cssVar, String(scale));
+                try { localStorage.setItem(storageKey, String(scale)); } catch (e) {}
+            });
+        });
+
+        applyReaderScales();
     }
 
-    function adjustReaderScale(delta) {
-        var next = Math.round((readerScale + delta) * 100) / 100;
-        next = Math.max(READER_SCALE_MIN, Math.min(READER_SCALE_MAX, next));
-        readerScale = next;
-        applyReaderScale();
-        try { localStorage.setItem('quran-font-scale', String(readerScale)); } catch (e) {}
-    }
-
-    function applyReaderScale() {
-        document.documentElement.style.setProperty('--qr-reader-scale', String(readerScale));
-        var valEl = document.getElementById('qr-reader-size-val');
-        if (valEl) valEl.textContent = Math.round(readerScale * 100) + '%';
+    function applyReaderScales() {
+        ['en', 'ar', 'wbw'].forEach(function (target) {
+            var saved = parseFloat(localStorage.getItem(QR_SCALE_KEYS[target]));
+            var scale = (!isNaN(saved) && saved >= QR_SCALE_MIN && saved <= QR_SCALE_MAX) ? saved : 1;
+            document.documentElement.style.setProperty(QR_SCALE_VARS[target], String(scale));
+        });
     }
 
     function tafsirContentCurrent(surah, ayah, lang) {
