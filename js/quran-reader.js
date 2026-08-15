@@ -25,7 +25,7 @@
     var _toastTimer = null;
     var infoState = null;
     var infoSize = 16;
-    var mushafState = { ch: null, page: 1, pages: [] };
+    var mushafMode = false;
 
     var QUL_BUNDLES = {
         'surah-info-en': 'js/quran_source/surah-info-en.js',
@@ -290,15 +290,6 @@
         infoLangSelect: document.getElementById('qr-info-modal-lang'),
         infoSizeDown: document.getElementById('qr-info-size-down'),
         infoSizeUp: document.getElementById('qr-info-size-up'),
-
-        mushafBackdrop: document.getElementById('qr-mushaf-backdrop'),
-        mushafFrame: document.getElementById('qr-mushaf-frame'),
-        mushafTitle: document.getElementById('qr-mushaf-title'),
-        mushafPageInfo: document.getElementById('qr-mushaf-pageinfo'),
-        mushafPrev: document.getElementById('qr-mushaf-prev'),
-        mushafNext: document.getElementById('qr-mushaf-next'),
-        mushafClose: document.getElementById('qr-mushaf-close'),
-        mushafPageEl: document.getElementById('qr-mushaf-page'),
     };
 
     if (!els.loading || !els.content) return;
@@ -799,7 +790,6 @@
         if (els.tafsirModalBackdrop && !els.tafsirModalBackdrop.hidden) closeTafsirModal();
         if (els.simBackdrop && !els.simBackdrop.hidden) closeMutashabihatModal();
         if (els.infoBackdrop && !els.infoBackdrop.hidden) closeSurahInfoModal();
-        if (els.mushafBackdrop && !els.mushafBackdrop.hidden) closeMushaf();
         hideFnTooltip();
 
         var ch = chapters[id - 1];
@@ -910,7 +900,7 @@
     function renderVerses(ch) {
         var indopakData = getCachedData('indopak-nastaleeq-verse');
         var transData = getCurrentTranslationData();
-        var wbwMode = els.wbwToggle && els.wbwToggle.checked;
+        var wbwMode = els.wbwToggle && els.wbwToggle.checked && !mushafMode;
         var wbwWordData = wbwMode ? getCachedData('indopak-nastaleeq-word') : null;
         var wbwTransData = wbwMode ? getCurrentWbwData() : null;
         var bookmarks = getBookmarks();
@@ -1920,109 +1910,34 @@
         applyInfoSize();
     }
 
-    /* ---- Mushaf view ---- */
+    /* ---- Mushaf view (in-content, toggled by the navbar button) ---- */
 
     function setupMushaf() {
-        if (!els.mushafBackdrop) return;
         var openBtn = document.getElementById('qr-mushaf-open');
-        var fab = document.getElementById('qr-mushaf-fab');
-        if (openBtn) openBtn.addEventListener('click', openMushaf);
-        if (fab) fab.addEventListener('click', openMushaf);
-        if (els.mushafClose) els.mushafClose.addEventListener('click', closeMushaf);
-        if (els.mushafPrev) els.mushafPrev.addEventListener('click', function () { mushafPage(-1); });
-        if (els.mushafNext) els.mushafNext.addEventListener('click', function () { mushafPage(1); });
-        els.mushafBackdrop.addEventListener('click', function (e) {
-            if (e.target === els.mushafBackdrop) closeMushaf();
-        });
-        document.addEventListener('keydown', function (e) {
-            if (els.mushafBackdrop && !els.mushafBackdrop.hidden) {
-                if (e.key === 'Escape') {
-                    e.preventDefault();
-                    closeMushaf();
-                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-                    e.preventDefault();
-                    mushafPage(e.key === 'ArrowRight' ? 1 : -1);
-                }
-            }
-        });
-    }
-
-    function buildMushafPages(ch) {
-        var verseData = getCachedData('indopak-nastaleeq-verse');
-        var verses = [];
-        for (var v = 1; v <= ch.verses; v++) {
-            var entry = verseData ? verseData[ch.id + ':' + v] : null;
-            verses.push({ n: v, text: entry ? entry.text : '' });
+        if (openBtn) {
+            openBtn.addEventListener('click', toggleMushaf);
         }
-        var pages = [];
-        var current = [];
-        var currentLen = 0;
-        var MAX_LEN = 1800;
-        verses.forEach(function (item) {
-            if (current.length > 0 && currentLen + item.text.length > MAX_LEN) {
-                pages.push(current);
-                current = [];
-                currentLen = 0;
-            }
-            current.push(item);
-            currentLen += item.text.length + 4;
-        });
-        if (current.length) pages.push(current);
-        if (!pages.length) pages.push([]);
-        return pages;
     }
 
-    function renderMushafPage() {
-        if (!mushafState.ch || !els.mushafPageEl) return;
-        var ch = mushafState.ch;
-        var page = mushafState.pages[mushafState.page - 1] || [];
-        var html = '';
-        if (mushafState.page === 1) {
-            html += '<div class="qr-mushaf-surah-head">';
-            html += '<div class="qr-mushaf-surah-ar" dir="rtl">' + (SURAH_LIGATURES[ch.id - 1] || '') + '</div>';
-            html += '<div class="qr-mushaf-surah-en">Surah ' + escapeHtml(ch.en) + '</div>';
-            if (ch.id !== 9) {
-                html += '<div class="qr-mushaf-bismillah" dir="rtl">\u0628\u0650\u0633\u0652\u0645\u0650 \u0671\u0644\u0644\u064e\u0651\u0647\u0650 \u0671\u0644\u0631\u064e\u0651\u062d\u0652\u0645\u064e\u0670\u0646\u0650 \u0671\u0644\u0631\u064e\u0651\u062d\u0650\u064a\u0645\u0650</div>';
-            }
-            html += '</div>';
+    function setMushafMode(on) {
+        mushafMode = !!on;
+        if (els.content) els.content.classList.toggle('qr-mushaf-mode', mushafMode);
+        var openBtn = document.getElementById('qr-mushaf-open');
+        if (openBtn) {
+            openBtn.classList.toggle('is-active', mushafMode);
+            openBtn.setAttribute('aria-pressed', mushafMode ? 'true' : 'false');
+            openBtn.setAttribute('aria-label', mushafMode ? 'Exit Mushaf view' : 'Open Mushaf view');
+            var label = document.getElementById('qr-mushaf-btn-label');
+            if (label) label.textContent = mushafMode ? 'Translation' : 'Mushaf';
+            var iconM = document.getElementById('qr-mushaf-icon-mushaf');
+            var iconT = document.getElementById('qr-mushaf-icon-trans');
+            if (iconM) iconM.style.display = mushafMode ? 'none' : '';
+            if (iconT) iconT.style.display = mushafMode ? '' : 'none';
         }
-        page.forEach(function (item) {
-            html += '<div class="qr-mushaf-verse">';
-            html += '<span class="qr-mushaf-verse-text">' + item.text + '</span>';
-            html += '<span class="qr-mushaf-verse-num" aria-hidden="true">' + item.n + '</span>';
-            html += '</div>';
-        });
-        els.mushafPageEl.innerHTML = html;
-        if (els.mushafTitle) els.mushafTitle.textContent = 'Surah ' + ch.en + ' \u00b7 Mushaf view';
-        if (els.mushafPageInfo) els.mushafPageInfo.textContent = mushafState.page + ' / ' + mushafState.pages.length;
-        if (els.mushafPrev) els.mushafPrev.disabled = mushafState.page <= 1;
-        if (els.mushafNext) els.mushafNext.disabled = mushafState.page >= mushafState.pages.length;
-        if (els.mushafPageEl) els.mushafPageEl.scrollTop = 0;
     }
 
-    function mushafPage(delta) {
-        if (!mushafState.ch) return;
-        var next = mushafState.page + delta;
-        if (next < 1 || next > mushafState.pages.length) return;
-        mushafState.page = next;
-        renderMushafPage();
-    }
-
-    function openMushaf() {
-        if (!els.mushafBackdrop) return;
-        var ch = chapters[currentSurah - 1];
-        if (!ch) return;
-        mushafState = { ch: ch, page: 1, pages: buildMushafPages(ch) };
-        renderMushafPage();
-        els.mushafBackdrop.hidden = false;
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeMushaf() {
-        if (!els.mushafBackdrop) return;
-        els.mushafBackdrop.hidden = true;
-        document.body.style.overflow = '';
-        mushafState = { ch: null, page: 1, pages: [] };
+    function toggleMushaf() {
+        setMushafMode(!mushafMode);
     }
 
     function tafsirContentCurrent(surah, ayah, lang) {

@@ -64,9 +64,10 @@
                     <option value="ta">Tamil</option>
                 </select>
             </div>
-            <button class="qr-mushaf-nav-btn" id="qr-mushaf-open" aria-label="Open Mushaf view" title="Mushaf view">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                <span>Mushaf</span>
+            <button class="qr-mushaf-nav-btn" id="qr-mushaf-open" aria-label="Toggle Mushaf view" aria-pressed="false" title="Mushaf view">
+                <svg id="qr-mushaf-icon-mushaf" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <svg id="qr-mushaf-icon-trans" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M4 5h16"/><path d="M4 10h16"/><path d="M4 15h10"/><path d="M4 20h7"/></svg>
+                <span id="qr-mushaf-btn-label">Mushaf</span>
             </button>
             <button class="dm-toggle" aria-label="Toggle dark mode">
                 <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -124,11 +125,6 @@
                     </button>
                 </div>
             </div>
-
-            <button class="qr-mushaf-fab" id="qr-mushaf-fab" aria-label="Open Mushaf view" title="Mushaf view">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                <span>Mushaf</span>
-            </button>
 
             <div class="qr-continue-prompt" id="qr-continue-prompt" style="display:none;">
                 <span>Continue continuous recitation?</span>
@@ -237,22 +233,6 @@
             </div>
             <div class="qr-info-modal-body" id="qr-info-modal-body"></div>
             <div class="qr-tafsir-modal-source" id="qr-info-modal-source"></div>
-        </div>
-    </div>
-
-    <!-- Mushaf view overlay -->
-    <div class="qr-mushaf-backdrop" id="qr-mushaf-backdrop" hidden>
-        <div class="qr-mushaf-frame" id="qr-mushaf-frame" role="dialog" aria-modal="true" aria-label="Mushaf view">
-            <div class="qr-mushaf-toolbar">
-                <span class="qr-mushaf-title" id="qr-mushaf-title"></span>
-                <div class="qr-mushaf-pagenav">
-                    <button class="qr-tafsir-nav" id="qr-mushaf-prev" aria-label="Previous page" title="Previous page">&#8249;</button>
-                    <span class="qr-mushaf-pageinfo" id="qr-mushaf-pageinfo"></span>
-                    <button class="qr-tafsir-nav" id="qr-mushaf-next" aria-label="Next page" title="Next page">&#8250;</button>
-                </div>
-                <button class="qr-tafsir-close" id="qr-mushaf-close" aria-label="Close mushaf">&#10005;</button>
-            </div>
-            <div class="qr-mushaf-page" id="qr-mushaf-page" dir="rtl"></div>
         </div>
     </div>
 
