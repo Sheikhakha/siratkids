@@ -55,9 +55,13 @@ python scripts/validate_content.py
 ```
 This runs ~2900+ automated checks covering:
 - **File existence** (66 HTML files, all images, CSS, JS)
+- **Golden snapshot** (SHA-256 manifest of all 66 hub/lesson files in `scripts/lesson_snapshots.json` — flags ANY unintended content drift; re-baseline with `--snapshot` only after intentional changes)
 - **Arabic text preservation** (Quran verses, hadith, adhkar, tawheed content)
+- **Lesson Arabic presence** (every lesson has `.ar[dir="rtl"]` blocks and `lesson-block` elements)
 - **English/Tamil/Transliteration preservation** across all lessons
 - **Navigation integrity** (prev/next chains, sidebar links, breadcrumbs, track cards)
+- **Audio widget structure** (every hub/lesson `lesson-aside` contains full audio player: play button, status, text preview, speed selector)
+- **Translation toggle bars** (every lesson has exactly `translation`/`tamil`/`transliteration` toggle buttons)
 - **Quran popup modals** (4 popups with dual translations + Ibn Kathir tafsir)
 - **Audio player widgets** (Web Speech API, speed controls, voice selector)
 - **CSS selector coverage** (all critical layout/content/UI selectors)
@@ -67,6 +71,7 @@ This runs ~2900+ automated checks covering:
 - **External resources** (Google Fonts, font references)
 
 Options: `--verbose` for failed check details, `--json report.json` for machine-readable output.
+`--snapshot` re-generates the golden manifest (run only after intentional, verified hub/lesson edits).
 
 ## Key Content Elements
 - **4 Quran Popups**: popup-2152 (2:152), popup-3962 (39:62), popup-5156 (51:56), popup-319 (3:19)

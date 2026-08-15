@@ -85,13 +85,6 @@
     --popup-verse-bg: #1e293b;
     --popup-verse-color: #f8fafc;
     --popup-border: #e2e8f0;
-    --audio-gradient: linear-gradient(135deg, #e8f0ff 0%, #f0e6ff 100%);
-    --audio-border: #c8d6f0;
-    --audio-play-bg: linear-gradient(135deg, #2e7d32, #1b5e20);
-    --audio-play-shadow: rgba(46,125,50,0.35);
-    --audio-play-shadow-hover: rgba(46,125,50,0.45);
-    --audio-stop-bg: linear-gradient(135deg, #e53935, #c62828);
-    --audio-stop-shadow: rgba(229,57,53,0.35);
     --skeleton-start: #e2e8f0;
     --skeleton-end: #f1f5f9;
     --badge-accent-bg: #e8f0ff;
@@ -175,13 +168,6 @@
     --popup-verse-bg: #0f172a;
     --popup-verse-color: #e2e8f0;
     --popup-border: #334155;
-    --audio-gradient: linear-gradient(135deg, #1e293b 0%, #2e1065 100%);
-    --audio-border: #334155;
-    --audio-play-bg: linear-gradient(135deg, #15803d, #166534);
-    --audio-play-shadow: rgba(21,128,61,0.35);
-    --audio-play-shadow-hover: rgba(21,128,61,0.45);
-    --audio-stop-bg: linear-gradient(135deg, #dc2626, #b91c1c);
-    --audio-stop-shadow: rgba(220,38,38,0.35);
     --skeleton-start: #334155;
     --skeleton-end: #1e293b;
     --badge-accent-bg: #1e1b4b;
@@ -988,7 +974,7 @@ body {
     .lesson-item { padding: 16px 18px; gap: 12px; }
     .lesson-concept { display: none; }
     .lesson-sidebar { display: none; }
-    .lesson-aside { display: none; }
+    .lesson-aside { display: block; }
     .sidebar-toggle { display: none; }
     .lesson-layout { padding: 0 16px; }
 
@@ -1065,15 +1051,43 @@ body {
     }
 
 
-    /* Larger touch targets on mobile */
-    .audio-play-btn { width: 80px; height: 80px; }
-    .audio-play-btn svg { width: 32px; height: 32px; }
+    /* Audio player: compact controls for the sticky bottom bar */
+    .audio-play-btn { width: 46px; height: 46px; }
+    .audio-play-btn svg { width: 20px; height: 20px; }
     .lesson-arrow { font-size: 1.8rem; }
-    .audio-speed-select { padding: 8px 12px; font-size: 0.8rem; }
+    .audio-speed-select { padding: 5px 10px; font-size: 0.76rem; }
 
-    /* Stack layout on smaller screens */
+    /* Stack layout on smaller screens; the right column (audio player)
+       collapses into a sticky bottom bar instead of squeezing beside text */
     .lesson-layout { flex-direction: column; gap: 24px; }
-    .lesson-aside { display: block; width: 100%; position: static; }
+    .lesson-aside {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: auto;
+        width: 100%;
+        z-index: 900;
+        padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+        background: var(--surface-navbar);
+        border-top: 1px solid var(--border-default);
+        border-radius: 0;
+    }
+    .lesson-main { padding-bottom: 92px; }
+    .audio-player {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        padding: 4px;
+        border: none;
+        background: transparent;
+        border-radius: 0;
+    }
+    .audio-player-title { display: none; }
+    .audio-status { margin-top: 0; min-height: 0; white-space: nowrap; }
+    .audio-text-preview { display: none; }
+    .audio-speed-select-wrap { margin-top: 0; }
 }
 
 @media (max-width: 480px) {
@@ -1788,12 +1802,12 @@ a.sidebar-unit-label.active {
     right: auto;
 }
 
-/* ---------- Audio Player Widget ---------- */
+/* ---------- Audio Player Widget (flat, hairline borders) ---------- */
 .audio-player {
-    background: var(--audio-gradient);
-    border: 2px solid var(--audio-border);
-    border-radius: 16px;
-    padding: 20px 16px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 18px 16px;
     text-align: center;
 }
 
@@ -1804,58 +1818,49 @@ a.sidebar-unit-label.active {
     color: var(--primary-dark);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
+/* Larger play-all button (right-hand column) */
 .audio-play-btn {
-    width: 72px;
-    height: 72px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    border: none;
-    background: var(--audio-play-bg);
-    color: white;
-    font-size: 1.8rem;
+    border: 1px solid var(--border-control);
+    background: var(--bg-white);
+    color: var(--primary);
+    font-size: 1.4rem;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 16px var(--audio-play-shadow);
-    transition: all 0.2s ease;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     position: relative;
     line-height: 1;
 }
 
 .audio-play-btn:hover {
-    transform: scale(1.08);
-    box-shadow: 0 6px 24px var(--audio-play-shadow-hover);
-}
-
-.audio-play-btn:active {
-    transform: scale(0.95);
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
 }
 
 .audio-play-btn.playing {
-    background: var(--audio-stop-bg);
-    box-shadow: 0 4px 16px var(--audio-stop-shadow);
-    animation: pulse-ring 1.2s ease infinite;
-}
-
-@keyframes pulse-ring {
-    0% { box-shadow: 0 0 0 0 rgba(229,57,53,0.4); }
-    70% { box-shadow: 0 0 0 12px rgba(229,57,53,0); }
-    100% { box-shadow: 0 0 0 0 rgba(229,57,53,0); }
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
 }
 
 .audio-play-btn svg {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     fill: currentColor;
 }
 
 .audio-status {
     font-family: var(--font-en);
     font-size: 0.72rem;
-    color: var(--primary);
+    color: var(--text-medium);
     margin-top: 10px;
     min-height: 1.4em;
     font-weight: 600;
@@ -1871,30 +1876,32 @@ a.sidebar-unit-label.active {
     max-height: 3.2em;
     overflow: hidden;
     text-overflow: ellipsis;
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
-/* Speed select dropdown */
+/* Compact stepped speed control */
 .audio-speed-select-wrap {
     display: flex;
     align-items: center;
     gap: 8px;
     justify-content: center;
-    margin-top: 14px;
+    margin-top: 16px;
 }
 
 .audio-speed-label {
     font-family: var(--font-en);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    color: var(--primary-dark);
+    color: var(--text-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
 }
 
 .audio-speed-select {
-    padding: 5px 10px;
-    border: 2px solid var(--audio-border);
-    border-radius: 6px;
-    background: white;
+    padding: 4px 10px;
+    border: 1px solid var(--border-control);
+    border-radius: 999px;
+    background: var(--bg-white);
     font-family: var(--font-en);
     font-size: 0.72rem;
     font-weight: 700;
@@ -1903,14 +1910,10 @@ a.sidebar-unit-label.active {
     transition: border-color 0.15s ease;
 }
 
-.audio-speed-select:hover {
-    border-color: var(--primary);
-}
-
+.audio-speed-select:hover,
 .audio-speed-select:focus {
-    outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(79,156,247,0.15);
+    outline: none;
 }
 
 .audio-no-support {
@@ -1921,114 +1924,51 @@ a.sidebar-unit-label.active {
     line-height: 1.5;
 }
 
-/* Voice selector */
-.audio-voice-select {
-    width: 100%;
-    padding: 6px 8px;
-    border: 2px solid var(--audio-border);
-    border-radius: 8px;
-    background: white;
-    font-family: var(--font-en);
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    cursor: pointer;
-    margin-top: 10px;
-    appearance: auto;
-}
-
-.audio-voice-select:focus {
-    outline: none;
-    border-color: var(--primary);
-}
-
-.audio-voice-select optgroup {
-    font-weight: 700;
-    font-style: normal;
-    color: var(--primary-dark);
-    padding: 4px 0;
-}
-
-.audio-voice-select optgroup[label*="Qari"] {
-    color: var(--primary-dark);
-    background: var(--badge-accent-bg);
-}
-
-.audio-voice-select optgroup[label*="Standard"] {
-    color: var(--badge-accent-color);
-    background: var(--badge-secondary-bg);}
-
-/* Word highlighting */
-.audio-word {
-    display: inline;
-    border-radius: 3px;
-    transition: background-color 0.15s ease, transform 0.15s ease;
-}
-
-.audio-word-active {
-    background-color: var(--highlight-yellow);
-    box-shadow: 0 1px 4px rgba(255,235,59,0.5);
-    border-radius: 3px;
-    transform: scale(1.05);
-    display: inline;
-}
-
-/* Inline per-ayah play button */
-.lesson-block .ar {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-}
-
-.lesson-block .ar p {
-    flex: 1;
-    min-width: 0;
-}
-
-.ayah-play-btn {
-    width: 30px;
-    height: 30px;
-    min-width: 30px;
-    border: 2px solid var(--alert-success-border);
+/* ---------- Per-sentence play button ---------- */
+.lp-play-btn {
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    background: white;
-    color: var(--accent-success);
+    border: 1px solid var(--border-control);
+    background: var(--bg-white);
+    color: var(--primary);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    margin-top: 6px;
-    transition: all 0.15s ease;
+    margin: 2px 0 16px;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
-.ayah-play-btn svg {
-    width: 14px;
-    height: 14px;
+.lp-play-btn svg {
+    width: 13px;
+    height: 13px;
     fill: currentColor;
 }
 
-.ayah-play-btn:hover {
-    background: var(--alert-success-bg);
-    border-color: var(--accent-success);
-    transform: scale(1.1);
+.lp-play-btn:hover,
+.lp-play-btn.playing {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
 }
 
-.ayah-play-btn:active {
-    transform: scale(0.95);
+/* Word highlighting (same colors as the Quran-reader word-synced playback) */
+.audio-word {
+    display: inline;
+    border-radius: 4px;
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.ayah-play-btn.active {
-    background: var(--alert-error-bg);
-    border-color: var(--alert-error-color);
-    color: white;
-    animation: pulse-ring-sm 1s ease infinite;
+.audio-word-active {
+    background: rgba(251, 191, 36, 0.25);
+    color: #b45309;
+    box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.35);
+    border-radius: 4px;
 }
 
-@keyframes pulse-ring-sm {
-    0% { box-shadow: 0 0 0 0 rgba(229,57,53,0.3); }
-    70% { box-shadow: 0 0 0 6px rgba(229,57,53,0); }
-    100% { box-shadow: 0 0 0 0 rgba(229,57,53,0); }
+.audio-word-done {
+    color: var(--text-light);
 }
 
 /* Translation toggles */
@@ -2935,7 +2875,19 @@ body.popup-open {
     .unit-lessons { padding: 24px 16px 60px; }
     .hero-illustration img { max-width: 200px; }
     .content-illustration img { max-width: 160px; }
-    .lesson-aside { display: block; width: 100%; position: static; }
+    .lesson-aside {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: auto;
+        width: 100%;
+        z-index: 900;
+        padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+        background: var(--surface-navbar);
+        border-top: 1px solid var(--border-default);
+        border-radius: 0;
+    }
     .settings-dropdown-content { right: -40px; min-width: 240px; }
     .settings-dropdown-item { flex-direction: column; align-items: flex-start; gap: 6px; }
 }

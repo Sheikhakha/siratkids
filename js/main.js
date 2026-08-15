@@ -974,7 +974,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // });
 })();
 
-/* ---- Audio Player Widget (Web Speech API) ---- */
+/* ---- Audio Player Widget (Web Speech API) ----
+   Per-sentence players sit under each Arabic block (Arabic text on top, a slim
+   control bar with play / scrub / time directly beneath it). A play-all button
+   and a stepped speed control live in the right-hand column (lesson-aside). On
+   narrow viewports the column collapses into a sticky bottom bar (see CSS). */
 (function() {
     var player = document.querySelector('.audio-player');
     if (!player) return;
@@ -987,15 +991,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var statusEl = player.querySelector('.audio-status');
     var previewEl = player.querySelector('.audio-text-preview');
     var isPlayingAll = false;
-    var isPlayingSingle = false;
-    var utteranceQueue = [];
     var currentUtterance = null;
-    var currentBlockIndex = 0;
+    var uttGen = 0;
     var blocks = [];
-    var blockTexts = [];
-    var activeAyahBtn = null;
+    var blockData = [];
+    var activeBlockIdx = -1;
 
-    /* ---- Speed (select dropdown) ---- */
+    /* ---- Speed (stepped select dropdown) ---- */
     var currentSpeed = 1;
     var speedSelect = player.querySelector('.audio-speed-select') || player.querySelector('#audio-speed');
     var savedSpeed = localStorage.getItem('audio-speed');
@@ -1005,120 +1007,24 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!speedSelect) return;
         speedSelect.value = currentSpeed;
         speedSelect.addEventListener('change', function() {
-            currentSpeed = parseFloat(this.value);
+            currentSpeed = parseFloat(this.value) || 1;
             localStorage.setItem('audio-speed', currentSpeed);
             if (currentUtterance) currentUtterance.rate = currentSpeed;
         });
     }
     initSpeedSelect();
 
-    /* ---- Voice Selector (Qari + Standard categories) ---- */
+    /* ---- Auto Arabic voice selection ---- */
     var arVoices = null;
-    var voiceSelect = document.createElement('select');
-    voiceSelect.className = 'audio-voice-select';
-    voiceSelect.setAttribute('aria-label', 'Choose Arabic voice');
-    player.appendChild(voiceSelect);
-
-    var ALL_VOICES = [
-        // Qari voices (recitation masters)
-        { label: 'Abdul Basit — Hafs',     keys: ['abdul basit', 'basit'],   provider: '', cat: 'qari' },
-        { label: 'Mujawwad — Tajweed',     keys: ['mujawwad'],              provider: '', cat: 'qari' },
-        { label: 'Al-Husary — Warsh',      keys: ['al-husary', 'husary'],   provider: '', cat: 'qari' },
-        { label: 'Al-Afasy — Hafs',        keys: ['al-afasy', 'afasy'],     provider: '', cat: 'qari' },
-        { label: 'Al-Minshawi — Warsh',    keys: ['al-minshawi', 'minshawi'], provider: '', cat: 'qari' },
-        { label: 'Az-Zahir — Hafs',        keys: ['az-zahir', 'zahir'],     provider: '', cat: 'qari' },
-        { label: 'Al-Jazeera — Hafs',      keys: ['al-jazeera', 'jazeera'], provider: '', cat: 'qari' },
-        // Standard voices (TTS fallback)
-        { label: 'Majid — Google TTS',     keys: ['majid'],                 provider: 'google',    cat: 'standard' },
-        { label: 'Laila — Google TTS',     keys: ['laila', 'leila'],        provider: 'google',    cat: 'standard' },
-        { label: 'Shakir — Microsoft TTS', keys: ['shakir'],               provider: 'microsoft', cat: 'standard' },
-        { label: 'Salma — Microsoft TTS',  keys: ['salma'],                provider: 'microsoft', cat: 'standard' },
-        { label: 'Maged — Apple TTS',      keys: ['maged'],                provider: 'apple',     cat: 'standard' }
-    ];
 
     function getArabicVoices() {
         if (arVoices) return arVoices;
         var all = speechSynthesis.getVoices();
-        arVoices = all.filter(function(v) { return v.lang.indexOf('ar') === 0; });
+        arVoices = all.filter(function(v) { return v.lang && v.lang.toLowerCase().indexOf('ar') === 0; });
         return arVoices;
     }
 
-    function findRealVoice(predefined) {
-        var voices = getArabicVoices();
-        for (var i = 0; i < voices.length; i++) {
-            var name = (voices[i].name || '').toLowerCase();
-            for (var k = 0; k < predefined.keys.length; k++) {
-                if (name.indexOf(predefined.keys[k]) !== -1) return voices[i];
-            }
-        }
-        if (predefined.provider) {
-            for (var i = 0; i < voices.length; i++) {
-                var name = (voices[i].name || '').toLowerCase();
-                if (name.indexOf(predefined.provider) !== -1) return voices[i];
-            }
-        }
-        return null;
-    }
-
-    function createOpt(optGroup, pv, saved) {
-        var opt = document.createElement('option');
-        opt.value = pv.label;
-        var real = findRealVoice(pv);
-        opt.textContent = pv.label + (real ? '' : ' (not installed)');
-        if (pv.label === saved) opt.selected = true;
-        optGroup.appendChild(opt);
-    }
-
-    function populateVoiceList() {
-        var saved = localStorage.getItem('audio-voice-name');
-        voiceSelect.innerHTML = '<option value="">Auto (best available)</option>';
-
-        var qariGroup = document.createElement('optgroup');
-        qariGroup.label = '\u{1F54C} Qari Voices — Recitation';
-
-        var stdGroup = document.createElement('optgroup');
-        stdGroup.label = '\u{1F4E2} Standard Voices — Text-to-Speech';
-
-        ALL_VOICES.forEach(function(pv) {
-            if (pv.cat === 'qari') {
-                createOpt(qariGroup, pv, saved);
-            } else {
-                createOpt(stdGroup, pv, saved);
-            }
-        });
-
-        voiceSelect.appendChild(qariGroup);
-        voiceSelect.appendChild(stdGroup);
-    }
-
-    voiceSelect.addEventListener('change', function() {
-        if (this.value) {
-            localStorage.setItem('audio-voice-name', this.value);
-        } else {
-            localStorage.removeItem('audio-voice-name');
-        }
-    });
-
-    function getSavedVoice() {
-        var savedLabel = localStorage.getItem('audio-voice-name');
-        if (!savedLabel) return null;
-        for (var i = 0; i < ALL_VOICES.length; i++) {
-            if (ALL_VOICES[i].label === savedLabel) {
-                return findRealVoice(ALL_VOICES[i]);
-            }
-        }
-        return null;
-    }
-
     function findArabicVoice() {
-        var saved = getSavedVoice();
-        if (saved) return saved;
-
-        for (var i = 0; i < ALL_VOICES.length; i++) {
-            var real = findRealVoice(ALL_VOICES[i]);
-            if (real) return real;
-        }
-
         var voices = getArabicVoices();
         if (!voices.length) return null;
         for (var i = 0; i < voices.length; i++) {
@@ -1127,7 +1033,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return voices[0];
     }
 
-    /* ---- Word Wrapping & Highlighting ---- */
+    /* ---- Word collection & wrapping ---- */
     function collectBlocks() {
         var main = document.querySelector('.lesson-main');
         if (!main) return [];
@@ -1143,10 +1049,8 @@ document.addEventListener('DOMContentLoaded', function () {
             while (walker.nextNode()) textNodes.push(walker.currentNode);
 
             textNodes.forEach(function(node) {
-                if (node.parentNode.classList && node.parentNode.classList.contains('meaning-btn')) return;
                 if (node.parentNode.closest && node.parentNode.closest('.meaning-btn')) return;
                 if (node.parentNode.closest && node.parentNode.closest('.audio-word')) return;
-                if (node.parentNode.closest && node.parentNode.closest('.ayah-play-btn')) return;
 
                 var text = node.textContent;
                 if (!text.trim()) return;
@@ -1168,7 +1072,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 node.parentNode.replaceChild(frag, node);
             });
         });
-        return totalWords;
     }
 
     function unwrapWords(block) {
@@ -1181,187 +1084,238 @@ document.addEventListener('DOMContentLoaded', function () {
         removeHighlight(block);
     }
 
+    /* ---- Word highlighting (same colors as Quran-reader playback) ---- */
     function highlightWord(block, charIndex, blockText) {
-        removeHighlight(block);
-        var offset = 0;
         var words = blockText.split(/\s+/);
+        var activeIdx = -1;
+        var offset = 0;
         for (var i = 0; i < words.length; i++) {
             var end = offset + words[i].length;
-            if (charIndex >= offset && charIndex < end) {
-                var wordEl = block.querySelector('.audio-word[data-wi="' + i + '"]');
-                if (wordEl) {
-                    wordEl.classList.add('audio-word-active');
-                    wordEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
-                return;
-            }
+            if (charIndex >= offset && charIndex < end) { activeIdx = i; break; }
             offset = end + 1;
+        }
+        var spans = block.querySelectorAll('.audio-word');
+        for (var j = 0; j < spans.length; j++) {
+            var wi = parseInt(spans[j].dataset.wi, 10);
+            spans[j].classList.toggle('audio-word-active', wi === activeIdx);
+            spans[j].classList.toggle('audio-word-done', activeIdx >= 0 && wi < activeIdx);
+        }
+        if (activeIdx >= 0) {
+            var el = block.querySelector('.audio-word[data-wi="' + activeIdx + '"]');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     }
 
     function removeHighlight(block) {
-        var prev = block.querySelector('.audio-word-active');
-        if (prev) prev.classList.remove('audio-word-active');
+        block.querySelectorAll('.audio-word-active, .audio-word-done').forEach(function(el) {
+            el.classList.remove('audio-word-active', 'audio-word-done');
+        });
+    }
+
+    /* ---- Per-sentence play buttons ---- */
+    function injectPlayButtons() {
+        blocks.forEach(function(block, i) {
+            if (block.parentNode.querySelector('.lp-play-btn')) return;
+            var btn = document.createElement('button');
+            btn.className = 'lp-play-btn';
+            btn.type = 'button';
+            btn.dataset.lpIdx = i;
+            btn.setAttribute('aria-label', 'Play this sentence');
+            btn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
+            block.parentNode.insertBefore(btn, block.nextSibling);
+        });
+    }
+
+    function setPlayIcon(btn, playing) {
+        if (!btn) return;
+        btn.innerHTML = playing
+            ? '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>'
+            : '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
+        btn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+    }
+
+    function resetAllButtons() {
+        document.querySelectorAll('.lp-play-btn').forEach(function(btn) {
+            btn.classList.remove('playing', 'active');
+            setPlayIcon(btn, false);
+        });
+    }
+
+    function setActiveButton(blockIdx) {
+        blockData.forEach(function(data, i) {
+            var active = (i === blockIdx);
+            data.playBtn.classList.toggle('playing', active);
+            data.playBtn.classList.toggle('active', active);
+            setPlayIcon(data.playBtn, active);
+        });
+    }
+
+    /* ---- Playback state helpers ---- */
+    var spokenPrefixLen = 0;
+
+    function setStatus(msg) {
+        if (statusEl) statusEl.textContent = msg;
     }
 
     function updatePreview(text) {
         if (previewEl) previewEl.textContent = text || '';
     }
 
-    function setStatus(msg) {
-        if (statusEl) statusEl.textContent = msg;
+    function shortText(text) {
+        text = text || '';
+        return text.length > 60 ? text.substring(0, 60) + '...' : text;
     }
 
-    /* ---- Inline Ayah Play Buttons ---- */
-    function injectAyahButtons() {
-        blocks.forEach(function(block) {
-            if (block.querySelector('.ayah-play-btn')) return;
-            var btn = document.createElement('button');
-            btn.className = 'ayah-play-btn';
-            btn.setAttribute('aria-label', 'Play this ayah');
-            btn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
-            block.appendChild(btn);
-        });
-    }
-
-    function stopAll() {
-        isPlayingAll = false;
-        isPlayingSingle = false;
+    /* ---- Playback ---- */
+    function speakFromWord(blockIdx, startWord) {
+        var data = blockData[blockIdx];
+        if (!data || !data.words.length) return;
+        var gen = ++uttGen;
         speechSynthesis.cancel();
-        utteranceQueue = [];
-        currentUtterance = null;
-        blocks.forEach(function(block) { unwrapWords(block); });
-        if (activeAyahBtn) {
-            activeAyahBtn.classList.remove('active');
-            activeAyahBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
-            activeAyahBtn = null;
-        }
-        playBtn.classList.remove('playing');
-        playBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
-        setStatus('Tap to play all');
-        updatePreview('');
+
+        var words = data.words;
+        var fullText = words.join(' ');
+        startWord = Math.max(0, Math.min(startWord, words.length - 1));
+        var prefix = words.slice(0, startWord).join(' ');
+        var prefixLen = prefix.length ? prefix.length + 1 : 0;
+
+        activeBlockIdx = blockIdx;
+        spokenPrefixLen = prefixLen;
+
+        var utt = new SpeechSynthesisUtterance(words.slice(startWord).join(' '));
+        utt.lang = 'ar';
+        utt.rate = currentSpeed;
+        var voice = findArabicVoice();
+        if (voice) utt.voice = voice;
+
+        utt.onboundary = function(e) {
+            if (gen !== uttGen) return;
+            if (e.name === 'word') highlightWord(data.block, spokenPrefixLen + e.charIndex, fullText);
+        };
+        utt.onend = function() {
+            if (gen !== uttGen) return;
+            removeHighlight(data.block);
+            advance();
+        };
+        utt.onerror = function() {
+            if (gen !== uttGen) return;
+            removeHighlight(data.block);
+            advance();
+        };
+
+        currentUtterance = utt;
+        speechSynthesis.speak(utt);
+
+        setActiveButton(blockIdx);
+        updatePreview(shortText(fullText));
     }
 
-    /* ---- Play All ---- */
+    function advance() {
+        if (isPlayingAll) {
+            var next = activeBlockIdx + 1;
+            if (next < blockData.length) {
+                setStatus('Playing ' + (next + 1) + ' / ' + blockData.length);
+                speakFromWord(next, 0);
+                return;
+            }
+        }
+        finish();
+    }
+
+    function prepBlock(blockIdx) {
+        var block = blocks[blockIdx];
+        if (!block) return;
+        wrapWords(block);
+        var words = [];
+        block.querySelectorAll('.audio-word').forEach(function(s) { words.push(s.textContent); });
+        blockData[blockIdx] = {
+            block: block,
+            playBtn: block.parentNode.querySelector('.lp-play-btn'),
+            words: words
+        };
+    }
+
     function playAll() {
         blocks = collectBlocks();
         if (!blocks.length) { setStatus('No Arabic text found'); return; }
+        if (isPlayingAll) { stopAll(); return; }
 
         stopAll();
-        blocks.forEach(function(block) { wrapWords(block); });
+        blockData = [];
+        for (var i = 0; i < blocks.length; i++) prepBlock(i);
+        if (!blockData.length) { setStatus('No Arabic text found'); return; }
 
-        blockTexts = [];
-        blocks.forEach(function(block) {
-            var text = block.textContent.trim().replace(/\s+/g, ' ');
-            blockTexts.push(text);
-        });
-
-        utteranceQueue = blockTexts.slice();
-        currentBlockIndex = 0;
         isPlayingAll = true;
         playBtn.classList.add('playing');
-        playBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-        speakNextAll();
+        setPlayIcon(playBtn, true);
+        setStatus('Playing 1 / ' + blockData.length);
+        speakFromWord(0, 0);
     }
 
-    function speakNextAll() {
-        if (!isPlayingAll || utteranceQueue.length === 0) {
-            stopAll();
-            return;
-        }
-
-        var text = utteranceQueue.shift();
-        var blockIdx = currentBlockIndex;
-        currentBlockIndex++;
-        var short = text.length > 60 ? text.substring(0, 60) + '...' : text;
-        updatePreview(short);
-        setStatus('Playing ' + currentBlockIndex + ' / ' + blockTexts.length);
-
-        var utt = new SpeechSynthesisUtterance(text);
-        utt.lang = 'ar';
-        utt.rate = currentSpeed;
-        var voice = findArabicVoice();
-        if (voice) utt.voice = voice;
-
-        utt.onboundary = function(e) {
-            if (e.name === 'word' && blocks[blockIdx]) {
-                highlightWord(blocks[blockIdx], e.charIndex, text);
-            }
-        };
-        utt.onend = function() {
-            if (blocks[blockIdx]) removeHighlight(blocks[blockIdx]);
-            if (isPlayingAll) speakNextAll();
-        };
-        utt.onerror = function() {
-            if (blocks[blockIdx]) removeHighlight(blocks[blockIdx]);
-            if (isPlayingAll) speakNextAll();
-        };
-
-        currentUtterance = utt;
-        speechSynthesis.speak(utt);
-    }
-
-    /* ---- Play Single Ayah ---- */
-    function playSingleAyah(block, btn) {
-        if (isPlayingSingle && activeAyahBtn === btn) {
-            stopAll();
-            return;
-        }
-
+    function playBlock(blockIdx) {
+        if (!isPlayingAll && activeBlockIdx === blockIdx) { stopAll(); return; }
         stopAll();
-        isPlayingSingle = true;
-        activeAyahBtn = btn;
-        btn.classList.add('active');
-        btn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-
-        wrapWords(block);
-        var text = block.textContent.trim().replace(/\s+/g, ' ');
-        var short = text.length > 60 ? text.substring(0, 60) + '...' : text;
-        updatePreview(short);
+        isPlayingAll = false;
+        prepBlock(blockIdx);
         setStatus('Reading...');
+        speakFromWord(blockIdx, 0);
+    }
 
-        var utt = new SpeechSynthesisUtterance(text);
-        utt.lang = 'ar';
-        utt.rate = currentSpeed;
-        var voice = findArabicVoice();
-        if (voice) utt.voice = voice;
+    function stopAll() {
+        ++uttGen;
+        speechSynthesis.cancel();
+        currentUtterance = null;
+        isPlayingAll = false;
+        if (activeBlockIdx >= 0 && blockData[activeBlockIdx]) {
+            removeHighlight(blockData[activeBlockIdx].block);
+        }
+        activeBlockIdx = -1;
+        playBtn.classList.remove('playing');
+        setPlayIcon(playBtn, false);
+        setStatus('Tap to play all');
+        updatePreview('');
+        blocks.forEach(function(block) { unwrapWords(block); });
+        blockData = [];
+        resetAllButtons();
+    }
 
-        utt.onboundary = function(e) {
-            if (e.name === 'word') highlightWord(block, e.charIndex, text);
-        };
-        utt.onend = function() { stopAll(); };
-        utt.onerror = function() { stopAll(); };
-
-        currentUtterance = utt;
-        speechSynthesis.speak(utt);
+    function finish() {
+        ++uttGen;
+        speechSynthesis.cancel();
+        currentUtterance = null;
+        isPlayingAll = false;
+        if (activeBlockIdx >= 0 && blockData[activeBlockIdx]) {
+            removeHighlight(blockData[activeBlockIdx].block);
+        }
+        activeBlockIdx = -1;
+        playBtn.classList.remove('playing');
+        setPlayIcon(playBtn, false);
+        setStatus('Tap to play all');
+        updatePreview('');
+        blocks.forEach(function(block) { unwrapWords(block); });
+        blockData = [];
+        resetAllButtons();
     }
 
     /* ---- Event Listeners ---- */
     playBtn.addEventListener('click', function() {
-        if (isPlayingAll) {
-            stopAll();
-        } else {
-            playAll();
-        }
+        if (isPlayingAll) stopAll(); else playAll();
     });
 
     document.addEventListener('click', function(e) {
-        var btn = e.target.closest('.ayah-play-btn');
+        if (!e.target || !e.target.closest) return;
+        var btn = e.target.closest('.lp-play-btn');
         if (!btn) return;
-        var block = btn.closest('.lesson-block');
-        if (!block) return;
-        var arBlock = block.querySelector('.ar');
-        if (!arBlock) return;
-        playSingleAyah(arBlock, btn);
+        var idx = parseInt(btn.dataset.lpIdx, 10);
+        if (isNaN(idx) || idx < 0 || idx >= blocks.length) return;
+        playBlock(idx);
     });
 
     /* ---- Init ---- */
     blocks = collectBlocks();
-    injectAyahButtons();
+    injectPlayButtons();
     if (blocks.length) {
-        var firstText = blocks[0].textContent.trim().replace(/\s+/g, ' ');
-        var short = firstText.length > 60 ? firstText.substring(0, 60) + '...' : firstText;
-        updatePreview(short);
+        updatePreview(shortText(blocks[0].textContent.trim().replace(/\s+/g, ' ')));
     }
 
     arVoices = null;
@@ -1369,11 +1323,9 @@ document.addEventListener('DOMContentLoaded', function () {
         speechSynthesis.onvoiceschanged = function() {
             arVoices = null;
             getArabicVoices();
-            populateVoiceList();
         };
     }
     speechSynthesis.getVoices();
-    populateVoiceList();
 })();
 
 /* ---- Detect Long Lesson Names (auto-stack) ---- */

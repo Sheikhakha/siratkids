@@ -9,12 +9,13 @@ Usage:
   python scripts/validate_arabic_content.py [--verbose]
 """
 
+import glob as globmod
+import hashlib
 import io
 import json
 import os
 import re
 import sys
-import glob as globmod
 
 BASE = os.path.join(os.path.dirname(__file__), '..')
 CACHE_FILE = os.path.join(BASE, 'js', 'quran-content-cache.json')
@@ -36,6 +37,71 @@ POPUP_FILES = [
     os.path.join(BASE, 'lessons', 'tawheed-2-1.html'),
     os.path.join(BASE, 'lessons', 'tawheed-3-1.html'),
 ]
+
+# Golden snapshot manifest (SHA-256 of every hub/lesson file)
+SNAPSHOT_FILE = os.path.join(BASE, 'scripts', 'lesson_snapshots.json')
+
+# Root hub pages
+HUB_FILES = ['hadith.html', 'adhkar.html', 'seerah.html', 'manners.html']
+# Tawheed unit landing pages
+UNIT_FILES = [
+    os.path.join('lessons', 'tawheed', 'unit1.html'),
+    os.path.join('lessons', 'tawheed', 'unit2.html'),
+    os.path.join('lessons', 'tawheed', 'unit3.html'),
+]
+
+# Toggle bar button values expected in every lesson
+EXPECTED_TOGGLES = ['translation', 'tamil', 'transliteration']
+
+# Arabic char range for presence/encoding checks
+ARABIC_RE = re.compile(r'[\u0600-\u06FF]')
+
+
+def lesson_files():
+    """All lesson files (content pages, excludes unit landing pages)."""
+    files = []
+    for p in globmod.glob(os.path.join(BASE, 'lessons', '**', '*.html'), recursive=True):
+        rel = os.path.relpath(p, BASE)
+        if os.path.basename(rel).startswith('unit'):
+            continue
+        files.append(rel)
+    return sorted(files)
+
+
+def snapshot_files():
+    """Every file guarded by the golden manifest (index + hubs + lessons)."""
+    return ['index.html'] + HUB_FILES + UNIT_FILES + lesson_files()
+
+
+def file_sha256(filepath):
+    h = hashlib.sha256()
+    with open(filepath, 'rb') as f:
+        for chunk in iter(lambda: f.read(65536), b''):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def write_snapshot():
+    manifest = {}
+    for rel in snapshot_files():
+        path = os.path.join(BASE, rel)
+        if os.path.exists(path):
+            manifest[rel] = file_sha256(path)
+    with open(SNAPSHOT_FILE, 'w', encoding='utf-8') as f:
+        json.dump(manifest, f, indent=2, sort_keys=True)
+    print(f"Snapshot written: {len(manifest)} files -> {os.path.relpath(SNAPSHOT_FILE, BASE)}")
+
+
+def resolve_href(rel_file, href):
+    """Resolve an href relative to the file that contains it, against BASE."""
+    if href.startswith(('#', 'http', 'mailto', 'tel:', 'javascript:', 'data:')):
+        return None
+    href = href.split('#')[0].split('?')[0]
+    if not href:
+        return None
+    base_dir = os.path.dirname(os.path.join(BASE, rel_file))
+    target = os.path.normpath(os.path.join(base_dir, href))
+    return os.path.relpath(target, BASE)
 
 
 def load_json(filepath):
@@ -400,8 +466,163 @@ def check_unit_vocab_sections(verbose):
     return errors
 
 
+def check_golden_files(verbose):
+    """Golden snapshot check: every hub/lesson file must match its manifest hash."""
+    errors = []
+    if not os.path.exists(SNAPSHOT_FILE):
+        errors.append(f"Snapshot manifest missing: {os.path.relpath(SNAPSHOT_FILE, BASE)} (run --snapshot)")
+        return errors
+
+    manifest = load_json(SNAPSHOT_FILE)
+    for rel, expected_hash in manifest.items():
+        path = os.path.join(BASE, rel)
+        if not os.path.exists(path):
+            errors.append(f"{rel}: file missing (was in snapshot)")
+            continue
+        actual = file_sha256(path)
+        if actual != expected_hash:
+            errors.append(f"{rel}: content CHANGED vs snapshot (re-run --snapshot if intended)")
+        elif verbose:
+            print(f"  [OK] {rel}: unchanged")
+
+    for rel in snapshot_files():
+        if rel not in manifest:
+            path = os.path.join(BASE, rel)
+            if os.path.exists(path):
+                errors.append(f"{rel}: new file not in snapshot (re-run --snapshot)")
+    return errors
+
+
+def check_lesson_arabic(verbose):
+    """Every lesson file must contain Arabic text in .ar[dir="rtl"] blocks."""
+    errors = []
+    for rel in lesson_files():
+        path = os.path.join(BASE, rel)
+        content = read_file(path)
+        if not ARABIC_RE.search(content):
+            errors.append(f"{rel}: no Arabic characters found")
+        if 'class="ar"' not in content:
+            errors.append(f"{rel}: missing .ar element")
+        if 'dir="rtl"' not in content:
+            errors.append(f"{rel}: missing dir=\"rtl\" on Arabic text")
+        if 'lesson-block' not in content:
+            errors.append(f"{rel}: missing lesson-block element")
+        elif verbose:
+            print(f"  [OK] {rel}: Arabic content present")
+    return errors
+
+
+def check_nav_chains(verbose):
+    """Verify prev/next links, sidebar links, lesson-item links, and breadcrumbs."""
+    errors = []
+    hub_set = set(HUB_FILES + UNIT_FILES)
+
+    for rel in snapshot_files():
+        path = os.path.join(BASE, rel)
+        content = read_file(path)
+        is_hub = rel in hub_set
+
+        if rel == 'index.html':
+            for m in re.finditer(r'class="track-card[^"]*"[^>]*href="([^"]+)"', content):
+                target = resolve_href(rel, m.group(1))
+                if target and not os.path.exists(os.path.join(BASE, target)):
+                    errors.append(f"{rel}: track-card link -> {m.group(1)} (missing)")
+            continue
+
+        # Sidebar lesson links (all non-index pages)
+        for m in re.finditer(r'class="sidebar-lesson[^"]*"[^>]*href="([^"]+)"', content):
+            target = resolve_href(rel, m.group(1))
+            if target and not os.path.exists(os.path.join(BASE, target)):
+                errors.append(f"{rel}: sidebar-lesson link -> {m.group(1)} (missing)")
+
+        if is_hub:
+            # Hub lesson-item cards
+            for m in re.finditer(r'class="lesson-item[^"]*"[^>]*href="([^"]+)"', content):
+                target = resolve_href(rel, m.group(1))
+                if target and not os.path.exists(os.path.join(BASE, target)):
+                    errors.append(f"{rel}: lesson-item link -> {m.group(1)} (missing)")
+        else:
+            # Lesson prev/next chain
+            for m in re.finditer(
+                r'class="(lesson-nav-prev|lesson-nav-next)[^"]*"[^>]*href="([^"]+)"', content
+            ):
+                target = resolve_href(rel, m.group(2))
+                if target and not os.path.exists(os.path.join(BASE, target)):
+                    errors.append(f"{rel}: {m.group(1)} link -> {m.group(2)} (missing)")
+
+        # Breadcrumb on every non-index page
+        if 'aria-label="Breadcrumb"' not in content:
+            errors.append(f"{rel}: missing breadcrumb nav")
+        if 'aria-current="page"' not in content:
+            errors.append(f"{rel}: missing aria-current=\"page\" in breadcrumb")
+
+        if verbose:
+            print(f"  [OK] {rel}: nav chain present")
+    return errors
+
+
+def check_audio_widget(verbose):
+    """Every hub/lesson page must have an audio player inside lesson-aside."""
+    errors = []
+    for rel in HUB_FILES + UNIT_FILES + lesson_files():
+        path = os.path.join(BASE, rel)
+        content = read_file(path)
+
+        aside_match = re.search(
+            r'<aside[^>]*class="lesson-aside[^"]*"[^>]*>(.*?)</aside>', content, re.DOTALL
+        )
+        if not aside_match:
+            errors.append(f"{rel}: missing lesson-aside")
+            continue
+        aside = aside_match.group(1)
+        for token in ('audio-player', 'audio-play-btn', 'audio-status', 'audio-text-preview', 'audio-speed-select'):
+            if token not in aside:
+                errors.append(f"{rel}: lesson-aside missing {token}")
+        if verbose:
+            print(f"  [OK] {rel}: audio widget complete")
+    return errors
+
+
+def check_toggle_bar(verbose):
+    """Every lesson must have translation/tamil/transliteration toggle buttons."""
+    errors = []
+    for rel in lesson_files():
+        path = os.path.join(BASE, rel)
+        content = read_file(path)
+        toggles = re.findall(r'data-toggle="([^"]+)"', content)
+        if sorted(EXPECTED_TOGGLES) != sorted(toggles):
+            errors.append(f"{rel}: translation-toggle mismatch: {toggles}")
+        elif verbose:
+            print(f"  [OK] {rel}: toggles = {sorted(toggles)}")
+    return errors
+
+
+def check_encoding(verbose):
+    """Warn about entity-encoded Arabic text that should be normalized to raw UTF-8."""
+    warnings = []
+    for rel in snapshot_files():
+        path = os.path.join(BASE, rel)
+        content = read_file(path)
+        entities = re.findall(r'&#x([0-9A-Fa-f]{2,6});', content)
+        arabic_entities = []
+        for hexval in entities:
+            cp = int(hexval, 16)
+            if 0x0600 <= cp <= 0x06FF or 0xFB50 <= cp <= 0xFDFF or 0xFE70 <= cp <= 0xFEFF:
+                arabic_entities.append(hexval)
+        if arabic_entities:
+            warnings.append(f"{rel}: {len(arabic_entities)} entity-encoded Arabic chars (&#x{arabic_entities[0]}; ...) - normalize to raw UTF-8")
+        elif verbose:
+            print(f"  [OK] {rel}: no encoded Arabic entities")
+    return warnings
+
+
 def main():
     verbose = '--verbose' in sys.argv
+    snapshot = '--snapshot' in sys.argv
+
+    if snapshot:
+        write_snapshot()
+        sys.exit(0)
 
     print("=" * 60)
     print("Arabic Content Validation")
@@ -448,6 +669,30 @@ def main():
     # Check QUL mutashabihat / similar-ayah data bundles
     print("\n--- QUL Data Bundles ---")
     all_errors.extend(check_mutashabihat_bundles(verbose))
+
+    # Golden snapshot: every hub/lesson file unchanged
+    print("\n--- Golden Snapshot Files ---")
+    all_errors.extend(check_golden_files(verbose))
+
+    # Lesson Arabic content presence
+    print("\n--- Lesson Arabic Content ---")
+    all_errors.extend(check_lesson_arabic(verbose))
+
+    # Navigation chains
+    print("\n--- Navigation Chains ---")
+    all_errors.extend(check_nav_chains(verbose))
+
+    # Audio widgets
+    print("\n--- Audio Widgets ---")
+    all_errors.extend(check_audio_widget(verbose))
+
+    # Translation toggle bars
+    print("\n--- Translation Toggle Bars ---")
+    all_errors.extend(check_toggle_bar(verbose))
+
+    # Encoding check (warnings only)
+    print("\n--- Encoding ---")
+    all_warnings.extend(check_encoding(verbose))
 
     # Summary
     print("\n" + "=" * 60)
