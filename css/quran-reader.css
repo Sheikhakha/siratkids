@@ -1801,26 +1801,6 @@ body.qr-sidebar-hidden .qr-main { margin-left: 0; }
     font-weight: 600;
 }
 
-/* WBW language selector */
-.qr-wbw-lang-select {
-    padding: 4px 6px;
-    border: 2px solid var(--qr-border);
-    border-radius: 6px;
-    font-size: 0.7rem;
-    font-family: var(--qr-font-en);
-    font-weight: 600;
-    background: var(--qr-surface);
-    color: var(--qr-text);
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.2s;
-    display: none;
-}
-.qr-wbw-lang-select.show { display: inline-block; }
-.qr-wbw-lang-select:focus { border-color: var(--qr-primary); }
-.qr-wbw-lang-select:hover { border-color: var(--qr-primary); }
-.qr-wbw-lang-select option { font-weight: 600; }
-
 /* Responsive */
 @media (max-width: 1024px) {
     .qr-verse-arabic { font-size: calc(1.3rem * var(--qr-ar-scale)); }

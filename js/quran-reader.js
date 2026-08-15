@@ -230,7 +230,6 @@
         wbwGroup: document.getElementById('qr-wbw-group'),
         wbwToggle: document.getElementById('qr-wbw-toggle'),
         wbwToggleLabel: document.getElementById('qr-wbw-toggle-label'),
-        wbwLangSelect: document.getElementById('qr-wbw-lang'),
 
         fixedPlayBar: document.getElementById('qr-fixed-play-bar'),
         playbarSurah: document.getElementById('qr-playbar-surah'),
@@ -356,12 +355,6 @@
         var savedWbw = localStorage.getItem('quran-wbw');
         if (savedWbw === 'true') {
             els.wbwToggle.checked = true;
-            if (els.wbwLangSelect) els.wbwLangSelect.classList.add('show');
-        }
-
-        if (els.wbwLangSelect) {
-            var savedWbwLang = localStorage.getItem('quran-wbw-lang') || 'auto';
-            els.wbwLangSelect.value = savedWbwLang;
         }
 
         if (els.tafsirModalLang) {
@@ -614,16 +607,6 @@
             }
         });
 
-        if (els.wbwLangSelect) {
-            els.wbwLangSelect.addEventListener('change', function () {
-                localStorage.setItem('quran-wbw-lang', this.value);
-                if (currentSurah && els.wbwToggle && els.wbwToggle.checked) {
-                    var ch = chapters[currentSurah - 1];
-                    if (ch) renderVerses(ch);
-                }
-            });
-        }
-
         els.prevBtn.addEventListener('click', function () {
             if (currentSurah > 1) loadSurah(currentSurah - 1);
         });
@@ -734,9 +717,6 @@
     function setupWbwToggle() {
         els.wbwToggle.addEventListener('change', function () {
             localStorage.setItem('quran-wbw', this.checked ? 'true' : 'false');
-            if (els.wbwLangSelect) {
-                els.wbwLangSelect.classList.toggle('show', this.checked);
-            }
             if (this.checked) {
                 loadWbwData(function () {
                     if (currentSurah) {
@@ -1252,8 +1232,6 @@
     }
 
     function getWbwLang() {
-        var saved = localStorage.getItem('quran-wbw-lang') || 'auto';
-        if (saved !== 'auto') return saved;
         var registry = window.__QURAN_TRANSLATIONS || {};
         var entry = registry[currentTranslation];
         return entry && entry.lang === 'ta' ? 'ta' : 'en';
