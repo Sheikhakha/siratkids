@@ -76,17 +76,17 @@ WORD_BASENAME = "indopak-nastaleeq-word"
 LAYOUTS = {
     17: {
         "name": "Indopak (Hanafi compressed)",
-        "short": "Indopak 13 lines",
+        "short": "13 lines",
         "font_family": "indopak-nastaleeq-hanafi-compressed",
     },
     18: {
         "name": "Indopak (Madinah normal)",
-        "short": "Indopak 17 lines",
+        "short": "17 lines",
         "font_family": "indopak-nastaleeq-madinah-normal",
     },
     7: {
         "name": "Indopak Nastaleeq",
-        "short": "Indopak 16 lines",
+        "short": "16 lines",
         "font_family": "indopak-nastaleeq",
     },
 }
@@ -513,9 +513,9 @@ def write_css():
     lines.append(".qr-mushaf-page .qr-mushaf-num { color: #00f; }")
     lines.append(".qr-mushaf-page .qr-mushaf-pause { color: #2cc990; }")
     lines.append("")
-    lines.append("/* legend swatches (same palette as the word colors) */")
+    lines.append("/* tajweed swatches (same palette as the word colors) */")
     for rule in sorted(RULE_COLORS.keys()):
-        lines.append(".qr-mushaf-legend-swatch.%s { background-color: %s; }" % (rule, RULE_COLORS[rule]))
+        lines.append(".qr-tajweed-swatch.%s { background-color: %s; }" % (rule, RULE_COLORS[rule]))
     lines.append("")
     lines.append("/* dark theme relaxations for the darkest rule colors */")
     lines.append('[data-theme="dark"] .qr-mushaf-page .qr-mushaf-end,')
@@ -523,7 +523,7 @@ def write_css():
     for rule in sorted(DARK_OVERRIDES.keys()):
         lines.append('[data-theme="dark"] .qr-mushaf-page .%s { color: %s; }'
                      % (rule, DARK_OVERRIDES[rule]))
-        lines.append('[data-theme="dark"] .qr-mushaf-legend-swatch.%s { background-color: %s; }'
+        lines.append('[data-theme="dark"] .qr-tajweed-swatch.%s { background-color: %s; }'
                      % (rule, DARK_OVERRIDES[rule]))
     lines.append("")
     with open(CSS_PATH, "w", encoding="utf-8") as fh:

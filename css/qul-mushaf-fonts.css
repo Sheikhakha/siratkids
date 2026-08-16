@@ -59,48 +59,48 @@
 .qr-mushaf-page .qr-mushaf-num { color: #00f; }
 .qr-mushaf-page .qr-mushaf-pause { color: #2cc990; }
 
-/* legend swatches (same palette as the word colors) */
-.qr-mushaf-legend-swatch.ghunnah { background-color: #ff7e1e; }
-.qr-mushaf-legend-swatch.ham_wasl { background-color: #aaa; }
-.qr-mushaf-legend-swatch.idgham_ghunnah { background-color: #169200; }
-.qr-mushaf-legend-swatch.idgham_mutajanisayn { background-color: #a1a1a1; }
-.qr-mushaf-legend-swatch.idgham_mutaqaribayn { background-color: #a1a1a1; }
-.qr-mushaf-legend-swatch.idgham_shafawi { background-color: #58b800; }
-.qr-mushaf-legend-swatch.idgham_wo_ghunnah { background-color: #169200; }
-.qr-mushaf-legend-swatch.ikhafa { background-color: #9400a8; }
-.qr-mushaf-legend-swatch.ikhafa_shafawi { background-color: #d500b7; }
-.qr-mushaf-legend-swatch.iqlab { background-color: #26bffd; }
-.qr-mushaf-legend-swatch.izhar { background-color: #006400; }
-.qr-mushaf-legend-swatch.izhar_shafawi { background-color: #00f; }
-.qr-mushaf-legend-swatch.laam_shamsiyah { background-color: #aaa; }
-.qr-mushaf-legend-swatch.madda_necessary { background-color: #a9045c; }
-.qr-mushaf-legend-swatch.madda_normal { background-color: #537fff; }
-.qr-mushaf-legend-swatch.madda_obligatory { background-color: #f2007f; }
-.qr-mushaf-legend-swatch.madda_obligatory_monfasel { background-color: #f2007f; }
-.qr-mushaf-legend-swatch.madda_obligatory_mottasel { background-color: #f2007f; }
-.qr-mushaf-legend-swatch.madda_permissible { background-color: #f38e02; }
-.qr-mushaf-legend-swatch.qalaqah { background-color: #009ee6; }
-.qr-mushaf-legend-swatch.slnt { background-color: #aaa; }
-.qr-mushaf-legend-swatch.tafkheem { background-color: #006994; }
+/* tajweed swatches (same palette as the word colors) */
+.qr-tajweed-swatch.ghunnah { background-color: #ff7e1e; }
+.qr-tajweed-swatch.ham_wasl { background-color: #aaa; }
+.qr-tajweed-swatch.idgham_ghunnah { background-color: #169200; }
+.qr-tajweed-swatch.idgham_mutajanisayn { background-color: #a1a1a1; }
+.qr-tajweed-swatch.idgham_mutaqaribayn { background-color: #a1a1a1; }
+.qr-tajweed-swatch.idgham_shafawi { background-color: #58b800; }
+.qr-tajweed-swatch.idgham_wo_ghunnah { background-color: #169200; }
+.qr-tajweed-swatch.ikhafa { background-color: #9400a8; }
+.qr-tajweed-swatch.ikhafa_shafawi { background-color: #d500b7; }
+.qr-tajweed-swatch.iqlab { background-color: #26bffd; }
+.qr-tajweed-swatch.izhar { background-color: #006400; }
+.qr-tajweed-swatch.izhar_shafawi { background-color: #00f; }
+.qr-tajweed-swatch.laam_shamsiyah { background-color: #aaa; }
+.qr-tajweed-swatch.madda_necessary { background-color: #a9045c; }
+.qr-tajweed-swatch.madda_normal { background-color: #537fff; }
+.qr-tajweed-swatch.madda_obligatory { background-color: #f2007f; }
+.qr-tajweed-swatch.madda_obligatory_monfasel { background-color: #f2007f; }
+.qr-tajweed-swatch.madda_obligatory_mottasel { background-color: #f2007f; }
+.qr-tajweed-swatch.madda_permissible { background-color: #f38e02; }
+.qr-tajweed-swatch.qalaqah { background-color: #009ee6; }
+.qr-tajweed-swatch.slnt { background-color: #aaa; }
+.qr-tajweed-swatch.tafkheem { background-color: #006994; }
 
 /* dark theme relaxations for the darkest rule colors */
 [data-theme="dark"] .qr-mushaf-page .qr-mushaf-end,
 [data-theme="dark"] .qr-mushaf-page .qr-mushaf-num { color: #60a5fa; }
 [data-theme="dark"] .qr-mushaf-page .idgham_ghunnah { color: #4ade80; }
-[data-theme="dark"] .qr-mushaf-legend-swatch.idgham_ghunnah { background-color: #4ade80; }
+[data-theme="dark"] .qr-tajweed-swatch.idgham_ghunnah { background-color: #4ade80; }
 [data-theme="dark"] .qr-mushaf-page .idgham_shafawi { color: #86efac; }
-[data-theme="dark"] .qr-mushaf-legend-swatch.idgham_shafawi { background-color: #86efac; }
+[data-theme="dark"] .qr-tajweed-swatch.idgham_shafawi { background-color: #86efac; }
 [data-theme="dark"] .qr-mushaf-page .idgham_wo_ghunnah { color: #4ade80; }
-[data-theme="dark"] .qr-mushaf-legend-swatch.idgham_wo_ghunnah { background-color: #4ade80; }
+[data-theme="dark"] .qr-tajweed-swatch.idgham_wo_ghunnah { background-color: #4ade80; }
 [data-theme="dark"] .qr-mushaf-page .iqlab { color: #38bdf8; }
-[data-theme="dark"] .qr-mushaf-legend-swatch.iqlab { background-color: #38bdf8; }
+[data-theme="dark"] .qr-tajweed-swatch.iqlab { background-color: #38bdf8; }
 [data-theme="dark"] .qr-mushaf-page .izhar { color: #22c55e; }
-[data-theme="dark"] .qr-mushaf-legend-swatch.izhar { background-color: #22c55e; }
+[data-theme="dark"] .qr-tajweed-swatch.izhar { background-color: #22c55e; }
 [data-theme="dark"] .qr-mushaf-page .izhar_shafawi { color: #60a5fa; }
-[data-theme="dark"] .qr-mushaf-legend-swatch.izhar_shafawi { background-color: #60a5fa; }
+[data-theme="dark"] .qr-tajweed-swatch.izhar_shafawi { background-color: #60a5fa; }
 [data-theme="dark"] .qr-mushaf-page .madda_normal { color: #818cf8; }
-[data-theme="dark"] .qr-mushaf-legend-swatch.madda_normal { background-color: #818cf8; }
+[data-theme="dark"] .qr-tajweed-swatch.madda_normal { background-color: #818cf8; }
 [data-theme="dark"] .qr-mushaf-page .qalaqah { color: #38bdf8; }
-[data-theme="dark"] .qr-mushaf-legend-swatch.qalaqah { background-color: #38bdf8; }
+[data-theme="dark"] .qr-tajweed-swatch.qalaqah { background-color: #38bdf8; }
 [data-theme="dark"] .qr-mushaf-page .tafkheem { color: #22d3ee; }
-[data-theme="dark"] .qr-mushaf-legend-swatch.tafkheem { background-color: #22d3ee; }
+[data-theme="dark"] .qr-tajweed-swatch.tafkheem { background-color: #22d3ee; }

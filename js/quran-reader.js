@@ -32,9 +32,10 @@
     var mushafTajweed = true;
     var mushafAnchor = null; // current position (S:V): the verse to keep when switching layout
     var _prevSidebarHidden = false;
+    var mushafPaletteOpen = false;
 
-    // Tajweed rule legend labels (Arabic + romanized English). Shown under the
-    // mushaf page when tajweed coloring is enabled - mirrors QUL's legend.
+    // Tajweed rule labels (Arabic + romanized English) for the rule palette
+    // that slides in from the left in Mushaf view - mirrors QUL's legend.
     var RULE_LABELS = {
         ghunnah: ['\u063a\u064f\u0646\u064e\u0651\u0629', 'Ghunnah'],
         ham_wasl: ['\u0647\u064e\u0645\u0652\u0632\u064e\u0629 \u0627\u0644\u0648\u064e\u0635\u0652\u0644', 'Hamzat Wasl'],
@@ -57,6 +58,60 @@
         qalaqah: ['\u0642\u0644\u0642\u0644\u0629', 'Qalqalah'],
         tafkheem: ['\u062a\u0641\u062e\u064a\u0645', 'Tafkheem']
     };
+
+    // Juz/hizb boundary starts (Madani Hafs numbering, from quran.com API v4
+    // /verses/by_juz|by_hizb). Used for the mushaf page header/footer markers.
+    var JUZ_STARTS = [null, '1:1', '2:142', '2:253', '3:93', '4:24', '4:148', '5:82', '6:111',
+        '7:88', '8:41', '9:93', '11:6', '12:53', '15:1', '17:1', '18:75', '21:1', '23:1',
+        '25:21', '27:56', '29:46', '33:31', '36:28', '39:32', '41:47', '46:1', '51:31',
+        '58:1', '67:1', '78:1'];
+    var HIZB_STARTS = [null, '1:1', '2:75', '2:142', '2:203', '2:253', '3:15', '3:93', '3:171',
+        '4:24', '4:88', '4:148', '5:27', '5:82', '6:36', '6:111', '7:1', '7:88', '7:171',
+        '8:41', '9:34', '9:93', '10:26', '11:6', '11:84', '12:53', '13:19', '15:1', '16:51',
+        '17:1', '17:99', '18:75', '20:1', '21:1', '22:1', '23:1', '24:21', '25:21', '26:111',
+        '27:56', '28:51', '29:46', '31:22', '33:31', '34:24', '36:28', '37:145', '39:32',
+        '40:41', '41:47', '43:24', '46:1', '48:18', '51:31', '55:1', '58:1', '62:1', '67:1',
+        '72:1', '78:1', '87:1'];
+    // Arabic juz ordinals for the "الجُزْءُ …" header banner.
+    var JUZ_AR = ['\u0627\u0644\u0623\u0648\u0644', '\u0627\u0644\u062b\u0627\u0646\u064a', '\u0627\u0644\u062b\u0627\u0644\u062b',
+        '\u0627\u0644\u0631\u0627\u0628\u0639', '\u0627\u0644\u062e\u0627\u0645\u0633', '\u0627\u0644\u0633\u0627\u062f\u0633',
+        '\u0627\u0644\u0633\u0627\u0628\u0639', '\u0627\u0644\u062b\u0627\u0645\u0646', '\u0627\u0644\u062a\u0627\u0633\u0639',
+        '\u0627\u0644\u0639\u0627\u0634\u0631', '\u0627\u0644\u062d\u0627\u062f\u064a \u0639\u0634\u0631',
+        '\u0627\u0644\u062b\u0627\u0646\u064a \u0639\u0634\u0631', '\u0627\u0644\u062b\u0627\u0644\u062b \u0639\u0634\u0631',
+        '\u0627\u0644\u0631\u0627\u0628\u0639 \u0639\u0634\u0631', '\u0627\u0644\u062e\u0627\u0645\u0633 \u0639\u0634\u0631',
+        '\u0627\u0644\u0633\u0627\u062f\u0633 \u0639\u0634\u0631', '\u0627\u0644\u0633\u0627\u0628\u0639 \u0639\u0634\u0631',
+        '\u0627\u0644\u062b\u0627\u0645\u0646 \u0639\u0634\u0631', '\u0627\u0644\u062a\u0627\u0633\u0639 \u0639\u0634\u0631',
+        '\u0627\u0644\u0639\u0634\u0631\u0648\u0646', '\u0627\u0644\u062d\u0627\u062f\u064a \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646',
+        '\u0627\u0644\u062b\u0627\u0646\u064a \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646',
+        '\u0627\u0644\u062b\u0627\u0644\u062b \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646',
+        '\u0627\u0644\u0631\u0627\u0628\u0639 \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646',
+        '\u0627\u0644\u062e\u0627\u0645\u0633 \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646',
+        '\u0627\u0644\u0633\u0627\u062f\u0633 \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646',
+        '\u0627\u0644\u0633\u0627\u0628\u0639 \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646',
+        '\u0627\u0644\u062b\u0627\u0645\u0646 \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646',
+        '\u0627\u0644\u062a\u0627\u0633\u0639 \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646',
+        '\u0627\u0644\u062b\u0644\u0627\u062b\u0648\u0646'];
+
+    // Verses carrying a prostration (sajdah) mark - the mushaf shows the
+    // ۩ symbol at the end of each of these verses (15 in the Madani mushaf).
+    var SAJDAH_VERSES = {};
+    ['7:206', '13:15', '16:49', '17:107', '19:58', '22:18', '22:77', '25:60',
+     '27:25', '32:15', '38:24', '41:37', '53:62', '84:21', '96:19'].forEach(function (k) {
+        SAJDAH_VERSES[k] = true;
+    });
+
+    // Largest boundary index whose start key is <= the given ayah key.
+    function boundaryIndex(map, key) {
+        var kp = key.split(':');
+        var n = parseInt(kp[0], 10) * 10000 + parseInt(kp[1], 10);
+        var best = 1;
+        for (var i = 1; i < map.length; i++) {
+            var bp = map[i].split(':');
+            if (parseInt(bp[0], 10) * 10000 + parseInt(bp[1], 10) <= n) best = i;
+            else break;
+        }
+        return best;
+    }
 
     var QUL_BUNDLES = {
         'surah-info-en': 'js/quran_source/surah-info-en.js',
@@ -343,10 +398,17 @@
         mushafGroup: document.getElementById('qr-mushaf-group'),
         mushafLayoutSelect: document.getElementById('qr-mushaf-layout'),
         mushafPageLabel: document.getElementById('qr-mushaf-page-label'),
-        mushafPagePrev: document.getElementById('qr-mushaf-page-prev'),
-        mushafPageNext: document.getElementById('qr-mushaf-page-next'),
+        mushafTurnPrev: document.getElementById('qr-mushaf-turn-prev'),
+        mushafTurnNext: document.getElementById('qr-mushaf-turn-next'),
+        mushafTurnPrevLabel: document.getElementById('qr-mushaf-turn-prev-label'),
+        mushafTurnNextLabel: document.getElementById('qr-mushaf-turn-next-label'),
+        mushafGoto: document.getElementById('qr-mushaf-goto'),
+        mushafGotoBtn: document.getElementById('qr-mushaf-goto-btn'),
         mushafTajweed: document.getElementById('qr-mushaf-tajweed'),
-        mushafLegend: document.getElementById('qr-mushaf-legend'),
+        mushafPaletteBtn: document.getElementById('qr-mushaf-palette-btn'),
+        mushafPalette: document.getElementById('qr-mushaf-palette'),
+        mushafPaletteClose: document.getElementById('qr-mushaf-palette-close'),
+        mushafPaletteItems: document.getElementById('qr-mushaf-palette-items'),
     };
 
     if (!els.loading || !els.content) return;
@@ -1958,11 +2020,19 @@
         if (openBtn) {
             openBtn.addEventListener('click', toggleMushaf);
         }
-        if (els.mushafPagePrev) {
-            els.mushafPagePrev.addEventListener('click', function () { mushafPageStep(-1); });
+        if (els.mushafTurnPrev) {
+            els.mushafTurnPrev.addEventListener('click', function () { mushafPageStep(-1); });
         }
-        if (els.mushafPageNext) {
-            els.mushafPageNext.addEventListener('click', function () { mushafPageStep(1); });
+        if (els.mushafTurnNext) {
+            els.mushafTurnNext.addEventListener('click', function () { mushafPageStep(1); });
+        }
+        if (els.mushafGoto) {
+            els.mushafGoto.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') gotoMushafPage();
+            });
+        }
+        if (els.mushafGotoBtn) {
+            els.mushafGotoBtn.addEventListener('click', gotoMushafPage);
         }
         if (els.mushafLayoutSelect) {
             els.mushafLayoutSelect.addEventListener('change', function () {
@@ -1974,9 +2044,29 @@
                 mushafTajweed = this.checked;
                 try { localStorage.setItem('mushaf-tajweed', mushafTajweed ? 'true' : 'false'); } catch (e) {}
                 if (mushafPage && mushafMode) renderMushafPage(mushafPage);
-                updateMushafLegend();
+                updateMushafPalette();
             });
         }
+        if (els.mushafPaletteBtn) {
+            els.mushafPaletteBtn.addEventListener('click', openMushafPalette);
+        }
+        if (els.mushafPaletteClose) {
+            els.mushafPaletteClose.addEventListener('click', closeMushafPalette);
+        }
+        // No full-viewport backdrop: it sits above the .qr-main scroll
+        // container and swallows wheel events, freezing the mushaf page.
+        // Close on outside click + Escape instead, so the page keeps scrolling.
+        document.addEventListener('click', function (e) {
+            if (!mushafPaletteOpen) return;
+            var pal = els.mushafPalette;
+            var btn = els.mushafPaletteBtn;
+            if (pal && !pal.contains(e.target) && btn && !btn.contains(e.target)) {
+                closeMushafPalette();
+            }
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && mushafPaletteOpen) closeMushafPalette();
+        });
         if (els.mushafContainer) {
             els.mushafContainer.addEventListener('click', function (e) {
                 var word = e.target && e.target.closest ? e.target.closest('.qr-mushaf-word') : null;
@@ -2040,8 +2130,8 @@
         loadMushafBundles(function () {
             if (!mushafMode) return;
             populateMushafLayoutSelect();
-            buildMushafLegend();
-            updateMushafLegend();
+            buildMushafPalette();
+            updateMushafPalette();
             if (currentSurah) {
                 jumpToAyah(currentSurah, lastPlayedVerse || 1);
             }
@@ -2056,7 +2146,8 @@
         document.body.classList.remove('qr-mushaf-mode');
         if (els.navBottom) els.navBottom.classList.remove('qr-mushaf-hidden');
         document.querySelectorAll('[data-qr-mushaf-hide]').forEach(function (el) { el.hidden = false; });
-        if (els.mushafLegend) els.mushafLegend.hidden = true;
+        closeMushafPalette();
+        if (els.mushafPaletteBtn) els.mushafPaletteBtn.hidden = true;
     }
 
     // Ensure the mushaf data (word text, meta, current layout, tajweed rules)
@@ -2131,6 +2222,12 @@
         return p.join(':');
     }
 
+    // Arabic-Indic digits for the page-number cartouche (٠١٢٣٤٥٦٧٨٩).
+    function toArabicDigits(s) {
+        var map = '\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669';
+        return String(s).replace(/[0-9]/g, function (d) { return map[parseInt(d, 10)]; });
+    }
+
     function renderMushafPage(page) {
         var layout = getQulBundle('mushaf-layout-' + mushafLayout);
         if (!layout || !page || page < 1 || page > layout.page_count) return;
@@ -2148,6 +2245,24 @@
 
         var html = '';
         html += '<div class="qr-mushaf-page qr-mushaf-layout-' + mushafLayout + '">';
+        // Page background is plain white (manuscript frame design pending).
+        // Manuscript head band: surah banner (left) + arch (center) + juz
+        // banner (right), like a classical mushaf page header.
+        var anchorKey = firstAyah || (currentSurah + ':1');
+        var juzN = boundaryIndex(JUZ_STARTS, anchorKey);
+        var hizbN = boundaryIndex(HIZB_STARTS, anchorKey);
+        var chInfo = chapters[currentSurah - 1];
+        html += '<div class="qr-mushaf-head">' +
+            '<div class="qr-mushaf-head-banner qr-mushaf-head-surah" dir="rtl">' +
+            '<span class="qr-mushaf-head-label">' + '\u0633\u064f\u0648\u0631\u064e\u0629\u064f' + '</span>' +
+            (chInfo && chInfo.ar ? '<span class="qr-mushaf-head-name">' + chInfo.ar + '</span>' : '') +
+            '</div>' +
+            '<div class="qr-mushaf-head-dome"></div>' +
+            '<div class="qr-mushaf-head-banner qr-mushaf-head-juz" dir="rtl">' +
+            '\u0627\u0644\u062c\u064f\u0632\u0652\u0621\u064f ' + (JUZ_AR[juzN - 1] || '') +
+            '</div>' +
+            '</div>';
+        html += '<div class="qr-mushaf-body">';
         for (var li = 0; li < pageData.lines.length; li++) {
             var line = pageData.lines[li];
             if (line.t === 's') {
@@ -2157,6 +2272,7 @@
                 html += '<div class="qr-mushaf-line qr-mushaf-bismillah-line">&#xFDFD;</div>';
             } else {
                 html += '<div class="qr-mushaf-line">';
+                var prevV = null; // S:V of the previous word (for sajdah marks)
                 for (var si = 0; si < line.w.length; si++) {
                     var seg = line.w[si];
                     var loc = seg[0];
@@ -2164,15 +2280,32 @@
                         var key = expandLoc(loc, k);
                         var unit = words && words[key];
                         if (!unit) continue;
+                        var curV = key.substring(0, key.lastIndexOf(':'));
+                        // The previous verse ends here: append its sajdah mark.
+                        if (prevV && prevV !== curV && SAJDAH_VERSES[prevV]) {
+                            html += '<span class="qr-mushaf-sajdah" title="Sajdah">&#1769;</span>';
+                        }
+                        prevV = curV;
                         var cls = 'qr-mushaf-word char-' + (unit.char_type || 'word');
                         var ruleCls = (mushafTajweed && rules && rules[key]) ? ' ' + rules[key].join(' ') : '';
                         html += '<span class="' + cls + ruleCls + '" data-loc="' + key +
                             '" data-wi="' + (unit.word || 0) + '">' + escapeHtml(unit.text) + '</span>';
                     }
                 }
+                // End of line: close the last verse (sajdah mark if needed).
+                if (prevV && SAJDAH_VERSES[prevV]) {
+                    html += '<span class="qr-mushaf-sajdah" title="Sajdah">&#1769;</span>';
+                }
                 html += '</div>';
             }
         }
+        html += '</div>';
+        // Foot band: page-number badge (center) + hizb tag on the right edge.
+        html += '<div class="qr-mushaf-foot"><span class="qr-mushaf-page-badge" dir="rtl">' + toArabicDigits(page) + '</span></div>';
+        html += '<div class="qr-mushaf-hizb-tag">' +
+            '<span class="qr-mushaf-hizb-label">\u0627\u0644\u062d\u0650\u0632\u0652\u0628\u064f</span>' +
+            '<span class="qr-mushaf-hizb-num" dir="rtl">' + toArabicDigits(hizbN) + '</span>' +
+            '</div>';
         html += '</div>';
         if (els.mushafInner) els.mushafInner.innerHTML = html;
         updateMushafPageLabel();
@@ -2185,10 +2318,37 @@
                 ? ('Page ' + mushafPage + (layout ? ' / ' + layout.page_count : ''))
                 : '';
         }
-        if (els.mushafPagePrev) els.mushafPagePrev.disabled = !mushafPage || mushafPage <= 1;
-        if (els.mushafPageNext) {
-            els.mushafPageNext.disabled = !mushafPage || (layout && mushafPage >= layout.page_count);
+        // The goto box mirrors the current page (user can overwrite and jump).
+        if (els.mushafGoto) {
+            els.mushafGoto.value = mushafPage ? String(mushafPage) : '';
         }
+        if (els.mushafTurnPrev) {
+            var canPrev = mushafPage && mushafPage > 1;
+            els.mushafTurnPrev.disabled = !canPrev;
+            if (els.mushafTurnPrevLabel) {
+                els.mushafTurnPrevLabel.textContent = canPrev ? String(mushafPage - 1) : '';
+            }
+        }
+        if (els.mushafTurnNext) {
+            var canNext = mushafPage && (!layout || mushafPage < layout.page_count);
+            els.mushafTurnNext.disabled = !canNext;
+            if (els.mushafTurnNextLabel) {
+                els.mushafTurnNextLabel.textContent = canNext ? String(mushafPage + 1) : '';
+            }
+        }
+    }
+
+    // Jump straight to a page number typed in the navbar "Page #" box.
+    function gotoMushafPage() {
+        if (!els.mushafGoto) return;
+        var n = parseInt(els.mushafGoto.value, 10);
+        var layout = getQulBundle('mushaf-layout-' + mushafLayout);
+        if (isNaN(n) || !layout) return;
+        n = Math.max(1, Math.min(n, layout.page_count));
+        els.mushafGoto.value = String(n);
+        renderMushafPage(n);
+        var first = layout.page_first[String(n)];
+        if (first) mushafAnchor = first;
     }
 
     function mushafPageStep(delta) {
@@ -2203,10 +2363,11 @@
         if (first) mushafAnchor = first;
     }
 
-    // Color legend under the mushaf page (one entry per rule class found in
-    // the tajweed data), mirroring QUL's legend. Arabic label + romanization.
-    function buildMushafLegend() {
-        var el = els.mushafLegend;
+    // Tajweed rule palette: builds one row per rule class found in the data
+    // (color swatch + Arabic rule + English transliteration, all inline) into
+    // the left-sliding panel, mirroring QUL's legend.
+    function buildMushafPalette() {
+        var el = els.mushafPaletteItems;
         if (!el) return;
         var rules = getQulBundle('tajweed-rules');
         var seen = {};
@@ -2219,26 +2380,43 @@
         var ids = Object.keys(seen).sort(function (a, b) {
             return (RULE_LABELS[a] ? RULE_LABELS[a][0] : a).localeCompare(RULE_LABELS[b] ? RULE_LABELS[b][0] : b);
         });
-        var html = '<div class="qr-mushaf-legend-title">Tajweed rules</div>';
-        html += '<div class="qr-mushaf-legend-items">';
+        var html = '';
         ids.forEach(function (id) {
             var labels = RULE_LABELS[id];
             var ar = labels ? labels[0] : id;
             var en = labels ? labels[1] : '';
-            html += '<span class="qr-mushaf-legend-item"><i class="qr-mushaf-legend-swatch ' + id + '"></i>' +
-                '<span class="qr-mushaf-legend-text">' +
-                '<span class="qr-mushaf-legend-ar" dir="rtl">' + ar + '</span>' +
-                (en ? '<span class="qr-mushaf-legend-en">' + en + '</span>' : '') +
-                '</span></span>';
+            html += '<div class="qr-mushaf-palette-item">' +
+                '<i class="qr-tajweed-swatch ' + id + '"></i>' +
+                '<span class="qr-mushaf-palette-ar" dir="rtl">' + ar + '</span>' +
+                (en ? '<span class="qr-mushaf-palette-en">' + en + '</span>' : '') +
+                '</div>';
         });
-        html += '</div>';
-        el.innerHTML = html;
+        el.innerHTML = html || '<div class="qr-mushaf-palette-empty">No rules found</div>';
     }
 
-    function updateMushafLegend() {
-        var el = els.mushafLegend;
-        if (!el) return;
-        el.hidden = !(mushafMode && mushafTajweed);
+    // The palette button lives on the right side and is only relevant while
+    // Mushaf view is active with tajweed coloring enabled.
+    function updateMushafPalette() {
+        if (els.mushafPaletteBtn) els.mushafPaletteBtn.hidden = !(mushafMode && mushafTajweed);
+        if (!(mushafMode && mushafTajweed)) closeMushafPalette();
+    }
+
+    function openMushafPalette() {
+        mushafPaletteOpen = true;
+        if (els.mushafPalette) {
+            els.mushafPalette.classList.add('is-open');
+            els.mushafPalette.setAttribute('aria-hidden', 'false');
+        }
+        if (els.mushafPaletteBtn) els.mushafPaletteBtn.classList.add('is-active');
+    }
+
+    function closeMushafPalette() {
+        mushafPaletteOpen = false;
+        if (els.mushafPalette) {
+            els.mushafPalette.classList.remove('is-open');
+            els.mushafPalette.setAttribute('aria-hidden', 'true');
+        }
+        if (els.mushafPaletteBtn) els.mushafPaletteBtn.classList.remove('is-active');
     }
 
     function switchMushafLayout(id) {

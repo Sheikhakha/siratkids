@@ -68,9 +68,11 @@
             <div class="qr-nav-group qr-mushaf-group" id="qr-mushaf-group" hidden>
                 <label class="qr-nav-label" for="qr-mushaf-layout">Layout:</label>
                 <select id="qr-mushaf-layout" class="qr-nav-select" aria-label="Mushaf layout"></select>
-                <button type="button" class="qr-mushaf-page-btn" id="qr-mushaf-page-prev" aria-label="Previous page" title="Previous page">&#8249;</button>
-                <span class="qr-mushaf-page-label" id="qr-mushaf-page-label">Page 1</span>
-                <button type="button" class="qr-mushaf-page-btn" id="qr-mushaf-page-next" aria-label="Next page" title="Next page">&#8250;</button>
+                <div class="qr-mushaf-goto">
+                    <input type="number" id="qr-mushaf-goto" min="1" step="1" inputmode="numeric"
+                           placeholder="Page #" aria-label="Go to page number" title="Go to page number">
+                    <button type="button" class="qr-mushaf-goto-btn" id="qr-mushaf-goto-btn" aria-label="Go to page">Go</button>
+                </div>
                 <label class="qr-mushaf-tajweed-toggle" id="qr-mushaf-tajweed-label" title="Tajweed coloring">
                     <input type="checkbox" id="qr-mushaf-tajweed" checked>
                     <span class="qr-mushaf-tajweed-slider"></span>
@@ -129,11 +131,45 @@
                 <div class="qr-verses" id="qr-verses"></div>
             </div>
 
-            <!-- Mushaf (page-based layout) view: rendered from QUL layout bundles -->
+            <!-- Mushaf (page-based layout) view: rendered from QUL layout bundles.
+                 Page-turn buttons flank the page; the page label sits centered
+                 below the page (not in the navbar). -->
             <div class="qr-mushaf" id="qr-mushaf" dir="rtl" hidden>
+                <button type="button" class="qr-mushaf-turn qr-mushaf-turn-prev" id="qr-mushaf-turn-prev" aria-label="Previous page" title="Previous page">
+                    <span class="qr-turn-arrow">&#8249;</span>
+                    <span class="qr-turn-label" id="qr-mushaf-turn-prev-label"></span>
+                </button>
                 <div class="qr-mushaf-inner" id="qr-mushaf-inner"></div>
-                <!-- Tajweed color legend (built at runtime, hidden unless enabled) -->
-                <div class="qr-mushaf-legend" id="qr-mushaf-legend" hidden></div>
+                <button type="button" class="qr-mushaf-turn qr-mushaf-turn-next" id="qr-mushaf-turn-next" aria-label="Next page" title="Next page">
+                    <span class="qr-turn-label" id="qr-mushaf-turn-next-label"></span>
+                    <span class="qr-turn-arrow">&#8250;</span>
+                </button>
+                <div class="qr-mushaf-caption" dir="ltr">
+                    <span class="qr-mushaf-page-label" id="qr-mushaf-page-label">Page 1</span>
+                </div>
+            </div>
+
+            <!-- Tajweed rule palette: floating button on the right opens a panel
+                 sliding in from the left with every rule (swatch + Arabic + English) -->
+            <button type="button" class="qr-mushaf-palette-btn" id="qr-mushaf-palette-btn"
+                    aria-label="Tajweed rules palette" title="Tajweed rules" hidden>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"/>
+                    <circle cx="12" cy="12" r="3"/>
+                    <circle cx="6" cy="7.5" r="1.1" fill="currentColor" stroke="none"/>
+                    <circle cx="17.5" cy="9" r="1.1" fill="currentColor" stroke="none"/>
+                    <circle cx="15.5" cy="17" r="1.1" fill="currentColor" stroke="none"/>
+                    <circle cx="8" cy="16.5" r="1.1" fill="currentColor" stroke="none"/>
+                </svg>
+            </button>
+            
+
+            <div class="qr-mushaf-palette" id="qr-mushaf-palette" aria-hidden="true">
+                <div class="qr-mushaf-palette-head">
+                    <span class="qr-mushaf-palette-title">Tajweed Rules</span>
+                    <button type="button" class="qr-mushaf-palette-close" id="qr-mushaf-palette-close" aria-label="Close palette">&#10005;</button>
+                </div>
+                <div class="qr-mushaf-palette-items" id="qr-mushaf-palette-items"></div>
             </div>
 
             <div class="qr-fixed-play-bar active" id="qr-fixed-play-bar">

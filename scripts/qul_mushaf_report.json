@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-16T03:44:50",
+  "generated": "2026-08-16T04:46:45",
   "layouts": {
     "7": {
       "page_count": 548,
@@ -23,25 +23,6 @@
       "file": "js/quran_source/mushaf-layout-18.js"
     }
   },
-  "tajweed": {
-    "ayahs_fetched": 6236,
-    "previews": 6231,
-    "no_preview": [
-      "18:85",
-      "20:1",
-      "78:34",
-      "90:3",
-      "90:9"
-    ],
-    "words_total": 65803,
-    "dropped_non_word_loc": 0,
-    "unknown_rule": [],
-    "words_with_rules": 65803
-  },
-  "fonts": {
-    "indopak-nastaleeq-waqf-lazim.woff2": 83316,
-    "indopak-nastaleeq-hanafi-compressed.woff2": 78784,
-    "indopak-nastaleeq-madinah-normal.woff2": 78672,
-    "surah-name-v4.woff2": 98048
-  }
+  "tajweed": null,
+  "fonts": {}
 }

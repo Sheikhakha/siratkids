@@ -551,8 +551,12 @@ def check_mushaf_layout(verbose):
         errors.append('quran-reader.html missing .qr-mushaf-group nav controls')
     if 'qr-mushaf-tajweed' not in html:
         errors.append('quran-reader.html missing tajweed on/off switch (qr-mushaf-tajweed)')
-    if 'qr-mushaf-legend' not in html:
-        errors.append('quran-reader.html missing mushaf legend container (qr-mushaf-legend)')
+    if 'qr-mushaf-palette' not in html or 'qr-mushaf-palette-btn' not in html:
+        errors.append('quran-reader.html missing tajweed palette panel/button (qr-mushaf-palette)')
+    if 'qr-mushaf-turn-prev' not in html or 'qr-mushaf-turn-next' not in html:
+        errors.append('quran-reader.html missing flanking page-turn buttons (qr-mushaf-turn-prev/next)')
+    if 'qr-mushaf-goto' not in html:
+        errors.append('quran-reader.html missing go-to-page box (qr-mushaf-goto)')
     if 'data-qr-mushaf-hide' not in html:
         errors.append('quran-reader.html settings sliders missing data-qr-mushaf-hide (English/WBW must hide in Mushaf view)')
     if 'qul-mushaf-fonts.css' not in html:
@@ -562,17 +566,22 @@ def check_mushaf_layout(verbose):
     for token in ('renderMushafPage', 'jumpToAyah', 'updateMushafWordHighlight',
                   'ensureMushafPageForAyah', 'switchMushafLayout',
                   'mushaf-layout-', 'mushaf-meta', 'tajweed-rules',
-                  'DEFAULT_MUSHAF_LAYOUT', 'mushafTajweed', 'buildMushafLegend',
-                  'RULE_LABELS', 'qr-mushaf-hidden', 'qr-mushaf-mode',
-                  'mushafAnchor', 'qr-mushaf-legend-text'):
+                  'DEFAULT_MUSHAF_LAYOUT', 'mushafTajweed', 'buildMushafPalette',
+                  'openMushafPalette', 'closeMushafPalette', 'RULE_LABELS',
+                  'qr-mushaf-hidden', 'qr-mushaf-mode',
+                  'mushafAnchor', 'qr-tajweed-swatch', 'JUZ_STARTS', 'HIZB_STARTS',
+                  'boundaryIndex'):
         if token not in js:
             errors.append('quran-reader.js missing %s' % token)
 
     css = has(os.path.join(BASE, 'css', 'quran-reader.css'))
     for token in ('.qr-mushaf-page', '.qr-mushaf-line', '.qr-mushaf-word',
-                  '.qr-mushaf-group', '.qr-mushaf-page-btn', '.qr-mushaf-page-label',
-                  '.qr-mushaf-tajweed-toggle', '.qr-mushaf-legend', '.qr-mushaf-legend-text',
-                  'repeating-linear-gradient', '.qr-mushaf-page::before',
+                  '.qr-mushaf-group', '.qr-mushaf-goto', '.qr-mushaf-page-label',
+                  '.qr-mushaf-tajweed-toggle', '.qr-mushaf-palette', '.qr-mushaf-palette-btn',
+                  '.qr-mushaf-palette-item', '.qr-tajweed-swatch',
+                  '.qr-mushaf-head', '.qr-mushaf-hizb-tag', '.qr-mushaf-page-badge',
+                  '.qr-mushaf-body', '.qr-mushaf-turn', '.qr-mushaf-sajdah',
+                  '.qr-mushaf-caption', 'translateX(-100%)',
                   'body.qr-mushaf-mode .qr-sidebar-toggle', '.qr-nav-bottom.qr-mushaf-hidden'):
         if token not in css:
             errors.append('quran-reader.css missing %s styling' % token)
@@ -590,10 +599,10 @@ def check_mushaf_layout(verbose):
     for layout_cls in ('.qr-mushaf-layout-17', '.qr-mushaf-layout-18', '.qr-mushaf-layout-7'):
         if layout_cls not in mcss:
             errors.append('qul-mushaf-fonts.css missing %s font-family' % layout_cls)
-    for swatch in ('.qr-mushaf-legend-swatch.izhar', '.qr-mushaf-legend-swatch.ikhafa',
-                   '.qr-mushaf-legend-swatch.madda_normal'):
+    for swatch in ('.qr-tajweed-swatch.izhar', '.qr-tajweed-swatch.ikhafa',
+                   '.qr-tajweed-swatch.madda_normal'):
         if swatch not in mcss:
-            errors.append('qul-mushaf-fonts.css missing %s legend swatch' % swatch)
+            errors.append('qul-mushaf-fonts.css missing %s palette swatch' % swatch)
 
     if verbose:
         print('  [OK] mushaf layout bundles + tajweed rules checked')
