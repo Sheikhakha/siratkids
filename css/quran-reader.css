@@ -182,6 +182,23 @@ body {
 
 .qr-nav-group { display: flex; align-items: center; gap: 4px; }
 .qr-nav-label { font-size: 0.72rem; font-weight: 700; color: var(--qr-text-medium); white-space: nowrap; }
+/* Each navbar control cluster reads as its own unit: subtle pill background +
+   border so Reciter / Translation / Word-by-Word / Mushaf don't look merged. */
+.qr-nav-right > .qr-nav-group {
+    background: var(--qr-surface-card);
+    border: 1px solid var(--qr-border);
+    border-radius: 10px;
+    padding: 4px 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+/* Thin vertical divider between navbar groups (turns horizontal on mobile). */
+.qr-nav-sep {
+    width: 1px;
+    height: 24px;
+    background: var(--qr-border);
+    flex-shrink: 0;
+}
+.qr-nav-right .qr-mushaf-nav-btn { margin: 0 2px; }
 /* Custom dropdown */
 .qr-dropdown { position: relative; display: inline-flex; }
 .qr-dropdown select.qr-nav-select {
@@ -322,6 +339,9 @@ body {
 .qr-sidebar::-webkit-scrollbar-thumb:hover { background: var(--qr-text-light); }
 body.qr-sidebar-hidden .qr-sidebar { transform: translateX(-100%); }
 body.qr-sidebar-hidden .qr-main { margin-left: 0; }
+/* In Mushaf view the sidebar is hidden and the tajweed legend rail takes its
+   place on the left, so the page re-centers in the remaining space. */
+body.qr-mushaf-mode .qr-main { margin-left: 232px; }
 
 .qr-sidebar-header {
     position: sticky; top: 0;
@@ -1550,31 +1570,93 @@ body.qr-mushaf-mode .qr-sidebar-toggle {
 }
 /* "Go to page" box in the mushaf navbar group: number input + Go button,
    matching the other nav controls. */
-.qr-mushaf-goto {
+/* Go-to control: one compact "Go to" button that opens a small popover with
+   four clearly-labeled fields (Verse / Page / Juz / Surah), each prefilled
+   with its current number and its own Go button. */
+.qr-mushaf-goto-pop-wrap {
+    position: relative;
+    display: inline-flex;
+}
+.qr-mushaf-goto-pop {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 2px solid var(--qr-primary);
+    background: var(--qr-primary);
+    color: #fff;
+    font-size: 0.76rem;
+    font-weight: 700;
+    font-family: var(--qr-font-en), sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
 }
-.qr-mushaf-goto input[type="number"] {
-    width: 64px;
-    padding: 4px 8px;
+.qr-mushaf-goto-pop:hover {
+    background: var(--qr-primary-dark);
+    box-shadow: 0 2px 8px rgba(20, 20, 30, 0.18);
+}
+.qr-mushaf-goto-pop:focus-visible {
+    outline: 3px solid var(--qr-primary);
+    outline-offset: 2px;
+}
+.qr-mushaf-goto-pop .qr-goto-caret {
+    transition: transform 0.2s;
+}
+.qr-mushaf-goto-pop[aria-expanded="true"] .qr-goto-caret {
+    transform: rotate(180deg);
+}
+.qr-mushaf-goto-popover {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 6px);
+    width: 232px;
+    padding: 10px;
+    background: var(--qr-surface-card);
+    border: 1px solid var(--qr-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    z-index: 900;
+}
+.qr-mushaf-goto-popover[hidden] {
+    display: none;
+}
+.qr-goto-row {
+    display: grid;
+    grid-template-columns: 52px 1fr 44px;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+}
+.qr-goto-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--qr-text-medium);
+    white-space: nowrap;
+}
+.qr-goto-row input[type="number"] {
+    width: 100%;
+    padding: 5px 8px;
     border: 2px solid var(--qr-border);
     border-radius: 6px;
     background: var(--qr-surface);
     color: var(--qr-text);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     font-family: var(--qr-font-en);
+    text-align: center;
     outline: none;
 }
-.qr-mushaf-goto input[type="number"]:focus {
+.qr-goto-row input[type="number"]:focus {
     border-color: var(--qr-primary);
 }
-.qr-mushaf-goto-btn {
+.qr-goto-go {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     height: 28px;
-    padding: 0 10px;
+    padding: 0 8px;
     border-radius: 6px;
     border: 2px solid var(--qr-primary);
     background: var(--qr-primary);
@@ -1582,20 +1664,16 @@ body.qr-mushaf-mode .qr-sidebar-toggle {
     font-size: 0.72rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s;
-    flex: none;
+    transition: background 0.2s;
+    font-family: var(--qr-font-en), sans-serif;
 }
-.qr-mushaf-goto-btn:hover {
+.qr-goto-go:hover {
     background: var(--qr-primary-dark);
     border-color: var(--qr-primary-dark);
 }
-.qr-mushaf-goto input[type="number"] {
-    /* The goto box mirrors the current page: value kept in sync by the JS. */
-    text-align: center;
-}
 
 .qr-mushaf {
-    padding: 18px 12px 44px;
+    padding: 34px 12px 44px;
     max-width: 1120px;
     margin: 0 auto;
     display: flex;
@@ -1607,6 +1685,45 @@ body.qr-mushaf-mode .qr-sidebar-toggle {
 .qr-mushaf-inner {
     flex: 1;
     min-width: 0;
+    position: relative;
+}
+/* ---- 3D page-turn flip ----
+   While a turn is in progress the inner becomes the stage: the target page
+   is already rendered beneath (in flow, so the layout keeps its height) and
+   the current page floats above it as the "front" layer, rotating away about
+   the spine edge (RTL-mirrored by the turn buttons: prev on the right, next
+   on the left). */
+.qr-mushaf-inner.qr-mushaf-flipping {
+    perspective: 1800px;
+}
+.qr-mushaf-inner.qr-mushaf-flipping .qr-mushaf-page.qr-mushaf-page-front {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    backface-visibility: hidden;
+    z-index: 2;
+}
+/* Turn forward (next): the front page folds away to the left, revealing the
+   back page beneath it. */
+.qr-mushaf-inner.qr-mushaf-flipping.qr-mushaf-flip-next .qr-mushaf-page.qr-mushaf-page-front {
+    transform-origin: left center;
+    animation: qrMushafFlipNext 0.48s ease-out forwards;
+}
+.qr-mushaf-inner.qr-mushaf-flipping.qr-mushaf-flip-prev .qr-mushaf-page.qr-mushaf-page-front {
+    transform-origin: right center;
+    animation: qrMushafFlipPrev 0.48s ease-out forwards;
+}
+@keyframes qrMushafFlipNext {
+    0%   { transform: rotateY(0deg); }
+    100% { transform: rotateY(-96deg); }
+}
+@keyframes qrMushafFlipPrev {
+    0%   { transform: rotateY(0deg); }
+    100% { transform: rotateY(96deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .qr-mushaf-inner.qr-mushaf-flipping .qr-mushaf-page.qr-mushaf-page-front {
+        animation: none;
+    }
 }
 /* Page caption ("Page X / N") centered below the mushaf page. */
 .qr-mushaf-caption {
@@ -1623,21 +1740,20 @@ body.qr-mushaf-mode .qr-sidebar-toggle {
     letter-spacing: 0.4px;
 }
 .qr-mushaf-page {
-    /* Traditional illuminated-Mushaf frame (images/mushaf-frame.svg): black
-       linework rope + rules + corner medallions with a gold floral rosette
-       band, portrait-oriented so it is NOT stretched (720x900 source vs
-       ~1.19 page aspect). Drawn as a background scaled to the page; the
-       frame band is 9% of the width, and the padding clears it plus the
-       inner double rule. The frame colors are fixed (black + gold); the
+    /* Traditional illuminated-Mushaf frame: a mid-thick black border with an
+       inner gold hairline (double rule), like a printed mushaf page. The
        header banners / page badge follow the theme color. */
     --qr-mushaf-gold: #c9a227;
+    --qr-mushaf-ink: #1a1a1a;
     position: relative;
     background: #ffffff;
+    border: 3px solid var(--qr-mushaf-ink);
+    outline: 1px solid var(--qr-mushaf-gold);
+    outline-offset: -6px;
     box-shadow:
         0 1px 2px rgba(20, 20, 30, 0.12),
         0 18px 40px rgba(20, 20, 30, 0.2);
-    /* Frame design is pending review - plain white page for now. */
-    padding: 26px 24px;
+    padding: 30px 28px;
     min-height: 620px;
 }
 /* Page-turn buttons flanking the mushaf page (vertically centered). Each
@@ -1648,37 +1764,50 @@ body.qr-mushaf-mode .qr-sidebar-toggle {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    min-width: 58px;
-    min-height: 66px;
+    gap: 6px;
+    min-width: 60px;
+    min-height: 72px;
     padding: 10px 12px;
-    border-radius: 14px;
-    border: 1px solid var(--qr-primary);
-    background: var(--qr-primary);
+    border-radius: 16px;
+    border: 2px solid var(--qr-primary);
+    background: linear-gradient(160deg, var(--qr-primary), var(--qr-primary-dark));
     color: #fff;
     cursor: pointer;
-    box-shadow: 0 3px 10px rgba(20, 20, 30, 0.22);
-    transition: transform 0.15s, background 0.2s;
+    box-shadow: 0 4px 14px rgba(20, 20, 30, 0.24);
+    transition: transform 0.16s ease, box-shadow 0.2s ease, filter 0.2s ease;
     font-family: var(--qr-font-en), sans-serif;
 }
 .qr-mushaf-turn:hover:not(:disabled) {
-    transform: translateY(-1px);
-    background: var(--qr-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(20, 20, 30, 0.3);
+    filter: brightness(1.06);
+}
+.qr-mushaf-turn:focus-visible {
+    outline: 3px solid var(--qr-primary);
+    outline-offset: 2px;
 }
 .qr-mushaf-turn:disabled {
     opacity: 0.38;
     cursor: default;
 }
 .qr-turn-arrow {
-    font-size: 1.5rem;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    font-size: 1.35rem;
     line-height: 1;
     font-weight: 700;
 }
 .qr-turn-label {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     line-height: 1;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.92);
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.95);
 }
 .qr-mushaf-head,
 .qr-mushaf-body,
@@ -1686,64 +1815,87 @@ body.qr-mushaf-mode .qr-sidebar-toggle {
     position: relative;
     z-index: 1;
 }
-/* Header band: juz banner (left) + arch (center) + surah banner (right),
-   themed with the site theme color (the frame itself stays black + gold). */
+/* Header band: surah cartouche (right) + juz medallion (left), both framed
+   with theme + gold ornamentation. The dome is removed; the band spans the
+   top of the page, clear of the black border. */
 .qr-mushaf-head {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    margin: 2px 0 22px;
-    padding-top: 10px;
+    margin: 4px 0 24px;
+    padding-top: 12px;
 }
-.qr-mushaf-head-banner {
+/* Surah header box: a highly-ornamented calligraphic cartouche with a double
+   frame (theme border + gold hairline), corner rosettes and a gold arabesque
+   lattice wash. Sits at the top-right in the RTL flow. */
+.qr-mushaf-head-surah {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    background: var(--qr-primary);
+    gap: 10px;
+    background:
+        radial-gradient(circle at 0 0, var(--qr-mushaf-gold) 2px, transparent 3px),
+        radial-gradient(circle at 100% 0, var(--qr-mushaf-gold) 2px, transparent 3px),
+        radial-gradient(circle at 0 100%, var(--qr-mushaf-gold) 2px, transparent 3px),
+        radial-gradient(circle at 100% 100%, var(--qr-mushaf-gold) 2px, transparent 3px),
+        linear-gradient(160deg, var(--qr-primary), var(--qr-primary-dark));
     color: #fff;
-    border: 1px solid var(--qr-mushaf-gold);
-    border-radius: 8px;
-    padding: 7px 18px;
+    border: 2px solid var(--qr-mushaf-gold);
+    outline: 1px solid rgba(255, 255, 255, 0.45);
+    outline-offset: 3px;
+    border-radius: 12px;
+    padding: 8px 22px;
     font-family: var(--qr-font-ar-nastaleeq), var(--qr-font-ar), serif;
-    font-size: 1.18rem;
-    line-height: 1.45;
+    font-size: 1.35rem;
+    line-height: 1.5;
     white-space: nowrap;
-    box-shadow: 0 1px 3px rgba(20, 20, 30, 0.18);
-    max-width: 46%;
+    box-shadow: 0 2px 6px rgba(20, 20, 30, 0.22);
+    max-width: 52%;
 }
-.qr-mushaf-head-label {
-    color: rgba(255, 255, 255, 0.9);
+/* Gold rosette divider flanking the surah name */
+.qr-mushaf-head-surah .qr-mushaf-head-label {
+    color: var(--qr-mushaf-gold);
+    font-size: 0.95em;
 }
-.qr-mushaf-head-name {
+.qr-mushaf-head-surah .qr-mushaf-head-name {
     font-weight: 700;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
-.qr-mushaf-head-dome {
-    position: absolute;
-    left: 50%;
-    top: -8px;
-    transform: translateX(-50%);
-    width: 46px;
-    height: 30px;
-    background: var(--qr-primary);
-    border: 1px solid var(--qr-mushaf-gold);
-    border-bottom: none;
-    border-radius: 23px 23px 0 0;
-    box-shadow: inset 0 -6px 10px rgba(0, 0, 0, 0.12);
-    pointer-events: none;
-}
-.qr-mushaf-head-dome::after {
-    /* small finial on the arch */
-    content: '';
-    position: absolute;
-    top: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 8px;
-    height: 8px;
-    background: var(--qr-mushaf-gold);
+/* Juz indicator: a circular medallion in the top-left corner with a gold
+   rosette ring and theme center, like a printed mushaf's margin marker. */
+.qr-mushaf-head-juz {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    width: 104px;
+    height: 104px;
     border-radius: 50%;
+    background:
+        radial-gradient(circle at 50% 50%, var(--qr-primary) 0 58%, var(--qr-primary-dark) 92%);
+    color: #fff;
+    border: 2px solid var(--qr-mushaf-gold);
+    outline: 1px solid rgba(255, 255, 255, 0.4);
+    outline-offset: 3px;
+    box-shadow:
+        0 0 0 4px var(--qr-mushaf-gold),
+        0 4px 12px rgba(20, 20, 30, 0.28);
+    font-family: var(--qr-font-ar-nastaleeq), var(--qr-font-ar), serif;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+/* Themed filler rows to keep the medallion compact */
+.qr-mushaf-head-juz .qr-mushaf-juz-label {
+    font-size: 1.02rem;
+    color: var(--qr-mushaf-gold);
+}
+.qr-mushaf-head-juz .qr-mushaf-juz-num {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
 }
 /* Text body: below the header band, clear of the footer badge. */
 .qr-mushaf-body {
@@ -1772,42 +1924,43 @@ body.qr-mushaf-mode .qr-sidebar-toggle {
     font-family: var(--qr-font-ar), serif;
     font-size: 1.05rem;
 }
-/* Hizb tag hanging on the right margin (straddles the frame, like the
-   margin markers of a printed mushaf). Themed like the header banners. */
+/* Hizb medallion straddling the top border center, like the margin markers
+   of a printed mushaf. Gold rosette ring on black, with the hizb label. */
 .qr-mushaf-hizb-tag {
     position: absolute;
-    /* Hangs at the top-right corner, level with the header band, jutting
-       out past the right frame band like a printed mushaf margin marker. */
-    top: 44px;
-    right: -12px;
-    width: 34px;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 68px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 4px;
-    background: var(--qr-primary);
+    justify-content: center;
+    gap: 6px;
+    background: var(--qr-mushaf-ink);
     color: #fff;
-    border: 1px solid var(--qr-mushaf-gold);
-    border-radius: 17px 17px 8px 8px;
-    box-shadow: 0 2px 6px rgba(20, 20, 30, 0.3);
-    padding: 10px 3px 8px;
+    border: 2px solid var(--qr-mushaf-gold);
+    border-radius: 22px;
+    box-shadow: 0 3px 10px rgba(20, 20, 30, 0.35);
+    padding: 7px 14px;
     z-index: 2;
     pointer-events: none;
 }
 .qr-mushaf-hizb-label {
     font-family: var(--qr-font-ar), serif;
-    font-size: 0.78rem;
-    line-height: 1.3;
-    writing-mode: vertical-rl;
-    letter-spacing: 1px;
+    font-size: 0.82rem;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    color: var(--qr-mushaf-gold);
 }
 .qr-mushaf-hizb-num {
     font-family: var(--qr-font-ar), serif;
-    font-size: 1rem;
+    font-size: 1.05rem;
     line-height: 1;
+    color: #fff;
 }
-/* The page stays white in dark mode (pending frame design); only the
-   shadow adapts. */
+/* The page interior stays fixed in every theme (like a real printed mushaf);
+   only the shadow adapts. */
 [data-theme="dark"] .qr-mushaf-page {
     box-shadow:
         0 1px 2px rgba(0, 0, 0, 0.4),
@@ -1837,17 +1990,19 @@ body.qr-mushaf-mode .qr-sidebar-toggle {
     color: #241c14;
 }
 /* Sajdah (prostration) marker: a gold ۩ glyph hung at the end of the
-   ayah that carries it, like the margin marks of a printed mushaf. */
+   ayah that carries it, like the margin marks of a printed mushaf. The
+   mushaf layout fonts lack U+06E9, so an Arabic font is set explicitly. */
 .qr-mushaf-sajdah {
     display: inline-block;
     margin: 0 4px;
-    font-size: 0.82em;
+    font-family: var(--qr-font-ar), serif;
+    font-size: 1em;
     line-height: 1;
     color: var(--qr-mushaf-gold);
     background: rgba(208, 170, 89, 0.16);
     border: 1px solid rgba(208, 170, 89, 0.65);
     border-radius: 50%;
-    padding: 2px 3px;
+    padding: 2px 4px;
     vertical-align: middle;
     pointer-events: none;
 }
@@ -1942,67 +2097,32 @@ body.qr-mushaf-mode .qr-sidebar-toggle {
     white-space: nowrap;
 }
 
-/* Tajweed rule palette: a floating button on the right side of Mushaf view
-   opens a panel that slides in from the left. Each row is one rule: color
-   swatch, Arabic name and English transliteration, all inline (like QUL's
-   legend, but out of the way of the page). */
-.qr-mushaf-palette-btn {
-    position: fixed;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 60;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    border: 1px solid var(--qr-border);
-    background: var(--qr-surface-card);
-    color: var(--qr-primary);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s, color 0.2s, transform 0.2s;
-}
-.qr-mushaf-palette-btn:hover {
-    transform: translateY(-50%) scale(1.06);
-}
-.qr-mushaf-palette-btn:hover,
-.qr-mushaf-palette-btn.is-active {
-    background: var(--qr-primary);
-    border-color: var(--qr-primary);
-    color: #fff;
-}
-.qr-mushaf-palette-btn[hidden] {
-    display: none;
-}
-
-.qr-mushaf-palette {
+/* Tajweed rules legend: an always-visible rail on the left edge of Mushaf
+   view (shown while tajweed coloring is on). Rows are built by JS from the
+   tajweed-rules bundle. direction:ltr keeps the swatch -> Arabic -> English
+   order stable so the columns align across every row. */
+.qr-mushaf-palette.qr-mushaf-legend {
     position: fixed;
     left: 0;
-    top: 0;
+    top: 52px;
     bottom: 0;
-    width: 300px;
-    max-width: 86vw;
+    width: 232px;
     background: var(--qr-surface-card);
     border-right: 1px solid var(--qr-border);
-    box-shadow: 6px 0 28px rgba(0, 0, 0, 0.28);
-    transform: translateX(-100%);
-    visibility: hidden;
-    transition: transform 0.28s ease, visibility 0s linear 0.28s;
-    z-index: 70;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08);
+    z-index: 55;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     direction: ltr;
 }
-.qr-mushaf-palette.is-open {
-    transform: translateX(0);
-    visibility: visible;
-    transition: transform 0.28s ease;
+.qr-mushaf-palette.qr-mushaf-legend[hidden] {
+    display: none;
 }
-.qr-mushaf-palette-head {
+body:not(.qr-mushaf-mode) .qr-mushaf-legend {
+    display: none;
+}
+.qr-mushaf-legend .qr-mushaf-palette-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2014,40 +2134,27 @@ body.qr-mushaf-mode .qr-sidebar-toggle {
     z-index: 1;
     flex-shrink: 0;
 }
-.qr-mushaf-palette-title {
+.qr-mushaf-legend .qr-mushaf-palette-title {
     font-family: var(--qr-font-en-heading);
     font-size: 0.82rem;
     font-weight: 700;
     color: var(--qr-text);
 }
-.qr-mushaf-palette-close {
-    border: none;
-    background: transparent;
-    color: var(--qr-text-light);
-    font-size: 0.9rem;
-    line-height: 1;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 6px;
-}
-.qr-mushaf-palette-close:hover {
-    color: var(--qr-text);
-    background: var(--qr-hover);
-}
-.qr-mushaf-palette-items {
+.qr-mushaf-legend .qr-mushaf-palette-items {
     padding: 10px 12px 20px;
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
-.qr-mushaf-palette-item {
-    display: flex;
+.qr-mushaf-legend .qr-mushaf-palette-item {
+    display: grid;
+    grid-template-columns: 16px auto 1fr;
     align-items: center;
-    gap: 10px;
-    padding: 8px 10px;
+    gap: 8px;
+    padding: 7px 8px;
     border-radius: 8px;
 }
-.qr-mushaf-palette-item:hover {
+.qr-mushaf-legend .qr-mushaf-palette-item:hover {
     background: var(--qr-hover);
 }
 .qr-tajweed-swatch {
@@ -2057,31 +2164,48 @@ body.qr-mushaf-mode .qr-sidebar-toggle {
     display: inline-block;
     flex-shrink: 0;
 }
-.qr-mushaf-palette-ar {
+.qr-mushaf-legend .qr-mushaf-palette-ar {
     font-family: var(--qr-font-ar);
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     line-height: 1.3;
     color: var(--qr-text);
     direction: rtl;
+    white-space: nowrap;
+    justify-self: end;
 }
-.qr-mushaf-palette-en {
-    font-size: 0.72rem;
-    line-height: 1.3;
+.qr-mushaf-legend .qr-mushaf-palette-en {
+    font-size: 0.7rem;
+    line-height: 1.25;
     color: var(--qr-text-light);
 }
-.qr-mushaf-palette-empty {
+.qr-mushaf-legend .qr-mushaf-palette-empty {
     color: var(--qr-text-light);
     font-size: 0.78rem;
     padding: 12px;
 }
+/* The legend rail and the page margin stay in lockstep at every width. */
+@media (max-width: 1100px) {
+    .qr-mushaf-palette.qr-mushaf-legend { width: 180px; }
+    body.qr-mushaf-mode .qr-main { margin-left: 180px; }
+}
+@media (max-width: 768px) {
+    .qr-mushaf-palette.qr-mushaf-legend { width: 96px; }
+    body.qr-mushaf-mode .qr-main { margin-left: 96px; }
+    /* Swatch + Arabic only on phones; English stays in the title tooltip. */
+    .qr-mushaf-legend .qr-mushaf-palette-en { display: none; }
+    .qr-mushaf-legend .qr-mushaf-palette-item {
+        grid-template-columns: 16px 1fr;
+    }
+    .qr-mushaf-legend .qr-mushaf-palette-ar { justify-self: start; }
+}
 @media (max-width: 720px) {
-    .qr-mushaf { padding: 10px 2px 40px; }
-    /* Border-image already carries the frame band; keep the inner margin
-       small so the text column stays wide on narrow screens. */
+    .qr-mushaf { padding: 30px 2px 40px; }
     .qr-mushaf-page { padding: 14px 12px 12px; }
     .qr-mushaf-turn { min-width: 46px; min-height: 56px; padding: 8px 8px; }
-    /* No room outside the page on narrow screens: pull the tag inside. */
-    .qr-mushaf-hizb-tag { right: 4px; }
+    /* The hizb medallion stays centered on the top border; just tighten it. */
+    .qr-mushaf-hizb-tag { top: -18px; width: 56px; padding: 5px 10px; }
+    .qr-mushaf-head-surah { font-size: 1.1rem; padding: 6px 14px; max-width: 62%; }
+    .qr-mushaf-head-juz { width: 84px; height: 84px; }
 }
 
 @media (max-width: 420px) {
@@ -2454,5 +2578,11 @@ body.qr-mushaf-mode .qr-sidebar-toggle {
     .qr-nav-right .settings-dropdown-content {
         right: 0;
         top: calc(100% + 6px);
+    }
+    /* Vertical dividers become horizontal rules inside the stacked mobile panel */
+    .qr-nav-sep {
+        width: 100%;
+        height: 1px;
+        margin: 2px 0;
     }
 }

@@ -551,37 +551,49 @@ def check_mushaf_layout(verbose):
         errors.append('quran-reader.html missing .qr-mushaf-group nav controls')
     if 'qr-mushaf-tajweed' not in html:
         errors.append('quran-reader.html missing tajweed on/off switch (qr-mushaf-tajweed)')
-    if 'qr-mushaf-palette' not in html or 'qr-mushaf-palette-btn' not in html:
-        errors.append('quran-reader.html missing tajweed palette panel/button (qr-mushaf-palette)')
+    if 'qr-mushaf-legend' not in html or 'qr-mushaf-palette-items' not in html:
+        errors.append('quran-reader.html missing tajweed legend rail (qr-mushaf-legend/palette-items)')
     if 'qr-mushaf-turn-prev' not in html or 'qr-mushaf-turn-next' not in html:
         errors.append('quran-reader.html missing flanking page-turn buttons (qr-mushaf-turn-prev/next)')
-    if 'qr-mushaf-goto' not in html:
-        errors.append('quran-reader.html missing go-to-page box (qr-mushaf-goto)')
+    for gid in ('qr-mushaf-goto-pop', 'qr-mushaf-goto-popover', 'qr-mushaf-goto-verse',
+                'qr-mushaf-goto-page', 'qr-mushaf-goto-juz', 'qr-mushaf-goto-surah'):
+        if gid not in html:
+            errors.append('quran-reader.html missing go-to control %s' % gid)
     if 'data-qr-mushaf-hide' not in html:
         errors.append('quran-reader.html settings sliders missing data-qr-mushaf-hide (English/WBW must hide in Mushaf view)')
     if 'qul-mushaf-fonts.css' not in html:
         errors.append('quran-reader.html missing qul-mushaf-fonts.css stylesheet link')
 
     js = has(os.path.join(BASE, 'js', 'quran-reader.js'))
-    for token in ('renderMushafPage', 'jumpToAyah', 'updateMushafWordHighlight',
+    for token in ('renderMushafPage', 'buildMushafPageHtml', 'flipMushafPage',
+                  'jumpToAyah', 'updateMushafWordHighlight',
                   'ensureMushafPageForAyah', 'switchMushafLayout',
                   'mushaf-layout-', 'mushaf-meta', 'tajweed-rules',
-                  'DEFAULT_MUSHAF_LAYOUT', 'mushafTajweed', 'buildMushafPalette',
-                  'openMushafPalette', 'closeMushafPalette', 'RULE_LABELS',
+                  'DEFAULT_MUSHAF_LAYOUT', 'mushafTajweed', 'setMushafTajweed',
+                  'gotoMushafSurah', 'gotoMushafJuz', 'gotoMushafVerse',
+                  'gotoMushafPage', 'mushafJuz', 'mushafVerse',
+                  'buildMushafPalette', 'RULE_LABELS',
                   'qr-mushaf-hidden', 'qr-mushaf-mode',
-                  'mushafAnchor', 'qr-tajweed-swatch', 'JUZ_STARTS', 'HIZB_STARTS',
+                  'qr-mushaf-page-front', 'qr-mushaf-page-back',
+                  'mushafAnchor', 'JUZ_STARTS', 'HIZB_STARTS',
                   'boundaryIndex'):
         if token not in js:
             errors.append('quran-reader.js missing %s' % token)
 
     css = has(os.path.join(BASE, 'css', 'quran-reader.css'))
     for token in ('.qr-mushaf-page', '.qr-mushaf-line', '.qr-mushaf-word',
-                  '.qr-mushaf-group', '.qr-mushaf-goto', '.qr-mushaf-page-label',
-                  '.qr-mushaf-tajweed-toggle', '.qr-mushaf-palette', '.qr-mushaf-palette-btn',
+                  '.qr-mushaf-group', '.qr-mushaf-goto-pop', '.qr-mushaf-goto-popover',
+                  '.qr-goto-row', '.qr-mushaf-page-label',
+                  '.qr-mushaf-tajweed-toggle', '.qr-mushaf-legend',
                   '.qr-mushaf-palette-item', '.qr-tajweed-swatch',
-                  '.qr-mushaf-head', '.qr-mushaf-hizb-tag', '.qr-mushaf-page-badge',
+                  '.qr-mushaf-palette-ar', '.qr-nav-group', '.qr-nav-sep',
+                  '.qr-mushaf-head', '.qr-mushaf-head-surah', '.qr-mushaf-head-juz',
+                  '.qr-mushaf-juz-label', '.qr-mushaf-juz-num',
+                  '.qr-mushaf-hizb-tag', '.qr-mushaf-page-badge',
                   '.qr-mushaf-body', '.qr-mushaf-turn', '.qr-mushaf-sajdah',
-                  '.qr-mushaf-caption', 'translateX(-100%)',
+                  '.qr-mushaf-caption',
+                  'qr-mushaf-flipping', 'qr-mushaf-flip-next',
+                  'body.qr-mushaf-mode .qr-main',
                   'body.qr-mushaf-mode .qr-sidebar-toggle', '.qr-nav-bottom.qr-mushaf-hidden'):
         if token not in css:
             errors.append('quran-reader.css missing %s styling' % token)
