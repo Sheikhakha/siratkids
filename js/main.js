@@ -27,182 +27,208 @@ var __HADITH_DATA = [
     "grade":"Sahih","narrator":"Abu Hurayrah","collection":"Sahih al-Bukhari","number":"39",
     "fullArabic":"إِنَّ الدِّينَ يُسْرٌ، وَلَنْ يُشَادَّ الدِّينَ أَحَدٌ إِلَّا غَلَبَهُ، فَسَدِّدُوا وَقَارِبُوا وَأَبْشِرُوا، وَاسْتَعِينُوا بِالْغَدْوَةِ وَالرَّوْحَةِ وَشَيْءٍ مِنَ الدُّلْجَةِ",
     "fullEnglish":"The Prophet (ﷺ) said, \"Religion is very easy and whoever overburdens himself in his religion will not be able to continue in that way. So you should not be extremists, but try to be near to perfection and receive the good tidings that you will be rewarded; and gain strength by offering the prayers in the mornings, afternoons and during the last hours of the nights.\"",
-    "book":"Fighting for the Cause of Allah (Jihad)"
+    "book":"Fighting for the Cause of Allah (Jihad)",
+    "sunnah_url":"https://sunnah.com/bukhari/2/32"
   },
   {
     "id":2,"arabic":"مِفْتَاحُ الْجَنَّةِ الصَّلَاةُ","english":"The key to Paradise is prayer.",
     "grade":"Hasan","narrator":"Jabir bin Abdullah","collection":"Jami' at-Tirmidhi","number":"4",
     "fullArabic":"مِفْتَاحُ الْجَنَّةِ الصَّلَاةُ، وَمِفْتَاحُ الصَّلَاةِ الْوُضُوءُ",
     "fullEnglish":"The Messenger of Allah (ﷺ) said: \"The key to Paradise is prayer, and the key to prayer is purification (wudu).\"",
-    "book":"Purification"
+    "book":"Purification",
+    "sunnah_url":"https://sunnah.com/tirmidhi/1/4"
   },
   {
     "id":3,"arabic":"مَنْ غَشَّ فَلَيْسَ مِنَّا","english":"Whoever cheats is not one of us.",
-    "grade":"Sahih","narrator":"Abu Hurayrah","collection":"Sahih Muslim","number":"101",
+    "grade":"Sahih","narrator":"Abu Hurayrah","collection":"Sahih Muslim","number":"102",
     "fullArabic":"مَنْ حَمَلَ عَلَيْنَا السِّلَاحَ فَلَيْسَ مِنَّا، وَمَنْ غَشَّنَا فَلَيْسَ مِنَّا",
     "fullEnglish":"The Messenger of Allah (ﷺ) said: \"He who took up arms against us is not of us, and he who acted dishonestly towards us is not of us.\"",
-    "book":"Faith (Iman)"
+    "book":"Faith (Iman)",
+    "sunnah_url":"https://sunnah.com/muslim/1/190"
   },
   {
     "id":4,"arabic":"إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ","english":"Actions are judged by intentions.",
     "grade":"Sahih","narrator":"Umar ibn al-Khattab","collection":"Sahih al-Bukhari","number":"1",
     "fullArabic":"إِنَّمَا الْأَعْمَالُ بِالنِّيَّةِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ فَهِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ، وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا أَوِ امْرَأَةٍ يَنْكِحُهَا فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ",
     "fullEnglish":"I heard Allah's Messenger (ﷺ) saying: \"The reward of deeds depends upon the intentions and every person will get the reward according to what he has intended. So whoever emigrated for worldly benefits or for a woman to marry, his emigration was for what he emigrated for.\"",
-    "book":"Revelation"
+    "book":"Revelation",
+    "sunnah_url":"https://sunnah.com/bukhari/1/1"
   },
   {
     "id":5,"arabic":"السَّلَامُ قَبْلَ الْكَلَامِ","english":"Greetings (peace) come before speech.",
     "grade":"Da'if","narrator":"Jabir bin Abdullah","collection":"Jami' at-Tirmidhi","number":"2699",
     "fullArabic":"السَّلَامُ قَبْلَ الْكَلَامِ",
     "fullEnglish":"The Prophet (ﷺ) said: \"The greeting (salam) comes before speech.\"",
-    "book":"Greetings (Isti'dhan)"
+    "book":"Greetings (Isti'dhan)",
+    "sunnah_url":"https://sunnah.com/tirmidhi/42/12"
   },
   {
     "id":6,"arabic":"عَلَيْكُمْ بِالصِّدْقِ","english":"Hold fast to truthfulness.",
     "grade":"Sahih","narrator":"Abdullah ibn Mas'ud","collection":"Sahih al-Bukhari","number":"6094",
     "fullArabic":"عَلَيْكُمْ بِالصِّدْقِ، فَإِنَّ الصِّدْقَ يَهْدِي إِلَى الْبِرِّ، وَإِنَّ الْبِرَّ يَهْدِي إِلَى الْجَنَّةِ، وَمَا يَزَالُ الرَّجُلُ يَصْدُقُ وَيَتَحَرَّى الصِّدْقَ حَتَّى يُكْتَبَ عِنْدَ اللَّهِ صِدِّيقًا",
     "fullEnglish":"The Prophet (ﷺ) said: \"Hold fast to truthfulness, for truthfulness leads to righteousness, and righteousness leads to Paradise. And a person keeps on telling the truth until he is written as a truthful person before Allah.\"",
-    "book":"Good Manners and Form (Al-Adab)"
+    "book":"Good Manners and Form (Al-Adab)",
+    "sunnah_url":"https://sunnah.com/bukhari/78/121"
   },
   {
     "id":7,"arabic":"إِيَّاكُمْ وَ الْكِذْبَ","english":"Beware of lying.",
     "grade":"Sahih","narrator":"Abdullah ibn Mas'ud","collection":"Sahih Muslim","number":"2607",
     "fullArabic":"إِيَّاكُمْ وَالْكَذِبَ، فَإِنَّ الْكَذِبَ يَهْدِي إِلَى الْفُجُورِ، وَإِنَّ الْفُجُورَ يَهْدِي إِلَى النَّارِ، وَمَا يَزَالُ الرَّجُلُ يَكْذِبُ وَيَتَحَرَّى الْكَذِبَ حَتَّى يُكْتَبَ عِنْدَ اللَّهِ كَذَّابًا",
     "fullEnglish":"The Prophet (ﷺ) said: \"Beware of lying, for lying leads to wickedness, and wickedness leads to Hellfire. And a person keeps on telling lies until he is recorded before Allah as a liar.\"",
-    "book":"Righteousness, Good Manners"
+    "book":"Righteousness, Good Manners",
+    "sunnah_url":"https://sunnah.com/muslim/45/136"
   },
   {
     "id":8,"arabic":"الْجَنَّةُ تَحْتَ أَقْدَامِ الْأُمَّهَاتِ","english":"Paradise lies under the feet of mothers.",
     "grade":"Sahih","narrator":"Mu'awiyah bin Jahimah As-Sulami","collection":"Sunan an-Nasa'i","number":"3104",
     "fullArabic":"الْجَنَّةُ تَحْتَ أَقْدَامِ الْأُمَّهَاتِ",
     "fullEnglish":"The Prophet (ﷺ) said: \"Paradise lies beneath the feet of mothers.\"",
-    "book":"Jihad"
+    "book":"Jihad",
+    "sunnah_url":"https://sunnah.com/nasai/25/20"
   },
   {
     "id":9,"arabic":"الْوَالِدُ أَوْسَطُ أَبْوَابِ الْجَنَّةِ","english":"A parent is the middle door of Paradise.",
     "grade":"Hasan","narrator":"Abu Ad-Darda'","collection":"Jami' at-Tirmidhi","number":"1900",
     "fullArabic":"الْوَالِدُ أَوْسَطُ أَبْوَابِ الْجَنَّةِ، فَإِنْ شِئْتَ فَأَضِعْ ذَلِكَ الْبَابَ أَوِ احْفَظْهُ",
     "fullEnglish":"The Prophet (ﷺ) said: \"The father is the middle gate of Paradise, so if you wish, lose that gate or protect it.\"",
-    "book":"Righteousness, Good Manners"
+    "book":"Righteousness, Good Manners",
+    "sunnah_url":"https://sunnah.com/tirmidhi/27/4"
   },
   {
     "id":10,"arabic":"لَا يَدْخُلُ الْجَنَّةَ إِلَّا نَفْسٌ مُسْلِمَةٌ","english":"None will enter Paradise except a Muslim soul.",
     "grade":"Sahih","narrator":"Abdullah ibn Mas'ud","collection":"Sahih al-Bukhari","number":"6528",
     "fullArabic":"لَا يَدْخُلُ الْجَنَّةَ إِلَّا نَفْسٌ مُسْلِمَةٌ، وَإِنَّ رُوحِي فِي نَفَسِ الصُّبْحِ",
     "fullEnglish":"The Prophet (ﷺ) said: \"None will enter Paradise except a Muslim soul, and my soul is in the morning breeze.\"",
-    "book":"Softening the Heart"
+    "book":"Softening the Heart",
+    "sunnah_url":"https://sunnah.com/bukhari/81/117"
   },
   {
     "id":11,"arabic":"مَنْ مَاتَ يُشْرِكُ بِاللَّهِ شَيْئًا دَخَلَ النَّارَ","english":"Whoever dies associating anything in worship with Allah will enter the Hellfire.",
     "grade":"Sahih","narrator":"Jabir","collection":"Sahih Muslim","number":"93a",
     "fullArabic":"مَنْ لَقِيَ اللَّهَ لَا يُشْرِكُ بِهِ شَيْئًا دَخَلَ الْجَنَّةَ، وَمَنْ لَقِيَهُ يُشْرِكُ بِهِ شَيْئًا دَخَلَ النَّارَ",
     "fullEnglish":"The Prophet (ﷺ) said: \"Whoever meets Allah without associating anything with Him will enter Paradise, and whoever meets Him associating anything with Him will enter the Hellfire.\"",
-    "book":"Faith (Iman)"
+    "book":"Faith (Iman)",
+    "sunnah_url":"https://sunnah.com/muslim/1/175"
   },
   {
     "id":12,"arabic":"الطَّهُورُ شَطْرُ الْإِيمَانِ","english":"Purity is half of faith.",
     "grade":"Sahih","narrator":"Abu Malik al-Ash'ari","collection":"Sahih Muslim","number":"223",
     "fullArabic":"الطَّهُورُ شَطْرُ الْإِيمَانِ، وَالْحَمْدُ لِلَّهِ تَمْلَأُ الْمِيزَانَ، وَسُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ تَمْلَآنِ مَا بَيْنَ السَّمَاءِ وَالْأَرْضِ، وَالصَّلَاةُ نُورٌ، وَالصَّدَقَةُ بُرْهَانٌ، وَالصَّبْرُ ضِيَاءٌ، وَالْقُرْآنُ حُجَّةٌ لَكَ أَوْ عَلَيْكَ",
     "fullEnglish":"The Messenger of Allah (ﷺ) said: \"Purity is half of faith. Al-Hamdu lillah (praise be to Allah) fills the scales. Subhan Allah (glory be to Allah) and Al-Hamdu lillah fill what is between the heavens and earth. Prayer is light. Charity is proof. Patience is illumination. And the Quran is a proof for you or against you.\"",
-    "book":"Purification"
+    "book":"Purification",
+    "sunnah_url":"https://sunnah.com/muslim/2/1"
   },
   {
     "id":13,"arabic":"الصَّلَاةُ نُورٌ","english":"Prayer is a light.",
     "grade":"Sahih","narrator":"Abu Malik al-Ash'ari","collection":"Sahih Muslim","number":"223",
     "fullArabic":"الطَّهُورُ شَطْرُ الْإِيمَانِ، وَالْحَمْدُ لِلَّهِ تَمْلَأُ الْمِيزَانَ، وَسُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ تَمْلَآنِ مَا بَيْنَ السَّمَاءِ وَالْأَرْضِ، وَالصَّلَاةُ نُورٌ، وَالصَّدَقَةُ بُرْهَانٌ، وَالصَّبْرُ ضِيَاءٌ، وَالْقُرْآنُ حُجَّةٌ لَكَ أَوْ عَلَيْكَ",
     "fullEnglish":"The Messenger of Allah (ﷺ) said: \"Purity is half of faith. Al-Hamdu lillah (praise be to Allah) fills the scales. Subhan Allah (glory be to Allah) and Al-Hamdu lillah fill what is between the heavens and earth. Prayer is light. Charity is proof. Patience is illumination. And the Quran is a proof for you or against you.\"",
-    "book":"Purification"
+    "book":"Purification",
+    "sunnah_url":"https://sunnah.com/muslim/2/1"
   },
   {
     "id":14,"arabic":"مَنْ صَلَّى الْبَرْدَيْنِ دَخَلَ الْجَنَّةَ","english":"Whoever prays the two cool prayers (Fajr and 'Asr) will enter Paradise.",
-    "grade":"Sahih","narrator":"Abu Bakr bin Abi Musa","collection":"Sahih al-Bukhari","number":"574",
+    "grade":"Sahih","narrator":"Abu Bakr bin Abi Musa","collection":"Sahih Muslim","number":"635a",
     "fullArabic":"مَنْ صَلَّى الْبَرْدَيْنِ دَخَلَ الْجَنَّةَ",
     "fullEnglish":"The Prophet (ﷺ) said: \"Whoever prays the two cool prayers (Fajr and 'Asr) will enter Paradise.\"",
-    "book":"Times of Prayer"
+    "book":"Prayer (Salat)",
+    "sunnah_url":"https://sunnah.com/muslim/5/271"
   },
   {
     "id":15,"arabic":"الصَّبْرُ ضِيَاءٌ","english":"Patience is illumination.",
     "grade":"Sahih","narrator":"Abu Malik al-Ash'ari","collection":"Sahih Muslim","number":"223",
     "fullArabic":"الطَّهُورُ شَطْرُ الْإِيمَانِ، وَالْحَمْدُ لِلَّهِ تَمْلَأُ الْمِيزَانَ، وَسُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ تَمْلَآنِ مَا بَيْنَ السَّمَاءِ وَالْأَرْضِ، وَالصَّلَاةُ نُورٌ، وَالصَّدَقَةُ بُرْهَانٌ، وَالصَّبْرُ ضِيَاءٌ، وَالْقُرْآنُ حُجَّةٌ لَكَ أَوْ عَلَيْكَ",
     "fullEnglish":"The Messenger of Allah (ﷺ) said: \"Purity is half of faith. Al-Hamdu lillah (praise be to Allah) fills the scales. Subhan Allah (glory be to Allah) and Al-Hamdu lillah fill what is between the heavens and earth. Prayer is light. Charity is proof. Patience is illumination. And the Quran is a proof for you or against you.\"",
-    "book":"Purification"
+    "book":"Purification",
+    "sunnah_url":"https://sunnah.com/muslim/2/1"
   },
   {
     "id":16,"arabic":"الدِّينُ النَّصِيحَةُ","english":"Religion is sincerity / good advice.",
     "grade":"Sahih","narrator":"Tamim ad-Dari","collection":"Sahih Muslim","number":"55a",
     "fullArabic":"الدِّينُ النَّصِيحَةُ. قُلْنَا: لِمَنْ؟ قَالَ: لِلَّهِ وَلِكِتَابِهِ وَلِرَسُولِهِ وَلِأَئِمَّةِ الْمُسْلِمِينَ وَعَامَّتِهِمْ",
     "fullEnglish":"The Prophet (ﷺ) said: \"Religion is sincerity.\" We said: \"To whom?\" He said: \"To Allah, His Book, His Messenger, the leaders of the Muslims, and their common people.\"",
-    "book":"Faith (Iman)"
+    "book":"Faith (Iman)",
+    "sunnah_url":"https://sunnah.com/muslim/1/103"
   },
   {
     "id":17,"arabic":"الدُّعَاءُ هُوَ الْعِبَادَةُ","english":"Supplication is worship.",
     "grade":"Sahih","narrator":"an-Nu'man ibn Bashir","collection":"Sunan Abi Dawud","number":"1479",
     "fullArabic":"الدُّعَاءُ هُوَ الْعِبَادَةُ، ثُمَّ قَرَأَ: وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ",
     "fullEnglish":"The Prophet (ﷺ) said: \"Supplication is worship.\" Then he recited: \"And your Lord says: Call upon Me; I will answer you.\" (40:60)",
-    "book":"Prayer (Salat)"
+    "book":"Prayer (Salat)",
+    "sunnah_url":"https://sunnah.com/abudawud/8/64"
   },
   {
     "id":18,"arabic":"أَفْشُوا السَّلَامَ بَيْنَكُمْ","english":"Spread salam (peace) among yourselves.",
-    "grade":"Sahih","narrator":"Abdullah ibn Salam","collection":"Sahih Muslim","number":"216",
+    "grade":"Sahih","narrator":"Abdullah ibn Salam","collection":"Sahih Muslim","number":"54a",
     "fullArabic":"يَا أَيُّهَا النَّاسُ، أَفْشُوا السَّلَامَ، وَصِلُوا الْأَرْحَامَ، وَأَطْعِمُوا الطَّعَامَ، وَصَلُّوا بِاللَّيْلِ وَالنَّاسُ نِيَامٌ، تَدْخُلُوا الْجَنَّةَ بِسَلَامٍ",
     "fullEnglish":"The Prophet (ﷺ) said: \"O people, spread the greeting of salam, maintain family ties, feed others, and pray at night while people are sleeping, and you will enter Paradise in peace.\"",
-    "book":"Faith (Iman)"
+    "book":"Faith (Iman)",
+    "sunnah_url":"https://sunnah.com/muslim/1/101"
   },
   {
     "id":19,"arabic":"احْرِصْ عَلَى مَا يَنْفَعُكَ","english":"Strive for that which benefits you.",
     "grade":"Sahih","narrator":"Abu Hurayrah","collection":"Sahih Muslim","number":"2664",
     "fullArabic":"الْمُؤْمِنُ الْقَوِيُّ خَيْرٌ وَأَحَبُّ إِلَى اللَّهِ مِنَ الْمُؤْمِنِ الضَّعِيفِ، وَفِي كُلٍّ خَيْرٌ. احْرِصْ عَلَى مَا يَنْفَعُكَ، وَاسْتَعِنْ بِاللَّهِ وَلَا تَعْجِزْ",
     "fullEnglish":"The Messenger of Allah (ﷺ) said: \"The strong believer is better and more beloved to Allah than the weak believer, while there is good in both. Strive for that which benefits you, seek help from Allah, and do not feel helpless.\"",
-    "book":"Destiny (Qadr)"
+    "book":"Destiny (Qadr)",
+    "sunnah_url":"https://sunnah.com/muslim/46/52"
   },
   {
     "id":20,"arabic":"اسْتَعِنْ بِاللَّهِ وَلَا تَعْجِزْ","english":"Seek help from Allah and do not lose heart.",
     "grade":"Hasan","narrator":"Abdullah ibn Abbas","collection":"Jami' at-Tirmidhi","number":"2516",
     "fullArabic":"احْفَظِ اللَّهَ يَحْفَظْكَ، احْفَظِ اللَّهَ تَجِدْهُ تُجَاهَكَ، إِذَا سَأَلْتَ فَاسْأَلِ اللَّهَ، وَإِذَا اسْتَعَنْتَ فَاسْتَعِنْ بِاللَّهِ",
     "fullEnglish":"The Prophet (ﷺ) said: \"Be mindful of Allah, and He will protect you. Be mindful of Allah, and you will find Him before you. If you ask, ask of Allah. If you seek help, seek help from Allah.\"",
-    "book":"Description of the Day of Judgment"
+    "book":"Description of the Day of Judgment",
+    "sunnah_url":"https://sunnah.com/tirmidhi/37/102"
   },
   {
     "id":21,"arabic":"كُلُّ مَعْرُوفٍ صَدَقَةٌ","english":"Every good deed is charity.",
     "grade":"Sahih","narrator":"Abu Hurayrah","collection":"Sahih al-Bukhari","number":"2989",
     "fullArabic":"كُلُّ سُلَامَى مِنَ النَّاسِ عَلَيْهِ صَدَقَةٌ كُلَّ يَوْمٍ تَطْلُعُ فِيهِ الشَّمْسُ، يَعْدِلُ بَيْنَ الِاثْنَيْنِ صَدَقَةٌ، وَيُعِينُ الرَّجُلَ عَلَى دَابَّتِهِ فَيَحْمِلُ عَلَيْهَا أَوْ يَرْفَعُ عَلَيْهَا مَتَاعَهُ صَدَقَةٌ، وَالْكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ، وَكُلُّ خَطْوَةٍ يَخْطُوهَا إِلَى الصَّلَاةِ صَدَقَةٌ، وَيُمِيطُ الْأَذَى عَنِ الطَّرِيقِ صَدَقَةٌ",
     "fullEnglish":"Allah's Messenger (ﷺ) said: \"There is a charity to be given for every joint of the human body every day the sun rises. To judge justly between two persons is charity. To help a man with his riding animal by helping him to ride it or by lifting his luggage onto it is charity. A good word is charity. Every step taken towards prayer is charity. And removing a harmful thing from the way is charity.\"",
-    "book":"Fighting for the Cause of Allah (Jihad)"
+    "book":"Fighting for the Cause of Allah (Jihad)",
+    "sunnah_url":"https://sunnah.com/bukhari/56/198"
   },
   {
     "id":22,"arabic":"الْحَيَاءُ كُلُّهُ خَيْرٌ","english":"Modesty brings nothing but good.",
     "grade":"Sahih","narrator":"Imran ibn Husayn","collection":"Sahih al-Bukhari","number":"6117",
     "fullArabic":"الْحَيَاءُ لَا يَأْتِي إِلَّا بِخَيْرٍ",
     "fullEnglish":"The Prophet (ﷺ) said: \"Modesty (Haya) does not bring anything except good.\"",
-    "book":"Good Manners and Form (Al-Adab)"
+    "book":"Good Manners and Form (Al-Adab)",
+    "sunnah_url":"https://sunnah.com/bukhari/78/144"
   },
   {
     "id":23,"arabic":"إِنَّ اللَّهَ يُحِبُّ الرِّفْقَ فِي الْأَمْرِ كُلِّهِ","english":"Indeed, Allah loves gentleness in all matters.",
-    "grade":"Sahih","narrator":"Aisha","collection":"Sahih al-Bukhari","number":"6927",
+    "grade":"Sahih","narrator":"Aisha","collection":"Sahih al-Bukhari","number":"6024",
     "fullArabic":"يَا عَائِشَةُ، إِنَّ اللَّهَ رَفِيقٌ يُحِبُّ الرِّفْقَ فِي الْأَمْرِ كُلِّهِ",
     "fullEnglish":"The Prophet (ﷺ) said: \"O Aisha, Allah is kind and gentle, and He loves kindness and gentleness in all matters.\"",
-    "book":"Apostates"
+    "book":"Good Manners and Form (Al-Adab)",
+    "sunnah_url":"https://sunnah.com/bukhari/78/55"
   },
   {
     "id":24,"arabic":"لَا يَدْخُلُ الْجَنَّةَ قَاطِعٌ","english":"The one who severs family ties will not enter Paradise.",
     "grade":"Sahih","narrator":"Jubayr ibn Mut'im","collection":"Sahih al-Bukhari","number":"5984",
     "fullArabic":"لَا يَدْخُلُ الْجَنَّةَ قَاطِعٌ",
     "fullEnglish":"The Prophet (ﷺ) said: \"The person who severs the bond of kinship will not enter Paradise.\"",
-    "book":"Good Manners and Form (Al-Adab)"
+    "book":"Good Manners and Form (Al-Adab)",
+    "sunnah_url":"https://sunnah.com/bukhari/78/15"
   },
   {
     "id":25,"arabic":"لَا يَدْخُلُ الْجَنَّةَ قَتَّاتٌ","english":"The talebearer (gossipmonger) will not enter Paradise.",
     "grade":"Sahih","narrator":"Hudhayfah","collection":"Sahih al-Bukhari","number":"6056",
     "fullArabic":"لَا يَدْخُلُ الْجَنَّةَ قَتَّاتٌ",
     "fullEnglish":"I heard the Prophet (ﷺ) saying: \"A talebearer (one who spreads gossip) will not enter Paradise.\"",
-    "book":"Good Manners and Form (Al-Adab)"
+    "book":"Good Manners and Form (Al-Adab)",
+    "sunnah_url":"https://sunnah.com/bukhari/78/86"
   },
   {
     "id":26,"arabic":"مَنْ غَشَّنَا فَلَيْسَ مِنَّا","english":"Whoever cheats us is not from us.",
     "grade":"Sahih","narrator":"Abu Hurayrah","collection":"Sahih Muslim","number":"101",
     "fullArabic":"مَنْ حَمَلَ عَلَيْنَا السِّلَاحَ فَلَيْسَ مِنَّا، وَمَنْ غَشَّنَا فَلَيْسَ مِنَّا",
     "fullEnglish":"The Messenger of Allah (ﷺ) said: \"He who took up arms against us is not of us, and he who acted dishonestly towards us is not of us.\"",
-    "book":"Faith (Iman)"
+    "book":"Faith (Iman)",
+    "sunnah_url":"https://sunnah.com/muslim/1/189"
   }
 ];
 
@@ -557,59 +583,72 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Render the enriched popup content (Arabic + translations + tafsir) from
-    // the inline __QURAN_CACHE entry into an existing .popup-body. The popups
-    // ship complete static content in the HTML (two translations + Ibn Kathir
-    // tafsir), so the cache is only a fallback for empty bodies. Idempotent:
-    // once a verse has been rendered, repeat opens keep the same content.
+    // Render the enriched popup content (surah badge + Arabic + Hilali
+    // translation + tafsir tabs + cross-references) from the inline
+    // __QURAN_CACHE entry into an existing .popup-body. This overwrites the
+    // static shipped content on every open so the full 3-tafsir view is
+    // always shown. (Regressed in 16a2f30 by an early-return on non-empty
+    // bodies; restored from 22a74cd.)
     function renderPopupContent(verseKey, data, body) {
-        if (body.children.length) return;
-        if (body.getAttribute('data-rendered') === verseKey) return;
-        body.setAttribute('data-rendered', verseKey);
-
+        var meta = data.surah_meta || {};
         var html = '';
-        if (data.arabic) {
-            html += '<h3>Arabic</h3><div class="popup-translation-text" dir="rtl" style="font-size:1.3rem;line-height:2">' + data.arabic + '</div>';
-        }
-        if (data.translation && Object.keys(data.translation).length) {
-            var names = { hilali: 'Al-Hilali-Khan', sahih: 'Sahih International', other: 'Translation' };
-            var keys = Object.keys(data.translation);
-            if (keys.length > 1) {
-                html += '<h3>English Translations</h3><div class="popup-translation-selector">';
-                keys.forEach(function (k, i) {
-                    html += '<label><input type="radio" name="t' + verseKey.replace(/:/g, '') + '" value="' + k + '"' + (i === 0 ? ' checked' : '') + '> ' + (names[k] || names.other) + '</label>';
-                });
+
+        html += '<div class="popup-surah-badge">';
+        html += '<span class="surah-badge-ar">' + (meta.name_ar || '') + '</span>';
+        html += '<span>' + (meta.name_en || '') + ' ' + verseKey.split(':')[1] + '</span>';
+        if (meta.revelation) html += ' &middot; ' + meta.revelation;
+        html += '</div>';
+
+        html += '<div class="popup-arabic-verse">' + data.arabic + '</div>';
+
+        html += '<h3>Translation</h3>';
+        html += '<div class="popup-translation-text">' + (data.translation.hilali || '') + '</div>';
+        html += '<div style="font-size:0.75rem;color:#a0aec0;margin-top:4px;">Al-Hilali-Khan</div>';
+
+        var tafsirEditions = [
+            { key: 'ibn_kathir', label: 'Ibn Kathir' },
+            { key: 'maarif', label: "Ma'arif" },
+            { key: 'tazkirul', label: 'Tazkirul' }
+        ];
+        var availableEditions = tafsirEditions.filter(function (ed) {
+            return data.tafsir[ed.key] && data.tafsir[ed.key].indexOf('not available') === -1;
+        });
+
+        if (availableEditions.length > 0) {
+            html += '<h3>Tafsir</h3>';
+            html += '<div class="popup-tafsir-tabs">';
+            availableEditions.forEach(function (ed, i) {
+                html += '<button class="popup-tafsir-tab' + (i === 0 ? ' active' : '') + '" data-tafsir="' + ed.key + '">' + ed.label + '</button>';
+            });
+            html += '</div>';
+            availableEditions.forEach(function (ed, i) {
+                html += '<div class="popup-tafsir-panel' + (i === 0 ? ' active' : '') + '" data-tafsir-panel="' + ed.key + '">';
+                html += '<div class="popup-tafsir-text">' + data.tafsir[ed.key] + '</div>';
                 html += '</div>';
-                keys.forEach(function (k) {
-                    html += '<div class="popup-translation-text ' + k + '"' + (k === keys[0] ? '' : ' style="display:none"') + '>' + data.translation[k] + '</div>';
-                });
-            } else {
-                keys.forEach(function (k) {
-                    html += '<h3>English Translation</h3><div class="popup-translation-text">' + data.translation[k] + '</div>';
-                });
-            }
+            });
         }
-        if (data.tafsir && data.tafsir.ibn_kathir) {
-            html += '<h3>Tafsir (Ibn Kathir)</h3><div class="popup-tafsir-text">' + data.tafsir.ibn_kathir + '</div>';
+
+        if (data.cross_references && data.cross_references.length > 0) {
+            html += '<div class="popup-cross-refs">';
+            html += '<div class="popup-cross-refs-title">Related Verses</div>';
+            data.cross_references.forEach(function (ref) {
+                html += '<a class="popup-cross-ref-item" href="#" data-cross-ref="' + ref.verse_key + '">';
+                html += '<div class="popup-cross-ref-key">' + ref.verse_key + '</div>';
+                html += '<div class="popup-cross-ref-snippet">' + ref.snippet_en + '</div>';
+                html += '</a>';
+            });
+            html += '</div>';
         }
-        if (data.surah_meta) {
-            var sm = data.surah_meta;
-            html += '<div class="popup-footer" style="border:none;text-align:left;padding-top:12px">';
-            html += '<span class="popup-translation-text" style="font-size:0.8rem;color:var(--text-light)">' + (sm.name_en || '') + (sm.revelation ? ' &middot; ' + sm.revelation : '') + (sm.juz ? ' &middot; Juz ' + sm.juz : '') + '</span></div>';
-        }
-        if (!html) html = '<p>' + verseKey + '</p>';
+
         body.innerHTML = html;
 
-        // Rebind the translation radio selector inside the rendered content
-        body.querySelectorAll('.popup-translation-selector').forEach(function (selector) {
-            var radios = selector.querySelectorAll('input[type="radio"]');
-            var texts = body.querySelectorAll('.popup-translation-text');
-            radios.forEach(function (radio) {
-                radio.addEventListener('change', function () {
-                    texts.forEach(function (t) { t.style.display = 'none'; });
-                    var target = body.querySelector('.popup-translation-text.' + radio.value);
-                    if (target) target.style.display = 'block';
-                });
+        body.querySelectorAll('.popup-tafsir-tab').forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                body.querySelectorAll('.popup-tafsir-tab').forEach(function (t) { t.classList.remove('active'); });
+                body.querySelectorAll('.popup-tafsir-panel').forEach(function (p) { p.classList.remove('active'); });
+                tab.classList.add('active');
+                var panel = body.querySelector('[data-tafsir-panel="' + tab.getAttribute('data-tafsir') + '"]');
+                if (panel) panel.classList.add('active');
             });
         });
     }
@@ -676,9 +715,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (hadith.narrator) meta.push('<span><strong>Narrated by:</strong> ' + esc(hadith.narrator) + '</span>');
         if (hadith.collection) meta.push('<span><strong>Source:</strong> ' + esc(hadith.collection) + (hadith.number ? ', No. ' + esc(hadith.number) : '') + '</span>');
         if (hadith.book) meta.push('<span><strong>Book:</strong> ' + esc(hadith.book) + '</span>');
-        var sunnahSlug = hadith.collection && SUNNAH_BOOKS[hadith.collection];
-        if (sunnahSlug && hadith.number) {
-            meta.push('<span><a class="hadith-sunnah-link" href="https://sunnah.com/' + sunnahSlug + '/' + encodeURIComponent(hadith.number) + '" target="_blank" rel="noopener">View on Sunnah.com &#8599;</a></span>');
+        var sunnahUrl = hadith.sunnah_url || '';
+        if (!sunnahUrl && hadith.collection && SUNNAH_BOOKS[hadith.collection] && hadith.number) {
+            sunnahUrl = 'https://sunnah.com/' + SUNNAH_BOOKS[hadith.collection] + '/' + encodeURIComponent(hadith.number);
+        }
+        if (sunnahUrl) {
+            meta.push('<span><a class="hadith-sunnah-link" href="' + esc(sunnahUrl) + '" target="_blank" rel="noopener">View on Sunnah.com &#8599;</a></span>');
         }
 
         var modal = document.getElementById('hadith-detail-modal');
