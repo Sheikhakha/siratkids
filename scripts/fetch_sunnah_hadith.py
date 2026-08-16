@@ -37,7 +37,7 @@ HADITH_REFS = [
     {"id": 15, "ref": "muslim:223",      "narrator": "Abu Malik al-Ash'ari",   "collection": "Sahih Muslim",      "number": "223"},
     {"id": 16, "ref": "muslim:55a",      "narrator": "Tamim ad-Dari",          "collection": "Sahih Muslim",      "number": "55a"},
     {"id": 17, "ref": "abudawud:1479",   "narrator": "an-Nu'man ibn Bashir",   "collection": "Sunan Abu Dawud",   "number": "1479"},
-    {"id": 18, "ref": "muslim:216",      "narrator": "Abdullah ibn Salam",     "collection": "Sahih Muslim",      "number": "216"},
+    {"id": 18, "ref": "muslim:54",       "narrator": "Abu Hurayrah",        "collection": "Sahih Muslim",      "number": "54a"},
     {"id": 19, "ref": "muslim:2222",     "narrator": "Abu Hurayrah",           "collection": "Sahih Muslim",      "number": "2222"},
     {"id": 20, "ref": "tirmidhi:2516",   "narrator": "Abdullah ibn Abbas",     "collection": "Sunan at-Tirmidhi", "number": "2516"},
     {"id": 21, "ref": "bukhari:2989",    "narrator": "Jaber ibn Abdullah",     "collection": "Sahih al-Bukhari",  "number": "2989"},

@@ -160,7 +160,7 @@ var __HADITH_DATA = [
   },
   {
     "id":18,"arabic":"أَفْشُوا السَّلَامَ بَيْنَكُمْ","english":"Spread salam (peace) among yourselves.",
-    "grade":"Sahih","narrator":"Abdullah ibn Salam","collection":"Sahih Muslim","number":"54a",
+    "grade":"Sahih","narrator":"Abu Hurayrah","collection":"Sahih Muslim","number":"54a",
     "fullArabic":"يَا أَيُّهَا النَّاسُ، أَفْشُوا السَّلَامَ، وَصِلُوا الْأَرْحَامَ، وَأَطْعِمُوا الطَّعَامَ، وَصَلُّوا بِاللَّيْلِ وَالنَّاسُ نِيَامٌ، تَدْخُلُوا الْجَنَّةَ بِسَلَامٍ",
     "fullEnglish":"The Prophet (ﷺ) said: \"O people, spread the greeting of salam, maintain family ties, feed others, and pray at night while people are sleeping, and you will enter Paradise in peace.\"",
     "book":"Faith (Iman)",
