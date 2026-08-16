@@ -2736,6 +2736,20 @@ body.popup-open {
     color: var(--text-medium);
 }
 
+.hadith-detail-meta a.hadith-sunnah-link {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1.5px solid currentColor;
+    padding-bottom: 1px;
+}
+
+.hadith-detail-meta a.hadith-sunnah-link:hover {
+    color: var(--primary-dark);
+}
+
 .hadith-detail-credit {
     margin-top: 20px;
     padding-top: 16px;

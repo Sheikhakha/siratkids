@@ -557,6 +557,63 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Render the enriched popup content (Arabic + translations + tafsir) from
+    // the inline __QURAN_CACHE entry into an existing .popup-body. The popups
+    // ship complete static content in the HTML (two translations + Ibn Kathir
+    // tafsir), so the cache is only a fallback for empty bodies. Idempotent:
+    // once a verse has been rendered, repeat opens keep the same content.
+    function renderPopupContent(verseKey, data, body) {
+        if (body.children.length) return;
+        if (body.getAttribute('data-rendered') === verseKey) return;
+        body.setAttribute('data-rendered', verseKey);
+
+        var html = '';
+        if (data.arabic) {
+            html += '<h3>Arabic</h3><div class="popup-translation-text" dir="rtl" style="font-size:1.3rem;line-height:2">' + data.arabic + '</div>';
+        }
+        if (data.translation && Object.keys(data.translation).length) {
+            var names = { hilali: 'Al-Hilali-Khan', sahih: 'Sahih International', other: 'Translation' };
+            var keys = Object.keys(data.translation);
+            if (keys.length > 1) {
+                html += '<h3>English Translations</h3><div class="popup-translation-selector">';
+                keys.forEach(function (k, i) {
+                    html += '<label><input type="radio" name="t' + verseKey.replace(/:/g, '') + '" value="' + k + '"' + (i === 0 ? ' checked' : '') + '> ' + (names[k] || names.other) + '</label>';
+                });
+                html += '</div>';
+                keys.forEach(function (k) {
+                    html += '<div class="popup-translation-text ' + k + '"' + (k === keys[0] ? '' : ' style="display:none"') + '>' + data.translation[k] + '</div>';
+                });
+            } else {
+                keys.forEach(function (k) {
+                    html += '<h3>English Translation</h3><div class="popup-translation-text">' + data.translation[k] + '</div>';
+                });
+            }
+        }
+        if (data.tafsir && data.tafsir.ibn_kathir) {
+            html += '<h3>Tafsir (Ibn Kathir)</h3><div class="popup-tafsir-text">' + data.tafsir.ibn_kathir + '</div>';
+        }
+        if (data.surah_meta) {
+            var sm = data.surah_meta;
+            html += '<div class="popup-footer" style="border:none;text-align:left;padding-top:12px">';
+            html += '<span class="popup-translation-text" style="font-size:0.8rem;color:var(--text-light)">' + (sm.name_en || '') + (sm.revelation ? ' &middot; ' + sm.revelation : '') + (sm.juz ? ' &middot; Juz ' + sm.juz : '') + '</span></div>';
+        }
+        if (!html) html = '<p>' + verseKey + '</p>';
+        body.innerHTML = html;
+
+        // Rebind the translation radio selector inside the rendered content
+        body.querySelectorAll('.popup-translation-selector').forEach(function (selector) {
+            var radios = selector.querySelectorAll('input[type="radio"]');
+            var texts = body.querySelectorAll('.popup-translation-text');
+            radios.forEach(function (radio) {
+                radio.addEventListener('change', function () {
+                    texts.forEach(function (t) { t.style.display = 'none'; });
+                    var target = body.querySelector('.popup-translation-text.' + radio.value);
+                    if (target) target.style.display = 'block';
+                });
+            });
+        });
+    }
+
     function closeMeaningPopup(popup) {
         popup.classList.remove('active');
         document.body.classList.remove('popup-open');
@@ -582,6 +639,80 @@ document.addEventListener('DOMContentLoaded', function () {
             if (activePopup) {
                 closeMeaningPopup(activePopup);
             }
+        }
+    });
+
+    // "Read Full Hadith" — opens a detail modal with the full Arabic text,
+    // grade badge, English translation, and source metadata from the inline
+    // __HADITH_DATA array (keyed by data-hadith-id). Reuses the popup pattern.
+    function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    var hadithModal = null;
+    document.addEventListener('click', function(e) {
+        if (!e.target || !e.target.closest) return;
+        var btn = e.target.closest('.hadith-read-more');
+        if (!btn) return;
+        e.preventDefault();
+        var id = parseInt(btn.getAttribute('data-hadith-id'), 10);
+        var data = (typeof __HADITH_DATA !== 'undefined') ? __HADITH_DATA : [];
+        var hadith = null;
+        for (var i = 0; i < data.length; i++) {
+            if (parseInt(data[i].id, 10) === id) { hadith = data[i]; break; }
+        }
+        if (!hadith) return;
+
+        var grade = esc(hadith.grade || '');
+        var gradeClass = grade.toLowerCase().replace(/[^a-z]/g, '');
+        var SUNNAH_BOOKS = {
+            'Sahih al-Bukhari': 'bukhari',
+            'Sahih Muslim': 'muslim',
+            'Jami\' at-Tirmidhi': 'tirmidhi',
+            'Sunan an-Nasa\'i': 'nasai',
+            'Sunan Abi Dawud': 'abudawud'
+        };
+        var meta = [];
+        if (hadith.narrator) meta.push('<span><strong>Narrated by:</strong> ' + esc(hadith.narrator) + '</span>');
+        if (hadith.collection) meta.push('<span><strong>Source:</strong> ' + esc(hadith.collection) + (hadith.number ? ', No. ' + esc(hadith.number) : '') + '</span>');
+        if (hadith.book) meta.push('<span><strong>Book:</strong> ' + esc(hadith.book) + '</span>');
+        var sunnahSlug = hadith.collection && SUNNAH_BOOKS[hadith.collection];
+        if (sunnahSlug && hadith.number) {
+            meta.push('<span><a class="hadith-sunnah-link" href="https://sunnah.com/' + sunnahSlug + '/' + encodeURIComponent(hadith.number) + '" target="_blank" rel="noopener">View on Sunnah.com &#8599;</a></span>');
+        }
+
+        var modal = document.getElementById('hadith-detail-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.className = 'popup-overlay hadith-detail-modal';
+            modal.id = 'hadith-detail-modal';
+            document.body.appendChild(modal);
+        }
+        modal.innerHTML =
+            '<div class="popup-modal">' +
+                '<div class="popup-header">' +
+                    '<span>Hadith #' + id + '</span>' +
+                    '<button type="button" class="popup-close" aria-label="Close hadith details">&#10005;</button>' +
+                '</div>' +
+                '<div class="popup-body">' +
+                    '<div class="hadith-detail-arabic" dir="rtl">' + esc(hadith.arabic || '') + '</div>' +
+                    (grade ? '<div class="hadith-detail-grade ' + gradeClass + '">' + grade + '</div>' : '') +
+                    (hadith.fullArabic ? '<h3>Full Hadith (Arabic)</h3><div class="hadith-detail-arabic" dir="rtl">' + esc(hadith.fullArabic) + '</div>' : '') +
+                    (hadith.fullEnglish ? '<h3>Full Hadith (English)</h3><p class="hadith-detail-english">' + esc(hadith.fullEnglish) + '</p>' : '') +
+                    (meta.length ? '<div class="hadith-detail-meta">' + meta.join('<br>') + '</div>' : '') +
+                '</div>' +
+            '</div>';
+        modal.classList.add('active');
+        document.body.classList.add('popup-open');
+        var closeBtn = modal.querySelector('.popup-close');
+        if (closeBtn) closeBtn.focus();
+    });
+
+    document.addEventListener('click', function(e) {
+        var modal = document.getElementById('hadith-detail-modal');
+        if (!modal || !modal.classList.contains('active')) return;
+        if (e.target === modal || (e.target.classList && e.target.classList.contains('popup-close'))) {
+            closeMeaningPopup(modal);
         }
     });
 
