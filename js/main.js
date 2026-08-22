@@ -397,10 +397,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Arabic font switcher
     var fontSelect = document.getElementById('arabic-font');
     if (fontSelect) {
-        var saved = localStorage.getItem('arabic-font');
-        if (saved) {
-            fontSelect.value = saved;
-            applyFont(saved);
+        var saved = localStorage.getItem('arabic-font') || 'nastaleeq';
+        fontSelect.value = saved;
+        applyFont(saved);
+        if (!localStorage.getItem('arabic-font')) {
+            localStorage.setItem('arabic-font', 'nastaleeq');
         }
         fontSelect.addEventListener('change', function () {
             localStorage.setItem('arabic-font', this.value);

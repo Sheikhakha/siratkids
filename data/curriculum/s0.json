@@ -1,0 +1,585 @@
+{
+  "stage": 0,
+  "titles": {
+    "en": "Pre-Stage: Seeds of Faith",
+    "ar": "المرحلة التمهيدية",
+    "age_en": "Ages 4-6 years"
+  },
+  "sources": [
+    {
+      "file": "data/pdfs/PreStage.pdf",
+      "note": "Content already published on site as the classic tawheed + seerah lessons; this stage links them."
+    }
+  ],
+  "subjects": [
+    {
+      "key": "tawheed",
+      "title": {
+        "en": "Tawheed",
+        "ar": "التوحيد"
+      },
+      "units": [
+        {
+          "no": 1,
+          "title": {
+            "en": "Rububiyyah (Lordship)",
+            "ar": "الربوبية"
+          },
+          "lessons": [
+            {
+              "file": "tawheed-1-1",
+              "kind": "lesson",
+              "href": "lessons/tawheed-1-1.html",
+              "title": {
+                "en": "The Three Principles",
+                "ar": "الْأُصُولُ الثَّلَاثَةُ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "tawheed-1-2",
+              "kind": "lesson",
+              "href": "lessons/tawheed-1-2.html",
+              "title": {
+                "en": "Allah the Creator",
+                "ar": "اللَّهُ الْخَالِقُ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "tawheed-1-3",
+              "kind": "lesson",
+              "href": "lessons/tawheed-1-3.html",
+              "title": {
+                "en": "Allah is My Creator",
+                "ar": "اللَّهُ خَالِقِي"
+              },
+              "blocks": []
+            },
+            {
+              "file": "tawheed-1-4",
+              "kind": "lesson",
+              "href": "lessons/tawheed-1-4.html",
+              "title": {
+                "en": "Allah is the Owner",
+                "ar": "اللَّهُ الْمَالِكُ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "tawheed-1-5",
+              "kind": "lesson",
+              "href": "lessons/tawheed-1-5.html",
+              "title": {
+                "en": "Allah is the Provider",
+                "ar": "اللَّهُ الرَّزَّاقُ"
+              },
+              "blocks": []
+            }
+          ]
+        },
+        {
+          "no": 2,
+          "title": {
+            "en": "Uloohiyyah (Worship)",
+            "ar": "الألوهية"
+          },
+          "lessons": [
+            {
+              "file": "tawheed-2-1",
+              "kind": "lesson",
+              "href": "lessons/tawheed-2-1.html",
+              "title": {
+                "en": "Why Did Allah Create Us?",
+                "ar": "لِمَاذَا خَلَقَنَا اللَّهُ؟"
+              },
+              "blocks": []
+            },
+            {
+              "file": "tawheed-2-2",
+              "kind": "lesson",
+              "href": "lessons/tawheed-2-2.html",
+              "title": {
+                "en": "The Word of Tawheed",
+                "ar": "كَلِمَةُ التَّوْحِيدِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "tawheed-2-3",
+              "kind": "lesson",
+              "href": "lessons/tawheed-2-3.html",
+              "title": {
+                "en": "I Am a Muslim",
+                "ar": "أَنَا مُسْلِمٌ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "tawheed-2-4",
+              "kind": "lesson",
+              "href": "lessons/tawheed-2-4.html",
+              "title": {
+                "en": "I Love Allah, My Lord",
+                "ar": "أُحِبُّ اللَّهَ رَبِّي"
+              },
+              "blocks": []
+            }
+          ]
+        },
+        {
+          "no": 3,
+          "title": {
+            "en": "Islam & Love of the Prophet",
+            "ar": "الإسلام وحب النبي"
+          },
+          "lessons": [
+            {
+              "file": "tawheed-3-1",
+              "kind": "lesson",
+              "href": "lessons/tawheed-3-1.html",
+              "title": {
+                "en": "My Religion Is Islam",
+                "ar": "دِينِيَ الْإِسْلَامُ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "tawheed-3-2",
+              "kind": "lesson",
+              "href": "lessons/tawheed-3-2.html",
+              "title": {
+                "en": "The Two Testimonies of Faith",
+                "ar": "الشَّهَادَتَانِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "tawheed-3-3",
+              "kind": "lesson",
+              "href": "lessons/tawheed-3-3.html",
+              "title": {
+                "en": "Loving the Prophet ﷺ",
+                "ar": "حُبُّ النَّبِيِّ ﷺ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "tawheed-3-4",
+              "kind": "lesson",
+              "href": "lessons/tawheed-3-4.html",
+              "title": {
+                "en": "Loving the Companions",
+                "ar": "حُبُّ الصَّحَابَةِ"
+              },
+              "blocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "seerah",
+      "title": {
+        "en": "Seerah",
+        "ar": "السيرة النبوية"
+      },
+      "units": [
+        {
+          "no": 1,
+          "title": {
+            "en": "Knowing Our Prophet ﷺ",
+            "ar": "معرفة نبيينا"
+          },
+          "lessons": [
+            {
+              "file": "seerah-1",
+              "kind": "lesson",
+              "href": "lessons/seerah/seerah-1.html",
+              "title": {
+                "en": "My Prophet's Name is Muhammad ibn Abdullah",
+                "ar": "مَنْ نَبِيُّكَ؟"
+              },
+              "blocks": []
+            },
+            {
+              "file": "seerah-2",
+              "kind": "lesson",
+              "href": "lessons/seerah/seerah-2.html",
+              "title": {
+                "en": "The Hijrah to Madinah",
+                "ar": "هِجْرَتُهُ إِلَى الْمَدِينَةِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "seerah-3",
+              "kind": "lesson",
+              "href": "lessons/seerah/seerah-3.html",
+              "title": {
+                "en": "The Mothers of the Believers",
+                "ar": "زَوْجَاتُ الرَّسُولِ ﷺ"
+              },
+              "blocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "hadith",
+      "title": {
+        "en": "Hadith",
+        "ar": "الحديث النبوي"
+      },
+      "units": [
+        {
+          "no": 1,
+          "title": {
+            "en": "Hadith I",
+            "ar": "الأحاديث (١)"
+          },
+          "lessons": [
+            {
+              "file": "hadith-1",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-1.html",
+              "title": {
+                "en": "Religion is Ease",
+                "ar": "الدِّينُ يُسْرٌ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-2",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-2.html",
+              "title": {
+                "en": "Key to Paradise",
+                "ar": "مِفْتَاحُ الْجَنَّةِ الصَّلَاةُ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-3",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-3.html",
+              "title": {
+                "en": "Cheating",
+                "ar": "مَنْ غَشَّ فَلَيْسَ مِنَّا"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-4",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-4.html",
+              "title": {
+                "en": "Intentions",
+                "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-5",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-5.html",
+              "title": {
+                "en": "Peace Before Speech",
+                "ar": "السَّلَامُ قَبْلَ الْكَلَامِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-6",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-6.html",
+              "title": {
+                "en": "Truthfulness",
+                "ar": "عَلَيْكُمْ بِالصِّدْقِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-7",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-7.html",
+              "title": {
+                "en": "Beware of Lying",
+                "ar": "إِيَّاكُمْ وَالْكِذْبَ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-8",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-8.html",
+              "title": {
+                "en": "Paradise and Mothers",
+                "ar": "الْجَنَّةُ تَحْتَ أَقْدَامِ الْأُمَّهَاتِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-9",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-9.html",
+              "title": {
+                "en": "Door of Paradise",
+                "ar": "الْوَالِدُ أَوْسَطُ أَبْوَابِ الْجَنَّةِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-10",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-10.html",
+              "title": {
+                "en": "None Enters Paradise Except a Muslim Soul",
+                "ar": "لَا يَدْخُلُ الْجَنَّةَ إِلَّا نَفْسٌ مُسْلِمَةٌ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-11",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-11.html",
+              "title": {
+                "en": "Whoever Dies upon Shirk",
+                "ar": "مَنْ مَاتَ يُشْرِكُ بِاللَّهِ دَخَلَ النَّارَ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-12",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-12.html",
+              "title": {
+                "en": "Purity Is Half of Faith",
+                "ar": "الطَّهُورُ شَطْرُ الْإِيمَانِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-13",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-13.html",
+              "title": {
+                "en": "Prayer Is a Light",
+                "ar": "الصَّلَاةُ نُورٌ"
+              },
+              "blocks": []
+            }
+          ]
+        },
+        {
+          "no": 2,
+          "title": {
+            "en": "Hadith II",
+            "ar": "الأحاديث (٢)"
+          },
+          "lessons": [
+            {
+              "file": "hadith-14",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-14.html",
+              "title": {
+                "en": "The Two Cool Prayers",
+                "ar": "صَلَاتَا الْفَجْرِ وَالْعَصْرِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-15",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-15.html",
+              "title": {
+                "en": "Patience Is Illumination",
+                "ar": "الصَّبْرُ ضِيَاءٌ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-16",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-16.html",
+              "title": {
+                "en": "Religion Is Sincerity",
+                "ar": "الدِّينُ النَّصِيحَةُ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-17",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-17.html",
+              "title": {
+                "en": "Supplication Is Worship",
+                "ar": "الدُّعَاءُ عِبَادَةٌ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-18",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-18.html",
+              "title": {
+                "en": "Spread Salam Among Yourselves",
+                "ar": "أَفْشُوا السَّلَامَ بَيْنَكُمْ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-19",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-19.html",
+              "title": {
+                "en": "Strive Before Five Things",
+                "ar": "اغْتَنِمْ خَمْسًا قَبْلَ خَمْسٍ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-20",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-20.html",
+              "title": {
+                "en": "Seek Help from Allah",
+                "ar": "اسْتَعِنْ بِاللَّهِ وَلَا تَعْجَزْ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-21",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-21.html",
+              "title": {
+                "en": "Every Good Deed Is Charity",
+                "ar": "كُلُّ مَعْرُوفٍ صَدَقَةٌ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-22",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-22.html",
+              "title": {
+                "en": "Modesty Brings Only Good",
+                "ar": "الْحَيَاءُ لَا يَأْتِي إِلَّا بِخَيْرٍ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-23",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-23.html",
+              "title": {
+                "en": "Allah Loves Gentleness",
+                "ar": "إِنَّ اللَّهَ رَفِيقٌ يُحِبُّ الرِّفْقَ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-24",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-24.html",
+              "title": {
+                "en": "Do Not Sever Family Ties",
+                "ar": "لَا يَدْخُلُ الْجَنَّةَ قَاطِعُ رَحِمٍ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-25",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-25.html",
+              "title": {
+                "en": "The Talebearer Will Not Enter Paradise",
+                "ar": "لَا يَدْخُلُ الْجَنَّةَ نَمَّامٌ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "hadith-26",
+              "kind": "lesson",
+              "href": "lessons/hadith/hadith-26.html",
+              "title": {
+                "en": "Whoever Cheats Us Is Not from Us",
+                "ar": "لَيْسَ مِنَّا مَنْ غَشَّنَا"
+              },
+              "blocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "manners",
+      "title": {
+        "en": "Manners of Eating",
+        "ar": "آداب الطعام والشراب"
+      },
+      "units": [
+        {
+          "no": 1,
+          "title": {
+            "en": "Eating Manners",
+            "ar": "آداب الطعام"
+          },
+          "lessons": [
+            {
+              "file": "manner-1",
+              "kind": "lesson",
+              "href": "lessons/manners/manner-1.html",
+              "title": {
+                "en": "Wash Hands Before Eating",
+                "ar": "غَسْلُ الْيَدَيْنِ قَبْلَ الطَّعَامِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "manner-2",
+              "kind": "lesson",
+              "href": "lessons/manners/manner-2.html",
+              "title": {
+                "en": "Say Bismillah Before Eating",
+                "ar": "قَوْلُ بِسْمِ اللهِ قَبْلَ الْأَكْلِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "manner-3",
+              "kind": "lesson",
+              "href": "lessons/manners/manner-3.html",
+              "title": {
+                "en": "Eat with the Right Hand",
+                "ar": "الْأَكْلُ بِالْيَمِينِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "manner-4",
+              "kind": "lesson",
+              "href": "lessons/manners/manner-4.html",
+              "title": {
+                "en": "Eat on a Dining Mat",
+                "ar": "الْأَكْلُ عَلَى السُّفْرَةِ"
+              },
+              "blocks": []
+            },
+            {
+              "file": "manner-5",
+              "kind": "lesson",
+              "href": "lessons/manners/manner-5.html",
+              "title": {
+                "en": "Sit Humbly Without Leaning",
+                "ar": "الْجُلُوسُ تَوَاضُعًا بِغَيْرِ إِتِّكَاءٍ"
+              },
+              "blocks": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

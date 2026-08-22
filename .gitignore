@@ -3,3 +3,6 @@ scripts/_quran_cache.json
 scripts/.qul_cache/
 scripts/__pycache__/
 .git/
+.venv-audio/
+data/pdfs/
+__pycache__/
