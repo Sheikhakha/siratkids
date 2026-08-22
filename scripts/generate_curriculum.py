@@ -153,7 +153,10 @@ def block_html(b):
     t = b.get('type', 'text')
     ar = esc(b['ar'])
     if t == 'ayah':
-        ar = '&#65079;' + ar + '&#65080;'
+        ar = ar.replace('&amp;#65079;', '').replace('&amp;#65080;', '')
+        ar = ar.replace('&#65079;', '').replace('&#65080;', '')
+        if not ar.startswith('\ufd3f'):
+            ar = '\ufd3f' + ar + '\ufd3e'
         ref = b.get('ref', '')
         ref_html = '<div class="block-ref"><span class="ar" dir="rtl">%s</span></div>' % esc(ref)
     else:
@@ -184,13 +187,17 @@ def block_html(b):
     return '\n'.join(lines)
 
 
+def stage_chip_html(stage):
+    st = stage['titles']
+    return ('<span class="stage-chip"><span class="en">Stage %d</span>'
+            '<span class="sep">&middot;</span>'
+            '<span class="ar" dir="rtl">%s</span></span>'
+            % (stage['stage'], esc(st.get('ar', ''))))
+
+
 def sidebar(units, active_file, prefix, hub_href, stage_href, subject_title):
     out = ['<aside class="sidenav-with-history-container content-loaded">',
            '        <div class="sidenav-inner">',
-           '<div class="sidebar-nav-back">',
-           '<a href="%s" class="sidebar-back-link">&#8592; All Subjects</a>' % esc(stage_href),
-           '<a href="%s" class="sidebar-back-link">&#8592; Back to Lessons</a>' % esc(hub_href),
-           '</div>',
            '<div class="sidebar-title">%s</div>' % esc(subject_title['en'])]
     n = 0
     for u in units:
@@ -217,8 +224,8 @@ def lesson_page(stage, subject, unit, lesson, flat, idx):
     prefix = '../../'
     stage_href = '../../stage-%d.html' % stage['stage']
     hub_href = '../../stage-%d-%s.html' % (stage['stage'], subject['key'])
-    prev_href = flat[idx - 1]['file'] + '.html' if idx > 0 else None
-    next_href = flat[idx + 1]['file'] + '.html' if idx < len(flat) - 1 else None
+    prev_href = flat[idx - 1]['file'] if idx > 0 else None
+    next_href = flat[idx + 1]['file'] if idx < len(flat) - 1 else None
     nav_l = ('<a href="%s.html" class="lesson-nav-prev">&#8592; Previous</a>' % esc(prev_href)) if prev_href else '<span></span>'
     nav_r = ('<a href="%s.html" class="lesson-nav-next">Next &#8594;</a>' % esc(next_href)) if next_href else '<span></span>'
     unit_label = 'Unit %d' % unit['no'] if lesson.get('kind') != 'review' else 'Unit %d Review' % unit['no']
@@ -257,7 +264,7 @@ def lesson_page(stage, subject, unit, lesson, flat, idx):
     <header class="lesson-hero subj-hero-{esc(subject['key'])}">
         <div class="lesson-hero-art" aria-hidden="true">{SUBJECT_SVG.get(subject['key'], SUBJECT_SVG['default'])}</div>
         <div class="lesson-hero-inner">
-            <p class="lesson-unit"><span class="lesson-unit-chip">{SUBJECT_ICONS.get(subject['key'], '&#11088;')} {esc(unit_label)}</span></p>
+            <p class="lesson-unit">{stage_chip_html(stage)}<span class="lesson-unit-chip">{SUBJECT_ICONS.get(subject['key'], '&#11088;')} {esc(unit_label)}</span></p>
             <h1 class="lesson-title">
                 <span class="ar" dir="rtl">{esc(lt['ar'])}</span>
                 <span class="en">{esc(lt['en'])}</span>
@@ -354,12 +361,12 @@ def stage_page(stage, subjects_for_stage):
             '<span class="subject-tile-icon">%s</span>'
             '<span class="subject-title"><span class="en">%s</span>'
             '<span class="ar" dir="rtl">%s</span></span>'
-            '<span class="subject-meta">%d units &middot; %d lessons</span>'
+            '<span class="subject-meta">%d %s &middot; %d lessons</span>'
             '<span class="subject-open">Browse lessons &#9656;</span>'
             '</a>'
             % (esc(subj['key']), sn, esc(subj['key']), icon,
                esc(subj['title']['en']), esc(subj['title']['ar']),
-               n_units, n_lessons))
+               n_units, 'unit' if n_units == 1 else 'units', n_lessons))
     empty_note = ('<p class="stages-intro">Lessons for this stage are being prepared '
                   'and will appear here soon, in sha Allah.</p>') if not tiles else ''
     return f"""{head(st['en'], '')}{navbar('', show_toggle=False)}
@@ -402,6 +409,7 @@ def subject_page(stage, subj):
     sdir = '%d-%s' % (sn, subj['key'])
     stage_href = 'stage-%d.html' % sn
     icon = SUBJECT_ICONS.get(subj['key'], '&#11088;')
+    n_units = len(subj['units'])
     unit_cards = []
     for u in subj['units']:
         first = u['lessons'][0]
@@ -415,11 +423,13 @@ def subject_page(stage, subj):
             '<div class="unit-card-titles"><h2 class="en">Unit %d &middot; %s</h2>'
             '<p class="ar" dir="rtl">%s</p></div>'
             '</header>'
-            '<footer class="unit-card-foot"><span>%d lessons</span>'
+            '<footer class="unit-card-foot"><span class="unit-card-stage">Stage %d &middot; %s</span>'
+            '<span>%d lessons</span>'
             '<span class="unit-open">Start Unit &#9656;</span></footer>'
             '</section></a>'
             % (esc(first_href), ((u['no'] - 1) % 5) + 1, u['no'], u['no'],
-               esc(u['title']['en']), esc(u['title'].get('ar', '')), n))
+               esc(u['title']['en']), esc(u['title'].get('ar', '')),
+               sn, esc(st.get('ar', '')), n))
     back_row = ('<div class="lesson-back-row">'
                 '<a class="btn-back-lg" href="%s">&#8592; Back to Subjects</a>'
                 '</div>' % esc(stage_href))
@@ -437,7 +447,7 @@ def subject_page(stage, subj):
     <header class="lesson-hero subject-hero subj-hero-{esc(subj['key'])}">
         <div class="lesson-hero-art" aria-hidden="true">{stage_hero_art(subj['key'])}</div>
         <div class="lesson-hero-inner">
-            <p class="lesson-unit"><span class="lesson-unit-chip">{icon} {len(subj['units'])} units</span></p>
+            <p class="lesson-unit">{stage_chip_html(stage)}<span class="lesson-unit-chip">{icon} {n_units} {'unit' if n_units == 1 else 'units'}</span></p>
             <h1 class="lesson-title">
                 <span class="ar" dir="rtl">{esc(su['ar'])}</span>
                 <span class="en">{esc(su['en'])}</span>

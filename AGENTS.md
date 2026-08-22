@@ -4,7 +4,7 @@
 Static HTML/CSS/JavaScript website for children's Islamic education. Bilingual (English/Arabic) with RTL support.
 
 ## Architecture
-- `index.html` - Homepage with 5 track cards + featured verse (66:6)
+- `index.html` - Homepage with stage/subject tiles + featured verse (66:6)
 - `hadith.html` - Hadith collection hub (26 hadith)
 - `manners.html` - Islamic eating manners hub (5 items)
 - `adhkar.html` - Adhkar & supplications hub (11 items)
@@ -68,7 +68,7 @@ This runs ~2900+ automated checks covering:
 - **Arabic text preservation** (Quran verses, hadith, adhkar, tawheed content)
 - **Lesson Arabic presence** (every lesson has `.ar[dir="rtl"]` blocks and `lesson-block` elements)
 - **English/Tamil/Transliteration preservation** across all lessons
-- **Navigation integrity** (prev/next chains, sidebar links, breadcrumbs, track cards)
+- **Navigation integrity** (prev/next chains, sidebar links, breadcrumbs, subject tiles)
 - **Audio widget structure** (every hub/lesson `lesson-aside` contains full audio player: play button, status, text preview, speed selector)
 - **Translation toggle bars** (every lesson has exactly `translation`/`tamil`/`transliteration` toggle buttons)
 - **Quran popup modals** (4 popups with dual translations + Ibn Kathir tafsir)

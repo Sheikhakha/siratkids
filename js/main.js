@@ -484,9 +484,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.lesson-highlight.ar').forEach(function (el) {
             el.style.fontSize = (1.05 * scale) + 'rem';
         });
-        document.querySelectorAll('.track-name-ar').forEach(function (el) {
-            el.style.fontSize = (1.3 * scale) + 'rem';
-        });
         document.querySelectorAll('.lesson-name.ar').forEach(function (el) {
             el.style.fontSize = (1.725 * scale) + 'rem';
         });
@@ -508,11 +505,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.lesson-highlight.en').forEach(function (el) {
             el.style.fontSize = (1.05 * scale) + 'rem';
         });
-        document.querySelectorAll('.track-desc, .hero-sub-en, .unit-hero-desc').forEach(function (el) {
+        document.querySelectorAll('.hero-sub-en, .unit-hero-desc').forEach(function (el) {
             el.style.fontSize = (0.95 * scale) + 'rem';
-        });
-        document.querySelectorAll('.track-name').forEach(function (el) {
-            el.style.fontSize = (1.5 * scale) + 'rem';
         });
         document.querySelectorAll('.lesson-name:not(.ar)').forEach(function (el) {
             el.style.fontSize = (1.0 * scale) + 'rem';

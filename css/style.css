@@ -103,16 +103,6 @@
     --crossref-hover-border: #bfdbfe;
     --tooltip-bg: #1e293b;
     --tooltip-color: #ffffff;
-    --track-tawheed-bg: linear-gradient(135deg, #e8f4ff, #dbeafe);
-    --track-tawheed-border: #bfdbfe;
-    --track-hadith-bg: linear-gradient(135deg, #fef3e2, #fde68a);
-    --track-hadith-border: #fcd34d;
-    --track-manners-bg: linear-gradient(135deg, #fdf2f8, #fbcfe8);
-    --track-manners-border: #f9a8d4;
-    --track-seerah-bg: linear-gradient(135deg, #f5f3ff, #ddd6fe);
-    --track-seerah-border: #c4b5fd;
-    --track-adhkar-bg: linear-gradient(135deg, #ecfdf5, #bbf7d0);
-    --track-adhkar-border: #86efac;
 }
 
 [data-theme="dark"] {
@@ -184,16 +174,6 @@
     --crossref-hover-border: #334155;
     --tooltip-bg: #1e293b;
     --tooltip-color: #ffffff;
-    --track-tawheed-bg: linear-gradient(135deg, #1e3a5f, #1e293b);
-    --track-tawheed-border: #2c5282;
-    --track-hadith-bg: linear-gradient(135deg, #422006, #3b2f0a);
-    --track-hadith-border: #78350f;
-    --track-manners-bg: linear-gradient(135deg, #3b1a2e, #2d1b30);
-    --track-manners-border: #6b2144;
-    --track-seerah-bg: linear-gradient(135deg, #1e1b4b, #2e1065);
-    --track-seerah-border: #4c1d95;
-    --track-adhkar-bg: linear-gradient(135deg, #0a3a1a, #0d3d1a);
-    --track-adhkar-border: #166534;
 }
 
 /* ============================================
@@ -215,8 +195,6 @@
     --surah-badge-border: #86efac;
     --crossref-hover-bg: #f0fdf4;
     --crossref-hover-border: #86efac;
-    --track-tawheed-bg: linear-gradient(135deg, #dcfce7, #bbf7d0);
-    --track-tawheed-border: #86efac;
 }
 [data-theme="dark"][data-accent="green"] {
     --primary: #4ADE80;
@@ -229,8 +207,6 @@
     --surah-badge-border: #14532d;
     --crossref-hover-bg: #14532d;
     --crossref-hover-border: #166534;
-    --track-tawheed-bg: linear-gradient(135deg, #14532d, #1e293b);
-    --track-tawheed-border: #15803d;
 }
 
 :root[data-accent="purple"] {
@@ -244,8 +220,6 @@
     --surah-badge-border: #c4b5fd;
     --crossref-hover-bg: #f5f3ff;
     --crossref-hover-border: #c4b5fd;
-    --track-tawheed-bg: linear-gradient(135deg, #f5f3ff, #ddd6fe);
-    --track-tawheed-border: #c4b5fd;
 }
 [data-theme="dark"][data-accent="purple"] {
     --primary: #C084FC;
@@ -258,8 +232,6 @@
     --surah-badge-border: #2e1065;
     --crossref-hover-bg: #2e1065;
     --crossref-hover-border: #4c1d95;
-    --track-tawheed-bg: linear-gradient(135deg, #2e1065, #1e293b);
-    --track-tawheed-border: #581c87;
 }
 
 :root[data-accent="teal"] {
@@ -273,8 +245,6 @@
     --surah-badge-border: #5eead4;
     --crossref-hover-bg: #f0fdfa;
     --crossref-hover-border: #5eead4;
-    --track-tawheed-bg: linear-gradient(135deg, #ccfbf1, #99f6e4);
-    --track-tawheed-border: #5eead4;
 }
 [data-theme="dark"][data-accent="teal"] {
     --primary: #2DD4BF;
@@ -287,8 +257,6 @@
     --surah-badge-border: #134e4a;
     --crossref-hover-bg: #134e4a;
     --crossref-hover-border: #115e59;
-    --track-tawheed-bg: linear-gradient(135deg, #134e4a, #1e293b);
-    --track-tawheed-border: #0f766e;
 }
 
 html { scroll-behavior: smooth; }
@@ -486,7 +454,7 @@ body {
 /* ---------- Font Switcher ---------- */
 .font-nastaleeq .hero-quran,
 .font-nastaleeq .hero-sub-ar,
-.font-nastaleeq .track-name-ar,
+
 .font-nastaleeq .lesson-title .ar,
 .font-nastaleeq .lesson-concept-block .ar,
 .font-nastaleeq .lesson-pair .ar,
@@ -502,7 +470,7 @@ body {
 }
 
 .font-nastaleeq .hero-sub-ar,
-.font-nastaleeq .track-name-ar,
+
 .font-nastaleeq .lesson-pair .ar,
 .font-nastaleeq .lesson-pair .ar h3,
 .font-nastaleeq .lesson-block .ar,
@@ -514,13 +482,9 @@ body {
     font-size: 2rem;
 }
 
-.font-nastaleeq .track-name-ar {
-    font-size: 1.6rem;
-}
-
 .font-amiri .hero-quran,
 .font-amiri .hero-sub-ar,
-.font-amiri .track-name-ar,
+
 .font-amiri .lesson-title .ar,
 .font-amiri .lesson-concept-block .ar,
 .font-amiri .lesson-pair .ar,
@@ -537,7 +501,7 @@ body {
 
 .font-scheherazade .hero-quran,
 .font-scheherazade .hero-sub-ar,
-.font-scheherazade .track-name-ar,
+
 .font-scheherazade .lesson-title .ar,
 .font-scheherazade .lesson-concept-block .ar,
 .font-scheherazade .lesson-pair .ar,
@@ -554,7 +518,7 @@ body {
 
 .font-lateef .hero-quran,
 .font-lateef .hero-sub-ar,
-.font-lateef .track-name-ar,
+
 .font-lateef .lesson-title .ar,
 .font-lateef .lesson-concept-block .ar,
 .font-lateef .lesson-pair .ar,
@@ -570,7 +534,7 @@ body {
 }
 
 .font-lateef .hero-sub-ar,
-.font-lateef .track-name-ar,
+
 .font-lateef .lesson-pair .ar,
 .font-lateef .lesson-pair .ar h3,
 .font-lateef .lesson-block .ar,
@@ -580,10 +544,6 @@ body {
 
 .font-lateef .hero-sub-ar {
     font-size: 2rem;
-}
-
-.font-lateef .track-name-ar {
-    font-size: 1.6rem;
 }
 
 .font-switcher {
@@ -632,115 +592,7 @@ body {
     border-color: var(--primary);
 }
 
-/* ---------- Tracks Section ---------- */
-.tracks-section {
-    padding: 64px 40px;
-    background: var(--bg-light);
-}
-
-.tracks-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 28px;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.track-card {
-    width: calc(33.333% - 19px);
-    min-width: 280px;
-}
-
-.track-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 40px 28px;
-    border-radius: var(--radius-lg);
-    text-decoration: none;
-    color: var(--text-dark);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    position: relative;
-    overflow: hidden;
-}
-
-.track-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.track-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(79, 70, 229, 0.15);
-}
-
-.track-card:hover::before {
-    opacity: 1;
-}
-
-.track-card:active {
-    transform: translateY(-4px) scale(1.01);
-    transition-duration: 0.1s;
-}
-
-.track-tawheed {
-    background: var(--track-tawheed-bg);
-    border: 2px solid var(--track-tawheed-border);
-}
-
-.track-hadith {
-    background: var(--track-hadith-bg);
-    border: 2px solid var(--track-hadith-border);
-}
-
-.track-manners {
-    background: var(--track-manners-bg);
-    border: 2px solid var(--track-manners-border);
-}
-
-.track-seerah {
-    background: var(--track-seerah-bg);
-    border: 2px solid var(--track-seerah-border);
-}
-
-.track-adhkar {
-    background: var(--track-adhkar-bg);
-    border: 2px solid var(--track-adhkar-border);
-}
-
 .track-icon { font-size: 3rem; margin-bottom: 12px; }
-
-.track-name {
-    font-family: var(--font-en-heading);
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin-bottom: 4px;
-}
-
-.track-name-ar {
-    font-family: var(--font-ar);
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--text-medium);
-    margin-bottom: 12px;
-}
-
-.track-desc {
-    font-size: 0.95rem;
-    color: var(--text-medium);
-    line-height: 1.5;
-}
 
 .coming-soon { opacity: 0.65; cursor: default; position: relative; }
 .coming-soon:hover { transform: none; box-shadow: none; }
@@ -1042,8 +894,6 @@ body {
     .hero-quran { font-size: 2rem; }
     .hero-title { font-size: 1.9rem; }
     .hero-sub-ar { font-size: 1.4rem; }
-    .tracks-grid { flex-direction: column; align-items: center; }
-    .track-card { width: 100%; max-width: 400px; }
     .curriculum-section { padding: 48px 20px; }
     .unit-card { padding: 20px 16px; }
     .lesson-item { padding: 16px 18px; gap: 12px; }
@@ -1178,16 +1028,10 @@ body {
 
 .hero-content { animation: fadeInUp 0.8s ease-out; }
 
-.track-card { animation: fadeInUp 0.6s ease-out backwards; }
-.track-card:nth-child(1) { animation-delay: 0.1s; }
-.track-card:nth-child(2) { animation-delay: 0.2s; }
-.track-card:nth-child(3) { animation-delay: 0.3s; }
-
 .unit-card { animation: fadeInUp 0.5s ease-out backwards; }
 
 /* ---------- Disable Onload Animations ---------- */
 .disable-onload-animations .hero-content,
-.disable-onload-animations .track-card,
 .disable-onload-animations .unit-card,
 .disable-onload-animations .lesson-item {
     animation: none !important;
@@ -3074,7 +2918,6 @@ select:focus-visible {
     }
 
     .hero-content { animation: none !important; }
-    .track-card { animation: none !important; }
     .unit-card { animation: none !important; }
     .lesson-item { animation: none !important; }
     .sidenav-inner { animation: none !important; }
@@ -3083,10 +2926,6 @@ select:focus-visible {
 /* ---------- High Contrast Mode Support ---------- */
 @media (forced-colors: active) {
     .skip-to-content {
-        border: 2px solid ButtonText;
-    }
-
-    .track-card {
         border: 2px solid ButtonText;
     }
 
@@ -3467,7 +3306,6 @@ html[data-theme="dark"] .stage-card-badge.soon { background: rgba(160,94,3,.28);
 }
 .subject-card h3 { margin: .4rem 0 .5rem; color: var(--text); }
 .subject-card p { margin: 0; font-size: .88rem; color: var(--text-light); line-height: 1.55; }
-.library-heading { text-align: center; color: var(--primary); margin-bottom: 1.25rem; }
 .why-list { max-width: 760px; margin: 0 auto 1rem; padding-inline-start: 1.25rem; }
 .why-list li { margin-bottom: .6rem; line-height: 1.6; color: var(--text); }
 .why-close { text-align: center; font-weight: 700; color: var(--primary); }
@@ -3715,7 +3553,7 @@ body.drawer-lock { overflow: hidden; }
     display: grid;
     gap: 22px;
     max-width: 900px;
-    margin-bottom: 32px;
+    margin: 0 auto 32px;
 }
 .unit-card {
     background: var(--surface-card);
@@ -3780,22 +3618,47 @@ body.drawer-lock { overflow: hidden; }
 .chip-ar { font-size: 1.06rem; color: var(--text-dark); }
 .chip-en { font-size: .9rem; font-weight: 600; color: var(--text-medium); }
 
-/* ---- Sidebar back links ---- */
-.sidebar-nav-back {
-    display: flex;
-    flex-direction: column;
+/* ---- Stage badge ---- */
+.stage-chip {
+    display: inline-flex;
+    align-items: center;
     gap: 7px;
-    padding: 6px 16px 14px;
-    margin-bottom: 10px;
-    border-bottom: 1px dashed var(--border-default);
-}
-.sidebar-back-link {
-    font-size: .85rem;
+    padding: 4px 13px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.94);
+    border: 1px solid rgba(79,70,229,.28);
+    box-shadow: 0 2px 6px rgba(0,0,0,.10);
+    font-family: var(--font-en-heading);
+    font-size: .78rem;
     font-weight: 800;
+    letter-spacing: .4px;
     color: var(--primary);
-    text-decoration: none;
+    white-space: nowrap;
 }
-.sidebar-back-link:hover { text-decoration: underline; }
+.stage-chip .sep { opacity: .55; font-weight: 400; }
+.stage-chip .ar {
+    font-family: var(--font-ar);
+    font-size: .95rem;
+    font-weight: 700;
+    line-height: 1;
+}
+.lesson-unit .stage-chip { margin-inline-end: 10px; }
+.stage-chip-row { margin: 0 0 14px; }
+.unit-hero .stage-chip-row { margin-bottom: 16px; }
+.unit-card-stage {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--hue-accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--hue-accent) 35%, transparent);
+    color: var(--hue-accent);
+    font-size: .72rem;
+    font-weight: 800;
+}
+[data-theme="dark"] .unit-card-stage {
+    background: color-mix(in srgb, var(--hue-accent) 20%, transparent);
+}
 
 /* ---- Lesson media slot (image/video, right column) ---- */
 .lesson-media {
@@ -3878,9 +3741,9 @@ body.drawer-lock { overflow: hidden; }
 .hero-cta:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 30px rgba(79,70,229,.45); }
 
 .mission-section, .stages-section, .subjects-section,
-.tracks-section, .why-section { position: relative; }
+.why-section { position: relative; }
 .mission-section > h2, .stages-section > h2, .subjects-section > h2,
-.tracks-section > h2, .why-section > h2 {
+.why-section > h2 {
     color: var(--text-dark);
     text-align: center;
     font-family: var(--font-en-heading);
@@ -3888,7 +3751,7 @@ body.drawer-lock { overflow: hidden; }
     margin-bottom: .5rem;
 }
 .mission-section > h2::after, .stages-section > h2::after, .subjects-section > h2::after,
-.tracks-section > h2::after, .why-section > h2::after {
+.why-section > h2::after {
     content: '';
     display: block;
     width: 64px; height: 4px;
@@ -3943,9 +3806,6 @@ body.drawer-lock { overflow: hidden; }
 .subject-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
 .subject-card h3 { color: var(--text-dark); }
 .subject-card p { color: var(--text-medium); line-height: 1.6; }
-
-.track-card { border-radius: 18px; }
-.track-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
 
 .why-list {
     list-style: none;
