@@ -5,7 +5,7 @@ Static HTML/CSS/JavaScript website for children's Islamic education. Bilingual (
 
 ## Architecture
 - `index.html` - Homepage with stage/subject tiles + featured verse (66:6)
-- `hadith.html` - Hadith collection hub (26 hadith)
+- `hadith.html` - Hadith collection hub (17 hadith, per PreStage.pdf)
 - `manners.html` - Islamic eating manners hub (5 items)
 - `adhkar.html` - Adhkar & supplications hub (11 items)
 - `seerah.html` - Seerah of Prophet (3 lessons)

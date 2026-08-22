@@ -4,7 +4,7 @@ var files = [
   'lessons/tawheed-1-2.html',
   'lessons/tawheed-2-1.html',
   'lessons/tawheed-3-1.html',
-  'lessons/hadith/hadith-1.html'
+  'lessons/hadith/hadith-15.html'
 ];
 files.forEach(function(f) {
   var src = fs.readFileSync(f, 'utf8');
