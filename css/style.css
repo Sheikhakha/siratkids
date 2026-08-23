@@ -3778,6 +3778,7 @@ body.drawer-lock { overflow: hidden; }
 .stage-card-1    { --sc-accent: #0d9488; }
 .stage-card-2    { --sc-accent: #d97706; }
 .stage-card-3    { --sc-accent: #7c3aed; }
+.stage-card-4    { --sc-accent: #4f46e5; }
 .stage-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
 .stage-card-icon {
     width: 54px; height: 54px;
@@ -4378,6 +4379,7 @@ body.drawer-lock { overflow: hidden; }
 .journey-node-1 .journey-marker { border-color: #0d9488; box-shadow: 0 0 0 6px rgba(13,148,136,.10), var(--shadow-sm); }
 .journey-node-2 .journey-marker { border-color: var(--primary); box-shadow: 0 0 0 6px rgba(79,70,229,.09), var(--shadow-sm); }
 .journey-node-3 .journey-marker { border-color: #a16207; box-shadow: 0 0 0 6px rgba(161,98,7,.10), var(--shadow-sm); }
+.journey-node-4 .journey-marker { border-color: #4f46e5; box-shadow: 0 0 0 6px rgba(79,70,229,.10), var(--shadow-sm); }
 
 .journey-node::before {
     content: '';

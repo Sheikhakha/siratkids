@@ -51,6 +51,10 @@ BOOKS = {
         "pdf": os.path.join(PDF_DIR, "ThirdStage.pdf"),
         "title": "Dawrat Al-Ulum Al-Sharaiyya - Stage 3",
     },
+    "s4": {
+        "pdf": os.path.join(PDF_DIR, "FourthStage.pdf"),
+        "title": "Dawrat Al-Ulum Al-Sharaiyya - Stage 4",
+    },
 }
 
 SCALE = 3.0

@@ -1,0 +1,861 @@
+{
+ "stage": 2,
+ "titles": {
+  "en": "Stage Two",
+  "ar": "المرحلة الثانية",
+  "age_en": "Ages 7-8 years"
+ },
+ "sources": [
+  {
+   "file": "data/pdfs/SecondStage.pdf",
+   "pages": "Tawheed volume pp.7-39 (PDF 9-41)",
+   "note": "OCR via data/extracted/s2/; authored per SecondStage.pdf"
+  }
+ ],
+ "subjects": [
+  {
+   "key": "tawheed",
+   "title": {
+    "en": "Tawheed (Monotheism)",
+    "ar": "التوحيد"
+   },
+   "units": [
+    {
+     "no": 1,
+     "title": {
+      "en": "Knowing the Three Principles",
+      "ar": "مَعْرِفَةُ الأُصُولِ الثَّلَاثَةِ"
+     },
+     "lessons": [
+      {
+       "file": "s2-tawheed-1-1",
+       "kind": "lesson",
+       "page": 10,
+       "title": {
+        "en": "The Three Principles",
+        "ar": "الأُصُولُ الثَّلَاثَةُ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "يجب على كل مسلم أن يَعرِفَ الأصولَ الثلاثة.",
+         "en": "Every Muslim must know the three principles.",
+         "ta": "ஒவ்வொரு முஸ்லிமும் மூன்று அடிப்படைக் கொள்கைகளை அறிந்திருக்க வேண்டும்.",
+         "tr": "Yajibu ‘ala kulli muslimin an ya‘rifa al-usula ath-thalatha."
+        },
+        {
+         "type": "text",
+         "ar": "ما الأصولُ الثلاثة؟\nالأصول الثلاثة هي:\n١- مَعرِفةُ العبدِ ربَّه.\n٢- معرفةُ العبدِ دينَه.\n٣- معرفةُ العبدِ نبيَّه محمدًا ﷺ.",
+         "en": "What are the three principles?\nThe three principles are:\n1. Knowing one's Lord.\n2. Knowing one's religion.\n3. Knowing one's Prophet Muhammad ﷺ.",
+         "ta": "மூன்று அடிப்படைக் கொள்கைகள் என்ன?\n1. தன் இறைவனை அறிதல்.\n2. தன் மார்க்கத்தை அறிதல்.\n3. தன் நபி முஹம்மது ﷺ அவர்களை அறிதல்.",
+         "tr": "Ma al-usulu ath-thalatha?\n1. Ma‘rifatu al-‘abdi rabbahu.\n2. Ma‘rifatu al-‘abdi dinahu.\n3. Ma‘rifatu al-‘abdi nabiyyahu Muhammadan ﷺ."
+        },
+        {
+         "type": "text",
+         "ar": "من ربُّك؟ ربي الله.\nما دينُك؟ ديني الإسلام.\nمن نبيُّك؟ نبيي محمد ﷺ.",
+         "en": "Who is your Lord? My Lord is Allah.\nWhat is your religion? My religion is Islam.\nWho is your Prophet? My Prophet is Muhammad ﷺ.",
+         "ta": "உங்கள் இறைவன் யார்? என் இறைவன் அல்லாஹ்.\nஉங்கள் மார்க்கம் என்ன? என் மார்க்கம் இஸ்லாம்.\nஉங்கள் நபி யார்? என் நபி முஹம்மது ﷺ.",
+         "tr": "Man rabbuka? Rabbiya Allahu.\nMa dinuka? Diniyal-islamu.\nMan nabiyyuka? Nabiyyi Muhammadun ﷺ."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-1-2",
+       "kind": "lesson",
+       "page": 11,
+       "title": {
+        "en": "Evidence for the Three Principles",
+        "ar": "الدَّلِيلُ عَلَى الأُصُولِ الثَّلَاثَةِ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "ما الدليل على الأصول الثلاثة السابقة؟\nالدليل عليها قول رسول الله ﷺ: «مَن طعِمَ طعمَ الإيمان من رضي بالله ربًّا، وبالإسلام دينًا، وبمحمد ﷺ رسولًا». أخرجه مسلم.",
+         "en": "What is the evidence for these three principles?\nThe Messenger of Allah ﷺ said: \"He who tastes the flavour of faith: being pleased with Allah as his Lord, with Islam as his religion, and with Muhammad ﷺ as his Messenger.\" Narrated by Muslim.",
+         "ta": "இந்த மூன்று கொள்கைகளுக்கான ஆதாரம் என்ன?\nஅல்லாஹ்வின் தூதர் ﷺ கூறினார்கள்: \"அல்லாஹ்வை தன் இறைவனாகவும், இஸ்லாத்தை தன் மார்க்கமாகவும், முஹம்மது ﷺ அவர்களை தன் தூதராகவும் திருப்தி அடைந்து ஈமானின் சுவையை உண்பவன்.\" (முஸ்லிம்)",
+         "tr": "Daluha qawlu rasulillahi ﷺ: «Man ta‘ima ta‘mal-imani min radiya billahi rabban, wal-islami dinan, wa bi-Muhammadin ﷺ rasulan»."
+        },
+        {
+         "type": "hadith",
+         "ar": "وعنه ﷺ قال: «رضِيتَ بالله ربًّا، وبالإسلام دينًا، وبمحمد ﷺ رسولًا ... وجبت له الجنة». أخرجه أبو داود، وصححه الشيخ الألباني في «الصحيحة».",
+         "en": "And he ﷺ said: \"(Whoever says:) I am pleased with Allah as my Lord, with Islam as my religion, and with Muhammad ﷺ as my Messenger ... Paradise becomes obligatory for him.\" Narrated by Abu Dawud, graded sahih by Shaykh al-Albani in as-Sahihah.",
+         "ta": "மேலும் அவர்கள் ﷺ கூறினார்கள்: \"அல்லாஹ்வை இறைவனாகவும், இஸ்லாத்தை மார்க்கமாகவும், முஹம்மது ﷺ அவர்களை தூதராகவும் ஏற்றுத் திருப்தி கொண்டவனுக்கு ... சுவனம் கட்டாயமாகிறது.\" (அபூ தாவூத்)",
+         "tr": "«Radeetu billahi rabban, wal-islami dinan, wa bi-Muhammadin ﷺ rasulan ... wajabat lahu al-jannatu»."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-1-3",
+       "kind": "lesson",
+       "page": 12,
+       "title": {
+        "en": "The Importance of Knowing the Three Principles",
+        "ar": "أَهَمِّيَّةُ مَعْرِفَةِ الأُصُولِ الثَّلَاثَةِ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "اعلم أيها الطفل المسلم أن معرفة الأصول الثلاثة والعمل بها واجبٌ على كل الناس؛ لأن العبد إذا وُضع في قبره فإن أول شيء يسأل عنه الملكان: من ربُّك؟ وما دينُك؟ ومن نبيُّك؟",
+         "en": "Know, O Muslim child, that knowing the three principles and acting upon them is obligatory upon all people; because when a person is placed in his grave, the two angels will first ask him: Who is your Lord? What is your religion? Who is your Prophet?",
+         "ta": "அறிந்து கொள் முஸ்லிம் சிறுவனே! இந்த மூன்று கொள்கைகளை அறிந்து அவற்றின்படி செயல்படுவது அனைவர் மீதும் கடமையாகும்; ஏனெனில் ஒருவன் அவன் கல்லறையில் செறக்கப்படும்போது இரு வானதூதர்கள் முதலில் கேட்பார்கள்: உன் இறைவன் யார்? உன் மார்க்கம் என்ன? உன் நபி யார்?",
+         "tr": "I‘lam ayyuha at-tiful al-muslim anna ma‘rifata al-usuli ath-thalatha wal-‘amala biha wajibun ‘ala khalq."
+        },
+        {
+         "type": "text",
+         "ar": "فإن كان العبد من الذين آمنوا بهذه الأصول الثلاثة، وتعلَّمها وعمل بها في حياته؛ أجاب بالجواب الصحيح، فكان من أصحاب الراحة والسرور والنعيم في قبره ويوم القيامة.\nوأما إن كان لم يعرفها ولم يعمل بها في حياته؛ فلن يستطيع أن يجيب عن هذه الأسئلة، فيكون ذلك سببًا في عذابه في قبره ويوم القيامة.",
+         "en": "If a person believed in these three principles, learned them and acted upon them during his life, he will answer correctly, and will be among the people of comfort, joy and bliss in his grave and on the Day of Resurrection.\nBut if he did not know them nor act upon them during his life, he will not be able to answer these questions, and that will be a cause of his punishment in his grave and on the Day of Resurrection.",
+         "ta": "ஒருவன் இந்த மூன்று கொள்கைகளில் நம்பிக்கை கொண்டு, அவற்றைக் கற்று, தன் வாழ்வில் செயல்படுத்தினால், அவன் சரியாகப் பதில் சொல்வான்; அவன் தன் கல்லறையிலும் தீர்ப்பு நாளிலும் இன்பம் அடைவான்.\nஅவற்றை அறியாமல், செயல்படுத்தாமல் இருந்தால், இந்தக் கேள்விகளுக்குப் பதில் சொல்ல முடியாது; அது அவன் தண்டனைக்குக் காரணமாகும்.",
+         "tr": "Fa-in kana al-‘abdu mimman amana bi-hadhihi al-usuli wa ‘amilu biha fi hayatih; ajaba bil-jawabi as-sahih. Wa in lam ya‘rifha lam yastati‘ an yujiba ‘anha."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-1-4",
+       "kind": "lesson",
+       "page": 13,
+       "title": {
+        "en": "The Meaning of Tawheed and Its Types",
+        "ar": "مَعْنَى التَّوْحِيدِ وَأَنْوَاعُهُ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "التوحيد هو: إفرادُ الله تعالى بالربوبية، والألوهية، والأسماء والصفات.",
+         "en": "Tawheed means: singling out Allah, the Exalted, with lordship (Rububiyyah), worship (Uloohiyyah), and names and attributes.",
+         "ta": "தௌஹீத் என்பது: அல்லாஹ்வுக்கு மட்டுமே இறைத்தன்மை, வணக்கத்தன்மை, நாமங்கள் மற்றும் பண்புகளில் இணை வைப்பதாகும்.",
+         "tr": "At-tawhidu huwa: ifradu Allahi ta‘ala bir-rububiyyati wal-ulahiyyati wal-asma'i was-sifat."
+        },
+        {
+         "type": "text",
+         "ar": "وأنواع التوحيد ثلاثة:\n١- توحيد الربوبية.\n٢- توحيد الألوهية.\n٣- توحيد الأسماء والصفات.",
+         "en": "Tawheed has three types:\n1. Tawheed of Lordship (Rububiyyah).\n2. Tawheed of Worship (Uloohiyyah).\n3. Tawheed of Names and Attributes.",
+         "ta": "தௌஹீத்தின் மூன்று வகைகள்:\n1. இறைத்தன்மைத் தௌஹீத் (ருபூபிய்யா).\n2. வணக்கத் தௌஹீத் (உலூஹிய்யா).\n3. நாமங்கள் மற்றும் பண்புகள் தௌஹீத்.",
+         "tr": "Wa anwa‘u at-tawhidi thalathatu:\n1. Tawhid ar-rububiyyah. 2. Tawhid al-ulahiyyah. 3. Tawhid al-asma'i was-sifat."
+        },
+        {
+         "type": "ayah",
+         "ref": "1:5",
+         "ar": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+         "en": "You alone we worship, and You alone we ask for help.",
+         "ta": "எங்கள் இறைவனே! எங்கள் வணக்கம் உமற்காகவே; எங்கள் உதவி உம்மிடமிருந்தே.",
+         "tr": "Iyyaka na‘budu wa iyyaka nasta‘in."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "no": 2,
+     "title": {
+      "en": "Knowing One's Lord (Rububiyyah)",
+      "ar": "مَعْرِفَةُ الْعَبْدِ رَبَّهُ (تَوْحِيدُ الرُّبُوبِيَّةِ)"
+     },
+     "lessons": [
+      {
+       "file": "s2-tawheed-2-1",
+       "kind": "lesson",
+       "page": 14,
+       "title": {
+        "en": "How Do I Know My Lord?",
+        "ar": "كَيْفَ أَعْرِفُ رَبِّي؟"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "أنا مسلم أعرف ربي بربوبيته وألوهيته وأسمائه وصفاته.",
+         "en": "I am a Muslim; I know my Lord through His lordship, His worship-worthiness, His names and His attributes.",
+         "ta": "நான் ஒரு முஸ்லிம்; என் இறைவனை அவனது இறைத்தன்மை, வணக்கத்தற்குரிய தன்மை, நாமங்கள் மற்றும் பண்புகள் மூலம் அறிகிறேன்.",
+         "tr": "Ana muslimun a‘rifu rabbi bi-rububiyyatihi wa ulahiyyatihi wa asma'ihi wa sifatih."
+        },
+        {
+         "type": "text",
+         "ar": "فأقول: لا خالق إلا الله، ولا رازق إلا الله.\nلا يُحيي ولا يُميت إلا الله.\nالله الذي خلق كل شيء.\nوأقول: لا معبود بحقٍّ إلا الله، أي: لا إله إلا الله.",
+         "en": "So I say: there is no creator except Allah, and no provider except Allah.\nNone gives life or causes death except Allah.\nAllah created everything.\nAnd I say: none is truly worshipped except Allah, meaning: there is no god but Allah.",
+         "ta": "எனவே நான் கூறுவேன்: அல்லாஹ்வைத் தவிர படைப்பவன் இல்லை, உணவளிப்பவன் இல்லை.\nஉயிர்ப்பிப்பவனும் மரணிக்கச் செய்பவனும் அல்லாஹ்வைத் தவிர வேரில்லை.\nஅனைத்தையும் படைத்தவன் அல்லாஹ்.\nஇன்னொன்றையும் கூறுவேன்: உண்மையாக வணங்கப்படுபவன் அல்லாஹ்வைத் தவிர வேரில்லை, அதாவது: லா இலாஹ இல்லல்லாஹ்.",
+         "tr": "Faqulu: la khaliqa illa Allah, wa la raziqa illa Allah. La yuhyi wa la yumitu illa Allah. Allahu alladhi khalaqa kulla shay'. Wa aqulu: la ma‘budu bi-haqqin illa Allah, ay: la ilaha illa Allah."
+        },
+        {
+         "type": "text",
+         "ar": "أنا مسلم أجعل جميع أنواع العبادة لله وحده.",
+         "en": "I am a Muslim; I direct all types of worship to Allah alone.",
+         "ta": "நான் ஒரு முஸ்லிம்; அனைத்து வகையான வணக்கங்களையும் அல்லாஹ்வுக்கு மட்டுமே செலுத்துகிறேன்.",
+         "tr": "Ana muslimun aj‘alu jami‘a anwa‘i al-‘ibadati lillahi wahdahu."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-2-2",
+       "kind": "lesson",
+       "page": 15,
+       "title": {
+        "en": "I Know My Lord by His Signs and Creatures",
+        "ar": "أَعْرِفُ رَبِّي بِآيَاتِهِ وَمَخْلُوقَاتِهِ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "أعرف ربي بآياته ومخلوقاته: كالليل والنهار، والشمس والقمر، والجبال والأشجار وغيرها.",
+         "en": "I know my Lord through His signs and creatures: such as the night and the day, the sun and the moon, the mountains and the trees, and others.",
+         "ta": "இரவு, பகல், சூரியன், நிலவு, மலைகள், மரங்கள் போன்ற அவனது அத்தாட்சிகள் மற்றும் படைப்புகள் மூலம் என் இறைவனை அறிகிறேன்.",
+         "tr": "A‘rifu rabbi bi-ayatihi wa makhluqatih: kal-layli wan-nahari, wash-shamsi wal-qamari, wal-jibali wal-ashjari wa ghayriha."
+        },
+        {
+         "type": "text",
+         "ar": "لله أسماء وصفات لا كيفية لها، ولا تُشبه أسماؤه وصفاته بأسماء المخلوقات وصفاتهم.\nمن أسماء الله: الخالق، الرازق، البصير.\nومن صفاته: العلم، والاستواء على العرش.",
+         "en": "Allah has names and attributes with no manner of being known (no 'how'), and His names and attributes do not resemble those of creation.\nAmong Allah's names: the Creator (Al-Khaliq), the Provider (Ar-Razzaq), the All-Seeing (Al-Basir).\nAmong His attributes: Knowledge, and Istawa (rising) over the Throne.",
+         "ta": "அல்லாஹ்வுக்கு நாமங்களும் பண்புகளும் உண்டு; அவற்றின் உண்மையான நிலை எப்படி என்று அறிய முடியாது; அவனது நாமங்களும் பண்புகளும் படைப்புகளின் நாமங்கள் பண்புகளை ஒத்திருக்காது.\nஅவனது நாமங்களில்: படைப்பவன், உணவளிப்பவன், எல்லாவற்றையும் காண்பவன்.\nஅவனது பண்புகளில்: அறிவு, அர்ஷின் மேல் நிலைபெறுதல் (இஸ்தவா).",
+         "tr": "Lillahi asma'u wa sifatu la kayfiyya laha, wa la tushbihu asma'uhu sifatuhu bi-asma'il-makhluqat."
+        },
+        {
+         "type": "ayah",
+         "ref": "42:11",
+         "ar": "لَيْسَ كَمِثْلِهِ شَيْءٌ ۚ وَهُوَ السَّمِيعُ الْبَصِيرُ",
+         "en": "There is nothing like unto Him, and He is the All-Hearing, the All-Seeing.",
+         "ta": "அவனுக்கு நிகரானது எதுவும் இல்லை; அவன் எல்லாவற்றையும் கேட்பவன், காண்பவன்.",
+         "tr": "Laysa ka-mithlihi shay', wa huwa as-samee‘u al-basir."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-2-review",
+       "kind": "review",
+       "page": 17,
+       "title": {
+        "en": "Unit Review Questions",
+        "ar": "أسئلة على الوحدة"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "أكمِل الفراغات التالية:\nأعرف ربي بآياته ومخلوقاته كالليل و(..........)، والشمس و(...........)، والجبال والأشجار وغيرها.",
+         "en": "Fill in the blanks:\nI know my Lord through His signs and creatures, such as the night and (...), the sun and (...), the mountains and the trees, and others.",
+         "ta": "காலியிடங்களை நிரப்புக:\nஇரவு மற்றும் (....), சூரியன் மற்றும் (....), மலைகள் மரங்கள் போன்றவற்றால் என் இறைவனை அறிகிறேன்.",
+         "tr": "Akmil al-faraghat: a‘rifu rabbi bi-ayatihi wa makhluqatih kal-layli wa (...), wash-shamsi wa (...)."
+        },
+        {
+         "type": "text",
+         "ar": "الإجابة: الليل والنَّهار، الشمس والقَمَر.",
+         "en": "Answers: night and day; sun and moon.",
+         "ta": "விடை: இரவு - பகல்; சூரியன் - நிலவு.",
+         "tr": "Al-ijaba: al-laylu wan-nahar, ash-shamsu wal-qamar."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "no": 3,
+     "title": {
+      "en": "Worship and Its Opposite: Shirk (Uloohiyyah)",
+      "ar": "الْعِبَادَةُ وَمَا يُضَادُّهَا مِنَ الشِّرْكِ (تَوْحِيدُ الأُلُوهِيَّةِ)"
+     },
+     "lessons": [
+      {
+       "file": "s2-tawheed-3-1",
+       "kind": "lesson",
+       "page": 18,
+       "title": {
+        "en": "Why Did Allah Create Us?",
+        "ar": "لِمَاذَا خَلَقَنَا اللَّهُ؟"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "خلقنا الله لعبادته وحده سبحانه وتعالى.",
+         "en": "Allah created us to worship Him alone, Glorified and Exalted is He.",
+         "ta": "தன்னை மட்டும் வணங்குவதற்காகவே அல்லாஹ் எங்களைப் படைத்தான்.",
+         "tr": "Khalaqana Allahu li-‘ibadatihi wahdahu subhanahu wa ta‘ala."
+        },
+        {
+         "type": "ayah",
+         "ref": "51:56",
+         "ar": "وَمَا خَلَقْتُ الْجِنَّ وَالْإِنسَ إِلَّا لِيَعْبُدُونِ",
+         "en": "I did not create jinn and mankind except to worship Me.",
+         "ta": "ஜின்களையும் மனிதர்களையும் என்னை அவர்கள் வணங்குவதற்குத் தவிர வேறு படைக்கவில்லை.",
+         "tr": "Wa ma khalaqtul-jinna wal-insa illa liya‘budun."
+        },
+        {
+         "type": "text",
+         "ar": "ما عبادة الله؟\nعبادة الله: توحيده وطاعته.",
+         "en": "What is the worship of Allah?\nWorshipping Allah: declaring His oneness (tawheed) and obeying Him.",
+         "ta": "அல்லாஹ்வை வணங்குதல் என்றால் என்ன?\nஅவனுக்கு இணை வைக்காமல் வணங்குதல், அவனுக்குக் கீழ்ப்படிதல்.",
+         "tr": "Ma ‘ibadatu Allah? ‘Ibadatuhu: tawhiduhu wa ta‘atuh."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-3-2",
+       "kind": "lesson",
+       "page": 19,
+       "title": {
+        "en": "The Word of Tawheed",
+        "ar": "كَلِمَةُ التَّوْحِيدِ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "كلمة التوحيد هي: «لا إله إلا الله».\nمعنى «لا إله إلا الله»: لا معبود بحق إلا الله.",
+         "en": "The word of tawheed is: La ilaha illallah (there is no god but Allah).\nIts meaning: none has the right to be worshipped except Allah.",
+         "ta": "தௌஹீத்தின் வார்த்தை: \"லா இலாஹ இல்லல்லாஹ்\".\nஅதன் பொருள்: அல்லாஹ்வைத் தவிர வணங்கத் தகுதியுடையவன் வேறு யாரும் இல்லை.",
+         "tr": "Kalimatu at-tawhid hiya: «La ilaha illa Allah». Ma«naha: la ma‘buda bi-haqqin illa Allah."
+        },
+        {
+         "type": "ayah",
+         "ref": "47:19",
+         "ar": "فَاعْلَمْ أَنَّهُ لَا إِلَٰهَ إِلَّا اللَّهُ",
+         "en": "Know, therefore, that there is no god but God.",
+         "ta": "அறிந்து கொள்வீர்கள்! அல்லாஹ்வைத் தவிர வணக்கத்திற்குரியவன் இல்லை என்று.",
+         "tr": "Fa-i‘lam annahu la ilaha illa Allah."
+        },
+        {
+         "type": "text",
+         "ar": "لا يجوز صرف أي نوع من أنواع العبادة لغير الله.",
+         "en": "It is not permissible to direct any type of worship to other than Allah.",
+         "ta": "எந்த வகையான வணக்கத்தையும் அல்லாஹ்வைத் தவிர வேறொருவருக்குச் செலுத்துவது செல்லாது.",
+         "tr": "La yajuzu sarf ayi naw‘in min anwa‘i al-‘ibadati lighayri Allah."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-3-3",
+       "kind": "lesson",
+       "page": 20,
+       "title": {
+        "en": "The First Command and Prohibition in the Quran",
+        "ar": "أَوَّلُ أَمْرٍ وَنَهْيٍ فِي القُرْآنِ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "أول أمر في القرآن: الأمر بتوحيد الله وإفراده بالعبادة وحده.",
+         "en": "The first command in the Quran is the command to worship Allah alone, declaring His oneness.",
+         "ta": "அல்லாஹ்வை மட்டும் வணங்கும்படி கட்டளையிப்பதே குர்ஆனில் முதல் கட்டளையாகும்.",
+         "tr": "Awwalu amrin fil-Qur'an: al-amru bi-tawhidi Allahi wa ifradihi bil-‘ibadah."
+        },
+        {
+         "type": "ayah",
+         "ref": "2:21",
+         "ar": "يَا أَيُّهَا النَّاسُ اعْبُدُوا رَبَّكُمُ الَّذِي خَلَقَكُمْ وَالَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ",
+         "en": "O people, worship your Lord, who created you and those before you, so that you may be mindful of Him.",
+         "ta": "மனிதர்களே! உங்களையும், உங்களுக்கு முன்னிருந்தவர்களையும் படைத்த உங்கள் இறைவனை வணங்ஙுங்கள்; இதனால் நீங்கள் (அவனுக்கு) அஞ்சுபவர்களாக இருக்கலாம்.",
+         "tr": "Ya ayyuhan-nasu ‘budu rabbakumu alladhi khalaqakum walladhina min qablikum la‘allakum tattaqun."
+        },
+        {
+         "type": "text",
+         "ar": "وأول نهي في القرآن: النهي عن الشرك؛ فلا يجوز أن يُصرِف العبد أي نوع من أنواع العبادة لغير الله.",
+         "en": "And the first prohibition in the Quran is the prohibition of shirk (associating partners with Allah); so it is not permissible for a person to direct any type of worship to other than Allah.",
+         "ta": "முதல் தடை: இணைவைப்பால் (ஷிர்க்) தடைசெய்யப்பட்டது; வணக்கங்களில் எதையும் அல்லாஹ்வைத் தவிர வேறொருவருக்கு நோக்குவது செல்லாது.",
+         "tr": "Wa awwalu nahyin fil-Qur'an: an-nahyu ‘ani ash-shirk."
+        },
+        {
+         "type": "ayah",
+         "ref": "2:22",
+         "ar": "وَلَا تَجْعَلُوا لِلَّهِ أَندَادًا وَأَنتُمْ تَعْلَمُونَ",
+         "en": "Do not set up rivals to God, when you know [better].",
+         "ta": "நீங்கள் அறிந்திருந்தும் அல்லாஹ்வுக்கு இணைகளை ஏற்படுத்தாதீர்கள்.",
+         "tr": "Wa la taj‘alu lillahi andadan wa antum ta‘lamun."
+        },
+        {
+         "type": "text",
+         "ar": "ثمرات هذا الدرس:\n١- أعظم أمرٍ أمر به الله: التوحيد.\n٢- أكبر ذنبٍ نهى عنه الله: الشرك.",
+         "en": "Fruits of this lesson:\n1. The greatest thing Allah commanded: tawheed.\n2. The greatest sin Allah forbade: shirk.",
+         "ta": "இந்தப் பாடத்தின் பலன்கள்:\n1. அல்லாஹ் கட்டளையித்த மிகச் சிறந்த காரியம்: தௌஹீத்.\n2. அல்லாஹ் தடைசெய்த மிகப் பெரிய பாவம்: ஷிர்க்.",
+         "tr": "Thamarat hadha ad-dars: a‘zamu amrin amar Allah bih at-tawhid, wa akbaru dhanbin naha ‘anh ash-shirk."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-3-4",
+       "kind": "lesson",
+       "page": 21,
+       "title": {
+        "en": "Worship (Ibadah)",
+        "ar": "الْعِبَادَةُ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "العبادة هي: كل ما يحبه الله ويرضاه من الأقوال والأعمال.",
+         "en": "Worship (ibadah) is everything that Allah loves and is pleased with, of words and deeds.",
+         "ta": "வணக்கம் என்பது: வார்த்தைகள் மற்றும் செயல்களில் அல்லாஹ் விரும்புவதும் திருப்தி அடைவதும் ஆகும்.",
+         "tr": "Al-‘ibadatu hiya: kullu ma yuhibbuhu Allahu wa yardahu min al-aqwali wal-a‘mal."
+        },
+        {
+         "type": "text",
+         "ar": "من الأمثلة: الصلاة، والصيام، والزكاة، والحج، وذكر الله عز وجل.",
+         "en": "Examples include: prayer, fasting, zakat, Hajj, and remembering Allah Almighty.",
+         "ta": "உதாரணங்கள்: தொழுகை, நோன்பு, ஜகாத், ஹஜ், மற்றும் அல்லாஹ்வை நினைவுகூர்தல்.",
+         "tr": "Minal-amthila: as-salatu, was-siyamu, az-zakatu, wal-hajju, wa dhikrullahi ‘azza wa jall."
+        },
+        {
+         "type": "text",
+         "ar": "ومن الأمثلة السيئة: الكذب، والسرقة، وعقوق الوالدين، والسب والشتم.",
+         "en": "Bad examples include: lying, stealing, disobeying parents, insulting and cursing.",
+         "ta": "தீய உதாரணங்கள்: பொய், திருட்டு, பெற்றோருக்குக் கீழ்ப்படியாமை, இழிவாகப் பேசுதல்.",
+         "tr": "Wa minal-amthilati as-sayyi'a: al-kadhibu,was-sariqatu, wa ‘uququ al-walidayn, was-sabbu wash-shatm."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-3-5",
+       "kind": "lesson",
+       "page": 22,
+       "title": {
+        "en": "The Greatest Sin Forbidden by Allah",
+        "ar": "أَعْظَمُ ذَنْبٍ نُهِيَ عَنْهُ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "أعظم ذنب نهى الله عنه: الشرك.\nوالشرك هو الذنب الوحيد الذي لا يغفره الله.",
+         "en": "The greatest sin Allah forbade is shirk.\nShirk is the one sin Allah does not forgive.",
+         "ta": "அல்லாஹ் தடைசெய்த மிகப் பெரிய பாவம்: ஷிர்க்.\nஷிர்க்கை மட்டுமே அல்லாஹ் மன்னிக்க மாட்டான்.",
+         "tr": "A‘zamu dhanbin naha Allahu ‘anh: ash-shirk. Wash-shirku huwa adh-dhanbul-wahidu alladhi la yaghfiruhu Allah."
+        },
+        {
+         "type": "ayah",
+         "ref": "4:116",
+         "ar": "إِنَّ اللَّهَ لَا يَغْفِرُ أَن يُشْرَكَ بِهِ وَيَغْفِرُ مَا دُونَ ذَٰلِكَ لِمَن يَشَاءُ",
+         "en": "God does not forgive the joining of partners with Him: anything less than that He forgives to whoever He will.",
+         "ta": "நிச்சயமாக அல்லாஹ், அவனுக்கு (நீங்கள்) இணை வைப்பதை மன்னிக்க மாட்டான்; அதைத் தவிரவுள்ளவற்றைத் தான் நாடியவருக்கு மன்னித்துவிடுகிறான்.",
+         "tr": "Inna Allaha la yaghfiru an yushraka bihi wa yaghfiru ma duna dhalika liman yasha'."
+        },
+        {
+         "type": "ayah",
+         "ref": "23:117",
+         "ar": "وَمَن يَدْعُ مَعَ اللَّهِ إِلَٰهًا آخَرَ لَا بُرْهَانَ لَهُ بِهِ فَإِنَّمَا حِسَابُهُ عِندَ رَبِّهِ إِنَّهُ لَا يُفْلِحُ الْكَافِرُونَ",
+         "en": "Whoever calls on another god alongside God — a god he has no proof for — his reckoning rests with his Lord; those who reject faith will not prosper.",
+         "ta": "அல்லாஹ்வுடன் இன்னொரு வணக்கத்திற்குரியவனை அழைப்பவனுக்கு அதற்கான ஆதாரம் இல்லை; நிச்சயமாக அவனது கணக்கு அவனது இறைவனிடம்தான்; நிராகரிப்பவர்கள் வெற்றி பெற மாட்டார்கள்.",
+         "tr": "Wa man yad‘u ma‘a Allahi ilahan akhara la burhana lahu bihi fa-innama hisabuhu ‘inda rabbih."
+        },
+        {
+         "type": "text",
+         "ar": "من أمثلة الشرك:\nدعاءُ الأموات، والذبح والنذر لغير الله، والطواف بالقبور والأضرحة، والسجود لغير الله.",
+         "en": "Examples of shirk:\nPraying to the dead; slaughtering or making vows to other than Allah; circumambulating graves and tombs; prostrating to other than Allah.",
+         "ta": "ஷிர்க்கின் உதாரணங்கள்:\nமறைந்தவர்களை அழைத்தல்; அல்லாஹ்வைத் தவிர வேறொருவருக்கு பலி கொடுத்தல்/நேர்த்தியாக்குதல்; கல்லறைகளைச் சுற்றி வருதல்; அல்லாஹ்வைத் தவிர வேறொருவருக்குச் சிஜ்தா (வணங்குதல்) செய்தல்.",
+         "tr": "Minal-amthila ‘a ash-shirk: du'a al-amwat, wadh-dabhu wan-nadhrul-lighayri Allah, wat-tawafu bil-quburi wal-adhraha, was-sujudu lighayri Allah."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "no": 4,
+     "title": {
+      "en": "Knowing One's Religion",
+      "ar": "مَعْرِفَةُ الْعَبْدِ دِينِهِ"
+     },
+     "lessons": [
+      {
+       "file": "s2-tawheed-4-1",
+       "kind": "lesson",
+       "page": 24,
+       "title": {
+        "en": "Islam Is the True Religion",
+        "ar": "الإسْلَامُ هُوَ الدِّينُ الحَقُّ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "الإسلام هو: الاستسلام لله بالتوحيد، والانقياد له بالطاعة، والبراءة من الشرك وأهله.",
+         "en": "Islam means submitting to Allah through tawheed, yielding to Him in obedience, and being free from shirk and its people.",
+         "ta": "இஸ்லாம் என்பது: தௌஹீதுடன் அல்லாஹ்வுக்குச் சரணடைதல், கீழ்ப்படிதல், ஷிர்க்கிலிருந்து விலகி இருப்பது.",
+         "tr": "Al-islamu huwa al-istislamu lillahi bit-tawhid, wal-inqiyadu lahu bit-ta‘ah, wal-bara'atu min ash-shirk."
+        },
+        {
+         "type": "text",
+         "ar": "فأقول: الإسلام ديني، وهو الدين الحق.\nومن يبتغ غير الإسلام دينًا فلن يُقبل منه، وهو من الخاسرين.",
+         "en": "So I say: Islam is my religion, and it is the true religion.\nWhoever seeks a religion other than Islam, it will never be accepted from him, and he will be among the losers.",
+         "ta": "எனவே நான் கூறுவேன்: இஸ்லாம் என் மார்க்கம்; அதுவே உண்மையான மார்க்கம்.\nஇஸ்லாத்தைத் தவிர வேறு மார்க்கம் நாடினால் அது ஏற்கப்படாது; அவன் நஷ்டமடைபவனாவான்.",
+         "tr": "Faqulu: al-islamu dini, wa huwa ad-dinu al-haqq. Wa man yabtaghi ghayra al-islami dinan falan yuqbala minh."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-4-2",
+       "kind": "lesson",
+       "page": 25,
+       "title": {
+        "en": "Levels of the Islamic Religion",
+        "ar": "مَرَاتِبُ الدِّينِ الإِسْلَامِيِّ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "المرتبة الأولى: الإسلام، وهو الاستسلام لله بالتوحيد، والانقياد له بالطاعة، والبراءة من الشرك وأهله.",
+         "en": "The first level: Islam — submitting to Allah through tawheed, yielding to Him in obedience, and being free from shirk and its people.",
+         "ta": "முதல் நிலை: இஸ்லாம் — சரணடைதல், கீழ்ப்படிதல், ஷிர்க்கிலிருந்து விலகுதல்.",
+         "tr": "Al-martaba al-ula: al-islam, wa huwa al-istislamu lillahi bit-tawhid."
+        },
+        {
+         "type": "text",
+         "ar": "المرتبة الثانية: الإيمان، وهو أن تؤمن بالله، وملائكته، وكتبه، ورسله، واليوم الآخر، وبالقدر خيره وشره.",
+         "en": "The second level: Iman (faith) — believing in Allah, His angels, His books, His messengers, the Last Day, and divine decree, its good and bad.",
+         "ta": "இரண்டாம் நிலை: ஈமான் — அல்லாஹ், வானதூதர்கள், நூல்கள், தூதர்கள், மறுமை நாள், நல்ல-தீமையான விதி ஆகியவற்றில் நம்பிக்கை.",
+         "tr": "Al-martaba ath-thaniya: al-iman, an tu'mina billahi wa mala'ikatihi wa kutubihi wa rusulihi wal-yawmi al-akhiri wal-qadar."
+        },
+        {
+         "type": "text",
+         "ar": "المرتبة الثالثة: الإحسان، وهو أن تعبد الله كأنك تراه، فإن لم تكن تراه؛ فإنه يراك.",
+         "en": "The third level: Ihsan — worshipping Allah as though you see Him; if you do not see Him, He certainly sees you.",
+         "ta": "மூன்றாம் நிலை: இஹ்சான் — அல்லாஹ்வைக் காண்பது போல் வணங்குவது; காணவில்லை என்றாலும் அவன் உன்னைக் காண்கிறான்.",
+         "tr": "Al-martaba ath-thalitha: al-ihsan, an ta‘buda Allaha ka'annaka tarahu, fa-in lam tarahu fa-innahu yaraka."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-4-3",
+       "kind": "lesson",
+       "page": 26,
+       "title": {
+        "en": "The Pillars of Islam",
+        "ar": "أَرْكَانُ الإِسْلَامِ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "عرفنا معنى الإسلام ومراتبه؛ فما أركانه؟\nأركان الإسلام خمسة:\n١- شهادة أن لا إله إلا الله وأن محمدًا رسول الله.\n٢- وإقام الصلاة.\n٣- وإيتاء الزكاة.\n٤- وصوم رمضان.\n٥- وحج بيت الله.",
+         "en": "We have learned the meaning of Islam and its levels; so what are its pillars?\nThe pillars of Islam are five:\n1. Testifying that there is no god but Allah and that Muhammad is the Messenger of Allah.\n2. Establishing prayer.\n3. Giving zakat.\n4. Fasting Ramadan.\n5. Hajj to the House of Allah.",
+         "ta": "இஸ்லாத்தின் தூண்கள் ஐந்து:\n1. \"லா இலாஹ இல்லல்லாஹ்; முஹம்மதுர் ரசூலுல்லாஹ்\" என்ற இரட்டைச் சாட்சி.\n2. தொழுகை நிலைநாட்டுதல்.\n3. ஜகாத் கொடுத்தல்.\n4. ரமளான் நோன்பு.\n5. அல்லாஹ்வின் இல்லத்திற்கு ஹஜ்.",
+         "tr": "Arkanu al-islami khamsa: shahadatu an la ilaha illa Allah wa anna Muhammadan rasulullah, wa iqamu as-salah, wa ita'u az-zakah, wa sawmu ramadan, wa hajju bayti Allah."
+        },
+        {
+         "type": "hadith",
+         "ref": {
+          "collection": "sahih-bukhari",
+          "number": 8,
+          "url": "https://search.hadith-mcp.org/?id=8"
+         },
+         "ar": "«بُني الإسلامُ على خمسٍ: شهادةِ أن لا إلهَ إلا اللهُ وأنَّ محمدًا رسولُ الله، وإقامِ الصلاةِ، وإيتاءِ الزكاةِ، والحجِّ، وصومِ رمضان». أخرجه البخاري (٨) ومسلم (١٦)، من حديث عبد الله بن عمر.",
+         "en": "\"Islam is built upon five [pillars]: the testimony that none has the right to be worshipped but Allah and that Muhammad is the Messenger of Allah, establishing prayer, giving zakat, Hajj, and fasting Ramadan.\" Narrated by al-Bukhari (8) and Muslim (16), from Abdullah ibn Umar.",
+         "ta": "\"இஸ்லாம் ஐந்தின் மீது கட்டப்பட்டுள்ளது: இரட்டைச் சாட்சி, தொழுகை, ஜகாத், ஹஜ், ரமளான் நோன்பு.\" (புகாரி 8; முஸ்லிம் 16)",
+         "tr": "«Buniya al-islamu ‘ala khamsin: shahadati an la ilaha illa Allah...» akhrajahu al-Bukhari (8) wa Muslim (16)."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-4-4",
+       "kind": "lesson",
+       "page": 27,
+       "title": {
+        "en": "The Pillars of Faith",
+        "ar": "أَرْكَانُ الإِيمَانِ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "كما أن للإسلام أركانًا يقوم عليها؛ فإن للإيمان أيضًا أركانًا كذلك.\nفأركان الإيمان هي: الإيمان بالله، والملائكة، والكتب، والرسل، واليوم الآخر، والقدر خيره وشره.",
+         "en": "Just as Islam has pillars upon which it stands, faith likewise has pillars.\nThe pillars of faith are: believing in Allah, His angels, His books, His messengers, the Last Day, and the decree, its good and bad.",
+         "ta": "இஸ்லாத்திற்குத் தூண்கள் உண்டு போல ஈமானுக்கும் தூண்கள் உண்டு.\nஈமானின் தூண்கள்: அல்லாஹ், வானதூதர்கள், நூல்கள், தூதர்கள், மறுமை நாள், விதி.",
+         "tr": "Kama anna lil-islami arkana; fa-inna lil-imani aydan arkana kadhlika."
+        },
+        {
+         "type": "ayah",
+         "ref": "2:177",
+         "ar": "وَلَٰكِنَّ الْبِرَّ مَن آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَالْمَلَائِكَةِ وَالْكِتَابِ وَالنَّبِيِّينَ",
+         "en": "Goodness does not consist in turning your face towards East or West. The truly good are those who believe in God, the Last Day, the angels, the Scripture, and the prophets.",
+         "ta": "(நல்லம் என்பது) உங்கள் முகங்களைக் கிழக்கு மேற்காகத் திருப்புவது அல்ல; ஆனால் அல்லாஹ், மறுமை நாள், வானதூதர்கள், வேதங்கள், தூதர்கள் ஆகியோர் மீது நம்பிக்கை கொள்பவர்கள்.",
+         "tr": "Walakinna al-birra man amana billahi wal-yawmi al-akhiri wal-mala'ikati wal-kitabi wan-nabiyyin."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-4-5",
+       "kind": "lesson",
+       "page": 28,
+       "title": {
+        "en": "Ihsan (Excellence)",
+        "ar": "الإحْسَانُ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "أعلى مرتبة من مراتب الدين الإسلامي هي مرتبة الإحسان.\nالإحسان: أن تعبد الله كأنك تراه، فإن لم تكن تراه؛ فإنه يراك.",
+         "en": "The highest level of the Islamic religion is the level of ihsan.\nIhsan: to worship Allah as though you see Him; if you do not see Him, He certainly sees you.",
+         "ta": "இஸ்லாம் மார்க்க நிலைகளில் மிக உயர்ந்த நிலை இஹ்சான்.\nஇஹ்சான்: அல்லாஹ்வைக் காண்பது போல் வணங்குவது; காணவில்லை என்றாலும் அவன் உன்னைக் காண்கிறான்.",
+         "tr": "A‘la martaba min maratib ad-din al-islami hiya martabatu al-ihsan: an ta‘buda Allaha ka'annaka tarahu."
+        },
+        {
+         "type": "text",
+         "ar": "يعني: أن تتذكر دائمًا أن الله يرى كل أعمالك، ويسمع كل أقوالك، فتصلي وكأنك تراه، وتصوم وكأنك تراه، وتزكي عز وجل وكأنك تراه... وهكذا بقية الأعمال.\nقال الله تعالى: «إنَّ الله يحبُّ المحسنين» (البقرة: ١٩٥).",
+         "en": "It means always remembering that Allah sees all your deeds and hears all your words, so you pray, fast, and give zakat as though you see Him ... and likewise all other actions.\nAllah says: \"Indeed, Allah loves those who do good\" (Al-Baqarah 195).",
+         "ta": "அதாவது: உன் எல்லாச் செயல்களையும் அல்லாஹ் காண்கிறான் என்பதை எப்போதும் நினைவில் கொள்வது; தொழுகை, நோன்பு, ஜகாத் அனைத்தையும் அவனைக் காண்பது போல் செய்வது...\n\"நிச்சயமாக அல்லாஹ் நன்மை செய்பவர்களை அன்பு செய்கிறான்\" (அல்-பகரா 195).",
+         "tr": "Ya‘ni: an tatakaddara anna Allaha yara kullu a‘malik, fa-tusalli ka'annaka tarah, wa tasum ka'annaka tarah."
+        },
+        {
+         "type": "ayah",
+         "ref": "2:195",
+         "ar": "وَافْعَلُوا الْخَيْرَ لَعَلَّكُمْ تُفْلِحُونَ",
+         "en": "Do good, so that you may succeed.",
+         "ta": "நல்லம் செய்யுங்கள்; (இவ்வாறு) நீங்கள் வெற்றி பெறக்கூடும்.",
+         "tr": "Waf‘alu al-khayra la‘allakum tuflihun."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-4-6",
+       "kind": "lesson",
+       "page": 29,
+       "title": {
+        "en": "Belief in the Last Day",
+        "ar": "الإيمَانُ بِالْيَوْمِ الْآخِرِ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "من أركان الإيمان: الإيمان باليوم الآخر، وهو يوم القيامة.\nما يلي من الإيمان باليوم الآخر:\nالإيمان بأشراط الساعة وعلاماتها.\nالإيمان بالنفخ في الصور وخروج الخلائق من القبور.\nالإيمان بيوم القيامة من الأهوال والأفزاع وتفاصيلها.\nالإيمان بوضع الموازين، وبالصراط، والحوض، والشفاعة.\nالإيمان بالجنة ونعيمها، وبالنار وعذابها.",
+         "en": "Among the pillars of faith is belief in the Last Day, the Day of Resurrection.\nBelief in the Last Day includes:\nBelief in the signs of the Hour and its portents.\nBelief in the blowing of the Trumpet and creatures leaving their graves.\nBelief in the terrors and details of the Day of Resurrection.\nBelief in the setting up of the Scales, the Bridge (Sirat), the Cistern, and intercession.\nBelief in Paradise and its bliss, and the Fire and its punishment.",
+         "ta": "ஈமானின் தூண்களில் ஒன்று: மறுமை நாளில் — தீர்ப்பு நாளில் — நம்பிக்கை.\nஅதில் அடங்குவன: கியாமத் அறிகுறிகளில் நம்பிக்கை; ஊதப்படும் சூர், கல்லறைகளிலிருந்து உயிர்த்தெழுதல்; தீர்ப்பு நாள் கொடுங்கோன்மைகள்; தராசு, ஸிராத், ஹௌள், ஷஃபாஅத்; சுவனமும் நரகமும்.",
+         "tr": "Min arkani al-iman al-imanu bil-yawmi al-akhir, wa huwa yawmu al-qiyamah."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-4-7",
+       "kind": "lesson",
+       "page": 30,
+       "title": {
+        "en": "Islam Is the Religion of Unity",
+        "ar": "دِينُ الإِسْلَامِ هُوَ دِينُ الاجْتِمَاعِ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "دين الإسلام هو دين الاجتماع والائتلاف، وليس دين التفرق والاختلاف.\nقال تعالى: «واعتَصِموا بحبلِ الله جميعًا ولا تفرَّقوا».\nليس في دين الإسلام أحزابٌ ولا جماعات.",
+         "en": "The religion of Islam is a religion of gathering and unity, not a religion of division and disagreement.\nAllah says: \"Hold fast to God's rope all together; do not split into factions.\"\nThere are no parties or sects in the religion of Islam.",
+         "ta": "இஸ்லாம் ஒற்றுமையின் மார்க்கம்; பிளவுபடுதலின் மார்க்கம் அல்ல.\n\"அனைவரும் அல்லாஹ்வின் கயிற்றை உறுதியாகப் பிடித்துக் கொள்ளுங்கள்; பிரிந்து செல்லாதீர்கள்\" (3:103).\nஇஸ்லாத்தில் கட்சிகளோ பிரிவுகளோ இல்லை.",
+         "tr": "Dinu al-islami huwa dinu al-ijtima‘i wal-i'tilaf, wa laysa dina at-tafarruq wal-ikhtilaf."
+        },
+        {
+         "type": "ayah",
+         "ref": "3:103",
+         "ar": "وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا",
+         "en": "Hold fast to God's rope all together; do not split into factions.",
+         "ta": "அனைவரும் அல்லாஹ்வின் கயிற்றை உறுதியாகப் பிடித்துக் கொள்ளுங்கள்; பிரிந்து செல்லாதீர்கள்.",
+         "tr": "Wa i‘tasimu bi-habli Allahi jami‘an wa la tafarraq."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "no": 5,
+     "title": {
+      "en": "Knowing One's Prophet",
+      "ar": "مَعْرِفَةُ الْعَبْدِ نَبِيِّهِ"
+     },
+     "lessons": [
+      {
+       "file": "s2-tawheed-5-1",
+       "kind": "lesson",
+       "page": 31,
+       "title": {
+        "en": "A Brief Account of Prophet Muhammad ﷺ",
+        "ar": "نَبْذَةٌ عَنِ النَّبِيِّ مُحَمَّدٍ ﷺ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "نبيُّنا محمدٌ هو الصادق الأمين.\nهو محمد بن عبد الله بن عبد المطلب بن هاشم، هاشم من قريش وقريش من العرب، والعرب من ذرية إسماعيل بن إبراهيم.\nولد النبي ﷺ بمكة (عام الفيل).\nكانت قريش تصف النبي قبل البعثة بالصادق الأمين.",
+         "en": "Our Prophet Muhammad is the truthful, the trustworthy.\nHe is Muhammad son of Abdullah son of Abdul-Muttalib son of Hashim; Hashim from Quraysh, Quraysh from the Arabs, and the Arabs from the descendants of Ismail son of Ibrahim.\nThe Prophet ﷺ was born in Makkah (the Year of the Elephant).\nBefore prophethood, Quraysh described him as the truthful and trustworthy.",
+         "ta": "எங்கள் நபி முஹம்மது ﷺ உண்மையாளர், நம்பகமையாளர்.\nஅவர்கள் அப்துல்லாஹ்வின் மகன்; அப்துல் முத்தலிபின் பேரன்; குறைஷி; இஸ்மாயீல் பின் இப்ராஹீமின் வழிவந்தவர்கள்.\n(யானை ஆண்டில்) மக்காவில் பிறந்தார்கள்.\nநபித்துவத்திற்கு முன் குறைஷியர் அவர்களை \"உண்மையாளர், நம்பகமையாளர்\" என்று அழைத்தனர்.",
+         "tr": "Nabiyyuna Muhammadun huwa as-sadiqu al-amin. Muhammadu ibnu Abdillahi ibni Abdil-Muttalibi ibni Hashim."
+        },
+        {
+         "type": "text",
+         "ar": "من صفاته: الرأفة والرحمة بالمؤمنين.\nقال الله تعالى عنه: «لقد جاءكم رسولٌ من أنفسكم عزيزٌ عليه ما عنتم حريصٌ عليكم».\nقام بالدعوة إلى توحيد الله ثلاثَ عشرةَ سنةً بمكة، وتحمَّل الأذى في سبيل الله.\nهاجر من مكة إلى المدينة.\nوفاته: توفي بالمدينة في السنة الحادية عشرة، وهو خاتمُ الأنبياء وأفضلهم ودينُه باقٍ إلى يوم القيامة.\nبلغ نبينا هذا الدين، وأمرنا بكل خير، ونهانا عن كل شر.",
+         "en": "Among his qualities: kindness and mercy towards the believers.\nAllah says of him: \"A messenger has come to you from among yourselves; your suffering distresses him; he cares about you.\"\nHe called to the tawheed of Allah for thirteen years in Makkah, bearing harm in Allah's cause.\nHe migrated from Makkah to Madinah.\nHis death: he died in Madinah in the eleventh year [after the Hijrah], and he is the Seal of the Prophets, the best of them, whose religion remains until the Day of Resurrection.\nOur Prophet delivered this religion, commanded us with every good, and forbade us every evil.",
+         "ta": "அவர்களின் பண்புகள்: முஃமின்கள் மீது அன்பும் கருணையும்.\n\"உங்களிலிருந்தே ஒரு தூதர் உங்களிடம் வந்துள்ளார்...\" (9:128).\nமக்காவில் 13 ஆண்டுகள் தௌஹீதுக்காக அழைத்தார்கள்; இன்னல்களைச் சகித்தார்கள்.\nமக்காவிலிருந்து மதீனாவுக்கு ஹிஜ்ரா செய்தார்கள்.\n11ஆம் ஆண்டு மதீனாவில் இறந்தார்கள்; அவர்கள் இறுதி நபி; அவர்கள் மார்க்கம் கியாமத் வரை நிலைக்கும்.",
+         "tr": "Min sifatih ar-ra'fatu war-rahmatu bil-mu'minin. Qama bi-ad-da‘wati ila tawhidi Allahi thalatha ‘ashrata sanatan bi-Makkata."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-5-2",
+       "kind": "lesson",
+       "page": 33,
+       "title": {
+        "en": "Why Did Allah Send the Messengers?",
+        "ar": "لِمَاذَا أَرْسَلَ اللهُ الرُّسُلَ؟"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "أرسل الله الرسل لدعوة الناس إلى عبادة الله وحده، وترك عبادة ما سواه.",
+         "en": "Allah sent the messengers to call people to worship Allah alone and to abandon the worship of anything besides Him.",
+         "ta": "அல்லாஹ்வை மட்டும் வணங்குமாறும், வேறெதையும் வணங்குவதை விடுமாறும் மக்களுக்கு அழைக்கவே அல்லாஹ் தூதர்களை அனுப்பினான்.",
+         "tr": "Arsala Allahu ar-rusula li-da‘wati an-nasi ila ‘ibadati Allahi wahdahu, wa tarki ‘ibadati ma siwah."
+        },
+        {
+         "type": "ayah",
+         "ref": "16:36",
+         "ar": "وَلَقَدْ بَعَثْنَا فِي كُلِّ أُمَّةٍ رَسُولًا أَنِ اعْبُدُوا اللَّهَ وَاجْتَنِبُوا الطَّاغُوتَ",
+         "en": "We sent a messenger to every community: \"Worship God and shun false gods.\"",
+         "ta": "ஒவ்வொரு சமூகத்திலும் நாம் (இறை) தூதர்களை அனுப்பி உள்ளோம்; (அவர்கள் அவர்களின் இனத்தாரிடம்) \"நீங்கள் அல்லாஹ்வையே வணங்ஙுங்கள்; வல்லாத்தை (இணைவைப்பை) விட்டு விலகுங்கள்\" என்று (அறிவுறுத்தினோம்).",
+         "tr": "Walaqad ba‘athna fi kulli ummatin rasulan ani o‘budu Allaha wajtanibu at-taghut."
+        },
+        {
+         "type": "text",
+         "ar": "وكان المشركون الذين أرسل الله إليهم الأنبياء والرسل يعترفون بأنه لا ربَّ إلا الله، ولا خالق ولا رازق، ولا مدبِّر للأمور إلا الله.",
+         "en": "The idolaters to whom Allah sent prophets and messengers used to admit that there is no lord but Allah, no creator or provider, and none who manages affairs except Allah.",
+         "ta": "அல்லாஹ்வைத் தவிர இறைவன் இல்லை; படைப்பவன், உணவளிப்பவன், எல்லாவற்றையும் நிர்வகிப்பவன் — இவற்றை அவர்கள் ஒப்புக்கொண்டனர்.",
+         "tr": "Wa kana al-mushrikuna yu‘tirifuna bi-anna la rabba illa Allah, wa la khaliqa wa la raziqa illa Allah."
+        },
+        {
+         "type": "ayah",
+         "ref": "10:31",
+         "ar": "قُلْ مَن يَرْزُقُكُم مِّنَ السَّمَاءِ وَالْأَرْضِ أَمَّن يَمْلِكُ السَّمْعَ وَالْأَبْصَارَ وَمَن يُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ وَيُخْرِجُ الْمَيِّتَ مِنَ الْحَيِّ وَمَن يُدَبِّرُ الْأَمْرَ ۚ فَسَيَقُولُونَ اللَّهُ",
+         "en": "Ask them: Who provides for you out of heaven and earth? Who controls hearing and sight? Who brings forth the living from the dead and the dead from the living? Who directs everything? They will answer: God.",
+         "ta": "(நபியே!) கூறுவீர்கள்: \"வானத்திலிருந்தும், பூமியிலிருந்தும் உங்களுக்கு உணவளிப்பவன் யான்? ... எல்லாவற்றையும் நிர்வகிப்பவன் யான்?\" - என்று கேட்கவும். அப்போது அவர்கள் நிச்சயமாக \"அல்லாஹ்வே\" என்று கூறுவார்கள்.",
+         "tr": "Qul man yarzuqukum mina as-sama'i wal-ard ... fa-sayaquluna Allah."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-5-review",
+       "kind": "review",
+       "page": 34,
+       "title": {
+        "en": "Unit Review Questions",
+        "ar": "أسئلة على الوحدة"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "أكمِل الفراغ بالجملة المناسبة:\n١- أرسل الله الرسل لدعوة الناس إلى ......\n٢- توفي ﷺ في ...... من الهجرة.\n٣- ...... وهو خاتم الأنبياء ودينه الإسلام.\n٤- بلغ نبينا هذا الدين، وأمرنا بكل خير ونهانا عن كل شر.",
+         "en": "Fill in each blank with the suitable phrase:\n1. Allah sent the messengers to call people to ...\n2. The Prophet ﷺ died in ... of the Hijrah.\n3. ... is the Seal of the Prophets and his religion is Islam.\n4. Our Prophet delivered this religion, commanded every good and forbade every evil.",
+         "ta": "பொருத்தமான சொற்களால் காலியிடங்களை நிரப்புக:\n1. தூதர்கள் ... அழைக்க அனுப்பப்பட்டனர்.\n2. நபி ﷺ ஹிஜ்ராவின் ... ஆம் ஆண்டில் இறந்தார்கள்.\n3. ... இறுதி நபி; அவர்கள் மார்க்கம் இஸ்லாம்.\n4. எங்கள் நபி இந்த மார்க்கத்தை எடுத்துரைத்தார்கள்...",
+         "tr": "Akmil al-faragh bil-jumla al-munasiba."
+        },
+        {
+         "type": "text",
+         "ar": "الإجابات:\n١- عبادة الله وحده وترك عبادة ما سواه.\n٢- المدينة في السنة الحادية عشرة.\n٣- محمدٌ رسول الله ﷺ.",
+         "en": "Answers:\n1. Worshipping Allah alone, abandoning worship of anything else.\n2. Madinah, in the eleventh year.\n3. Muhammad, the Messenger of Allah ﷺ.",
+         "ta": "விடைகள்:\n1. அல்லாஹ்வை மட்டும் வணங்குதல்.\n2. 11ஆம் ஆண்டில் மதீனா.\n3. முஹம்மது ரசூலுல்லாஹ் ﷺ.",
+         "tr": "Al-ijabat: 1. ‘ibadati Allahi wahdahu. 2. al-Madinata fis-sanati al-hadiyata ‘ashrata. 3. Muhammadun rasulullah ﷺ."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-5-3",
+       "kind": "lesson",
+       "page": 35,
+       "title": {
+        "en": "Loving the Prophet Muhammad ﷺ",
+        "ar": "مَحَبَّةُ النَّبِيِّ مُحَمَّدٍ ﷺ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "محبةُ النبي ﷺ من أعظم الواجبات على كل مسلم.\nيجب علينا تقديم محبة نبينا على محبة أمهاتنا وآبائنا والناس.\nوتكون محبة النبي ﷺ باتباعه وطاعته.",
+         "en": "Loving the Prophet ﷺ is among the greatest duties upon every Muslim.\nWe must place love of our Prophet before the love of our mothers, fathers, and all people.\nThis love is shown by following him and obeying him.",
+         "ta": "நபி ﷺ அவர்களை நேசிப்பது ஒவ்வொரு முஸ்லிமின் மிகப் பெரிய கடமைகளில் ஒன்று.\nதாய் தந்தை, மக்கள் அனைவர் மீதான அன்பை விட நபி அவர்கள் மீதான அன்பு முன்னிலைப்படுத்தப்பட வேண்டும்.\nஅவர்களைப் பின்பற்றுவதன், கீழ்ப்படிவதன் மூலமே இந்த அன்பு நிறைவேறும்.",
+         "tr": "Mahabbatu an-nabiyyi ﷺ min a‘zami al-wajibati ‘ala kulli muslim. Wa takunu mahabbatuhu bi-ittiba‘ihi wa ta‘atih."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-5-4",
+       "kind": "lesson",
+       "page": 36,
+       "title": {
+        "en": "Believing in and Obeying the Prophet Muhammad ﷺ",
+        "ar": "تَصْدِيقُ النَّبِيِّ مُحَمَّدٍ ﷺ وَطَاعَتُهُ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "يجب تصديقُ النبي ﷺ فيما ذكره من الأخبار.\nويجب طاعةُ النبي ﷺ فيما أمر به.\nويجب اجتنابُ ما نهى عنه النبي ﷺ.\nويجب أن نعبد الله بما شرعه النبي ﷺ.",
+         "en": "We must believe the Prophet ﷺ in the news he conveyed.\nWe must obey the Prophet ﷺ in what he commanded.\nWe must avoid what the Prophet ﷺ forbade.\nAnd we must worship Allah as the Prophet ﷺ legislated.",
+         "ta": "நபி ﷺ அவர்கள் தெரிவித்த செய்திகளில் உண்மை என நம்புவது கடமை.\nஅவர்கள் கட்டளையிட்டவற்றை நிறைவேற்றுவது கடமை.\nஅவர்கள் தடைசெய்தவற்றை விட்டு விலகுவது கடமை.\nஅவர்கள் ஏற்படுத்திய வழிப்படி அல்லாஹ்வை வணங்குவது கடமை.",
+         "tr": "Yajibu tasdiqu an-nabiyyi ﷺ fima dhakarahu min al-akhbar, wa yajibu ta‘atuhu fima amara bih, wa ijtinaibu ma naha ‘anh."
+        },
+        {
+         "type": "ayah",
+         "ref": "33:21",
+         "ar": "لَقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ",
+         "en": "You have an excellent example in the Messenger of God.",
+         "ta": "(இறை)தூதரில் உங்களுக்கு அழகிய நல்ல முன்மாதிரி இருக்கிறது.",
+         "tr": "Laqad kana lakum fi rasulillahi uswatun hasana."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-5-5",
+       "kind": "lesson",
+       "page": 37,
+       "title": {
+        "en": "The Noble Quran",
+        "ar": "القُرْآنُ الكَرِيمُ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "نؤمن أن القرآن كلام الله غير مخلوق، نزَّله الله به جبريل عليه السلام على نبينا محمد ﷺ.",
+         "en": "We believe that the Quran is the speech of Allah, uncreated, which Allah sent down through Jibril, peace be upon him, to our Prophet Muhammad ﷺ.",
+         "ta": "குர்ஆன் அல்லாஹ்வின் வார்த்தை; அது படைக்கப்படாதது; ஜிப்ரீல் (அலை) வழியாக நம் நபி முஹம்மது ﷺ அவர்கள் மீது இறக்கி வைக்கப்பட்டது — இவ்வாறு நாங்கள் நம்பிக்கை கொள்கிறோம்.",
+         "tr": "Nu'minu anna al-Qur'ana kalamullahi ghayru makhluq, nazzalahu Allah bi-Jibrila ‘alayhi as-salam ‘ala nabiyyina Muhammadin ﷺ."
+        },
+        {
+         "type": "text",
+         "ar": "وعلينا: تعظيمه وتوقيره.\nولا يحرص المسلم على قراءة القرآن وتدبُّره والعمل به؛ فليس بمسلمٍ حقيقي.\nقال تعالى: «كتابٌ أنزلناه إليك مباركٌ ليدبَّروا آياتِه وليتذكَّرَ أولوا الألباب».",
+         "en": "It is upon us to venerate and honour it.\nA Muslim who does not strive to read the Quran, reflect on it, and act by it is not a true Muslim.\nAllah says: \"This is a blessed Book We have sent down to you, so that people may ponder its verses and those with understanding may take heed.\"",
+         "ta": "குர்ஆனை பெரிதாக்குவது, மதிப்பளிப்பது எங்கள் மீது கடமை.\nகுர்ஆனை ஓதுவதிலும் சிந்திப்பதிலும் அதன்படி செயல்படுவதிலும் அக்கறை கொள்ளாதவன் உண்மையான முஸ்லிம் அல்ல.\n\"இது ஒரு பரக்கத் கொடுத்த நூல்; இதை நாம் உம்மிடம் இறக்கி வைத்தோம்...\"",
+         "tr": "Wa ‘alayna ta‘zimuhu wa taqwiruh. Wa la yahrisu al-muslimu ‘ala qira'ati al-Qur'an wa tadabburih wal-‘amal bih illa wa huwa muslimun haqiqi."
+        },
+        {
+         "type": "ayah",
+         "ref": "38:29",
+         "ar": "كِتَابٌ أَنزَلْنَاهُ إِلَيْكَ مُبَارَكٌ لِّيَدَّبَّرُوا آيَاتِهِ وَلِيَتَذَكَّرَ أُولُو الْأَلْبَابِ",
+         "en": "[This is] a blessed Scripture We sent down to you: let people ponder its verses and let those of understanding take heed.",
+         "ta": "(இது) ஒரு பரக்கத் கொடுத்த நூல்; அதை நாம் உம்மிடம் இறக்கி வைத்தோம்; அதன் வசனங்களை அவர்கள் சிந்திப்பதற்காகவும், புத்தியுள்ளவர்கள் நன்கு எண்ணிப் பார்ப்பதற்காகவும்.",
+         "tr": "Kitabun anzalnahu ilayka mubarakun liyaddabbaru ayatih."
+        }
+       ]
+      },
+      {
+       "file": "s2-tawheed-5-6",
+       "kind": "lesson",
+       "page": 38,
+       "title": {
+        "en": "The Companions, May Allah Be Pleased with Them",
+        "ar": "الصَّحَابَةُ رَضِيَ اللهُ عَنْهُمْ"
+       },
+       "blocks": [
+        {
+         "type": "text",
+         "ar": "يجب على كل مسلم أن يحبَّ أصحابَ النبي ﷺ وأن يحترمهم وألا يذكرهم إلا بالخير.",
+         "en": "Every Muslim must love the Companions of the Prophet ﷺ, respect them, and never mention them except in good terms.",
+         "ta": "நபி ﷺ அவர்களின் தோழர்களை நேசிப்பது, மதிப்பது, நல்லதையே அவர்கள் குறித்துக் கூறுவது — ஒவ்வொரு முஸ்லிம் மீதும் கடமை.",
+         "tr": "Yajibu ‘ala kulli muslimin an yuhibba as-haba an-nabiyyi ﷺ wa an yuhtaramuhum."
+        },
+        {
+         "type": "text",
+         "ar": "ويجب أن يعتقد أن الله قد رضي عن جميع الصحابة، وأنهم جميعًا من أهل الجنة، وأنهم خيرُ الناس بعد الأنبياء والمرسلين.\nولا يجوز لأي مسلم أن يكره أحدًا من أصحاب النبي ﷺ أو يستخفَّ بأحد منهم.",
+         "en": "We must believe that Allah is pleased with all the Companions, that they are all among the people of Paradise, and that they are the best of people after the prophets and messengers.\nNo Muslim may hate any Companion of the Prophet ﷺ or belittle any of them.",
+         "ta": "எல்லாத் தோழர்கள் மீதும் அல்லாஹ் திருப்தி அடைந்தான்; அவர்கள் அனைவரும் சுவனவாசிகள்; இறைத்தூதர்களுக்குப் பிறகு அவர்களே மிகச் சிறந்தவர்கள் — இவ்வாறு நம்புவது கடமை.\nதோழர்களில் எவரையும் வெறுப்பதோ குறை கூறுவதோ ஹராம்.",
+         "tr": "Wa yajibu an yu‘tiqida anna Allaha radiya ‘an jami‘i as-sahabati, wa annahum jami‘an min ahli al-jannah."
+        },
+        {
+         "type": "ayah",
+         "ref": "9:100",
+         "ar": "وَالسَّابِقُونَ الْأَوَّلُونَ مِنَ الْمُهَاجِرِينَ وَالْأَنْصَارِ وَالَّذِينَ اتَّبَعُوهُم بِإِحْسَانٍ رَّضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ وَأَعَدَّ لَهُمْ جَنَّاتٍ تَجْرِي تَحْتَهَا الْأَنْهَارُ خَالِدِينَ فِيهَا أَبَدًا",
+         "en": "The early vanguard of the emigrants and the helpers [of Madinah] and those who followed them in good deeds: God is pleased with them and they are pleased with Him. He has prepared gardens for them through which rivers flow, where they will remain forever.",
+         "ta": "முஜாஹிர்களிலும் அன்ஸார்களிலும் முதன்மையானவர்கள், மேலும் நல்ல முறையில் அவர்களைப் பின்பற்றியவர்கள் — அல்லாஹ் அவர்களைப் பொறுத்தவரை திருப்தி அடைந்தான்... அவர்களுக்காக ஏற்பாடு செய்யப்பட்ட சுவனங்களின் கீழ் ஆறுகள் ஓடிக்கொண்டிருக்கும்...",
+         "tr": "Was-sabiquna al-awwaluna minal-muhajirina wal-ansari walladhina ittaba‘uhum bi-ihsanin radiya Allahu ‘anhum."
+        },
+        {
+         "type": "hadith",
+         "ar": "عن ابن مسعود رضي الله عنه قال: قال النبي ﷺ: «خيرُ الناس قرني، ثم الذين يلونهم، ثم الذين يلونهم». أخرجه البخاري (٢٦٥٢) ومسلم (٢٥٣٣).\nوعن أبي سعيد الخدري رضي الله عنه قال: قال رسول الله ﷺ: «لا تسبُّوا أصحابي». أخرجه البخاري (٣٣٩٧) ومسلم (٤٦١١).",
+         "en": "Ibn Mas'ud reported that the Prophet ﷺ said: \"The best people are my generation, then those who come after them, then those who come after them.\" Narrated by al-Bukhari (2652) and Muslim (2533).\nAbu Sa'id al-Khudri reported that Allah's Messenger ﷺ said: \"Do not insult my Companions.\" Narrated by al-Bukhari (3397) and Muslim (4611).",
+         "ta": "\"என் தலைமுறையினரே சிறந்தவர்கள்; பின் அவர்களைத் தொடர்ந்தவர்கள்; பின் அவர்களைத் தொடர்ந்தவர்கள்.\" (புகாரி 2652; முஸ்லிம் 2533)\n\"என் தோழர்களை இழிவாகக் கூறாதீர்கள்.\" (புகாரி 3397; முஸ்லிம் 4611)",
+         "tr": "«Khayru an-nasi qarni, thumma alladhina yalunahum, thumma alladhina yalunahum» ... «La tasabbu as-habi»."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

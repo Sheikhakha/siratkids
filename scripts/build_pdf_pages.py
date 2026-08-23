@@ -31,6 +31,9 @@ except ImportError:
 SOURCES = {
     'pre': ('data/pdfs/PreStage.pdf', 'images/pdf/pre'),
     's1': ('data/pdfs/First Stage.pdf', 'images/pdf/s1'),
+    's2': ('data/pdfs/SecondStage.pdf', 'images/pdf/s2'),
+    's3': ('data/pdfs/ThirdStage.pdf', 'images/pdf/s3'),
+    's4': ('data/pdfs/FourthStage.pdf', 'images/pdf/s4'),
 }
 
 
@@ -70,7 +73,7 @@ def render(key, scale):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--scale', type=float, default=2.0)
-    ap.add_argument('--only', choices=['pre', 's1'], default=None)
+    ap.add_argument('--only', choices=['pre', 's1', 's2', 's3', 's4'], default=None)
     args = ap.parse_args()
     keys = [args.only] if args.only else list(SOURCES)
     for k in keys:

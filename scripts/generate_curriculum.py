@@ -118,19 +118,25 @@ TOGGLE_BAR = """<div class="toggle-bar">
 """
 
 
-_S0_PAGE_MAP = None
+_PAGE_MAPS = {}
+
+
+def page_map_for(stage):
+    if stage not in _PAGE_MAPS:
+        path = os.path.join(ROOT, 'data', 's%d_page_map.json' % stage)
+        _PAGE_MAPS[stage] = json.load(io.open(path, encoding='utf-8')) if os.path.exists(path) else {}
+    return _PAGE_MAPS[stage]
 
 
 def s0_page_map():
-    global _S0_PAGE_MAP
-    if _S0_PAGE_MAP is None:
+    if 0 not in _PAGE_MAPS:
         path = os.path.join(ROOT, 'data', 's0_page_map.json')
-        _S0_PAGE_MAP = json.load(io.open(path, encoding='utf-8')) if os.path.exists(path) else {}
-    return _S0_PAGE_MAP
+        _PAGE_MAPS[0] = json.load(io.open(path, encoding='utf-8')) if os.path.exists(path) else {}
+    return _PAGE_MAPS[0]
 
 
-def textbook_panel_html(lesson_key, prefix):
-    m = s0_page_map()
+def textbook_panel_html(lesson_key, prefix, stage=0):
+    m = page_map_for(stage) or s0_page_map()
     pages = m.get(lesson_key)
     if not pages:
         return ''
@@ -317,7 +323,7 @@ def lesson_page(stage, subject, unit, lesson, flat, idx):
 
     <main class="lesson-main">
         {TOGGLE_BAR}
-{textbook_panel_html(lesson['file'], '../../')}
+{textbook_panel_html(lesson['file'], '../../', stage['stage'])}
 {body_blocks}
 
         <div class="lesson-nav">
@@ -552,8 +558,9 @@ def main():
         write_file(os.path.join(ROOT, 'stage-%d.html' % sn), stage_page(stage, all_subjects))
         print('[ok] stage-%d.html' % sn)
     placeholders = {
-        2: {'stage': 2, 'titles': {'en': 'Stage Two', 'ar': 'المرحلة الثانية', 'age_en': 'Ages 10-12 years'}},
-        3: {'stage': 3, 'titles': {'en': 'Stage Three', 'ar': 'المرحلة الثالثة', 'age_en': 'Ages 13+ years'}},
+        2: {'stage': 2, 'titles': {'en': 'Stage Two', 'ar': 'المرحلة الثانية', 'age_en': 'Ages 7-8 years'}},
+        3: {'stage': 3, 'titles': {'en': 'Stage Three', 'ar': 'المرحلة الثالثة', 'age_en': 'Ages 8-9 years'}},
+        4: {'stage': 4, 'titles': {'en': 'Stage Four', 'ar': 'المرحلة الرابعة', 'age_en': 'Ages 9-10 years'}},
     }
     for sn, meta in sorted(placeholders.items()):
         if sn not in seen_stages:
