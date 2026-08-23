@@ -767,22 +767,25 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Settings dropdown toggle
-    var settingsDropdown = document.querySelector('.settings-dropdown');
-    if (settingsDropdown) {
-        var settingsBtn = settingsDropdown.querySelector('.settings-toggle-btn');
-        if (settingsBtn) {
-            settingsBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                settingsDropdown.classList.toggle('open');
+    // Settings dropdown toggle (binds every dropdown that has a settings button)
+    document.querySelectorAll('.settings-dropdown').forEach(function (dropdown) {
+        var settingsBtn = dropdown.querySelector('.settings-toggle-btn');
+        if (!settingsBtn) return;
+        settingsBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.querySelectorAll('.settings-dropdown.open').forEach(function (other) {
+                if (other !== dropdown) other.classList.remove('open');
             });
-        }
-        document.addEventListener('click', function(e) {
-            if (!settingsDropdown.contains(e.target)) {
-                settingsDropdown.classList.remove('open');
+            dropdown.classList.toggle('open');
+        });
+    });
+    document.addEventListener('click', function(e) {
+        document.querySelectorAll('.settings-dropdown.open').forEach(function (dropdown) {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
             }
         });
-    }
+    });
 
     /* ---- Theme Accent Color Swatches ---- */
     var ACCENT_LIST = [
