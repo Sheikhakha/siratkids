@@ -462,7 +462,7 @@ def subject_page(stage, subj):
     for u in subj['units']:
         first = u['lessons'][0]
         first_href = first.get('href') or 'lessons/%s/%s.html' % (sdir, first['file'])
-        n = len([l for l in u['lessons'] if l.get('kind') != 'review'])
+        n = len(u['lessons'])
         unit_cards.append(
             '<a class="unit-card-link" href="%s">'
             '<section class="unit-card unit-hue-%d">'
@@ -472,12 +472,13 @@ def subject_page(stage, subj):
             '<p class="ar" dir="rtl">%s</p></div>'
             '</header>'
             '<footer class="unit-card-foot"><span class="unit-card-stage">%s &middot; %s</span>'
-            '<span>%d lessons</span>'
+            '<span>%d %s</span>'
             '<span class="unit-open">Start Unit &#9656;</span></footer>'
             '</section></a>'
             % (esc(first_href), ((u['no'] - 1) % 5) + 1, u['no'], u['no'],
                esc(u['title']['en']), esc(u['title'].get('ar', '')),
-               esc(stage_label(sn)), esc(st.get('ar', '')), n))
+               esc(stage_label(sn)), esc(st.get('ar', '')),
+               n, 'lesson' if n == 1 else 'lessons'))
     back_row = ('<div class="lesson-back-row">'
                 '<a class="btn-back-lg" href="%s">&#8592; Back to Subjects</a>'
                 '</div>' % esc(stage_href))
