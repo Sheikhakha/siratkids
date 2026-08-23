@@ -874,6 +874,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var dmToggle = document.querySelector('.dm-toggle');
     if (dmToggle) {
         dmToggle.addEventListener('click', function () {
+            document.documentElement.classList.add('sk-theme-anim');
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             var newTheme = isDark ? null : 'dark';
             if (newTheme) {

@@ -357,6 +357,97 @@ body {
     transform: rotate(0deg);
 }
 
+/* ==========================================================
+   Dark Mode Toggle — animated emoji (worksheet-preview style)
+   Task #0 · docs/activity-worksheets-plan.md §0 · 2026-08-23
+   Legacy SVGs stay in DOM (hidden); emoji rendered via
+   ::before (crescent, light mode) / ::after (sun, dark mode).
+   Motion plays ONLY after a user click (html.sk-theme-anim
+   added by js/main.js) — never replays on page load.
+   ========================================================== */
+.dm-toggle {
+    width: 42px;
+    height: 42px;
+}
+.dm-toggle svg { display: none; }
+.dm-toggle::before,
+.dm-toggle::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+    font-size: 21px;
+    line-height: 1;
+    pointer-events: none;
+}
+.dm-toggle::before {
+    content: "🌙";
+    opacity: 1;
+    transform: rotate(0deg);
+}
+.dm-toggle::after {
+    content: "☀️";
+    opacity: 0;
+    transform: rotate(90deg);
+}
+[data-theme="dark"] .dm-toggle::before {
+    opacity: 0;
+    transform: rotate(-25deg);
+}
+[data-theme="dark"] .dm-toggle::after {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+/* --- click motion (gated: only after first user click) --- */
+@keyframes sk-dm-sun-in {
+    0%   { opacity: 0; transform: rotate(360deg) scale(0.3); }
+    55%  { opacity: 1; }
+    80%  { transform: rotate(-10deg) scale(1.18); }
+    100% { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+@keyframes sk-dm-moon-out {
+    0%   { opacity: 1; transform: rotate(0deg) scale(1); }
+    100% { opacity: 0; transform: rotate(-30deg) scale(0.3); }
+}
+@keyframes sk-dm-moon-in {
+    0%   { opacity: 0; transform: rotate(-25deg) scale(0.4); }
+    35%  { opacity: 1; transform: rotate(22deg) scale(1.08); }
+    55%  { transform: rotate(-14deg) scale(0.97); }
+    75%  { transform: rotate(9deg) scale(1.02); }
+    100% { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+@keyframes sk-dm-sun-out {
+    0%   { opacity: 1; transform: rotate(0deg) scale(1); }
+    100% { opacity: 0; transform: rotate(45deg) scale(0.3); }
+}
+/* light -> dark: crescent fades out tilting away, sun spins in */
+html.sk-theme-anim[data-theme="dark"] .dm-toggle::before {
+    animation: sk-dm-moon-out 0.28s ease forwards;
+}
+html.sk-theme-anim[data-theme="dark"] .dm-toggle::after {
+    animation: sk-dm-sun-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.06s backwards;
+}
+/* dark -> light: sun shrinks spinning away, crescent swings in */
+html.sk-theme-anim:not([data-theme="dark"]) .dm-toggle::before {
+    animation: sk-dm-moon-in 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.06s backwards;
+}
+html.sk-theme-anim:not([data-theme="dark"]) .dm-toggle::after {
+    animation: sk-dm-sun-out 0.28s ease forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+    html.sk-theme-anim .dm-toggle::before,
+    html.sk-theme-anim .dm-toggle::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+    }
+}
+
 /* ---------- Hero ---------- */
 .hero {
     position: relative;
