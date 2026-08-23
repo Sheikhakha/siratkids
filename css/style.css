@@ -4949,3 +4949,289 @@ a.journey-card:focus-visible,
     .journey::before { left: 23px; }
     .cta-inner { padding: 40px 20px; }
 }
+
+/* ==========================================================
+   Worksheet Activity Engine (.ws-*)  ·  Task #1
+   docs/activity-worksheets-plan.md §3/§5/§6/§7 · 2026-08-23
+   Consumed by worksheet.html + js/worksheet.js.
+   Reuses global tokens; unit accents come from --unit-hue-*.
+   ========================================================== */
+
+/* ---- hue accent mapping (matches .unit-card.unit-hue-N) ---- */
+.ws-hue-1 { --ws-accent: var(--unit-hue-1-accent, var(--primary)); }
+.ws-hue-2 { --ws-accent: var(--unit-hue-2-accent, var(--primary)); }
+.ws-hue-3 { --ws-accent: var(--unit-hue-3-accent, var(--primary)); }
+.ws-hue-4 { --ws-accent: var(--unit-hue-4-accent, var(--primary)); }
+
+/* ---- layout / hero ---- */
+.ws-main { max-width: 880px; margin: 0 auto; padding: 0 18px 60px; }
+.ws-hero { text-align: center; margin: 6px 0 26px; }
+.ws-hero h1 { font-size: 30px; line-height: 1.3; color: var(--text-dark); }
+.ws-hero h1 .ar { display: block; font-size: 34px; color: var(--ws-accent, var(--primary)); margin-bottom: 4px; }
+.chip-row { margin-top: 10px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+
+/* ---- activity card shell ---- */
+.ws-activity {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-top: 4px solid var(--ws-accent, var(--primary));
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 22px;
+    margin-bottom: 26px;
+}
+.ws-head { text-align: center; margin-bottom: 14px; }
+.ws-head h2 { font-size: 21px; color: var(--text-dark); }
+.ws-head .ar { font-size: 19px; color: var(--ws-accent, var(--primary)); margin-top: 2px; }
+
+/* ---- guide bubble (on-screen assistant) ---- */
+.ws-guide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: var(--surface-page);
+    border: 2px dashed var(--ws-accent, var(--primary));
+    border-radius: var(--radius-lg);
+    padding: 10px 18px;
+    margin: 0 auto 16px;
+    max-width: 560px;
+    min-height: 46px;
+}
+.ws-guide-icon { font-size: 20px; line-height: 1; }
+.ws-guide-en { font-weight: 800; font-size: 15px; color: var(--text-dark); }
+.ws-guide-ar { font-weight: 700; font-size: 17px; color: var(--ws-accent, var(--primary)); }
+.ws-guide.is-pop { animation: ws-pop 0.35s ease; }
+
+/* ---- progress dots ---- */
+.ws-dots { display: flex; justify-content: center; gap: 7px; margin-top: 12px; }
+.ws-dots i {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--border-default);
+    transition: background var(--transition), transform var(--transition);
+}
+.ws-dots i.done { background: var(--accent-success); transform: scale(1.15); }
+
+/* ---- match columns & cards ---- */
+.ws-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.col-label {
+    text-align: center; font-size: 12px; font-weight: 800;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-medium); margin-bottom: 8px;
+}
+.ws-col-list { display: flex; flex-direction: column; gap: 10px; }
+.ws-card {
+    font-family: inherit;
+    border: 2px solid var(--border-default);
+    background: var(--surface-page);
+    border-radius: var(--radius-sm);
+    padding: 14px 12px;
+    min-height: 64px;
+    min-width: 44px;
+    cursor: pointer;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 4px;
+    transition: border-color var(--transition), transform var(--transition),
+                box-shadow var(--transition), background var(--transition);
+}
+.ws-card:hover:not(.is-done) { border-color: var(--ws-accent, var(--primary)); transform: translateY(-2px); }
+.ws-card:focus-visible,
+.ws-chip:focus-visible,
+.ws-blank:focus-visible,
+.ws-btn:focus-visible {
+    outline: 3px solid var(--ws-accent, var(--primary));
+    outline-offset: 2px;
+}
+.ws-card.is-selected {
+    border-color: var(--ws-accent, var(--primary));
+    background: rgba(79, 70, 229, 0.08);
+    background: color-mix(in srgb, var(--ws-accent, var(--primary)) 9%, var(--surface-page));
+    transform: scale(1.03);
+    box-shadow: var(--shadow-md);
+}
+.ws-card.is-done {
+    border-color: var(--accent-success);
+    background: rgba(22, 163, 74, 0.09);
+    background: color-mix(in srgb, var(--accent-success) 10%, var(--surface-page));
+    opacity: 0.6;
+    cursor: default;
+}
+.ws-card.is-wrong { border-color: var(--accent-error); animation: ws-shake 0.45s ease; }
+.is-pop { animation: ws-pop 0.35s ease; }
+
+@keyframes ws-shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-7px); }
+    40%, 80% { transform: translateX(7px); }
+}
+@keyframes ws-pop {
+    0% { transform: scale(0.92); }
+    60% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* ---- fill: sentences, blanks, word bank ---- */
+.ws-q {
+    background: var(--surface-page);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin-bottom: 14px;
+    text-align: center;
+}
+.ws-sentence .ar { font-size: 23px; line-height: 2; color: var(--text-dark); }
+.ws-sentence .en { margin-top: 6px; font-size: 14px; color: var(--text-medium); }
+.ws-blank {
+    font-family: "Noto Naskh Arabic", serif;
+    font-size: 23px;
+    font-weight: 700;
+    min-width: 110px;
+    border: none;
+    border-bottom: 3px dashed var(--text-medium);
+    background: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 0 8px;
+    border-radius: 6px 6px 0 0;
+}
+.ws-blank.ok {
+    border-bottom-style: solid;
+    border-bottom-color: var(--accent-success);
+    color: var(--accent-success);
+    cursor: default;
+    animation: ws-pop 0.35s ease;
+}
+.ws-blank.bad { border-bottom-color: var(--accent-error); color: var(--accent-error); animation: ws-shake 0.45s ease; }
+.ws-blank.is-hover {
+    outline: 3px solid var(--ws-accent, var(--primary));
+    outline-offset: -2px;
+    background: rgba(79, 70, 229, 0.07);
+    background: color-mix(in srgb, var(--ws-accent, var(--primary)) 8%, transparent);
+}
+
+.ws-bank {
+    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border-default);
+}
+.ws-chip {
+    font-family: "Noto Naskh Arabic", serif;
+    font-size: 19px;
+    font-weight: 700;
+    border: 2px solid var(--ws-accent, var(--primary));
+    color: var(--ws-accent, var(--primary));
+    background: var(--surface-card);
+    border-radius: 99px;
+    padding: 8px 22px;
+    cursor: grab;
+    touch-action: none;              /* required for pointer-drag on touch */
+    user-select: none;
+    -webkit-user-select: none;
+    transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+.ws-chip:hover { background: var(--ws-accent, var(--primary)); color: #fff; }
+.ws-chip.is-picked { background: var(--ws-accent, var(--primary)); color: #fff; transform: scale(1.06); cursor: grabbing; }
+.ws-chip.is-lifted { opacity: 0.35; }
+.ws-chip.is-used { opacity: 0.35; text-decoration: line-through; pointer-events: none; }
+
+.ws-drag-ghost {
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 9999;
+    pointer-events: none;
+    font-family: "Noto Naskh Arabic", serif;
+    font-size: 19px;
+    font-weight: 700;
+    background: var(--ws-accent, var(--primary));
+    color: #fff;
+    border-radius: 99px;
+    padding: 8px 22px;
+    box-shadow: var(--shadow-lg, var(--shadow-md));
+    will-change: transform;
+}
+
+/* ---- feedback line ---- */
+.ws-feedback { text-align: center; min-height: 24px; margin-top: 16px; font-weight: 800; font-size: 15px; }
+.ws-feedback.ok { color: var(--accent-success); }
+.ws-feedback.err { color: var(--accent-error); }
+
+/* ---- result panel ---- */
+.ws-result {
+    display: none;
+    text-align: center;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-top: 4px solid var(--accent-success);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 28px;
+}
+.ws-result.show { display: block; animation: ws-pop 0.4s ease; }
+.ws-stars { font-size: 40px; letter-spacing: 6px; color: #f59e0b; }
+.ws-btnrow { margin-top: 18px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.ws-btn {
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 15px;
+    border-radius: 14px;
+    padding: 13px 26px;
+    min-height: 48px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+.ws-btn:active { transform: scale(0.97); }
+.ws-btn-primary { background: var(--primary); color: #fff; }
+.ws-btn-primary:hover { background: var(--primary-dark); }
+.ws-btn-outline { background: none; border-color: var(--primary); color: var(--primary); }
+.ws-btn-outline:hover { background: rgba(79, 70, 229, 0.08); }
+.ws-btn-done.is-on { background: var(--accent-success); border-color: var(--accent-success); color: #fff; }
+
+/* ---- picker grid (bare worksheet.html) ---- */
+.ws-picker-note { text-align: center; color: var(--text-medium); margin: -14px 0 22px; }
+.ws-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+.ws-pick-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-top: 4px solid var(--ws-accent, var(--primary));
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 18px;
+    text-decoration: none;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+.ws-pick-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.ws-pick-subject { font-size: 11.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-medium); }
+.ws-pick-title.en { font-size: 17px; font-weight: 800; color: var(--text-dark); }
+.ws-pick-title.ar { font-size: 19px; font-weight: 700; color: var(--ws-accent, var(--primary)); }
+.ws-pick-open { margin-top: 8px; font-size: 13.5px; font-weight: 800; color: var(--ws-accent, var(--primary)); }
+
+/* ---- responsive ---- */
+@media (max-width: 620px) {
+    .ws-cols { grid-template-columns: 1fr; }
+    .ws-sentence .ar { font-size: 20px; }
+    .ws-blank { font-size: 20px; min-width: 90px; }
+    .ws-hero h1 { font-size: 24px; }
+    .ws-hero h1 .ar { font-size: 27px; }
+}
+
+/* ---- reduced motion / print ---- */
+@media (prefers-reduced-motion: reduce) {
+    .ws-guide.is-pop, .is-pop, .ws-blank.ok, .ws-blank.bad,
+    .ws-card.is-wrong, .ws-result.show { animation: none !important; }
+}
+@media print {
+    .navbar, .footer, .breadcrumb, .ws-bank, .ws-btnrow, .ws-guide, .ws-dots { display: none !important; }
+    .ws-activity, .ws-result { box-shadow: none; break-inside: avoid; }
+}

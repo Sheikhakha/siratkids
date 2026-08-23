@@ -1,5 +1,5 @@
 # SiratKids — Interactive Worksheets & Activity Engine Plan
-_Last updated: 2026-08-23 (rev 2) · Status: APPROVED · Dark-toggle task ON HOLD_
+_Last updated: 2026-08-23 (rev 3) · Status: 🅿️ PARKED end-of-day — steps 2–5 complete & validator-green (uncommitted). Resume order: ① owner's minor corrections from live test ② commit ③ step 6a CTA injection ④ remaining 16 units._
 
 ## 0. Dark/Light Toggle Polish — ✅ DONE 2026-08-23
 _Was ON HOLD pending a parallel session; owner released it._
@@ -114,10 +114,10 @@ Arabic/verse text only from canonically fetched sources.
 
 ## 11. Kickoff Order (next session)
 1. ~~Write this MD to `docs/activity-worksheets-plan.md`~~ ✔ done 2026-08-23
-2. `js/worksheets-data.js` (Stage 1 tawheed U2 first; canonical fetches)
-3. `js/worksheet.js`: skStore adapter → match renderer + guide FSM → fill renderer + DnD
-4. `worksheet.html` shell + picker grid
-5. CSS `.ws-*` additions → main.js CTA injection
+2. ~~`js/worksheets-data.js`~~ ✔ pilot `s1-tawheed-2` authored + syntax/consistency checked (2026-08-23) — remaining 16 units after engine preview
+3. ~~`js/worksheet.js`~~ ✔ engine built + `node --check` clean (2026-08-23): skStore(IDB+LS mirror), match FSM, fill tap+pointer-drag, guide bubbles, stars/retry/practiced
+4. ~~`worksheet.html` shell + picker grid~~ ✔ built 2026-08-23 (hub skeleton verbatim + `#ws-root` mount)
+5. ~~CSS `.ws-*` additions~~ ✔ appended 2026-08-23 (style.css end; hue tokens reused, `touch-action:none` chips, dark/print/reduced-motion) — CTA injection into main.js pending
 6. Remaining 16 units' data → validate → snapshot re-baseline
 7. Manual matrix: Live Server, mobile touch, keyboard, dark mode, RTL
 8. ~~Task #0 toggle motion~~ ✔ done 2026-08-23 (owner released hold)
