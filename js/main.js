@@ -1166,6 +1166,94 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 
 /* ============================================
+   Textbook Panel Lightbox (Pre-Stage Lessons)
+   Click / Enter on .tb-page img opens a fullscreen zoom overlay.
+   ============================================ */
+(function () {
+    'use strict';
+
+    var overlay = null;
+    var lastFocus = null;
+
+    function closeLightbox() {
+        if (!overlay) return;
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        setTimeout(function () {
+            if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
+            overlay = null;
+        }, 200);
+        if (lastFocus) {
+            lastFocus.focus();
+            lastFocus = null;
+        }
+        document.removeEventListener('keydown', onKeydown);
+    }
+
+    function onKeydown(e) {
+        if (e.key === 'Escape') closeLightbox();
+    }
+
+    function openLightbox(src, alt) {
+        lastFocus = document.activeElement;
+        overlay = document.createElement('div');
+        overlay.className = 'tb-lightbox';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-label', alt || 'Textbook page zoom');
+
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = alt || '';
+
+        var closeBtn = document.createElement('button');
+        closeBtn.className = 'tb-lightbox-close';
+        closeBtn.type = 'button';
+        closeBtn.innerHTML = '&times;';
+        closeBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            closeLightbox();
+        });
+
+        overlay.appendChild(img);
+        overlay.appendChild(closeBtn);
+
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) closeLightbox();
+        });
+        document.addEventListener('keydown', onKeydown);
+
+        document.body.appendChild(overlay);
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(function () {
+            overlay.classList.add('open');
+        });
+        closeBtn.focus();
+    }
+
+    document.addEventListener('click', function (e) {
+        var img = e.target.closest ? e.target.closest('.tb-page img') : null;
+        if (!img) return;
+        e.preventDefault();
+        var fig = img.closest('.tb-page');
+        var cap = fig ? fig.querySelector('figcaption') : null;
+        openLightbox(img.getAttribute('src'),
+            cap ? 'Textbook page ' + cap.textContent.replace('p. ', '') : img.alt);
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        var img = e.target.closest ? e.target.closest('.tb-page img') : null;
+        if (!img) return;
+        e.preventDefault();
+        var fig = img.closest('.tb-page');
+        var cap = fig ? fig.querySelector('figcaption') : null;
+        openLightbox(img.getAttribute('src'),
+            cap ? 'Textbook page ' + cap.textContent.replace('p. ', '') : img.alt);
+    });
+})();
+
+/* ============================================
    Audio Player (Lesson Pages)
    MP3-first: per-block MP3s built by scripts/build_lesson_audio.py
    (data in js/audio-manifests.js, loaded on demand), with Web Speech

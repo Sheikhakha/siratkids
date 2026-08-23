@@ -70,18 +70,22 @@
         </div>
     </nav>
 
-    <header class="hero">
+    <header class="hero home-hero">
         <div aria-hidden="true">
             <span class="hero-orb hero-orb-1"></span>
             <span class="hero-orb hero-orb-2"></span>
             <span class="hero-orb hero-orb-3"></span>
         </div>
         <div class="hero-content">
+            <p class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span>Quran &amp; Sunnah &middot; Made for Children</p>
             <h1 class="hero-title">Nurturing Hearts with Authentic Knowledge</h1>
             <p class="hero-sub-en">A structured journey through the Quran and the authentic Sunnah &mdash; made simple for children.</p>
             <p class="hero-sub-ar" dir="rtl">يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ</p>
             <p class="hero-verse-ref">&ldquo;Allah will raise those who have believed among you and those who were given knowledge, by degrees.&rdquo; &mdash; Surah Al-Mujadila (58:11)</p>
-            <a href="#stages" class="hero-cta">Start Learning</a>
+            <div class="hero-cta-row">
+                <a href="#stages" class="hero-cta">Start Learning</a>
+                <a href="quran-reader.html" class="hero-cta hero-cta-alt">Open Quran Reader</a>
+            </div>
         </div>
         <div class="hero-wave">
             <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -92,17 +96,88 @@
 
     <main id="main-content">
 
-    <section class="mission-section reveal"">
-        <h2>Welcome to SiratKids</h2>
+    <section class="stats-band reveal" aria-label="Curriculum at a glance">
+        <div class="stats-grid">
+            <div class="stat">
+                <span class="stat-num">110+</span>
+                <span class="stat-label">Interactive Lessons</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">6</span>
+                <span class="stat-label">Subject Tracks</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">2</span>
+                <span class="stat-label">Complete Stages</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">189</span>
+                <span class="stat-label">Textbook Pages Embedded</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-section reveal">
+        <p class="kicker">Welcome to SiratKids</p>
+        <h2>A Sacred Space of Learning</h2>
         <p>Welcome to a sacred space of learning designed to cultivate a deep, authentic, and lifelong connection to Islam. Our mission is to provide children and families with a structured, beautifully designed curriculum rooted firmly in the Quran and the authentic Sunnah, according to the understanding of the righteous predecessors (Salaf us-Salih).</p>
         <p>We believe that Islamic education is not merely about memorizing rules; it is about understanding before memorization. By connecting the mind to sound intellect and the heart to sincere devotion, we help the next generation navigate the modern world with an unwavering Islamic identity.</p>
     </section>
 
-    <section class="stages-section reveal"" id="stages">
-        <h2>How to Begin Your Journey</h2>
-        <p class="stages-intro">Every child&rsquo;s learning journey is unique. Select your child&rsquo;s current level below to open a curated selection of interactive lessons tailored to their developmental stage.</p>
+    <section class="journey-section reveal" id="stages">
+        <p class="kicker">How to Begin</p>
+        <h2>The Learning Journey</h2>
+        <p class="stages-intro">Every child&rsquo;s learning journey is unique. Follow the path from seed to summit &mdash; each stop opens a curated selection of interactive lessons tailored to your child&rsquo;s developmental stage.</p>
+
+        <ol class="journey">
+            <li class="journey-node journey-node-pre">
+                <div class="journey-marker" aria-hidden="true">&#127793;</div>
+                <a href="stage-0.html" class="journey-card">
+                    <div class="journey-card-head">
+                        <h3>Pre-Stage: Seeds of Faith</h3>
+                        <span class="journey-age">Ages 4&ndash;6</span>
+                    </div>
+                    <p class="journey-focus">Love, familiarity, and wonder &mdash; building a warm bond with Allah and His Messenger ﷺ.</p>
+                    <span class="stage-card-badge available">Available</span>
+                </a>
+            </li>
+            <li class="journey-node journey-node-1">
+                <div class="journey-marker" aria-hidden="true">&#127807;</div>
+                <a href="stage-1.html" class="journey-card">
+                    <div class="journey-card-head">
+                        <h3>Stage 1: Foundations of Islam</h3>
+                        <span class="journey-age">Ages 6&ndash;7</span>
+                    </div>
+                    <p class="journey-focus">Structured basics and daily practice with clear, authentic evidences.</p>
+                    <span class="stage-card-badge available">Available</span>
+                </a>
+            </li>
+            <li class="journey-node journey-node-2">
+                <div class="journey-marker" aria-hidden="true">&#127795;</div>
+                <div class="journey-card journey-card-soon">
+                    <div class="journey-card-head">
+                        <h3>Stage 2: Developing Devotion</h3>
+                        <span class="journey-age">Ages 10&ndash;12</span>
+                    </div>
+                    <p class="journey-focus">Understanding the &ldquo;why&rdquo; behind the law through sound textual proofs.</p>
+                    <span class="stage-card-badge soon">Coming soon</span>
+                </div>
+            </li>
+            <li class="journey-node journey-node-3">
+                <div class="journey-marker" aria-hidden="true">&#9968;</div>
+                <div class="journey-card journey-card-soon">
+                    <div class="journey-card-head">
+                        <h3>Stage 3: Youth &amp; Clarity</h3>
+                        <span class="journey-age">Ages 13+</span>
+                    </div>
+                    <p class="journey-focus">Critical thinking, identity, and guided introductions to classical texts.</p>
+                    <span class="stage-card-badge soon">Coming soon</span>
+                </div>
+            </li>
+        </ol>
+
         <div class="stage-select-wrap">
-            <label class="stage-select-label" for="stage-select">Select Your Level:</label>
+            <label class="stage-select-label" for="stage-select">Or select your level:</label>
             <select id="stage-select">
                 <option value="">Choose a stage&hellip;</option>
                 <option value="stage-0.html">🌱 Pre-Stage: Seeds of Faith (Ages 4&ndash;6)</option>
@@ -111,73 +186,78 @@
                 <option value="stage-3.html">🏔️ Stage 3: Youth &amp; Clarity (Ages 13+)</option>
             </select>
         </div>
-        <div class="stage-cards-grid">
-            <a href="stage-0.html" class="stage-card stage-card-pre">
-                <div class="stage-card-icon">&#127793;</div>
-                <h3>Pre-Stage: Seeds of Faith</h3>
-                <p class="stage-card-age">Ages 4&ndash;6</p>
-                <p class="stage-card-focus">Love, familiarity, and wonder &mdash; building a warm bond with Allah and His Messenger ﷺ.</p>
-                <span class="stage-card-badge available">Available</span>
-            </a>
-            <a href="stage-1.html" class="stage-card stage-card-1">
-                <div class="stage-card-icon">&#127807;</div>
-                <h3>Stage 1: Foundations of Islam</h3>
-                <p class="stage-card-age">Ages 6&ndash;7</p>
-                <p class="stage-card-focus">Structured basics and daily practice with clear, authentic evidences.</p>
-                <span class="stage-card-badge available">Available</span>
-            </a>
-            <a href="stage-2.html" class="stage-card stage-card-2">
-                <div class="stage-card-icon">&#127795;</div>
-                <h3>Stage 2: Developing Devotion</h3>
-                <p class="stage-card-age">Ages 10&ndash;12</p>
-                <p class="stage-card-focus">Understanding the &ldquo;why&rdquo; behind the law through sound textual proofs.</p>
-                <span class="stage-card-badge soon">Coming soon</span>
-            </a>
-            <a href="stage-3.html" class="stage-card stage-card-3">
-                <div class="stage-card-icon">&#127956;</div>
-                <h3>Stage 3: Youth &amp; Clarity</h3>
-                <p class="stage-card-age">Ages 13+</p>
-                <p class="stage-card-focus">Critical thinking, identity, and guided introductions to classical texts.</p>
-                <span class="stage-card-badge soon">Coming soon</span>
-            </a>
-        </div>
     </section>
 
-    <section class="subjects-section reveal"" id="subjects">
+    <section class="subjects-section reveal" id="subjects">
+        <p class="kicker">One Unified Whole</p>
         <h2>Our Core Subjects</h2>
         <p class="stages-intro">Our curriculum is deliberately integrated so that students see Islam as a living, unified whole.</p>
-        <div class="subjects-grid">
-            <div class="subject-card">
-                <div class="track-icon">&#11088;</div>
+        <div class="subjects-bento">
+            <a href="stage-0-tawheed.html" class="bento-tile bento-tile-wide subj-accent-tawheed">
+                <div class="track-icon" aria-hidden="true">&#11088;</div>
                 <h3>Aqeedah &amp; Tawheed</h3>
                 <p>Building a sound, pure belief system: who Allah is, His beautiful Names and Attributes, and the pillars of faith &mdash; protected by clear, logical, textual proofs.</p>
-            </div>
-            <div class="subject-card">
-                <div class="track-icon">&#128167;</div>
+            </a>
+            <a href="stage-1.html" class="bento-tile subj-accent-fiqh">
+                <div class="track-icon" aria-hidden="true">&#128167;</div>
                 <h3>Fiqh (Worship)</h3>
                 <p>The practical rulings of worship: performing Wudu and Salah with love and precision, and understanding the wisdom behind fasting and charity.</p>
-            </div>
-            <div class="subject-card">
-                <div class="track-icon">&#128214;</div>
+            </a>
+            <a href="hadith.html" class="bento-tile subj-accent-hadith">
+                <div class="track-icon" aria-hidden="true">&#128214;</div>
                 <h3>Hadith</h3>
                 <p>Connecting children directly to the words of the Prophet Muhammad ﷺ through selected authentic narrations, extracting moral lessons and daily manners.</p>
-            </div>
-            <div class="subject-card">
-                <div class="track-icon">&#128220;</div>
+            </a>
+            <a href="seerah.html" class="bento-tile subj-accent-seerah">
+                <div class="track-icon" aria-hidden="true">&#128220;</div>
                 <h3>Seerah</h3>
                 <p>Bringing the life of the Prophet ﷺ and his noble Companions to life &mdash; his character, mercy, and struggles &mdash; making him the ultimate role model.</p>
-            </div>
+            </a>
+            <a href="adhkar.html" class="bento-tile subj-accent-adhkar">
+                <div class="track-icon" aria-hidden="true">&#128726;</div>
+                <h3>Adhkar &amp; Manners</h3>
+                <p>Daily supplications and Prophetic etiquette &mdash; from waking and sleeping to eating and greeting &mdash; practised until they become character.</p>
+            </a>
+            <a href="quran-reader.html" class="bento-tile bento-tile-accent">
+                <div class="track-icon" aria-hidden="true">&#128218;</div>
+                <h3>Quran Reader</h3>
+                <p>Read, listen, and explore the full Mushaf with word-by-word recitation, translations, tafsir, and tajweed highlighting.</p>
+            </a>
         </div>
     </section>
 
-    <section class="why-section reveal"" id="why">
-        <h2>Why Choose SiratKids?</h2>
-        <ul class="why-list">
-            <li><strong>Uncompromising Authenticity:</strong> every lesson is meticulously vetted to align strictly with the Quran and authentic Sunnah.</li>
-            <li><strong>Pedagogical Excellence:</strong> designed by educators who understand child psychology &mdash; engaging, visually appealing, interactive.</li>
-            <li><strong>Structured Progression:</strong> our level-by-level system builds a solid, step-by-step foundation in the Islamic sciences.</li>
-        </ul>
-        <p class="why-close">Select your level from the dropdown above and let your child&rsquo;s journey of sacred knowledge begin!</p>
+    <section class="why-section reveal" id="why">
+        <p class="kicker">Why SiratKids</p>
+        <h2>Built on Principle, Designed with Care</h2>
+        <div class="feat-grid">
+            <div class="feat-card">
+                <div class="feat-icon" aria-hidden="true">&#128274;</div>
+                <h3>Uncompromising Authenticity</h3>
+                <p>Every lesson is meticulously vetted to align strictly with the Quran and authentic Sunnah.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon" aria-hidden="true">&#127979;</div>
+                <h3>Pedagogical Excellence</h3>
+                <p>Designed by educators who understand child psychology &mdash; engaging, visually appealing, interactive.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon" aria-hidden="true">&#128200;</div>
+                <h3>Structured Progression</h3>
+                <p>Our level-by-level system builds a solid, step-by-step foundation in the Islamic sciences.</p>
+            </div>
+        </div>
+        <p class="why-close">Select your level from the journey above and let your child&rsquo;s path of sacred knowledge begin!</p>
+    </section>
+
+    <section class="cta-band reveal">
+        <div class="cta-inner">
+            <h2>Begin Your Child&rsquo;s Journey Today</h2>
+            <p>Free, authentic, and made with love &mdash; wherever you are.</p>
+            <div class="cta-actions">
+                <a href="stage-0.html" class="cta-btn cta-btn-light">Start Pre-Stage &#127793;</a>
+                <a href="stage-1.html" class="cta-btn cta-btn-outline">Explore Stage 1 &#127807;</a>
+            </div>
+        </div>
     </section>
 
     </main>

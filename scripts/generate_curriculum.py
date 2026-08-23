@@ -118,6 +118,43 @@ TOGGLE_BAR = """<div class="toggle-bar">
 """
 
 
+_S0_PAGE_MAP = None
+
+
+def s0_page_map():
+    global _S0_PAGE_MAP
+    if _S0_PAGE_MAP is None:
+        path = os.path.join(ROOT, 'data', 's0_page_map.json')
+        _S0_PAGE_MAP = json.load(io.open(path, encoding='utf-8')) if os.path.exists(path) else {}
+    return _S0_PAGE_MAP
+
+
+def textbook_panel_html(lesson_key, prefix):
+    m = s0_page_map()
+    pages = m.get(lesson_key)
+    if not pages:
+        return ''
+    book_dir = m.get('book', {}).get('pdf_dir', 'pre')
+    figs = []
+    for p in pages:
+        num = int(p.split('-')[1])
+        src = '%simages/pdf/%s/%s.webp' % (prefix, book_dir, p)
+        figs.append(
+            '<figure class="tb-page">'
+            '<img src="%s" alt="Textbook page %d" loading="lazy" tabindex="0" '
+            'role="button" aria-label="Zoom textbook page %d">'
+            '<figcaption>p. %d</figcaption></figure>' % (src, num, num, num))
+    nums = [int(p.split('-')[1]) for p in pages]
+    rng = ('p. %d' % nums[0]) if len(nums) == 1 else ('pp. %d&ndash;%d' % (min(nums), max(nums)))
+    return (
+        '<details class="textbook-panel">\n'
+        '            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span>'
+        '<span class="tb-title">From the Textbook</span>'
+        '<span class="tb-range">%s</span></summary>\n'
+        '            <div class="tb-pages">%s</div>\n'
+        '        </details>\n' % (rng, ''.join(figs)))
+
+
 AUDIO_PLAYER = """<div class="audio-player">
             <div class="audio-player-title">Listen in Arabic</div>
             <button class="audio-play-btn" aria-label="Play all Arabic audio">
@@ -187,12 +224,16 @@ def block_html(b):
     return '\n'.join(lines)
 
 
+def stage_label(num):
+    return 'Pre-Stage' if num == 0 else ('Stage %d' % num)
+
+
 def stage_chip_html(stage):
     st = stage['titles']
-    return ('<span class="stage-chip"><span class="en">Stage %d</span>'
+    return ('<span class="stage-chip"><span class="en">%s</span>'
             '<span class="sep">&middot;</span>'
             '<span class="ar" dir="rtl">%s</span></span>'
-            % (stage['stage'], esc(st.get('ar', ''))))
+            % (esc(stage_label(stage['stage'])), esc(st.get('ar', ''))))
 
 
 def sidebar(units, active_file, prefix, hub_href, stage_href, subject_title):
@@ -276,6 +317,7 @@ def lesson_page(stage, subject, unit, lesson, flat, idx):
 
     <main class="lesson-main">
         {TOGGLE_BAR}
+{textbook_panel_html(lesson['file'], '../../')}
 {body_blocks}
 
         <div class="lesson-nav">
@@ -423,13 +465,13 @@ def subject_page(stage, subj):
             '<div class="unit-card-titles"><h2 class="en">Unit %d &middot; %s</h2>'
             '<p class="ar" dir="rtl">%s</p></div>'
             '</header>'
-            '<footer class="unit-card-foot"><span class="unit-card-stage">Stage %d &middot; %s</span>'
+            '<footer class="unit-card-foot"><span class="unit-card-stage">%s &middot; %s</span>'
             '<span>%d lessons</span>'
             '<span class="unit-open">Start Unit &#9656;</span></footer>'
             '</section></a>'
             % (esc(first_href), ((u['no'] - 1) % 5) + 1, u['no'], u['no'],
                esc(u['title']['en']), esc(u['title'].get('ar', '')),
-               sn, esc(st.get('ar', '')), n))
+               esc(stage_label(sn)), esc(st.get('ar', '')), n))
     back_row = ('<div class="lesson-back-row">'
                 '<a class="btn-back-lg" href="%s">&#8592; Back to Subjects</a>'
                 '</div>' % esc(stage_href))
