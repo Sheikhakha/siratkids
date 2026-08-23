@@ -4070,11 +4070,12 @@ body.drawer-lock { overflow: hidden; }
 }
 .bismillah {
     display: block;
-    height: clamp(58px, 8vw, 86px);
-    width: auto;
+    font-family: var(--font-ar-nastaleeq);
+    font-size: clamp(30px, 4.6vw, 54px);
+    line-height: 1.7;
+    white-space: nowrap;
     color: var(--primary);
-    filter: drop-shadow(0 3px 16px color-mix(in srgb, var(--primary) 30%, transparent));
-    position: relative;
+    text-shadow: 0 3px 16px color-mix(in srgb, var(--primary) 30%, transparent);
 }
 .orn {
     position: relative;
