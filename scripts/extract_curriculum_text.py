@@ -55,6 +55,22 @@ BOOKS = {
         "pdf": os.path.join(PDF_DIR, "FourthStage.pdf"),
         "title": "Dawrat Al-Ulum Al-Sharaiyya - Stage 4",
     },
+    "s5p1": {
+        "pdf": os.path.join(PDF_DIR, "Fifthstage_FirstBook.pdf"),
+        "title": "Dawrat Al-Ulum Al-Sharaiyya - Stage 5, Part 1 (First Book)",
+    },
+    "s5p2": {
+        "pdf": os.path.join(PDF_DIR, "FifthStage_SecondBook.pdf"),
+        "title": "Dawrat Al-Ulum Al-Sharaiyya - Stage 5, Part 2 (Second Book)",
+    },
+    "s6p1": {
+        "pdf": os.path.join(PDF_DIR, "SixthStage_FirstBook.pdf"),
+        "title": "Dawrat Al-Ulum Al-Sharaiyya - Stage 6, Part 1 (First Book)",
+    },
+    "s6p2": {
+        "pdf": os.path.join(PDF_DIR, "SixthStage_SecondBook.pdf"),
+        "title": "Dawrat Al-Ulum Al-Sharaiyya - Stage 6, Part 2 (Second Book)",
+    },
 }
 
 SCALE = 3.0
@@ -76,10 +92,34 @@ def parse_pages(spec, total):
     return sorted(set(pages))
 
 
+def merge_only(book_key, pdf_path):
+    """Regenerate the combined <key>.md from an already-extracted book dir
+    (all pages; missing pages become '[OCR FAILED]'). No rendering/OCR."""
+    cfg = BOOKS[book_key]
+    out_dir = os.path.join(OUT_ROOT, book_key)
+    doc = pdfium.PdfDocument(pdf_path)
+    total = len(doc)
+    md_path = os.path.join(OUT_ROOT, f"{book_key}.md")
+    with open(md_path, "w", encoding="utf-8") as fh:
+        fh.write(f"# {cfg['title']}\n\n")
+        fh.write(f"Source: {os.path.relpath(pdf_path, ROOT)}\n\n")
+        for i in range(total):
+            t = os.path.join(out_dir, f"page-{i+1:03d}.txt")
+            fh.write(f"\n\n<!-- page:{i+1} -->\n")
+            if os.path.exists(t):
+                fh.write(open(t, encoding="utf-8").read())
+            else:
+                fh.write("[OCR FAILED]")
+    print(f"[{book_key}] merge-only: {total} pages -> {md_path}")
+
+
 def main():
+    global pdfium
     ap = argparse.ArgumentParser()
     ap.add_argument("--book", required=True, choices=sorted(BOOKS))
     ap.add_argument("--pages", default="")
+    ap.add_argument("--merge-only", action="store_true",
+                    help="do not render/OCR; regenerate <key>.md from existing page txt")
     args = ap.parse_args()
 
     try:
@@ -96,6 +136,10 @@ def main():
                 break
     if not os.path.exists(pdf_path):
         sys.exit("PDF not found for book: " + args.book)
+
+    if args.merge_only:
+        merge_only(args.book, pdf_path)
+        return
 
     import tempfile
     tmp_png_dir = tempfile.mkdtemp(prefix="ocr_png_")

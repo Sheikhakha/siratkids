@@ -1,5 +1,58 @@
 # SiratKids — Interactive Worksheets & Activity Engine Plan
-_Last updated: 2026-09-06 (rev 4) · Status: engine live (worksheet.html) + CTA injection SHIPPED for ALL stages, headless-matrix verified, validator-green. Only `s1-tawheed-2` authored; remaining 27 keys → "Coming soon". Next: author remaining units, manual Live Server matrix, commit._
+_Last updated: 2026-09-07 (rev 5) · Status: PDF-audit-first authoring. Engine + CTA injection shipped (only `s1-tawheed-2` authored). PIVOT (rev 5): stop guessing units — OCR-audit ALL 11 book PDFs, author worksheets ONLY for units whose book actually contains an activity (أسئلة/نشاط/أكمل الفراغات/coloring-naming); stage-0 coloring/naming → static printable activity pages; stages 5 & 6 get TWO site parts each (مربوارات to the PDF's First/Second Book)._
+
+## rev 5 — PDF Audit First + Two-Part Stages 5/6 (2026-09-07)
+**Driving decision (confirmed with owner):** previously planned "author all 28 units" is replaced by
+**fidelity-to-PDF authoring** — an practice/activity exists on the site for a unit **only if** its book
+actually contains one. Owner also confirmed suspects stage 0 may lack activities → audit decides.
+
+### Audit setup
+- All source PDFs are 100% scanned images (no text layer); OCR pipeline already exists:
+  `scripts/extract_curriculum_text.py` (pypdfium2 render → `scripts/run_ocr.ps1`, Windows.Media.Ocr ar-SA)
+  → per-page `data/extracted/<key>/page-NNN.txt` + combined `<key>.md` with `<!-- page:N -->` markers.
+- **11 book entries, NO merging.** Stage 5 = two books, Stage 6 = two books, kept as 4 distinct keys/dirs/rows:
+
+| key | PDF | pages | status |
+|---|---|---|---|
+| qa | `data/pdfs/official/QA_Level1.pdf` | 12 | 3/12 pages, re-run (mostly OCR-failed) |
+| pre | `PreStage.pdf` (stage 0) | 80 | per-page done, `pre.md` stale (only p4-9) — merge |
+| s1 | `First Stage.pdf` | 109 | OK |
+| s2 | `SecondStage.pdf` | 116 | OK |
+| s3 | `ThirdStage.pdf` | 270 | OK |
+| s4 | `FourthStage.pdf` | 238 | OK |
+| s5p1 | `Fifthstage_FirstBook.pdf` | 258 | first-run |
+| s5p2 | `FifthStage_SecondBook.pdf` | 192 | first-run |
+| s6p1 | `SixthStage_FirstBook.pdf` | 284 | first-run |
+| s6p2 | `SixthStage_SecondBook.pdf` | 222 | first-run |
+
+- Steps: (1) extend `BOOKS` map with s5p1/s5p2/s6p1/s6p2 → first-run OCR; (2) rebuild merged `pre.md`
+  (all 80 pages; stage-0 body was NEVER in `pre.md`); (3) reconcile unit→page ranges per book from
+  lesson/unit headings + TOC pages; (4) detect per unit أسئلة (Q&A) / نشاط (activity) / أكمل الفراغات
+  (fill-blanks) / coloring-naming / اختبر نفسك (test), with page refs + type; (5) emit
+  `docs/pdf-activity-audit.md` matrix, then **owner confirms** before authoring.
+
+### Authoring rule (rev 5)
+- Unit has أسئلة section → interactive `quiz` worksheet (content faithful to the OCR'd Q&A; answers
+  verified via quran/hadith MCP, never memory).
+- Unit has نشاط/أكمل الفراغات → `fill`/`match` worksheet.
+- Stage-0 coloring/naming (e.g. PreStage pp. 18/19/23/26 "ألون مخلوقات الله") → **static printable
+  activity LESSON page** (not the interactive engine) — owner decision.
+- Unit with NO activity in book → **no worksheet**; no "Coming soon" CTA for it.
+- `quiz` type = multiple-choice: show Arabic question → tap correct answer (owner-approved addition).
+
+### Two-part site for Stages 5 & 6 (rev 5, owner decision)
+- Each stage = a hub `stage-5.html` / `stage-6.html` (Ages 10-11 / 11-12 hubs, hero + breadcrumb
+  pattern of stage-3/4) with TWO part cards: **Part 1 (First Book)** / **Part 2 (Second Book)**
+  «الجزء الأول / الجزء الثاني» → `stage-5-part1.html` / `stage-5-part2.html` /
+  `stage-6-part1.html` / `stage-6-part2.html`.
+- Part landing pages each show their own subject tiles (subjects per part derived from the audit).
+- Homepage: add Stage 5 & 6 to journey timeline + stage `<select>` + nav stage dropdown.
+- Validator: new HTML files → single intentional `--snapshot` re-baseline; no existing content touched.
+
+### Backlog change (rev 5)
+- #7 (Stage 3 launch) and item below replaced by: **Stage 5 & 6 build (two parts)** after audit.
+- Worksheet authoring scope = units whose book has an activity (exact list after matrix confirmation).
+- Stage-0 static printable activity pages (naming/coloring) — new deliverable, per owner choice.
 
 ## 0. Dark/Light Toggle Polish — ✅ DONE 2026-08-23
 _Was ON HOLD pending a parallel session; owner released it._
@@ -106,7 +159,7 @@ Arabic/verse text only from canonically fetched sources.
 | # | Item | Status |
 |---|---|---|
 | 0 | Dark/light toggle emoji + motion (spec §0) | ✅ done 2026-08-23 |
-| 1 | Activity worksheets (this doc) | ▶ engine + CTA injection done 2026-09-06 — author remaining 27 units |
+| 1 | Activity worksheets (this doc) | ▶ engine + CTA injection done 2026-09-06 — rev 5: PDF-audit-first, author only units with real PDF activity |
 | 2 | Progress tracker UI + Parent-corner export/import | queued (reads #1 keys) |
 | 3 | Bilingual translation readout (Web Speech EN/TA) | parked |
 | 4 | Takhreej expansion (hub badges + adhkar/manners/seerah sourcing) | parked |
