@@ -3959,6 +3959,82 @@ body.drawer-lock { overflow: hidden; }
     font-weight: 800;
 }
 
+/* Worksheet CTA buttons (JS-injected by js/main.js into unit card
+   bottoms + above lesson nav; docs/activity-worksheets-plan.md §8) */
+.ws-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    margin: 4px 2px 0;
+    padding: .5rem .95rem;
+    border: 2px solid var(--hue-accent);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--hue-accent);
+    font-family: inherit;
+    font-weight: 800;
+    font-size: .82rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform .18s ease, background .18s ease, color .18s ease;
+}
+.ws-cta:hover {
+    background: var(--hue-accent);
+    color: #fff;
+    transform: translateY(-1px);
+}
+.ws-cta:active { transform: translateY(0) scale(.97); }
+.ws-cta:focus-visible { outline: 3px solid var(--hue-accent); outline-offset: 2px; }
+
+/* Disabled "coming soon" state (rendered on every page/unit; activated
+   as worksheets are authored) */
+.ws-cta.is-pending {
+    border-color: color-mix(in srgb, var(--text-medium) 35%, transparent);
+    color: var(--text-medium);
+    background: color-mix(in srgb, var(--text-medium) 6%, transparent);
+    cursor: not-allowed;
+    opacity: .75;
+}
+.ws-cta.is-pending:hover {
+    background: color-mix(in srgb, var(--text-medium) 6%, transparent);
+    color: var(--text-medium);
+    transform: none;
+}
+
+/* Lesson-page variant: full-width pill above the prev/next nav */
+.lesson-practice-cta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 18px;
+}
+.lesson-practice-cta .ws-cta {
+    margin: 0;
+    padding: .7rem 1.6rem;
+    font-size: .95rem;
+}
+
+/* Unit-card variant: dedicated full-width bar pinned to the card bottom
+   (appended after .unit-card-foot) */
+.unit-card-cta {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    padding: 12px 20px 16px;
+    border-top: 1px dashed color-mix(in srgb, var(--text-medium) 30%, transparent);
+    background: color-mix(in srgb, var(--surface-card) 60%, transparent);
+}
+.unit-card-cta .ws-cta {
+    margin: 0;
+    padding: .65rem 1.4rem;
+    font-size: .92rem;
+}
+
+@media print { .ws-cta, .lesson-practice-cta, .unit-card-cta { display: none; } }
+
 .lesson-back-row {
     display: flex;
     justify-content: center;
@@ -4965,6 +5041,24 @@ a.journey-card:focus-visible,
 
 /* ---- layout / hero ---- */
 .ws-main { max-width: 880px; margin: 0 auto; padding: 0 18px 60px; }
+.page-content-wrapper.ws-shell { padding-top: 72px; }
+.page-content-wrapper.ws-shell .breadcrumb { display: none; }
+.ws-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0 0 16px;
+    padding: 8px 16px;
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: var(--text-medium);
+    text-decoration: none;
+    background: var(--surface-input);
+    border: 1.5px solid var(--border-control);
+    border-radius: 999px;
+    transition: all var(--transition);
+}
+.ws-back:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
 .ws-hero { text-align: center; margin: 6px 0 26px; }
 .ws-hero h1 { font-size: 30px; line-height: 1.3; color: var(--text-dark); }
 .ws-hero h1 .ar { display: block; font-size: 34px; color: var(--ws-accent, var(--primary)); margin-bottom: 4px; }
@@ -5217,13 +5311,45 @@ a.journey-card:focus-visible,
 .ws-pick-title.ar { font-size: 19px; font-weight: 700; color: var(--ws-accent, var(--primary)); }
 .ws-pick-open { margin-top: 8px; font-size: 13.5px; font-weight: 800; color: var(--ws-accent, var(--primary)); }
 
+/* ---- Indopak-only Arabic on worksheet activity pages ----
+   The worksheet engine renders Arabic exclusively in Indopak Nastaleeq
+   (regardless of the arabic-font selector) and at larger sizes. Scoped
+   to .ws-* so no other page is affected. */
+.ws-main .ws-head .ar,
+.ws-main .ws-hero h1 .ar,
+.ws-main .ws-sentence .ar,
+.ws-main .ws-card .ws-ar,
+.ws-main .ws-guide-ar,
+.ws-main .ws-back .ar,
+.ws-pick-card .ws-pick-title.ar,
+.ws-blank,
+.ws-chip,
+.ws-drag-ghost {
+    font-family: var(--font-ar-nastaleeq);
+    font-weight: 400;
+}
+.ws-hero h1 .ar { font-size: 42px; line-height: 1.6; }
+.ws-head .ar { font-size: 25px; margin-top: 4px; }
+.ws-activity .ws-card .ws-ar { font-size: 26px; line-height: 1.75; }
+.ws-activity .ws-card .ws-en { font-size: 14px; }
+.ws-activity .ws-card .ws-ref { font-size: 13px; }
+.ws-guide-ar { font-size: 20px; }
+.ws-sentence .ar { font-size: 32px; line-height: 2.1; }
+.ws-blank { font-size: 32px; min-width: 130px; }
+.ws-chip { font-size: 27px; }
+.ws-drag-ghost { font-size: 27px; }
+.ws-pick-title.ar { font-size: 24px; }
+
 /* ---- responsive ---- */
 @media (max-width: 620px) {
     .ws-cols { grid-template-columns: 1fr; }
-    .ws-sentence .ar { font-size: 20px; }
-    .ws-blank { font-size: 20px; min-width: 90px; }
+    .ws-sentence .ar { font-size: 26px; }
+    .ws-blank { font-size: 26px; min-width: 100px; }
     .ws-hero h1 { font-size: 24px; }
-    .ws-hero h1 .ar { font-size: 27px; }
+    .ws-hero h1 .ar { font-size: 33px; }
+    .ws-activity .ws-card .ws-ar { font-size: 22px; }
+    .ws-chip { font-size: 23px; }
+    .ws-head .ar { font-size: 22px; }
 }
 
 /* ---- reduced motion / print ---- */

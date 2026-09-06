@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worksheet Preview · Unit 2 | SiratKids</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ==== tokens mirrored from css/style.css ==== */
+:root{
+  --primary:#4F46E5;--primary-dark:#4338CA;
+  --surface-page:#F8FAFC;--surface-card:#FFFFFF;
+  --text-dark:#0F172A;--text-medium:#475569;
+  --border-default:#E2E8F0;
+  --accent-success:#16A34A;--accent-error:#DC2626;
+  --radius-sm:12px;--radius-md:20px;
+  --shadow-md:0 4px 16px rgba(15,23,42,.08);
+  --transition:.3s ease;
+}
+body.dark{
+  --surface-page:#0B1220;--surface-card:#151E31;
+  --text-dark:#F1F5F9;--text-medium:#94A3B8;
+  --border-default:#2B3A55;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--surface-page);color:var(--text-dark);padding-bottom:60px}
+.ar{font-family:'Noto Naskh Arabic',serif}
+
+/* navbar mock */
+.navbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;background:var(--surface-card);box-shadow:var(--shadow-md)}
+.nav-brand{font-weight:900;color:var(--primary);font-size:20px;text-decoration:none}
+.dm-toggle{border:none;background:none;font-size:20px;cursor:pointer;color:var(--text-medium)}
+
+.wrap{max-width:880px;margin:0 auto;padding:0 18px}
+.breadcrumb{display:flex;gap:8px;flex-wrap:wrap;padding:16px 0;font-size:13px;color:var(--text-medium)}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.ws-hero{text-align:center;margin:6px 0 26px}
+.ws-hero h1{font-size:30px;line-height:1.25}
+.ws-hero h1 .ar{display:block;font-size:34px;color:var(--primary)}
+.chip-row{margin-top:10px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.stage-chip{background:var(--surface-card);border:1px solid var(--border-default);
+  border-radius:99px;padding:5px 14px;font-size:12.5px;color:var(--text-medium)}
+
+/* activity shell */
+.ws-activity{background:var(--surface-card);border:1px solid var(--border-default);
+  border-radius:var(--radius-md);box-shadow:var(--shadow-md);padding:22px;margin-bottom:26px}
+.ws-head{text-align:center;margin-bottom:16px}
+.ws-head h2{font-size:21px}
+.ws-head .ar{font-size:19px;color:var(--primary);margin-top:2px}
+.ws-dots{display:flex;justify-content:center;gap:7px;margin-top:12px}
+.ws-dots i{width:12px;height:12px;border-radius:50%;background:var(--border-default);transition:var(--transition)}
+.ws-dots i.done{background:var(--accent-success)}
+
+/* match */
+.ws-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.col-label{text-align:center;font-size:12px;font-weight:800;letter-spacing:.06em;
+  color:var(--text-medium);text-transform:uppercase;margin-bottom:6px}
+.ws-col{display:flex;flex-direction:column;gap:10px}
+.ws-card{border:2px solid var(--border-default);background:var(--surface-page);
+  border-radius:var(--radius-sm);padding:14px 12px;cursor:pointer;text-align:center;
+  font-family:inherit;width:100%;box-sizing:border-box;min-height:64px;display:flex;
+  flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  transition:var(--transition)}
+.ws-card:hover:not(.is-done){border-color:var(--primary);transform:translateY(-2px)}
+.ws-card:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+.ws-ar{font-size:20px;font-weight:700;color:var(--text-dark);line-height:1.7}
+.ws-en{font-size:13px;font-weight:800;color:var(--primary)}
+.ws-ref{font-size:12px;font-weight:800;color:var(--text-medium)}
+.ws-card.is-selected{border-color:var(--primary);background:color-mix(in srgb,var(--primary) 9%,var(--surface-page));
+  transform:scale(1.03);box-shadow:var(--shadow-md)}
+.ws-card.is-done{border-color:var(--accent-success);opacity:.55;cursor:default;
+  background:color-mix(in srgb,var(--accent-success) 10%,var(--surface-page))}
+.ws-card.is-wrong{border-color:var(--accent-error);animation:shake .45s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+@keyframes pop{0%{transform:scale(.92)}60%{transform:scale(1.05)}100%{transform:scale(1)}}
+.is-pop{animation:pop .35s ease}
+.ws-feedback{text-align:center;min-height:24px;margin-top:16px;font-weight:800;font-size:15px}
+.ws-feedback.ok{color:var(--accent-success)}.ws-feedback.err{color:var(--accent-error)}
+
+/* guide bubble (on-screen assistant) */
+.ws-guide{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+  background:var(--surface-page);border:2px dashed var(--primary);
+  border-radius:var(--radius-md);padding:10px 18px;margin:0 auto 16px;
+  max-width:560px;min-height:46px;text-align:center}
+.ws-guide-icon{font-size:20px;line-height:1}
+.ws-guide-en{font-weight:800;font-size:15px;color:var(--text-dark)}
+.ws-guide-ar{font-weight:700;font-size:17px;color:var(--primary)}
+.ws-guide.is-pop{animation:pop .35s ease}
+
+/* fill */
+.ws-q{background:var(--surface-page);border:1px solid var(--border-default);
+  border-radius:var(--radius-sm);padding:16px;margin-bottom:14px;text-align:center}
+.ws-sentence .ar{font-size:23px;line-height:2}
+.ws-sentence .en{margin-top:6px;font-size:14px;color:var(--text-medium)}
+.ws-blank{min-width:110px;border:none;border-bottom:3px dashed var(--text-medium);
+  background:none;font-family:'Noto Naskh Arabic',serif;font-size:23px;font-weight:700;
+  color:var(--text-dark);cursor:pointer;vertical-align:middle;padding:0 8px}
+.ws-blank.is-selected{border-bottom-color:var(--primary)}
+.ws-blank.ok{border-bottom-style:solid;border-bottom-color:var(--accent-success);color:var(--accent-success);cursor:default}
+.ws-blank.bad{border-bottom-color:var(--accent-error);color:var(--accent-error);animation:shake .45s ease}
+.ws-bank{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.ws-chip{font-family:'Noto Naskh Arabic',serif;font-size:19px;font-weight:700;
+  border:2px solid var(--primary);color:var(--primary);background:var(--surface-card);
+  border-radius:99px;padding:8px 22px;cursor:grab;touch-action:none;user-select:none;
+  -webkit-user-select:none;transition:var(--transition)}
+.ws-chip:hover{background:var(--primary);color:#fff}
+.ws-chip.is-picked{background:var(--primary);color:#fff;transform:scale(1.06);cursor:grabbing}
+.ws-chip.is-lifted{opacity:.35}
+.ws-chip.is-used{opacity:.35;pointer-events:none;text-decoration:line-through}
+.ws-blank.is-hover{outline:3px solid var(--primary);outline-offset:-2px;background:rgba(79,70,229,.08)}
+.ws-drag-ghost{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;
+  font-family:'Noto Naskh Arabic',serif;font-size:19px;font-weight:700;
+  background:var(--primary);color:#fff;border-radius:99px;padding:8px 22px;
+  box-shadow:var(--shadow-md);will-change:transform}
+
+/* result */
+.ws-result{display:none;text-align:center;background:var(--surface-card);
+  border:1px solid var(--border-default);border-radius:var(--radius-md);
+  box-shadow:var(--shadow-md);padding:28px}
+.ws-result.show{display:block}
+.ws-stars{font-size:40px;letter-spacing:6px;color:#F59E0B}
+.btnrow{margin-top:18px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn{font-family:inherit;font-weight:800;font-size:15px;border-radius:14px;
+  padding:13px 26px;cursor:pointer;border:none;transition:var(--transition)}
+.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-dark)}
+.btn-outline{background:none;border:2px solid var(--primary);color:var(--primary)}
+.btn-done.is-on{background:var(--accent-success);color:#fff;border-color:var(--accent-success)}
+
+@media(max-width:620px){
+  .ws-cols{grid-template-columns:1fr}
+  .col-label.b{order:-1}
+  .ws-sentence .ar{font-size:20px}
+}
+@media print{.navbar,.ws-bank,.btnrow{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="nav-brand" href="#">SiratKids</a>
+  <button class="dm-toggle" id="dmBtn" aria-label="Toggle dark mode">🌙</button>
+</nav>
+
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="#">Home</a> <span>▸</span> <a href="#">Stage One</a> <span>▸</span>
+    <a href="#">Tawheed</a> <span>▸</span> <span><b>Unit 2 Worksheet</b></span>
+  </nav>
+
+  <header class="ws-hero">
+    <h1><span class="ar" dir="rtl">وَاحِدَةُ التَّوْحِيدِ الرُّبُوبِيَّةِ · ورقة عمل</span>
+        Unit 2 · Rububiyyah — Worksheet</h1>
+    <div class="chip-row">
+      <span class="stage-chip">Stage 1 · المرحلة الأولى</span>
+      <span class="stage-chip">Tawheed · التوحيد</span>
+      <span class="stage-chip">2 activities</span>
+    </div>
+  </header>
+
+  <!-- ================= ACTIVITY 1 · MATCH ================= -->
+  <section class="ws-activity" id="matchBox">
+    <div class="ws-head">
+      <h2>Match each Name to its proof</h2>
+      <p class="ar ar" dir="rtl">صِلِ الاسْمَ بِالدَّلِيلِ</p>
+      <div class="ws-dots" id="dots"><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="ws-guide" id="guideM" role="status" aria-live="polite">
+      <span class="ws-guide-icon">👆</span>
+      <span class="ws-guide-en"></span>
+      <span class="ws-guide-ar" dir="rtl"></span>
+    </div>
+    <div class="ws-cols">
+      <div class="ws-col"><p class="col-label">Names · الأسماء</p><div id="colA"></div></div>
+      <div class="ws-col"><p class="col-label b">Proofs · الأدلة</p><div id="colB"></div></div>
+    </div>
+    <p class="ws-feedback" id="fbM" role="status" aria-live="polite"></p>
+  </section>
+
+  <!-- ================= ACTIVITY 2 · FILL ================= -->
+  <section class="ws-activity" id="fillBox">
+    <div class="ws-head">
+      <h2>Pick the missing word</h2>
+      <p class="ar ar" dir="rtl">اخْتَرِ الكَلِمَةَ النَّاقِصَةَ</p>
+    </div>
+    <div class="ws-guide" id="guideF" role="status" aria-live="polite">
+      <span class="ws-guide-icon">👆</span>
+      <span class="ws-guide-en"></span>
+      <span class="ws-guide-ar" dir="rtl"></span>
+    </div>
+    <div id="fillArea"></div>
+    <p class="ws-feedback" id="fbF" role="status" aria-live="polite"></p>
+    <div class="ws-bank" id="bank"></div>
+  </section>
+
+  <!-- ================= RESULT ================= -->
+  <section class="ws-result" id="result">
+    <p class="ws-stars" id="stars">★★★☆☆</p>
+    <p id="resMsg" style="font-weight:800;margin-top:6px"></p>
+    <div class="btnrow">
+      <button class="btn btn-primary" id="retryBtn">Try again ↻</button>
+      <button class="btn btn-outline btn-done" id="doneBtn">Practiced ✓ <span class="ar" dir="rtl">ما شاء الله</span></button>
+    </div>
+  </section>
+</div>
+
+<script>
+/* =========================================================
+   DEMO DATA — production loads window.__SK_WORKSHEETS["s1-tawheed-2"]
+   from js/worksheets-data.js. Verse texts below are verbatim
+   excerpts fetched canonically (quran.com, ar-simple-clean).
+   Storage: demo uses localStorage; production swaps in the
+   skStore adapter (IndexedDB + fallback). Logic identical.
+========================================================= */
+var SHEET = {
+  key:"s1-tawheed-2",
+  match:[
+    {pair:"khaliq",  name:{ar:"الْخَالِقُ", en:"Al-Khaliq"},
+     proof:{ref:"39:62", ar:"وَاللَّهُ خَالِقُ كُلِّ شَيْءٍ"}},
+    {pair:"razzaq",  name:{ar:"الرَّزَّاقُ", en:"Ar-Razzaq"},
+     proof:{ref:"51:58", ar:"إِنَّ اللَّهَ هُوَ الرَّزَّاقُ ذُو الْقُوَّةِ الْمَتِينُ"}},
+    {pair:"mudabbir",name:{ar:"الْمُدَبِّرُ", en:"Al-Mudabbir"},
+     proof:{ref:"7:54", ar:"أَلَا لَهُ الْخَلْقُ وَالْأَمْرُ"}},
+    {pair:"muhyi",   name:{ar:"يُحْيِي وَيُمِيتُ", en:"Gives life & death"},
+     proof:{ref:"10:56", ar:"هُوَ يُحْيِي وَيُمِيتُ وَإِلَيْهِ تُرْجَعُونَ"}},
+    {pair:"insan",   name:{ar:"خَالِقُ الْإِنسَانِ", en:"Creator of man"},
+     proof:{ref:"95:4", ar:"لَقَدْ خَلَقْنَا الْإِنسَانَ فِي أَحْسَنِ تَقْوِيمٍ"}}
+  ],
+  fill:[
+    {before:"اللهُ ", answers:["كُلِّ"], after:" شَيْءٍ",
+     en:"Allah is the Creator of everything."},
+    {before:"إِنَّ اللَّهَ هُوَ ", answers:["الرَّزَّاقُ"], after:" ذُو الْقُوَّةِ الْمَتِينُ",
+     en:"Indeed Allah is the Provider, Owner of Power."},
+    {before:"هُوَ ", answers:["يُحْيِي"], after:" وَيُمِيتُ",
+     en:"He gives life and causes death."}
+  ],
+  bank:["كُلِّ","الرَّزَّاقُ","يُحْيِي","نَبِيٍّ","كِتَابٍ"]   /* 2 distractors */
+};
+
+/* ---------- helpers ---------- */
+function $(id){return document.getElementById(id)}
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+$("dmBtn").onclick=function(){document.body.classList.toggle("dark");
+  this.textContent=document.body.classList.contains("dark")?"☀️":"🌙"};
+
+/* ---------- state ---------- */
+var pickedLeft=null,pickedChip=null,mistakes=0,matched=0,filledOk=0;
+
+/* ---------- build MATCH (guided: auto-select next Name, find its proof) ---------- */
+var matchCardsA=[],matchCardsB=[];
+function selectName(b){
+  matchCardsA.forEach(function(x){x.classList.remove("is-selected");x.setAttribute("aria-pressed","false")});
+  if(b){b.classList.add("is-selected");b.setAttribute("aria-pressed","true");}
+  pickedLeft=b;
+  if(b){setGuideM("picked");$("fbM").textContent="Identify this Name's proof ▸ استخرج دليله";}
+}
+function firstUnmatched(){
+  for(var i=0;i<matchCardsA.length;i++){
+    if(!matchCardsA[i].classList.contains("is-done"))return matchCardsA[i];
+  }
+  return null;
+}
+function setGuideM(state){
+  var g=$("guideM");
+  if(!g)return;
+  var I={idle:"👆",picked:"🔍",wrong:"🤔",correct:"✅",done:"🎉"};
+  g.querySelector(".ws-guide-icon").textContent=I[state]||"👉";
+  g.querySelector(".ws-guide-en").textContent=GUIDE_M[state]&&GUIDE_M[state].en||"";
+  g.querySelector(".ws-guide-ar").textContent=GUIDE_M[state]&&GUIDE_M[state].ar||"";
+  g.classList.remove("is-pop");void g.offsetWidth;g.classList.add("is-pop");
+}
+var GUIDE_M={
+  idle:{en:"Tap a Name to begin! اضغط على اسم",ar:""},
+  picked:{en:"Which proof is this Name's evidence? أي دليل يدل على هذا الاسم؟",ar:""},
+  wrong:{en:"Try again! حاول مرة أخرى",ar:""},
+  correct:{en:"Correct! أحسنت",ar:""},
+  done:{en:"MashaAllah! All matched! ما شاء الله",ar:""}
+};
+function buildMatch(){
+  matched=0;pickedLeft=null;$("fbM").textContent="";
+  $("dots").querySelectorAll("i").forEach(function(d){d.className=""});
+  var A=$("colA");A.innerHTML="";var B=$("colB");B.innerHTML="";
+  matchCardsA=[];matchCardsB=[];
+  SHEET.match.forEach(function(m){
+    var b=el("button","ws-card",
+      '<span class="ws-ar ar" dir="rtl">'+m.name.ar+'</span><span class="ws-en">'+m.name.en+'</span>'
+    );
+    b.type="button";b.dataset.pair=m.pair;
+    A.appendChild(b);matchCardsA.push(b);
+  });
+  shuffle(SHEET.match).forEach(function(m){
+    var b=el("button","ws-card",
+      '<span class="ws-ar ar" dir="rtl">'+m.proof.ar+'</span><span class="ws-ref">﴿'+m.proof.ref+'﴾</span>'
+    );
+    b.type="button";b.dataset.pair=m.pair;
+    B.appendChild(b);matchCardsB.push(b);
+  });
+  matchCardsA.forEach(function(b){
+    b.onclick=function(){
+      if(b.classList.contains("is-done"))return;
+      selectName(b); /* user may change which Name is active */
+    };
+  });
+  matchCardsB.forEach(function(b){
+    b.onclick=function(){
+      if(b.classList.contains("is-done")||!pickedLeft)return;
+      if(b.dataset.pair===pickedLeft.dataset.pair){
+        b.classList.add("is-done","is-pop");
+        pickedLeft.classList.remove("is-selected");
+        pickedLeft.classList.add("is-done","is-pop");
+        pickedLeft.setAttribute("aria-pressed","false");
+        $("dots").children[matched].className="done";matched++;
+        if(matched===SHEET.match.length){
+          setGuideM("done");pickedLeft=null;
+          $("fbM").textContent="🎉 MashaAllah! All matched! ما شاء الله";
+          $("fbM").className="ws-feedback ok";checkAllDone();
+        }else{
+          setGuideM("correct");$("fbM").textContent="✓ Correct! أحسنت";
+          $("fbM").className="ws-feedback ok";
+          selectName(firstUnmatched()); /* auto-advance to next Name */
+        }
+      }else{
+        mistakes++;
+        b.classList.add("is-wrong");pickedLeft.classList.add("is-wrong");
+        setGuideM("wrong");$("fbM").textContent="Try again! حاول مرة أخرى";
+        $("fbM").className="ws-feedback err";
+        var L=pickedLeft;
+        setTimeout(function(){b.classList.remove("is-wrong");L.classList.remove("is-wrong")},500);
+        /* keep same Name selected so child retries */
+      }
+    };
+  });
+  /* start guided: auto-select the first Name */
+  selectName(matchCardsA[0]);
+}
+
+/* ---------- build FILL (drag & drop + tap + keyboard) ---------- */
+var fillBlanks=[],fillChips=[];
+var GUIDE_F={
+  idle:{en:"Pick a word, then fill the blank! اختر كلمة ثم املأ الفراغ",ar:""},
+  picked:{en:"Now tap a blank · أو اسحبه إليه",ar:""},
+  dragging:{en:"Drop it on a blank! أفلتها على الفراغ",ar:""},
+  wrong:{en:"Not this one — try again! ليست هذه",ar:""},
+  correct:{en:"Correct! أحسنت",ar:""},
+  done:{en:"MashaAllah! Complete! ما شاء الله",ar:""}
+};
+function setGuideF(state){
+  var g=$("guideF");if(!g)return;
+  var I={idle:"👆",picked:"🔍",dragging:"✋",wrong:"🤔",correct:"✅",done:"🎉"};
+  g.querySelector(".ws-guide-icon").textContent=I[state]||"👉";
+  g.querySelector(".ws-guide-en").textContent=GUIDE_F[state]&&GUIDE_F[state].en||"";
+  g.querySelector(".ws-guide-ar").textContent=GUIDE_F[state]&&GUIDE_F[state].ar||"";
+  g.classList.remove("is-pop");void g.offsetWidth;g.classList.add("is-pop");
+}
+function buildFill(){
+  filledOk=0;pickedChip=null;$("fbF").textContent="";
+  var area=$("fillArea");area.innerHTML="";var bank=$("bank");bank.innerHTML="";
+  fillBlanks=[];fillChips=[];
+  SHEET.fill.forEach(function(q,qi){
+    var qEl=el("div","ws-q ws-sentence");
+    var p=el("p","ar");p.dir="rtl";
+    p.appendChild(document.createTextNode(q.before));
+    var bl=el("button","ws-blank","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+    bl.type="button";bl.dataset.q=qi;bl.dataset.word=q.answers[0];
+    p.appendChild(bl);
+    p.appendChild(document.createTextNode(q.after));
+    qEl.appendChild(p);
+    qEl.appendChild(el("p","en",q.en));
+    area.appendChild(qEl);fillBlanks.push(bl);
+  });
+  SHEET.bank.forEach(function(w){
+    var c=el("button","ws-chip",w);c.type="button";c.dataset.word=w;
+    bank.appendChild(c);fillChips.push(c);
+  });
+
+  function unpickChip(){
+    if(pickedChip){pickedChip.classList.remove("is-picked");pickedChip=null;}
+  }
+  function clearHover(){
+    fillBlanks.forEach(function(b){b.classList.remove("is-hover")});
+  }
+  function blankAt(x,y){
+    var e=document.elementFromPoint(x,y);
+    return e&&e.closest?e.closest(".ws-blank"):null;
+  }
+  function evaluate(chip,blank){
+    if(chip.dataset.word===blank.dataset.word){
+      blank.textContent=chip.dataset.word;blank.className="ws-blank ok";
+      chip.classList.remove("is-picked","is-lifted");chip.classList.add("is-used");
+      chip.disabled=true;unpickChip();filledOk++;
+      if(filledOk===SHEET.fill.length){
+        setGuideF("done");$("fbF").textContent="🎉 MashaAllah! Complete! ما شاء الله";
+        $("fbF").className="ws-feedback ok";checkAllDone();
+      }else{
+        setGuideF("correct");$("fbF").textContent="✓ Correct! أحسنت";
+        $("fbF").className="ws-feedback ok";
+      }
+    }else{
+      mistakes++;blank.textContent=chip.dataset.word;blank.classList.add("bad");
+      setGuideF("wrong");$("fbF").textContent="Not this one — try again! حاول مرة أخرى";
+      $("fbF").className="ws-feedback err";
+      setTimeout(function(){blank.textContent="\u00A0".repeat(5);blank.className="ws-blank"},650);
+    }
+    clearHover();
+  }
+
+  /* tap fallback: chip -> blank */
+  var suppressChip=null;
+  bank.onclick=function(ev){ /* delegation */
+    if(suppressChip){
+      var c=ev.target.closest(".ws-chip");
+      if(c&&c===suppressChip){suppressChip=null;return;} /* synthetic click after a drag */
+    }
+    var chip=ev.target.closest(".ws-chip");
+    if(!chip||chip.disabled)return;
+    unpickChip();chip.classList.add("is-picked");pickedChip=chip;setGuideF("picked");
+    $("fbF").textContent="Now tap a blank or drag ▸ اختر الفراغ";$("fbF").className="ws-feedback";
+  };
+  area.onclick=function(ev){
+    var blank=ev.target.closest(".ws-blank");
+    if(!blank||blank.classList.contains("ok"))return;
+    if(!pickedChip){setGuideF("idle");return;}
+    evaluate(pickedChip,blank);unpickChip();
+  };
+
+  /* keyboard: Enter on a blank uses the picked chip */
+  fillBlanks.forEach(function(bl){
+    bl.onkeydown=function(e){
+      if((e.key===" "||e.key==="Enter")&&pickedChip&&!bl.classList.contains("ok")){
+        e.preventDefault();evaluate(pickedChip,bl);unpickChip();
+      }
+    };
+  });
+
+  /* pointer drag (mouse + touch + pen). move/up/cancel are attached to
+     the DOCUMENT so tracking continues even after the pointer leaves the
+     bank (blanks sit above it) — no pointer-capture edge cases. */
+  if(window.PointerEvent){
+    var DRAG_T=8,drag=null;
+    function makeGhost(chip){
+      var g=el("div","ws-drag-ghost ar",chip.textContent);g.dir="rtl";
+      document.body.appendChild(g);return g;
+    }
+    function moveGhost(g,x,y){g.style.left="0px";g.style.top="0px";g.style.transform="translate("+x+"px,"+y+"px)";}
+    function endDrag(blank){
+      if(!drag)return;
+      suppressChip=drag.chip;setTimeout(function(){if(suppressChip===drag.chip)suppressChip=null},300);
+      if(blank&&!blank.classList.contains("ok")){evaluate(drag.chip,blank);unpickChip();}
+      if(drag.ghost&&drag.ghost.parentNode)drag.ghost.parentNode.removeChild(drag.ghost);
+      if(drag.chip)drag.chip.classList.remove("is-lifted");
+      clearHover();
+      if(pickedChip===drag.chip)unpickChip();
+      drag=null;setGuideF("idle");
+    }
+    bank.addEventListener("pointerdown",function(ev){
+      if(ev.button!==undefined&&ev.button!==0&&ev.pointerType==="mouse")return;
+      var chip=ev.target.closest(".ws-chip");
+      if(!chip||chip.disabled)return;
+      drag={chip:chip,ghost:null,startX:ev.clientX,startY:ev.clientY,started:false,pid:ev.pointerId};
+    });
+    document.addEventListener("pointermove",function(ev){
+      if(!drag||drag.pid!==ev.pointerId)return;
+      var dx=ev.clientX-drag.startX,dy=ev.clientY-drag.startY;
+      if(!drag.started){
+        if(dx*dx+dy*dy<DRAG_T*DRAG_T)return;
+        drag.started=true;drag.ghost=makeGhost(drag.chip);
+        drag.chip.classList.add("is-lifted");unpickChip();setGuideF("dragging");
+      }
+      ev.preventDefault();
+      moveGhost(drag.ghost,ev.clientX,ev.clientY);
+      clearHover();
+      var bl=blankAt(ev.clientX,ev.clientY);
+      if(bl&&!bl.classList.contains("ok"))bl.classList.add("is-hover");
+    });
+    function up(e){
+      if(!drag||drag.pid!==e.pointerId)return;
+      if(!drag.started){drag=null;return;} /* plain tap -> let click fire */
+      var blank=blankAt(e.clientX,e.clientY);
+      endDrag(blank);
+    }
+    document.addEventListener("pointerup",up);
+    document.addEventListener("pointercancel",function(e){if(drag&&(!e.pointerId||drag.pid===e.pointerId))endDrag(null)});
+  }
+
+  setGuideF("idle");
+}
+
+/* ---------- result ---------- */
+function checkAllDone(){
+  if(matched===SHEET.match.length && filledOk===SHEET.fill.length){
+    var stars=mistakes===0?3:(mistakes<=3?2:1);
+    $("stars").textContent="★★★☆☆☆☆☆☆".substr(3*(3-stars),stars*3)+"☆".repeat(3-stars)*1||"" ;
+    $("stars").textContent="★".repeat(stars)+"☆".repeat(3-stars);
+    $("resMsg").textContent=mistakes===0?"Perfect! ممتاز!":("Well done! Mistakes: "+mistakes+" — أحسنت!");
+    $("result").classList.add("show");
+    $("result").scrollIntoView({behavior:"smooth"});
+  }
+}
+$("retryBtn").onclick=function(){
+  mistakes=0;$("result").classList.remove("show");buildMatch();buildFill();
+  window.scrollTo({top:0,behavior:"smooth"});
+};
+$("doneBtn").onclick=function(){
+  /* demo: localStorage — production: skStore.set(SHEET.key,{stars,mistakes,date}) over IndexedDB */
+  localStorage.setItem("sk-worksheet-"+SHEET.key,
+    JSON.stringify({done:true,stars:$("stars").textContent.trim().length?3-mistakes:2}));
+  this.classList.add("is-on");this.innerHTML="Practiced ✓ saved!";
+};
+
+buildMatch();buildFill();
+</script>
+</body>
+</html>

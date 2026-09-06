@@ -1729,3 +1729,171 @@ document.addEventListener('DOMContentLoaded', function () {
 
     init();
 })();
+
+/* ============================================
+   Worksheet CTA injection
+   docs/activity-worksheets-plan.md §8
+   - Every unit hub (stage-{0,1,2}-*.html): adds a dedicated full-width
+     "Practice" bar (.unit-card-cta) at the bottom of every unit card.
+   - Every lesson page + unit landing page (all stages): injects a
+     "Practice this unit" pill before .lesson-nav (or .lesson-back-row).
+   - Buttons render on EVERY page/unit; they are ACTIVE when a worksheet
+     is authored (key present in window.__SK_WORKSHEETS) and disabled
+     ("Coming soon") otherwise. Key derived from hub unit number or the
+     lesson filename.
+   ============================================ */
+(function () {
+    "use strict";
+    var KEY = window.__SK_WORKSHEETS;
+    var booted = false;
+
+    /* Derive root-relative URL prefixes from this very script tag, whose
+       src is already written correctly relative to each page (e.g.
+       "js/main.js" at the site root, "../../js/main.js" in lessons/x/).
+       This sidesteps location.pathname, which parses the drive letter
+       of Windows file:// URLs as a host and breaks ../ counting. */
+    var mainScript = document.querySelector('script[src*="main.js"]');
+    var mainSrc = mainScript ? mainScript.getAttribute("src") : "js/main.js";
+    var jsDir = mainSrc.slice(0, mainSrc.lastIndexOf("/") + 1); /* "js/" or "../../js/" */
+    var DATA_URL = jsDir + "worksheets-data.js";
+    var ROOT_PREFIX = jsDir.replace(/js\/$/, "");                /* "" or "../../" */
+
+    function boot() {
+        if (booted) { return; }
+        booted = true;
+        KEY = window.__SK_WORKSHEETS;
+        injectCtas();
+    }
+
+    var WS_URL = ROOT_PREFIX + "worksheet.html#w=";
+
+    function go(key) {
+        location.href = WS_URL + key;
+    }
+
+    /* Subjects whose worksheets are single-unit: every lesson maps to
+       the unit's ONLY worksheet regardless of its own number. */
+    var SINGLE_UNIT_SUBJECTS = {
+        adab: true, adhkar: true, hadith: true, seerah: true, manners: true
+    };
+
+    /* Stage-0 flat lesson names: adhkar-7.html / hadith-15.html /
+       seerah-2.html / manner-1.html (and tawheed-2-3 form). */
+    var FLAT = /^(adhkar|hadith|seerah|manner)-(\d+)$/;
+
+    /* Derive {stage,subject,unit} from a lesson file basename, for ALL
+       stages:
+         s1-tawheed-2-3.html      -> {1,tawheed,2}
+         s1-tawheed-2-review.html -> {1,tawheed,2}
+         s1-fiqh-0-1.html         -> {1,fiqh,1}   (off-by-one)
+         s2-adab-10.html          -> {2,adab,1}   (single-unit subject)
+         s2-fiqh-3-7.html         -> {2,fiqh,3}
+         tawheed-2-3.html         -> {0,tawheed,2}
+         adhkar-7.html            -> {0,adhkar,1}
+         hadith-15.html           -> {0,hadith,1}
+         seerah-2.html            -> {0,seerah,1}
+         manner-1.html            -> {0,manners,1}
+         unit2.html               -> {0,tawheed,2} */
+    function deriveFromBasename(base) {
+        var m;
+        /* pattern A: s{stage}-{subject}-{unit}-{lesson|-review} */
+        if ((m = /^s(\d+)-([a-z]+)-(\d+)-review$/.exec(base))) {
+            return { stage: +m[1], subject: m[2], unit: +m[3] };
+        }
+        if ((m = /^s(\d+)-([a-z]+)-(\d+)-/.exec(base))) {
+            var u = +m[3];
+            if (m[2] === "fiqh" && u === 0) { u = 1; }
+            return { stage: +m[1], subject: m[2], unit: u };
+        }
+        if ((m = /^(tawheed)-(\d+)-/.exec(base))) {
+            return { stage: 0, subject: m[1], unit: +m[2] };
+        }
+        if ((m = /^unit(\d+)$/.exec(base))) {
+            return { stage: 0, subject: "tawheed", unit: +m[1] };
+        }
+        if ((m = FLAT.exec(base))) {
+            return { stage: 0, subject: m[1] === "manner" ? "manners" : m[1], unit: 1 };
+        }
+        /* pattern B: s{stage}-{subject}-{number} — single-unit subjects
+           flatten to unit 1; multi-unit subjects carry the unit number. */
+        if ((m = /^s(\d+)-([a-z]+)-(\d+)$/.exec(base))) {
+            var u2 = +m[3];
+            if (m[2] === "fiqh" && u2 === 0) { u2 = 1; }
+            if (SINGLE_UNIT_SUBJECTS[m[2]]) { u2 = 1; }
+            return { stage: +m[1], subject: m[2], unit: u2 };
+        }
+        return null;
+    }
+
+    function makeCta(key, active, activeLabel) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "ws-cta" + (active ? "" : " is-pending");
+        btn.dataset.worksheetKey = key;
+        if (active) {
+            btn.textContent = activeLabel || "Practice ✏️ تدرّب";
+            btn.addEventListener("click", function (ev) {
+                ev.preventDefault();
+                ev.stopPropagation();
+                go(key);
+            });
+        } else {
+            btn.disabled = true;
+            btn.setAttribute("aria-disabled", "true");
+            btn.title = "Worksheet coming soon — " + key;
+            btn.textContent = "Coming soon 🔜 قريباً";
+        }
+        return btn;
+    }
+
+    function injectCtas() {
+        /* ---- leaf pages (lessons + unit landing): inject pill above
+               .lesson-nav, or above .lesson-back-row on unit landings ---- */
+        var base = location.pathname.split("/").pop().replace(/\.html$/, "");
+        var info = deriveFromBasename(base);
+        if (info) {
+            var key = "s" + info.stage + "-" + info.subject + "-" + info.unit;
+            var anchor = document.querySelector(".lesson-nav") ||
+                         document.querySelector(".lesson-back-row");
+            if (anchor) {
+                var wrap = document.createElement("div");
+                wrap.className = "lesson-practice-cta";
+                wrap.appendChild(makeCta(key, !!KEY[key], "Practice this unit ✏️ تدرّب على الوحدة"));
+                anchor.parentNode.insertBefore(wrap, anchor);
+            }
+            return; /* leaf page: skip hub injection */
+        }
+
+        /* ---- unit hubs: stage-{0,1,2,...}-*.html ---- */
+        var hubM = /^stage-(\d+)-([a-z]+)\.html$/.exec(location.pathname.split("/").pop() || "");
+        if (!hubM) { return; }
+        var stage = hubM[1], subject = hubM[2];
+        Array.prototype.forEach.call(document.querySelectorAll(".unit-card-link"), function (link) {
+            var card = link.querySelector(".unit-card");
+            if (!card || card.querySelector(".unit-card-cta")) { return; }
+            var numEl = card.querySelector(".unit-card-num");
+            var unit = numEl ? parseInt(numEl.textContent, 10) : NaN;
+            if (isNaN(unit) || unit < 1) { return; }
+            var key = "s" + stage + "-" + subject + "-" + unit;
+            var bar = document.createElement("div");
+            bar.className = "unit-card-cta";
+            bar.appendChild(makeCta(key, !!KEY[key]));
+            card.appendChild(bar);
+        });
+    }
+
+    /* Hub/lesson pages don't load worksheets-data.js (that would mean
+       editing every HTML snapshot). Pull it in dynamically — classic
+       <script> tags load fine from file:// and localhost, so the page
+       HTML stays untouched. If the load fails we still render buttons
+       (as disabled) — KEY simply stays undefined. */
+    if (KEY) {
+        boot();
+    } else {
+        var s = document.createElement("script");
+        s.src = DATA_URL;
+        s.onload = boot;
+        s.onerror = boot;
+        document.head.appendChild(s);
+    }
+})();

@@ -190,6 +190,7 @@
 
         var pickedLeft = null;
         var matched = 0;
+        var matchCardsA = $all(".ws-card", listA);
 
         function clearPicked() {
             $all(".is-selected", listA).forEach(function (x) {
@@ -199,16 +200,29 @@
             pickedLeft = null;
         }
 
+        function selectName(btn) {
+            clearPicked();
+            if (!btn) { return; }
+            btn.classList.add("is-selected");
+            btn.setAttribute("aria-pressed", "true");
+            pickedLeft = btn;
+            guide.set("picked");
+            fb.textContent = "Identify this Name's proof ▸ استخرج دليله";
+            fb.className = "ws-feedback ok";
+        }
+        function firstUnmatched() {
+            for (var i = 0; i < matchCardsA.length; i++) {
+                if (!matchCardsA[i].classList.contains("is-done")) { return matchCardsA[i]; }
+            }
+            return null;
+        }
+
         guide.set("idle");
 
         listA.addEventListener("click", function (ev) {
             var btn = ev.target.closest(".ws-card");
             if (!btn || btn.classList.contains("is-done")) { return; }
-            clearPicked();
-            btn.classList.add("is-selected");
-            btn.setAttribute("aria-pressed", "true");
-            pickedLeft = btn;
-            guide.set("picked");
+            selectName(btn); /* child may change which Name is active */
         });
 
         listB.addEventListener("click", function (ev) {
@@ -234,6 +248,7 @@
                     guide.flash("correct", "picked", 1100);
                     fb.textContent = "✓ Correct! أحسنت";
                     fb.className = "ws-feedback ok";
+                    selectName(firstUnmatched()); /* auto-advance to next Name */
                 }
             } else {
                 state.mistakes += 1;
@@ -242,14 +257,18 @@
                 guide.flash("wrong", "picked", 1300);
                 fb.textContent = "Try again! حاول مرة أخرى";
                 fb.className = "ws-feedback err";
+                /* keep pickedLeft pointing at the still-selected Name so a
+                   subsequent correct click works (pickedLeft stays selected) */
                 var left = pickedLeft;
-                pickedLeft = null;
                 setTimeout(function () {
                     btn.classList.remove("is-wrong");
                     left.classList.remove("is-wrong");
                 }, 520);
             }
         });
+
+        /* start guided: auto-select the first Name */
+        selectName(firstUnmatched());
 
         return {
             reset: function () {
@@ -264,9 +283,11 @@
                 /* reshuffle proofs */
                 var cards = shuffled($all(".ws-card", listB));
                 cards.forEach(function (c) { listB.appendChild(c); });
-                guide.set("idle");
+                /* re-arm guidance: auto-select the first Name */
+                selectName(firstUnmatched());
             }
         };
+
     }
 
     /* ========================== fill activity ========================= */
@@ -287,6 +308,14 @@
             blank.type = "button";
             blank.dataset.q = String(qi);
             blank.dataset.word = q.answer;
+            blank.addEventListener("keydown", function (ev) {
+                if ((ev.key === " " || ev.key === "Enter") &&
+                    pickedChip && !this.classList.contains("ok")) {
+                    ev.preventDefault();
+                    evaluate(pickedChip, this);
+                    hoverBlank(null);
+                }
+            });
             p.appendChild(blank);
             p.appendChild(document.createTextNode(q.after));
             qEl.appendChild(p);
@@ -357,9 +386,12 @@
         }
 
         /* --- tap path --- */
+        var suppressChip = null;
         bank.addEventListener("click", function (ev) {
-            if (suppressClick) { suppressClick = false; return; }
             var chip = ev.target.closest(".ws-chip");
+            if (suppressChip && chip === suppressChip) {
+                suppressChip = null; return; /* synthetic click right after a drag */
+            }
             if (!chip || chip.disabled) { return; }
             unpickChip();
             chip.classList.add("is-picked");
@@ -379,11 +411,12 @@
 
         /* --- pointer-events drag path (mouse + touch + pen) ---
            Drag intent = movement beyond 8px after pointerdown; plain
-           taps never trigger it. Native HTML5 DnD deliberately unused. */
+           taps never trigger it. Native HTML5 DnD deliberately unused.
+           move/up/cancel are on DOCUMENT so tracking continues after the
+           pointer leaves the bank (blanks sit above it). */
         if (window.PointerEvent) {
             var DRAG_THRESHOLD = 8;
             var drag = null;        /* {chip, ghost, startX, startY, started} */
-            var suppressClick = false;
 
             function makeGhost(chip) {
                 var g = el("div", "ws-drag-ghost ar", chip.textContent);
@@ -396,8 +429,8 @@
             }
             function endDrag(commitBlank) {
                 if (!drag) { return; }
-                suppressClick = true;
-                setTimeout(function () { suppressClick = false; }, 80);
+                suppressChip = drag.chip;
+                setTimeout(function () { if (suppressChip === drag.chip) { suppressChip = null; } }, 300);
                 if (commitBlank && !commitBlank.classList.contains("ok")) {
                     evaluate(drag.chip, commitBlank);
                 }
@@ -414,7 +447,7 @@
                 drag = { chip: chip, ghost: null, startX: ev.clientX, startY: ev.clientY, started: false };
                 /* no preventDefault yet — allow plain tap/click */
             });
-            bank.addEventListener("pointermove", function (ev) {
+            document.addEventListener("pointermove", function (ev) {
                 if (!drag) { return; }
                 var dx = ev.clientX - drag.startX;
                 var dy = ev.clientY - drag.startY;
@@ -430,13 +463,14 @@
                 moveGhost(drag.ghost, ev.clientX, ev.clientY);
                 hoverBlank(blankAt(ev.clientX, ev.clientY));
             });
-            bank.addEventListener("pointerup", function (ev) {
+            function upPointer(ev) {
                 if (!drag) { return; }
                 if (!drag.started) { drag = null; return; } /* plain tap: let click fire */
                 var blank = blankAt(ev.clientX, ev.clientY);
                 endDrag(blank);
-            });
-            bank.addEventListener("pointercancel", function () { endDrag(null); });
+            }
+            document.addEventListener("pointerup", upPointer);
+            document.addEventListener("pointercancel", function () { endDrag(null); });
         }
 
         function blankAt(x, y) {
@@ -496,6 +530,24 @@
         resultPanel.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
+    function backHref(sheet) {
+        var n = String(sheet.stage).replace(/^s/, "");
+        var dest = "stage-" + n + "-" + sheet.subject + ".html";
+        var ref = document.referrer;
+        var here = location.href.split("#")[0];
+        if (ref && ref.split("#")[0] !== here && ref.indexOf(location.origin + "/") === 0) {
+            dest = ref;
+        }
+        return dest;
+    }
+
+    function buildBack(sheet) {
+        var a = el("a", "ws-back",
+            "← Back to Lessons <span class=\"ar\" dir=\"rtl\">عودة إلى الدروس</span>");
+        a.href = backHref(sheet);
+        return a;
+    }
+
     function renderSheet(key, sheet) {
         root.innerHTML = "";
         resetters = [];
@@ -515,6 +567,7 @@
         chips.appendChild(el("span", "stage-chip", sl.en + " · " + sl.ar));
         chips.appendChild(el("span", "stage-chip", sj.en + " · " + sj.ar));
         hero.appendChild(chips);
+        root.appendChild(buildBack(sheet));
         root.appendChild(hero);
 
         var secM = el("section", "ws-activity ws-hue-" + (sheet.hue || 1));
