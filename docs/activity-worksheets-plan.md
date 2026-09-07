@@ -159,7 +159,7 @@ Arabic/verse text only from canonically fetched sources.
 | # | Item | Status |
 |---|---|---|
 | 0 | Dark/light toggle emoji + motion (spec §0) | ✅ done 2026-08-23 |
-| 1 | Activity worksheets (this doc) | ▶ engine + CTA injection done 2026-09-06 — rev 5: PDF-audit-first, author only units with real PDF activity |
+| 1 | Activity worksheets (this doc) | ▶ engine + CTA injection done 2026-09-06 — **25/25 stage-0/1/2 keys authored + validated (commit `fdffbd8`) 2026-09-07** — stages 5/6 data HOLD until lesson pages exist |
 | 2 | Progress tracker UI + Parent-corner export/import | queued (reads #1 keys) |
 | 3 | Bilingual translation readout (Web Speech EN/TA) | parked |
 | 4 | Takhreej expansion (hub badges + adhkar/manners/seerah sourcing) | parked |

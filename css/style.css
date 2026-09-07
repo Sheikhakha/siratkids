@@ -4041,6 +4041,17 @@ body.drawer-lock { overflow: hidden; }
 .ws-cta:active { transform: translateY(0) scale(.97); }
 .ws-cta:focus-visible { outline: 3px solid var(--hue-accent); outline-offset: 2px; }
 
+/* Practiced state: green-tinted ✓ badge on already-done worksheets */
+.ws-cta.is-practiced {
+    border-color: var(--success, #1e9e5a);
+    color: var(--success, #1e9e5a);
+    background: color-mix(in srgb, var(--success, #1e9e5a) 10%, transparent);
+}
+.ws-cta.is-practiced:hover {
+    background: var(--success, #1e9e5a);
+    color: #fff;
+}
+
 /* Disabled "coming soon" state (rendered on every page/unit; activated
    as worksheets are authored) */
 .ws-cta.is-pending {
@@ -4056,18 +4067,32 @@ body.drawer-lock { overflow: hidden; }
     transform: none;
 }
 
-/* Lesson-page variant: full-width pill above the prev/next nav */
-.lesson-practice-cta {
+/* Lesson-aside variant: side-card under the audio player
+   (JS-injected by js/main.js into .lesson-aside) */
+.lesson-aside-practice {
+    margin-top: 18px;
+    padding: 16px 14px;
+    border: 1px solid color-mix(in srgb, var(--hue-accent) 35%, transparent);
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--surface-card) 55%, transparent);
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 10px;
-    margin: 0 0 18px;
 }
-.lesson-practice-cta .ws-cta {
+.lesson-aside-practice-title {
     margin: 0;
-    padding: .7rem 1.6rem;
-    font-size: .95rem;
+    font-size: .78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--text-medium);
+}
+.lesson-aside-practice .ws-cta {
+    margin: 0;
+    width: 100%;
+    padding: .65rem .9rem;
+    font-size: .85rem;
+    box-sizing: border-box;
 }
 
 /* Unit-card variant: dedicated full-width bar pinned to the card bottom
@@ -4087,7 +4112,7 @@ body.drawer-lock { overflow: hidden; }
     font-size: .92rem;
 }
 
-@media print { .ws-cta, .lesson-practice-cta, .unit-card-cta { display: none; } }
+@media print { .ws-cta, .lesson-aside-practice, .unit-card-cta { display: none; } }
 
 .lesson-back-row {
     display: flex;

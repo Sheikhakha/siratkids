@@ -1825,13 +1825,27 @@ document.addEventListener('DOMContentLoaded', function () {
         return null;
     }
 
+    /* Whether the given worksheet was already practiced (done) by this
+       device. skStore mirrors every write to localStorage, so a plain
+       synchronous read here is enough for hub/lesson badges. */
+    function isPracticed(key) {
+        try {
+            var raw = localStorage.getItem("sk-worksheet-" + key);
+            var rec = raw ? JSON.parse(raw) : null;
+            return !!(rec && rec.done);
+        } catch (e) { return false; }
+    }
+
     function makeCta(key, active, activeLabel) {
         var btn = document.createElement("button");
         btn.type = "button";
         btn.className = "ws-cta" + (active ? "" : " is-pending");
         btn.dataset.worksheetKey = key;
         if (active) {
-            btn.textContent = activeLabel || "Practice ✏️ تدرّب";
+            var practiced = isPracticed(key);
+            btn.textContent = (practiced ? "✓ " : "") +
+                (activeLabel || "Practice ✏️ تدرّب");
+            if (practiced) { btn.classList.add("is-practiced"); }
             btn.addEventListener("click", function (ev) {
                 ev.preventDefault();
                 ev.stopPropagation();
@@ -1847,19 +1861,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function injectCtas() {
-        /* ---- leaf pages (lessons + unit landing): inject pill above
-               .lesson-nav, or above .lesson-back-row on unit landings ---- */
+        /* ---- leaf pages (lessons + unit landing): append a practice
+               card inside the lesson-aside (below the audio player) ---- */
         var base = location.pathname.split("/").pop().replace(/\.html$/, "");
         var info = deriveFromBasename(base);
         if (info) {
             var key = "s" + info.stage + "-" + info.subject + "-" + info.unit;
-            var anchor = document.querySelector(".lesson-nav") ||
-                         document.querySelector(".lesson-back-row");
-            if (anchor) {
-                var wrap = document.createElement("div");
-                wrap.className = "lesson-practice-cta";
-                wrap.appendChild(makeCta(key, !!KEY[key], "Practice this unit ✏️ تدرّب على الوحدة"));
-                anchor.parentNode.insertBefore(wrap, anchor);
+            var aside = document.querySelector(".lesson-aside");
+            if (aside) {
+                var card = document.createElement("div");
+                card.className = "lesson-aside-practice";
+                var title = document.createElement("p");
+                title.className = "lesson-aside-practice-title";
+                title.textContent = "Practice this unit";
+                card.appendChild(title);
+                card.appendChild(makeCta(key, !!KEY[key], "Practice ✏️ تدرّب على الوحدة"));
+                aside.appendChild(card);
             }
             return; /* leaf page: skip hub injection */
         }
