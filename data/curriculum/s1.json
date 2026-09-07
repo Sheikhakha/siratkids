@@ -201,7 +201,7 @@
       {
        "file": "s1-tawheed-2-2",
        "kind": "lesson",
-       "page": 19,
+       "page": 22,
        "title": {
         "en": "Allah Is My Lord",
         "ar": "اللهُ رَبِّي"
@@ -233,7 +233,7 @@
       {
        "file": "s1-tawheed-2-3",
        "kind": "lesson",
-       "page": 20,
+       "page": 19,
        "title": {
         "en": "Allah Created Everything",
         "ar": "اللهُ خَالِقُ كُلِّ شَيْءٍ"
@@ -299,7 +299,7 @@
       {
        "file": "s1-tawheed-2-5",
        "kind": "lesson",
-       "page": 22,
+       "page": 23,
        "title": {
         "en": "Allah Is the Provider",
         "ar": "اللهُ الرَّزَّاقُ"
@@ -333,7 +333,7 @@
       {
        "file": "s1-tawheed-2-6",
        "kind": "lesson",
-       "page": 23,
+       "page": 24,
        "title": {
         "en": "He Who Gives Life and Death",
         "ar": "الَّذِي يُحْيِي وَيُمِيتُ"
@@ -922,7 +922,7 @@
       {
        "file": "s1-fiqh-1-1",
        "kind": "lesson",
-       "page": 46,
+       "page": 47,
        "title": {
         "en": "The Salam Greeting",
         "ar": "آداب السلام"
@@ -959,7 +959,7 @@
       {
        "file": "s1-fiqh-1-2",
        "kind": "lesson",
-       "page": 47,
+       "page": 48,
        "title": {
         "en": "Returning the Salam",
         "ar": "أَجرُ السَّلام"
@@ -992,7 +992,7 @@
       {
        "file": "s1-fiqh-1-3",
        "kind": "lesson",
-       "page": 48,
+       "page": 49,
        "title": {
         "en": "Loving Good for My Friend",
         "ar": "فقه التعامل مع أصدقائي"
@@ -1029,7 +1029,7 @@
       {
        "file": "s1-fiqh-1-4",
        "kind": "lesson",
-       "page": 49,
+       "page": 50,
        "title": {
         "en": "Kindness to Parents",
         "ar": "آداب بر الوالدين"
@@ -1063,7 +1063,7 @@
       {
        "file": "s1-fiqh-1-5",
        "kind": "lesson",
-       "page": 51,
+       "page": 52,
        "title": {
         "en": "Manners of the Masjid",
         "ar": "آداب المساجد"
@@ -1101,7 +1101,7 @@
       {
        "file": "s1-fiqh-1-6",
        "kind": "lesson",
-       "page": 53,
+       "page": 54,
        "title": {
         "en": "The Right of My Teacher",
         "ar": "حق المعلم"
@@ -1175,7 +1175,7 @@
       {
        "file": "s1-fiqh-2-1",
        "kind": "lesson",
-       "page": 54,
+       "page": 55,
        "title": {
         "en": "Islam Is the Deen of Cleanliness",
         "ar": "الإسلام دين الطهارة والنظافة"
@@ -1213,7 +1213,7 @@
       {
        "file": "s1-fiqh-2-2",
        "kind": "lesson",
-       "page": 55,
+       "page": 56,
        "title": {
         "en": "Purity Is Required for Prayer",
         "ar": "وجوب الطهارة للصلاة"
@@ -1246,7 +1246,7 @@
       {
        "file": "s1-fiqh-2-3",
        "kind": "lesson",
-       "page": 56,
+       "page": 57,
        "title": {
         "en": "Adab of Using the Toilet",
         "ar": "آداب قضاء الحاجة"
@@ -1283,7 +1283,7 @@
       {
        "file": "s1-fiqh-2-4",
        "kind": "lesson",
-       "page": 57,
+       "page": 58,
        "title": {
         "en": "A Clean Body and Clothes",
         "ar": "طهارة البدن والثوب ومكان الصلاة"
@@ -1316,7 +1316,7 @@
       {
        "file": "s1-fiqh-2-5",
        "kind": "lesson",
-       "page": 59,
+       "page": 60,
        "title": {
         "en": "How to Make Wudu",
         "ar": "كيفية الوضوء"
@@ -1353,7 +1353,7 @@
       {
        "file": "s1-fiqh-2-review",
        "kind": "review",
-       "page": 0,
+       "page": 59,
        "title": {
         "en": "Unit 2 Questions",
         "ar": "أسئلة على الوحدة"
@@ -1387,7 +1387,7 @@
       {
        "file": "s1-fiqh-3-1",
        "kind": "lesson",
-       "page": 65,
+       "page": 66,
        "title": {
         "en": "The Reward of Prayer",
         "ar": "فضل الصلاة"
@@ -1417,7 +1417,7 @@
       {
        "file": "s1-fiqh-3-2",
        "kind": "lesson",
-       "page": 66,
+       "page": 67,
        "title": {
         "en": "The Five Prescribed Prayers",
         "ar": "الصلوات المكتوبة"
@@ -1497,7 +1497,7 @@
       {
        "file": "s1-fiqh-3-4",
        "kind": "lesson",
-       "page": 69,
+       "page": 70,
        "title": {
         "en": "Ruku and Sujud",
         "ar": "صفة الركوع والسجود"
@@ -1536,7 +1536,7 @@
       {
        "file": "s1-fiqh-3-5",
        "kind": "lesson",
-       "page": 76,
+       "page": 75,
        "title": {
         "en": "Tashahhud and Salam",
         "ar": "التشهد والتسليم"
@@ -1573,7 +1573,7 @@
       {
        "file": "s1-fiqh-3-6",
        "kind": "lesson",
-       "page": 80,
+       "page": 81,
        "title": {
         "en": "What Breaks the Prayer",
         "ar": "مبطلات الصلاة"
@@ -1598,7 +1598,7 @@
       {
        "file": "s1-fiqh-3-review",
        "kind": "review",
-       "page": 0,
+       "page": 79,
        "title": {
         "en": "Unit 3 Questions",
         "ar": "أسئلة على الوحدة"
@@ -1641,7 +1641,7 @@
       {
        "file": "s1-adhkar-1-1",
        "kind": "lesson",
-       "page": 85,
+       "page": 86,
        "title": {
         "en": "The Virtue of Remembering Allah",
         "ar": "فضل ذكر الله"
@@ -1675,7 +1675,7 @@
       {
        "file": "s1-adhkar-1-2",
        "kind": "lesson",
-       "page": 86,
+       "page": 87,
        "title": {
         "en": "Adhkar of Sleep and Waking",
         "ar": "أذكار النوم والاستيقاظ"
@@ -1707,7 +1707,7 @@
       {
        "file": "s1-adhkar-1-3",
        "kind": "lesson",
-       "page": 88,
+       "page": 89,
        "title": {
         "en": "Morning & Evening Adhkar",
         "ar": "أذكار الصباح والمساء"
@@ -1744,7 +1744,7 @@
       {
        "file": "s1-adhkar-1-4",
        "kind": "lesson",
-       "page": 89,
+       "page": 90,
        "title": {
         "en": "Entering & Leaving Home",
         "ar": "ما يقال عند دخول المنزل والخروج منه"
@@ -1770,7 +1770,7 @@
       {
        "file": "s1-adhkar-1-5",
        "kind": "lesson",
-       "page": 90,
+       "page": 92,
        "title": {
         "en": "Sneezing & Yawning",
         "ar": "ما يقال عند العطاس والتثاؤب"
@@ -1800,7 +1800,7 @@
       {
        "file": "s1-adhkar-1-6",
        "kind": "lesson",
-       "page": 92,
+       "page": 93,
        "title": {
         "en": "Adhkar of Riding",
         "ar": "أذكار ركوب السيارة"
@@ -1944,7 +1944,7 @@
       {
        "file": "s1-adhkar-1-7",
        "kind": "lesson",
-       "page": 95,
+       "page": 96,
        "title": {
         "en": "Wind & Rain",
         "ar": "ما يقال إذا هبت الريح وعند رؤية المطر"
@@ -2008,7 +2008,7 @@
       {
        "file": "s1-adhkar-2-1",
        "kind": "lesson",
-       "page": 96,
+       "page": 99,
        "title": {
         "en": "Manners of the Toilet",
         "ar": "آداب الخلاء"
@@ -2045,7 +2045,7 @@
       {
        "file": "s1-adhkar-2-2",
        "kind": "lesson",
-       "page": 99,
+       "page": 100,
        "title": {
         "en": "Eating & Drinking Manners",
         "ar": "آداب الطعام والشراب"
