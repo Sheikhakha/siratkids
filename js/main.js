@@ -26,7 +26,7 @@
     if (!localStorage || typeof localStorage.setItem !== 'function') { return; }
     var SYNC_HOOK_KEYS = [
         'dark-mode', 'accent-color', 'arabic-font',
-        'ar-font-scale', 'en-font-scale',
+        'ar-font-scale', 'en-font-scale', 'quran-wbw-scale',
         'toggle-translation', 'toggle-tamil', 'toggle-transliteration',
         'audio-speed', 'audio-voice-name',
         'quran-translation', 'quran-wbw', 'quran-tafsir-lang',

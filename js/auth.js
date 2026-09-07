@@ -39,7 +39,7 @@
     /* Settings/preferences keys synced verbatim (stored as raw strings). */
     var SYNC_KEYS = [
         "dark-mode", "accent-color", "arabic-font",
-        "ar-font-scale", "en-font-scale",
+        "ar-font-scale", "en-font-scale", "quran-wbw-scale",
         "toggle-translation", "toggle-tamil", "toggle-transliteration",
         "audio-speed", "audio-voice-name",
         "quran-translation", "quran-wbw", "quran-tafsir-lang",
@@ -134,6 +134,116 @@
         return aDate > bDate ? a : b;        /* newer wins */
     }
 
+    /* ---------------- per-name device vault ----------------
+       Anonymous UIDs are destroyed on sign-out, so a returning kid
+       can never re-link to their old Firestore uid. To keep a kid's
+       progress (a) isolated from other kids on the same device and
+       (b) restorable after any logout, we snapshot each kid's synced
+       data under "sk-vault-<slug>:<kind>" keyed by their name.
+       The vault is the device-local source of truth; Firestore is the
+       cross-device backup. Two different names = two different kids. */
+    var VAULT_PREFIX = "sk-vault-";
+
+    function kidSlug(name) {
+        var s = (name || "").toLowerCase().trim().replace(/\s+/g, "-");
+        return s.replace(/[^a-z0-9\u0600-\u06FF-]/g, "");
+    }
+
+    function vaultItem(slug, kind) {
+        return VAULT_PREFIX + slug + ":" + kind;
+    }
+
+    function saveKidVault(name) {
+        var slug = kidSlug(name);
+        if (!slug) { return; }
+        setLS(vaultItem(slug, "prefs"), JSON.stringify(gatherPreferences()));
+        setLS(vaultItem(slug, "worksheets"), JSON.stringify(gatherWorksheets()));
+    }
+
+    function migrateVault(fromName, toName) {
+        var from = kidSlug(fromName);
+        var to = kidSlug(toName);
+        if (!from || !to || from === to) { return; }
+        ["prefs", "worksheets"].forEach(function (kind) {
+            var v = getLS(vaultItem(from, kind));
+            if (v !== null) { setLS(vaultItem(to, kind), v); }
+            setLS(vaultItem(from, kind), null);
+        });
+    }
+
+    /* Wipe every live synced key so no other kid's data leaks in. */
+    function clearSyncLocal() {
+        SYNC_KEYS.forEach(function (k) { setLS(k, null); });
+        try {
+            for (var i = localStorage.length - 1; i >= 0; i--) {
+                var k = localStorage.key(i);
+                if (k && k.indexOf(WORKSHEET_PREFIX) === 0) { setLS(k, null); }
+            }
+        } catch (e) {}
+    }
+
+    /* Reset to this kid's own snapshot (fresh if none exists yet). */
+    function restoreKidVault(name) {
+        clearSyncLocal();
+        var slug = kidSlug(name);
+        if (!slug) { return; }
+        var prefsV = parseJSON(getLS(vaultItem(slug, "prefs")));
+        var wsV = parseJSON(getLS(vaultItem(slug, "worksheets")));
+        if (prefsV && typeof prefsV === "object") {
+            Object.keys(prefsV).forEach(function (k) {
+                var v = prefsV[k];
+                if (v !== null && v !== undefined) { setLS(k, v); }
+            });
+        }
+        if (wsV && typeof wsV === "object") {
+            Object.keys(wsV).forEach(function (k) {
+                var v = wsV[k];
+                if (v !== null && v !== undefined) { setLS(k, v); }
+            });
+        }
+    }
+
+    /* Worksheet records also live in IndexedDB (worksheet.js: db "siratkids",
+       store "kv"). That store is shared by every kid on the device, so wipe
+       only the sk-worksheet-* keys when switching identities, or the previous
+       kid's records would leak back in via the IDB-first read path. */
+    function clearWorksheetIDB() {
+        return new Promise(function (resolve) {
+            var finished = false;
+            function done() { if (!finished) { finished = true; resolve(); } }
+            try {
+                if (!window.indexedDB) { done(); return; }
+                var req = indexedDB.open("siratkids", 1);
+                req.onupgradeneeded = function () {
+                    if (!req.result.objectStoreNames.contains("kv")) {
+                        req.result.createObjectStore("kv");
+                    }
+                };
+                req.onsuccess = function () {
+                    var db = req.result;
+                    try {
+                        var tx = db.transaction("kv", "readwrite");
+                        var store = tx.objectStore("kv");
+                        var keysReq = store.getAllKeys();
+                        keysReq.onsuccess = function () {
+                            var toDelete = (keysReq.result || []).filter(function (k) {
+                                return typeof k === "string" && k.indexOf(WORKSHEET_PREFIX) === 0;
+                            });
+                            toDelete.forEach(function (k) { store.delete(k); });
+                        };
+                        keysReq.onerror = function () {};
+                        tx.oncomplete = function () { db.close(); done(); };
+                        tx.onerror = function () { db.close(); done(); };
+                        tx.onabort = function () { db.close(); done(); };
+                    } catch (e) { db.close(); done(); }
+                };
+                req.onerror = function () { done(); };
+                req.onblocked = function () { done(); };
+                setTimeout(done, 2000);
+            } catch (e) { done(); }
+        });
+    }
+
     function mergeAttempts(a, b) {
         if (typeof a !== "object" || !a) { return b || a; }
         if (typeof b !== "object" || !b) { return a || b; }
@@ -159,7 +269,8 @@
 
         return DB.collection("users").doc(u).set(payload, { merge: true })
             .then(function () { return true; })
-            .catch(function () {
+            .catch(function (err) {
+                try { console.error("[auth] Firestore write failed:", err && (err.code || err.message || err)); } catch (e) {}
                 showToast("Sync failed — using local data");
                 return false;
             });
@@ -184,7 +295,8 @@
                 return syncToFirestore();
             }
             return mergeRemote(snap.data());
-        }).catch(function () {
+        }).catch(function (err) {
+            try { console.error("[auth] Firestore read failed:", err && (err.code || err.message || err)); } catch (e) {}
             showToast("Sync failed — using local data");
             return false;
         });
@@ -239,15 +351,24 @@
             return;
         }
         var cleanName = (name || "").trim();
+        /* Whatever is live on this device belongs to the previous kid
+           (if any) — snapshot it before switching identities. */
+        var prevName = getKidName();
+        if (prevName) { saveKidVault(prevName); }
         AUTH.signInAnonymously().then(function (res) {
             var user = res.user || AUTH.currentUser;
             if (!user) { throw new Error("no-user"); }
             setLS(AUTH_KEY, user.uid);
             if (cleanName) {
+                restoreKidVault(cleanName);
                 setLS(NAME_KEY, cleanName);
                 user.updateProfile({ displayName: cleanName }).catch(function () {});
             }
-            return syncToFirestore();
+            /* Clear the old kid's IndexedDB worksheet records before the new
+               kid can read them, then push this kid's state to Firestore. */
+            return clearWorksheetIDB().then(function () {
+                return syncToFirestore();
+            });
         }).then(function () {
             if (cb) { cb(null); }
         }).catch(function (err) {
@@ -257,6 +378,8 @@
     }
 
     function logout() {
+        /* Anonymous sign-out is permanent, so preserve this kid first. */
+        saveKidVault(getKidName());
         var done = AUTH ? AUTH.signOut() : Promise.resolve();
         return done.catch(function () {}).then(function () {
             setLS(AUTH_KEY, null);
@@ -266,6 +389,11 @@
 
     function updateKidName(name) {
         var clean = (name || "").trim();
+        var prevName = getKidName();
+        if (prevName && kidSlug(prevName) !== kidSlug(clean)) {
+            migrateVault(prevName, clean);
+        }
+        saveKidVault(clean);
         setLS(NAME_KEY, clean);
         if (AUTH && AUTH.currentUser) {
             AUTH.currentUser.updateProfile({ displayName: clean }).catch(function () {});
@@ -332,7 +460,8 @@
                 btn.type = 'button';
                 btn.className = 'nav-logout-btn';
                 btn.setAttribute('aria-label', 'Log out');
-                btn.textContent = '✕';
+                btn.title = 'Log out';
+                btn.textContent = 'Log out';
                 btn.addEventListener('click', function (e) {
                     e.stopPropagation();
                     logout();
