@@ -899,37 +899,13 @@ document.addEventListener('DOMContentLoaded', function () {
         var divider = document.createElement('div');
         divider.className = 'settings-dropdown-divider';
 
-        /* -- Editable kid name (auth) -- */
-        if (!content.querySelector('.sk-kid-name-field')) {
-            var nameRow = document.createElement('div');
-            nameRow.className = 'settings-dropdown-item sk-kid-name-field';
-            var nameLabel = document.createElement('span');
-            nameLabel.className = 'settings-label';
-            nameLabel.textContent = 'Name';
-            var nameInput = document.createElement('input');
-            nameInput.className = 'settings-kid-name-input';
-            nameInput.type = 'text';
-            nameInput.maxLength = 40;
-            nameInput.setAttribute('aria-label', 'Kid name');
-            nameInput.addEventListener('change', function () {
-                if (window.authAPI) { window.authAPI.updateKidName(nameInput.value); }
-            });
-            var nameDivider = document.createElement('div');
-            nameDivider.className = 'settings-dropdown-divider';
-            nameRow.appendChild(nameLabel);
-            nameRow.appendChild(nameInput);
-            content.insertBefore(nameDivider, content.firstChild);
-            content.insertBefore(nameRow, content.firstChild);
-        }
-
         content.insertBefore(divider, content.firstChild);
         content.insertBefore(row, content.firstChild);
     });
 
-    /* -- Firebase auth UI: navbar chip + fill injected name field -- */
+    /* -- Firebase auth UI: navbar user menu -- */
     if (window.authAPI) {
         window.authAPI.initAuthUI();
-        window.authAPI.fillSettingsName();
     }
 
     /* ---- Dark Mode Toggle ---- */

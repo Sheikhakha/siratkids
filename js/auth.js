@@ -454,27 +454,129 @@
             if (!chip) {
                 chip = document.createElement('div');
                 chip.className = 'nav-auth';
-                var span = document.createElement('span');
-                span.className = 'nav-kid-name';
-                var btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'nav-logout-btn';
-                btn.setAttribute('aria-label', 'Log out');
-                btn.title = 'Log out';
-                btn.textContent = 'Log out';
-                btn.addEventListener('click', function (e) {
-                    e.stopPropagation();
+
+                var toggle = document.createElement('button');
+                toggle.type = 'button';
+                toggle.className = 'nav-auth-toggle';
+                toggle.setAttribute('aria-label', 'Account');
+                toggle.setAttribute('aria-haspopup', 'menu');
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+
+                var menu = document.createElement('div');
+                menu.className = 'nav-auth-menu';
+                menu.setAttribute('role', 'menu');
+
+                var renameRow = document.createElement('div');
+                renameRow.className = 'nav-auth-rename-row';
+                var renameInput = document.createElement('input');
+                renameInput.className = 'settings-kid-name-input';
+                renameInput.type = 'text';
+                renameInput.maxLength = 40;
+                renameInput.setAttribute('aria-label', 'Rename kid');
+                var saveBtn = document.createElement('button');
+                saveBtn.type = 'button';
+                saveBtn.className = 'nav-auth-save';
+                saveBtn.textContent = 'Save';
+                saveBtn.addEventListener('click', function () {
+                    var clean = (renameInput.value || '').trim();
+                    if (!clean) {
+                        showToast('Name cannot be empty.');
+                        return;
+                    }
+                    updateKidName(clean);
+                    renameRow.classList.remove('open');
+                    showToast('Name updated');
+                });
+                renameInput.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') { saveBtn.click(); }
+                });
+                renameRow.appendChild(renameInput);
+                renameRow.appendChild(saveBtn);
+
+                var nameRow = document.createElement('div');
+                nameRow.className = 'nav-auth-name-row';
+                var nameEl = document.createElement('span');
+                nameEl.className = 'nav-kid-name';
+                var editBtn = document.createElement('button');
+                editBtn.type = 'button';
+                editBtn.className = 'nav-auth-edit-btn';
+                editBtn.setAttribute('aria-label', 'Rename kid');
+                editBtn.title = 'Rename';
+                editBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>';
+                editBtn.addEventListener('click', function () {
+                    renameRow.classList.toggle('open');
+                    renameInput.focus();
+                    renameInput.select();
+                });
+                nameRow.appendChild(nameEl);
+                nameRow.appendChild(editBtn);
+
+                var divider = document.createElement('div');
+                divider.className = 'settings-dropdown-divider';
+
+                var signoutBtn = document.createElement('button');
+                signoutBtn.type = 'button';
+                signoutBtn.className = 'nav-auth-signout';
+                signoutBtn.textContent = 'Sign out';
+                signoutBtn.addEventListener('click', function () {
+                    closeAuthMenus();
                     logout();
                 });
-                chip.appendChild(span);
-                chip.appendChild(btn);
+
+                menu.appendChild(nameRow);
+                menu.appendChild(renameRow);
+                menu.appendChild(divider);
+                menu.appendChild(signoutBtn);
+
+                chip.appendChild(toggle);
+                chip.appendChild(menu);
                 container.appendChild(chip);
+
+                toggle.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    closeAuthMenus(chip);
+                    var open = chip.classList.toggle('open');
+                    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                });
             }
-            var spanEl = chip.querySelector('.nav-kid-name');
-            if (spanEl) {
-                spanEl.textContent = name || 'Kid';
-                spanEl.title = name || '';
-            }
+
+            var nameEl = chip.querySelector('.nav-kid-name');
+            if (nameEl) { nameEl.textContent = name || 'Kid'; }
+            var nameInput = chip.querySelector('.settings-kid-name-input');
+            if (nameInput) { nameInput.value = name || ''; }
+        });
+        bindAuthMenuClose();
+    }
+
+    function closeAuthMenus(keep) {
+        document.querySelectorAll('.nav-auth.open').forEach(function (other) {
+            if (other === keep) { return; }
+            other.classList.remove('open');
+            var t = other.querySelector('.nav-auth-toggle');
+            if (t) { t.setAttribute('aria-expanded', 'false'); }
+        });
+    }
+
+    var authMenuCloseBound = false;
+    function bindAuthMenuClose() {
+        if (authMenuCloseBound) { return; }
+        authMenuCloseBound = true;
+        document.addEventListener('click', function (e) {
+            document.querySelectorAll('.nav-auth.open').forEach(function (chip) {
+                if (chip.contains(e.target)) { return; }
+                chip.classList.remove('open');
+                var t = chip.querySelector('.nav-auth-toggle');
+                if (t) { t.setAttribute('aria-expanded', 'false'); }
+            });
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key !== 'Escape') { return; }
+            document.querySelectorAll('.nav-auth.open').forEach(function (chip) {
+                chip.classList.remove('open');
+                var t = chip.querySelector('.nav-auth-toggle');
+                if (t) { t.setAttribute('aria-expanded', 'false'); }
+            });
         });
     }
 

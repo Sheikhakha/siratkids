@@ -5543,49 +5543,145 @@ a.journey-card:focus-visible,
 }
 
 /* ============================================
-   Firebase Auth — navbar chip, settings name,
+   Firebase Auth — user menu, settings name,
    sync toast
    ============================================ */
 .nav-auth {
+    position: relative;
+    display: inline-flex;
+}
+
+.nav-auth-toggle {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 4px 6px 4px 14px;
-    border: 1.5px solid var(--border-default, #e5e7eb);
-    border-radius: 999px;
-    background: var(--bg-white, #ffffff);
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--border-control);
+    border-radius: 50%;
+    background: var(--surface-input);
+    color: var(--text-medium);
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    padding: 0;
+}
+
+.nav-auth-toggle:hover,
+.nav-auth.open .nav-auth-toggle {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.nav-auth-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--surface-popup);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-default);
+    min-width: 220px;
+    padding: 12px;
+    z-index: 1001;
+}
+
+.nav-auth.open .nav-auth-menu {
+    display: block;
+}
+
+.nav-auth-name-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 4px 6px;
+}
+
+.nav-auth-edit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    border: none;
+    background: none;
+    border-radius: 8px;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav-auth-edit-btn:hover {
+    color: var(--primary);
+    background: rgba(79, 70, 229, 0.1);
 }
 
 .nav-kid-name {
+    display: block;
     font-size: 0.95rem;
     font-weight: 800;
     color: var(--text-dark);
-    max-width: 130px;
+    max-width: 190px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.nav-logout-btn {
+.nav-auth-rename-row {
+    display: none;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-auth-rename-row.open {
+    display: flex;
+}
+
+.nav-auth-save {
+    flex-shrink: 0;
     border: none;
     background: var(--bg-light);
-    color: var(--text-muted);
-    border-radius: 999px;
+    color: var(--text-dark);
+    border-radius: 8px;
     padding: 6px 12px;
     font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 800;
     line-height: 1;
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease;
 }
 
-.nav-logout-btn:hover {
+.nav-auth-save:hover {
+    background: var(--primary);
+    color: var(--bg-white);
+}
+
+.nav-auth-signout {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: none;
+    padding: 8px 10px;
+    margin-top: 4px;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
     color: var(--accent-error, #DC2626);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.nav-auth-signout:hover {
     background: rgba(220, 38, 38, 0.1);
 }
 
 .settings-kid-name-input {
-    width: 120px;
+    flex: 1;
+    min-width: 0;
     padding: 5px 9px;
     border-radius: 8px;
     border: 1.5px solid var(--border-control);
@@ -5630,5 +5726,6 @@ a.journey-card:focus-visible,
 
 @media (max-width: 768px) {
     .nav-auth { margin: 6px 0 2px; }
-    .nav-kid-name { max-width: 90px; }
+    .nav-auth-menu { min-width: 200px; }
+    .nav-kid-name { max-width: 160px; }
 }
