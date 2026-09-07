@@ -799,9 +799,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Settings dropdown toggle (binds every dropdown that has a settings button)
+    // Settings dropdown toggle (binds every dropdown that has a settings or stages button)
     document.querySelectorAll('.settings-dropdown').forEach(function (dropdown) {
-        var settingsBtn = dropdown.querySelector('.settings-toggle-btn');
+        var settingsBtn = dropdown.querySelector('.settings-toggle-btn, .stages-toggle-btn');
         if (!settingsBtn) return;
         settingsBtn.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -828,6 +828,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
 
     document.querySelectorAll('.settings-dropdown-content').forEach(function(content) {
+        if (content.closest('.stages-dropdown')) return;
         if (content.querySelector('.accent-swatches')) return;
 
         var row = document.createElement('div');
