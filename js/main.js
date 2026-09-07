@@ -1864,10 +1864,15 @@ document.addEventListener('DOMContentLoaded', function () {
             return; /* leaf page: skip hub injection */
         }
 
-        /* ---- unit hubs: stage-{0,1,2,...}-*.html ---- */
-        var hubM = /^stage-(\d+)-([a-z]+)\.html$/.exec(location.pathname.split("/").pop() || "");
+        /* ---- unit hubs: stage-{0,1,2,...}-*.html OR stage-{N}-part{P}-{subject}.html ---- */
+        var fname = location.pathname.split("/").pop() || "";
+        var hubM = /^stage-(\d+)-part(\d+)-([a-z]+)\.html$/.exec(fname) ||
+                   /^stage-(\d+)-([a-z]+)\.html$/.exec(fname);
         if (!hubM) { return; }
-        var stage = hubM[1], subject = hubM[2];
+        /* Construct worksheet key prefix: s5p1, s6p2, s1, s2, etc. */
+        var stage, subject;
+        if (hubM[3]) { stage = hubM[1] + "p" + hubM[2]; subject = hubM[3]; }
+        else         { stage = hubM[1]; subject = hubM[2]; }
         Array.prototype.forEach.call(document.querySelectorAll(".unit-card-link"), function (link) {
             var card = link.querySelector(".unit-card");
             if (!card || card.querySelector(".unit-card-cta")) { return; }

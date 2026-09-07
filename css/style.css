@@ -3493,6 +3493,8 @@ body.drawer-lock { overflow: hidden; }
     --subj-adhkar-border: #83df9f;
     --subj-manners-bg: linear-gradient(135deg, #fdebf4, #fadbe9);
     --subj-manners-border: #f4a9cf;
+    --subj-adab-bg: linear-gradient(135deg, #fff4e6, #ffe4cc);
+    --subj-adab-border: #f5b382;
     --unit-hue-1-bg: #eef2ff;  --unit-hue-1-border: #c7d2fe;  --unit-hue-1-accent: #4f46e5;
     --unit-hue-2-bg: #effcf9;  --unit-hue-2-border: #99e6d4;  --unit-hue-2-accent: #0d9488;
     --unit-hue-3-bg: #fff7e6;  --unit-hue-3-border: #fde08a;  --unit-hue-3-accent: #d97706;
@@ -3505,7 +3507,8 @@ body.drawer-lock { overflow: hidden; }
     --subj-hadith-bg: linear-gradient(135deg, #3f2405, #292524);
     --subj-seerah-bg: linear-gradient(135deg, #2b1158, #201d47);
     --subj-adhkar-bg: linear-gradient(135deg, #12482a, #173226);
-    --subj-manners-bg: linear-gradient(135deg, #470a26, #2b1a28);
+--subj-manners-bg: linear-gradient(135deg, #470a26, #2b1a28);
+    --subj-adab-bg: linear-gradient(135deg, #3f1805, #292015);
     --unit-hue-1-bg: #23244a;  --unit-hue-1-border: #3b3d75;  --unit-hue-1-accent: #818cf8;
     --unit-hue-2-bg: #12332e;  --unit-hue-2-border: #1f574d;  --unit-hue-2-accent: #2dd4bf;
     --unit-hue-3-bg: #3a2606;  --unit-hue-3-border: #6b4a10;  --unit-hue-3-accent: #fbbf24;
@@ -3537,12 +3540,14 @@ body.drawer-lock { overflow: hidden; }
 .subj-hero-seerah   { --hero-accent: #7c3aed; }
 .subj-hero-adhkar   { --hero-accent: #16a34a; }
 .subj-hero-manners  { --hero-accent: #db2777; }
+.subj-hero-adab     { --hero-accent: #c2410c; }
 [data-theme='dark'] .subj-hero-tawheed { --hero-accent: #818cf8; }
 [data-theme='dark'] .subj-hero-fiqh    { --hero-accent: #2dd4bf; }
 [data-theme='dark'] .subj-hero-hadith  { --hero-accent: #fbbf24; }
 [data-theme='dark'] .subj-hero-seerah  { --hero-accent: #c084fc; }
 [data-theme='dark'] .subj-hero-adhkar  { --hero-accent: #4ade80; }
 [data-theme='dark'] .subj-hero-manners { --hero-accent: #f472b6; }
+[data-theme='dark'] .subj-hero-adab    { --hero-accent: #fb923c; }
 
 .lesson-hero-art {
     position: absolute;
@@ -3600,6 +3605,7 @@ body.drawer-lock { overflow: hidden; }
 .subject-tile.tile-seerah  { --tile-bg: var(--subj-seerah-bg);   --tile-border: var(--subj-seerah-border);   --tile-accent: #7c3aed; }
 .subject-tile.tile-adhkar  { --tile-bg: var(--subj-adhkar-bg);   --tile-border: var(--subj-adhkar-border);   --tile-accent: #16a34a; }
 .subject-tile.tile-manners { --tile-bg: var(--subj-manners-bg);  --tile-border: var(--subj-manners-border);  --tile-accent: #db2777; }
+.subject-tile.tile-adab    { --tile-bg: var(--subj-adab-bg);     --tile-border: var(--subj-adab-border);     --tile-accent: #c2410c; }
 .subject-tile-icon {
     width: 58px; height: 58px;
     display: grid; place-items: center;
@@ -3619,6 +3625,54 @@ body.drawer-lock { overflow: hidden; }
     font-size: .88rem;
     font-weight: 800;
     color: var(--tile-accent, var(--primary));
+}
+
+/* ---- Part cards (Stage 5/6 two-book hubs) ---- */
+.part-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto 24px;
+}
+[data-theme='dark'] .part-cards-grid { gap: 20px; }
+.part-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 26px 24px 22px;
+    border-radius: 20px;
+    text-decoration: none;
+    border: 1.5px solid var(--part-border, var(--border-default));
+    background: var(--part-bg, var(--surface-card));
+    transition: transform .25s ease, box-shadow .25s ease;
+    position: relative;
+    overflow: hidden;
+}
+.part-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.part-card.part-1 { --part-bg: linear-gradient(135deg, #eef2ff, #e0e7ff); --part-border: #c7d2fe; --part-accent: #4f46e5; }
+.part-card.part-2 { --part-bg: linear-gradient(135deg, #ecfaf1, #d9f5e2); --part-border: #86e3a8; --part-accent: #16a34a; }
+[data-theme='dark'] .part-card.part-1 { --part-bg: linear-gradient(135deg, #1e1f4a, #23244a); --part-border: #3b3d75; --part-accent: #818cf8; }
+[data-theme='dark'] .part-card.part-2 { --part-bg: linear-gradient(135deg, #11331f, #173226); --part-border: #1d5c35; --part-accent: #4ade80; }
+.part-card-icon {
+    width: 58px; height: 58px;
+    display: grid; place-items: center;
+    font-size: 30px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.65);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.05);
+}
+[data-theme='dark'] .part-card-icon { background: rgba(15,23,42,.45); }
+.part-title { display: flex; flex-direction: column; gap: 2px; color: var(--text-dark); }
+.part-title .en { font-family: var(--font-en-heading); font-weight: 800; font-size: 1.22rem; }
+.part-title .ar { font-size: 1.18rem; }
+.part-meta { font-size: .84rem; font-weight: 600; color: var(--text-medium); }
+.part-open {
+    margin-top: auto;
+    padding-top: 12px;
+    font-size: .88rem;
+    font-weight: 800;
+    color: var(--part-accent, var(--primary));
 }
 
 /* ---- Hub topbar + back buttons ---- */
@@ -4547,6 +4601,8 @@ body.drawer-lock { overflow: hidden; }
 .journey-node-2 .journey-marker { border-color: var(--primary); box-shadow: 0 0 0 6px rgba(79,70,229,.09), var(--shadow-sm); }
 .journey-node-3 .journey-marker { border-color: #a16207; box-shadow: 0 0 0 6px rgba(161,98,7,.10), var(--shadow-sm); }
 .journey-node-4 .journey-marker { border-color: #4f46e5; box-shadow: 0 0 0 6px rgba(79,70,229,.10), var(--shadow-sm); }
+.journey-node-5 .journey-marker { border-color: #15803d; box-shadow: 0 0 0 6px rgba(21,128,61,.10), var(--shadow-sm); }
+.journey-node-6 .journey-marker { border-color: #7c3aed; box-shadow: 0 0 0 6px rgba(124,58,237,.10), var(--shadow-sm); }
 
 .journey-node::before {
     content: '';

@@ -105,6 +105,12 @@ The lesson audio player (`js/main.js` lines 901+) plays pre-rendered MP3s listed
 - Check Quran search functionality on all lesson pages
 - Verify audio player word highlighting works across different Arabic texts
 
+## Testing Environment
+- **IMPORTANT**: User tests on a **Live Server** (localhost/http), NOT `file://` double-click.
+- Do NOT make changes specifically for `file://` compatibility. The site is served via a dev server.
+- All `file://`-only workarounds (wrapped `.js` bundles, dynamic script tags) exist for historical reasons — keep them but do not add new ones.
+- Verify changes by running a Live Server and having the user test in browser.
+
 ## Known Issues
 - Chinese characters in `generate_lessons.py` line 5
 - English font size localStorage key mismatch
