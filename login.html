@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | SiratKids</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+</head>
+<body class="sk-login-body disable-onload-animations">
+
+    <main class="sk-login-wrap">
+        <div class="sk-login-card">
+            <img src="images/logo.png" alt="SiratKids logo" class="sk-login-logo">
+            <h1 class="sk-login-brand">SiratKids</h1>
+            <p class="sk-login-welcome" id="welcome-msg">Welcome!</p>
+            <p class="sk-login-hint">What&rsquo;s your name?</p>
+            <form id="login-form" novalidate>
+                <label class="sk-sr-only" for="kid-name">Your name</label>
+                <input
+                    class="sk-login-input"
+                    type="text"
+                    id="kid-name"
+                    name="kid-name"
+                    placeholder="Enter your name"
+                    autocomplete="off"
+                    maxlength="40"
+                    required
+                    autofocus>
+                <button class="sk-login-btn" id="login-btn" type="submit">
+                    Start Learning &#9656;
+                </button>
+            </form>
+            <p class="sk-login-error" id="login-error" role="alert"></p>
+        </div>
+        <p class="sk-login-footnote">Your progress is saved to this account.</p>
+    </main>
+
+    <script>
+        (function () {
+            "use strict";
+            var authAPI = window.authAPI;
+            if (!authAPI) { return; }
+
+            var form = document.getElementById('login-form');
+            var input = document.getElementById('kid-name');
+            var btn = document.getElementById('login-btn');
+            var errEl = document.getElementById('login-error');
+
+            /* Prefill with previously used name so kids can just tap Start. */
+            var prev = authAPI.getKidName();
+            if (prev) {
+                input.value = prev;
+                var welcome = document.getElementById('welcome-msg');
+                if (welcome) { welcome.textContent = 'Welcome back, ' + prev + '!'; }
+            }
+
+            function showError(msg) {
+                errEl.textContent = msg;
+                errEl.classList.add('show');
+            }
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var name = input.value.trim();
+                if (!name) {
+                    showError('Please enter your name.');
+                    input.focus();
+                    return;
+                }
+                errEl.classList.remove('show');
+                btn.disabled = true;
+                btn.textContent = 'Starting...';
+                authAPI.loginAnonymously(name, function (err) {
+                    if (err) {
+                        btn.disabled = false;
+                        btn.textContent = 'Start Learning \u25B6';
+                        showError('Could not sign in. Check your connection and try again.');
+                        return;
+                    }
+                    window.location.href = 'index.html';
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>

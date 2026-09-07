@@ -17,6 +17,38 @@
 }();
 
 /* ============================================
+   Firebase sync hook — whenever user-facing
+   localStorage keys change (settings, bookmarks,
+   worksheet records), ask authAPI to push the
+   debounced copy to Firestore.
+   ============================================ */
+(function () {
+    if (!localStorage || typeof localStorage.setItem !== 'function') { return; }
+    var SYNC_HOOK_KEYS = [
+        'dark-mode', 'accent-color', 'arabic-font',
+        'ar-font-scale', 'en-font-scale',
+        'toggle-translation', 'toggle-tamil', 'toggle-transliteration',
+        'audio-speed', 'audio-voice-name',
+        'quran-translation', 'quran-wbw', 'quran-tafsir-lang',
+        'quran-tafsir-pinned', 'quran-tafsir-size', 'quran-info-lang',
+        'quran-info-size', 'quran-sim-size', 'mushaf-tajweed',
+        'quran-font-scale', 'quran-last-read', 'quran-bookmarks',
+        'sk-kid-name'
+    ];
+    var origSetItem = localStorage.setItem;
+    localStorage.setItem = function (key, value) {
+        var ret = origSetItem.call(this, key, value);
+        try {
+            if (key && window.authAPI &&
+                (SYNC_HOOK_KEYS.indexOf(key) !== -1 || key.indexOf('sk-worksheet-') === 0)) {
+                window.authAPI.scheduleSync();
+            }
+        } catch (e) {}
+        return ret;
+    };
+})();
+
+/* ============================================
    Inline Data — Quran Cache, Vocabulary
    Loaded directly to avoid XHR failures on file:// protocol
    ============================================ */
@@ -866,9 +898,38 @@ document.addEventListener('DOMContentLoaded', function () {
         var divider = document.createElement('div');
         divider.className = 'settings-dropdown-divider';
 
+        /* -- Editable kid name (auth) -- */
+        if (!content.querySelector('.sk-kid-name-field')) {
+            var nameRow = document.createElement('div');
+            nameRow.className = 'settings-dropdown-item sk-kid-name-field';
+            var nameLabel = document.createElement('span');
+            nameLabel.className = 'settings-label';
+            nameLabel.textContent = 'Name';
+            var nameInput = document.createElement('input');
+            nameInput.className = 'settings-kid-name-input';
+            nameInput.type = 'text';
+            nameInput.maxLength = 40;
+            nameInput.setAttribute('aria-label', 'Kid name');
+            nameInput.addEventListener('change', function () {
+                if (window.authAPI) { window.authAPI.updateKidName(nameInput.value); }
+            });
+            var nameDivider = document.createElement('div');
+            nameDivider.className = 'settings-dropdown-divider';
+            nameRow.appendChild(nameLabel);
+            nameRow.appendChild(nameInput);
+            content.insertBefore(nameDivider, content.firstChild);
+            content.insertBefore(nameRow, content.firstChild);
+        }
+
         content.insertBefore(divider, content.firstChild);
         content.insertBefore(row, content.firstChild);
     });
+
+    /* -- Firebase auth UI: navbar chip + fill injected name field -- */
+    if (window.authAPI) {
+        window.authAPI.initAuthUI();
+        window.authAPI.fillSettingsName();
+    }
 
     /* ---- Dark Mode Toggle ---- */
     var dmToggle = document.querySelector('.dm-toggle');
