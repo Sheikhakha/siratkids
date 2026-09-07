@@ -103,15 +103,30 @@
     var STAGE_LABELS = {
         s0: { en: "Pre-Stage", ar: "المرحلة التمهيدية" },
         s1: { en: "Stage One", ar: "المرحلة الأولى" },
-        s2: { en: "Stage Two", ar: "المرحلة الثانية" }
+        s2: { en: "Stage Two", ar: "المرحلة الثانية" },
+        s3: { en: "Stage Three", ar: "المرحلة الثالثة" },
+        s4: { en: "Stage Four", ar: "المرحلة الرابعة" },
+        s5: { en: "Stage Five", ar: "المرحلة الخامسة" },
+        s6: { en: "Stage Six", ar: "المرحلة السادسة" }
     };
     var SUBJECT_LABELS = {
         tawheed: { en: "Tawheed", ar: "التوحيد" },
-        fiqh:    { en: "Fiqh & Manners", ar: "الفقه والآداب" },
+        fiqh:    { en: "Fiqh", ar: "الفقه" },
         adhkar:  { en: "Adhkar", ar: "الأذكار والدعاء" },
         seerah:  { en: "Seerah", ar: "السيرة النبوية" },
-        hadith:  { en: "Hadith", ar: "الحديث النبوي" }
+        hadith:  { en: "Hadith", ar: "الحديث النبوي" },
+        adab:    { en: "Adab", ar: "الآداب" }
     };
+    function stageLabel(key) {
+        var m = (key || "").match(/^s(\d+)p(\d+)$/);
+        if (m) {
+            var base = STAGE_LABELS["s" + m[1]] || { en: "Stage " + m[1], ar: "" };
+            var p = m[2] === "1" ? "Part 1" : "Part 2";
+            var pa = m[2] === "1" ? "الجزء الأول" : "الجزء الثاني";
+            return { en: base.en + ", " + p, ar: base.ar + " \u060c " + pa };
+        }
+        return STAGE_LABELS[key] || { en: key || "", ar: "" };
+    }
     var GUIDE_ICONS = {
         idle: "👆", picked: "🔍", dragging: "✋",
         wrong: "🤔", correct: "✅", done: "🎉"
@@ -498,6 +513,296 @@
         };
     }
 
+    /* ======================== quiz activity ========================= */
+    function buildQuiz(section, sheet, state) {
+        var head = el("div", "ws-head");
+        head.appendChild(el("h2", null, "Answer the Questions"));
+        head.appendChild(el("p", "ar", "\u0623\u062c\u064a\u0628 \u0639\u0646 \u0627\u0644\u0623\u0633\u0626\u0644\u0629")).dir = "rtl";
+        var dots = el("div", "ws-dots");
+        sheet.quiz.forEach(function () { dots.appendChild(el("i")); });
+        head.appendChild(dots);
+        section.appendChild(head);
+
+        var guide = makeGuide(section, sheet.quizGuide);
+        var area = el("div", "ws-questions");
+
+        function showQ(idx) {
+            $all(".ws-quiz-q", area).forEach(function (q, i) {
+                q.style.display = i === idx ? "" : "none";
+            });
+            guide.set("idle");
+        }
+
+        sheet.quiz.forEach(function (q, qi) {
+            var qEl = el("div", "ws-q ws-quiz-q");
+            qEl.style.display = qi === 0 ? "" : "none";
+            qEl.appendChild(el("p", "ar ws-quiz-text", q.q.ar)).dir = "rtl";
+            if (q.q.en) { qEl.appendChild(el("p", "en", q.q.en)); }
+            var opts = el("div", "ws-quiz-options");
+            q.options.forEach(function (opt, oi) {
+                var b = el("button", "ws-quiz-opt",
+                    '<span class="ws-ar ar" dir="rtl">' + opt.ar + "</span>" +
+                    (opt.en ? '<span class="ws-en">' + opt.en + "</span>" : ""));
+                b.type = "button";
+                b.dataset.qi = String(qi);
+                b.dataset.oi = String(oi);
+                opts.appendChild(b);
+            });
+            qEl.appendChild(opts);
+            area.appendChild(qEl);
+        });
+        section.appendChild(area);
+
+        var fb = el("p", "ws-feedback");
+        fb.setAttribute("role", "status");
+        fb.setAttribute("aria-live", "polite");
+        section.appendChild(fb);
+
+        var answered = 0;
+
+        area.addEventListener("click", function (ev) {
+            var btn = ev.target.closest(".ws-quiz-opt");
+            if (!btn || btn.classList.contains("is-done") || btn.classList.contains("is-wrong")) { return; }
+            var qi = parseInt(btn.dataset.qi);
+            var oi = parseInt(btn.dataset.oi);
+            var q = sheet.quiz[qi];
+
+            if (oi === q.answer) {
+                btn.classList.add("is-done", "is-pop");
+                $all('[data-qi="' + qi + '"]', area).forEach(function (b) {
+                    if (b !== btn) { b.classList.add("is-done"); }
+                });
+                dots.children[answered].classList.add("done");
+                answered++;
+                guide.flash("correct", "idle", 1100);
+                fb.textContent = "\u2713 Correct! \u0623\u062d\u0633\u0646\u062a";
+                fb.className = "ws-feedback ok";
+                if (answered === sheet.quiz.length) {
+                    guide.set("done");
+                    state.quizDone = true;
+                    onActivityDone();
+                } else {
+                    setTimeout(function () { showQ(answered); }, 800);
+                }
+            } else {
+                state.mistakes += 1;
+                btn.classList.add("is-wrong");
+                guide.flash("wrong", "idle", 1300);
+                fb.textContent = "Try again! \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0623\u062e\u0631\u0649";
+                fb.className = "ws-feedback err";
+                setTimeout(function () { btn.classList.remove("is-wrong"); }, 520);
+            }
+        });
+
+        guide.set("idle");
+
+        return {
+            reset: function () {
+                answered = 0;
+                fb.textContent = ""; fb.className = "ws-feedback";
+                $all(".ws-quiz-opt", area).forEach(function (b) {
+                    b.classList.remove("is-done", "is-wrong", "is-pop");
+                });
+                $all("i", dots).forEach(function (d) { d.classList.remove("done"); });
+                showQ(0);
+            }
+        };
+    }
+
+    /* ===================== discriminate activity ====================== */
+    function buildDisc(section, sheet, state) {
+        var head = el("div", "ws-head");
+        head.appendChild(el("h2", null, "True or False?"));
+        head.appendChild(el("p", "ar", "\u0635\u062d\u064a\u062d \u0623\u0645 \u062e\u0637\u0623\u061f")).dir = "rtl";
+        var dots = el("div", "ws-dots");
+        sheet.disc.forEach(function () { dots.appendChild(el("i")); });
+        head.appendChild(dots);
+        section.appendChild(head);
+
+        var guide = makeGuide(section, sheet.discGuide);
+        var area = el("div", "ws-disc-list");
+
+        sheet.disc.forEach(function (item, di) {
+            var row = el("div", "ws-q ws-disc-item");
+            row.appendChild(el("p", "ar ws-disc-text", item.text.ar)).dir = "rtl";
+            if (item.text.en) { row.appendChild(el("p", "en", item.text.en)); }
+            var btns = el("div", "ws-disc-btns");
+            var bT = el("button", "ws-disc-btn ws-disc-true",
+                "\u2713 True <span class='ar' dir='rtl'>\u0635\u0648\u0627\u0628</span>");
+            bT.type = "button"; bT.dataset.di = String(di); bT.dataset.val = "true";
+            var bF = el("button", "ws-disc-btn ws-disc-false",
+                "\u2717 False <span class='ar' dir='rtl'>\u062e\u0637\u0623</span>");
+            bF.type = "button"; bF.dataset.di = String(di); bF.dataset.val = "false";
+            btns.appendChild(bT); btns.appendChild(bF);
+            row.appendChild(btns);
+            area.appendChild(row);
+        });
+        section.appendChild(area);
+
+        var fb = el("p", "ws-feedback");
+        fb.setAttribute("role", "status");
+        fb.setAttribute("aria-live", "polite");
+        section.appendChild(fb);
+
+        var answered = 0;
+
+        area.addEventListener("click", function (ev) {
+            var btn = ev.target.closest(".ws-disc-btn");
+            if (!btn || btn.classList.contains("is-done") || btn.classList.contains("is-wrong")) { return; }
+            var di = parseInt(btn.dataset.di);
+            var val = btn.dataset.val === "true";
+            var item = sheet.disc[di];
+
+            if (val === item.correct) {
+                btn.classList.add("is-done", "is-pop");
+                $all('[data-di="' + di + '"]', area).forEach(function (b) {
+                    b.classList.add("is-done");
+                });
+                dots.children[answered].classList.add("done");
+                answered++;
+                guide.flash("correct", "idle", 1100);
+                fb.textContent = "\u2713 Correct! \u0623\u062d\u0633\u0646\u062a";
+                fb.className = "ws-feedback ok";
+                if (answered === sheet.disc.length) {
+                    guide.set("done");
+                    state.discDone = true;
+                    onActivityDone();
+                }
+            } else {
+                state.mistakes += 1;
+                btn.classList.add("is-wrong");
+                guide.flash("wrong", "idle", 1300);
+                fb.textContent = "Try again! \u062d\u0627\u0648\u0644 \u0645\u0631\u0629 \u0623\u062e\u0631\u0649";
+                fb.className = "ws-feedback err";
+                setTimeout(function () { btn.classList.remove("is-wrong"); }, 520);
+            }
+        });
+
+        guide.set("idle");
+
+        return {
+            reset: function () {
+                answered = 0;
+                fb.textContent = ""; fb.className = "ws-feedback";
+                $all(".ws-disc-btn", area).forEach(function (b) {
+                    b.classList.remove("is-done", "is-wrong", "is-pop");
+                });
+                $all("i", dots).forEach(function (d) { d.classList.remove("done"); });
+            }
+        };
+    }
+
+    /* ===================== coloring activity ========================= */
+    function buildColor(section, sheet, state) {
+        var data = sheet.color;
+        var head = el("div", "ws-head");
+        head.appendChild(el("h2", null, "Color the Picture"));
+        head.appendChild(el("p", "ar", "\u0627\u0644\u062a\u0644\u0648\u064a\u0646")).dir = "rtl";
+        var dots = el("div", "ws-dots");
+        data.zones.forEach(function () { dots.appendChild(el("i")); });
+        head.appendChild(dots);
+        section.appendChild(head);
+
+        var guide = makeGuide(section, data.guide || sheet.colorGuide);
+        var area = el("div", "ws-color-area");
+
+        var zoneEls = el("div", "ws-color-zones");
+        data.zones.forEach(function (z, zi) {
+            var card = el("button", "ws-color-zone");
+            card.type = "button";
+            card.dataset.zi = String(zi);
+            var arSpan = el("span", "ws-ar ar", z.label.ar);
+            card.appendChild(arSpan); card.dir = "rtl";
+            if (z.label.en) { card.appendChild(el("span", "ws-en", z.label.en)); }
+            zoneEls.appendChild(card);
+        });
+        area.appendChild(zoneEls);
+
+        var palette = el("div", "ws-color-palette");
+        palette.setAttribute("role", "group");
+        palette.setAttribute("aria-label", "Color palette");
+        data.palette.forEach(function (c) {
+            var sw = el("button", "ws-color-swatch");
+            sw.type = "button";
+            sw.dataset.color = c;
+            sw.style.background = c;
+            sw.setAttribute("aria-label", "Color " + c);
+            palette.appendChild(sw);
+        });
+        area.appendChild(palette);
+        section.appendChild(area);
+
+        var fb = el("p", "ws-feedback");
+        fb.setAttribute("role", "status");
+        fb.setAttribute("aria-live", "polite");
+        section.appendChild(fb);
+
+        var selectedColor = null;
+        var colored = 0;
+
+        palette.addEventListener("click", function (ev) {
+            var sw = ev.target.closest(".ws-color-swatch");
+            if (!sw) { return; }
+            $all(".is-picked", palette).forEach(function (s) { s.classList.remove("is-picked"); });
+            sw.classList.add("is-picked");
+            selectedColor = sw.dataset.color;
+            guide.set("picked");
+        });
+
+        area.addEventListener("click", function (ev) {
+            var zone = ev.target.closest(".ws-color-zone");
+            if (!zone || zone.classList.contains("is-done") || !selectedColor) { return; }
+            var zi = parseInt(zone.dataset.zi);
+            zone.style.background = selectedColor;
+            zone.classList.add("is-done", "is-pop");
+            dots.children[colored].classList.add("done");
+            colored++;
+            guide.flash("correct", "idle", 900);
+            fb.textContent = "\u2713 Colored! \u0644\u0648\u0646\u0646\u062a";
+            fb.className = "ws-feedback ok";
+            if (colored === data.zones.length) {
+                guide.set("done");
+                state.colorDone = true;
+                onActivityDone();
+            }
+        });
+
+        guide.set("idle");
+
+        return {
+            reset: function () {
+                colored = 0;
+                selectedColor = null;
+                fb.textContent = ""; fb.className = "ws-feedback";
+                $all(".ws-color-zone", area).forEach(function (z) {
+                    z.classList.remove("is-done", "is-pop");
+                    z.style.background = "";
+                });
+                $all(".is-picked", palette).forEach(function (s) { s.classList.remove("is-picked"); });
+                $all("i", dots).forEach(function (d) { d.classList.remove("done"); });
+                guide.set("idle");
+            }
+        };
+    }
+
+    /* ===================== naming activity (fill wrapper) ============ */
+    function buildName(section, sheet, state) {
+        var fakeSheet = {
+            fillGuide: sheet.nameGuide,
+            fill: sheet.name.map(function (n) {
+                return { before: "", answer: n.label.ar, after: "", en: n.label.en || "" };
+            }),
+            bank: (function () {
+                var labels = sheet.name.map(function (n) { return n.label.ar; });
+                sheet.name.forEach(function (n) {
+                    (n.distractors || []).forEach(function (d) { labels.push(d); });
+                });
+                return shuffled(labels);
+            })()
+        };
+        return buildFill(section, fakeSheet, state);
+    }
+
     /* ====================== sheet assembly / route ==================== */
     var root = null;
     var crumbCurrent = null;
@@ -510,9 +815,16 @@
     function onActivityDone() {
         if (this && this.arg) {} /* noop */
         var sheet = onActivityDone.sheetRef;
-        if (!sheet) { return; }
         var st = onActivityDone.stateRef;
-        if (st.matchDone && st.fillDone) { showResult(sheet, st); }
+        if (!sheet || !st) { return; }
+        var allDone = true;
+        if (sheet.match && sheet.match.length && !st.matchDone) { allDone = false; }
+        if (sheet.fill && sheet.fill.length && !st.fillDone) { allDone = false; }
+        if (sheet.quiz && sheet.quiz.length && !st.quizDone) { allDone = false; }
+        if (sheet.disc && sheet.disc.length && !st.discDone) { allDone = false; }
+        if (sheet.color && sheet.color.zones && sheet.color.zones.length && !st.colorDone) { allDone = false; }
+        if (sheet.name && sheet.name.length && !st.nameDone) { allDone = false; }
+        if (allDone) { showResult(sheet, st); }
     }
     function bindCompletion(sheet, state) {
         onActivityDone.sheetRef = sheet;
@@ -531,8 +843,14 @@
     }
 
     function backHref(sheet) {
-        var n = String(sheet.stage).replace(/^s/, "");
-        var dest = "stage-" + n + "-" + sheet.subject + ".html";
+        var s = String(sheet.stage);
+        var mp = s.match(/^s(\d+)p(\d+)$/);
+        var dest;
+        if (mp) {
+            dest = "stage-" + mp[1] + "-part" + mp[2] + "-" + sheet.subject + ".html";
+        } else {
+            dest = "stage-" + s.replace(/^s/, "") + "-" + sheet.subject + ".html";
+        }
         var ref = document.referrer;
         var here = location.href.split("#")[0];
         if (ref && ref.split("#")[0] !== here && ref.indexOf(location.origin + "/") === 0) {
@@ -551,7 +869,18 @@
     function renderSheet(key, sheet) {
         root.innerHTML = "";
         resetters = [];
-        var state = { mistakes: 0, matchDone: false, fillDone: false };
+        var hasMatch = !!(sheet.match && sheet.match.length);
+        var hasFill  = !!(sheet.fill && sheet.fill.length);
+        var hasQuiz  = !!(sheet.quiz && sheet.quiz.length);
+        var hasDisc  = !!(sheet.disc && sheet.disc.length);
+        var hasColor = !!(sheet.color && sheet.color.zones && sheet.color.zones.length);
+        var hasName  = !!(sheet.name && sheet.name.length);
+        var state = {
+            mistakes: 0,
+            matchDone: !hasMatch, fillDone: !hasFill,
+            quizDone: !hasQuiz, discDone: !hasDisc,
+            colorDone: !hasColor, nameDone: !hasName
+        };
 
         if (crumbCurrent) {
             crumbCurrent.textContent = (sheet.title.en || key) + " Worksheet";
@@ -559,25 +888,31 @@
 
         var hero = el("header", "ws-hero");
         hero.appendChild(el("h1", null,
-            '<span class="ar" dir="rtl">' + (sheet.title.ar || "") + " · ورقة عمل</span>" +
+            '<span class="ar" dir="rtl">' + (sheet.title.ar || "") + " \u00b7 \u0648\u0631\u0642\u0629 \u0639\u0645\u0644</span>" +
             (sheet.title.en || "")));
         var chips = el("div", "chip-row");
-        var sl = STAGE_LABELS[sheet.stage] || { en: sheet.stage || "", ar: "" };
+        var sl = stageLabel(sheet.stage);
         var sj = SUBJECT_LABELS[sheet.subject] || { en: sheet.subject || "", ar: "" };
-        chips.appendChild(el("span", "stage-chip", sl.en + " · " + sl.ar));
-        chips.appendChild(el("span", "stage-chip", sj.en + " · " + sj.ar));
+        chips.appendChild(el("span", "stage-chip", sl.en + " \u00b7 " + sl.ar));
+        chips.appendChild(el("span", "stage-chip", sj.en + " \u00b7 " + sj.ar));
         hero.appendChild(chips);
         root.appendChild(buildBack(sheet));
         root.appendChild(hero);
 
-        var secM = el("section", "ws-activity ws-hue-" + (sheet.hue || 1));
-        var secF = el("section", "ws-activity ws-hue-" + (sheet.hue || 1));
+        function addSection(buildFn, dataGuard) {
+            if (!dataGuard) { return; }
+            var sec = el("section", "ws-activity ws-hue-" + (sheet.hue || 1));
+            resetters.push(buildFn(sec, sheet, state).reset);
+            root.appendChild(sec);
+        }
+        addSection(buildMatch, hasMatch);
+        addSection(buildFill, hasFill);
+        addSection(buildQuiz, hasQuiz);
+        addSection(buildDisc, hasDisc);
+        addSection(buildColor, hasColor);
+        addSection(buildName, hasName);
 
         bindCompletion(sheet, state);
-        resetters.push(buildMatch(secM, sheet, state).reset);
-        root.appendChild(secM);
-        resetters.push(buildFill(secF, sheet, state).reset);
-        root.appendChild(secF);
 
         resultPanel = el("section", "ws-result");
         starBox = el("p", "ws-stars");
@@ -596,7 +931,10 @@
         root.appendChild(resultPanel);
 
         retryBtn.addEventListener("click", function () {
-            state.mistakes = 0; state.matchDone = false; state.fillDone = false;
+            state.mistakes = 0;
+            state.matchDone = !hasMatch; state.fillDone = !hasFill;
+            state.quizDone = !hasQuiz; state.discDone = !hasDisc;
+            state.colorDone = !hasColor; state.nameDone = !hasName;
             resultPanel.classList.remove("show");
             doneBtn.classList.remove("is-on");
             resetters.forEach(function (fn) { fn(); });
@@ -641,7 +979,7 @@
         var grid = el("div", "ws-picker-grid");
         Object.keys(W).sort().forEach(function (key) {
             var s = W[key];
-            var sl = STAGE_LABELS[s.stage] || { en: s.stage || "", ar: "" };
+            var sl = stageLabel(s.stage);
             var sj = SUBJECT_LABELS[s.subject] || { en: "", ar: "" };
             var a = el("a", "ws-pick-card ws-hue-" + (s.hue || 1),
                 '<span class="ws-pick-subject">' + sl.en + " · " + sj.en + "</span>" +

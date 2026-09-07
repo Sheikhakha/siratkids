@@ -5378,6 +5378,10 @@ a.journey-card:focus-visible,
 .ws-main .ws-guide-ar,
 .ws-main .ws-back .ar,
 .ws-pick-card .ws-pick-title.ar,
+.ws-main .ws-quiz-text,
+.ws-main .ws-quiz-opt .ws-ar,
+.ws-main .ws-disc-text,
+.ws-main .ws-color-zone .ws-ar,
 .ws-blank,
 .ws-chip,
 .ws-drag-ghost {
@@ -5396,6 +5400,94 @@ a.journey-card:focus-visible,
 .ws-drag-ghost { font-size: 27px; }
 .ws-pick-title.ar { font-size: 24px; }
 
+/* ---- quiz: MCQ options ---- */
+.ws-quiz-options { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+.ws-quiz-opt {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    padding: 14px 18px;
+    border: 2px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    background: var(--surface-card);
+    cursor: pointer; text-align: center;
+    transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    min-height: 48px;
+}
+.ws-quiz-opt:hover:not(.is-done):not(.is-wrong) {
+    border-color: var(--ws-accent, var(--primary)); transform: translateY(-2px);
+}
+.ws-quiz-opt .ws-ar { font-size: 24px; color: var(--text-dark); }
+.ws-quiz-opt .ws-en { font-size: 13px; color: var(--text-medium); }
+.ws-quiz-opt.is-done {
+    border-color: var(--accent-success);
+    background: color-mix(in srgb, var(--accent-success) 10%, var(--surface-page));
+    cursor: default;
+}
+.ws-quiz-opt.is-wrong {
+    border-color: var(--accent-error);
+    animation: ws-shake 0.45s ease;
+}
+.ws-quiz-text { font-size: 24px; line-height: 1.8; color: var(--text-dark); margin-bottom: 4px; }
+
+/* ---- discriminate: true/false ---- */
+.ws-disc-item { text-align: center; }
+.ws-disc-text { font-size: 23px; line-height: 2; color: var(--text-dark); }
+.ws-disc-btns { display: flex; justify-content: center; gap: 12px; margin-top: 12px; }
+.ws-disc-btn {
+    flex: 1; max-width: 180px;
+    padding: 12px 16px;
+    border: 2px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    background: var(--surface-card);
+    cursor: pointer; font-weight: 800; font-size: 15px;
+    min-height: 48px;
+    transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+.ws-disc-true { color: var(--accent-success); }
+.ws-disc-false { color: var(--accent-error); }
+.ws-disc-btn:hover:not(.is-done):not(.is-wrong) {
+    border-color: var(--ws-accent, var(--primary)); transform: translateY(-2px);
+}
+.ws-disc-btn.is-done {
+    border-color: var(--accent-success);
+    background: color-mix(in srgb, var(--accent-success) 10%, var(--surface-page));
+    cursor: default;
+}
+.ws-disc-btn.is-wrong {
+    border-color: var(--accent-error);
+    animation: ws-shake 0.45s ease;
+}
+
+/* ---- coloring: palette and zones ---- */
+.ws-color-zones { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 18px; }
+.ws-color-zone {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    padding: 18px 12px;
+    border: 3px dashed var(--border-default);
+    border-radius: var(--radius-sm);
+    background: var(--surface-card);
+    cursor: pointer; min-height: 80px;
+    transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+.ws-color-zone:hover:not(.is-done) { border-color: var(--ws-accent, var(--primary)); transform: scale(1.04); }
+.ws-color-zone .ws-ar { font-size: 20px; color: var(--text-dark); }
+.ws-color-zone .ws-en { font-size: 13px; color: var(--text-medium); }
+.ws-color-zone.is-done { border-style: solid; cursor: default; }
+.ws-color-palette {
+    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+    padding-top: 14px; border-top: 1px dashed var(--border-default);
+}
+.ws-color-swatch {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 3px solid var(--border-default);
+    cursor: pointer; padding: 0;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.ws-color-swatch:hover { transform: scale(1.15); }
+.ws-color-swatch.is-picked {
+    border-color: var(--text-dark); transform: scale(1.2);
+    box-shadow: 0 0 0 3px var(--ws-accent, var(--primary));
+}
+
 /* ---- responsive ---- */
 @media (max-width: 620px) {
     .ws-cols { grid-template-columns: 1fr; }
@@ -5406,14 +5498,21 @@ a.journey-card:focus-visible,
     .ws-activity .ws-card .ws-ar { font-size: 22px; }
     .ws-chip { font-size: 23px; }
     .ws-head .ar { font-size: 22px; }
+    .ws-quiz-text { font-size: 20px; }
+    .ws-quiz-opt .ws-ar { font-size: 20px; }
+    .ws-disc-text { font-size: 20px; }
+    .ws-color-zone .ws-ar { font-size: 17px; }
+    .ws-color-swatch { width: 40px; height: 40px; }
 }
 
 /* ---- reduced motion / print ---- */
 @media (prefers-reduced-motion: reduce) {
     .ws-guide.is-pop, .is-pop, .ws-blank.ok, .ws-blank.bad,
-    .ws-card.is-wrong, .ws-result.show { animation: none !important; }
+    .ws-card.is-wrong, .ws-quiz-opt.is-wrong, .ws-disc-btn.is-wrong,
+    .ws-result.show { animation: none !important; }
 }
 @media print {
-    .navbar, .footer, .breadcrumb, .ws-bank, .ws-btnrow, .ws-guide, .ws-dots { display: none !important; }
+    .navbar, .footer, .breadcrumb, .ws-bank, .ws-btnrow, .ws-guide, .ws-dots,
+    .ws-quiz-options, .ws-disc-btns, .ws-color-palette { display: none !important; }
     .ws-activity, .ws-result { box-shadow: none; break-inside: avoid; }
 }
