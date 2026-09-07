@@ -1,6 +1,19 @@
-# Session Resume — 2026-09-07 (commit `a24a226`)
+# Session Resume — 2026-09-07 (commits `fdffbd8`, `9c571fe`)
 
-## Status (updated after Phase 2 commit `fdffbd8`)
+## NEW DIRECTION (2026-09-07, owner): Build full Stages 3-6 lesson pages
+Owner wants every subscription/hub/subject/unit AND individual bilingual lesson page
+(build from OCR PDF). **Audio deferred** — "audio coming soon" placeholder, no MP3/player yet.
+
+## CRITICAL BLOCKER for stages 3-6 content
+The OCR in `data/extracted/s3*`/`s4*`/`s5*`/`s6*` is **unreadable mojibake**
+(e.g. `O\u,O�O3U,O\u.`) — Arabic letter bodies are corrupted and NOT recoverable.
+Evidence: even `s2` OCR is the same mojibake, yet Stage 0-2 lessons on the site have clean
+Arabic — proving existing lessons were authored from a CLEAN source, NOT this OCR. This OCR
+is only a jumbled fallback. So correct bilingual lesson content cannot be authored from it.
+Owner plan: **they will load the clean lesson data separately, then return here** to build.
+Until then stages 3-6 content build stays TODO (see bottom).
+
+## Status (worksheet plan — phases 2-3 shipped)
 - **Phase 2 shipped:** worksheet engine now renders `match`/`fill`/`quiz`/`disc`/`color`/`name`;
   25 data keys authored (s0 ×6, s1 ×10, s2 ×9) — all ayah proof text verified verbatim against
   quran.com `ar-simple-clean` (refs 2:21, 2:255, 7:54, 7:158, 10:56, 13:28, 39:62, 39:66,
@@ -62,6 +75,14 @@ Unit-level activity audit delivered in `docs/pdf-activity-audit.md`.
 - `qa` book: re-add `QA_Level1.pdf` to `data/pdfs/official/` to audit, or drop it.
 - Stage-0 printable count confirmation (recommended 3).
 - s5p2/s6p2 subject naming: s5p2 → seerah, s6p2 → adab (used in scaffold list above).
+
+## Stages 3-6 build — remaining TODO (blocked on owner loading clean lesson data)
+1. Stage 3: stage/subject/unit hubs + all lesson pages (bilingual EN/AR + translit/Tamil, toggles, audio-coming-soon).
+2. Stage 4: same build.
+3. Stage 5 (parts 1+2): same build.
+4. Stage 6 (parts 1+2): same build.
+5. Stage 5/6 worksheet data (s5p1/s5p2/s6p1/s6p2 keys) — after lesson pages exist.
+When clean data is loaded, resume here; do NOT try to author Arabic from the current corrupt OCR.
 
 ## Useful references
 - Audit matrix: `docs/pdf-activity-audit.md` (unit ranges, activity types per unit).
