@@ -4327,40 +4327,6 @@ body.drawer-lock { overflow: hidden; }
 }
 
 /* ---- hero refinements ---- */
-.bismillah-frame {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 18px;
-}
-.bismillah {
-    display: block;
-    font-family: var(--font-ar-nastaleeq);
-    font-size: clamp(30px, 4.6vw, 54px);
-    line-height: 1.7;
-    white-space: nowrap;
-    color: var(--primary);
-    text-shadow: 0 3px 16px color-mix(in srgb, var(--primary) 30%, transparent);
-}
-.orn {
-    position: relative;
-    flex: 1;
-    max-width: 170px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, color-mix(in srgb, #E8B54D 85%, transparent));
-}
-.orn-right { background: linear-gradient(to left, transparent, color-mix(in srgb, #E8B54D 85%, transparent)); }
-.orn::after {
-    content: '';
-    position: absolute;
-    top: -3.5px;
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: #E8B54D;
-    box-shadow: 0 0 10px color-mix(in srgb, #E8B54D 60%, transparent);
-}
 .orn-left::after { right: -2px; }
 .orn-right::after { left: -2px; }
 
@@ -5252,8 +5218,6 @@ a.journey-card:focus-visible,
     .bento-tile-wide { grid-column: span 1; }
     .bento-tile-banner { flex-direction: column; align-items: flex-start; }
     .bento-tile-banner .kids-list { max-width: none; }
-    .bismillah-frame { gap: 12px; margin-bottom: 14px; }
-    .orn { max-width: 90px; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .stat { padding: 20px 10px; }
     .stat-num { font-size: 1.7rem; }
