@@ -4986,6 +4986,10 @@ a.journey-card:focus-visible,
     font-size: .9rem;
     line-height: 1.65;
 }
+.translate-notice a {
+    color: inherit;
+    text-decoration: underline;
+}
 
 /* ---- dark theme overrides ---- */
 [data-theme='dark'] .stats-grid,
