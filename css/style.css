@@ -4990,6 +4990,12 @@ a.journey-card:focus-visible,
     color: inherit;
     text-decoration: underline;
 }
+.contact-email {
+    font-weight: 800;
+    white-space: nowrap;
+    user-select: all;
+    cursor: text;
+}
 
 /* ---- dark theme overrides ---- */
 [data-theme='dark'] .stats-grid,
