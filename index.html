@@ -440,6 +440,120 @@
     </script>
     <script>
         (function () {
+            var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            /* golden path beam down the journey timeline + stage markers lighting up */
+            var journey = document.querySelector('.journey');
+            var nodes = journey ? journey.querySelectorAll('.journey-node') : [];
+            function setBeam() {
+                if (!journey) return;
+                var r = journey.getBoundingClientRect();
+                var vh = window.innerHeight || document.documentElement.clientHeight;
+                var passed = Math.min(Math.max(vh * 0.72 - r.top, 0), r.height);
+                var frac = r.height ? passed / r.height : 0;
+                journey.style.setProperty('--beam', frac.toFixed(4));
+                if (frac < 0.015) { journey.classList.add('beam-off'); }
+                else { journey.classList.remove('beam-off'); }
+                nodes.forEach(function (n) {
+                    var nr = n.getBoundingClientRect();
+                    if (nr.top + nr.height * 0.35 < vh * 0.72) n.classList.add('lit');
+                    else n.classList.remove('lit');
+                });
+            }
+            /* bouncy pop-in for subject, feature and credits tiles (same rAF scroll check) */
+            var popEls = [];
+            if (!reduced) {
+                document.querySelectorAll('.subjects-bento, .feat-grid, .credits-grid').forEach(function (grid) {
+                    grid.querySelectorAll('.bento-tile, .feat-card').forEach(function (el, i) {
+                        el.classList.add('pop-armed');
+                        el.style.setProperty('--pd', (i % 6) * 70 + 'ms');
+                        popEls.push(el);
+                    });
+                });
+            }
+            function checkPops() {
+                var vh = window.innerHeight || document.documentElement.clientHeight;
+                popEls.forEach(function (el) {
+                    if (el.classList.contains('popped')) return;
+                    var r = el.getBoundingClientRect();
+                    if (r.top < vh * 0.9 && r.bottom > 0) el.classList.add('popped');
+                });
+            }
+            if (!reduced) {
+                var ticking = false;
+                var onScroll = function () {
+                    if (ticking) return;
+                    ticking = true;
+                    requestAnimationFrame(function () { setBeam(); checkPops(); ticking = false; });
+                };
+                window.addEventListener('scroll', onScroll, { passive: true });
+                window.addEventListener('resize', onScroll);
+                onScroll();
+            } else if (journey) {
+                nodes.forEach(function (n) { n.classList.add('lit'); });
+            }
+
+            /* twinkling golden sparkles along the page edges */
+            function makeSky(host, count) {
+                if (!host || reduced || host.querySelector('.surah-scroll-decor')) return;
+                var wrap = document.createElement('div');
+                wrap.className = 'surah-scroll-decor';
+                wrap.setAttribute('aria-hidden', 'true');
+                for (var i = 0; i < count; i++) {
+                    var s = document.createElement('span');
+                    s.className = 'sk-star';
+                    s.textContent = i % 2 ? '\u2727' : '\u2726';
+                    s.style.left = (i % 2 ? 89 + Math.random() * 9 : 2 + Math.random() * 9).toFixed(2) + '%';
+                    s.style.top = (6 + Math.random() * 86).toFixed(2) + '%';
+                    s.style.fontSize = (10 + Math.random() * 8).toFixed(1) + 'px';
+                    s.style.setProperty('--td', (Math.random() * 6).toFixed(2) + 's');
+                    s.style.setProperty('--to', (0.45 + Math.random() * 0.4).toFixed(2));
+                    s.style.setProperty('--tDur', (5 + Math.random() * 4).toFixed(2) + 's');
+                    if (i % 3 === 0) s.style.color = '#E8B54D';
+                    wrap.appendChild(s);
+                }
+                host.insertBefore(wrap, host.firstChild);
+            }
+            makeSky(document.querySelector('.journey-section'), 26);
+            makeSky(document.querySelector('.cta-band'), 18);
+            makeSky(document.getElementById('credits'), 18);
+
+            /* star-burst wherever empty space is clicked */
+            var BURST_CHARS = ['\u2726', '\u2727', '\u2b50', '\u00b7'];
+            var lastBurst = 0;
+            document.addEventListener('click', function (ev) {
+                if (reduced || ev.defaultPrevented) return;
+                var t = ev.target;
+                if (t.closest && t.closest('a, button, input, select, textarea, label, .bento-tile, .journey-card, .journey-marker, .kids-list, .stat, .stage-card, .subj-tile, .cta-btn')) return;
+                var now = Date.now();
+                if (now - lastBurst < 120) return;
+                lastBurst = now;
+                var n = 14 + Math.floor(Math.random() * 8);
+                for (var i = 0; i < n; i++) {
+                    var s = document.createElement('span');
+                    s.className = 'sk-burst-star';
+                    s.textContent = BURST_CHARS[i % BURST_CHARS.length];
+                    var ang = Math.random() * Math.PI * 2;
+                    var dist = 34 + Math.random() * 92;
+                    s.style.left = ev.clientX + 'px';
+                    s.style.top = ev.clientY + 'px';
+                    s.style.fontSize = (9 + Math.random() * 13).toFixed(1) + 'px';
+                    if (i % 3 === 0) s.style.color = '#E8B54D';
+                    s.style.setProperty('--dx', (Math.cos(ang) * dist).toFixed(1) + 'px');
+                    s.style.setProperty('--dy', (Math.sin(ang) * dist - 22).toFixed(1) + 'px');
+                    s.style.animationDuration = (0.6 + Math.random() * 0.45).toFixed(2) + 's';
+                    document.body.appendChild(s);
+                }
+                setTimeout(function () {
+                    document.querySelectorAll('.sk-burst-star').forEach(function (el) {
+                        if (el.parentNode) el.parentNode.removeChild(el);
+                    });
+                }, 1200);
+            });
+        })();
+    </script>
+    <script>
+        (function () {
             var link = document.getElementById('contact-toggle');
             var slot = document.getElementById('contact-email');
             if (!link || !slot) return;
