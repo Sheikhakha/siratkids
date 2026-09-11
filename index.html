@@ -443,6 +443,11 @@
             var link = document.getElementById('contact-toggle');
             var slot = document.getElementById('contact-email');
             if (!link || !slot) return;
+            var hideTimer = null;
+            function hideEmail() {
+                slot.hidden = true;
+                try { window.getSelection().removeAllRanges(); } catch (err) { /* ignore */ }
+            }
             link.addEventListener('click', function (e) {
                 e.preventDefault();
                 if (slot.textContent === '') {
@@ -459,6 +464,8 @@
                 if (navigator.clipboard && navigator.clipboard.writeText) {
                     navigator.clipboard.writeText(slot.textContent).catch(function () {});
                 }
+                clearTimeout(hideTimer);
+                hideTimer = setTimeout(hideEmail, 10000);
             });
         })();
     </script>
