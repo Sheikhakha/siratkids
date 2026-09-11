@@ -6063,3 +6063,100 @@ a.journey-card:focus-visible,
 [data-theme='dark'] .home-hero .ln-wire { stroke: rgba(129,140,248,.4); }
 [data-theme='dark'] .home-hero .ln-body { fill: var(--fh-cream); }
 [data-theme='dark'] .home-hero .ln-glow { opacity: 0; animation: none; }
+
+/* ============================================================
+   PREMIUM FLORAL HOMEPAGE COLOR SYSTEM — appended override
+   Extends the bismi floral palette below the hero so the whole
+   homepage uses one family: indigo = structure/headings,
+   gold = premium decorative accents, crimson = action (hero CTA).
+   The remaining teal/rainbow theme accents (journey markers,
+   timeline, kickers, subject bento, stats, CTA band) are unified
+   here. Scoped to home-only section classes (index.html only).
+   Decisions: color-theory (<=5 chromatic hues, 60-30-10,
+   AA contrast on all text) + ui-design (consistency, one accent).
+   ============================================================ */
+
+/* -- floral tokens shared by homepage sections -- */
+.journey-section, .subjects-section, .why-section, .mission-section,
+.credits-section, .stats-band, .cta-band {
+    --fh-indigo: #2A378A;
+    --fh-indigo-deep: #1B2560;
+    --fh-indigo-soft: rgba(42,55,138,.10);
+    --fh-gold: #FBD679;
+    --fh-gold-deep: #C99A34;
+    --fh-line: #C9A96E;
+    --fh-crimson: #A03A38;
+}
+[data-theme='dark'] .journey-section, [data-theme='dark'] .subjects-section,
+[data-theme='dark'] .why-section, [data-theme='dark'] .mission-section,
+[data-theme='dark'] .credits-section, [data-theme='dark'] .stats-band,
+[data-theme='dark'] .cta-band {
+    --fh-indigo: #A9B7FF;
+    --fh-indigo-deep: #6E7CF5;
+    --fh-indigo-soft: rgba(169,183,255,.12);
+    --fh-gold-deep: #F4C95D;
+}
+
+/* 1 -- section kickers + headings in floral indigo (was teal theme) */
+.journey-section .kicker, .subjects-section .kicker, .why-section .kicker,
+.credits-section .kicker, .mission-section .kicker {
+    color: var(--fh-indigo);
+    background: var(--fh-indigo-soft);
+    border-color: color-mix(in srgb, var(--fh-indigo) 22%, transparent);
+}
+.journey-section > h2, .subjects-section > h2, .why-section > h2,
+.credits-section > h2, .mission-section > h2 {
+    color: var(--fh-indigo);
+}
+
+/* 2 -- stats numbers: floral indigo gradient (was theme indigo/slate) */
+.stats-band .stat-num {
+    background: linear-gradient(135deg, var(--fh-indigo), var(--fh-indigo-deep));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* 3 -- journey timeline: unify rainbow markers/line into indigo */
+.journey::before {
+    background: linear-gradient(180deg, var(--fh-indigo), var(--fh-indigo-deep) 60%, var(--fh-indigo));
+    opacity: .35;
+}
+.journey-node .journey-marker {
+    border-color: var(--fh-indigo);
+    box-shadow: 0 0 0 6px var(--fh-indigo-soft), var(--shadow-sm);
+}
+.journey-node::before { color: var(--fh-indigo); opacity: .4; }
+
+/* age badges: gold reads too soft at small size -> indigo (AA text) */
+.journey-age {
+    color: var(--fh-indigo);
+    background: var(--fh-indigo-soft);
+}
+
+/* card hover: brass/gold hairline (premium) instead of green */
+a.journey-card:hover { border-color: var(--fh-line); }
+[data-theme='dark'] a.journey-card:hover { border-color: rgba(251,214,121,.45); }
+
+/* 4 -- subject bento: one indigo identity, emojis keep the colour */
+.subjects-section .subj-accent-tawheed,
+.subjects-section .subj-accent-fiqh,
+.subjects-section .subj-accent-hadith,
+.subjects-section .subj-accent-seerah,
+.subjects-section .subj-accent-adhkar {
+    --bento-accent: var(--fh-indigo);
+}
+
+/* 5 -- CTA band: royal-indigo night-sky (was indigo->teal), gold crest */
+.cta-band .cta-inner {
+    background-image:
+        radial-gradient(circle at 14% 118%, rgba(251,214,121,.28), rgba(0,0,0,0) 46%),
+        linear-gradient(120deg, #242F72 0%, var(--fh-indigo) 48%, #4A57C9 100%);
+    box-shadow: 0 16px 44px rgba(27,37,96,.35);
+}
+[data-theme='dark'] .cta-band .cta-inner {
+    background-image:
+        radial-gradient(circle at 14% 118%, rgba(251,214,121,.20), rgba(0,0,0,0) 46%),
+        linear-gradient(120deg, #1B2560 0%, #2A378A 48%, #3D4AB3 100%);
+    box-shadow: 0 16px 44px rgba(0,0,0,.45);
+}
