@@ -34,6 +34,10 @@ SOURCES = {
     's2': ('data/pdfs/SecondStage.pdf', 'images/pdf/s2'),
     's3': ('data/pdfs/ThirdStage.pdf', 'images/pdf/s3'),
     's4': ('data/pdfs/FourthStage.pdf', 'images/pdf/s4'),
+    's5p1': ('data/pdfs/Fifthstage_FirstBook.pdf', 'images/pdf/s5p1'),
+    's5p2': ('data/pdfs/FifthStage_SecondBook.pdf', 'images/pdf/s5p2'),
+    's6p1': ('data/pdfs/SixthStage_FirstBook.pdf', 'images/pdf/s6p1'),
+    's6p2': ('data/pdfs/SixthStage_SecondBook.pdf', 'images/pdf/s6p2'),
 }
 
 
@@ -73,7 +77,7 @@ def render(key, scale):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--scale', type=float, default=2.0)
-    ap.add_argument('--only', choices=['pre', 's1', 's2', 's3', 's4'], default=None)
+    ap.add_argument('--only', choices=list(SOURCES), default=None)
     args = ap.parse_args()
     keys = [args.only] if args.only else list(SOURCES)
     for k in keys:

@@ -1,0 +1,321 @@
+{
+  "key": "adhkar",
+  "title": {
+    "en": "Adhkar (Remembering Allah) and Supplications",
+    "ar": "الأَذْكَارُ والأَدْعِيَةُ"
+  },
+  "units": [
+    {
+      "no": 1,
+      "title": {
+        "en": "The Virtue of Dhikr and the Prescribed Adhkar",
+        "ar": "فَضْلُ الذِّكْرِ وَالْأَذْكَارِ الْمَشْرُوعَةِ"
+      },
+      "lessons": [
+        {
+          "file": "s3-adhkar-1-1",
+          "kind": "lesson",
+          "page": 204,
+          "title": {
+            "en": "The Virtue of Remembering Allah",
+            "ar": "فَضْلُ ذِكْرِ اللهِ"
+          },
+          "blocks": [
+            {
+              "type": "text",
+              "ar": "الذكرُ هو حياةُ القلوبِ وروحُ العبادةِ، وقد أمرَنا اللهُ عزَّ وجلَّ بالإكثارِ من ذكره؛ لأنَّ له أهميةً كبيرةً وفوائدَ عظيمةً، وهو من أفضلِ الأعمالِ المقرِّبةِ إلى اللهِ تعالى.\nفقال تعالى: ﴿يَا أَيُّهَا الَّذِينَ آمَنُوا اذْكُرُوا اللهَ ذِكْرًا كَثِيرًا﴾ (الأحزاب: ٤١).",
+              "en": "Remembrance (dhikr) is the life of the hearts and the spirit of worship. Allah the Exalted has commanded us to remember Him much, because it has great importance and mighty benefits, and it is one of the best deeds that bring a person closer to Allah the Exalted.\nAllah the Exalted said: \"O you who believe, remember Allah with much remembrance\" (Al-Ahzab: 41).",
+              "ta": "திக்ர் (இறைவனை நினைவுகூர்தல்) என்பது இதயங்களின் உயிர்; வணக்கத்தின் சாரம். இறைவன் அதிகமாக தம்மை நினைவுகூருமாறு கட்டளையிட்டான்; அது மகத்தான நன்மைகளையும், மேலான சிறப்பையும் கொண்டுள்ளது; இறைவனை நெருங்கச்செய்யும் சிறந்த செயல்களில் ஒன்று.\nஇறைவன் கூறினான்: \"நம்பிக்கையாளர்களே! அல்லாஹ்வை அதிகமாக நினைவுகூருங்கள்\" (33:41).",
+              "tr": "Adh-dhikru huwa hayatu al-qulubi wa ruhu al-'ibadah, wa qad amaruna Allahu 'azza wa jalla bil-ikthari min dhikrihi; li'anna lahu ahammiyyatan kabiratan wa fawa'ida 'azhimah, wa huwa min afdali al-a'mali al-muqarribati ila Allahi ta'ala.\nFaqala ta'ala: «Ya ayyuha alladhina amanu dhkurullaha dhikran kathira» (Al-Ahzab: 41)."
+            },
+            {
+              "type": "ayah",
+              "ref": "33:35",
+              "ar": "وَالذَّاكِرِينَ اللهَ كَثِيرًا وَالذَّاكِرَاتِ أَعَدَّ اللهُ لَهُمْ مَغْفِرَةً وَأَجْرًا عَظِيمًا",
+              "en": "And the men who remember Allah often and the women who do so: for them Allah has prepared forgiveness and a great reward.",
+              "ta": "அல்லாஹ்வை அதிகம் நினைவுகூரும் ஆண்களுக்கும் பெண்களுக்கும் அல்லாஹ் மன்னிப்பையும் மகத்தான நற்கூலியையும் தயார் செய்துள்ளான்.",
+              "tr": "Wa-zh-dhakirina Allaha kathiran wa-zh-dhakirati a'adda Allahu lahum maghfiratan wa ajran 'azhima."
+            },
+            {
+              "type": "hadith",
+              "ref": {
+                "collection": "sahih-bukhari",
+                "number": 6168,
+                "url": "https://search.hadith-mcp.org/?id=6168"
+              },
+              "ar": "عن أبي موسى الأشعريِّ رضي الله عنه قال: قال رسولُ اللهِ ﷺ: «مثلُ الذي يذكرُ ربَّه والذي لا يذكرُ ربَّه، مثلُ الحيِّ والميِّتِ». أخرجه البخاري.",
+              "en": "Abu Musa al-Ash'ari, may Allah be pleased with him, said: The Messenger of Allah ﷺ said: \"The example of the one who remembers his Lord and the one who does not remember his Lord is like the example of the living and the dead.\" Narrated by Al-Bukhari.",
+              "ta": "அபூ மூஸா அல்-அஷ்அரீ (ரலி) கூறினார்கள்: \"தம் இறைவனை நினைவுகூர்பவருக்கும் நினைவுகூராதவருக்கும் உதாரணம் உயிருள்ளவருக்கும் இறந்தவருக்கும் உள்ள உதாரணம் போன்றது\" என்று நபி ﷺ கூறினார்கள். (புகாரி)",
+              "tr": "'An Abi Musa al-Ash'ariyya radiyallahu 'anhu qal: qal rasulullahi ﷺ: «Mathalu alladhi yadhkuru rabbahu wa-alladhi la yadhkuru rabbahu, mathalu al-hayyi wal-mayyiti». Akhrajahu al-Bukhari."
+            },
+            {
+              "type": "ayah",
+              "ref": "13:28",
+              "ar": "أَلَا بِذِكْرِ اللهِ تَطْمَئِنُّ الْقُلُوبُ",
+              "en": "Verily, in the remembrance of Allah do hearts find rest.",
+              "ta": "நிச்சயமாக அல்லாஹ்வின் நினைவால் இதயங்கள் அமைதி அடைகின்றன.",
+              "tr": "Ala bidhikrillahi tatma'innu al-qulub."
+            },
+            {
+              "type": "text",
+              "ar": "من فوائدِ ذكرِ اللهِ تعالى:\n١- أنه سببٌ في تحصيلِ السعادةِ والسرورِ.\n٢- والوقايةِ من الهمومِ والأحزانِ وتفريجِ الكروبِ.\n٣- والاكثارُ من ذكرِ اللهِ سببٌ في مغفرةِ الذنوبِ وتحصيلِ الأجرِ العظيمِ.\n٤- والذكرُ حياةٌ للقلوبِ، وتركُه موتٌ لها.\nفعلى كلِّ مسلمٍ أن يُكثرَ من ذكرِ اللهِ عزَّ وجلَّ، حتى يتحصَّلَ على تلكَ الفوائدِ العظيمةِ.",
+              "en": "From the benefits of remembering Allah the Exalted:\n1. It is a means of attaining happiness and joy.\n2. It protects from worries and sorrows and relieves distress.\n3. Remembering Allah much is a means of forgiveness of sins and attaining the great reward.\n4. Remembrance is life for the hearts, and abandoning it is death for them.\nSo every Muslim should remember Allah the Exalted much, in order to attain these great benefits.",
+              "ta": "அல்லாஹ்வை நினைவுகூர்வதன் நன்மைகள்:\n1. மகிழ்ச்சிக்கும் மன மகிழ்ச்சிக்கும் காரணம்.\n2. கவலைகள், துக்கங்கள் ஆகியவற்றிலிருந்து பாதுகாத்து துன்பங்களை நீக்கும்.\n3. பாவ மன்னிப்பிற்கும் மகத்தான நற்கூலிக்கும் காரணம்.\n4. இதயங்களுக்கு உயிர்; அதை விடுவது இதய மரணத்திற்கு காரணம்.\nஎனவே ஒவ்வொரு முஸ்லிமும் இந்த மகத்தான நன்மைகளை அடைய இறைவனை அதிகம் நினைவுகூர வேண்டும்.",
+              "tr": "Min fawa'idi dhikrillahi ta'ala:\n1- innahu sababun fi tahsili as-sa'adati was-surur.\n2- wal-wiqayati mina al-humumi wal-ahzani wa tafriji al-kurub.\n3- wal-iktharu min dhikrillahi sababun fi maghfirati adh-dhunubi wa tahsili al-ajri al-'azhim.\n4- wad-dhikru hayatun lil-qulubi, wa tarkuhu mawtun laha.\nFa'ala kulli muslimin an yukthira min dhikrillahi 'azza wa jalla, hatta yatahassala 'ala tilka al-fawa'idi al-'azhimah."
+            }
+          ]
+        },
+        {
+          "file": "s3-adhkar-1-2",
+          "kind": "lesson",
+          "page": 208,
+          "title": {
+            "en": "Glorifying Allah: Subhanallah",
+            "ar": "التَّسْبِيحُ: سُبْحَانَ اللهِ"
+          },
+          "blocks": [
+            {
+              "type": "text",
+              "ar": "من الأذكارِ التي وردتْ في القرآنِ والسنَّةِ أن تُسبَّحَ اللهَ تعالى وتحمده وتكبِّرَه، وأن تقولَ: سبحانَ اللهِ، والحمدُ للهِ، ولا إلهَ إلا اللهُ، واللهُ أكبرُ، ولا حولَ ولا قوةَ إلا باللهِ، وسبحانَ اللهِ وبحمده، وسبحانَ اللهِ العظيمِ.",
+              "en": "Among the adhkar that were reported in the Quran and the Sunnah is that you glorify Allah the Exalted, praise Him, and magnify Him, and that you say: Subhanallah, wal-hamdu lillah, wa la ilaha illallah, wallahu akbar, wa la hawla wa la quwwata illa billah, Subhanallah wa bihamdihi, Subhanallah al-'Adhim.",
+              "ta": "குர்ஆனிலும் சுன்னத்திலும் வந்துள்ள திக்ருகளில்: சுப்ஹானல்லாஹ், அல்ஹம்து லில்லாஹ், லா இலாஹ இல்லல்லாஹ், அல்லாஹு அக்பர், லா ஹவ்ல வ லா குவ்வத்த இல்லாபில்லாஹ், சுப்ஹானல்லாஹி வ பிஹம்திஹி, சுப்ஹானல்லாஹில் அழீம் எனக் கூறுவதாகும்.",
+              "tr": "Mina al-adhkari allati waradat fi al-Qur'ani was-sunnati an tusabbiha Allaha ta'ala wa tahmadahu wa tukabbirahu, wa an taqula: Subhanallahi, wal-hamdu lillahi, wa la ilaha illallahu, wallahu akbaru, wa la hawla wa la quwwata illa billahi, wa Subhanallahi wa bihamdihi, wa Subhanallahi al-'Adhimi."
+            },
+            {
+              "type": "hadith",
+              "ref": {
+                "collection": "sahih-bukhari",
+                "number": 6166,
+                "url": "https://search.hadith-mcp.org/?id=6166"
+              },
+              "ar": "عن أبي هريرةَ رضي الله عنه قال: قال رسولُ اللهِ ﷺ: «من قال سبحانَ اللهِ وبحمده في يومٍ مائةَ مرةٍ، حطَّتْ خطاياهُ وإن كانتْ مثلَ زبدِ البحرِ». أخرجه البخاري.",
+              "en": "Abu Hurairah, may Allah be pleased with him, said: The Messenger of Allah ﷺ said: \"Whoever says Subhanallah wa bihamdihi one hundred times in a day, his sins will be removed even if they were as much as the foam of the sea.\" Narrated by Al-Bukhari.",
+              "ta": "அபூ ஹுரைரா (ரலி) கூறினார்கள்: \"ஒரு நாளில் நூறு முறை 'சுப்ஹானல்லாஹி வபிஹம்திஹி' என்று கூறுபவரின் பாவங்கள், கடல் நுரை அளவு இருந்தாலும், நீக்கப்படும்\" என்று நபி ﷺ கூறினார்கள். (புகாரி)",
+              "tr": "'An Abi Hurairata radiyallahu 'anhu qal: qal rasulullahi ﷺ: «Man qala Subhanallahi wa bihamdihi fi yawmin mi'ata marratin, huttat khatayahu wa in kanat mithla zabadi al-bahri». Akhrajahu al-Bukhari."
+            },
+            {
+              "type": "hadith",
+              "ref": {
+                "collection": "riyad-as-salihin",
+                "number": 729,
+                "url": "https://search.hadith-mcp.org/?id=41794"
+              },
+              "ar": "عن أبي هريرةَ رضي الله عنه قال: قال رسولُ اللهِ ﷺ: «كلمتانِ حبيبتانِ إلى الرحمنِ، ثقيلتانِ في الميزانِ، خفيفتانِ على اللسانِ: سبحانَ اللهِ وبحمده، سبحانَ اللهِ العظيمِ». متفق عليه.",
+              "en": "Abu Hurairah, may Allah be pleased with him, said: The Messenger of Allah ﷺ said: \"Two words that are beloved to the Most Merciful, heavy in the scales, and light on the tongue: Subhanallah wa bihamdihi, Subhanallah al-'Adhim.\" Agreed upon.",
+              "ta": "அபூ ஹுரைரா (ரலி) கூறினார்கள்: \"இரண்டு சொற்கள் மிகக் கருணையாளனுக்கு மிகவும் அன்பானவை; தராசில் மிக கனமானவை; நாவில் மிக இலகுவானவை: 'சுப்ஹானல்லாஹி வபிஹம்திஹி, சுப்ஹானல்லாஹில்அழீம்'\" என்று நபி ﷺ கூறினார்கள். (முத்ஃதஃபுன் அலைஹ்)",
+              "tr": "'An Abi Hurairata radiyallahu 'anhu qal: qal rasulullahi ﷺ: «Kalimatani habibatani ila ar-Rahmani, thaqilatani fi al-mizani, khafifatani 'ala al-lisani: Subhanallahi wa bihamdihi, Subhanallahi al-'Adhimi». Muttafaqun 'alayh."
+            },
+            {
+              "type": "ayah",
+              "ref": "33:42",
+              "ar": "وَسَبِّحُوهُ بُكْرَةً وَأَصِيلًا",
+              "en": "And glorify Him morning and evening.",
+              "ta": "காலையிலும் மாலையிலும் அவனைத் தஸ்பீஹ் செய்யுங்கள்.",
+              "tr": "Wa sabbihuhu bukratan wa asila."
+            },
+            {
+              "type": "hadith",
+              "ref": {
+                "collection": "sahih-muslim",
+                "number": 5455,
+                "url": "https://search.hadith-mcp.org/?id=12732"
+              },
+              "ar": "عن سمرةَ بنِ جندبٍ رضي الله عنه قال: قال النبيُّ ﷺ: «أنقى الكلامِ أربعٌ: سبحانَ اللهِ، والحمدُ للهِ، ولا إلهَ إلا اللهُ، واللهُ أكبرُ، لا يضرُّكَ بأيِّهنَّ بدأتَ». أخرجه مسلم.",
+              "en": "Samurah ibn Jundub, may Allah be pleased with him, said: The Prophet ﷺ said: \"The dearest words to Allah are four: Subhanallah, wal-hamdu lillah, wa la ilaha illallah, wallahu akbar — it does not matter with which one you begin.\" Narrated by Muslim.",
+              "ta": "சமுரா இப்னு ஜுந்தப் (ரலி) கூறினார்கள்: \"அல்லாஹ்வுக்கு மிக அன்பான நான்கு சொற்கள்: சுப்ஹானல்லாஹ், அல்ஹம்து லில்லாஹ், லா இலாஹ இல்லல்லாஹ், அல்லாஹு அக்பர்; எதிலிருந்து தொடங்கினாலும் உனக்கு தீங்கில்லை\" என்று நபி ﷺ கூறினார்கள். (முஸ்லிம்)",
+              "tr": "'An Samurata ibni Jundubin radiyallahu 'anhu qal: qal an-nabiyyu ﷺ: «Ahabbu al-kalami ila Allahi arba': Subhanallahu, wal-hamdu lillahi, wa la ilaha illallahu, wallahu akbaru, la yadurruka bi-ayyihinna bada'ta». Akhrajahu Muslim."
+            },
+            {
+              "type": "text",
+              "ar": "معاني الأذكار:\n١- «سبحانَ اللهِ»: نُنزِّهُ اللهَ عن كلِّ نقصٍ.\n٢- «الحمدُ للهِ»: نَشكرُ اللهَ على نعمهِ.\n٣- «اللهُ أكبرُ»: اللهُ أكبرُ من كلِّ شيءٍ.\nفأكثِرْ يا بني يا ابنتي من تسبيحِ اللهِ في يومِك ليلًا ونهارًا.",
+              "en": "The meanings of these adhkar:\n1. \"Subhanallah\": we declare Allah free of every imperfection.\n2. \"Al-hamdu lillah\": we thank Allah for His blessings.\n3. \"Allahu Akbar\": Allah is greater than everything.\nSo, my son, my daughter, increase your glorification of Allah night and day.",
+              "ta": "இந்த திக்ருகளின் பொருள்:\n1. 'சுப்ஹானல்லாஹ்': அல்லாஹ்வை எல்லா குறைபாடுகளிலிருந்தும் தூய்மையாக்குகிறோம்.\n2. 'அல்ஹம்து லில்லாஹ்': அல்லாஹ்வின் அருட்கொடைகளுக்கு நன்றி செலுத்துகிறோம்.\n3. 'அல்லாஹு அக்பர்': அல்லாஹ் எல்லாவற்றையும்விட பெரியவன்.\nஎனவே, என்னுடைய மகனே, மகளே! பகலிலும் இரவிலும் அல்லாஹ்வை அதிகம் தஸ்பீஹ் செய்.",
+              "tr": "Ma'ani al-adhkar:\n1- «Subhanallahi»: nunazzihu Allaha 'an kulli naqsin.\n2- «Al-hamdu lillahi»: nashkuru Allaha 'ala ni'amih.\n3- «Allahu akbaru»: Allahu akbaru min kulli shay'in.\nFa'akthir ya bunayya ya bintiyya min tasbihi Allahi fi yawmika laylan wa naharan."
+            }
+          ]
+        },
+        {
+          "file": "s3-adhkar-1-3",
+          "kind": "lesson",
+          "page": 210,
+          "title": {
+            "en": "The Adhkar of Riding a Vehicle",
+            "ar": "أَذْكَارُ رُكُوبِ الدَّابَّةِ"
+          },
+          "blocks": [
+            {
+              "type": "text",
+              "ar": "كانَ النبيُّ ﷺ إذا ركبَ الدابةَ أو السيارةَ يُسبِّحُ اللهَ ويحمده، وأمرَنا أن نفعَلَ مثلَ ذلك عندَ ركوبِ المركوبِ؛ شكرًا للهِ تعالى على تسخيرِهِ لنا.",
+              "en": "When the Prophet ﷺ rode an animal or a vehicle he would glorify Allah and praise Him, and he commanded us to do the same when we ride, as thanks to Allah the Exalted for subjecting it to us.",
+              "ta": "நபி ﷺ வாகனம் அல்லது விலங்கை ஏறும்போது அல்லாஹ்வைத் தஸ்பீஹ் செய்து துதிப்பார்கள்; அதை நமக்குக் கீழ்ப்படுத்தியதற்காக அல்லாஹ்வுக்கு நன்றி செலுத்தும் வகையில் நாமும் அவ்வாறே செய்யுமாறு கட்டளையிட்டார்கள்.",
+              "tr": "Kana an-nabiyyu ﷺ idha rakiba ad-dabbata aw as-sayyarata yusabbihu Allaha wa yahmaduh, wa amarana an naf'ala mithla dhalika 'inda rukubi al-markub; shukran lillahi ta'ala 'ala taskhirihi lana."
+            },
+            {
+              "type": "hadith",
+              "ref": {
+                "collection": "riyad-as-salihin",
+                "number": 293,
+                "url": "https://search.hadith-mcp.org/?id=41358"
+              },
+              "ar": "عن عبدِ اللهِ بنِ عمرَ رضي الله عنهما قال: كان رسولُ اللهِ ﷺ إذا استوى على بعيرِه خارجًا إلى سفرٍ كبَّرَ ثلاثًا، ثم قال: «سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ، وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ». أخرجه مسلم.",
+              "en": "'Abdullah ibn 'Umar, may Allah be pleased with them, said: When the Messenger of Allah ﷺ mounted his camel to set out on a journey he said \"Allahu Akbar\" three times, then said: \"Glory be to Him who has subjected this to us, though we were not able to subdue it, and to our Lord we shall surely return.\" Narrated by Muslim.",
+              "ta": "அப்துல்லாஹ் இப்னு உமர் (ரலி) கூறினார்கள்: \"ஒரு பயணத்திற்காக ஒட்டகத்தில் ஏறும்போது நபி ﷺ மூன்றுமுறை அல்லாஹு அக்பர் கூறி, பிறகு 'எங்களுக்கு இதை கீழ்ப்படுத்திய இறைவன் தூய்மையானவன்; நாங்கள் அதற்கு இணையற்றவர்களாக இருந்தோம்; நிச்சயமாக நாங்கள் எங்கள் இறைவனிடமே மீள்வோம்' என்று கூறினார்கள்\" (முஸ்லிம்)",
+              "tr": "'An 'Abdillahi ibni 'Umara radiyallahu 'anhuma qal: kana rasulullahi ﷺ idha istawa 'ala ba'irihi kharijan ila safarin kabbara thalathan, thumma qal: «Subhana alladhi sakhkhara lana hadha wa ma kunna lahu muqrinin, wa inna ila rabbina lamunqalibun». Akhrajahu Muslim."
+            },
+            {
+              "type": "text",
+              "ar": "معنى الكلامِ:\n«وما كُنَّا لَهُ مُقْرِنِينَ»: وما كنَّا قادرينَ على تسخيرِه لولا أنَّ اللهَ سخَّرَه لنا، فيقولُ المسافرُ ما قالَه النبيُّ ﷺ عندَ ركوبِ المركوبِ؛ ليشكُرَ اللهَ تعالى على نعمةِ التسخيرِ.",
+              "en": "The meaning of the words:\n\"And we were not able to subdue it\": we were not able to subject it, had Allah not subjected it to us. So the traveller says what the Prophet ﷺ said when riding a vehicle, to thank Allah the Exalted for the blessing of it being subjected to him.",
+              "ta": "சொற்களின் பொருள்:\n'அதற்கு நாங்கள் இணையற்றவர்களாக இருந்தோம்': அல்லாஹ் அதை நமக்கு கீழ்ப்படுத்தாவிட்டால் அதை நாங்கள் வசப்படுத்த முடியாது. எனவே பயணி வாகனம் ஏறும்போது நபி ﷺ கூறியதைக் கூறி, கட்டுப்படுத்துதல் என்னும் அருட்கொடைக்காக இறைவனுக்கு நன்றி செலுத்த வேண்டும்.",
+              "tr": "Ma'na al-kalami:\n«Wa ma kunna lahu muqrinin»: wa ma kunna qadirina 'ala taskhirihi lawla anna Allaha sakhkharahu lana, fayaqulu al-musafiru ma qalahu an-nabiyyu ﷺ 'inda rukubi al-markub; liyashkura Allaha ta'ala 'ala ni'mati at-taskhir."
+            }
+          ]
+        },
+        {
+          "file": "s3-adhkar-1-4",
+          "kind": "lesson",
+          "page": 211,
+          "title": {
+            "en": "The Adhkar of Calamity",
+            "ar": "أَذْكَارُ الْمُصِيبَةِ"
+          },
+          "blocks": [
+            {
+              "type": "text",
+              "ar": "قال تعالى: ﴿وَبَشِّرِ الصَّابِرِينَ، الَّذِينَ إِذَا أَصَابَتْهُمْ مُصِيبَةٌ قَالُوا إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ﴾. إذا ماتَ للمسلمِ قريبٌ أو صديقٌ فعليهِ أن يصبرَ، ويقولَ الكلماتِ التي علَّمَنا النبيُّ ﷺ إياها؛ وليعيدَ اللهَ تعالى عليه بخيرٍ منها.",
+              "en": "Allah the Exalted said: \"And give good tidings to the patient, who, when disaster strikes them, say: 'Indeed we belong to Allah and indeed to Him we will return.'\" If a relative or friend of a Muslim dies, he must be patient and say the words that the Prophet ﷺ taught us, so that Allah the Exalted may recompense him with something better.",
+              "ta": "இறைவன் கூறினான்: \"பொறுமை உடையவர்களுக்கு நற்செய்தியை அறிவிப்பீராக! அவர்களுக்குத் துன்பம் ஏற்பட்டபோது 'நிச்சயமாக நாங்கள் அல்லாஹ்வுக்கே சொந்தமானவர்கள்; நிச்சயமாக நாங்கள் அவனிடமே திரும்பிச் செல்வோம்' என்று கூறுவார்கள்.\" ஒரு முஸ்லிமின் உறவினரோ நண்பரோ இறந்தால் பொறுமையாக நபி ﷺ கற்றுக்கொடுத்த வார்த்தைகளைக் கூற வேண்டும்; அல்லாஹ் அதற்குப் பதிலாக சிறந்ததைக் கொடுப்பான்.",
+              "tr": "Qala ta'ala: «Wa bashshiri as-sabirina, alladhina idha asabathum musibatun qalu inna lillahi wa inna ilayhi raji'un». Idha matta lil-muslimi qaribun aw sadiqun fa'alayhi an yasbira, wa yaqula al-kalimati allati allamana an-nabiyyu ﷺ iyyaha; wa layu'awwida Allaha ta'ala 'alayhi bi-khayrin minha."
+            },
+            {
+              "type": "hadith",
+              "ref": {
+                "collection": "riyad-as-salihin",
+                "number": 242,
+                "url": "https://search.hadith-mcp.org/?id=41307"
+              },
+              "ar": "عن أمِّ سلمةَ رضي الله عنها قالت: سمعتُ رسولَ اللهِ ﷺ يقول: «ما من عبدٍ تصيبُه مصيبةٌ فيقول: إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ، اللهمَّ أجِرْنِي في مصيبتِي وأخْلِفْ لي خيرًا منها، إلا أجرَهُ اللهُ في مصيبتِه وأخلفَ له خيرًا منها». أخرجه مسلم.",
+              "en": "Umm Salamah, may Allah be pleased with her, said: I heard the Messenger of Allah ﷺ say: \"No servant is afflicted with a calamity and then says: 'Indeed we belong to Allah and indeed to Him we will return. O Allah, reward me in my affliction and compensate me with something better' — except that Allah rewards him in his affliction and compensates him with something better.\" Narrated by Muslim.",
+              "ta": "உம்மு சலமா (ரலி) கூறினார்கள்: \"ஒரு துன்பம் ஏற்படும்போது ஓர் அடியான், 'நிச்சயமாக நாங்கள் அல்லாஹ்வுக்கே சொந்தம்; அவனிடமே திரும்புவோம். இறைவா! என் துன்பத்தில் எனக்கு நற்கூலி தருவாயாக; அதைவிட சிறந்ததை எனக்கு மாற்றீடு செய்வாயாக' என்று கூறினால், அல்லாஹ் அவருக்கு துன்பத்தில் நற்கூலி அளித்து சிறந்ததை மாற்றீடு செய்வான்\" என்று கூறினதைக் கேட்டேன். (முஸ்லிம்)",
+              "tr": "'An Ummi Salamata radiyallahu 'anha qalat: sami'tu rasulallahi ﷺ yaqulu: «Ma min 'abdin tusibuhu musibatun fa-yaqula: Inna lillahi wa inna ilayhi raji'un, Allahumma ajirni fi musibati wa akhlif li khairan minha, illa ajara-hullahu fi musibatihi wa akhlafa lahu khairan minha». Akhrajahu Muslim."
+            },
+            {
+              "type": "hadith",
+              "ref": {
+                "collection": "riyad-as-salihin",
+                "number": 1246,
+                "url": "https://search.hadith-mcp.org/?id=42311"
+              },
+              "ar": "عن أسامةَ بنِ زيدٍ رضي الله عنه قال: كنا عندَ النبيِّ ﷺ فأرسلتْ إليه إحدى بناتِه تدعوه وتُخبرُه أنَّ صبيًّا لها في الموتِ، فقال: «ارجعْ فأخبِرْها: إِنَّ للهِ ما أَخَذَ، وَلَهُ مَا أَعْطَى، وَكُلُّ شَيْءٍ عِنْدَهُ بِأَجَلٍ مُسَمًّى، فمُرْهَا فَلْتَصْبِرْ وَلْتَحْتَسِبْ». متفق عليه.",
+              "en": "Usamah ibn Zayd, may Allah be pleased with him, said: We were with the Prophet ﷺ when one of his daughters sent for him, telling him that her child was dying. He said: \"Go back and tell her: 'Indeed, whatever Allah takes and whatever He gives belongs to Him, and everything with Him has an appointed term. So tell her to be patient and seek reward.'\" Agreed upon.",
+              "ta": "உசாமா இப்னு ஜைத் (ரலி) கூறினார்கள்: \"நாங்கள் நபி ﷺ அவர்களிடம் இருக்கும்போது அவர்களின் ஒரு மகள், தம் குழந்தை இறக்கும் நிலையில் இருப்பதாக அறிவிக்க அனுப்பினாள். 'திரும்பிச் சென்று, அல்லாஹ் எதை எடுத்தானோ, எதைக் கொடுத்தானோ அது அவனுக்கே சொந்தம்; அவனிடம் உள்ள அனைத்தும் குறிப்பிட்ட தவணையுடையது; பொறுமையாக நற்கூலி தேடட்டும்' என்று கூறுங்கள்\" என்றார்கள். (முத்ஃதஃபுன் அலைஹ்)",
+              "tr": "'An Usamata ibni Zaydin radiyallahu 'anhu qal: kunna 'inda an-nabiyyi ﷺ fa-arsalat ilayhi ihda banatihi tad'uhu wa tukhbiruhu anna sabiyyan laha fi al-mawt, faqala: «Arji' fa-akhirha: inna lillahi ma akhaza, wa lahu ma a'ta, wa kullu shay'in 'indahu bi-ajalin musamma, fa'murha fal-tasbir wal-tah'tasib». Muttafaqun 'alayh."
+            },
+            {
+              "type": "text",
+              "ar": "معنى الحديثِ:\n«إنَّ للهِ ما أخَذ»: إنَّ الملکَ للهِ تعالى، وهو يتصرَّفُ في عبادِه بالعطاءِ والمنعِ.\n«وَكُلُّ شَيْءٍ عِنْدَهُ بِأَجَلٍ مُسَمًّى»: كلُّ شيءٍ عندَ اللهِ له وقتٌ محددٌ لا يتقدَّمُ ولا يتأخَّرُ.",
+              "en": "The meaning of the hadith:\n\"Indeed, whatever Allah takes\": the Kingdom belongs to Allah the Exalted, and He disposes of His servants by giving and withholding.\n\"And everything with Him has an appointed term\": everything with Allah has a fixed time that is neither advanced nor postponed.",
+              "ta": "ஹதீஸின் பொருள்:\n'அல்லாஹ் எதை எடுத்தானோ அது அவனுக்கே சொந்தம்': ஆட்சி அல்லாஹ்வுக்கே சொந்தம்; தம் அடியார்களுக்கு கொடுத்தும், தடுத்தும் அவன் தீர்மானிக்கிறான்.\n'அவனிடம் உள்ள அனைத்தும் குறிப்பிட்ட தவணையுடையது': அல்லாஹ்விடம் உள்ள அனைத்திற்கும் நிலையான ஒரு காலம் உண்டு; முன்பும் நடக்காது, பின்பும் நடக்காது.",
+              "tr": "Ma'na al-hadith:\n«Inna lillahi ma akhaza»: inna al-mulka lillahi ta'ala, wa huwa yatasarrafu fi 'ibadihi bil-'ata'i wal-man'. «Wa kullu shay'in 'indahu bi-ajalin musamma»: kullu shay'in 'inda Allahi lahu waqtun muhaddadun la yataqaddamu wa la yata'akhkharu."
+            },
+            {
+              "type": "text",
+              "ar": "إذا ماتَ للمسلمِ قريبٌ أو صديقٌ، فيُستحبُّ أنْ يُعزِّيَ إخوانَه المسلمينَ، وتُذكَّرَه بما يُصَبِّرُه ويُهَوِّنُ عليه مصيبتَه، مثلَ أنْ يقولَ له: «إنَّ للهِ ما أخَذ، وله ما أعطى، وكلُّ شيءٍ عندَه بأجلٍ مسمى، فلتصبرْ ولتحتسبْ». وينبغي الابتعادُ عن البدعِ؛ مثلِ الاجتماعِ للعزاءِ في صيوانٍ ثلاثةَ أيامٍ، فذلك من البدعِ التي لا أصلَ لها في الشرعِ المطهرِ.",
+              "en": "If a relative or friend of a Muslim dies, it is recommended that he offer condolences to his Muslim brothers and remind them of what will give them patience and lessen their calamity, such as saying: \"Indeed, whatever Allah takes and whatever He gives belongs to Him, and everything with Him has an appointed term, so be patient and seek reward.\" One should also avoid innovations (bid'ah), such as gathering for condolence in a tent for three days, for that is an innovation that has no basis in the pure Shariah.",
+              "ta": "ஒரு முஸ்லிமின் உறவினரோ நண்பரோ இறந்தால், தம் முஸ்லிம் சகோதரர்களுக்கு ஆறுதல் கூறி, பொறுமைப்படுத்தக்கூடிய வார்த்தைகளை நினைவூட்டுவது நல்லது; எடுத்துக்காட்டாக: 'அல்லாஹ் எதை எடுத்தானோ அது அவனுக்கே சொந்தம்; அவனிடம் உள்ள அனைத்தும் குறிப்பிட்ட தவணையுடையது; பொறுமையாக நற்கூலி தேடுங்கள்.' மேலும், மூன்று நாட்கள் கூடாரம் போட்டுக் கூட்டாக ஆறுதல் கூறுவது போன்ற இந்தக் காரியத்தில் அடிப்படை இல்லாத புதுமைச் செயல்களைத் தவிர்க்க வேண்டும்.",
+              "tr": "Idha matta lil-muslimi qaribun aw sadiqun, fa-yustahabbu an yu'azziya ikhwanahu al-muslimin, wa tudhakkiruhu bima yusabbiruhu wa yuhawwinu 'alayhi musibatahu, mithla an yaqula lahu: «Inna lillahi ma akhaza, wa lahu ma a'ta, wa kullu shay'in 'indahu bi-ajalin musamma, fal-tasbir wal-tah'tasib». Wa yanbaghi al-ibtidadu 'ani al-bida'; mithli al-ijtima'i lil-'aza'i fi siwanin thalathata ayyam, fadhalika mina al-bida'i allati la asla laha fi ash-shar'i al-mutahhar."
+            }
+          ]
+        },
+        {
+          "file": "s3-adhkar-1-5",
+          "kind": "lesson",
+          "page": 214,
+          "title": {
+            "en": "Deeds That Benefit the Deceased After His Death",
+            "ar": "أَعْمَالٌ تَنْفَعُ الْمَيِّتَ بَعْدَ مَوْتِهِ"
+          },
+          "blocks": [
+            {
+              "type": "hadith",
+              "ref": {
+                "collection": "sahih-muslim",
+                "number": 4094,
+                "url": "https://search.hadith-mcp.org/?id=11371"
+              },
+              "ar": "عن أبي هريرةَ رضي الله عنه قال: قال رسولُ اللهِ ﷺ: «إذا ماتَ الإنسانُ انقطعَ عملُه إلا من ثلاثٍ: صدقةٍ جاريةٍ، أو علمٍ يُنتفَعُ به، أو ولدٍ صالحٍ يدعو له». أخرجه مسلم.",
+              "en": "Abu Hurairah, may Allah be pleased with him, said: The Messenger of Allah ﷺ said: \"When a man dies, his deeds come to an end except for three: continuous charity, knowledge from which people benefit, or a righteous child who prays for him.\" Narrated by Muslim.",
+              "ta": "அபூ ஹுரைரா (ரலி) கூறினார்கள்: \"மனிதன் இறந்ததும் அவனது செயல்கள் நின்றுவிடுகின்றன; மூன்றைத் தவிர: நிலையான தர்மம், பயனளிக்கும் கல்வி, அல்லது அவனுக்காக துஆ செய்யும் நல்ல பிள்ளை\" என்று நபி ﷺ கூறினார்கள். (முஸ்லிம்)",
+              "tr": "'An Abi Hurairata radiyallahu 'anhu qal: qal rasulullahi ﷺ: «Idha matta al-insanu nkata'a 'amaluhu illa min thalathin: sadaqatin jariyatin, aw 'ilmin yuntafa'u bih, aw waladin salihin yad'u lahu». Akhrajahu Muslim."
+            },
+            {
+              "type": "text",
+              "ar": "الأعمالُ التي تنفعُ الميتَ بعد موتِه:\nأولًا: الصدقةُ الجاريةُ؛ مثلُ أنْ يتبرَّعَ المسلمُ ببناءِ مسجدٍ يؤدِّي فيه المسلمونَ الصلاةَ، أو أنْ يتبرَّعَ بأرضٍ ينتفعُ الناسُ بزرعِها وثمارِها، أو يتصدَّقَ بإنشاءِ محطةٍ لتنقيةِ المياهِ يشربُ منها الناسُ.",
+              "en": "The deeds that benefit the deceased after his death:\nFirst: continuous charity (sadaqah jariyah); such as a Muslim donating towards building a mosque in which Muslims pray, or donating land from whose crops people benefit, or giving charity towards building a water purification station from which people drink.",
+              "ta": "இறந்தவருக்கு மரணத்திற்குப் பிறகும் பயனளிக்கும் செயல்கள்:\nமுதல்: நிலையான தர்மம் (ஸதகா ஜாரியா); எடுத்துக்காட்டாக, முஸ்லிம்கள் தொழும் பள்ளிவாசல் கட்ட நன்கொடை அளிப்பது, மக்கள் பயன்படுத்தும் நிலத்தை தர்மம் செய்வது, அல்லது மக்கள் குடிக்கும் நீர் சுத்திகரிப்பு நிலையம் அமைக்க தர்மம் செய்வது.",
+              "tr": "Al-a'malu allati tanfa'u al-mayyita ba'da mawtih:\nAwwalan: as-sadaqatu al-jariyah; mithlu an yatabarraqa al-muslimu bi-bina'i masjidin yu'addi fihi al-muslimuna as-salah, aw an yatabarraqa bi-ardin yantafi'u an-nasu bi-zar'iha wa thimariha, aw yatasaddaqa bi-insha'i mahattatin li-tanqiyati al-miyah yashrabu minha an-nas."
+            },
+            {
+              "type": "text",
+              "ar": "ثانيًا: العلمُ النافعُ؛ مثلُ أنْ يتعلَّمَ المسلمُ علومَ الشريعةِ الإسلاميةِ منَ التوحيدِ والفقهِ والسيرةِ النبويةِ والأذكارِ والآدابِ، ثمَّ يُعلِّمُ هذهِ العلومَ للمسلمينَ، فيكونُ له أجرُ مَن تعلَّمَها وعملَ بها وعلَّمها ويومُ القيامةِ.",
+              "en": "Second: beneficial knowledge; such as a Muslim learning the sciences of the Islamic Shariah — Tawhid, Fiqh, the Seerah of the Prophet, adhkar and manners — then teaching these sciences to the Muslims, so that he has the reward of those who learn them, act upon them, and teach them until the Day of Resurrection.",
+              "ta": "இரண்டாவது: பயனளிக்கும் கல்வி; எடுத்துக்காட்டாக, முஸ்லிம் தவ்ஹீத், ஃபிக்ஹ், நபியின் வாழ்க்கை வரலாறு, திக்ருகள், நடத்தை விதிகள் போன்ற இஸ்லாமிய மார்க்க அறிவுகளைக் கற்று, பிறகு அதை முஸ்லிம்களுக்குக் கற்பித்தால், அதைக் கற்று, பின்பற்றி, கற்பிப்பவர்களின் நற்கூலி மறுமை நாள் வரை அவருக்கும் கிடைக்கும்.",
+              "tr": "Thaniyan: al-'ilmu an-nafi'; mithlu an yata'allama al-muslimu 'uluma ash-shari'ati al-Islamiyyah mina at-tawhidi wal-fiqhi was-sirati an-nabawiyyati wal-adhkar wal-adab, thumma yu'allimu hadhihi al-'uluma lil-muslimin, fayakunu lahu ajru man ta'allamaha wa 'amila biha wa 'allamaha ila yawmi al-qiyamah."
+            },
+            {
+              "type": "text",
+              "ar": "ثالثًا: الدعاءُ للميتِ؛ فالدعاءُ للميتِ أفضلُ من التصدُّقِ عنه، فيدعو له أبناؤهُ وبناتُه وأحفادُه والمسلمونَ.",
+              "en": "Third: supplication for the deceased; supplication for the deceased is better than giving charity on his behalf, so his sons, daughters, grandchildren, and the Muslims pray for him.",
+              "ta": "மூன்றாவது: இறந்தவருக்காக துஆ செய்வது; இறந்தவர் சார்பாக தர்மம் செய்வதைவிட துஆ சிறந்தது; அவரின் மகன்கள், மகள்கள், பேரக்குழந்தைகள், முஸ்லிம்கள் அவருக்காக துஆ செய்கிறார்கள்.",
+              "tr": "Thalithan: ad-du'a'u lil-mayyiti; fad-du'a'u lil-mayyiti afdalu mina at-tasadduqi 'anhu, fayad'u lahu abna'uhu wa banatuhu wa ahfaduhu wa al-muslimun."
+            }
+          ]
+        },
+        {
+          "file": "s3-adhkar-1-6",
+          "kind": "lesson",
+          "page": 217,
+          "title": {
+            "en": "The Adhkar of Wearing a New Garment",
+            "ar": "أَذْكَارُ لِبْسِ الثَّوْبِ الْجَدِيدِ"
+          },
+          "blocks": [
+            {
+              "type": "text",
+              "ar": "إذا لبسَ المسلمُ ثوبًا جديدًا يشرعُ له أنْ يدعوَ اللهَ تعالى بما كانَ النبيُّ ﷺ يدعو به، فيسألُ اللهَ تعالى أنْ يرزقَه استعمالَ هذا الثوبِ في طاعتِه، ويستعيذُ باللهِ أنْ يستعملَهُ في معصيتِه.",
+              "en": "When a Muslim wears a new garment, it is prescribed for him to supplicate to Allah the Exalted with what the Prophet ﷺ used to supplicate, asking Allah the Exalted to enable him to use this garment in His obedience, and seeking refuge with Allah from using it in disobedience.",
+              "ta": "முஸ்லிம் புதிய ஆடையை அணியும்போது, நபி ﷺ கூறிய துஆவைக் கூறுவது சட்டப்படி நல்லது; அந்த ஆடையை இறைவனுக்குக் கீழ்ப்படிதலில் பயன்படுத்தும் வல்லமையைக் கேட்டு, அதை மறுப்பில் பயன்படுத்துவதிலிருந்து இறைவனிடம் பாதுகாப்புத் தேட வேண்டும்.",
+              "tr": "Idha labisa al-muslimu thawban jadidan yushra'u lahu an yad'uwa Allaha ta'ala bima kana an-nabiyyu ﷺ yad'u bihi, fayas'alu Allaha ta'ala an yarzuqahu isti'mala hadha ath-thawbi fi ta'atih, wa yasta'idhu billahi an yasta'milahu fi ma'siyatihi."
+            },
+            {
+              "type": "hadith",
+              "ref": {
+                "collection": "tirmidhi",
+                "number": 1821,
+                "url": "https://search.hadith-mcp.org/?id=27601"
+              },
+              "ar": "عن عبدِ اللهِ بنِ الشِّخِّيرِ رضي الله عنه قال: كان النبيُّ ﷺ إذا لبسَ ثوبًا جديدًا قال: «اللهمَّ لكَ الحمدُ، أنتَ كسوتَنيهِ، أسألُكَ خيرَهُ وخيرَ ما صُنِعَ له، وأعوذُ بكَ من شرِّه وشرِّ ما صُنِعَ له». أخرجه الترمذي.",
+              "en": "'Abdullah ibn ash-Shikhkhir, may Allah be pleased with him, said: When the Prophet ﷺ wore a new garment he would say: \"O Allah, praise is for Yours; You have clothed me with it. I ask You for its goodness and the goodness of that for which it was made, and I seek refuge with You from its evil and the evil of that for which it was made.\" Narrated by At-Tirmidhi.",
+              "ta": "அப்துல்லாஹ் இப்னு அஷ்ஷிக்கீர் (ரலி) கூறினார்கள்: \"புதிய ஆடையை அணியும்போது நபி ﷺ: 'இறைவா! உனக்கே அனைத்து துதியும்; நீ எனக்கு இதை அணிவித்தாய்; இதன் நன்மையையும், இது செய்யப்பட்ட நன்மையையும் உன்னிடம் கேட்கிறேன்; இதன் தீமையிலிருந்தும், இது செய்யப்பட்ட தீமையிலிருந்தும் உன்னிடம் பாதுகாப்புத் தேடுகிறேன்' என்று கூறினார்கள்.\" (திர்மிதி)",
+              "tr": "'An 'Abdillahi ibni ash-Shikhkhiri radiyallahu 'anhu qal: kana an-nabiyyu ﷺ idha labisa thawban jadidan qal: «Allahumma laka al-hamdu anta kasawtanihi, as'aluka khairahu wa khaira ma suni'a lahu, wa a'udhu bika min sharrihi wa sharri ma suni'a lahu». Akhrajahu at-Tirmidhi."
+            },
+            {
+              "type": "text",
+              "ar": "معنى الدعاءِ:\nإنَّ المسلمَ إذا لبسَ ثوبًا جديدًا يدعو اللهَ تعالى أنْ يرزقَه استعمالَ هذا الثوبِ في طاعتهِ، ويستعيذُ باللهِ أنْ يستعملَ هذا الثوبَ الجديدَ في معصيتِه.",
+              "en": "The meaning of the supplication:\nWhen a Muslim wears a new garment he asks Allah the Exalted to enable him to use this garment in His obedience, and seeks refuge with Allah from using this new garment in disobedience.",
+              "ta": "துஆவின் பொருள்:\nமுஸ்லிம் புதிய ஆடை அணியும்போது, அந்த ஆடையை இறைவனுக்குக் கீழ்ப்படிதலில் பயன்படுத்தும் வல்லமையைக் கேட்கிறான்; அந்தப் புதிய ஆடையை மறுப்பில் பயன்படுத்துவதிலிருந்து இறைவனிடம் பாதுகாப்புத் தேடுகிறான்.",
+              "tr": "Ma'na ad-du'a':\nInna al-muslima idha labisa thawban jadidan yad'u Allaha ta'ala an yarzuqahu isti'mala hadha ath-thawbi fi ta'atihi, wa yasta'idhu billahi an yasta'mila hadha ath-thawba al-jadida fi ma'siyatihi."
+            },
+            {
+              "type": "text",
+              "ar": "وإذا رأى المسلمُ صاحبَه في ثوبٍ جديدٍ يشرعُ له أنْ يدعوَ له بقولِه: «أبلي وأخلقِي»؛ فعن أمِّ خالدٍ بنتِ خالدٍ رضي الله عنها قالت: أتي النبيُّ ﷺ بثيابٍ فيها خميصةٌ سوداءُ صغيرةٌ، فقال: «من ترونَ نكسوها هذه؟» فسكتَ القومُ، فقال: «ائتوني بأمِّ خالدٍ»، فأُتي بها تحملُ، فأخذَ الخميصةَ بيدِه فألبسَها، وقال: «أبلي وأخلقي»، وكان فيها عَلَمٌ أخضرُ أو أصفرُ، فقال: «يا أمَّ خالدٍ، هذا سناهُ»؛ و«سناه» بالحبشيةِ: حَسَنٌ. أخرجه البخاري.",
+              "en": "And if a Muslim sees his companion wearing a new garment, it is prescribed for him to pray for him by saying: \"May you wear it out and replace it.\" Umm Khalid bint Khalid, may Allah be pleased with her, said: \"The Prophet ﷺ was brought some garments, among which was a small black cloak (khamisah). He asked: 'Whom do you think we should clothe with this?' The people kept silent. He said: 'Bring me Umm Khalid.' She was brought carried, and he took the cloak and put it on her with his own hand, then said: 'May you wear it out and replace it.' It had a green or yellow mark, so he said: 'O Umm Khalid, this is sanah' — and 'sanah' in Abyssinian means 'beautiful.'\" Narrated by Al-Bukhari.",
+              "ta": "முஸ்லிம் தம் நண்பரை புதிய ஆடையில் கண்டால் \"அப்லீ வ அக்லிகீ\" (மடிந்துபோகட்டும்; மாற்றுக) என்று துஆ செய்வது நல்லது. உம்மு காலித் பின்த் காலித் (ரலி) கூறினார்கள்: \"நபி ﷺ அவர்களிடம் ஆடைகள் கொண்டு வரப்பட்டன; அவற்றில் ஒரு சிறிய கருப்பு கஃப்தான் இருந்தது. 'இதை யாருக்கு அணிவிக்கலாம்?' என்று கேட்டார்கள்; மக்கள் அமைதியாக இருந்தனர். 'உம்மு காலித்தை என்னிடம் அழையுங்கள்' என்றார்கள்; அவள் சுமக்கப்பட்டு வந்தாள். கஃப்தானைக் கையால் எடுத்து அவளுக்கு அணிவித்து, 'அப்லீ வ அக்லிகீ' (மடியட்டும்; மாற்றுவாயாக) என்று கூறினார்கள். அதில் பச்சை/மஞ்சள் குறி இருந்தது; 'உம்மு காலிதே! இது ஸனாஹ்' — அபிசீனிய மொழியில் 'நல்லது' என்று சொன்னார்கள்.\" (புகாரி)",
+              "tr": "Wa idha ra'a al-muslimu sahibahu fi thawbin jadidin yushra'u lahu an yad'uwa lahu bi-qawlih: «Abli wa akhliqi»; fe'an Ummi Khalidin binti Khalidin radiyallahu 'anha qalat: utiya an-nabiyyu ﷺ bi-thiyabin fiha khamisatun sawda'u saghirah, faqala: «Man tarawna naksuha hadhihi?» fasakata al-qawm, faqala: «I'tuni bi-Ummi Khalid», fa-utiya biha tahmilu, fa'akhadha al-khamisata biyadih fa'albashaha, wa qala: «Abli wa akhliqi», wa kana fiha 'alamun akhdaru aw asfar, faqala: «Ya Ummi Khalid, hadha sanahu»; wa «sanah» bil-habashiyyati: hasanun. Akhrajahu al-Bukhari."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
