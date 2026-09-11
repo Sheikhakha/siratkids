@@ -6012,8 +6012,8 @@ a.journey-card:focus-visible,
     box-shadow: 0 10px 26px rgba(42,55,138,.18);
 }
 
-/* the hero wave curls under the hero as a pure-white sheet seam */
-.home-hero .hero-wave path { fill: var(--surface-page, #ffffff); }
+/* hero-wave removed from the home header */
+.home-hero .hero-wave { display: none; }
 
 /* ---- stats band: moved down out of the hero, follows theme accent ---- */
 .home-hero + .stats-band {
