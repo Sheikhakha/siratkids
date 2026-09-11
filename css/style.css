@@ -5898,6 +5898,7 @@ a.journey-card:focus-visible,
 
 .home-hero {
     position: relative;
+    background: var(--surface-page, #ffffff);
 }
 .home-hero::before {
     content: '';
@@ -6037,10 +6038,9 @@ a.journey-card:focus-visible,
     color: var(--text-medium);
 }
 
-/* ---- dark theme: theme-aware navy-sheen floral sheet ---- */
+/* ---- dark theme: flat page-surface header, only bismi glows ---- */
 [data-theme='dark'] .home-hero {
-    --fh-face: #1A1E3E;
-    --fh-tint: rgba(129,140,248,.12);
+    background: var(--surface-page);
     --fh-accent-dark: #E7EAF7;
 }
 [data-theme='dark'] .home-hero::before {
@@ -6056,11 +6056,9 @@ a.journey-card:focus-visible,
 [data-theme='dark'] .home-hero .hero-sub-en { color: #B9C0DD; }
 [data-theme='dark'] .home-hero .hero-sub-ar { color: #CFE0EF; }
 [data-theme='dark'] .home-hero .hero-verse-ref { color: var(--fh-gold); }
-[data-theme='dark'] .home-hero .hero-orb-1 { background: rgba(129,140,248,.14); }
-[data-theme='dark'] .home-hero .hero-orb-2 { background: rgba(251,214,121,.16); }
-[data-theme='dark'] .home-hero .hero-orb-3 { background: rgba(160,58,56,.14); }
+[data-theme='dark'] .home-hero .hero-orb-1,
+[data-theme='dark'] .home-hero .hero-orb-2,
+[data-theme='dark'] .home-hero .hero-orb-3 { opacity: 0; }
 [data-theme='dark'] .home-hero .ln-wire { stroke: rgba(129,140,248,.4); }
 [data-theme='dark'] .home-hero .ln-body { fill: var(--fh-cream); }
-[data-theme='dark'] .home-hero .ln-glow {
-    fill: color-mix(in srgb, var(--fh-gold) 32%, transparent);
-}
+[data-theme='dark'] .home-hero .ln-glow { opacity: 0; }
