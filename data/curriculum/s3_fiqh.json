@@ -23,28 +23,28 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "دين الإسلام دين الطهارة والنظافة.\nمن آداب قضاء الحاجة:\n١- الاستتار عن أنظار الناس.",
+              "ar": "دِينُ الْإِسْلَامِ دِينُ الطَّهَارَةِ وَالنَّظَافَةِ.\nمِنْ آدَابِ قَضَاءِ الْحَاجَةِ:\n١- الِاسْتِتَارُ عَنْ أَنْظَارِ النَّاسِ.",
               "en": "The religion of Islam is the religion of purity and cleanliness.\nAmong the manners of relieving oneself:\n1. Concealing oneself from the sight of people.",
               "ta": "இஸ்லாமிய மார்க்கம் தூய்மைக்கும் சுத்தத்திற்குமான மார்க்கம்.\nமலங்கழிக்கும் ஆசாரங்களில் ஒன்று:\n1. மக்களின் பார்வையிலிருந்து மறைந்து கொள்வது.",
               "tr": "Dinu al-islam dinu at-tahara wan-nadhafa. Min adabi kada'i al-haja: al-istitar 'an anzhari an-nas."
             },
             {
               "type": "text",
-              "ar": "٢- أن أجنّب استقبال القبلة واستدبارها عند قضاء الحاجة في غير البنيان.",
+              "ar": "٢- أَنْ أُجَنِّبَ اسْتِقْبَالَ الْقِبْلَةِ وَاسْتِدْبَارَهَا عِنْدَ قَضَاءِ الْحَاجَةِ فِي غَيْرِ الْبُنْيَانِ.",
               "en": "2. To avoid facing the Qiblah or turning one's back towards it when relieving oneself in the open (outside buildings).",
               "ta": "2. கட்டிடங்களுக்கு வெளியே மலங்கழிக்கும்போது கிப்லாவை முன்னோக்கியோ பின்னோக்கியோ இருக்காமல் இருப்பது.",
               "tr": "2. An ajanniba istiqbala al-qiblah wa istidbariha 'inda kada'i al-haja fi ghayri al-bunyan."
             },
             {
               "type": "text",
-              "ar": "أماكن يحرم فيها قضاء الحاجة:\n١- طريق الناس.\n٢- الظل النافع.\n٣- الماء الذي لا يجري.\n٤- تحت شجرة مثمرة.\nالحكمة من تحريم قضاء الحاجة في هذه الأماكن: حصول الضرر للناس، وانتشار الأمراض والروائح الكريهة.",
+              "ar": "أَمَاكِنُ يُحْرَمُ فِيهَا قَضَاءُ الْحَاجَةِ:\n١- طَرِيقُ النَّاسِ.\n٢- الظِّلُّ النَّافِعُ.\n٣- الْمَاءُ الَّذِي لَا يَجْرِي.\n٤- تَحْتَ شَجَرَةٍ مُثْمِرَةٍ.\nالْحِكْمَةُ مِنْ تَحْرِيمِ قَضَاءِ الْحَاجَةِ فِي هَذِهِ الْأَمَاكِنِ: حُصُولُ الضَّرَرِ لِلنَّاسِ، وَانْتِشَارُ الْأَمْرَاضِ وَالرَّوَائِحِ الْكَرِيهَةِ.",
               "en": "Places where it is forbidden to relieve oneself:\n1. The people's pathway.\n2. Beneficial shade.\n3. Still water.\n4. Under a fruit-bearing tree.\nThe wisdom behind forbidding relieving oneself in these places: it causes harm to people and spreads diseases and unpleasant odours.",
               "ta": "மலங்கழிக்க தடைசெய்யப்பட்ட இடங்கள்:\n1. மக்கள் செல்லும் பாதை.\n2. பயனுள்ள நிழல்.\n3. நீர் ஓடாத தண்ணீர்.\n4. பழமரத்தின் கீழ்.\nஇதற்கான விவேகம்: மக்களுக்குத் தீங்கு, நோய்கள் மற்றும் துர்நாற்றம் பரவல்.",
               "tr": "Amakin yahrumu fiha kada'u al-haja: 1. tariqu an-nas, 2. adh-dhillu an-nafi', 3. al-ma'ulladhi la yajri, 4. tahta shajaratin muthmirah."
             },
             {
               "type": "text",
-              "ar": "أحافظ على نظافة الأماكن التي ينتفع بها الناس، ولا أفضي حاجتي فيها.",
+              "ar": "أُحَافِظُ عَلَى نَظَافَةِ الْأَمَاكِنِ الَّتِي يَنْتَفِعُ بِهَا النَّاسُ، وَلَا أُفْضِي حَاجَتِي فِيهَا.",
               "en": "I keep clean the places people benefit from, and I do not relieve myself in them.",
               "ta": "மக்கள் பயன்பெறும் இடங்களைத் தூய்மையாக வைத்திருக்கிறேன்; அவற்றில் மலம் கழிப்பதில்லை.",
               "tr": "Uhafizhu 'ala nadhafati al-amakin allati yantafi'u biha an-nas, wa la ufdhi hajati fiha."
@@ -62,21 +62,21 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "يجب على المسلم التنزه من البول والغائط بإحدى طريقتين:\n١- الاستنجاء: غسل مخرج البول والغائط بالماء حتى تزول النجاسة.\n٢- الاستجمار: مسح مخرج البول والغائط بالأحجار أو المناديل حتى تزول النجاسة.",
+              "ar": "يَجِبُ عَلَى الْمُسْلِمِ التَّنَزُّهُ مِنَ الْبَوْلِ وَالْغَائِطِ بِإِحْدَى طَرِيقَتَيْنِ:\n١- الِاسْتِنْجَاءُ: غَسْلُ مَخْرَجِ الْبَوْلِ وَالْغَائِطِ بِالْمَاءِ حَتَّى تَزُولَ النَّجَاسَةُ.\n٢- الِاسْتِجْمَارُ: مَسْحُ مَخْرَجِ الْبَوْلِ وَالْغَائِطِ بِالْأَحْجَارِ أَوِ الْمَنَادِيلِ حَتَّى تَزُولَ النَّجَاسَةُ.",
               "en": "It is obligatory upon the Muslim to cleanse himself of urine and excrement by one of two ways:\n1. Istinja: washing the outlet of urine and excrement with water until the impurity is removed.\n2. Istijmar: wiping the outlet of urine and excrement with stones or tissues until the impurity is removed.",
               "ta": "முஸ்லிமுக்கு சிறுநீர்-மலம் கழிவிலிருந்து தூய்மைப்படுதல் இரு வழிகளில் ஒன்றால் கடமை:\n1. இஸ்தின்ஜா: மலக்கழிவை தண்ணீரில் கழுவி நாஜஸ் நீக்குதல்.\n2. இஸ்திஜ்மார்: கற்கள் அல்லது துணிகளால் துடைத்து நாஜஸ் நீக்குதல்.",
               "tr": "Yajibu 'ala al-muslimi at-tanazzuhu min al-bawli wal-gha'iti bi-ihda tariqatayn: al-istinja wal-istijmar."
             },
             {
               "type": "text",
-              "ar": "الأشياء التي يجوز بها الاستجمار:\nالأحجار، المناديل، الورق.\nالأشياء التي يحرم بها الاستجمار:\n١- الروث: وهو زبل الحيوانات.\n٢- العظام.\n٣- الورق المكتوب فيه ذكر الله عز وجل.",
+              "ar": "الْأَشْيَاءُ الَّتِي يَجُوزُ بِهَا الِاسْتِجْمَارُ:\nالْأَحْجَارُ، الْمَنَادِيلُ، الْوَرَقُ.\nالْأَشْيَاءُ الَّتِي يُحْرَمُ بِهَا الِاسْتِجْمَارُ:\n١- الرَّوْثُ: وَهُوَ زَبَلُ الْحَيَوَانَاتِ.\n٢- الْعِظَامُ.\n٣- الْوَرَقُ الْمَكْتُوبُ فِيهِ ذِكْرُ اللهِ عَزَّ وَجَلَّ.",
               "en": "Things with which istijmar is permitted:\nStones, tissues, paper.\nThings with which istijmar is forbidden:\n1. Dung: the droppings of animals.\n2. Bones.\n3. Paper on which the remembrance of Allah is written.",
               "ta": "இஸ்திஜ்மாருக்கு அனுமதிக்கப்பட்டவை:\nகற்கள், துணிகள், காகிதம்.\nதடைசெய்யப்பட்டவை:\n1. விலங்கு எச்சம்.\n2. எலும்புகள்.\n3. அல்லாஹ்வின் திக்ர் எழுதப்பட்ட காகிதம்.",
               "tr": "Al-ashya' allati yajuzu biha al-istijmar: al-ahjar wal-manadil wal-waraq. wal-ashya' allati yahrumu biha: ar-rawth wal-'idham wal-waraq al-maktubi fihi dhikru Allah."
             },
             {
               "type": "text",
-              "ar": "يجوز الاقتصار على الاستجمار بشرطين:\n١- أن يمسح مخرج الغائط مسحات منقية ثلاثًا فأكثر، ولا يجزئ أقل منها.\n٢- أن لا ينتشر البول أو الغائط عن مخرجه.\nوالله سبحانه يحب المتطهرين.",
+              "ar": "يَجُوزُ الِاقْتِصَارُ عَلَى الِاسْتِجْمَارِ بِشَرْطَيْنِ:\n١- أَنْ يَمْسَحَ مَخْرَجَ الْغَائِطِ مَسَحَاتٍ مُنَقِّيَةً ثَلَاثًا فَأَكْثَرَ، وَلَا يُجْزِئُ أَقَلُّ مِنْهَا.\n٢- أَنْ لَا يَنْتَشِرَ الْبَوْلُ أَوِ الْغَائِطُ عَنْ مَخْرَجِهِ.\nوَاللهُ سُبْحَانَهُ يُحِبُّ الْمُتَطَهِّرِينَ.",
               "en": "It is permissible to limit oneself to istijmar on two conditions:\n1. Wiping the outlet of excrement with three purifying wipes or more; fewer than that is not sufficient.\n2. That the urine or excrement does not spread beyond its outlet.\nAnd Allah the Exalted loves those who purify themselves.",
               "ta": "இரு நிபந்தனைகளின் கீழ் இஸ்திஜ்மார் மட்டும் போதுமானது:\n1. மலக்கழிவை மூன்று அல்லது அதற்கு மேற்பட்ட துப்புரவான துடைப்புகளால் துடைத்தல்; குறைவாக இருந்தால் போதாது.\n2. சிறுநீர் அல்லது மலம் பரவாமல் இருத்தல்.\nஅல்லாஹ் தூயவர்களை நேசிக்கிறான்.",
               "tr": "Yajuzu al-iqtisar 'ala al-istijmar bi-shartayn: an yamsaha makhraja al-gha'iti masahat munqiyah thalathan fa-akthar wa la yujzi'u aqallu minha, wa an la yantashira al-bawlu aw al-gha'itu 'an makhrajihi."
@@ -124,14 +124,14 @@
                 "number": 219,
                 "url": "https://search.hadith-mcp.org/?id=219"
               },
-              "ar": "رأى النبي ﷺ أعرابيًا يبول في المسجد، فقال: «دعوه»، حتى إذا فرغ دعا بماء فصبه عليه. أخرجه البخاري ومسلم.",
+              "ar": "رَأَى النَّبِيُّ ﷺ أَعْرَابِيًّا يَبُولُ فِي الْمَسْجِدِ، فَقَالَ: «دَعُوهُ»، حَتَّى إِذَا فَرَغَ دَعَا بِمَاءٍ فَصَبَّهُ عَلَيْهِ. أَخْرَجَهُ الْبُخَارِيُّ وَمُسْلِمٌ.",
               "en": "The Prophet ﷺ saw a Bedouin urinating in the mosque and said: \"Leave him.\" When the man finished, he called for water and poured it over the urine. Narrated by al-Bukhari and Muslim.",
               "ta": "பள்ளிவாசலில் சிறுநீர் கழிக்கும் கிராமவாசியை நபி ﷺ கண்டார்கள்; \"விடுங்கள்\" என்று கூறி, முடிந்ததும் தண்ணீர் வரவழைத்து அதன் மேல் ஊற்றினார்கள். (புகாரி, முஸ்லிம்)",
               "tr": "Ra'a an-nabiyyu ﷺ a'rabiyyan yabulu fil-masjidi fa-qala: «Da'uhu», hatta idha faragha da'a bima'in fasabbahu 'alayhi. Akhrajahu al-Bukhari wa Muslim."
             },
             {
               "type": "text",
-              "ar": "أحافظ على طهارة بدني وثيابي ومكان صلاتي.\nإزالة النجاسة واجبة عن ثلاثة أشياء:\n١- البدن.\n٢- الثياب.\n٣- مكان الصلاة.",
+              "ar": "أُحَافِظُ عَلَى طَهَارَةِ بَدَنِي وَثِيَابِي وَمَكَانِ صَلَاتِي.\nإِزَالَةُ النَّجَاسَةِ وَاجِبَةٌ عَنْ ثَلَاثَةِ أَشْيَاءَ:\n١- الْبَدَنِ.\n٢- الثِّيَابِ.\n٣- مَكَانِ الصَّلَاةِ.",
               "en": "I take care of the purity of my body, my clothes and my place of prayer.\nRemoving impurity is obligatory from three things:\n1. The body.\n2. The clothes.\n3. The place of prayer.",
               "ta": "என் உடல், ஆடைகள், தொழுமிடம் ஆகியவற்றின் தூய்மையைக் காத்துக்கொள்கிறேன்.\nமூன்று விஷயங்களிலிருந்து நாஜஸை நீக்குவது கடமை:\n1. உடல்.\n2. ஆடைகள்.\n3. தொழுமிடம்.",
               "tr": "Uhafizhu 'ala taharati badani wa thiyabi wa makani salah. Izalatu an-najasah wajibatun 'an thalathat ashyal: al-badan, ath-thiyab, makanu as-salah."
@@ -143,7 +143,7 @@
                 "number": 222,
                 "url": "https://search.hadith-mcp.org/?id=222"
               },
-              "ar": "عن عائشة رضي الله عنها قالت: أُتي النبي ﷺ بِصَبِيٍّ فبال على ثوبه، فدعا بماء فأتبعه إياه. أخرجه البخاري.",
+              "ar": "عَنْ عَائِشَةَ رَضِيَ اللهُ عَنْهَا قَالَتْ: أُتِيَ النَّبِيُّ ﷺ بِصَبِيٍّ فَبَالَ عَلَى ثَوْبِهِ، فَدَعَا بِمَاءٍ فَأَتْبَعَهُ إِيَّاهُ. أَخْرَجَهُ الْبُخَارِيُّ.",
               "en": "Aisha, may Allah be pleased with her, said: \"A child was brought to the Prophet ﷺ and it urinated on his garment, so he called for water and poured it over the soiled place.\" Narrated by al-Bukhari.",
               "ta": "ஆயிஷா (ரழியல்லாஹு அன்ஹா) கூறினார்கள்: நபி ﷺ அவர்களிடம் ஒரு குழந்தை கொண்டுவரப்பட்டது; அது அவர்களின் ஆடையில் சிறுநீர் கழித்தது; தண்ணீர் வரவழைத்து அதன் மீது ஊற்றினார்கள். (புகாரி)",
               "tr": "'An 'A'ishata radiyallahu 'anha qalat: utiya an-nabiyyu ﷺ bi-sabiyyin fabala 'ala thawbihi, fada'a bima'in fa-atba'ahu iyyahu. Akhrajahu al-Bukhari."
@@ -170,14 +170,14 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "خرج أحمد مع أسرته في نزهة برية، فلما حان موعد صلاة العصر لم يجدوا ماءً، فاستخدم والد أحمد التراب بدلًا عن الماء للوضوء، فتيمم مثله، ثم أديا الصلاة في جماعة.\nأتعلم من هذا الموقف:\n١- وجوب تأدية الصلاة في وقتها.\n٢- سماحة الإسلام في أن التراب يقوم مقام الماء عند عدم وجوده.",
+              "ar": "خَرَجَ أَحْمَدُ مَعَ أُسْرَتِهِ فِي نُزْهَةٍ بَرِّيَّةٍ، فَلَمَّا حَانَ مَوْعِدُ صَلَاةِ الْعَصْرِ لَمْ يَجِدُوا مَاءً، فَاسْتَخْدَمَ وَالِدُ أَحْمَدَ التُّرَابَ بَدَلًا عَنِ الْمَاءِ لِلْوُضُوءِ، فَتَيَمَّمَ مِثْلَهُ، ثُمَّ أَدَّيَا الصَّلَاةَ فِي جَمَاعَةٍ.\nأَتَعَلَّمُ مِنْ هَذَا الْمَوْقِفِ:\n١- وُجُوبُ تَأْدِيَةِ الصَّلَاةِ فِي وَقْتِهَا.\n٢- سَمَاحَةُ الْإِسْلَامِ فِي أَنَّ التُّرَابَ يَقُومُ مَقَامَ الْمَاءِ عِنْدَ عَدَمِ وُجُودِهِ.",
               "en": "Ahmad went out with his family for a picnic in the desert. When the time of Asr prayer came they found no water, so Ahmad's father used clean dust instead of water for ablution, performed tayammum, and they both prayed in congregation.\nI learn from this scene:\n1. The obligation of the prayer on time.\n2. The tolerance of Islam: dust takes the place of water when none is found.",
               "ta": "அஹ்மத் தன் குடும்பத்துடன் காட்டுச் சுற்றுலாவுக்குச் சென்றான்; அஸ்ர் தொழுகை நேரம் வந்தபோது தண்ணீர் இல்லை; அஹ்மத்தின் தந்தை தண்ணீருக்குப் பதிலாக தூய மண்ணைப் பயன்படுத்தி தயம்மும் செய்தான்; அஹ்மத்தும் அதுபோல செய்தனர்; பின்னர் ஜமாஅத்தாக தொழுதனர்.\nஇதிலிருந்து கற்பது:\n1. தொழுகையை சரியான நேரத்தில் செய்வது கடமை.\n2. இஸ்லாத்தின் சகிப்புத்தன்மை: தண்ணீர் இல்லாதபோது மண் அதற்கு மாற்றாகும்.",
               "tr": "Kharaja Ahmad ma'a usratihi fi nuzhatin barriyah, falamma hana maw'idu salati al-asr lam yajidu ma'an, fastakhdama abu Ahmad at-turaba badalan 'ani al-ma'i lil-wudu, fata-yammama mithlah, thumma addaya as-salah fi jama'ah."
             },
             {
               "type": "text",
-              "ar": "التيمم هو: مسح الوجه والكفين بالتراب الطهور.\nأماكن التيمم:\n١- من لم يجد ماءً وخشي فوات وقت الصلاة.\n٢- من اشتد به المرض ويضره استعمال الماء.\n٣- من لا يستطيع الوصول إلى الماء.",
+              "ar": "التَّيَمُّمُ هُوَ: مَسْحُ الْوَجْهِ وَالْكَفَّيْنِ بِالتُّرَابِ الطَّهُورِ.\nأَمَاكِنُ التَّيَمُّمِ:\n١- مَنْ لَمْ يَجِدْ مَاءً وَخَشِيَ فَوَاتَ وَقْتِ الصَّلَاةِ.\n٢- مَنِ اشْتَدَّ بِهِ الْمَرَضُ وَيَضُرُّهُ اسْتِعْمَالُ الْمَاءِ.\n٣- مَنْ لَا يَسْتَطِيعُ الْوُصُولَ إِلَى الْمَاءِ.",
               "en": "Tayammum is: wiping the face and the hands with pure dust.\nSituations requiring tayammum:\n1. Whoever finds no water and fears the prayer time will pass.\n2. Whoever is severely ill and harmed by using water.\n3. Whoever cannot reach water.",
               "ta": "தயம்மும் என்பது: தூய மண்ணால் முகத்தையும் கைகளையும் துடைத்தல்.\nதயம்மும் செய்யும் சந்தர்ப்பங்கள்:\n1. தண்ணீர் கிடைக்காது, தொழுகை நேரம் போய்விடும் என அஞ்சுபவர்.\n2. கடும் நோயாளி, தண்ணீர் உபயோகித்தால் தீங்கு ஏற்படுபவர்.\n3. தண்ணீரை அடைய முடியாதவர்.",
               "tr": "At-tayammum huwa: mas-ul-wajhi wal-kaffayni bit-turabi at-tahur. Amakin at-tayammum: man lam yajid ma'an wa khashiya fawata waqti as-salah, wa man ishtadda bihi al-maradu wa yadhurruhu isti'malu al-ma', wa man la yastati'u al-wusula ila al-ma'."
@@ -192,7 +192,7 @@
             },
             {
               "type": "text",
-              "ar": "صفة التيمم:\n١- أقول: بسم الله، وأنوي.\n٢- أضرب التراب بيدي مفرجتي الأصابع.\n٣- أمسح وجهي.\n٤- أمسح كفي اليمنى بباطن كفي اليسرى، ثم كفي اليسرى بباطن كفي اليمنى.\nولا يتيمم إلا بالتراب الطاهر.",
+              "ar": "صِفَةُ التَّيَمُّمِ:\n١- أَقُولُ: بِسْمِ اللهِ، وَأَنْوِي.\n٢- أَضْرِبُ التُّرَابَ بِيَدَيَّ مُفَرَّجَتَيِ الْأَصَابِعِ.\n٣- أَمْسَحُ وَجْهِي.\n٤- أَمْسَحُ كَفِّي الْيُمْنَى بِبَاطِنِ كَفِّي الْيُسْرَى، ثُمَّ كَفِّي الْيُسْرَى بِبَاطِنِ كَفِّي الْيُمْنَى.\nوَلَا يُتَيَمَّمُ إِلَّا بِالتُّرَابِ الطَّاهِرِ.",
               "en": "How to perform tayammum:\n1. I say: Bismillah, and make the intention.\n2. I strike the clean dust with my hands, fingers spread.\n3. I wipe my face.\n4. I wipe the right hand with the inner side of the left hand, then the left hand with the inner side of the right hand.\nTayammum is only done with pure dust.",
               "ta": "தயம்முமின் முறை:\n1. பிஸ்மில்லாஹ் கூறி நோக்கம் செய்கிறேன்.\n2. கூப்பிய விரல்களுடன் இரு கைகளாலும் மண்ணில் தட்டுகிறேன்.\n3. முகத்தை துடைக்கிறேன்.\n4. இடது கையின் உள்ளங்கையால் வலது கையையும், வலது கையின் உள்ளங்கையால் இடது கையையும் துடைக்கிறேன்.\nதூய மண்ணால்தான் தயம்மும் செய்வது.",
               "tr": "Sifatu at-tayammum: aqulu bismillah wa anwi, adribu at-turaba bi-yadayya mufarrijatay al-asabi', amsahu wajhi, amsahu kaffi al-yumna bi-batini kaffi al-yusra thumma kaffi al-yusra bi-batini kaffi al-yumna."
@@ -219,7 +219,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "الصلاة أعظم أركان الإسلام بعد الشهادتين، وأفضل الأعمال بعدهما.\nقال رسول الله ﷺ: «بني الإسلام على خمس: شهادة أن لا إله إلا الله وأن محمدًا رسول الله، وإقام الصلاة، وإيتاء الزكاة، وصوم رمضان، وحج البيت».",
+              "ar": "الصَّلَاةُ أَعْظَمُ أَرْكَانِ الْإِسْلَامِ بَعْدَ الشَّهَادَتَيْنِ، وَأَفْضَلُ الْأَعْمَالِ بَعْدَهُمَا.\nقَالَ رَسُولُ اللهِ ﷺ: «بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إِلَهَ إِلَّا اللهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَصَوْمِ رَمَضَانَ، وَحَجِّ الْبَيْتِ».",
               "en": "Prayer is the greatest pillar of Islam after the two testimonies and the best of deeds after them.\nThe Messenger of Allah ﷺ said: \"Islam is built upon five: the testimony that none is worthy of worship but Allah and that Muhammad is the Messenger of Allah, establishing prayer, giving zakat, fasting Ramadan, and performing Hajj of the House.\"",
               "ta": "இரு சாட்சிகளுக்குப் பிறகு இஸ்லாத்தின் பெரும் தூண் தொழுகையே; அவற்றிற்குப் பிறகு சிறந்த செயல் தொழுகையே.\nநபி ﷺ கூறினார்கள்: \"இஸ்லாம் ஐந்தின் மீது கட்டப்பட்டது: இரட்டைச் சாட்சி, தொழுகை, ஜகாத், ரமளான் நோன்பு, கஃபா ஹஜ்.\"",
               "tr": "As-salahu a'zamu arkani al-islam ba'da ash-shahadatayni wa afdalu al-a'mali ba'dahuma."
@@ -231,14 +231,14 @@
                 "number": 402,
                 "url": "https://search.hadith-mcp.org/?id=41467"
               },
-              "ar": "قال رسول الله ﷺ: «إن أول ما يحاسب به العبد يوم القيامة من عمله صلاته، فإن صلحت فقد أفلح وأنجح، وإن فسدت فقد خاب وخسر». رواه الترمذي.",
+              "ar": "قَالَ رَسُولُ اللهِ ﷺ: «إِنَّ أَوَّلَ مَا يُحَاسَبُ بِهِ الْعَبْدُ يَوْمَ الْقِيَامَةِ مِنْ عَمَلِهِ صَلَاتُهُ، فَإِنْ صَلَحَتْ فَقَدْ أَفْلَحَ وَأَنْجَحَ، وَإِنْ فَسَدَتْ فَقَدْ خَابَ وَخَسِرَ». رَوَاهُ التِّرْمِذِيُّ.",
               "en": "The Messenger of Allah ﷺ said: \"The first deed for which a servant will be called to account on the Day of Resurrection is his prayer. If it is sound, he has succeeded; if it is corrupt, he has failed and lost.\" Narrated by al-Tirmidhi.",
               "ta": "நபி ﷺ கூறினார்கள்: \"மறுமை நாளில் அடியானின் முதல் கணக்கு அவனது தொழுகையாகும்; அது சரியாக இருந்தால் வெற்றியடைந்தான்; கெட்டிருந்தால் நஷ்டமும் தோல்வியும் அடைந்தான்.\" (திர்மிதி)",
               "tr": "Qala rasulullah ﷺ: «Inna awwala ma yuhasabu bihi al-'abdu yawmal-qiyamati min 'amalihi salatuhu, fa-in salahat faqad aflaha wa anjah, wa-in fasadat faqad khaba wa khasir.» Rawahu at-Tirmidhi."
             },
             {
               "type": "text",
-              "ar": "ترك الصلاة محرم، وهو كبيرة من الكبائر وأعظم الذنوب؛ لأنها ركن من أركان الإسلام. فمن تركها عرض نفسه لعقوبة الله وسخطه في الدنيا والآخرة.\nقال تعالى: «مَا سَلَكَكُمْ فِي سَقَرَ قَالُوا لَمْ نَكُ مِنَ الْمُصَلِّينَ».",
+              "ar": "تَرْكُ الصَّلَاةِ مُحَرَّمٌ، وَهُوَ كَبِيرَةٌ مِنَ الْكَبَائِرِ وَأَعْظَمُ الذُّنُوبِ؛ لِأَنَّهَا رُكْنٌ مِنْ أَرْكَانِ الْإِسْلَامِ. فَمَنْ تَرَكَهَا عَرَّضَ نَفْسَهُ لِعُقُوبَةِ اللهِ وَسَخَطِهِ فِي الدُّنْيَا وَالْآخِرَةِ.\nقَالَ تَعَالَى: «مَا سَلَكَكُمْ فِي سَقَرَ قَالُوا لَمْ نَكُ مِنَ الْمُصَلِّينَ».",
               "en": "Abandoning prayer is forbidden, and it is a major sin and among the greatest of offences because it is a pillar of Islam. Whoever abandons it exposes himself to the punishment and wrath of Allah in this world and the Hereafter.\nAllah said: \"What drove you to the Scorching Fire? They will answer: We did not pray.\"",
               "ta": "தொழுகையை விடுவது ஹராம்; எண்ணற்ற பெரும் பாவங்களில் ஒன்று; ஏனெனில் இது இஸ்லாத்தின் தூண். அதை விடுபவன் இம்மையிலும் மறுமையிலும் அல்லாஹ்வின் தண்டனைக்கும் கோபத்திற்கும் தன்னை வெளிப்படுத்துகிறான்.\n\"சகருடைய (நரக) தீக்கோளத்தில் உங்களை நுழையச் செய்தது எது?\" என அழைக்கப்படும்போது \"நாங்கள் தொழுதவர்களாக இருக்கவில்லை\" என கூறுவார்கள்.",
               "tr": "Tarku as-salah muharramun wa huwa kabiratun min al-kaba'iri wa a'zamu adh-dhunub; li'annaha ruknun min arkani al-islam."
@@ -250,14 +250,14 @@
                 "number": 400,
                 "url": "https://search.hadith-mcp.org/?id=41465"
               },
-              "ar": "قال رسول الله ﷺ: «العهد الذي بيننا وبينهم الصلاة، فمن تركها فقد كفر». رواه الترمذي.",
+              "ar": "قَالَ رَسُولُ اللهِ ﷺ: «الْعَهْدُ الَّذِي بَيْنَنَا وَبَيْنَهُمُ الصَّلَاةُ، فَمَنْ تَرَكَهَا فَقَدْ كَفَرَ». رَوَاهُ التِّرْمِذِيُّ.",
               "en": "The Messenger of Allah ﷺ said: \"The covenant between us and them is prayer; whoever abandons it has disbelieved.\" Narrated by al-Tirmidhi as Hasan Sahih.",
               "ta": "நபி ﷺ கூறினார்கள்: \"எங்களுக்கும் அவர்களுக்கும் இடையிலான உடன்படிக்கை தொழுகை; அதை விடுபவன் காஃபிராகிவிட்டான்.\" (திர்மிதி)",
               "tr": "Qala rasulullah ﷺ: «Al-'ahdulladhi baynana wa baynahum as-salah, faman tarakaha faqad kafar.» Rawahu at-Tirmidhi."
             },
             {
               "type": "text",
-              "ar": "يحافظ الرجال على أداء الصلوات المفروضة في المساجد؛ لأن النبي ﷺ أمر بذلك.",
+              "ar": "يُحَافِظُ الرِّجَالُ عَلَى أَدَاءِ الصَّلَوَاتِ الْمَفْرُوضَةِ فِي الْمَسَاجِدِ؛ لِأَنَّ النَّبِيَّ ﷺ أَمَرَ بِذَلِكَ.",
               "en": "Men are regular in performing the obligatory prayers in the mosques, because the Prophet ﷺ commanded that.",
               "ta": "ஆண்கள் கடமையான தொழுகைகளைப் பள்ளிவாசல்களில் செய்வதில் நிலையாக இருக்கிறார்கள்; ஏனெனில் நபி ﷺ அவ்வாறு கட்டளையிட்டார்கள்.",
               "tr": "Yuhafizhu ar-rijal 'ala ada'i as-salawati al-mafrudat fi al-masajid; li anna an-nabiyya ﷺ amara bi-dhalik."
@@ -284,7 +284,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "من شروط الصلاة: الإسلام.\nلا تصح صلاة الكافر؛ فبعض الناس لا يذهب إلى المسجد لأنهم غير مسلمين.\nمن شروط الصلاة: التمييز.\nلا يؤمر الصغير بالصلاة حتى يبلغ سبع سنين؛ فلا صلاة إلا بتمييز.",
+              "ar": "مِنْ شُرُوطِ الصَّلَاةِ: الْإِسْلَامُ.\nلَا تَصِحُّ صَلَاةُ الْكَافِرِ؛ فَبَعْضُ النَّاسِ لَا يَذْهَبُ إِلَى الْمَسْجِدِ لِأَنَّهُمْ غَيْرُ مُسْلِمِينَ.\nمِنْ شُرُوطِ الصَّلَاةِ: التَّمْيِيزُ.\nلَا يُؤْمَرُ الصَّغِيرُ بِالصَّلَاةِ حَتَّى يَبْلُغَ سَبْعَ سِنِينَ؛ فَلَا صَلَاةَ إِلَّا بِتَمْيِيزٍ.",
               "en": "Among the conditions of prayer: Islam.\nThe prayer of a disbeliever is not valid; some people do not go to the mosque because they are not Muslims.\nAmong the conditions of prayer: discernment (tamyiz).\nA young child is not commanded to pray until he reaches seven years of age; there is no valid prayer without discernment.",
               "ta": "தொழுகையின் நிபந்தனைகளில்: இஸ்லாம்.\nகாஃபிரின் தொழுகை செல்லும்; அல்ல; சிலர் முஸ்லிம்கள் இல்லாததால் பள்ளிக்குச் செல்வதில்லை.\nநிபந்தனைகளில்: ஏழு வயதை அடையும் வரை சிறுவனுக்கு தொழுகை கட்டளையிடப்படாது.",
               "tr": "Min shuruti as-salah: al-islam. La tasihhu salatu al-kafir. Min shuruti as-salah: at-tamyiz. La yu'maru as-saghiru bis-salah hatta yablugh sab'a siniin."
@@ -296,14 +296,14 @@
                 "number": 4403,
                 "url": "https://search.hadith-mcp.org/?id=24907"
               },
-              "ar": "قال رسول الله ﷺ: «رفع القلم عن ثلاثة: عن النائم حتى يستيقظ، وعن الصغير حتى يحتلم، وعن المجنون حتى يعقل».",
+              "ar": "قَالَ رَسُولُ اللهِ ﷺ: «رُفِعَ الْقَلَمُ عَنْ ثَلَاثَةٍ: عَنِ النَّائِمِ حَتَّى يَسْتَيْقِظَ، وَعَنِ الصَّغِيرِ حَتَّى يَحْتَلِمَ، وَعَنِ الْمَجْنُونِ حَتَّى يَعْقِلَ».",
               "en": "The Messenger of Allah ﷺ said: \"The pen is lifted from three: the sleeping person until he awakes, the young child until he reaches puberty, and the insane person until he regains his senses.\"",
               "ta": "நபி ﷺ கூறினார்கள்: \"மூவரிடமிருந்து பேனா தூக்கப்பட்டுள்ளது: துரக்கத்தவன் விழிக்கும் வரை, சிறுவன் பருவமடையும் வரை, பித்தன் சுயநினைவு பெறும் வரை.\"",
               "tr": "Qala rasulullah ﷺ: «Rufi'a al-qalamu 'an thalathah: 'ani an-na'imi hatta yastayqiza, wa 'ani as-saghir hatta yahtalim, wa 'ani al-majnuni hatta ya'qil.»"
             },
             {
               "type": "text",
-              "ar": "من شروط الصلاة: الوضوء.\nلا تصح الصلاة بدون وضوء؛ فالوضوء شرط من شروطها، وله نواقض تبطل به.\nأنواع نواقض الوضوء:\n١- الخارج من السبيلين.\n٢- زوال العقل.\n٣- مس الفرج بيده.",
+              "ar": "مِنْ شُرُوطِ الصَّلَاةِ: الْوُضُوءُ.\nلَا تَصِحُّ الصَّلَاةُ بِدُونِ وُضُوءٍ؛ فَالْوُضُوءُ شَرْطٌ مِنْ شُرُوطِهَا، وَلَهُ نَوَاقِضُ تُبْطِلُ بِهِ.\nأَنْوَاعُ نَوَاقِضِ الْوُضُوءِ:\n١- الْخَارِجُ مِنَ السَّبِيلَيْنِ.\n٢- زَوَالُ الْعَقْلِ.\n٣- مَسُّ الْفَرْجِ بِيَدِهِ.",
               "en": "Among the conditions of prayer: ablution (wudu).\nPrayer is not valid without ablution; it is a condition of it, and it has invalidators that break it.\nAmong the invalidators of ablution:\n1. Anything exiting from the two passages.\n2. Loss of consciousness.\n3. Touching the private parts with the hand.",
               "ta": "நிபந்தனைகளில்: உளூ.\nஉளூ இல்லாமல் தொழுகை செல்லாது; உளூ அதன் நிபந்தனை; அதை விடும்செய்யும் தீங்குகள் உண்டு.\nஉளூவை விடும்செய்யும் சில:\n1. கழிவுப் பாதைகளிலிருந்து வெளியேறுவது.\n2. நினைவு இழப்பு.\n3. கையால் தனி உறுப்பைத் தொடுவது.",
               "tr": "Min shuruti as-salah: al-wudu. La tasihhu as-salah biduni wudu; fa-l-wudu shartun min shurutiha wa lahu nawagid."
@@ -321,21 +321,21 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "من شروط الصلاة: ستر العورة.\nعورة الرجل من السرة إلى الركبة.\nعورة المرأة في الصلاة كلها ما عدا وجهها وكفيها.\nعورة المرأة عند الأجانب الرجال: كلها.",
+              "ar": "مِنْ شُرُوطِ الصَّلَاةِ: سَتْرُ الْعَوْرَةِ.\nعَوْرَةُ الرَّجُلِ مِنَ السُّرَّةِ إِلَى الرُّكْبَةِ.\nعَوْرَةُ الْمَرْأَةِ فِي الصَّلَاةِ كُلُّهَا مَا عَدَا وَجْهَهَا وَكَفَّيْهَا.\nعَوْرَةُ الْمَرْأَةِ عِنْدَ الْأَجَانِبِ الرِّجَالِ: كُلُّهَا.",
               "en": "Among the conditions of prayer: covering the awrah.\nThe awrah of a man is from the navel to the knee.\nThe awrah of a woman in prayer is her whole body except her face and hands.\nThe awrah of a woman before unrelated men is her entire body.",
               "ta": "நிபந்தனைகளில்: அவ்ரத்தை மறைத்தல்.\nஆணின் அவ்ரா: தொப்புளிலிருந்து முழங்கால் வரை.\nதொழுகையில் பெண்ணின் அவ்ரா: முகம், கை பகுதிகள் தவிர முழு உடல்.\nமெஹ்ரம் அல்லாத ஆண்கள் முன்னிலையில் பெண்ணின் முழு உடலும் அவ்ரா.",
               "tr": "Min shuruti as-salah: satru al-'awrah. 'Awratu ar-rajuli min as-surrati ila ar-rukbah. 'Awratu al-mar'ati fis-salahi kulluha ma 'ada wajhaha wa kaffayha."
             },
             {
               "type": "text",
-              "ar": "من شروط الصلاة: إزالة النجاسة.\nيجب عند إرادة الصلاة إزالة النجاسة عن ثلاثة أشياء:\n١- البدن.\n٢- الثياب.\n٣- مكان الصلاة.",
+              "ar": "مِنْ شُرُوطِ الصَّلَاةِ: إِزَالَةُ النَّجَاسَةِ.\nيَجِبُ عِنْدَ إِرَادَةِ الصَّلَاةِ إِزَالَةُ النَّجَاسَةِ عَنْ ثَلَاثَةِ أَشْيَاءَ:\n١- الْبَدَنِ.\n٢- الثِّيَابِ.\n٣- مَكَانِ الصَّلَاةِ.",
               "en": "Among the conditions of prayer: removing impurity.\nWhen intending to pray, one must remove impurity from three things:\n1. The body.\n2. The clothes.\n3. The place of prayer.",
               "ta": "நிபந்தனைகளில்: நாஜஸை நீக்குதல்.\nதொழ விரும்பும்போது மூன்றிலிருந்து நாஜஸ் நீக்குதல் கடமை:\n1. உடல்.\n2. ஆடைகள்.\n3. தொழுமிடம்.",
               "tr": "Min shuruti as-salah: izalatu an-najasah. Yajibu 'inda iradati as-salah izalatu an-najasah 'an thalathat ashyal: al-badan, ath-thiyab, makan as-salah."
             },
             {
               "type": "text",
-              "ar": "من شروط الصلاة: دخول الوقت.\nلا تصح الصلاة إلا بمعرفة دخول وقتها.\nأوقات الصلوات الخمس:\n١- الفجر: من طلوع الفجر الثاني إلى طلوع الشمس.\n٢- الظهر: من زوال الشمس إلى أن يصير ظل كل شيء مثله.\n٣- العصر: من خروج وقت الظهر إلى اصفرار الشمس.\n٤- المغرب: من غروب الشمس إلى مغيب الشفق الأحمر.\n٥- العشاء: من مغيب الشفق الأحمر إلى نصف الليل.",
+              "ar": "مِنْ شُرُوطِ الصَّلَاةِ: دُخُولُ الْوَقْتِ.\nلَا تَصِحُّ الصَّلَاةُ إِلَّا بِمَعْرِفَةِ دُخُولِ وَقْتِهَا.\nأَوْقَاتُ الصَّلَوَاتِ الْخَمْسِ:\n١- الْفَجْرُ: مِنْ طُلُوعِ الْفَجْرِ الثَّانِي إِلَى طُلُوعِ الشَّمْسِ.\n٢- الظُّهْرُ: مِنْ زَوَالِ الشَّمْسِ إِلَى أَنْ يَصِيرَ ظِلُّ كُلِّ شَيْءٍ مِثْلَهُ.\n٣- الْعَصْرُ: مِنْ خُرُوجِ وَقْتِ الظُّهْرِ إِلَى اصْفِرَارِ الشَّمْسِ.\n٤- الْمَغْرِبُ: مِنْ غُرُوبِ الشَّمْسِ إِلَى مَغِيبِ الشَّفَقِ الْأَحْمَرِ.\n٥- الْعِشَاءُ: مِنْ مَغِيبِ الشَّفَقِ الْأَحْمَرِ إِلَى نِصْفِ اللَّيْلِ.",
               "en": "Among the conditions of prayer: the entry of the time.\nPrayer is not valid except knowing that its time has begun.\nThe times of the five prayers:\n1. Fajr: from dawn to sunrise.\n2. Dhuhr: from the sun's decline from its zenith until an object's shadow equals its length.\n3. Asr: from the end of Dhuhr time until the sun turns yellow.\n4. Maghrib: from sunset until the red twilight fades.\n5. Isha: from the fading of the red twilight until midnight.",
               "ta": "நிபந்தனைகளில்: நேரம் உள்ளேறுதல்.\nதொழுகை சரியான நேரத்தில் மட்டுமே செல்லும்.\nஐந்து தொழுகை நேரங்கள்:\n1. ஃபஜ்ர்: விடியல் முதல் சூரிய உதயம் வரை.\n2. துஹ்ர்: நண்பகல் சாய்வு முதல் நிழல் சமமாகும் வரை.\n3. அஸ்ர்: துஹ்ர் முடிந்ததும் முதல் சூரியன் மஞ்சளாவது வரை.\n4. மஃரிப்: சூரிய அஸ்தமனம் முதல் சிவப்பு அந்தி மறையும் வரை.\n5. இஷா: சிவப்பு அந்தி மறைந்ததும் முதல் நள்ளிரவு வரை.",
               "tr": "Min shuruti as-salah: dukhulu al-waqt. Awqatu as-salawati al-khams: al-fajr min tulu'i al-fajri ath-thani ila tulu'i ash-shams; adh-dhuhur min zawali ash-shams ila an yasira dhil-lu kulli shay'in mithlah; al-asr min khuruji waqti adh-dhuhur ila isfirari ash-shams; al-maghrib min ghurubi ash-shams ila mughibi ash-shafaqi al-ahmar; al-'isha min mughibi ash-shafaqi al-ahmar ila nisfi al-layl."
@@ -350,7 +350,7 @@
             },
             {
               "type": "text",
-              "ar": "من شروط الصلاة: استقبال القبلة.\nلا تصح الصلاة بدون استقبال القبلة؛ فهي شرط من شروطها.\nالكعبة في مكة المكرمة، وهي قبلة المسلمين جميعًا.\nمن شروط الصلاة: النية.\nمحل النية القلب ولا يتلفظ بها، فهي شرط من شروط الصلاة.",
+              "ar": "مِنْ شُرُوطِ الصَّلَاةِ: اسْتِقْبَالُ الْقِبْلَةِ.\nلَا تَصِحُّ الصَّلَاةُ بِدُونِ اسْتِقْبَالِ الْقِبْلَةِ؛ فَهِيَ شَرْطٌ مِنْ شُرُوطِهَا.\nالْكَعْبَةُ فِي مَكَّةَ الْمُكَرَّمَةِ، وَهِيَ قِبْلَةُ الْمُسْلِمِينَ جَمِيعًا.\nمِنْ شُرُوطِ الصَّلَاةِ: النِّيَّةُ.\nمَحَلُّ النِّيَّةِ الْقَلْبُ وَلَا يُتَلَفَّظُ بِهَا، فَهِيَ شَرْطٌ مِنْ شُرُوطِ الصَّلَاةِ.",
               "en": "Among the conditions of prayer: facing the Qiblah.\nPrayer is not valid without facing the Qiblah; it is a condition of it.\nThe Kaaba is in Makkah and it is the Qiblah of all Muslims.\nAmong the conditions of prayer: the intention (niyyah).\nThe place of intention is the heart, and it is not pronounced aloud; it is a condition of prayer.",
               "ta": "நிபந்தனைகளில்: கிப்லாவை முன்னோக்குதல்.\nகிப்லா இல்லாமல் தொழுகை செல்லாது; அது நிபந்தனை.\nகஃபா மக்காவில் உள்ளது; அதுவே அனைத்து முஸ்லிம்களின் கிப்லா.\nநிபந்தனைகளில்: நிய்யத்.\nநிய்யத்தின் இடம் நெஞ்சம்; வாயால் சொல்லப்படுவதில்லை; அது தொழுகையின் நிபந்தனை.",
               "tr": "Min shuruti as-salah: istiqbalu al-qiblah. La tasihhu as-salah biduni istiqbali al-qiblah. Al-ka'batu fi Makkata al-mukarramah wa hiya qiblatu al-muslimin jami'an. Min shuruti as-salah: an-niyyah. Mahallu an-niyyah al-qalb wa la yutalaf-fazu biha."
@@ -362,14 +362,14 @@
                 "number": 1,
                 "url": "https://search.hadith-mcp.org/?id=1"
               },
-              "ar": "قال رسول الله ﷺ: «إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى». أخرجه البخاري.",
+              "ar": "قَالَ رَسُولُ اللهِ ﷺ: «إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى». أَخْرَجَهُ الْبُخَارِيُّ.",
               "en": "The Messenger of Allah ﷺ said: \"Deeds are but by intentions, and every person will have only that which he intended.\" Narrated by al-Bukhari.",
               "ta": "நபி ﷺ கூறினார்கள்: \"செயல்கள் நிய்யத்தைப் பொறுத்தே; ஒவ்வொருவருக்கும் அவர் நினைத்ததே கிடைக்கும்.\" (புகாரி)",
               "tr": "Qala rasulullah ﷺ: «Innamal-a'malu binni-yyat, wa innama likullimri'in ma nawa.» Akhrajahu al-Bukhari."
             },
             {
               "type": "text",
-              "ar": "فشروط الصلاة تسعة:\n١- الإسلام.\n٢- العقل.\n٣- التمييز.\n٤- دخول الوقت.\n٥- استقبال القبلة.\n٦- ستر العورة.\n٧- إزالة النجاسة.\n٨- الوضوء.\n٩- النية.",
+              "ar": "فَشُرُوطُ الصَّلَاةِ تِسْعَةٌ:\n١- الْإِسْلَامُ.\n٢- الْعَقْلُ.\n٣- التَّمْيِيزُ.\n٤- دُخُولُ الْوَقْتِ.\n٥- اسْتِقْبَالُ الْقِبْلَةِ.\n٦- سَتْرُ الْعَوْرَةِ.\n٧- إِزَالَةُ النَّجَاسَةِ.\n٨- الْوُضُوءُ.\n٩- النِّيَّةُ.",
               "en": "The conditions of prayer are nine:\n1. Islam.\n2. Sanity.\n3. Discernment.\n4. The entry of the time.\n5. Facing the Qiblah.\n6. Covering the awrah.\n7. Removing impurity.\n8. Ablution.\n9. The intention.",
               "ta": "தொழுகையின் நிபந்தனைகள் ஒன்பது:\n1. இஸ்லாம்.\n2. நல்ல மனம்.\n3. சித்த வயது.\n4. நேரம் வருதல்.\n5. கிப்லா.\n6. அவ்ரா மறைத்தல்.\n7. நாஜஸ் நீக்கல்.\n8. உளூ.\n9. நிய்யத்.",
               "tr": "Fashurutu as-salah tis'ah: 1. al-islam, 2. al-'aql, 3. at-tamyiz, 4. dukhulu al-waqt, 5. istiqbalu al-qiblah, 6. satru al-'awrah, 7. izalatu an-najasah, 8. al-wudu, 9. an-niyyah."
@@ -401,21 +401,21 @@
                 "number": 1423,
                 "url": "https://search.hadith-mcp.org/?id=8700"
               },
-              "ar": "قال رسول الله ﷺ: «أحب البلاد إلى الله مساجدها». أخرجه مسلم.",
+              "ar": "قَالَ رَسُولُ اللهِ ﷺ: «أَحَبُّ الْبِلَادِ إِلَى اللهِ مَسَاجِدُهَا». أَخْرَجَهُ مُسْلِمٌ.",
               "en": "The Messenger of Allah ﷺ said: \"The dearest parts of the land to Allah are its mosques.\" Narrated by Muslim.",
               "ta": "நபி ﷺ கூறினார்கள்: \"அல்லாஹ்வுக்கு பூமியில் மிகவும் பிரியமான இடங்கள் பள்ளிவாசல்கள்.\" (முஸ்லிம்)",
               "tr": "Qala rasulullah ﷺ: «Ahabbu al-biladi ila Allahi masajiduha.» Akhrajahu Muslim."
             },
             {
               "type": "text",
-              "ar": "من آداب دخول المسجد:\n١- أدخل بقدمي اليمنى، وأقول: «اللهم افتح لي أبواب رحمتك».\n٢- أخرج بقدمي اليسرى، وأقول: «اللهم إني أسألك من فضلك».",
+              "ar": "مِنْ آدَابِ دُخُولِ الْمَسْجِدِ:\n١- أَدْخُلُ بِقَدَمِيَ الْيُمْنَى، وَأَقُولُ: «اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ».\n٢- أَخْرُجُ بِقَدَمِيَ الْيُسْرَى، وَأَقُولُ: «اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ».",
               "en": "Among the manners of entering the mosque:\n1. I enter with my right foot, saying: \"O Allah, open for me the doors of Your mercy.\"\n2. I leave with my left foot, saying: \"O Allah, I ask You of Your bounty.\"",
               "ta": "பள்ளி நுழையும் ஆசாரங்கள்:\n1. வலது காலால் நுழைகிறேன்; \"அல்லாஹ்வே! உன் கருணைக் கதவுகளை எனக்குத் திற்பாயாக\" என கூறுகிறேன்.\n2. இடது காலால் வெளிநடக்கிறேன்; \"அல்லாஹ்வே! உன் அதிகப்படியான அருளை நான் கேட்கிறேன்\" எனக் கூறுகிறேன்.",
               "tr": "Min adabi dukhuli al-masjid: adkhulu bi-qadami al-yumna wa aqulu: «Allahumma if-tah li abwaba rahmatika», wa akhruju bi-qadami al-yusra wa aqulu: «Allahumma inni as'aluka min fadlika»."
             },
             {
               "type": "text",
-              "ar": "نحافظ على نظافة المسجد:\n١- لا ألقي الأوراق أو المناديل أو الأكواب داخل المسجد.\n٢- لا أبصق على أرض المسجد.\n٣- لا أحضر إلى المسجد بملابس متسخة أو روائح كريهة.",
+              "ar": "نُحَافِظُ عَلَى نَظَافَةِ الْمَسْجِدِ:\n١- لَا أُلْقِي الْأَوْرَاقَ أَوِ الْمَنَادِيلَ أَوِ الْأَكْوَابَ دَاخِلَ الْمَسْجِدِ.\n٢- لَا أَبْصُقُ عَلَى أَرْضِ الْمَسْجِدِ.\n٣- لَا أَحْضُرُ إِلَى الْمَسْجِدِ بِمَلَابِسَ مُتَّسِخَةٍ أَوْ رَوَائِحَ كَرِيهَةٍ.",
               "en": "We keep the mosque clean:\n1. I do not drop paper, tissues or cups inside the mosque.\n2. I do not spit on the mosque floor.\n3. I do not attend the mosque wearing dirty clothes or with unpleasant odours.",
               "ta": "பள்ளியைத் தூய்மையாக வைத்திருக்கிறோம்:\n1. பள்ளிக்குள் காகிதம், தூவி, குவளைகளை போடமாட்டேன்.\n2. பள்ளி தரையில் எச்சில் துப்பமாட்டேன்.\n3. அழுக்கு ஆடை அல்லது துர்நாற்றத்துடன் பள்ளிக்கு வரமாட்டேன்.",
               "tr": "Nuhafizhu 'ala nadhafati al-masjid: la ulqi al-awraq aw al-manadil aw al-akwab dakhila al-masjid, wa la absuq 'ala ardi al-masjid, wa la ahduru ila al-masjid bi-malabis mutawasikhah aw rawa'iha karihah."
@@ -427,14 +427,14 @@
                 "number": 465,
                 "url": "https://search.hadith-mcp.org/?id=41530"
               },
-              "ar": "قال رسول الله ﷺ: «إذا دخل أحدكم المسجد فلا يجلس حتى يصلي ركعتين». متفق عليه.",
+              "ar": "قَالَ رَسُولُ اللهِ ﷺ: «إِذَا دَخَلَ أَحَدُكُمُ الْمَسْجِدَ فَلَا يَجْلِسْ حَتَّى يُصَلِّيَ رَكْعَتَيْنِ». مُتَّفَقٌ عَلَيْهِ.",
               "en": "The Messenger of Allah ﷺ said: \"When any of you enters the mosque, let him not sit until he prays two rak'ahs.\" Agreed upon.",
               "ta": "நபி ﷺ கூறினார்கள்: \"உங்களில் ஒருவர் பள்ளிக்குள் நுழைந்தால், இரு ரக்ஆத் தொழும் வரை உட்கார வேண்டாம்.\" (முத்வஃபக்)",
               "tr": "Qala rasulullah ﷺ: «Idha dakhala ahadukum al-masjida fala yajlis hatta yusalliya rak'atayni.» Muttafaq 'alayh."
             },
             {
               "type": "text",
-              "ar": "إذا دخلت المسجد قبل إقامة الصلاة:\n١- أصلي تحية المسجد.\n٢- أقرأ القرآن الكريم.\n٣- أذكر الله عز وجل.\nولا أرفع صوتي في المسجد تشويشًا على المصلين.",
+              "ar": "إِذَا دَخَلْتُ الْمَسْجِدَ قَبْلَ إِقَامَةِ الصَّلَاةِ:\n١- أُصَلِّي تَحِيَّةَ الْمَسْجِدِ.\n٢- أَقْرَأُ الْقُرْآنَ الْكَرِيمَ.\n٣- أَذْكُرُ اللهَ عَزَّ وَجَلَّ.\nوَلَا أَرْفَعُ صَوْتِي فِي الْمَسْجِدِ تَشْوِيشًا عَلَى الْمُصَلِّينَ.",
               "en": "If I enter the mosque before the prayer is established:\n1. I pray the mosque greeting.\n2. I recite the Glorious Quran.\n3. I remember Allah the Exalted.\nAnd I do not raise my voice in the mosque, which would disturb the worshippers.",
               "ta": "தொழுகை ஆரம்பிக்கும் முன் பள்ளிக்குள் நுழைந்தால்:\n1. தஹிய்யத்துல் மஸ்ஜித் தொழுகிறேன்.\n2. குர்ஆன் ஓதுகிறேன்.\n3. அல்லாஹ்வை திக்ரு செய்கிறேன்.\nதொழுபவர்களுக்கு இடையூறாக சத்தமிடமாட்டேன்.",
               "tr": "Idha dakhaltu al-masjida qabla iqamati as-salah: usalli tahiyyata al-masjid, wa aqra'u al-qur'an al-karim, wa adhkuru Allah 'azza wa jalla."
@@ -461,7 +461,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "كان محمد يلعب بالكرة في فناء المنزل، فسمع أذان المغرب، فتوقف عن اللعب، وقال: أذهب إلى المسجد لأداء الصلاة جماعة.\nحرص محمد على الصلاة في المسجد للسبب التالي:",
+              "ar": "كَانَ مُحَمَّدٌ يَلْعَبُ بِالْكُرَةِ فِي فِنَاءِ الْمَنْزِلِ، فَسَمِعَ أَذَانَ الْمَغْرِبِ، فَتَوَقَّفَ عَنِ اللَّعِبِ، وَقَالَ: أَذْهَبُ إِلَى الْمَسْجِدِ لِأَدَاءِ الصَّلَاةِ جَمَاعَةً.\nحَرْصُ مُحَمَّدٍ عَلَى الصَّلَاةِ فِي الْمَسْجِدِ لِلسَّبَبِ التَّالِي:",
               "en": "Muhammad was playing ball in the courtyard of the house when he heard the adhan of Maghrib. He stopped playing and said: I am going to the mosque to pray in congregation.\nMuhammad's eagerness to pray in the mosque was for the following reason:",
               "ta": "முஹம்மது வீட்டு முற்றத்தில் பந்து விளையாடிக் கொண்டிருந்தான்; மஃரிப் அதான் கேட்டதும் விளையாட்டை நிறுத்தி, \"பள்ளிக்குச் சென்று ஜமாஅத்தாக தொழப் போகிறேன்\" என்றான்.\nஅவனது ஆர்வத்திற்கான காரணம்:",
               "tr": "Kana Muhammadun yal'abu bil-kurati fi fana'i al-manzil, fasami'a adhana al-maghrib, fatawaqqafa 'ani al-la'bi wa qala: adhhabu ila al-masjid li-ada'i as-salah jama'ah."
@@ -473,7 +473,7 @@
                 "number": 630,
                 "url": "https://search.hadith-mcp.org/?id=630"
               },
-              "ar": "قال رسول الله ﷺ: «صلاة الجماعة تفضل صلاة الفذ بسبع وعشرين درجة». أخرجه البخاري ومسلم.",
+              "ar": "قَالَ رَسُولُ اللهِ ﷺ: «صَلَاةُ الْجَمَاعَةِ تَفْضُلُ صَلَاةَ الْفَذِّ بِسَبْعٍ وَعِشْرِينَ دَرَجَةً». أَخْرَجَهُ الْبُخَارِيُّ وَمُسْلِمٌ.",
               "en": "The Messenger of Allah ﷺ said: \"The congregational prayer is twenty-seven degrees superior to the prayer offered alone.\" Narrated by al-Bukhari and Muslim.",
               "ta": "நபி ﷺ கூறினார்கள்: \"ஜமாஅத் தொழுகை, தனி தொழுகையை விட இருபத்தேழு பாகையால் சிறந்தது.\" (புகாரி, முஸ்லிம்)",
               "tr": "Qala rasulullah ﷺ: «Salatu al-jama'ati tafdulu salata al-fadh-dhi bisab'in wa 'ishrina darajah.» Akhrajahu al-Bukhari wa Muslim."
@@ -485,14 +485,14 @@
                 "number": 1381,
                 "url": "https://search.hadith-mcp.org/?id=8658"
               },
-              "ar": "أتى النبي ﷺ رجل أعمى، فقال: يا رسول الله، ليس لي قائد يقودني إلى المسجد، وسأله أن يرخص له فيصلي في بيته، فرخص له، فلما ولى دعاه، فقال: «هل تسمع النداء بالصلاة؟» قال: نعم، قال: «فأجب». أخرجه مسلم.",
+              "ar": "أَتَى النَّبِيَّ ﷺ رَجُلٌ أَعْمَى، فَقَالَ: يَا رَسُولَ اللهِ، لَيْسَ لِي قَائِدٌ يَقُودُنِي إِلَى الْمَسْجِدِ، وَسَأَلَهُ أَنْ يُرَخِّصَ لَهُ فَيُصَلِّيَ فِي بَيْتِهِ، فَرَخَّصَ لَهُ، فَلَمَّا وَلَّى دَعَاهُ، فَقَالَ: «هَلْ تَسْمَعُ النِّدَاءَ بِالصَّلَاةِ؟» قَالَ: نَعَمْ، قَالَ: «فَأَجِبْ». أَخْرَجَهُ مُسْلِمٌ.",
               "en": "A blind man came to the Prophet ﷺ and said: O Messenger of Allah, I have no one to guide me to the mosque, and he asked him to grant him a concession to pray at home. The Prophet granted him a concession, then when the man left he called him back and said: \"Do you hear the call to prayer?\" He said: Yes. He said: \"Then respond.\" Narrated by Muslim.",
               "ta": "பார்வையற்ற ஒருவர் நபி ﷺ அவர்களிடம் வந்து, \"தூதரே! என்னைப் பள்ளிக்கு அழைத்துச் செல்ல வழிகாட்டி இல்லை\" என்று, வீட்டில் தொழ அனுமதி கேட்டார். நபி ﷺ அனுமதித்தார்கள்; அவர் திரும்பியபோது அழைத்து, \"தொழுகை அழைப்பை (அதானை) நீ கேட்கிறாயா?\" என்று கேட்டார்கள். \"ஆம்\" என்றார். \"அப்படியானால் வந்து சேரு\" என்றார்கள். (முஸ்லிம்)",
               "tr": "Ata an-nabiyya ﷺ rajulun a'ma fa-qala: ya rasulallah, laysa li qa'idun yaquduni ila al-masjid, wasa'alahu an yurrakhkhusa lahu fa-yusalliya fi baytihi, fa-rakhkhusa lahu, falamma walla da'ahu fa-qala: «Hal tasma'u an-nida'a bis-salah?» qala: na'am, qala: «Fa-a-jib.»"
             },
             {
               "type": "text",
-              "ar": "أضمنوا الصلوات الخمس في المسجد، والرجال يحافظون على أداء الصلوات المفروضة جماعة في المسجد؛ لأن صلاة الجماعة واجبة على الرجال في المسجد.",
+              "ar": "أُضَمِّنُ الصَّلَوَاتِ الْخَمْسَ فِي الْمَسْجِدِ، وَالرِّجَالُ يُحَافِظُونَ عَلَى أَدَاءِ الصَّلَوَاتِ الْمَفْرُوضَةِ جَمَاعَةً فِي الْمَسْجِدِ؛ لِأَنَّ صَلَاةَ الْجَمَاعَةِ وَاجِبَةٌ عَلَى الرِّجَالِ فِي الْمَسْجِدِ.",
               "en": "Perform the five prayers in the mosque, and men remain regular in performing the obligatory prayers in congregation in the mosque, because the congregational prayer is obligatory upon men in the mosque.",
               "ta": "ஐந்து தொழுகைகளையும் பள்ளியில் ஜமாஅத்தாக செய்யுங்கள்; ஆண்கள் கடமைத் தொழுகைகளை ஜமாஅத்தாக பள்ளியில் செய்வதில் நிலையாக இருக்கிறார்கள்; ஏனெனில் பள்ளியில் ஜமாஅத் தொழுகை ஆண்களுக்குக் கடமை.",
               "tr": "Addu as-salawati al-khams fil-masjid, war-rijalu yuhafizhuna 'ala ada'i as-salawati al-mafrudah jama'atan fil-masjid; li'anna salata al-jama'ati wajibatun 'ala ar-rijal fil-masjid."

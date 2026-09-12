@@ -23,35 +23,35 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "درسنا في الصف الأول الأصول الثلاثة: معرفة العبدِ ربَّه، ودينه، ونبيه محمدًا ﷺ.",
+              "ar": "دَرَسْنَا فِي الصَّفِّ الْأَوَّلِ الْأُصُولَ الثَّلَاثَةَ: مَعْرِفَةُ الْعَبْدِ رَبَّهُ، وَدِينِهِ، وَنَبِيِّهِ مُحَمَّدًا ﷺ.",
               "en": "In first grade we learned the three principles: knowing one's Lord, one's religion, and Prophet Muhammad ﷺ.",
               "ta": "முதல் வகுப்பில் மூன்று அடிப்படைக் கொள்கைகளைக் கற்றோம்: இறைவனை, மார்க்கத்தை, நபி முஹம்மது ﷺ அவர்களை அறிதல்.",
               "tr": "Darasna fi as-saff al-awwal al-usul ath-thalatha: Ma'rifatu al-'abdi Rabbahu, wa dinuhu, wa nabiyyuhu Muhammadan ﷺ."
             },
             {
               "type": "text",
-              "ar": "في الدرس هذا سناخذها مراتب الدين الثلاثة:\n١- الإسلام.\n٢- الإيمان.\n٣- الإحسان.",
+              "ar": "فِي الدَّرْسِ هَذَا سَنَأْخُذُهَا مَرَاتِبَ الدِّينِ الثَّلَاثَةَ:\n١- الْإِسْلَامُ.\n٢- الْإِيمَانُ.\n٣- الْإِحْسَانُ.",
               "en": "In this lesson we will take the three ranks of the religion:\n1. Al-Islam (Submission).\n2. Al-Iman (Faith).\n3. Al-Ihsan (Excellence).",
               "ta": "இந்தப் பாடத்தில் மார்க்கத்தின் மூன்று நிலைகளைக் கற்போம்:\n1. இஸ்லாம் (சரணடைதல்).\n2. ஈமான் (நம்பிக்கை).\n3. இஹ்சான் (சிறப்பு).",
               "tr": "Fi ad-dars hadha sanakhudhuhu maratib ad-din ath-thalatha."
             },
             {
               "type": "text",
-              "ar": "الإسلام: إفراد الله تعالى بالعبادة، والشهادة لمحمد ﷺ بالرسالة، وإقامة الصلاة، وإيتاء الزكاة، وصيام رمضان، وحج البيت.",
+              "ar": "الْإِسْلَامُ: إِفْرَادُ اللهِ تَعَالَى بِالْعِبَادَةِ، وَالشَّهَادَةُ لِمُحَمَّدٍ ﷺ بِالرِّسَالَةِ، وَإِقَامَةُ الصَّلَاةِ، وَإِيتَاءُ الزَّكَاةِ، وَصِيَامُ رَمَضَانَ، وَحَجُّ الْبَيْتِ.",
               "en": "Al-Islam: directing worship to Allah alone, testifying that Muhammad ﷺ is His Messenger, establishing prayer, paying zakat, fasting Ramadan, and performing Hajj.",
               "ta": "இஸ்லாம்: அல்லாஹ்வை மட்டும் வணங்குதல், முஹம்மது ﷺ அவர்கள் அவனது தூதர் என்று சாட்சியம் கூறுதல், தொழுகையை நிலைநாட்டுதல், ஜகாத் கொடுத்தல், ரமளானில் நோன்பு நோற்றல், ஹஜ் செல்லுதல்.",
               "tr": "Al-islamu: ifradu Allahi ta'ala bil-ibadah, wash-shahadatu li-Muhammadin rasulillah, wa iqamu as-salah, wa ita'u az-zakah, wa siyamu Ramadan, wa hajju al-bayt."
             },
             {
               "type": "text",
-              "ar": "الإيمان: أن نؤمن بالله، وملائكته، وكتبه، ورسله، واليوم الآخر، والقدر خيره وشره.",
+              "ar": "الْإِيمَانُ: أَنْ نُؤْمِنَ بِاللهِ، وَمَلَائِكَتِهِ، وَكُتُبِهِ، وَرُسُلِهِ، وَالْيَوْمِ الْآخِرِ، وَالْقَدَرِ خَيْرِهِ وَشَرِّهِ.",
               "en": "Al-Iman: believing in Allah, His angels, His books, His messengers, the Last Day, and divine decree — its good and its evil.",
               "ta": "ஈமான்: அல்லாஹ், வானதூதர்கள், வேதங்கள், தூதர்கள், மறுமை நாள், விதியில் (நல்லது மற்றும் தீமையில்) நம்பிக்கை கொள்ளுதல்.",
               "tr": "Al-imanu: an nu'mina billahi wa mala'ikatihi wa kutubihi wa rusulihi wal-yawmi al-akhir wal-qadari khayrihi wa sharrihi."
             },
             {
               "type": "text",
-              "ar": "الإحسان: أن نعبد الله كأننا نراه، فإن لم نكن نراه فإنه يرانا.",
+              "ar": "الْإِحْسَانُ: أَنْ نَعْبُدَ اللهَ كَأَنَّنَا نَرَاهُ، فَإِنْ لَمْ نَكُنْ نَرَاهُ فَإِنَّهُ يَرَانَا.",
               "en": "Al-Ihsan: to worship Allah as though we see Him; if we cannot see Him, He certainly sees us.",
               "ta": "இஹ்சான்: அல்லாஹ்வை அவனைக் காண்பது போல் வணங்குவது; அவனைக் காண இயலாவிட்டாலும், அவன் நம்மைக் காண்கிறான்.",
               "tr": "Al-ihsanu: an na'budAllaha ka'annanarahu, fa-in lam nakun narahu fa-innahu yarana."
@@ -78,7 +78,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "كل بناء لا يقوم إلا على أساس وأركان. الإسلام دين عظيم، فله أركان يقوم عليها.\nأركان الإسلام خمسة.",
+              "ar": "كُلُّ بِنَاءٍ لَا يَقُومُ إِلَّا عَلَى أَسَاسٍ وَأَرْكَانٍ. الْإِسْلَامُ دِينٌ عَظِيمٌ، فَلَهُ أَرْكَانٌ يَقُومُ عَلَيْهَا.\nأَرْكَانُ الْإِسْلَامِ خَمْسَةٌ.",
               "en": "Every building stands on a foundation and pillars. Islam is a great religion, so it has pillars upon which it stands.\nThe pillars of Islam are five.",
               "ta": "ஒவ்வொரு கட்டிடமும் அடித்தளமும் தூண்களும் இல்லாமல் நிலைக்க முடியாது. இஸ்லாம் ஒரு பெரிய மார்க்கம்; அதற்கும் நிலைக்கும் தூண்கள் உண்டு.\nஇஸ்லாத்தின் தூண்கள் ஐந்து.",
               "tr": "Kullu bunya la yaqumu illa 'ala asasin wa arkani. Lil-islami arkana khamsah."
@@ -90,7 +90,7 @@
                 "number": 8,
                 "url": "https://search.hadith-mcp.org/?id=8"
               },
-              "ar": "«بُنِيَ الإسْلامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لا إِلَهَ إِلا اللهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللهِ، وَإِقَامِ الصَّلاةِ، وَإِيتَاءِ الزَّكَاةِ، وَالحَجِّ، وَصومِ رَمَضَان». أخرجه البخاري (٨) ومسلم (١٦) من حديث ابن عمر .",
+              "ar": "«بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إِلَهَ إِلَّا اللهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَالْحَجِّ، وَصَوْمِ رَمَضَان». أَخْرَجَهُ الْبُخَارِيُّ (٨) وَمُسْلِمٌ (١٦) مِنْ حَدِيثِ ابْنِ عُمَرَ .",
               "en": "\"Islam is built upon five [pillars]: the testimony that none has the right to be worshipped but Allah and that Muhammad is the Messenger of Allah, establishing prayer, giving zakat, Hajj, and fasting Ramadan.\" Narrated by al-Bukhari (8) and Muslim (16), from the hadith of Ibn Umar.",
               "ta": "\"இஸ்லாம் ஐந்தின் மீது கட்டப்பட்டுள்ளது: இரட்டைச் சாட்சி, தொழுகையை நிலைநாட்டுதல், ஜகாத் கொடுத்தல், ஹஜ், ரமளான் நோன்பு.\" (புகாரி 8; முஸ்லிம் 16)",
               "tr": "«Buniya al-islamu 'ala khamsin: shahadati an la ilaha illa Allah wa anna Muhammadan rasulullah, wa iqamati as-salah, wa ita'i az-zakah, wal-hajji, wa sawmi Ramadan.»"
@@ -108,7 +108,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "ما مفتاح الدخول في الإسلام؟\nمفتاح الدخول في الإسلام: شهادة أن لا إله إلا الله.\nمعنى «لا إله إلا الله»: لا معبود بحق إلا الله.",
+              "ar": "مَا مِفْتَاحُ الدُّخُولِ فِي الْإِسْلَامِ؟\nمِفْتَاحُ الدُّخُولِ فِي الْإِسْلَامِ: شَهَادَةُ أَنْ لَا إِلَهَ إِلَّا اللهُ.\nمَعْنَى «لَا إِلَهَ إِلَّا اللهُ»: لَا مَعْبُودَ بِحَقٍّ إِلَّا اللهُ.",
               "en": "What is the key to entering Islam?\nThe key to entering Islam is the testimony: La ilaha illallah (there is no god but Allah).\nThe meaning of La ilaha illallah: none has the right to be worshipped except Allah.",
               "ta": "இஸ்லாத்திற்குள் நுழைவதற்கான விசை என்ன?\nஇஸ்லாத்திற்குள் நுழைவதற்கான விசை: லா இலாஹ இல்லல்லாஹ் என்ற சாட்சி.\nபொருள்: அல்லாஹ்வைத் தவிர உண்மையாக வணங்கத் தகுதியுடையவன் வேறு யாரும் இல்லை.",
               "tr": "Ma miftahu ad-dukhuli fil-islam? Maftahu ad-dukhuli fil-islam: shahadatu an la ilaha illa Allah."
@@ -123,7 +123,7 @@
             },
             {
               "type": "text",
-              "ar": "الله تعالى لا يُشرك في عبادته أحد؛ لأنه الخالق الرازق المحيي المميت، لا نعبد إلا إياه وحده.",
+              "ar": "اللهُ تَعَالَى لَا يُشْرَكُ فِي عِبَادَتِهِ أَحَدٌ؛ لِأَنَّهُ الْخَالِقُ الرَّازِقُ الْمُحْيِي الْمُمِيتُ، لَا نَعْبُدُ إِلَّا إِيَّاهُ وَحْدَهُ.",
               "en": "Allah the Exalted shares His worship with no one; He is the Creator, the Provider, the One who gives life and causes death — we worship none but Him alone.",
               "ta": "அல்லாஹ் தன் வணக்கத்தில் யாரையும் இணைக்க மாட்டான்; அவனே படைப்பவன், உணவளிப்பவன், உயிர்ப்பிப்பவன், மரணிக்கச் செய்பவன்; அவனைத் தவிர வேறு யாரையும் வணங்கமாட்டோம்.",
               "tr": "Allahu ta'ala la yushraku fi 'ibadatihi ahad; fa-innahu al-khaliq ar-raziqu al-muhyi al-mumit, la na'budu illa iyyahu wahdahu."
@@ -141,7 +141,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "الشهادة الثانية: أن محمدًا رسول الله.\nالرسول ﷺ أرسله الله تعالى رحمة للعالمين، وأمرنا بطاعته والاتباع له.",
+              "ar": "الشَّهَادَةُ الثَّانِيَةُ: أَنَّ مُحَمَّدًا رَسُولُ اللهِ.\nالرَّسُولُ ﷺ أَرْسَلَهُ اللهُ تَعَالَى رَحْمَةً لِلْعَالَمِينَ، وَأَمَرَنَا بِطَاعَتِهِ وَالِاتِّبَاعِ لَهُ.",
               "en": "The second testimony: that Muhammad is the Messenger of Allah.\nThe Messenger ﷺ was sent by Allah as a mercy to the world, and He commanded us to obey and follow him.",
               "ta": "இரண்டாம் சாட்சி: முஹம்மது அல்லாஹ்வின் தூதர்.\nதூதர் ﷺ அவர்கள் உலகிற்கு இரக்கமாக அனுப்பப்பட்டார்கள்; அவர்களுக்குக் கீழ்ப்படிந்து அவர்களைப் பின்பற்றும்படி கட்டளையிடப்பட்டுள்ளோம்.",
               "tr": "Ash-shahadatu ath-thaniya: anna Muhammadan rasulullah. Ar-rasulu arsalahu Allahu rahmatan lil-'alamin."
@@ -175,21 +175,21 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "الركن الثالث من أركان الإسلام: إقامة الصلاة.\nالصلاة واجبة على كل مسلم بالغ عاقل.\nصلاتنا خمس صلوات في اليوم والليلة.",
+              "ar": "الرُّكْنُ الثَّالِثُ مِنْ أَرْكَانِ الْإِسْلَامِ: إِقَامَةُ الصَّلَاةِ.\nالصَّلَاةُ وَاجِبَةٌ عَلَى كُلِّ مُسْلِمٍ بَالِغٍ عَاقِلٍ.\nصَلَاتُنَا خَمْسُ صَلَوَاتٍ فِي الْيَوْمِ وَاللَّيْلَةِ.",
               "en": "The third pillar of Islam: establishing prayer.\nPrayer is obligatory upon every adult, sane Muslim.\nOur prayers are five prayers each day and night.",
               "ta": "இஸ்லாத்தின் மூன்றாம் தூண்: தொழுகையை நிலைநாட்டுதல்.\nபுத்திப் பூர்வமான வயது வந்த ஒவ்வொரு முஸ்லிமுக்கும் தொழுகை கடமை.\nநம் தொழுகைகள் ஒரு நாள் இரவில் ஐந்து.",
               "tr": "Ar-ruknu ath-thalithu min arkani al-islam: iqamu as-salah. Salatuna khamsu salawatin fil-yawmi wal-layla."
             },
             {
               "type": "text",
-              "ar": "أوقات الصلاة:\n١- الفجر.\n٢- الظهر.\n٣- العصر.\n٤- المغرب.\n٥- العشاء.",
+              "ar": "أَوْقَاتُ الصَّلَاةِ:\n١- الْفَجْرُ.\n٢- الظُّهْرُ.\n٣- الْعَصْرُ.\n٤- الْمَغْرِبُ.\n٥- الْعِشَاءُ.",
               "en": "Times of prayer:\n1. Fajr (Dawn).\n2. Dhuhr (Noon).\n3. Asr (Afternoon).\n4. Maghrib (Sunset).\n5. Isha (Night).",
               "ta": "தொழுகை நேரங்கள்:\n1. ஃபஜ்ர் (விடியல்).\n2. துஹ்ர் (நண்பகல்).\n3. அஸ்ர் (மதியத்திற்குப் பிறகு).\n4. மஃரிப் (சூரிய அஸ்தமனம்).\n5. இஷா (இரவு).",
               "tr": "Awqatu as-salah: 1. al-fajr, 2. ad-duhr, 3. al-asr, 4. al-maghrib, 5. al-isha."
             },
             {
               "type": "text",
-              "ar": "المحافظة على الصلاة من علامات الإيمان؛ وقد أمرنا الله بها في كتابه العزيز.",
+              "ar": "الْمُحَافَظَةُ عَلَى الصَّلَاةِ مِنْ عَلَامَاتِ الْإِيمَانِ؛ وَقَدْ أَمَرَنَا اللهُ بِهَا فِي كِتَابِهِ الْعَزِيزِ.",
               "en": "Being regular in prayer is a sign of faith; Allah has commanded us in His Glorious Book to be steadfast in it.",
               "ta": "தொழுகையில் நிலைத்திருப்பது ஈமானின் அறிகுறி; புனித குர்ஆனில் அதை மேற்கொள்ளும்படி அல்லாஹ் நமக்குக் கட்டளையிட்டுள்ளான்.",
               "tr": "Al-muhafazatu 'ala as-salah min 'alami al-iman; wa qad amarana Allahu biha fi kitabihil-'aziz."
@@ -207,21 +207,21 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "الركن الرابع من أركان الإسلام: إيتاء الزكاة.\nالزكاة: أن يُخرِجَ المرءُ نصيبًا معلومًا من ماله لمستحقيه.",
+              "ar": "الرُّكْنُ الرَّابِعُ مِنْ أَرْكَانِ الْإِسْلَامِ: إِيتَاءُ الزَّكَاةِ.\nالزَّكَاةُ: أَنْ يُخْرِجَ الْمَرْءُ نَصِيبًا مَعْلُومًا مِنْ مَالِهِ لِمُسْتَحِقِّيهِ.",
               "en": "The fourth pillar of Islam: giving zakat.\nZakat: that a person gives a fixed portion of his wealth to those who deserve it.",
               "ta": "இஸ்லாத்தின் நான்காம் தூண்: ஜகாத் கொடுத்தல்.\nஜகாத்: ஒருவன் தன் செல்வத்தில் ஒரு குறிப்பிட்ட பகுதியை தகுதியானவர்களுக்குக் கொடுப்பது.",
               "tr": "Ar-ruknu ar-rabi'u min arkani al-islam: ita'u az-zakah. Az-zakatu: an yakhrija al-maru nasiban ma'luman min malihi li-mustahiqqihi."
             },
             {
               "type": "text",
-              "ar": "من أركان الزكاة:\n١- النصاب: وهو المال الذي تجب فيه الزكاة.\n٢- الحول: وهو مضيّ سنة كاملة عليه.\n٣- المستحقون: وهم الأصناف التي تستحق الزكاة.",
+              "ar": "مِنْ أَرْكَانِ الزَّكَاةِ:\n١- النِّصَابُ: وَهُوَ الْمَالُ الَّذِي تَجِبُ فِيهِ الزَّكَاةُ.\n٢- الْحَوْلُ: وَهُوَ مُضِيُّ سَنَةٍ كَامِلَةٍ عَلَيْهِ.\n٣- الْمُسْتَحِقُّونَ: وَهُمُ الْأَصْنَافُ الَّتِي تَسْتَحِقُّ الزَّكَاةَ.",
               "en": "Pillars of zakat:\n1. The nisab: the minimum wealth at which zakat is due.\n2. The hawl: one full year has passed over it.\n3. The deserving recipients: seven categories.",
               "ta": "ஜகாத்தின் தூண்கள்:\n1. நஸாப்: ஜகாத் கடமையான குறைந்தபட்ச செல்வம்.\n2. ஹவ்ல்: ஒரு முழு ஆண்டு கடந்திருத்தல்.\n3. தகுதியானவர்கள்: ஏழு பிரிவினர்.",
               "tr": "Min arkani az-zakah: an-nisab wal-hawl wal-mustahiqqun sab'atu asnanif."
             },
             {
               "type": "text",
-              "ar": "لله أسوة حسنة في الإنفاق؛ فكما يحب أن يُنقِعَ خيره، يُحبُّ الإنفاق في سبيله.",
+              "ar": "لِلَّهِ أُسْوَةٌ حَسَنَةٌ فِي الْإِنْفَاقِ؛ فَكَمَا يُحِبُّ أَنْ يُنْقِعَ خَيْرَهُ، يُحِبُّ الْإِنْفَاقَ فِي سَبِيلِهِ.",
               "en": "Allah sets a good example in spending; just as He loves that His blessings be used, He loves spending in His cause.",
               "ta": "அல்லாஹ் செலவிடுவதில் நல்ல முன்மாதிரியாக இருக்கிறான்; அவனது நல்லருட்களைப் பயன்படுத்துவதை அவன் விரும்புவது போல, அவனது பாதையில் செலவிடுவதையும் விரும்புகிறான்.",
               "tr": "Lillahu uswatun hasanatin fil-infāqi; fa-kama yuhibbu an yunfi'a khayrahu yuhhibbu al-infāqa fi sabilihi."
@@ -239,7 +239,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "الركن الخامس من أركان الإسلام: صيام رمضان.\nالصيام: الإمساك عن الطعام والشراب وسائر المفطرات من طلوع الفجر إلى غروب الشمس.",
+              "ar": "الرُّكْنُ الْخَامِسُ مِنْ أَرْكَانِ الْإِسْلَامِ: صِيَامُ رَمَضَانَ.\nالصِّيَامُ: الْإِمْسَاكُ عَنِ الطَّعَامِ وَالشَّرَابِ وَسَائِرِ الْمُفْطِرَاتِ مِنْ طُلُوعِ الْفَجْرِ إِلَى غُرُوبِ الشَّمْسِ.",
               "en": "The fifth pillar of Islam: fasting Ramadan.\nFasting: abstaining from food, drink, and all invalidators from dawn to sunset.",
               "ta": "இஸ்லாத்தின் ஐந்தாம் தூண்: ரமளான் நோன்பு.\nநோன்பு: விடியலிலிருந்து சூரிய அஸ்தமனம் வரை உணவு, பானம் மற்றும் அனைத்து நோன்பை விடாத காரியங்களைத் தவிர்த்தல்.",
               "tr": "Ar-ruknu al-khamisu min arkani al-islam: siyamu Ramadan. As-siyamu: al-imsaku 'an at-ta'am wash-sharabi wa sayyiri al-mufattirat."
@@ -254,7 +254,7 @@
             },
             {
               "type": "text",
-              "ar": "الصيام تعليم لنا التقوى والصبر، ويوحِّد بين الأغنياء والفقراء.",
+              "ar": "الصِّيَامُ تَعْلِيمٌ لَنَا التَّقْوَى وَالصَّبْرِ، وَيُوَحِّدُ بَيْنَ الْأَغْنِيَاءِ وَالْفُقَرَاءِ.",
               "en": "Fasting teaches us taqwa (mindfulness of God) and patience, and it unites the rich and the poor.",
               "ta": "நோன்பு நமக்குத் தக்வா (அல்லாஹ்வுக்கு அஞ்சுதல்) மற்றும் பொறுமையைக் கற்பிக்கிறது; வசதியானவர்களையும் ஏழைகளையும் ஒன்றிணைக்கிறது.",
               "tr": "As-siyamu tu'allimuna at-taqwa was-sabr, wa yuwahhidu bayna al-aghniya' wal-fuqara'."
@@ -272,7 +272,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "الركن الخامس الختام من أركان الإسلام: حج بيت الله الحرام.\nالحج واجب مرة في العمر على من استطاع إليه سبيلًا.",
+              "ar": "الرُّكْنُ الْخَامِسُ الْخِتَامُ مِنْ أَرْكَانِ الْإِسْلَامِ: حَجُّ بَيْتِ اللهِ الْحَرَامِ.\nالْحَجُّ وَاجِبٌ مَرَّةً فِي الْعُمْرِ عَلَى مَنِ اسْتَطَاعَ إِلَيْهِ سَبِيلًا.",
               "en": "The fifth pillar, completing the pillars of Islam: pilgrimage to the Sacred House of Allah.\nHajj is obligatory once in a lifetime for whoever is able to undertake it.",
               "ta": "இஸ்லாத்தின் ஐந்தாம் தூண்: அல்லாஹ்வின் புனித இல்லத்திற்கு ஹஜ்.\nதிறன் உள்ளவர்களுக்கு வாழ்நாளில் ஒரு முறை ஹஜ் கடமை.",
               "tr": "Ar-ruknu al-khamis min arkani al-islam: hajju bayti Allah al-haram. Al-hajju wajibun marratan fil-'umri 'ala man istata'a ilayhi sabila."
@@ -287,7 +287,7 @@
             },
             {
               "type": "text",
-              "ar": "من أركان الحج:\n١- الإحرام: النية للحج أو العمرة.\n٢- الوقوف بعرفة.\n٣- طواف الكعبة.\n٤- السعي بين الصفا والمروة.\n٥- ذبح الهَدْي (إذا أمكن).",
+              "ar": "مِنْ أَرْكَانِ الْحَجِّ:\n١- الْإِحْرَامُ: النِّيَّةُ لِلْحَجِّ أَوِ الْعُمْرَةِ.\n٢- الْوُقُوفُ بِعَرَفَةَ.\n٣- طَوَافُ الْكَعْبَةِ.\n٤- السَّعْيُ بَيْنَ الصَّفَا وَالْمَرْوَةِ.\n٥- ذَبْحُ الْهَدْيِ (إِذَا أَمْكَنَ).",
               "en": "Rites of Hajj:\n1. Ihram: the intention for Hajj or Umrah.\n2. Standing at Arafat.\n3. Tawaf (circumambulation) of the Kaaba.\n4. Sa'i (walking) between Safa and Marwa.\n5. Sacrifice of an animal (hady) if possible.",
               "ta": "ஹஜ் கடமைகள்:\n1. இஹ்ராம்: ஹஜ் அல்லது உம்ரா நோக்கம்.\n2. அரஃபாவில் நிறுத்தம்.\n3. கஃபாவைத் தவாஃப் செய்தல்.\n4. ஸஃபா-மர்வா இடையே சஃய் செய்தல்.\n5. விலங்கை பலி கொடுத்தல் (சாத்தியமெனில்).",
               "tr": "Min arkani al-hajj: al-ihram, al-wuquf bi-'Arafah, tawaf al-ka'bah, as-sa'y bayna as-safa wal-marwa, dhabhu al-hady."
@@ -314,7 +314,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "كما أن للإسلام أركانًا؛ فإن للإيمان أيضًا أركانًا.\nأركان الإيمان ستة:\n١- الإيمان بالله.\n٢- الإيمان بالملائكة.\n٣- الإيمان بالكتب.\n٤- الإيمان بالرسل.\n٥- الإيمان باليوم الآخر.\n٦- الإيمان بالقدر خيره وشره.",
+              "ar": "كَمَا أَنَّ لِلْإِسْلَامِ أَرْكَانًا؛ فَإِنَّ لِلْإِيمَانِ أَيْضًا أَرْكَانًا.\nأَرْكَانُ الْإِيمَانِ سِتَّةٌ:\n١- الْإِيمَانُ بِاللهِ.\n٢- الْإِيمَانُ بِالْمَلَائِكَةِ.\n٣- الْإِيمَانُ بِالْكُتُبِ.\n٤- الْإِيمَانُ بِالرُّسُلِ.\n٥- الْإِيمَانُ بِالْيَوْمِ الْآخِرِ.\n٦- الْإِيمَانُ بِالْقَدَرِ خَيْرِهِ وَشَرِّهِ.",
               "en": "Just as Islam has pillars, faith also has pillars.\nThe pillars of faith are six:\n1. Belief in Allah.\n2. Belief in the Angels.\n3. Belief in the Books.\n4. Belief in the Messengers.\n5. Belief in the Last Day.\n6. Belief in divine decree — its good and its evil.",
               "ta": "இஸ்லாத்திற்குத் தூண்கள் உண்டு போல, ஈமானுக்கும் தூண்கள் உண்டு.\nஈமானின் தூண்கள் ஆறு:\n1. அல்லாஹ்வில் நம்பிக்கை.\n2. வானதூதர்களில் நம்பிக்கை.\n3. வேதங்களில் நம்பிக்கை.\n4. தூதர்களில் நம்பிக்கை.\n5. மறுமை நாளில் நம்பிக்கை.\n6. விதியில் (நல்லது மற்றும் தீமையில்) நம்பிக்கை.",
               "tr": "Kama anna lil-islami arkana; fa-inna lil-imani aydan arkana. Arkani al-imani sitta."
@@ -340,7 +340,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "من أركان الإيمان: الإيمان بالله تعالى.\nنؤمن بالله وحده لا شريك له، في ربوبيته وألوهيته وأسمائه وصفاته.",
+              "ar": "مِنْ أَرْكَانِ الْإِيمَانِ: الْإِيمَانُ بِاللهِ تَعَالَى.\nنُؤْمِنُ بِاللهِ وَحْدَهُ لَا شَرِيكَ لَهُ، فِي رُبُوبِيَّتِهِ وَأُلُوهِيَّتِهِ وَأَسْمَائِهِ وَصِفَاتِهِ.",
               "en": "Among the pillars of faith: belief in Allah the Exalted.\nWe believe in Allah alone, without any partner, in His lordship, worship-worthiness, His names and attributes.",
               "ta": "ஈமானின் தூண்களில் ஒன்று: அல்லாஹ்வில் நம்பிக்கை.\nஇணையின்றி அல்லாஹ்வை மட்டும் நம்புகிறோம்; அவனது இறைத்தன்மை, வணக்கத்தன்மை, நாமங்கள் மற்றும் பண்புகள் அனைத்திலும்.",
               "tr": "Min arkani al-iman: al-imanu billahi ta'ala. Nu'minu billahi wahdahu la sharika lahu fi rububiyyatihi wa ulahiyyatihi wa asma'ihi wa sifatih."
@@ -398,7 +398,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "من أركان الإيمان: الإيمان بالملائكة.\nالملائكة عباد الله المكرمون، خلقهم الله من نور.\nلهم أجنحة: اثنتان، أو ثلاث، أو أربع.",
+              "ar": "مِنْ أَرْكَانِ الْإِيمَانِ: الْإِيمَانُ بِالْمَلَائِكَةِ.\nالْمَلَائِكَةُ عِبَادُ اللهِ الْمُكْرَمُونَ، خَلَقَهُمُ اللهُ مِنْ نُورٍ.\nلَهُمْ أَجْنِحَةٌ: اثْنَتَانِ، أَوْ ثَلَاثٌ، أَوْ أَرْبَعٌ.",
               "en": "Among the pillars of faith: belief in the angels.\nThe angels are the honoured servants of Allah, created from light.\nThey have wings: two, three, or four.",
               "ta": "ஈமானின் தூண்களில் ஒன்று: வானதூதர்களில் நம்பிக்கை.\nவானதூதர்கள் அல்லாஹ்வின் கண்ணியம் பெற்ற அடியார்கள்; ஒளியிலிருந்து படைக்கப்பட்டவர்கள்.\nஅவர்களுக்கு இறக்கைகள்: இரண்டு, மூன்று அல்லது நான்கு.",
               "tr": "Min arkani al-iman: al-imanu bil-mala'ikah. Al-mala'ikatu 'ibadullahil-mukarramuna, khalaqahum Allahu min nur."
@@ -413,7 +413,7 @@
             },
             {
               "type": "text",
-              "ar": "من أعمال الملائكة:\nجبريل: نزول الوحي.\nميكائيل: سحب المطر ونمو النبات.\nإسرافيل: نفخ الصور.\nعزرائيل: قبض الأرواح.\nومنهم حفظة القبر ومُنكر ونكير.",
+              "ar": "مِنْ أَعْمَالِ الْمَلَائِكَةِ:\nجِبْرِيلُ: نُزُولُ الْوَحْيِ.\nمِيكَائِيلُ: سَحْبُ الْمَطَرِ وَنُمُوُّ النَّبَاتِ.\nإِسْرَافِيلُ: نَفْخُ الصُّورِ.\nعَزْرَائِيلُ: قَبْضُ الْأَرْوَاحِ.\nوَمِنْهُمْ حَفَظَةُ الْقَبْرِ وَمُنْكَرٌ وَنَكِيرٌ.",
               "en": "Among the deeds of the angels:\nJibril (Gabriel): delivering revelation.\nMikail (Michael): bringing rain and growing plants.\nIsrafil: blowing the Trumpet.\nAzrael: taking souls.\nAnd from them are the guards of the grave and Munkar and Nakir.",
               "ta": "வானதூதர்களின் செயல்கள்:\nஜிப்ரீல்: வஹ்யைக் கொண்டு வருதல்.\nமீகாயில்: மழையை இழுத்து தாவரங்களை வளர்த்தல்.\nஇஸ்ராஃபீல்: சூரை ஊதுதல்.\nஅஸ்ராயில்: ஆத்மாக்களை எடுத்தல்.\nகல்லறைக் காவலர்கள், முன்கர்-நகீர் ஆகியோரும் அவர்களில் உள்ளனர்.",
               "tr": "Min a'mali al-mala'ikah: Jibril: nuzulu al-wahy. Mikail: shabhu al-mathari wa numuw an-nabat. Israfil: nafkhu as-soor. Azrael: qabdu al-arwah."
@@ -431,21 +431,21 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "من أركان الإيمان: الإيمان بالكتب.\nالكتب: صحف أنزلها الله تعالى على رسله الكرام.",
+              "ar": "مِنْ أَرْكَانِ الْإِيمَانِ: الْإِيمَانُ بِالْكُتُبِ.\nالْكُتُبُ: صُحُفٌ أَنْزَلَهَا اللهُ تَعَالَى عَلَى رُسُلِهِ الْكِرَامِ.",
               "en": "Among the pillars of faith: belief in the books.\nThe books: scriptures revealed by Allah to His honoured messengers.",
               "ta": "ஈமானின் தூண்களில் ஒன்று: வேதங்களில் நம்பிக்கை.\nவேதங்கள்: அல்லாஹ் தன் கண்ணியம் பெற்ற தூதர்களுக்கு அனுப்பிய ஏடுகள்.",
               "tr": "Min arkani al-iman: al-imanu bil-kutub. Al-kutub: suhufun anzalaha Allahu ta'ala 'ala rusulihi al-kiram."
             },
             {
               "type": "text",
-              "ar": "أهم كتب الله:\n١- الصحف.\n٢- التوراة التي أُنزلت على موسى عليه السلام.\n٣- الإنجيل الذي أُنزل على عيسى عليه السلام.\n٤- الزبور الذي أُنزل على داود عليه السلام.\n٥- القرآن الكريم الذي أُنزل على محمد ﷺ.",
+              "ar": "أَهَمُّ كُتُبِ اللهِ:\n١- الصُّحُفُ.\n٢- التَّوْرَاةُ الَّتِي أُنْزِلَتْ عَلَى مُوسَى عَلَيْهِ السَّلَامُ.\n٣- الْإِنْجِيلُ الَّذِي أُنْزِلَ عَلَى عِيسَى عَلَيْهِ السَّلَامُ.\n٤- الزَّبُورُ الَّذِي أُنْزِلَ عَلَى دَاوُدَ عَلَيْهِ السَّلَامُ.\n٥- الْقُرْآنُ الْكَرِيمُ الَّذِي أُنْزِلَ عَلَى مُحَمَّدٍ ﷺ.",
               "en": "The most important books of Allah:\n1. The Scrolls (Suhuf).\n2. The Torah, revealed to Musa (Moses), peace be upon him.\n3. The Gospel, revealed to Isa (Jesus), peace be upon him.\n4. The Psalms (Zabur), revealed to Dawud (David), peace be upon him.\n5. The Glorious Quran, revealed to Muhammad ﷺ.",
               "ta": "அல்லாஹ்வின் முக்கிய வேதங்கள்:\n1. ஸுஹுஃப் (ஏடுகள்).\n2. தவ்ராத் (மூஸா அவர்களுக்கு அனுப்பப்பட்டது).\n3. இஞ்சீல் (ஈஸா அவர்களுக்கு அனுப்பப்பட்டது).\n4. ழபூர் (தாவூத் அவர்களுக்கு அனுப்பப்பட்டது).\n5. புனித குர்ஆன் (முஹம்மது ﷺ அவர்களுக்கு அனுப்பப்பட்டது).",
               "tr": "Ahammu kutubillah: as-suhuf, at-tawrat 'ala Musa, al-injil 'ala Isa, az-zabur 'ala Dawud, al-qur'anul-'azim 'ala Muhammadin ﷺ."
             },
             {
               "type": "text",
-              "ar": "نؤمن بجميع كتب الله التي أنزلها على أنبيائه، ولا نفرق بين أحد من رسله.",
+              "ar": "نُؤْمِنُ بِجَمِيعِ كُتُبِ اللهِ الَّتِي أَنْزَلَهَا عَلَى أَنْبِيَائِهِ، وَلَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ.",
               "en": "We believe in all the books of Allah revealed to His prophets, and we make no distinction between any of His messengers.",
               "ta": "அல்லாஹ் தன் இறைவாக்கினருக்கு அனுப்பிய அனைத்து வேதங்களிலும் நம்பிக்கை கொள்கிறோம்; அவனது தூதர்களில் எவரையும் வேறுபடுத்தாது அனைவரையும் ஏற்கிறோம்.",
               "tr": "Nu'minu bi-jami'i kutubillahi allati anzalaha 'ala anbiya'ihi, wa la nufarriqu bayna ahadin min rusulihi."
@@ -463,14 +463,14 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "من أركان الإيمان: الإيمان بالرسل.\nأرسل الله تعالى رسله الكرام للهدى والبيان للناس.\nأولهم آدم عليه السلام، وآخرهم محمد ﷺ.",
+              "ar": "مِنْ أَرْكَانِ الْإِيمَانِ: الْإِيمَانُ بِالرُّسُلِ.\nأَرْسَلَ اللهُ تَعَالَى رُسُلَهُ الْكِرَامَ لِلْهُدَى وَالْبَيَانِ لِلنَّاسِ.\nأَوَّلُهُمْ آدَمُ عَلَيْهِ السَّلَامُ، وَآخِرُهُمْ مُحَمَّدٌ ﷺ.",
               "en": "Among the pillars of faith: belief in the messengers.\nAllah sent His honoured messengers for guidance and clarification for mankind.\nThe first was Adam, peace be upon him, and the last was Muhammad ﷺ.",
               "ta": "ஈமானின் தூண்களில் ஒன்று: தூதர்களில் நம்பிக்கை.\nஅல்லாஹ் வழிகாட்டுதல் மற்றும் விளக்கத்திற்காக தன் கண்ணியம் பெற்ற தூதர்களை மக்களுக்கு அனுப்பினான்.\nமுதலில் ஆதம் ﷺ அவர்களும், இறுதியில் முஹம்மது ﷺ அவர்களும்.",
               "tr": "Min arkani al-iman: al-imanu ar-rusul. Arsala Allahu rusulahu al-kiram lil-huda wal-bayan lil-nas."
             },
             {
               "type": "text",
-              "ar": "من أبرز أنبياء الله:\nإسماعيل وإسحاق ويعقوب ويوسف وموسى وهارون وداود وسليمان ويونس وعيسى عليهما السلام وغيرهم كثير.",
+              "ar": "مِنْ أَبْرَزِ أَنْبِيَاءِ اللهِ:\nإِسْمَاعِيلُ وَإِسْحَاقُ وَيَعْقُوبُ وَيُوسُفُ وَمُوسَى وَهَارُونُ وَدَاوُدُ وَسُلَيْمَانُ وَيُونُسُ وَعِيسَى عَلَيْهِمَا السَّلَامُ وَغَيْرُهُمْ كَثِيرٌ.",
               "en": "Among the most prominent prophets of Allah:\nIsmail, Ishaq, Yaqub, Yusuf, Musa, Harun, Dawud, Sulayman, Yunus, Isa — peace be upon them — and many others.",
               "ta": "அல்லாஹ்வின் முக்கிய இறைவாக்கினர்:\nஇஸ்மாயீல், இஸ்ஹாக், யஃகூப், யூசுஃப், மூஸா, ஹாரூன், தாவூத், சுலைமான், யூனுஸ், ஈஸா ﷺ மற்றும் பலர்.",
               "tr": "Min abrazi anbiya'illah: Ismail, Ishaq, Yaqub, Yusuf, Musa, Harun, Dawud, Sulayman, Yunus, Isa 'alayhimas-salam."
@@ -496,7 +496,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "من أركان الإيمان: الإيمان باليوم الآخر.\nاليوم الآخر: يوم القيامة، يُبعث الناس فيه ويُحاسَبون.",
+              "ar": "مِنْ أَرْكَانِ الْإِيمَانِ: الْإِيمَانُ بِالْيَوْمِ الْآخِرِ.\nالْيَوْمُ الْآخِرُ: يَوْمُ الْقِيَامَةِ، يُبْعَثُ النَّاسُ فِيهِ وَيُحَاسَبُونَ.",
               "en": "Among the pillars of faith: belief in the Last Day.\nThe Last Day: the Day of Resurrection, when people will be resurrected and judged.",
               "ta": "ஈமானின் தூண்களில் ஒன்று: மறுமை நாளில் நம்பிக்கை.\nமறுமை நாள்: தீர்ப்பு நாள்; மக்கள் உயிர்த்தெழுந்து கணக்கிடப்படுவார்கள்.",
               "tr": "Min arkani al-iman: al-imanu bil-yawmi al-akhir. Al-yawmu al-akhir: yawmu al-qiyamah, yub'athu an-nasu fihi wa yuhasabun."
@@ -511,7 +511,7 @@
             },
             {
               "type": "text",
-              "ar": "من الإيمان باليوم الآخر:\nالإيمان بأشراط الساعة وعلاماتها.\nالإيمان بالبعث بعد الموت.\nالإيمان بيوم القيامة.\nالإيمان بالحوض والصراط.\nالإيمان بالجنة ونعيمها.\nالإيمان بالنار وعذابها.",
+              "ar": "مِنَ الْإِيمَانِ بِالْيَوْمِ الْآخِرِ:\nالْإِيمَانُ بِأَشْرَاطِ السَّاعَةِ وَعَلَامَاتِهَا.\nالْإِيمَانُ بِالْبَعْثِ بَعْدَ الْمَوْتِ.\nالْإِيمَانُ بِيَوْمِ الْقِيَامَةِ.\nالْإِيمَانُ بِالْحَوْضِ وَالصِّرَاطِ.\nالْإِيمَانُ بِالْجَنَّةِ وَنَعِيمِهَا.\nالْإِيمَانُ بِالنَّارِ وَعَذَابِهَا.",
               "en": "From belief in the Last Day:\nBelief in the signs of the Hour.\nBelief in resurrection after death.\nBelief in the Day of Judgement.\nBelief in the Cistern and the Bridge.\nBelief in Paradise and its bliss.\nBelief in the Fire and its punishment.",
               "ta": "மறுமை நாளில் நம்பிக்கையில் அடங்குவன:\nகியாமத் நாளின் அறிகுறிகளில் நம்பிக்கை.\nமரணத்திற்குப் பின் உயிர்த்தெழுதலில் நம்பிக்கை.\nதீர்ப்பு நாளில் நம்பிக்கை.\nகவ்ஸர் (நீர்நிலை) மற்றும் ஸிராத் (பாலம்) பற்றிய நம்பிக்கை.\nசுவனம் மற்றும் அதன் இன்பத்தில் நம்பிக்கை.\nநரகம் மற்றும் அதன் வேதனையில் நம்பிக்கை.",
               "tr": "Min al-imani bil-yawmi al-akhir: al-imanu bi-ashrat as-sa'ah, wal-imanu bil-ba'thi ba'da al-mawt, wal-imanu biyawm al-qiyamah, wal-imanu bil-hawdi was-sirat, wal-imanu bil-jannati wa na'imiha, wal-imanu bin-nari wa 'adhhabiha."
@@ -529,7 +529,7 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "من أركان الإيمان: الإيمان بالقدر خيره وشره.\nالقدر: أن الله تعالى قدَّر كل شيء بعلمه وقدرته، وأنه لا شيء يقع إلا بإرادته.",
+              "ar": "مِنْ أَرْكَانِ الْإِيمَانِ: الْإِيمَانُ بِالْقَدَرِ خَيْرِهِ وَشَرِّهِ.\nالْقَدَرُ: أَنَّ اللهَ تَعَالَى قَدَّرَ كُلَّ شَيْءٍ بِعِلْمِهِ وَقُدْرَتِهِ، وَأَنَّهُ لَا شَيْءَ يَقَعُ إِلَّا بِإِرَادَتِهِ.",
               "en": "Among the pillars of faith: belief in divine decree, its good and its evil.\nDecree (Qadar): that Allah the Exalted has measured all things with His knowledge and power, and that nothing happens except by His will.",
               "ta": "ஈமானின் தூண்களில் ஒன்று: விதியில் (நல்லது மற்றும் தீமையில்) நம்பிக்கை.\nகதர் (விதி): அல்லாஹ் தன் அறிவாலும் வல்லமையாலும் அனைத்தையும் நிர்ணயித்தான்; அவனது விருப்பமின்றி ஒன்றும் நிகழாது.",
               "tr": "Min arkani al-iman: al-imanu bil-qadari khayrihi wa sharrihi. Al-qadaru: anna Allaha ta'ala qaddara kulla shay'in bi-'ilmihi wa qudratihi."
@@ -544,7 +544,7 @@
             },
             {
               "type": "text",
-              "ar": "لا يؤمن العبد بالقدر حتى يعلم أن ما أصابه لم يكن ليُخطئه، وما أخطأه لم يكن ليُصيبه.",
+              "ar": "لَا يُؤْمِنُ الْعَبْدُ بِالْقَدَرِ حَتَّى يَعْلَمَ أَنَّ مَا أَصَابَهُ لَمْ يَكُنْ لِيُخْطِئَهُ، وَمَا أَخْطَأَهُ لَمْ يَكُنْ لِيُصِيبَهُ.",
               "en": "A servant does not truly believe in decree until he knows that what struck him was never going to miss him, and what missed him was never going to strike him.",
               "ta": "ஒரு அடியான் தன்னை அடைந்தது தவறக்கூடாது என்பதையும், தவறியது தன்னை அடையாமல் இருக்க முடியாது என்பதையும் அறியும் வரை விதியில் நம்பிக்கை கொள்ள மாட்டான்.",
               "tr": "La yu'minu al-'abdu bil-qadri hatta ya'lama anna ma asabahu lam yakun liyukhti'ahu, wa ma akhtahu lam yakun liyusibahu."
@@ -571,14 +571,14 @@
           "blocks": [
             {
               "type": "text",
-              "ar": "أعلى مراتب الدين هي الإحسان.\nالإحسان: أن تعبد الله كأنك تراه، فإن لم تكن تراه؛ فإنه يراك.",
+              "ar": "أَعْلَى مَرَاتِبِ الدِّينِ هِيَ الْإِحْسَانُ.\nالْإِحْسَانُ: أَنْ تَعْبُدَ اللهَ كَأَنَّكَ تَرَاهُ، فَإِنْ لَمْ تَكُنْ تَرَاهُ؛ فَإِنَّهُ يَرَاكَ.",
               "en": "The highest rank of the religion is Ihsan.\nIhsan: to worship Allah as though you see Him; if you do not see Him, He certainly sees you.",
               "ta": "மார்க்கத்தின் மிக உயர்ந்த நிலை இஹ்சான்.\nஇஹ்சான்: அல்லாஹ்வை அவனைக் காண்பது போல் வணங்குவது; காண இயலாவிட்டாலும், அவன் உன்னைக் காண்கிறான்.",
               "tr": "A'la maratib ad-din hiya al-ihsan. Al-ihsanu: an ta'budallaha ka'annaka tarahu, fa-in lam tarahu fa-innahu yaraka."
             },
             {
               "type": "text",
-              "ar": "يعني: أن تتذكر دائمًا أن الله يرى كل أعمالك، ويسمع كل أقوالك.\nفتصلي وكأنك تراه، وتصوم وكأنك تراه، وتتعلم وتعلم وكأنك تراه.",
+              "ar": "يَعْنِي: أَنْ تَتَذَكَّرَ دَائِمًا أَنَّ اللهَ يَرَى كُلَّ أَعْمَالِكَ، وَيَسْمَعُ كُلَّ أَقْوَالِكَ.\nفَتُصَلِّي وَكَأَنَّكَ تَرَاهُ، وَتَصُومُ وَكَأَنَّكَ تَرَاهُ، وَتَتَعَلَّمُ وَتُعَلِّمُ وَكَأَنَّكَ تَرَاهُ.",
               "en": "It means: always remembering that Allah sees all your deeds and hears all your words.\nSo you pray, fast, learn and teach as though you see Him.",
               "ta": "அதாவது: உன் அனைத்துச் செயல்களையும் அல்லாஹ் காண்கிறான், உன் அனைத்து வார்த்தைகளையும் கேட்கிறான் என்பதை எப்போதும் நினைவில் கொள்வது.\nதொழுகை, நோன்பு, கற்றல், கற்பித்தல் அனைத்தையும் அவனைக் காண்பது போல் செய்வது.",
               "tr": "Ya'ni: an tatakakkada anna Allaha yara kullu a'malik, wa yasma'u kullu aqwalik. Fa-tusalli ka'annaka tarah, wa tasum ka'annaka tarah."
@@ -590,7 +590,7 @@
                 "number": 8,
                 "url": "https://search.hadith-mcp.org/?id=7282"
               },
-              "ar": "قال ﷺ: «الإحسان: أن تعبد الله كأنك تراه، فإن لم تكن تراه فإنه يراك». أخرجه مسلم.",
+              "ar": "قَالَ ﷺ: «الْإِحْسَانُ: أَنْ تَعْبُدَ اللهَ كَأَنَّكَ تَرَاهُ، فَإِنْ لَمْ تَكُنْ تَرَاهُ فَإِنَّهُ يَرَاكَ». أَخْرَجَهُ مُسْلِمٌ.",
               "en": "The Prophet ﷺ said: \"Ihsan is to worship Allah as if you see Him, and if you do not see Him, then He certainly sees you.\" Narrated by Muslim.",
               "ta": "நபி ﷺ கூறினார்கள்: \"இஹ்சான் என்பது அல்லாஹ்வை அவனை நீ காண்பது போல் வணங்குவது; காண இயலாவிட்டாலும் அவன் உன்னை நிச்சயம் காண்கிறான்.\" (முஸ்லிம்)",
               "tr": "Qala ﷺ: «Al-ihsanu: an ta'budallaha ka'annaka tarahu, fa-in lam tarahu fa-innahu yaraka.» Akhrajahu Muslim."
