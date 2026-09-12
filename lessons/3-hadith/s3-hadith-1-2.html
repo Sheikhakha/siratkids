@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Meanings of the Prophet's Names ﷺ - Hadith and Seerah | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Hadith and Seerah</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 1: Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>The Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-2.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">2</span>The Meanings of the Prophet's Names ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 2: The Attributes of the Prophet ﷺ</a>
+                <a href="s3-hadith-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>The Attributes of the Prophet ﷺ (1)</a>
+                <a href="s3-hadith-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>The Attributes of the Prophet ﷺ (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 3: The Excellence of the Prophet ﷺ</a>
+                <a href="s3-hadith-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Best of People</a>
+                <a href="s3-hadith-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>The Prophet ﷺ, the Khalil (Close Friend) of Allah</a>
+                <a href="s3-hadith-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Leader of the Children of Adam</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 4: The Cleanliness of the Prophet ﷺ</a>
+                <a href="s3-hadith-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Prophet's ﷺ Care for Cleanliness</a>
+                <a href="s3-hadith-4-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Care for the Cleanliness of the Body</a>
+                <a href="s3-hadith-4-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>Care for Mouth Cleanliness and the Fragrance of the Prophet ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 5: The Clothing of the Prophet ﷺ</a>
+                <a href="s3-hadith-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Description of the Prophet's ﷺ Clothing</a>
+                <a href="s3-hadith-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>The Rules of Clothing</a>
+                <a href="s3-hadith-5-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>How the Prophet ﷺ Wore His Clothes</a>
+                <a href="s3-hadith-5-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>Starting with the Right</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 6: The Family of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Wife of the Prophet ﷺ: Khadijah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Wife of the Prophet ﷺ: Aisha, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Wife of the Prophet ﷺ: Hafsah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Children of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>Loving the Family of the Prophet ﷺ</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-hadith.html">Hadith and Seerah</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">The Meanings of the Prophet's Names ﷺ</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-hadith">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M60 28 C48 18 30 16 14 20 V96 C30 92 48 94 60 104 C72 94 90 92 106 96 V20 C90 16 72 18 60  Z"/><line x1="60" y1="28" x2="60" y2="104"/><path d="M26 38 h22 M26 52 h22 M72 38 h22 M72 52 h22"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128214; Unit 1</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">مَعَانِي أَسْمَاءِ النَّبِيِّ ﷺ</span>
+                <span class="en">The Meanings of the Prophet's Names ﷺ</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 122&ndash;128</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-122.webp" alt="Textbook page 122" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 122"><figcaption>p. 122</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-123.webp" alt="Textbook page 123" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 123"><figcaption>p. 123</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-124.webp" alt="Textbook page 124" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 124"><figcaption>p. 124</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-125.webp" alt="Textbook page 125" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 125"><figcaption>p. 125</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-126.webp" alt="Textbook page 126" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 126"><figcaption>p. 126</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-127.webp" alt="Textbook page 127" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 127"><figcaption>p. 127</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-128.webp" alt="Textbook page 128" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 128"><figcaption>p. 128</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>كان النبيُّ ﷺ يُسمَّى: محمدًا، وأحمدَ، ويُلَقَّبُ بالأمينِ. فما معنى محمد؟ وما معنى أحمد؟ وما معنى الأمين؟</p></div>
+<div class="transliteration"><p>Kana an-nabiyyu ﷺ yusamma: Muhammadan, wa Ahmada, wa yulaqqabu bil-Ameen. Fama ma'na Muhammad? Wa ma ma'na Ahmad? Wa ma ma'na al-Ameen?</p></div>
+<div class="en translation"><p>The Prophet ﷺ was called Muhammad and Ahmad, and nicknamed Al-Ameen. So what is the meaning of Muhammad? What is the meaning of Ahmad? And what is the meaning of Al-Ameen?</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்கள் 'முஹம்மது', 'அஹ்மத்' என்று அழைக்கப்பட்டார்கள்; 'அல்-அமீன்' என்ற பட்டம் பெற்றிருந்தார்கள். 'முஹம்மது' என்பதன் பொருள் என்ன? 'அஹ்மத்' என்பதன் பொருள் என்ன? 'அல்-அமீன்' என்பதன் பொருள் என்ன?</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>معنى مُحَمَّد: هو الذي يُحمَدُ على أعمالِه، ويُمدَحُ بصفاتِه الحسنةِ؛ فهو الذي يعملُ الأمورَ الحسنةَ الطيبةَ، ويبتعِدُ عن الأمورِ السيئةِ القبيحةِ.</p></div>
+<div class="transliteration"><p>Ma'na Muhammad: huwa alladhi yuhmadu 'ala a'malih, wa yumdahu bi-sifatih al-hasanah; fahuwa alladhi ya'malu al-umura al-hasanata at-tayyibah, wa yabta'idu 'ani al-umuri as-sayyi'ati al-qabihah.</p></div>
+<div class="en translation"><p>The meaning of Muhammad: he who is praised for his deeds and commended for his noble qualities — one who does good, fine deeds and keeps away from evil, foul deeds.</p></div>
+<div class="tamil"><p>'முஹம்மது' என்றால்: தன் செயல்களுக்காகப் புகழப்படுபவர்; நல்ல பண்புகளுக்காகப் போற்றப்படுபவர். நல்ல, அழகான செயல்களைச் செய்து, கெட்ட, இழிவான செயல்களை விட்டு விலகுபவர்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>معنى أَحْمَد: هو الكثيرُ الحمدِ لربِّه جلَّ وعلا، فلا يفترُ لسانُه عن حمده وشكرِه.</p></div>
+<div class="transliteration"><p>Ma'na Ahmad: huwa al-kathiru al-hamdi li-rabbihi jalla wa 'ala, fala yafturu lisanuhu 'an hamdihi wa shukrih.</p></div>
+<div class="en translation"><p>The meaning of Ahmad: he who frequently praises his Lord, the Exalted and Majestic — his tongue never tires of praising and thanking Him.</p></div>
+<div class="tamil"><p>'அஹ்மத்' என்றால்: தன் இறைவனை அதிகமாகப் புகழ்பவர்; அவனைப் புகழ்வதிலும் நன்றி செலுத்துவதிலும் நாவு சோர்வதில்லை.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>معنى الأمين: هو الذي يحفَظُ الأمانةَ ولا يخونُها. وكان النبيُّ ﷺ حافظًا للأمانةِ حتى لقَّبَتْه قريشٌ بالأمين، وكانت قريشٌ تضعُ عنده ودائعَها وأماناتِها.</p></div>
+<div class="transliteration"><p>Ma'na al-Ameen: huwa alladhi yahfazu al-amanata wa la yakhunuha. Wa kana an-nabiyyu ﷺ hafizan lil-amanati hatta laqqabathu Qurayshun bil-Ameen, wa kanat Qurayshun tada'u 'indahu wada'i'aha wa amanatiha.</p></div>
+<div class="en translation"><p>The meaning of Al-Ameen: he who preserves the trust and does not betray it. The Prophet ﷺ was a preserver of trusts until the Quraysh nicknamed him Al-Ameen, and they would leave their deposits and valuables with him.</p></div>
+<div class="tamil"><p>'அல்-அமீன்' என்றால்: அமானிதத்தைப் பாதுகாப்பவர்; மோசடி செய்யாதவர். நபி ﷺ அமானிதத்தைப் பாதுகாப்பவராக இருந்ததால் குறைஷியர் அவர்களை 'அல்-அமீன்' என்று அழைத்தனர்; தம் வைப்புகளையும் பொருட்களையும் அவரிடம் வைத்தனர்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>الفرقُ بينَ معاني الأسماء:
+١- محمدٌ: الذي يحمَدُه الناسُ على أخلاقِه الحسنةِ وأعمالِه الطيبةِ.
+٢- أحمدُ: الذي يَكثرُ حمدَ ربِّه.
+٣- الأمينُ: الذي يحفظُ الأمانةَ ويؤدِّيها إلى أهلِها.</p></div>
+<div class="transliteration"><p>Al-farqu bayna ma'ani al-asma': 1. Muhammadun: alladhi yahmaduhu an-nasu 'ala akhlaqih al-hasanah wa a'malih at-tayyibah. 2. Ahmadu: alladhi yakthuru hamda rabbih. 3. Al-Ameenu: alladhi yahfazu al-amanata wa yu'addiha ila ahliha.</p></div>
+<div class="en translation"><p>The difference between the meanings of the names:&lt;br&gt;1. Muhammad: the one whom people praise for his noble character and good deeds.&lt;br&gt;2. Ahmad: the one who frequently praises his Lord.&lt;br&gt;3. Al-Ameen: the one who preserves the trust and returns it to its owners.</p></div>
+<div class="tamil"><p>பெயர்களின் பொருள் வேறுபாடு:&lt;br&gt;1. முஹம்மது: நல்ல பண்பு, நல்ல செயல்களுக்காக மக்கள் புகழ்பவர்.&lt;br&gt;2. அஹ்மத்: தன் இறைவனை அதிகம் புகழ்பவர்.&lt;br&gt;3. அல்-அமீன்: அமானிதத்தைப் பாதுகாத்து உரியவரிடம் ஒப்படைப்பவர்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>معلومةٌ إثرائيَّةٌ: عزمت قريشٌ على قتلِ النبيِّ ﷺ، فأمرَه اللهُ بالهجرةِ إلى المدينةِ، وأخبرَه أنَّ عليًّا رضي الله عنه سيبيتُ في مكانِه. جمعت قريشٌ حولَ بيتِ النبيِّ ﷺ، فأمرَ النبيُّ ﷺ عليًّا أن ينامَ على فراشِه، وخرج ﷺ من بيتِه فأعمى اللهُ أبصارَ المشركينَ. وبقيَ عليٌّ في مكانِه ليرُدَّ الأماناتِ التي كانت عندَ النبيِّ ﷺ إلى أهلِها.</p></div>
+<div class="transliteration"><p>Ma'lumatun ithra'iyyah: 'azamat Qurayshun 'ala qatli an-nabiyyi ﷺ, fa'amarahu Allahu bil-hijrati ila al-Madinah. Jama'at Qurayshun hawla bayti an-nabiyyi ﷺ, fa'amara an-nabiyyu ﷺ 'Aliyyan an yanama 'ala firaashih, wa kharaja ﷺ min baytih fa'a'ma Allahu absara al-mushrikeen. Wa baqiya 'Aliyyun fi makanih li-yarudda al-amanati allati kanat 'inda an-nabiyyi ﷺ ila ahliha.</p></div>
+<div class="en translation"><p>Enrichment: The Quraysh resolved to kill the Prophet ﷺ, so Allah commanded him to migrate to Madinah and informed him that 'Ali, may Allah be pleased with him, would sleep in his place. The Quraysh gathered around the Prophet's house, so the Prophet ﷺ ordered 'Ali to sleep on his bed, and he left his house while Allah blinded the eyes of the polytheists. 'Ali remained in his place to return the deposits that were kept with the Prophet ﷺ to their owners.</p></div>
+<div class="tamil"><p>செறிவூட்டல்: நபி ﷺ அவர்களைக் கொல்ல குறைஷியர் திட்டமிட்டனர். அல்லாஹ் மதீனாவுக்கு ஹிஜ்ரத் செய்யும்படி கட்டளையிட்டு, அலி (ரலி) அவர்கள் அவரது இடத்தில் தூங்குவார் என்று அறிவித்தான். நபி ﷺ அவர்களின் வீட்டைச் சுற்றி குறைஷியர் கூடினர். நபி ﷺ அலி (ரலி) அவர்களை தம் படுக்கையில் தூங்கும்படி கட்டளையிட்டு, வீட்டை விட்டு வெளியேறினார்கள்; முஷ்ரிக்குகளின் கண்களை அல்லாஹ் குருடாக்கினான். நபியிடம் இருந்த அமானிதங்களை உரியவர்களிடம் ஒப்படைக்க அலி தம் இடத்தில் தங்கினார்.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-hadith-1-1.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-hadith-2-1.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-hadith.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

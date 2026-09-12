@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manners of Sports - Good Manners (Adab) | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Good Manners (Adab)</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adab.html" class="sidebar-unit-label">Unit 1: Practical Islamic Manners</a>
+                <a href="s3-adab-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Manners with the Noble Quran</a>
+                <a href="s3-adab-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Manners of the Gathering (Majlis)</a>
+                <a href="s3-adab-1-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Manners of the Road</a>
+                <a href="s3-adab-1-4.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">4</span>Manners of Sports</a>
+                <a href="s3-adab-1-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>Manners of Brotherhood and Friendship</a>
+                <a href="s3-adab-1-6.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>Manners of Seeking Permission (Isti'dhan)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adab.html" class="sidebar-unit-label">Unit 2: Commanded Matters (Al-Ma'murat)</a>
+                <a href="s3-adab-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Command to Tawheed</a>
+                <a href="s3-adab-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Obligation of Following the Prophet</a>
+                <a href="s3-adab-2-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>The Command to Unite and Harmonize</a>
+                <a href="s3-adab-2-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>The Command to Good Character</a>
+                <a href="s3-adab-2-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Command to Truthfulness</a>
+                <a href="s3-adab-2-6.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>Forbearance and Deliberation</a>
+                <a href="s3-adab-2-7.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>Patience</a>
+                <a href="s3-adab-2-8.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>The Command to Trustworthiness</a>
+                <a href="s3-adab-2-9.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Command to Good Speech</a>
+                <a href="s3-adab-2-10.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Command to Kindness to Parents</a>
+                <a href="s3-adab-2-11.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Command to Treat the Neighbour Well</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adab.html" class="sidebar-unit-label">Unit 3: Forbidden Matters (Al-Manhiyyat)</a>
+                <a href="s3-adab-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Prohibition of Shirk</a>
+                <a href="s3-adab-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>The Prohibition of Innovation (Bid'ah)</a>
+                <a href="s3-adab-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">20</span>The Prohibition of Lying</a>
+                <a href="s3-adab-3-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">21</span>The Prohibition of Cheating, Deceit, and Betrayal</a>
+                <a href="s3-adab-3-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">22</span>The Prohibition of Transgression</a>
+                <a href="s3-adab-3-6.html" class="sidebar-lesson"><span class="sidebar-lesson-num">23</span>The Prohibition of Insulting and Obscenity in Speech</a>
+                <a href="s3-adab-3-7.html" class="sidebar-lesson"><span class="sidebar-lesson-num">24</span>The Prohibition of Backbiting and Gossip</a>
+                <a href="s3-adab-3-8.html" class="sidebar-lesson"><span class="sidebar-lesson-num">25</span>The Prohibition of Imitating the Disbelievers</a>
+                <a href="s3-adab-3-9.html" class="sidebar-lesson"><span class="sidebar-lesson-num">26</span>Repentance to Allah from All Sins</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-adab.html">Good Manners (Adab)</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">Manners of Sports</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-adab">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="60" cy="60" r="44"/><path d="M60 24 v72 M24 60 h72 M35 35 l50 50 M85 35 l-50 50"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#11088; Unit 1</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">آدَابُ الرِّيَاضَةِ</span>
+                <span class="en">Manners of Sports</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 230&ndash;231</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-230.webp" alt="Textbook page 230" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 230"><figcaption>p. 230</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-231.webp" alt="Textbook page 231" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 231"><figcaption>p. 231</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ممارسةُ الرياضةِ تنشِّطُ الجسمَ وتذهبُ بالكسلِ؛ فالمسلمُ إنْ مارسَها يُثابُ عليها وينالُ الأجرَ بسببِها، وعليهِ أنْ يتأدَّبَ بآدابِها، ومنها:
+١- النيَّةُ الصالحةُ: بأنْ ينويَ برياضتِهِ اكتسابَ نشاطٍ وقوَّةٍ يستعينُ بهما على طاعةِ اللهِ عزَّ وجلَّ. قال رسولُ اللهِ ﷺ:</p></div>
+<div class="transliteration"><p>Mumarasatu ar-riyadati tunashshitu al-jismi wa tadhhabu bil-kasali; fal-muslimu in marasaHa yuthabu 'alayHa wa yanalu al-ajra bi-sababiHa, wa 'alayHi an yata'adhdhaba bi-adabiHa, wa minHa:
+1- an-niyyatu as-saalihah: bi-an yawiya bi-riyadatiHi iktisaba nashatin wa quwwatin yasta'inu biHima 'ala ta'ati Allahi 'azza wa jalla. Qala rasulullahi ﷺ:</p></div>
+<div class="en translation"><p>Practicing sports strengthens the body and removes laziness. If a Muslim practices them, he is rewarded for them and gains good deeds through them, and he must observe their manners. From them:&lt;br&gt;1. A sincere intention: that he intends through his sports to gain energy and strength which he uses to obey Allah the Exalted. The Messenger of Allah ﷺ said:</p></div>
+<div class="tamil"><p>விளையாட்டு/உடற்பயிற்சி உடலை வலுப்படுத்தி சோம்பலை நீக்கும். முஸ்லிம் அதைச் செய்தால் அவருக்கு நற்பலன் கிடைக்கும். அதன் நடத்தைகளைப் பின்பற்ற வேண்டும்:&lt;br&gt;1. நல்ல எண்ணம்: விளையாட்டின் மூலம் அல்லாஹ்வுக்குக் கீழ்ப்படிய உதவும் சுறுசுறுப்பையும் வலிமையையும் பெற எண்ணுவது. நபி ﷺ கூறினார்கள்:</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن عمرَ بنِ الخطَّابِ رضي الله عنه قال: قال رسولُ اللهِ ﷺ: «إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى». أخرجه البخاريُّ ومسلمٌ.</p></div>
+<div class="transliteration"><p>'An 'Umarabni-l-Khattabi radiyallahu 'anHu qala: qala rasulullahi ﷺ: «Innama al-a'malu bin-niyyat, wa innama li-kulli imri'in ma nawa». Akhrajahu al-Bukhariyyu wa Muslimun.</p></div>
+<div class="en translation"><p>Umar ibn al-Khattab, may Allah be pleased with him, said: The Messenger of Allah ﷺ said: "Indeed, deeds are (judged) by intentions, and every person will have what he intended." Narrated by Al-Bukhari and Muslim.</p></div>
+<div class="tamil"><p>உமர் இப்னு கத்தாப் (ரலி) கூறினார்கள்: "நிச்சயமாக செயல்கள் எண்ணங்களின் அடிப்படையிலேயே (மதிப்பிடப்படும்); ஒவ்வொருவருக்கும் அவர் எண்ணியதுதான் கிடைக்கும்" என்று நபி ﷺ கூறினார்கள். (புகாரி, முஸ்லிம்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=54" target="_blank" rel="noopener">sahih-bukhari 54</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>٢- ألَّا تكونَ الرياضةُ سبباً في الخصامِ والنزاعِ بينَ المسلمِ وأخيهِ، فيجبُ اجتنابُ التَّعصُّبِ والألفاظِ القبيحةِ؛ لأنَّ ذكرَ اللهِ والعبادةَ أولى من الرياضةِ. قال تعالى:</p></div>
+<div class="transliteration"><p>2- alla takuna ar-riyadatu sababan fi al-khisami wan-niza'i bayna al-muslimi wa akhiHi, fayajibu ijtnabu at-ta'assubi wal-alfadhi al-qabihah; li'anna dhikrallaha wal-'ibadata awla minar-riyadah. Qala ta'ala:</p></div>
+<div class="en translation"><p>2. Sports must not be a cause of quarrels and disputes between a Muslim and his brother. So fanaticism and foul words must be avoided, because remembering Allah and worship are more important than sports. Allah the Exalted said:</p></div>
+<div class="tamil"><p>2. விளையாட்டு முஸ்லிமுக்கும் அவரின் சகோதரருக்கும் இடையே சண்டைக்கும் தகராறுக்கும் காரணமாகக் கூடாது. மனவெறியையும் தீய வார்த்தைகளையும் தவிர்க்க வேண்டும்; ஏனெனில் அல்லாஹ்வை நினைவுகூர்வதும் வணக்கமும் விளையாட்டை விட மேலானவை. அல்லாஹ் கூறினான்:</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>﴿رِجَالٌ لَّا تُلْهِيهِمْ تِجَارَةٌ وَلَا بَيْعٌ عَن ذِكْرِ اللَّهِ وَإِقَامِ الصَّلَاةِ وَإِيتَاءِ الزَّكَاةِ ۙ يَخَافُونَ يَوْمًا تَتَقَلَّبُ فِيهِ الْقُلُوبُ وَالْأَبْصَارُ﴾</p></div>
+<div class="transliteration"><p>Rijalun la tulhihim tijaratun wa la bay'un 'an dhikrillahi wa iqami as-salaati wa ita'i az-zakah; yakhafuna yawman tataqallabu fihi al-qulubu wal-absar.</p></div>
+<div class="en translation"><p>Men whom neither commerce nor sale distracts from the remembrance of Allah and performance of prayer and giving of zakah. They fear a Day when hearts and eyes will be overturned.</p></div>
+<div class="tamil"><p>அல்லாஹ்வின் நினைவையும் தொழுகையையும் ஜகாத்தையும் வருமானம் அல்லது வணிகம் எதுவும் தடை செய்யாத ஆண்கள்; இதயங்களும் பார்வைகளும் கவிழ்த்தப்படும் ஒரு நாளை அவர்கள் அஞ்சுகின்றனர்.</p></div>
+<div class="block-ref"><span class="ar" dir="rtl">24:37</span></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-adab-1-3.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-adab-1-5.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-adab.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

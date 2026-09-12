@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Description of the Prophet's ﷺ Clothing - Hadith and Seerah | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Hadith and Seerah</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 1: Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>The Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>The Meanings of the Prophet's Names ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 2: The Attributes of the Prophet ﷺ</a>
+                <a href="s3-hadith-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>The Attributes of the Prophet ﷺ (1)</a>
+                <a href="s3-hadith-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>The Attributes of the Prophet ﷺ (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 3: The Excellence of the Prophet ﷺ</a>
+                <a href="s3-hadith-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Best of People</a>
+                <a href="s3-hadith-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>The Prophet ﷺ, the Khalil (Close Friend) of Allah</a>
+                <a href="s3-hadith-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Leader of the Children of Adam</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 4: The Cleanliness of the Prophet ﷺ</a>
+                <a href="s3-hadith-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Prophet's ﷺ Care for Cleanliness</a>
+                <a href="s3-hadith-4-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Care for the Cleanliness of the Body</a>
+                <a href="s3-hadith-4-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>Care for Mouth Cleanliness and the Fragrance of the Prophet ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 5: The Clothing of the Prophet ﷺ</a>
+                <a href="s3-hadith-5-1.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">11</span>The Description of the Prophet's ﷺ Clothing</a>
+                <a href="s3-hadith-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>The Rules of Clothing</a>
+                <a href="s3-hadith-5-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>How the Prophet ﷺ Wore His Clothes</a>
+                <a href="s3-hadith-5-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>Starting with the Right</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 6: The Family of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Wife of the Prophet ﷺ: Khadijah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Wife of the Prophet ﷺ: Aisha, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Wife of the Prophet ﷺ: Hafsah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Children of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>Loving the Family of the Prophet ﷺ</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-hadith.html">Hadith and Seerah</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">The Description of the Prophet's ﷺ Clothing</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-hadith">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M60 28 C48 18 30 16 14 20 V96 C30 92 48 94 60 104 C72 94 90 92 106 96 V20 C90 16 72 18 60  Z"/><line x1="60" y1="28" x2="60" y2="104"/><path d="M26 38 h22 M26 52 h22 M72 38 h22 M72 52 h22"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128214; Unit 5</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">صِفَةُ لِبَاسِ النَّبِيِّ ﷺ</span>
+                <span class="en">The Description of the Prophet's ﷺ Clothing</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 167&ndash;169</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-167.webp" alt="Textbook page 167" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 167"><figcaption>p. 167</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-168.webp" alt="Textbook page 168" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 168"><figcaption>p. 168</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-169.webp" alt="Textbook page 169" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 169"><figcaption>p. 169</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>كلُّ منا يحبُّ أن يلبسَ ما يليقُ به من الثيابِ. وقد كان للنبيِّ ﷺ سُننٌ في لباسِه، وأوصافٌ في اختيارِ ثيابِه. فلنتعرَّفْ — في هذا الدرسِ — على صفةِ لباسِ النبيِّ ﷺ.</p></div>
+<div class="transliteration"><p>Kullu minna yuhibbu an yalbasu ma yaliq bihi mina ath-thiyab. Wa qad kana lin-nabiyyi ﷺ sunanun fi libasih, wa awsafun fi ikhtiyari thiyabih. Falnata'arraf — fi hadha ad-dars — 'ala sifat libasi an-nabiyyi ﷺ.</p></div>
+<div class="en translation"><p>Each of us loves to wear clothes that suit him. The Prophet ﷺ had etiquettes (sunan) in his clothing and attributes in choosing his garments. In this lesson, let us learn about the description of the Prophet's ﷺ clothing.</p></div>
+<div class="tamil"><p>நமக்கு உகந்த உடையை நாம் அனைவரும் அணிய விரும்புகிறோம். நபி ﷺ அவர்களுக்கு உடை விஷயத்தில் சுன்னத்களும், உடை தேர்வில் பண்புகளும் இருந்தன. இந்தப் பாடத்தில் நபி ﷺ அவர்களின் உடையின் தன்மையை அறிவோம்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن ابنِ عباسٍ رضي الله عنهما أنَّ النبيَّ ﷺ قال: «الْبَسُوا مِنْ ثِيَابِكُمُ الْبَيَاضَ، فَإِنَّهَا مِنْ خَيْرِ ثِيَابِكُمْ، وَكَفِّنُوا فِيهَا مَوْتَاكُمْ». أخرجه الترمذي.</p></div>
+<div class="transliteration"><p>'Ani ibn 'Abbasa radiyallahu 'anhuma anna an-nabiyya ﷺ qal: «Albisu min thiyabikumu al-bayad, fa-innaha min khayri thiyabikum, wa kaffinu fiha mawtakum». Akhrajahu at-Tirmidhi.</p></div>
+<div class="en translation"><p>Ibn 'Abbas, may Allah be pleased with them both, reported that the Prophet ﷺ said: "Wear the white among your garments, for indeed they are among the best of your garments, and shroud your dead in them." Narrated by At-Tirmidhi.</p></div>
+<div class="tamil"><p>இப்னு அப்பாஸ் (ரலி) அறிவிக்கிறார்: நபி ﷺ கூறினார்கள்: "வெள்ளை உடைகளை அணியுங்கள்; ஏனெனில் அவை உங்கள் உடைகளில் சிறந்தவை. உங்கள் இறந்தவர்களை அவற்றில் அடக்கம் செய்யுங்கள்." (திர்மிதி)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=26776" target="_blank" rel="noopener">tirmidhi 996</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ماذا نستفيدُ من هذا الحديثِ؟
+١- استحبابُ لبسِ الثيابِ البيضاءِ؛ لأنَّها أحسنُ وأجملُ.
+٢- استحبابُ تكفينِ الموتى في الثوبِ الأبيضِ.</p></div>
+<div class="transliteration"><p>Madha nastafeedu min hadha al-hadith? 1. istihbabu lubsi ath-thiyabi al-bayda'; li'annaha ahsan wa ajmal. 2. istihbabu takfeeni al-mawta fil-thawbi al-abyad.</p></div>
+<div class="en translation"><p>What do we learn from this hadith?&lt;br&gt;1. It is recommended to wear white clothes, for they are the best and most attractive.&lt;br&gt;2. It is recommended to shroud the dead in white cloth.</p></div>
+<div class="tamil"><p>இந்த ஹதீஸிலிருந்து என்ன பயன்?&lt;br&gt;1. வெள்ளை உடை அணிவது விரும்பத்தக்கது; அவை சிறந்ததும் அழகானதும் ஆகும்.&lt;br&gt;2. இறந்தவர்களை வெள்ளைத் துணியில் கஃபன் செய்வது விரும்பத்தக்கது.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن أنسِ بنِ مالكٍ رضي الله عنه قال: كنتُ أمشي مع النبيِّ ﷺ وعليه بُرْدٌ نَجْرَانِيٌّ غليظُ الحاشيةِ، فأدرَكَه أعرابيٌّ، فجَبَذَه بردائِه جَبْذةً شديدةً، حتى أثَّرَتْ حاشيَتُه في عاتِقِه، ثمَّ قال: يا محمدُ، مُرْ لي من مالِ اللهِ الذي عندَك. فالتفتَ إليه النبيُّ ﷺ فضحِكَ، ثمَّ أمرَ له بعطاءٍ. أخرجه البخاري.</p></div>
+<div class="transliteration"><p>'An Anasi ibn Malikin radiyallahu 'anhu qal: kuntu amshi ma'a an-nabiyyi ﷺ wa 'alayhi burdun najraniyyun ghalizu al-hashiyah, fa-adrakahu a'rabiyyun, fajabadhahu bi-rida'ihi jabadhatan shadidah, hatta aththarat hashitatuhu fi 'atiqih, thumma qala: ya Muhammadu, mur li min malillahi alladhi 'indak. Faltafata ilayhi an-nabiyyu ﷺ fadahika, thumma amara lahu bi-'ata'. Akhrajahu al-Bukhari.</p></div>
+<div class="en translation"><p>Anas ibn Malik, may Allah be pleased with him, said: "While I was walking with the Prophet ﷺ, who was wearing a Najrani Burd (cloak) with a thick border, a bedouin overtook him and pulled his cloak violently, even leaving a mark on his shoulder. Then he said: O Muhammad, order that I be given some of the wealth of Allah which you have. The Prophet ﷺ turned to him, smiled, and ordered that he be given something." Narrated by Al-Bukhari.</p></div>
+<div class="tamil"><p>அனஸ் இப்னு மாலிக் (ரலி) கூறினார்கள்: "தடிமனான ஓரம் கொண்ட நஜ்ரான் கம்பளி உடையுடன் நபி ﷺ அவர்களுடன் நான் நடந்து சென்றேன். ஒரு கிராமவாசி வந்து அவர்களின் மேலங்கியை வலிமையாக இழுத்தார்; அது அவர்களின் தோளில் குறி உண்டாக்கியது. பிறகு 'முஹம்மதே! உன்னிடம் உள்ள அல்லாஹ்வின் செல்வத்திலிருந்து கொடுக்க ஆணையிடு' என்று கூறினார். நபி ﷺ அவரை நோக்கித் திரும்பிப் புன்னகைத்து, அவருக்கு கொடுக்க ஆணையிட்டார்கள்." (புகாரி)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=5857" target="_blank" rel="noopener">sahih-bukhari 5857</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>الدروسُ المستفادةُ من هذا الحديثِ:
+١- صبرُ النبيِّ ﷺ على الجاهلينَ وحُسنُ خُلُقِه معهم.
+٢- تواضُعُ النبيِّ ﷺ؛ إذ لبسَ ثوبًا بسيطًا خشنًا، وهو سيدُ الخلقِ.
+٣- جودُ النبيِّ ﷺ وكرمُه؛ إذ أعطى الأعرابيَّ ما طلبَ.</p></div>
+<div class="transliteration"><p>Ad-durusu al-mustafadah min hadha al-hadith: 1. sabru an-nabiyyi ﷺ 'ala al-jahileen wa husnu khuluqih ma'ahum. 2. tawadu'u an-nabiyyi ﷺ; idh labisa thawban basitan khashinan, wa huwa sayyidu al-khalq. 3. joodu an-nabiyyi ﷺ wa karamuh; idh a'ta al-a'rabiyya ma talab.</p></div>
+<div class="en translation"><p>Lessons learned from this hadith:&lt;br&gt;1. The patience of the Prophet ﷺ with the ignorant and his noble character with them.&lt;br&gt;2. The humility of the Prophet ﷺ; he wore a simple, coarse garment even though he is the master of creation.&lt;br&gt;3. The generosity of the Prophet ﷺ; he gave the bedouin what he asked.</p></div>
+<div class="tamil"><p>இந்த ஹதீஸிலிருந்து பாடங்கள்:&lt;br&gt;1. அறியாதவர்களிடம் பொறுமை; அவர்களுடன் அழகிய பண்பு.&lt;br&gt;2. தாழ்மை; படைப்பின் தலைவராக இருந்தும் எளிய உடையை அணிந்தார்கள்.&lt;br&gt;3. தாராளம்; கேட்டதை அந்த கிராமவாசிக்கு வழங்கினார்கள்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ملابسُ النبيِّ ﷺ:
+كان النبيُّ ﷺ يلبسُ القميصَ، والعمامةَ، والإزارَ، والرداءَ، والجُبَّةَ، والبردةَ، والحُلَّةَ.
+معلومةٌ: أَحَبُّ الثيابِ إلى النبيِّ ﷺ الحِبَرَةُ، وهي ثوبٌ يجمعُ بينَ لونينِ، من اليمنِ.</p></div>
+<div class="transliteration"><p>Malabisu an-nabiyyi ﷺ: kana an-nabiyyu ﷺ yalbasu al-qamis, wal-'imamah, wal-izar, war-rida', wal-jubbah, wal-burdah, wal-hullah. Ma'lumah: ahabbu ath-thiyabi ila an-nabiyyi ﷺ al-hibarah, wa hiya thawbun yajma'u bayna lawnayni, min al-Yaman.</p></div>
+<div class="en translation"><p>The garments of the Prophet ﷺ:&lt;br&gt;The Prophet ﷺ wore the shirt (qamis), turban ('imamah), loincloth (izar), cloak (rida'), long robe (jubbah), striped cloak (burdah), and suit (hullah).&lt;br&gt;Fact: The most beloved garment to the Prophet ﷺ was al-Hibarah, a two-coloured garment from Yemen.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களின் உடைகள்:&lt;br&gt;நபி ﷺ கமீஸ், இமாமா, இஸார், ரிதா, ஜுப்பா, புர்தா, ஹுல்லா ஆகியவற்றை அணிந்தார்கள்.&lt;br&gt;தகவல்: நபி ﷺ அவர்களுக்கு மிகவும் பிடித்த உடை 'ஹிபரா' - யமனில் இருந்து வரும் இரு வண்ண உடை.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-hadith-4-3.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-hadith-5-2.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-hadith.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

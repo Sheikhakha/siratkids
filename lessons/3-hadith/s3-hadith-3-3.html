@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Leader of the Children of Adam - Hadith and Seerah | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Hadith and Seerah</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 1: Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>The Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>The Meanings of the Prophet's Names ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 2: The Attributes of the Prophet ﷺ</a>
+                <a href="s3-hadith-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>The Attributes of the Prophet ﷺ (1)</a>
+                <a href="s3-hadith-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>The Attributes of the Prophet ﷺ (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 3: The Excellence of the Prophet ﷺ</a>
+                <a href="s3-hadith-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Best of People</a>
+                <a href="s3-hadith-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>The Prophet ﷺ, the Khalil (Close Friend) of Allah</a>
+                <a href="s3-hadith-3-3.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">7</span>The Leader of the Children of Adam</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 4: The Cleanliness of the Prophet ﷺ</a>
+                <a href="s3-hadith-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Prophet's ﷺ Care for Cleanliness</a>
+                <a href="s3-hadith-4-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Care for the Cleanliness of the Body</a>
+                <a href="s3-hadith-4-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>Care for Mouth Cleanliness and the Fragrance of the Prophet ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 5: The Clothing of the Prophet ﷺ</a>
+                <a href="s3-hadith-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Description of the Prophet's ﷺ Clothing</a>
+                <a href="s3-hadith-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>The Rules of Clothing</a>
+                <a href="s3-hadith-5-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>How the Prophet ﷺ Wore His Clothes</a>
+                <a href="s3-hadith-5-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>Starting with the Right</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 6: The Family of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Wife of the Prophet ﷺ: Khadijah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Wife of the Prophet ﷺ: Aisha, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Wife of the Prophet ﷺ: Hafsah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Children of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>Loving the Family of the Prophet ﷺ</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-hadith.html">Hadith and Seerah</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">The Leader of the Children of Adam</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-hadith">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M60 28 C48 18 30 16 14 20 V96 C30 92 48 94 60 104 C72 94 90 92 106 96 V20 C90 16 72 18 60  Z"/><line x1="60" y1="28" x2="60" y2="104"/><path d="M26 38 h22 M26 52 h22 M72 38 h22 M72 52 h22"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128214; Unit 3</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">سَيِّدُ وَلَدِ آدَمَ</span>
+                <span class="en">The Leader of the Children of Adam</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 145&ndash;152</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-145.webp" alt="Textbook page 145" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 145"><figcaption>p. 145</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-146.webp" alt="Textbook page 146" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 146"><figcaption>p. 146</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-147.webp" alt="Textbook page 147" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 147"><figcaption>p. 147</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-148.webp" alt="Textbook page 148" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 148"><figcaption>p. 148</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-149.webp" alt="Textbook page 149" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 149"><figcaption>p. 149</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-150.webp" alt="Textbook page 150" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 150"><figcaption>p. 150</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-151.webp" alt="Textbook page 151" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 151"><figcaption>p. 151</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-152.webp" alt="Textbook page 152" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 152"><figcaption>p. 152</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>قال النبيُّ ﷺ: «أنا سيّدُ ولدِ آدمَ». فما معنى السيدِ؟ وما معنى حديثِه ﷺ؟ نَتَعرَّفُ على ذلك في هذا الدرسِ.</p></div>
+<div class="transliteration"><p>Qala an-nabiyyu ﷺ: «Ana sayyidu waladi Adama». Fama ma'na as-sayyid? Wa ma ma'na hadithihi ﷺ? Nata'arrafu 'ala dhalika fi hadha ad-dars.</p></div>
+<div class="en translation"><p>The Prophet ﷺ said: "I am the leader of the children of Adam." What is the meaning of "sayyid" (leader)? And what does this hadith mean? We will learn about that in this lesson.</p></div>
+<div class="tamil"><p>நபி ﷺ கூறினார்கள்: "நான் ஆதம் சந்ததியரின் தலைவன்." 'சய்யித்' (தலைவன்) என்பதன் பொருள் என்ன? இந்த ஹதீஸின் பொருள் என்ன? இந்தப் பாடத்தில் அறிவோம்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن أبي هريرةَ رضي الله عنه قال: قال رسولُ اللهِ ﷺ: «أَنَا سَيِّدُ وَلَدِ آدَمَ يَوْمَ القيامةِ، وأوَّلُ مَن يَنشَقُّ عنه القبرُ، وأوَّلُ شافعٍ وأوَّلُ مُشفَّعٍ». أخرجه مسلم.</p></div>
+<div class="transliteration"><p>'An Abi Hurayrata radiyallahu 'anhu qal: qala rasulullahi ﷺ: «Ana sayyidu waladi Adama yawma al-qiyamah, wa awwalu man yanshaqqu 'anhu al-qabru, wa awwalu shafi'in wa awwalu mushaffa'». Akhrajahu Muslim.</p></div>
+<div class="en translation"><p>Abu Hurairah, may Allah be pleased with him, reported: The Messenger of Allah ﷺ said: "I am the leader of the children of Adam on the Day of Resurrection, the first one for whom the grave will be opened, the first intercessor, and the first whose intercession will be accepted." Narrated by Muslim.</p></div>
+<div class="tamil"><p>அபூஹுரைரா (ரலி) அறிவிக்கிறார்: அல்லாஹ்வின் தூதர் ﷺ கூறினார்கள்: "மறுமை நாளில் ஆதம் சந்ததியரின் தலைவன் நானே. கப்ர் திறக்கப்படும் முதல் நபர் நானே. முதலாவது ஷபாஅத் செய்பவரும், ஷபாஅத் ஏற்கப்படும் முதல் நபரும் நானே." (முஸ்லிம்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=13066" target="_blank" rel="noopener">sahih-muslim 5789</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>معاني الحديثِ:
+- السَّيِّدُ: هو الذي يُقدَّمُ على غيرِه، ويُكرَّمُ ويُوقَّرُ.
+- «يَنشَقُّ عنه القبرُ»: أي يُفتَحُ قبرُه الكريمُ عندَ البعثِ قبلَ الناسِ.
+- «أوَّلُ شافعٍ وأوَّلُ مُشفَّعٍ»: أي أوَّلُ مَن يشفعُ وأوَّلُ مَن تُقبَلُ شفاعتُه يومَ القيامةِ.</p></div>
+<div class="transliteration"><p>Ma'ani al-hadith: - as-sayyid: huwa alladhi yuqaddamu 'ala ghayrih, wa yukramu wa yuwaqqar. - «yanshaqqu 'anhu al-qabru»: ayy yufathu qabruh al-karimu 'inda al-ba'thi qabla an-nas. - «awwalu shafi'in wa awwalu mushaffa'»: ayy awwalu man yashfa'u wa awwalu man tuqbalu shafa'atuhu yawma al-qiyamah.</p></div>
+<div class="en translation"><p>Meanings of the hadith:&lt;br&gt;- As-Sayyid (the leader): the one who is given precedence over others and is honoured and respected.&lt;br&gt;- "The first for whom the grave will be opened": the noble grave will be opened for him upon resurrection before people.&lt;br&gt;- "The first intercessor whose intercession is accepted": the first to intercede and the first whose intercession is accepted on the Day of Resurrection.</p></div>
+<div class="tamil"><p>ஹதீஸின் பொருள்கள்:&lt;br&gt;- 'அஸ்ஸய்யித்' (தலைவர்): மற்றவர்களுக்கு முன்னதாக வைக்கப்படுபவர்; மதிக்கப்பட்டு கௌரவிக்கப்படுபவர்.&lt;br&gt;- "கப்ர் திறக்கப்படும் முதல் நபர்": எழுப்பப்படும் போது மக்களுக்கு முன் அவரின் கப்ர் திறக்கப்படும்.&lt;br&gt;- "முதலாவது ஷபாஅத் செய்பவர்": மறுமையில் முதன்முதலாக பரிந்து பேசுபவரும், அவரின் பரிந்துரை ஏற்கப்படும் முதல் நபரும்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>وقال النبيُّ ﷺ: «أَنَا سَيِّدُ وَلَدِ آدَمَ يَوْمَ القيامةِ، ولا فخرَ، وبِيَدِي لِوَاءُ الحمدِ، ولا فخرَ». أخرجه الترمذي.</p></div>
+<div class="transliteration"><p>Wa qala an-nabiyyu ﷺ: «Ana sayyidu waladi Adama yawma al-qiyamah, wa la fakhra, wa biyadi liwa'u al-hamdi wa la fakhra». Akhrajahu at-Tirmidhi.</p></div>
+<div class="en translation"><p>The Prophet ﷺ also said: "I am the leader of the children of Adam on the Day of Resurrection — and that is no boast. The banner of praise is in my hand — and that is no boast." Narrated by At-Tirmidhi.</p></div>
+<div class="tamil"><p>நபி ﷺ கூறினார்கள்: "மறுமை நாளில் ஆதம் சந்ததியரின் தலைவன் நானே — பெருமை பேசுவதற்காக அல்ல. புகழ்ச்சிக் கொடி என் கையில் உள்ளது — பெருமை பேசுவதற்காக அல்ல." (திர்மிதி)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=29488" target="_blank" rel="noopener">tirmidhi 3708</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>معلومةٌ إثرائيَّةٌ — الشفاعةُ العُظمى: يومَ القيامةِ يَلتمِسُ الناسُ الشفاعةَ من الأنبياءِ واحدًا بعدَ آخرَ فيعتذرون، حتى يأتوا نبيَّنا محمدًا ﷺ فيقولُ: أنا لها، أنا لها. فيسجدُ للهِ، ويَحمدُه، ثمَّ يشفعُ في أمَّتِه، فيشفِّعُه اللهُ.</p></div>
+<div class="transliteration"><p>Ma'lumatun ithra'iyyah — ash-shafa'atu al-'uzma: yawma al-qiyamati yal-tamis an-nasu ash-shafa'ata mina al-anbiya'i wahidan ba'da akhar fa-ya'tadhirun, hatta ya'tu nabiyyana Muhammadan ﷺ fa-yaqul: ana laha, ana laha. Fayasjudu lillah, wa yahmaduh, thumma yashfa'u fi ummatih, fayushaffi'uhu Allah.</p></div>
+<div class="en translation"><p>Enrichment — the Great Intercession: On the Day of Resurrection people will seek intercession from the prophets, one after another, and they will excuse themselves, until they come to our Prophet Muhammad ﷺ, and he will say: "I am for it, I am for it." He will prostrate to Allah, praise Him, then intercede for his nation, and Allah will accept his intercession.</p></div>
+<div class="tamil"><p>செறிவூட்டல் — மகத்தான ஷபாஅத்: மறுமை நாளில் மக்கள் நபிமார்களிடம் ஒவ்வொருவராக பரிந்துரை கேட்பார்கள்; அவர்கள் மன்னிப்பு கேட்பார்கள் (மறுப்பார்கள்). இறுதியில் நமது நபி முஹம்மது ﷺ அவர்களிடம் வருவார்கள்; "நான் அதற்காக இருக்கிறேன், நான் அதற்காக இருக்கிறேன்" என்று கூறுவார்கள். சஜ்தா செய்து அல்லாஹ்வைப் புகழ்ந்து, தம் சமுதாயத்திற்காக பரிந்துரை செய்வார்கள்; அல்லாஹ் அதை ஏற்பான்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أَعْرِفُ أبا هريرةَ رضي الله عنه:
+١- اسمُه: عبدُ الرحمنِ بنُ صخرٍ الدَّوسيُّ، ولُقِّبَ بأبي هريرةَ؛ لأنَّه كان يصحبُ هِرَّةً في صغرِه.
+٢- أسلمَ في السنةِ السادسةِ أو السابعةِ للهجرةِ، ولازَمَ النبيَّ ﷺ وتعلَّمَ منه.
+٣- كان أكثرَ الصحابةِ روايةً للحديثِ؛ فقد روى عن النبيِّ ﷺ خمسةَ آلافٍ وثلاثمائةٍ وأربعةً وسبعينَ حديثًا.
+٤- كان حريصًا على العلمِ وحفظِ حديثِ النبيِّ ﷺ.
+٥- تُوفِّيَ رضي الله عنه سنةَ سبعٍ وخمسينَ للهجرةِ.</p></div>
+<div class="transliteration"><p>A'rifu Aba Hurayrata radiyallahu 'anhu: 1. ismuhu: 'Abdu ar-Rahman ibn Sakhr ad-Dawsi, wa luqqiba bi-Abi Hurayrata; li'annahu kana yashabu hirratan fi sigharih. 2. aslama fis-sannati as-sadisati aw as-sabi'ati lil-hijrah, wa lazima an-nabiyya ﷺ wa ta'allama minh. 3. kana akthara as-sahabati riwayatan lil-hadith; faqad rawa 'ani an-nabiyyi ﷺ khamsata alafin wa thalathamiati wa arba'ata wa sab'ina hadithan. 4. kana harisan 'ala al-'ilmi wa hifzi hadithi an-nabiyyi ﷺ. 5. tufiffiya radiyallahu 'anhu sanata sab'in wa khamsina lil-hijrah.</p></div>
+<div class="en translation"><p>I get to know Abu Hurairah, may Allah be pleased with him:&lt;br&gt;1. His name was 'Abdur-Rahman ibn Sakhr ad-Dawsi; he was called Abu Hurairah because he kept a small cat (hirah) in his childhood.&lt;br&gt;2. He embraced Islam in the sixth or seventh year after the Hijrah and accompanied the Prophet ﷺ, learning from him.&lt;br&gt;3. He was the most prolific narrator of hadith among the Companions; he narrated five thousand three hundred and seventy-four hadiths from the Prophet ﷺ.&lt;br&gt;4. He was keen on knowledge and preserving the hadith of the Prophet ﷺ.&lt;br&gt;5. He passed away in the year 57 AH.</p></div>
+<div class="tamil"><p>அபூஹுரைரா (ரலி) அவர்களை அறிவோம்:&lt;br&gt;1. பெயர்: அப்துர் ரஹ்மான் இப்னு ஸக்ர் அத்தவ்ஸீ. இளமையில் பூனையுடன் இருந்ததால் 'அபூஹுரைரா' என அழைக்கப்பட்டார்.&lt;br&gt;2. ஹிஜ்ரி 6 அல்லது 7 ஆம் ஆண்டு இஸ்லாத்தை ஏற்று நபி ﷺ அவர்களுடன் இணைந்து கற்றார்.&lt;br&gt;3. தோழர்களில் அதிக ஹதீஸ் அறிவிப்பாளர்; நபி ﷺ அவர்களிடமிருந்து 5374 ஹதீஸ்களை அறிவித்தார்.&lt;br&gt;4. கல்வியிலும் ஹதீஸ் பாதுகாப்பிலும் ஆர்வம் மிக்கவர்.&lt;br&gt;5. ஹிஜ்ரி 57இல் இறந்தார்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>من أسبابِ فوزِ النبيِّ ﷺ بالشفاعةِ: إكثارُ الصلاةِ عليه ﷺ، ودعاءُ اللهِ له بالوسيلةِ. قال رسولُ اللهِ ﷺ:</p></div>
+<div class="transliteration"><p>Min asbab fawzi an-nabiyyi ﷺ bish-shafa'ah: iktharu as-salati 'alayh ﷺ, wa du'a'u Allahi lahu bil-wasilah. Qala rasulullahi ﷺ:</p></div>
+<div class="en translation"><p>Among the reasons for the Prophet's attaining of intercession: sending many blessings upon him ﷺ, and supplicating to Allah to grant him the Wasilah. The Messenger of Allah ﷺ said:</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களின் ஷபாஅத்தைப் பெறுவதற்கான காரணங்கள்: அவர்கள் மீது அதிகம் ஸலவாத்து கூறுவது, அல்லாஹ்விடம் அவருக்கு 'வசீலா' கேட்பது. தூதர் ﷺ கூறினார்கள்:</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>قال رسولُ اللهِ ﷺ: «إذا سمعتُم المؤذِّنَ فقولوا مثلَ ما يقولُ، ثمَّ صلُّوا عليَّ؛ فإنَّه مَن صلَّى عليَّ صلاةً صلَّى اللهُ عليه بها عشرًا، ثمَّ سَلُوا اللهَ لي الوسيلةَ؛ فإنَّها منزلةٌ في الجنَّةِ لا تنبغي إلَّا لعبدٍ من عبادِ اللهِ، وأرجو أن أكونَ أنا هو، ومَن سأل اللهَ لي الوسيلةَ حلَّتْ له الشفاعةُ». أخرجه مسلم.</p></div>
+<div class="transliteration"><p>Qala rasulullahi ﷺ: «Idha sami'tumu al-mu'adhdhina faqulu mithla ma yaqul, thumma sallu 'alayya; fa-innahu man salla 'alayya salatan sallallahu 'alayhi biha 'ashra, thumma salullaha li al-wasilah; fa-innaha manzilatun fil-jannati la tanbaghi illa li-'abdin min 'ibadillah, wa arju an akuna ana huwa. Wa man sa'ala Allaha li al-wasilata hallat lahu ash-shafa'ah». Akhrajahu Muslim.</p></div>
+<div class="en translation"><p>The Messenger of Allah ﷺ said: "When you hear the Mu'adhdhin, repeat what he says, then send blessings upon me; for whoever sends blessings upon me once, Allah sends blessings upon him ten times because of it. Then ask Allah to grant me al-Wasilah, for it is a rank in Paradise which befits only one of Allah's servants, and I hope that I am that one. Whoever asks Allah for al-Wasilah for me, intercession becomes permissible for him." Narrated by Muslim.</p></div>
+<div class="tamil"><p>தூதர் ﷺ கூறினார்கள்: "முஅத்தின் (பாங்கு) கூறுவதைக் கேட்கும்போது நீங்களும் அதுபோல கூறுங்கள். பின்னர் என் மீது ஸலவாத்து கூறுங்கள். ஏனெனில் ஒருவர் என் மீது ஒரு முறை ஸலவாத்து கூறினால் அதனால் அல்லாஹ் அவர் மீது பத்து முறை ஸலவாத்து கூறுகிறான். பிறகு எனக்காக அல்லாஹ்விடம் 'வசீலா' கேளுங்கள். அது சொர்க்கத்தில் உள்ள ஒரு நிலை; அல்லாஹ்வின் அடியார்களில் ஒருவருக்கு மட்டுமே தகுதி; அவர் நானாக இருக்கலாம் என்று நம்புகிறேன். எனக்காக வசீலா கேட்டவருக்கு ஷபாஅத் தகும்." (முஸ்லிம்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=8030" target="_blank" rel="noopener">sahih-muslim 384</a>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-hadith-3-2.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-hadith-4-1.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-hadith.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

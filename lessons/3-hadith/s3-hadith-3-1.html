@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Best of People - Hadith and Seerah | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Hadith and Seerah</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 1: Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>The Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>The Meanings of the Prophet's Names ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 2: The Attributes of the Prophet ﷺ</a>
+                <a href="s3-hadith-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>The Attributes of the Prophet ﷺ (1)</a>
+                <a href="s3-hadith-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>The Attributes of the Prophet ﷺ (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 3: The Excellence of the Prophet ﷺ</a>
+                <a href="s3-hadith-3-1.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">5</span>The Best of People</a>
+                <a href="s3-hadith-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>The Prophet ﷺ, the Khalil (Close Friend) of Allah</a>
+                <a href="s3-hadith-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Leader of the Children of Adam</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 4: The Cleanliness of the Prophet ﷺ</a>
+                <a href="s3-hadith-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Prophet's ﷺ Care for Cleanliness</a>
+                <a href="s3-hadith-4-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Care for the Cleanliness of the Body</a>
+                <a href="s3-hadith-4-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>Care for Mouth Cleanliness and the Fragrance of the Prophet ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 5: The Clothing of the Prophet ﷺ</a>
+                <a href="s3-hadith-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Description of the Prophet's ﷺ Clothing</a>
+                <a href="s3-hadith-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>The Rules of Clothing</a>
+                <a href="s3-hadith-5-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>How the Prophet ﷺ Wore His Clothes</a>
+                <a href="s3-hadith-5-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>Starting with the Right</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 6: The Family of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Wife of the Prophet ﷺ: Khadijah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Wife of the Prophet ﷺ: Aisha, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Wife of the Prophet ﷺ: Hafsah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Children of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>Loving the Family of the Prophet ﷺ</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-hadith.html">Hadith and Seerah</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">The Best of People</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-hadith">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M60 28 C48 18 30 16 14 20 V96 C30 92 48 94 60 104 C72 94 90 92 106 96 V20 C90 16 72 18 60  Z"/><line x1="60" y1="28" x2="60" y2="104"/><path d="M26 38 h22 M26 52 h22 M72 38 h22 M72 52 h22"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128214; Unit 3</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">أَفْضَلُ النَّاسِ</span>
+                <span class="en">The Best of People</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 139&ndash;141</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-139.webp" alt="Textbook page 139" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 139"><figcaption>p. 139</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-140.webp" alt="Textbook page 140" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 140"><figcaption>p. 140</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-141.webp" alt="Textbook page 141" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 141"><figcaption>p. 141</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>الناسُ ليسوا سواءً؛ يختلفونَ في صفاتِهم وقدراتِهم وفضلِهم عندَ اللهِ. فمَن أفضلُ الناسِ عندَ اللهِ؟ نَتَعرَّفُ في هذا الدرسِ على فضلِ نبيِّنا محمدٍ ﷺ.</p></div>
+<div class="transliteration"><p>An-nasu laysu sawa'; yakhtalifuna fi sifatihim wa qudratihim wa fadlihim 'inda Allah. Faman afdalu an-nasi 'inda Allah? Nata'arrafu fi hadha ad-darsi 'ala fadli nabiyyina Muhammadin ﷺ.</p></div>
+<div class="en translation"><p>People are not equal; they differ in their qualities, abilities, and merit before Allah. So who is the best of people before Allah? In this lesson we will learn about the excellence of our Prophet Muhammad ﷺ.</p></div>
+<div class="tamil"><p>மக்கள் சமமானவர்கள் அல்ல; பண்புகளிலும், திறன்களிலும், அல்லாஹ்விடம் அவர்களின் சிறப்பிலும் வேறுபடுகிறார்கள். அல்லாஹ்விடம் மக்களில் சிறந்தவர் யார்? இந்தப் பாடத்தில் நம் நபி முஹம்மது ﷺ அவர்களின் சிறப்பை அறிந்து கொள்வோம்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>حوارٌ بينَ خالدٍ وأبيه:
+قال خالدٌ: أحبُّك يا أبي؛ فأنتَ أفضلُ الناسِ.
+قال الأبُ: وأنا أحبُّك يا خالدُ، ولستُ أفضلَ الناسِ.
+قال خالدٌ: لماذا؟ أحسنتَ تربيتي، وأنفقتَ عليَّ!
+قال الأبُ: هذا صحيحٌ يا خالدُ، ولكني لم أُنفِقْ على جميعِ الناسِ، ولم يكنْ لي فضلٌ على جميعِ الناسِ.
+قال خالدٌ: إذًا لا يوجدُ أحدٌ أفضلُ الناسِ!
+قال الأبُ: بلى يا خالدُ؛ فنبِيّنا محمدٌ ﷺ أفضلُ الناسِ؛ فله الفضلُ بعدَ اللهِ في هدايةِ الناسِ وتَبصيرِهم بدينِهم.
+قال خالدٌ: هلَّا ذكَرْتَ لي شيئًا من فضائلِ النبيِّ ﷺ!</p></div>
+<div class="transliteration"><p>Hiwarun bayna Khalidin wa-abih: qala Khalid: uhibbuk ya abi; fa'anta afdalu an-nas. Qala al-abu: wa-ana uhibbuk ya Khalid, wa lastu afdala an-nas. Qala Khalid: limadha? Ahsanta tarbiyati, wa anfaqta 'alayya! Qala al-abu: hadha sahihen ya Khalid, walakinni lam unfiq 'ala jami'i an-nas, wa lam yakun li fadlun 'ala jami'i an-nas. Qala Khalid: idhan la yujadu ahadun afdalu an-nas! Qala al-abu: bala ya Khalid; fabiyyuna Muhammadun ﷺ afdalu an-nas; falahu al-fadlu ba'da Allah fi hidayati an-nasi wa tabsirihim bidinihim. Qala Khalid: halla dhakarta li shay'an min fada'ili an-nabiyyi ﷺ!</p></div>
+<div class="en translation"><p>A conversation between Khalid and his father:&lt;br&gt;Khalid said: I love you, father; you are the best of people.&lt;br&gt;His father said: And I love you, Khalid, but I am not the best of people.&lt;br&gt;Khalid said: Why? You raised me well and spent on me!&lt;br&gt;His father said: That is true, O Khalid, but I did not spend on all people, nor did I do a favour to all people.&lt;br&gt;Khalid said: Then no one is the best of people!&lt;br&gt;His father said: Of course there is, O Khalid; our Prophet Muhammad ﷺ is the best of people, for he has the favour — after Allah — of guiding people and showing them their religion.&lt;br&gt;Khalid said: Why did you not mention to me some of the virtues of the Prophet ﷺ!</p></div>
+<div class="tamil"><p>காலிதுக்கும் அவர் தந்தைக்கும் இடையே உரையாடல்:&lt;br&gt;காலித்: அப்பா, உன்னை நேசிக்கிறேன்; நீயே மக்களில் சிறந்தவன்.&lt;br&gt;தந்தை: நானும் உன்னை நேசிக்கிறேன் காலித்; ஆனால் நான் மக்களில் சிறந்தவன் அல்ல.&lt;br&gt;காலித்: ஏன்? என்னை நன்றாக வளர்த்து செலவு செய்தவன் நீ!&lt;br&gt;தந்தை: சரிதான் காலித்; ஆனால் அனைவருக்கும் நான் செலவிடவில்லை; அனைவர் மீதும் நான் உதவி புரியவில்லை.&lt;br&gt;காலித்: அப்படியானால் மக்களில் சிறந்தவர் யாருமே இல்லையா!&lt;br&gt;தந்தை: இருக்கிறார்கள் காலித்; நம் நபி முஹம்மது ﷺ தான் மக்களில் சிறந்தவர். அல்லாஹ்வுக்குப் பிறகு, மக்களை நேர்வழிக்கு இட்டுச் சென்று மார்க்கத்தைக் காட்டியதில் அவருக்கே சிறப்பு உண்டு.&lt;br&gt;காலித்: நபி ﷺ அவர்களின் சிறப்புகளில் சிலவற்றைச் சொல்லியிருக்கப்படாதா!</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>من فضائلِ النبيِّ ﷺ:
+١- هو سيّدُ وَلَدِ آدمَ يومَ القيامةِ.
+٢- هو أولُ من يستفتِحُ بابَ الجنَّةِ.
+٣- عُرِجَ به ﷺ إلى السماءِ السابعةِ.
+٤- هو أكثرُ الأنبياءِ أتباعًا.
+٥- غفرَ اللهُ له ما تقدَّمَ من ذنبِه وما تأخَّرَ.
+٦- هو خاتَمُ النبيِّينَ عليهمُ السلامُ.</p></div>
+<div class="transliteration"><p>Min fada'ili an-nabiyyi ﷺ: 1. huwa sayyidu waladi Adama yawma al-qiyamah. 2. huwa awwalu man yastaftihu baba al-jannah. 3. 'urija bihi ﷺ ila as-sama'i as-sabi'ah. 4. huwa aktharu al-anbiya'i atba'an. 5. ghafara Allahu lahu ma taqaddama min dhanbih wa ma ta'akhkhar. 6. huwa khatamu an-nabiyyina 'alayhimu as-salam.</p></div>
+<div class="en translation"><p>Some of the virtues of the Prophet ﷺ:&lt;br&gt;1. He is the leader of the children of Adam on the Day of Resurrection.&lt;br&gt;2. He is the first to open the gate of Paradise.&lt;br&gt;3. He was taken on the Night Journey (al-Mi'raj) to the seventh heaven.&lt;br&gt;4. He has the most followers among the prophets.&lt;br&gt;5. Allah forgave him his past and future sins.&lt;br&gt;6. He is the seal (last) of the prophets, peace be upon them all.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களின் சிறப்புகளில் சில:&lt;br&gt;1. மறுமை நாளில் ஆதம் சந்ததியரின் தலைவர்.&lt;br&gt;2. சொர்க்கத்தின் வாயிலை முதலில் திறப்பவர்.&lt;br&gt;3. ஏழாவது வானத்திற்கு இஸ்ரா/மிஃராஜ் செய்யப்பட்டவர்.&lt;br&gt;4. நபிமார்களில் அதிக பின்பற்றுவோர் உள்ளவர்.&lt;br&gt;5. அல்லாஹ் அவரக்குத் தவறு செய்ததையும், செய்ய இருப்பதையும் மன்னித்தான்.&lt;br&gt;6. நபிமார்களின் இறுதியாளர்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ما معنى خاتَمِ النبيِّينَ؟
+خاتَمُ النبيِّينَ: أي آخِرُهم، لا نبيَّ بعدَه ﷺ.</p></div>
+<div class="transliteration"><p>Ma ma'na khatami an-nabiyyeen? Khatamu an-nabiyyeen: ayy akhiruhum, la nabiyya ba'dahu ﷺ.</p></div>
+<div class="en translation"><p>What is the meaning of the Seal of the Prophets?&lt;br&gt;The Seal of the Prophets means: the last of them; there is no prophet after him ﷺ.</p></div>
+<div class="tamil"><p>'நபிமார்களின் இறுதியாளர்' என்பதன் பொருள் என்ன?&lt;br&gt;அதாவது அவர்களே நபிமார்களில் கடைசியானவர்; அவருக்குப் பின் நபி இல்லை.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أمرَنا اللهُ عَزَّ وجَلَّ بالصلاةِ على نبيِّنا محمدٍ ﷺ والسلامِ عليه، فقال تعالى:</p></div>
+<div class="transliteration"><p>Amarana Allahu 'azza wa jalla bis-salati 'ala nabiyyina Muhammadin ﷺ was-salami 'alayh, faqala ta'ala:</p></div>
+<div class="en translation"><p>Allah, the Exalted and Majestic, commanded us to send blessings and peace upon our Prophet Muhammad ﷺ. He the Exalted said:</p></div>
+<div class="tamil"><p>நம் நபி முஹம்மது ﷺ அவர்கள் மீது ஸலவாத்தும் ஸலாமும் கூறுமாறு அல்லாஹ் கட்டளையிட்டான். அவன் கூறினான்:</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>﴿إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا﴾</p></div>
+<div class="transliteration"><p>Innallaha wa mala'ikatahu yusalluna 'ala an-nabiyyi. Ya ayyuhalladhina amanu sallu 'alayhi wa sallimu taslima.</p></div>
+<div class="en translation"><p>Indeed, Allah and His angels send blessings upon the Prophet. O you who have believed, ask (Allah to confer) blessing upon him and ask (Allah to grant him) peace.</p></div>
+<div class="tamil"><p>நிச்சயமாக அல்லாஹ்வும் அவனுடைய வானவர்களும் நபியின் மீது ஸலவாத்து கூறுகிறார்கள். ஈமான் கொண்டவர்களே! நீங்களும் அவர்மீது ஸலவாத்து கூறுங்கள்; ஸலாம் கூறுங்கள்.</p></div>
+<div class="block-ref"><span class="ar" dir="rtl">33:56</span></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>وقال النبيُّ ﷺ: «مَن صلَّى عليَّ صلاةً، صلَّى اللهُ عليه بها عشرًا». أخرجه مسلم.</p></div>
+<div class="transliteration"><p>Wa qala an-nabiyyu ﷺ: «Man salla 'alayya salatan, sallallahu 'alayhi biha 'ashra». Akhrajahu Muslim.</p></div>
+<div class="en translation"><p>The Prophet ﷺ said: "Whoever sends blessings upon me once, Allah sends blessings upon him ten times because of it." Narrated by Muslim.</p></div>
+<div class="tamil"><p>நபி ﷺ கூறினார்கள்: "என் மீது ஒருவர் ஒரு முறை ஸலவாத்து கூறினால், அதன் காரணமாக அல்லாஹ் அவர் மீது பத்து முறை ஸலவாத்து கூறுகிறான்." (முஸ்லிம்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=8091" target="_blank" rel="noopener">sahih-muslim 814</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>وتُستحَبُّ الصلاةُ على النبيِّ ﷺ في مواضعَ، منها:
+١- يومَ الجمعةِ وليلتَها.
+٢- بعدَ الأذانِ.
+٣- عندَ الدعاءِ.</p></div>
+<div class="transliteration"><p>Wa tustahabbu as-salaatu 'ala an-nabiyyi ﷺ fi mawadi', minha: 1. yawma al-jumu'ati wa laylataha. 2. ba'da al-adhan. 3. 'inda ad-du'a'.</p></div>
+<div class="en translation"><p>Sending blessings upon the Prophet ﷺ is recommended in many situations, including:&lt;br&gt;1. On Friday and its night.&lt;br&gt;2. After the adhan.&lt;br&gt;3. When making supplication.</p></div>
+<div class="tamil"><p>நபி ﷺ மீது ஸலவாத்து கூறுவது பல சந்தர்ப்பங்களில் விரும்பத்தக்கது:&lt;br&gt;1. ஜும்ஆ நாளிலும் அதன் இரவிலும்.&lt;br&gt;2. அதான் பிறகு.&lt;br&gt;3. துஆ செய்யும் போது.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-hadith-2-2.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-hadith-3-2.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-hadith.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manners of Relieving Oneself (1) - Fiqh (Islamic Jurisprudence) | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Fiqh (Islamic Jurisprudence)</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 1: Manners of Relieving Oneself</a>
+                <a href="s3-fiqh-1-1.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">1</span>Manners of Relieving Oneself (1)</a>
+                <a href="s3-fiqh-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Manners of Relieving Oneself (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 2: Removing Impurity</a>
+                <a href="s3-fiqh-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Removing Impurity</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 3: Tayammum (Dry Ablution)</a>
+                <a href="s3-fiqh-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Tayammum (Dry Ablution)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 4: The Status of Prayer</a>
+                <a href="s3-fiqh-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Status of Prayer</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 5: Conditions of Prayer</a>
+                <a href="s3-fiqh-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>Conditions of Prayer (1)</a>
+                <a href="s3-fiqh-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>Conditions of Prayer (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 6: Manners of Entering the Mosque</a>
+                <a href="s3-fiqh-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>Manners of Entering the Mosque</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 7: Congregational Prayer</a>
+                <a href="s3-fiqh-7-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Congregational Prayer</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-fiqh.html">Fiqh (Islamic Jurisprudence)</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">Manners of Relieving Oneself (1)</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-fiqh">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M60 10 C60 10 24 54 24 78 a36 36 0 0 0 72 0 C96 54 60 10 60 10 Z"/><path d="M44 82 a18 18 0 0 0 14 16"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128167; Unit 1</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">آدَابُ قَضَاءِ الْحَاجَةِ (١)</span>
+                <span class="en">Manners of Relieving Oneself (1)</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 76&ndash;80</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-076.webp" alt="Textbook page 76" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 76"><figcaption>p. 76</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-077.webp" alt="Textbook page 77" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 77"><figcaption>p. 77</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-078.webp" alt="Textbook page 78" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 78"><figcaption>p. 78</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-079.webp" alt="Textbook page 79" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 79"><figcaption>p. 79</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-080.webp" alt="Textbook page 80" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 80"><figcaption>p. 80</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>دين الإسلام دين الطهارة والنظافة.
+من آداب قضاء الحاجة:
+١- الاستتار عن أنظار الناس.</p></div>
+<div class="transliteration"><p>Dinu al-islam dinu at-tahara wan-nadhafa. Min adabi kada'i al-haja: al-istitar 'an anzhari an-nas.</p></div>
+<div class="en translation"><p>The religion of Islam is the religion of purity and cleanliness.&lt;br&gt;Among the manners of relieving oneself:&lt;br&gt;1. Concealing oneself from the sight of people.</p></div>
+<div class="tamil"><p>இஸ்லாமிய மார்க்கம் தூய்மைக்கும் சுத்தத்திற்குமான மார்க்கம்.&lt;br&gt;மலங்கழிக்கும் ஆசாரங்களில் ஒன்று:&lt;br&gt;1. மக்களின் பார்வையிலிருந்து மறைந்து கொள்வது.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>٢- أن أجنّب استقبال القبلة واستدبارها عند قضاء الحاجة في غير البنيان.</p></div>
+<div class="transliteration"><p>2. An ajanniba istiqbala al-qiblah wa istidbariha 'inda kada'i al-haja fi ghayri al-bunyan.</p></div>
+<div class="en translation"><p>2. To avoid facing the Qiblah or turning one's back towards it when relieving oneself in the open (outside buildings).</p></div>
+<div class="tamil"><p>2. கட்டிடங்களுக்கு வெளியே மலங்கழிக்கும்போது கிப்லாவை முன்னோக்கியோ பின்னோக்கியோ இருக்காமல் இருப்பது.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أماكن يحرم فيها قضاء الحاجة:
+١- طريق الناس.
+٢- الظل النافع.
+٣- الماء الذي لا يجري.
+٤- تحت شجرة مثمرة.
+الحكمة من تحريم قضاء الحاجة في هذه الأماكن: حصول الضرر للناس، وانتشار الأمراض والروائح الكريهة.</p></div>
+<div class="transliteration"><p>Amakin yahrumu fiha kada'u al-haja: 1. tariqu an-nas, 2. adh-dhillu an-nafi', 3. al-ma'ulladhi la yajri, 4. tahta shajaratin muthmirah.</p></div>
+<div class="en translation"><p>Places where it is forbidden to relieve oneself:&lt;br&gt;1. The people's pathway.&lt;br&gt;2. Beneficial shade.&lt;br&gt;3. Still water.&lt;br&gt;4. Under a fruit-bearing tree.&lt;br&gt;The wisdom behind forbidding relieving oneself in these places: it causes harm to people and spreads diseases and unpleasant odours.</p></div>
+<div class="tamil"><p>மலங்கழிக்க தடைசெய்யப்பட்ட இடங்கள்:&lt;br&gt;1. மக்கள் செல்லும் பாதை.&lt;br&gt;2. பயனுள்ள நிழல்.&lt;br&gt;3. நீர் ஓடாத தண்ணீர்.&lt;br&gt;4. பழமரத்தின் கீழ்.&lt;br&gt;இதற்கான விவேகம்: மக்களுக்குத் தீங்கு, நோய்கள் மற்றும் துர்நாற்றம் பரவல்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أحافظ على نظافة الأماكن التي ينتفع بها الناس، ولا أفضي حاجتي فيها.</p></div>
+<div class="transliteration"><p>Uhafizhu 'ala nadhafati al-amakin allati yantafi'u biha an-nas, wa la ufdhi hajati fiha.</p></div>
+<div class="en translation"><p>I keep clean the places people benefit from, and I do not relieve myself in them.</p></div>
+<div class="tamil"><p>மக்கள் பயன்பெறும் இடங்களைத் தூய்மையாக வைத்திருக்கிறேன்; அவற்றில் மலம் கழிப்பதில்லை.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <span></span>
+            <a href="s3-fiqh-1-2.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-fiqh.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

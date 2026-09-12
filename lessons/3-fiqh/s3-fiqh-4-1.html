@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Status of Prayer - Fiqh (Islamic Jurisprudence) | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Fiqh (Islamic Jurisprudence)</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 1: Manners of Relieving Oneself</a>
+                <a href="s3-fiqh-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Manners of Relieving Oneself (1)</a>
+                <a href="s3-fiqh-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Manners of Relieving Oneself (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 2: Removing Impurity</a>
+                <a href="s3-fiqh-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Removing Impurity</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 3: Tayammum (Dry Ablution)</a>
+                <a href="s3-fiqh-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Tayammum (Dry Ablution)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 4: The Status of Prayer</a>
+                <a href="s3-fiqh-4-1.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">5</span>The Status of Prayer</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 5: Conditions of Prayer</a>
+                <a href="s3-fiqh-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>Conditions of Prayer (1)</a>
+                <a href="s3-fiqh-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>Conditions of Prayer (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 6: Manners of Entering the Mosque</a>
+                <a href="s3-fiqh-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>Manners of Entering the Mosque</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 7: Congregational Prayer</a>
+                <a href="s3-fiqh-7-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Congregational Prayer</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-fiqh.html">Fiqh (Islamic Jurisprudence)</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">The Status of Prayer</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-fiqh">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M60 10 C60 10 24 54 24 78 a36 36 0 0 0 72 0 C96 54 60 10 60 10 Z"/><path d="M44 82 a18 18 0 0 0 14 16"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128167; Unit 4</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">مَكَانَةُ الصَّلَاةِ</span>
+                <span class="en">The Status of Prayer</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 94&ndash;96</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-094.webp" alt="Textbook page 94" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 94"><figcaption>p. 94</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-095.webp" alt="Textbook page 95" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 95"><figcaption>p. 95</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-096.webp" alt="Textbook page 96" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 96"><figcaption>p. 96</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>الصلاة أعظم أركان الإسلام بعد الشهادتين، وأفضل الأعمال بعدهما.
+قال رسول الله ﷺ: «بني الإسلام على خمس: شهادة أن لا إله إلا الله وأن محمدًا رسول الله، وإقام الصلاة، وإيتاء الزكاة، وصوم رمضان، وحج البيت».</p></div>
+<div class="transliteration"><p>As-salahu a'zamu arkani al-islam ba'da ash-shahadatayni wa afdalu al-a'mali ba'dahuma.</p></div>
+<div class="en translation"><p>Prayer is the greatest pillar of Islam after the two testimonies and the best of deeds after them.&lt;br&gt;The Messenger of Allah ﷺ said: "Islam is built upon five: the testimony that none is worthy of worship but Allah and that Muhammad is the Messenger of Allah, establishing prayer, giving zakat, fasting Ramadan, and performing Hajj of the House."</p></div>
+<div class="tamil"><p>இரு சாட்சிகளுக்குப் பிறகு இஸ்லாத்தின் பெரும் தூண் தொழுகையே; அவற்றிற்குப் பிறகு சிறந்த செயல் தொழுகையே.&lt;br&gt;நபி ﷺ கூறினார்கள்: "இஸ்லாம் ஐந்தின் மீது கட்டப்பட்டது: இரட்டைச் சாட்சி, தொழுகை, ஜகாத், ரமளான் நோன்பு, கஃபா ஹஜ்."</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>قال رسول الله ﷺ: «إن أول ما يحاسب به العبد يوم القيامة من عمله صلاته، فإن صلحت فقد أفلح وأنجح، وإن فسدت فقد خاب وخسر». رواه الترمذي.</p></div>
+<div class="transliteration"><p>Qala rasulullah ﷺ: «Inna awwala ma yuhasabu bihi al-'abdu yawmal-qiyamati min 'amalihi salatuhu, fa-in salahat faqad aflaha wa anjah, wa-in fasadat faqad khaba wa khasir.» Rawahu at-Tirmidhi.</p></div>
+<div class="en translation"><p>The Messenger of Allah ﷺ said: "The first deed for which a servant will be called to account on the Day of Resurrection is his prayer. If it is sound, he has succeeded; if it is corrupt, he has failed and lost." Narrated by al-Tirmidhi.</p></div>
+<div class="tamil"><p>நபி ﷺ கூறினார்கள்: "மறுமை நாளில் அடியானின் முதல் கணக்கு அவனது தொழுகையாகும்; அது சரியாக இருந்தால் வெற்றியடைந்தான்; கெட்டிருந்தால் நஷ்டமும் தோல்வியும் அடைந்தான்." (திர்மிதி)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=41467" target="_blank" rel="noopener">riyad-as-salihin 402</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ترك الصلاة محرم، وهو كبيرة من الكبائر وأعظم الذنوب؛ لأنها ركن من أركان الإسلام. فمن تركها عرض نفسه لعقوبة الله وسخطه في الدنيا والآخرة.
+قال تعالى: «مَا سَلَكَكُمْ فِي سَقَرَ قَالُوا لَمْ نَكُ مِنَ الْمُصَلِّينَ».</p></div>
+<div class="transliteration"><p>Tarku as-salah muharramun wa huwa kabiratun min al-kaba'iri wa a'zamu adh-dhunub; li'annaha ruknun min arkani al-islam.</p></div>
+<div class="en translation"><p>Abandoning prayer is forbidden, and it is a major sin and among the greatest of offences because it is a pillar of Islam. Whoever abandons it exposes himself to the punishment and wrath of Allah in this world and the Hereafter.&lt;br&gt;Allah said: "What drove you to the Scorching Fire? They will answer: We did not pray."</p></div>
+<div class="tamil"><p>தொழுகையை விடுவது ஹராம்; எண்ணற்ற பெரும் பாவங்களில் ஒன்று; ஏனெனில் இது இஸ்லாத்தின் தூண். அதை விடுபவன் இம்மையிலும் மறுமையிலும் அல்லாஹ்வின் தண்டனைக்கும் கோபத்திற்கும் தன்னை வெளிப்படுத்துகிறான்.&lt;br&gt;"சகருடைய (நரக) தீக்கோளத்தில் உங்களை நுழையச் செய்தது எது?" என அழைக்கப்படும்போது "நாங்கள் தொழுதவர்களாக இருக்கவில்லை" என கூறுவார்கள்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>قال رسول الله ﷺ: «العهد الذي بيننا وبينهم الصلاة، فمن تركها فقد كفر». رواه الترمذي.</p></div>
+<div class="transliteration"><p>Qala rasulullah ﷺ: «Al-'ahdulladhi baynana wa baynahum as-salah, faman tarakaha faqad kafar.» Rawahu at-Tirmidhi.</p></div>
+<div class="en translation"><p>The Messenger of Allah ﷺ said: "The covenant between us and them is prayer; whoever abandons it has disbelieved." Narrated by al-Tirmidhi as Hasan Sahih.</p></div>
+<div class="tamil"><p>நபி ﷺ கூறினார்கள்: "எங்களுக்கும் அவர்களுக்கும் இடையிலான உடன்படிக்கை தொழுகை; அதை விடுபவன் காஃபிராகிவிட்டான்." (திர்மிதி)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=41465" target="_blank" rel="noopener">riyad-as-salihin 400</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>يحافظ الرجال على أداء الصلوات المفروضة في المساجد؛ لأن النبي ﷺ أمر بذلك.</p></div>
+<div class="transliteration"><p>Yuhafizhu ar-rijal 'ala ada'i as-salawati al-mafrudat fi al-masajid; li anna an-nabiyya ﷺ amara bi-dhalik.</p></div>
+<div class="en translation"><p>Men are regular in performing the obligatory prayers in the mosques, because the Prophet ﷺ commanded that.</p></div>
+<div class="tamil"><p>ஆண்கள் கடமையான தொழுகைகளைப் பள்ளிவாசல்களில் செய்வதில் நிலையாக இருக்கிறார்கள்; ஏனெனில் நபி ﷺ அவ்வாறு கட்டளையிட்டார்கள்.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-fiqh-3-1.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-fiqh-5-1.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-fiqh.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

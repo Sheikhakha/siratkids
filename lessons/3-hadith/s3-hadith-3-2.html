@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Prophet ﷺ, the Khalil (Close Friend) of Allah - Hadith and Seerah | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Hadith and Seerah</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 1: Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>The Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>The Meanings of the Prophet's Names ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 2: The Attributes of the Prophet ﷺ</a>
+                <a href="s3-hadith-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>The Attributes of the Prophet ﷺ (1)</a>
+                <a href="s3-hadith-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>The Attributes of the Prophet ﷺ (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 3: The Excellence of the Prophet ﷺ</a>
+                <a href="s3-hadith-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Best of People</a>
+                <a href="s3-hadith-3-2.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">6</span>The Prophet ﷺ, the Khalil (Close Friend) of Allah</a>
+                <a href="s3-hadith-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Leader of the Children of Adam</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 4: The Cleanliness of the Prophet ﷺ</a>
+                <a href="s3-hadith-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Prophet's ﷺ Care for Cleanliness</a>
+                <a href="s3-hadith-4-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Care for the Cleanliness of the Body</a>
+                <a href="s3-hadith-4-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>Care for Mouth Cleanliness and the Fragrance of the Prophet ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 5: The Clothing of the Prophet ﷺ</a>
+                <a href="s3-hadith-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Description of the Prophet's ﷺ Clothing</a>
+                <a href="s3-hadith-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>The Rules of Clothing</a>
+                <a href="s3-hadith-5-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>How the Prophet ﷺ Wore His Clothes</a>
+                <a href="s3-hadith-5-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>Starting with the Right</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 6: The Family of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Wife of the Prophet ﷺ: Khadijah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Wife of the Prophet ﷺ: Aisha, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Wife of the Prophet ﷺ: Hafsah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Children of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>Loving the Family of the Prophet ﷺ</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-hadith.html">Hadith and Seerah</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">The Prophet ﷺ, the Khalil (Close Friend) of Allah</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-hadith">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M60 28 C48 18 30 16 14 20 V96 C30 92 48 94 60 104 C72 94 90 92 106 96 V20 C90 16 72 18 60  Z"/><line x1="60" y1="28" x2="60" y2="104"/><path d="M26 38 h22 M26 52 h22 M72 38 h22 M72 52 h22"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128214; Unit 3</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">النَّبِيُّ ﷺ خَلِيلُ اللهِ</span>
+                <span class="en">The Prophet ﷺ, the Khalil (Close Friend) of Allah</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 142&ndash;144</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-142.webp" alt="Textbook page 142" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 142"><figcaption>p. 142</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-143.webp" alt="Textbook page 143" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 143"><figcaption>p. 143</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-144.webp" alt="Textbook page 144" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 144"><figcaption>p. 144</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>كلَّما ازدادَ العبدُ عبادةً للهِ زادتْ محبَّتُه عندَ اللهِ، وأكثرُ الناسِ عبادةً للهِ هو نبيُّنا محمدٌ ﷺ. فمَن أحبُّ الخلقِ إلى اللهِ؟ نَتَعرَّفُ في هذا الدرسِ على أنَّ النبيَّ ﷺ خليلُ اللهِ.</p></div>
+<div class="transliteration"><p>Kullama izdada al-'abdu 'ibadatan lillahi zadat mahabbatuho 'inda Allah, wa aktharu an-nasi 'ibadatan lillahi huwa nabiyyuna Muhammadun ﷺ. Faman ahabbu al-khalqi ila Allah? Nata'arrafu fi hadha ad-darsi 'ala anna an-nabiyya ﷺ khalilullah.</p></div>
+<div class="en translation"><p>The more a servant worships Allah, the greater his love in the sight of Allah, and the one who worships Allah the most is our Prophet Muhammad ﷺ. So who is the most beloved of creation to Allah? In this lesson we will learn that the Prophet ﷺ is the Khalil (close friend) of Allah.</p></div>
+<div class="tamil"><p>அடியான் அல்லாஹ்வை அதிகம் வழிபட்டால் அவனிடம் அவரின் அன்பு அதிகரிக்கும். அல்லாஹ்வை அதிகம் வழிபடுபவர் நம் நபி முஹம்மது ﷺ. அல்லாஹ்வுக்கு மிகவும் பிரியமான படைப்பு யார்? இந்தப் பாடத்தில் நபி ﷺ அல்லாஹ்வின் கலீல் என்பதை அறிவோம்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ما معنى الخليلِ؟
+الخليلُ: هو الذي وصلَ في المحبَّةِ إلى أعلى درجاتِها، فهو يحبُّ اللهَ محبةً تامَّةً، واللهُ يحبُّهُ محبةً تامَّةً.</p></div>
+<div class="transliteration"><p>Ma ma'na al-khalil? Al-khalilu: huwa alladhi wasala fil-mahabbati ila a'la darajatiha, fahuwa yuhibbu Allaha mahabbatan tammah, wallahu yuhibbuhu mahabbatan tammah.</p></div>
+<div class="en translation"><p>What is the meaning of Al-Khalil?&lt;br&gt;Al-Khalil is one who has reached the highest degree of love: he loves Allah with complete love, and Allah loves him with complete love.</p></div>
+<div class="tamil"><p>'கலீல்' என்பதன் பொருள் என்ன?&lt;br&gt;அன்பில் உயர்ந்த நிலையை அடைந்தவர். அவர் அல்லாஹ்வை முழுமையான அன்புடன் நேசிக்கிறார்; அல்லாஹ்வும் அவரை முழுமையான அன்புடன் நேசிக்கிறான்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن ابنِ مسعودٍ رضي الله عنه أنَّ النبيَّ ﷺ قال: «أَلَا إِنِّي أَبْرَأُ إلى كلِّ خِلٍّ مِن خِلِّه، ولو كنتُ متَّخِذًا خليلًا لاتَّخَذتُ أبا بكرٍ خليلًا، وإنَّ صاحبَكم خليلُ اللهِ». أخرجه مسلم.</p></div>
+<div class="transliteration"><p>'An Ibn Mas'udin radiyallahu 'anhu anna an-nabiyya ﷺ qal: «Ala inni abra'u ila kulli khillin min khillih, wa law kuntu muttakhidhan khalilan lattakhaztu Aba Bakrin khalilan, wa inna sahibakum khalilullah». Akhrajahu Muslim.</p></div>
+<div class="en translation"><p>Ibn Mas'ud, may Allah be pleased with him, reported that the Prophet ﷺ said: "Behold, I am free from the dependance of every bosom friend. If I were to take anyone as a bosom friend, I would have taken Abu Bakr, for truly your companion is the Khalil (close friend) of Allah." Narrated by Muslim.</p></div>
+<div class="tamil"><p>இப்னு மஸ்ஊத் (ரலி) அறிவிக்கிறார்: நபி ﷺ கூறினார்கள்: "அறிந்து கொள்ளுங்கள்! ஒவ்வொரு நெருங்கிய நண்பரிடமிருந்தும் நான் விடுபட்டவன். நான் ஒருவரை நெருங்கிய நண்பராக எடுத்திருப்பேன் என்றால் அபூபக்ரை எடுத்திருப்பேன். உங்கள் தோழர் (முஹம்மது) அல்லாஹ்வின் கலீல் (நெருங்கிய நண்பர்) ஆவார்." (முஸ்லிம்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=13297" target="_blank" rel="noopener">sahih-muslim 6020</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>معلومةٌ: إنَّ اللهَ تعالى اتَّخَذَ نبيَّه إبراهيمَ عليه السلامُ خليلًا، وقد أَخبَرَ النبيُّ ﷺ أنَّه خليلُ اللهِ أيضًا؛ فمَن أكرمَه اللهُ بالخُلَّةِ (المحبةِ التامَّةِ) من الأنبياءِ؟</p></div>
+<div class="transliteration"><p>Ma'lumah: inna Allaha ta'ala ittakhadha nabiyyahu Ibrahima 'alayhis-salam khalilan, wa qad akhbara an-nabiyyu ﷺ annahu khalilullah aydan. Faman akramahu Allahu bil-khullati (al-mahabbati at-tammah) min al-anbiya'?</p></div>
+<div class="en translation"><p>Facts: Allah the Exalted took His prophet Ibrahim (Abraham), peace be upon him, as a Khalil, and the Prophet ﷺ informed us that he too is the Khalil of Allah. So which of the prophets did Allah honour with khullah (complete love)?</p></div>
+<div class="tamil"><p>தகவல்: அல்லாஹ் தன் நபி இப்ராஹீம் (அலை) அவர்களைக் கலீலாக எடுத்தான். மேலும் நம் நபி ﷺ தாமும் அல்லாஹ்வின் கலீல் என்பதை அறிவித்தார்கள். நபிமார்களில் யாரை அல்லாஹ் 'குல்லா' (முழுமையான அன்பு) கொண்டு கௌரவித்தான்?</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>مَن الذي أكرمَه اللهُ بالخُلَّةِ (المحبةِ التامَّةِ) منَ الأنبياءِ؟
+١- نبيُّ اللهِ إبراهيمُ عليه السلامُ.
+٢- نبيُّنا محمدٌ ﷺ.</p></div>
+<div class="transliteration"><p>Man alladhi akramahu Allahu bil-khullati (al-mahabbati at-tammah) mina al-anbiya'? 1. Nabiyyu Allahi Ibrahimu 'alayhis-salam. 2. Nabiyyuna Muhammadun ﷺ.</p></div>
+<div class="en translation"><p>Which prophets were honoured by Allah with khullah (complete love)?&lt;br&gt;1. The Prophet of Allah, Ibrahim (Abraham), peace be upon him.&lt;br&gt;2. Our Prophet Muhammad ﷺ.</p></div>
+<div class="tamil"><p>நபிமார்களில் யாரை அல்லாஹ் குல்லாவால் கௌரவித்தான்?&lt;br&gt;1. அல்லாஹ்வின் நபி இப்ராஹீம் (அலை).&lt;br&gt;2. நம் நபி முஹம்மது ﷺ.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>خرجَ النبيُّ ﷺ مهاجرًا إلى المدينةِ، ومعه صاحبُه أبو بكرٍ الصدِّيقُ رضي الله عنه، فدخلا غارَ ثَورٍ ليختفيا عن المشركينَ الذين تتبَّعوهما.</p></div>
+<div class="transliteration"><p>Kharaja an-nabiyyu ﷺ muhajiran ila al-Madinah, wa ma'ahu sahibuhu Abu Bakrin as-Siddiqu radiyallahu 'anhu, fadakhala ghara Thawrin li-yakhtafiya 'ani al-mushrikeen alladhina tabba'uhuma.</p></div>
+<div class="en translation"><p>The Prophet ﷺ set out migrating to Madinah with his companion Abu Bakr as-Siddiq, may Allah be pleased with him, and they entered the cave of Thawr to hide from the polytheists who were pursuing them.</p></div>
+<div class="tamil"><p>நபி ﷺ தோழர் அபூபக்ர் அஸ்ஸித்தீக் (ரலி) அவர்களுடன் மதீனாவுக்கு ஹிஜ்ரத் செய்யப் புறப்பட்டனர். அவர்களைத் துரத்திய முஷ்ரிக்குகளிடமிருந்து மறைவதற்காக 'குகை தவுர்' குகையில் நுழைந்தனர்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن أبي بكرٍ الصدِّيقِ رضي الله عنه قال: نظرتُ إلى أقدامِ المشركينَ ونحنُ في الغارِ وهم على رؤوسِنا، فقلتُ: يا رسولَ اللهِ، لو أنَّ أحدَهم نظرَ تحتَ قدمَيه لأبصرَنا. فقال ﷺ: «ما ظنُّكَ يا أبا بكرٍ باثنينِ اللهُ ثالثُهما». متفقٌ عليه.</p></div>
+<div class="transliteration"><p>'An Abi Bakrin as-Siddiqi radiyallahu 'anhu qal: nazartu ila aqdami al-mushrikeena wa nahnu fil-ghari wahum 'ala ru'usina, faqultu: ya rasulallahi, law anna ahadahum nazara tahta qadayhi la-absarana. Faqala ﷺ: «Ma zannuka ya Aba Bakrin bithnayni Allahu thalithuhuma». Muttafaqun 'alayh.</p></div>
+<div class="en translation"><p>Abu Bakr as-Siddiq, may Allah be pleased with him, said: "I looked at the feet of the polytheists while we were in the cave and they were above our heads, and I said: O Messenger of Allah, if one of them looked beneath his feet, he would surely see us. He ﷺ said: 'O Abu Bakr, what do you think of two whose third is Allah?'" Agreed upon.</p></div>
+<div class="tamil"><p>அபூபக்ர் அஸ்ஸித்தீக் (ரலி) கூறினார்கள்: "நாங்கள் குகையில் இருந்தபோது முஷ்ரிக்குகளின் காலடிகளைப் பார்த்தேன்; அவர்கள் எங்கள் தலைக்கு மேலே இருந்தனர். 'தூதரே! அவர்களில் ஒருவர் தம் காலுக்குக் கீழே பார்த்திருந்தால் நம்மைக் கண்டிருப்பர்' என்று கூறினேன். நபி ﷺ கூறினார்கள்: 'அபூபக்ரே! யாருடைய மூன்றாவது அல்லாஹ்வோ அந்த இருவரின் நிலை உனக்கு என்ன தோன்றுகிறது?'" (முத்பகுன் அலைஹ்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=42363" target="_blank" rel="noopener">riyad-as-salihin 1298</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>﴿إِلَّا تَنصُرُوهُ فَقَدْ نَصَرَهُ اللَّهُ إِذْ أَخْرَجَهُ الَّذِينَ كَفَرُوا ثَانِيَ اثْنَيْنِ إِذْ هُمَا فِي الْغَارِ إِذْ يَقُولُ لِصَاحِبِهِ لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا ۖ فَأَنزَلَ اللَّهُ سَكِينَتَهُ عَلَيْهِ وَأَيَّدَهُ بِجُنُودٍ لَّمْ تَرَوْهَا وَجَعَلَ كَلِمَةَ الَّذِينَ كَفَرُوا السُّفْلَىٰ ۗ وَكَلِمَةُ اللَّهِ هِيَ الْعُلْيَا ۗ وَاللَّهُ عَزِيزٌ حَكِيمٌ﴾</p></div>
+<div class="transliteration"><p>Illa tansuruhu faqad nasarahu Allahu idh akhrajahu alladhina kafaru thaniya ithnayni idh huma fil-ghari idh yaqulu lisahibihi la tahzan innallaha ma'ana. Fa-anzala Allahu sakinatahu 'alayhi wa ayyadahu bijunudin lam tarawha wa ja'ala kalimata alladhina kafaru as-sufla, wa kalimatullahi hiya al-'ulya. Wallahu 'azizun hakim.</p></div>
+<div class="en translation"><p>If you do not aid the Prophet, Allah has already aided him when those who disbelieved expelled him as one of two in the cave, and he said to his companion, "Do not grieve; indeed Allah is with us." And Allah sent down His tranquillity upon him and supported him with soldiers you did not see, and made the word of those who disbelieved the lowest, while the word of Allah is the highest. And Allah is Exalted in Might, Wise.</p></div>
+<div class="tamil"><p>நீங்கள் அவருக்கு உதவாவிட்டாலும், நிச்சயமாக அல்லாஹ் ஏற்கனவே அவருக்கு உதவினான். காஃபிர்கள் விரட்டியபோது குகையில் இருவரில் ஒருவனாக, தோழரிடம் "கவலைப்படாதே; நிச்சயமாக அல்லாஹ் நம்முடன் இருக்கிறான்" என்று கூறினான். அப்போது அல்லாஹ் அவன் மீது தன் அமைதியை இறக்கினான்; நீங்கள் காணாத படைகளால் அவனைப் பலப்படுத்தினான்; காஃபிர்களின் வார்த்தையைத் தாழ்த்தினான்; அல்லாஹ்வின் வார்த்தையே உயர்ந்தது. அல்லாஹ் மிகைக்கற்றவன், ஞானமிக்கவன்.</p></div>
+<div class="block-ref"><span class="ar" dir="rtl">9:40</span></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>الدروسُ المستفادةُ من قصةِ الغارِ:
+١- محبةُ أبي بكرٍ الصدِّيقِ رضي الله عنه للنبيِّ ﷺ، وحرصُه عليه.
+٢- ثقةُ النبيِّ ﷺ باللهِ، ونصرُ اللهِ له.
+٣- الأمانُ معَ اللهِ؛ فلا يخافُ مَن كانَ اللهُ معَه.</p></div>
+<div class="transliteration"><p>Ad-durusu al-mustafadah min qissati al-ghar: 1. mahabbatu Abi Bakrin as-Siddiqi radiyallahu 'anhu lin-nabiyyi ﷺ wa hirsuhu 'alayh. 2. thiqatu an-nabiyyi ﷺ billah, wa nasru Allahi lah. 3. al-amanu ma'a Allah; fala yakhafu man kana Allahu ma'ah.</p></div>
+<div class="en translation"><p>Lessons learned from the story of the cave:&lt;br&gt;1. The love of Abu Bakr as-Siddiq, may Allah be pleased with him, for the Prophet ﷺ and his concern for him.&lt;br&gt;2. The Prophet's trust in Allah, and Allah's support for him.&lt;br&gt;3. Security with Allah: whoever has Allah with him does not fear.</p></div>
+<div class="tamil"><p>குகை கதையிலிருந்து பாடங்கள்:&lt;br&gt;1. அபூபக்ர் (ரலி) நபி ﷺ மீது கொண்ட அன்பும் அக்கறையும்.&lt;br&gt;2. நபி ﷺ அவர்களின் அல்லாஹ்வின் மீதான நம்பிக்கையும், அல்லாஹ்வின் உதவியும்.&lt;br&gt;3. அல்லாஹ்வுடனான பாதுகாப்பு: யாருடன் அல்லாஹ் இருக்கிறானோ அவர் அஞ்சமாட்டார்.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-hadith-3-1.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-hadith-3-3.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-hadith.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

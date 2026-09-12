@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Command to Tawheed - Good Manners (Adab) | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Good Manners (Adab)</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adab.html" class="sidebar-unit-label">Unit 1: Practical Islamic Manners</a>
+                <a href="s3-adab-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Manners with the Noble Quran</a>
+                <a href="s3-adab-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Manners of the Gathering (Majlis)</a>
+                <a href="s3-adab-1-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Manners of the Road</a>
+                <a href="s3-adab-1-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Manners of Sports</a>
+                <a href="s3-adab-1-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>Manners of Brotherhood and Friendship</a>
+                <a href="s3-adab-1-6.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>Manners of Seeking Permission (Isti'dhan)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adab.html" class="sidebar-unit-label">Unit 2: Commanded Matters (Al-Ma'murat)</a>
+                <a href="s3-adab-2-1.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">7</span>The Command to Tawheed</a>
+                <a href="s3-adab-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Obligation of Following the Prophet</a>
+                <a href="s3-adab-2-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>The Command to Unite and Harmonize</a>
+                <a href="s3-adab-2-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>The Command to Good Character</a>
+                <a href="s3-adab-2-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Command to Truthfulness</a>
+                <a href="s3-adab-2-6.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>Forbearance and Deliberation</a>
+                <a href="s3-adab-2-7.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>Patience</a>
+                <a href="s3-adab-2-8.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>The Command to Trustworthiness</a>
+                <a href="s3-adab-2-9.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Command to Good Speech</a>
+                <a href="s3-adab-2-10.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Command to Kindness to Parents</a>
+                <a href="s3-adab-2-11.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Command to Treat the Neighbour Well</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adab.html" class="sidebar-unit-label">Unit 3: Forbidden Matters (Al-Manhiyyat)</a>
+                <a href="s3-adab-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Prohibition of Shirk</a>
+                <a href="s3-adab-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>The Prohibition of Innovation (Bid'ah)</a>
+                <a href="s3-adab-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">20</span>The Prohibition of Lying</a>
+                <a href="s3-adab-3-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">21</span>The Prohibition of Cheating, Deceit, and Betrayal</a>
+                <a href="s3-adab-3-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">22</span>The Prohibition of Transgression</a>
+                <a href="s3-adab-3-6.html" class="sidebar-lesson"><span class="sidebar-lesson-num">23</span>The Prohibition of Insulting and Obscenity in Speech</a>
+                <a href="s3-adab-3-7.html" class="sidebar-lesson"><span class="sidebar-lesson-num">24</span>The Prohibition of Backbiting and Gossip</a>
+                <a href="s3-adab-3-8.html" class="sidebar-lesson"><span class="sidebar-lesson-num">25</span>The Prohibition of Imitating the Disbelievers</a>
+                <a href="s3-adab-3-9.html" class="sidebar-lesson"><span class="sidebar-lesson-num">26</span>Repentance to Allah from All Sins</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-adab.html">Good Manners (Adab)</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">The Command to Tawheed</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-adab">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="60" cy="60" r="44"/><path d="M60 24 v72 M24 60 h72 M35 35 l50 50 M85 35 l-50 50"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#11088; Unit 2</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">الأَمْرُ بِالتَّوْحِيدِ</span>
+                <span class="en">The Command to Tawheed</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 238&ndash;239</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-238.webp" alt="Textbook page 238" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 238"><figcaption>p. 238</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-239.webp" alt="Textbook page 239" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 239"><figcaption>p. 239</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أبنائي الأحبة، بناتي الغاليات!! اعلموا أن عقيدةَ التوحيدِ هي أساسُ الإسلامِ وأساسُ الأساسِ، وأولُ ما أمرَ اللهُ عز وجل به عبادَه؛ فخلقَهم إنما خلَقَهُم لعبادتِهِ، فقال سبحانه:</p></div>
+<div class="transliteration"><p>Abna'i al-ahibbah, banati al-ghaliyat!! i'lamu anna 'aqidata at-tawhidi hiya asasu al-Islami wa asasu al-asasi, wa awwalu ma amara Allahu azza wa jalla biHi 'ibadaHu; fa-khalaqaHum innama khalaqaHum li-'ibadatiHi, fa-qala subhanaHu:</p></div>
+<div class="en translation"><p>My beloved sons, my dear daughters! Know that the creed of Tawheed (monotheism) is the foundation of Islam and the foundation of foundations, and it is the first thing Allah, Mighty and Majestic, commanded His servants; He created them only to worship Him, for He, glory be to Him, said:</p></div>
+<div class="tamil"><p>என் அன்பு மகன்களே! என் அன்பு மகள்களே!! தவ்ஹீத் (ஏகத்துவம்) கொள்கையே இஸ்லாத்தின் அடித்தளம் என்பதை அறிந்து கொள்ளுங்கள். அது அடிப்படை எல்லாவற்றின் அடிப்படையாகும். அல்லாஹ் தன் அடியார்களுக்கு முதலில் கட்டளையிட்டதும் இதுவே. அவன் அவர்களை வணங்குவதற்காகவே படைத்தான். அவன் கூறினான்:</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>﴿وَمَا خَلَقْتُ الْجِنَّ وَالْإِنسَ إِلَّا لِيَعْبُدُونِ﴾</p></div>
+<div class="transliteration"><p>Wa ma khalaqtu al-jinna wal-insa illa li-ya'budun.</p></div>
+<div class="en translation"><p>I created jinn and mankind only to worship Me:</p></div>
+<div class="tamil"><p>ஜின்களையும் மனிதர்களையும் என்னை வணங்குவதற்காகவே தவிர நான் படைக்கவில்லை.</p></div>
+<div class="block-ref"><span class="ar" dir="rtl">51:56</span></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أرسلَ اللهُ المرسَلينَ بعقيدةِ التوحيدِ، وأنزَلَ بها الكتبَ. قال تعالى:</p></div>
+<div class="transliteration"><p>Arsala Allahu al-mursalina bi-'aqidati at-tawhidi, wa anzala biHa al-kutuba. Qala ta'ala:</p></div>
+<div class="en translation"><p>Allah sent the messengers with the creed of Tawheed, and revealed the Books with it. Allah the Exalted said:</p></div>
+<div class="tamil"><p>அல்லாஹ் தூதர்களை தவ்ஹீத் கொள்கையுடன் அனுப்பினான்; அதனுடன் வேதங்களையும் இறக்கினான். அல்லாஹ் கூறினான்:</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>﴿وَمَا أَرْسَلْنَا مِن قَبْلِكَ مِن رَّسُولٍ إِلَّا نُوحِي إِلَيْهِ أَنَّهُ لَا إِلَٰهَ إِلَّا أَنَا فَاعْبُدُونِ﴾</p></div>
+<div class="transliteration"><p>Wa ma arsalna min qablika min rasulin illa nuhi ilayHi annahu la ilaha illa ana fa-'budun.</p></div>
+<div class="en translation"><p>We never sent any messenger before you [Muhammad] without revealing to him: ‘There is no god but Me, so serve Me.’</p></div>
+<div class="tamil"><p>உமக்கு முன் நாங்கள் அனுப்பிய ஒவ்வொரு தூதருக்கும் "என்னைத் தவிர வேறு இறைவன் இல்லை; ஆதலால் என்னையே வணங்குங்கள்" என்று அறிவித்தே தவிர (வேறு விதமாக) அனுப்பவில்லை.</p></div>
+<div class="block-ref"><span class="ar" dir="rtl">21:25</span></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ولذلك كان أولُ ما يخاطِبُ به كلُّ رسولٍ قومَه بقوْلِهِ: (يا قومِ اعبدوا اللهَ ما لكم من إلهٍ غيرُه)، ولقد سارَ الدعاةُ المصلحونَ من علماءِ هذه الأمةِ على نهجِهِم.</p></div>
+<div class="transliteration"><p>Wa li-dhalika kana awwalu ma yukhatibu biHi kullu rasulin qawmaHu bi-qawliHi: (Ya qawmi u'budu Allaha ma lakum min ilahin ghayruHu), wa laqad sara ad-du'atu al-muslihun min 'ulama'i hadhihi al-ummati 'ala nahjiHim. (Mukhtasarun min khutbati «'Aqidatu at-Tawhid» li-sh-shaykhi al-'allamati Salih al-Fawzan -hafizaHu Allah-).</p></div>
+<div class="en translation"><p>That is why the first thing every messenger used to address his people with was his saying: (O my people, worship Allah; you have no god other than Him). The righteous caller-scholars of this nation have followed their path.</p></div>
+<div class="tamil"><p>அதனால்தான் ஒவ்வொரு தூதரும் தம் மக்களுக்கு முதன்முதலில் கூறியது: "என் சமூகத்தாரே! அல்லாஹ்வை வணங்குங்கள்; அவனைத் தவிர உங்களுக்கு வேறு இறைவன் இல்லை" என்பதே. இந்தச் சமுதாயத்தின் சீர்திருத்த அறிஞர் `துஆத்`களும் அவர்களின் வழியிலேயே சென்றனர்.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-adab-1-6.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-adab-2-2.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-adab.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

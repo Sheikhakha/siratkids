@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starting with the Right - Hadith and Seerah | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Hadith and Seerah</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 1: Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>The Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>The Meanings of the Prophet's Names ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 2: The Attributes of the Prophet ﷺ</a>
+                <a href="s3-hadith-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>The Attributes of the Prophet ﷺ (1)</a>
+                <a href="s3-hadith-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>The Attributes of the Prophet ﷺ (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 3: The Excellence of the Prophet ﷺ</a>
+                <a href="s3-hadith-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Best of People</a>
+                <a href="s3-hadith-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>The Prophet ﷺ, the Khalil (Close Friend) of Allah</a>
+                <a href="s3-hadith-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Leader of the Children of Adam</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 4: The Cleanliness of the Prophet ﷺ</a>
+                <a href="s3-hadith-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Prophet's ﷺ Care for Cleanliness</a>
+                <a href="s3-hadith-4-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Care for the Cleanliness of the Body</a>
+                <a href="s3-hadith-4-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>Care for Mouth Cleanliness and the Fragrance of the Prophet ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 5: The Clothing of the Prophet ﷺ</a>
+                <a href="s3-hadith-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Description of the Prophet's ﷺ Clothing</a>
+                <a href="s3-hadith-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>The Rules of Clothing</a>
+                <a href="s3-hadith-5-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>How the Prophet ﷺ Wore His Clothes</a>
+                <a href="s3-hadith-5-4.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">14</span>Starting with the Right</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 6: The Family of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Wife of the Prophet ﷺ: Khadijah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Wife of the Prophet ﷺ: Aisha, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Wife of the Prophet ﷺ: Hafsah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Children of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>Loving the Family of the Prophet ﷺ</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-hadith.html">Hadith and Seerah</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">Starting with the Right</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-hadith">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M60 28 C48 18 30 16 14 20 V96 C30 92 48 94 60 104 C72 94 90 92 106 96 V20 C90 16 72 18 60  Z"/><line x1="60" y1="28" x2="60" y2="104"/><path d="M26 38 h22 M26 52 h22 M72 38 h22 M72 52 h22"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128214; Unit 5</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">التَّيَامُنُ</span>
+                <span class="en">Starting with the Right</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 175&ndash;182</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-175.webp" alt="Textbook page 175" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 175"><figcaption>p. 175</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-176.webp" alt="Textbook page 176" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 176"><figcaption>p. 176</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-177.webp" alt="Textbook page 177" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 177"><figcaption>p. 177</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-178.webp" alt="Textbook page 178" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 178"><figcaption>p. 178</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-179.webp" alt="Textbook page 179" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 179"><figcaption>p. 179</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-180.webp" alt="Textbook page 180" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 180"><figcaption>p. 180</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-181.webp" alt="Textbook page 181" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 181"><figcaption>p. 181</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-182.webp" alt="Textbook page 182" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 182"><figcaption>p. 182</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>شرعَ اللهُ لنا آدابًا جميلةً في حياتِنا اليوميَّةِ؛ من أهمِّها التيامُنُ في الأمورِ المستحسنَةِ. فلنتعرَّفْ — في هذا الدرسِ — على معنى التيامُنِ، وعلى أعمالِه.</p></div>
+<div class="transliteration"><p>Shara'a Allahu lana adaban jamilah fi hayatina al-yawmiyyah; min ahammiha at-tayammunu fil-umuri al-mustahsana. Falnata'arraf — fi hadha ad-dars — 'ala ma'na at-tayammun, wa 'ala a'malih.</p></div>
+<div class="en translation"><p>Allah prescribed for us beautiful etiquettes in our daily lives; among the most important is starting with the right (tayammun) in praiseworthy matters. In this lesson, let us learn about the meaning of tayammun and its applications.</p></div>
+<div class="tamil"><p>தினசரி வாழ்வில் அழகிய நடைமுறைகளை அல்லாஹ் நமக்கு ஏற்படுத்தினான். முக்கியமானவற்றில் 'தயாம்முன்' (வலது பக்கத்திலிருந்து தொடங்குதல்). இந்தப் பாடத்தில் தயாம்முனின் பொருளையும், அதன் செயல்களையும் அறிவோம்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن عائشةَ رضي الله عنها قالت: كان النبيُّ ﷺ يُعجِبُهُ التَّيَمُّنُ في تَنَعُّلِهِ، وتَرَجُّلِهِ، وطُهُورِهِ، وفي شَأنِهِ كُلِّهِ. أخرجه البخاري ومسلم.</p></div>
+<div class="transliteration"><p>'An 'Aa'ishata radiyallahu 'anha qalat: kana an-nabiyyu ﷺ yu'jibuhu at-tayammunu fi tanau'ulih, wa tarajjulih, wa tuhurih, wa fi sha'nih kullih. Akhrajahu al-Bukhari wa Muslim.</p></div>
+<div class="en translation"><p>'A'ishah, may Allah be pleased with her, said: "The Prophet ﷺ liked to start from the right when putting on his shoes (tanau'ul), combing his hair (tarajjul), and performing ablution (tuhur), and in all his affairs." Narrated by Al-Bukhari and Muslim.</p></div>
+<div class="tamil"><p>ஆயிஷா (ரலி) கூறினார்கள்: "காலணி அணிவதிலும் (தனஉல்), தலை வாருவதிலும் (தரஜ்ஜுல்), தூய்மையிலும் (துஹூர்), தம் அனைத்து விஷயங்களிலும் வலது பக்கத்திலிருந்து தொடங்குவதை நபி ﷺ விரும்பினார்கள்." (புகாரி, முஸ்லிம்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=168" target="_blank" rel="noopener">sahih-bukhari 168</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أعمالُ اليَمينِ:
+التَّنَعُّلُ (لبسُ النعلِ)، والتَّرَجُّلُ (ترجيلُ الشعرِ)، والطُّهورُ (الوضوءُ والغسلُ)، والأكلُ والشربُ، واللبسُ، والسُّواكُ.
+أعمالُ الشِّمالِ:
+الخلعُ (نزعُ النعلِ والثوبِ)، والاستنجاءُ، وإزالةُ الأذى.</p></div>
+<div class="transliteration"><p>A'malu al-yameen: at-tanau'ul (labsu an-na'l), wat-tarajjul (tarjilu ash-sha'r), wat-tuhur (al-wudu' wal-ghusl), wal-aklu wash-shurb, wal-lubs, was-siwaak. A'malu ash-shimaal: al-khal' (naz'u an-na'li wath-thawb), wal-istinja', wa izalatu al-adha.</p></div>
+<div class="en translation"><p>Acts performed with the right:&lt;br&gt;Putting on shoes, combing the hair, ablution (wudu) and bathing (ghusl), eating and drinking, wearing clothes, and using the miswak.&lt;br&gt;Acts performed with the left:&lt;br&gt;Taking off shoes and clothes, cleaning oneself after using the toilet (istinja'), and removing impurity/harm.</p></div>
+<div class="tamil"><p>வலது கொண்ட செயல்கள்:&lt;br&gt;காலணி அணிதல், தலை வாருதல், தூய்மை (வுழூ, குஸ்லு), உண்ணுதல், அருந்துதல், உடை அணிதல், மிஸ்வாக்.&lt;br&gt;இடது கொண்ட செயல்கள்:&lt;br&gt;காலணி, உடை கழற்றுதல், கழிவு சுத்தம் (இஸ்திஞ்ஜா), கெடுதி நீக்குதல்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ما حِكمَةُ التَّيامُنِ؟
+في التَّيامُنِ تزيينٌ وتعميرٌ لما يُستحسَنُ؛ فما كان من عملٍ فيه تشريفٌ وتكريمٌ وتجميلٌ، بُدئَ فيه باليمينِ، وما كان من عملٍ فيه تنزيهٌ وتطهيرٌ وإزالةٌ للشينِ، بُدئَ فيه بالشمالِ.</p></div>
+<div class="transliteration"><p>Ma hikmatu at-tayammun? Fit-tayammuni tazyinun wa ta'mirun lima yustahsana; fama kana min 'amalin fihi tashrifun wa takrimun wa tajmilun, budi'a fihi bil-yameen, wa ma kana min 'amalin fihi tanzihatun wa tathirun wa izalatun lish-shain, budi'a fihi bish-shimal.</p></div>
+<div class="en translation"><p>What is the wisdom of tayammun?&lt;br&gt;Tayammun beautifies and honours what is considered good; so any act involving honour, dignity, and beautification is begun with the right, while any act involving purification and removal of dirt is begun with the left.</p></div>
+<div class="tamil"><p>தயாம்முனின் ஞானம் என்ன?&lt;br&gt;நன்மை, மதிப்பு, அழகு கொண்ட செயல்கள் வலதில் தொடங்கப்படும்; தூய்மை, அழுக்கு நீக்கம் கொண்ட செயல்கள் இடதில் தொடங்கப்படும்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>قال رسولُ اللهِ ﷺ: «إِذَا لَبِسْتُمْ وَإِذَا تَوَضَّأْتُمْ فَبْدَؤُوا بِأَيَامِنِكُمْ»؛ فبِاليَمينِ نبدأُ في لُبسِ الثوبِ والنعلِ، وبالشِّمالِ نبدأُ في خَلعِهما. حفظَ اللهُ نبيَّنا في كلِّ صغارِ الأمورِ وكبارِها، وعَلَّمَنا السُّلوكَ الحسنَ.</p></div>
+<div class="transliteration"><p>Qala rasulullahi ﷺ: «Idha labistum wa idha tawadda'tum fabda'u bi-ayaminikum»; fabil-yameeni nabda'u fi lubsi ath-thawb wan-na'l, wa bish-shimali nabda'u fi khal'ihima. Hafiza Allahu nabiyyana fi kulli sighari al-umuri wa kibariha, wa 'allamana as-sulooka al-hasan.</p></div>
+<div class="en translation"><p>The Messenger of Allah ﷺ said: "When you dress or perform ablution, begin with your right." We begin with the right when putting on clothes and shoes, and with the left when taking them off. Allah preserved our Prophet in all matters, great and small, and taught us good manners.</p></div>
+<div class="tamil"><p>தூதர் ﷺ கூறினார்கள்: "நீங்கள் உடை அணியும்போதும், வுழூ செய்யும்போதும் வலது பக்கம் தொடங்குங்கள்." உடை, காலணி அணிவதில் வலதிலும்; கழற்றுவதில் இடதிலும் தொடங்குகிறோம். எல்லா சிறிய, பெரிய விஷயங்களிலும் நமது நபியை அல்லாஹ் பாதுகாத்து, அழகிய நடத்தையை நமக்குக் கற்றுத் தந்தான்.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-hadith-5-3.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-hadith-6-1.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-hadith.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

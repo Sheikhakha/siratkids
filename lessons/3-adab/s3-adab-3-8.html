@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Prohibition of Imitating the Disbelievers - Good Manners (Adab) | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Good Manners (Adab)</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adab.html" class="sidebar-unit-label">Unit 1: Practical Islamic Manners</a>
+                <a href="s3-adab-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Manners with the Noble Quran</a>
+                <a href="s3-adab-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Manners of the Gathering (Majlis)</a>
+                <a href="s3-adab-1-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Manners of the Road</a>
+                <a href="s3-adab-1-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Manners of Sports</a>
+                <a href="s3-adab-1-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>Manners of Brotherhood and Friendship</a>
+                <a href="s3-adab-1-6.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>Manners of Seeking Permission (Isti'dhan)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adab.html" class="sidebar-unit-label">Unit 2: Commanded Matters (Al-Ma'murat)</a>
+                <a href="s3-adab-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Command to Tawheed</a>
+                <a href="s3-adab-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Obligation of Following the Prophet</a>
+                <a href="s3-adab-2-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>The Command to Unite and Harmonize</a>
+                <a href="s3-adab-2-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>The Command to Good Character</a>
+                <a href="s3-adab-2-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Command to Truthfulness</a>
+                <a href="s3-adab-2-6.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>Forbearance and Deliberation</a>
+                <a href="s3-adab-2-7.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>Patience</a>
+                <a href="s3-adab-2-8.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>The Command to Trustworthiness</a>
+                <a href="s3-adab-2-9.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Command to Good Speech</a>
+                <a href="s3-adab-2-10.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Command to Kindness to Parents</a>
+                <a href="s3-adab-2-11.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Command to Treat the Neighbour Well</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adab.html" class="sidebar-unit-label">Unit 3: Forbidden Matters (Al-Manhiyyat)</a>
+                <a href="s3-adab-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Prohibition of Shirk</a>
+                <a href="s3-adab-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>The Prohibition of Innovation (Bid'ah)</a>
+                <a href="s3-adab-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">20</span>The Prohibition of Lying</a>
+                <a href="s3-adab-3-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">21</span>The Prohibition of Cheating, Deceit, and Betrayal</a>
+                <a href="s3-adab-3-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">22</span>The Prohibition of Transgression</a>
+                <a href="s3-adab-3-6.html" class="sidebar-lesson"><span class="sidebar-lesson-num">23</span>The Prohibition of Insulting and Obscenity in Speech</a>
+                <a href="s3-adab-3-7.html" class="sidebar-lesson"><span class="sidebar-lesson-num">24</span>The Prohibition of Backbiting and Gossip</a>
+                <a href="s3-adab-3-8.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">25</span>The Prohibition of Imitating the Disbelievers</a>
+                <a href="s3-adab-3-9.html" class="sidebar-lesson"><span class="sidebar-lesson-num">26</span>Repentance to Allah from All Sins</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-adab.html">Good Manners (Adab)</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">The Prohibition of Imitating the Disbelievers</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-adab">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="60" cy="60" r="44"/><path d="M60 24 v72 M24 60 h72 M35 35 l50 50 M85 35 l-50 50"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#11088; Unit 3</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">النَّهْيُ عَنِ التَّشَبُّهِ بِالْكُفَّارِ</span>
+                <span class="en">The Prohibition of Imitating the Disbelievers</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 260&ndash;261</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-260.webp" alt="Textbook page 260" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 260"><figcaption>p. 260</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-261.webp" alt="Textbook page 261" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 261"><figcaption>p. 261</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>نهى الإسلامُ عن التشبهِ بالكفارِ في جميعِ أمورِهم، كما نهى عن محبتِهم وموالاتِهم؛ لأنهم كفروا باللهِ، ولم يشهدوا أن لا إلهَ إلا اللهُ وأنَّ محمداً رسولُ اللهِ.</p></div>
+<div class="transliteration"><p>Naha al-Islamu 'ani at-tashabbuhi bil-kuffari fi jami'i umuriHim, kama naha 'an mahabbatihim wa muwalatihim; li'annaHum kafaru billahi, wa lam yashhadu an la ilaha illallahu wa anna Muhammadan rasulu Allah.</p></div>
+<div class="en translation"><p>Islam forbade imitating the disbelievers in all of their affairs, just as it forbade loving them and allying with them; because they disbelieved in Allah, and did not bear witness that there is no god but Allah and that Muhammad is the Messenger of Allah.</p></div>
+<div class="tamil"><p>இஸ்லாம், காஃபிர்களை (இறைமறுப்பாளர்களை) அவர்களின் எல்லா விவகாரங்களிலும் பின்பற்றுவதைத் தடை செய்தது; அவர்களை நேசிப்பதையும் அவர்களுடன் கூட்டுசேர்வதையும் தடை செய்ததைப் போன்றே. ஏனெனில் அவர்கள் அல்லாஹ்வை மறுத்தனர்; "அல்லாஹ்வைத் தவிர வேறு இறைவன் இல்லை; முஹம்மது ﷺ அல்லாஹ்வின் தூதர்" என்று சாட்சியம் கூறவில்லை.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن أبي سعيدٍ الخدريِّ رضي الله عنه أنَّ النبيَّ ﷺ قال: «لتتبعُنَّ سننَ من كان قبلكم شبراً بشبرٍ، وذراعاً بذراعٍ، حتى لو سلكوا جُحرَ ضبٍّ لسلكتموه». قلنا: يا رسولَ اللهِ! اليهودُ والنصارى؟ قال: «فمن؟». أخرجه البخاريُّ (3456) ومسلمٌ (2669) واللفظُ للبخاريِّ.</p></div>
+<div class="transliteration"><p>'An Abi Sa'idin al-Khudriyyi radiyallahu 'anHu anna an-nabiyya ﷺ qala: «Latattabi'unna sunana man kana qablaKum shibran bishibrin, wa dhira'an bidhira'in, hatta law salaku juhra dabbbin lasalaktumuHu». Qulna: ya rasula Allah! al-yahudu wan-nasara? Qala: «Faman?». Akhrajahu al-Bukhariyyu (3456) wa Muslimun (2669) wal-lafzu lil-Bukhariyyi.</p></div>
+<div class="en translation"><p>Abu Sa'id al-Khudri, may Allah be pleased with him, reported that the Prophet ﷺ said: "You will certainly follow the ways of those before you, span by span and cubit by cubit, until even if they entered a lizard's hole, you would enter it." We said: "O Messenger of Allah, the Jews and the Christians?" He said: "Who else?" Recorded by al-Bukhari (3456) and Muslim (2669), and the wording is al-Bukhari's.</p></div>
+<div class="tamil"><p>அபூ ஸயீத் அல்-குத்ரீ (ரலி) அறிவித்தார்கள்: "உங்களுக்கு முன் வாழ்ந்தவர்களின் வழிமுறைகளை நீங்கள் கண்டிப்பாகப் பின்பற்றுவீர்கள் - ஸ்பேன் ஸ்பேனாக, முழம் முழமாக - அவர்கள் ஒரு பல்லியின் புற்றுக்குள் நுழைந்தாலும் அதில் நீங்கள் நுழையும் வரை" என்று நபி ﷺ கூறினார்கள். "அல்லாஹ்வின் தூதரே! யூதர்களையும் கிறிஸ்தவர்களையுமா?" என்று நாங்கள் கேட்டோம். "வேறு யாரை?" என்று கூறினார்கள். (புகாரி 3456, முஸ்லிம் 2669 - சொல்லமைப்பு புகாரியின்து)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=7042" target="_blank" rel="noopener">sahih-bukhari 7042</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ومشابهتُهم في لبسِ الثيابِ، وطريقةِ الشعرِ، مثلِ القزعِ -وهو: حلقُ بعضِ الشعرِ وتركُ الباقي-؛ وكذلك تقليدُهم في كلامِهم الخبيثِ وعاداتِهم، والكلامُ بلغاتِهم من غيرِ حاجةٍ، وتركُ الكلامِ بلغةِ القرآنِ العظيمِ -وهي اللغةُ العربيةُ الشريفةُ-؛ وغيرُ ذلك مما انتشرَ بينَ كثيرٍ من الشبابِ خاصةً في هذه الأيامِ.</p></div>
+<div class="transliteration"><p>Wa mushabahatuHum fi labsi ath-thiyab, wa tariqati ash-sha'r, mithli al-qaza' -wa Huwa hulqu ba'di ash-sha'ri wa tarqu al-baqi-; wa kadhalika taqliduHum fi kalamiHim al-khabith wa 'adatihim, wal-kalamu bilughatihim min ghayri hajah, wa tarqu al-kalami bilughati al-Qur'ani al-'azim -wa Hiya al-lughatu al-'arabiyyatu ash-sharifah-; wa ghayru dhalika mimma ntashara bayna kathirin mina ash-shababi khasSatan fi hadhihi al-ayyam.</p></div>
+<div class="en translation"><p>And imitating them in wearing clothes and in the way of the hair, such as al-qaza' -which is shaving part of the hair and leaving the rest-; likewise, imitating them in their evil speech and their customs, speaking in their languages without need, and abandoning speaking in the language of the mighty Quran -which is the noble Arabic language-; and other things that have spread among many of the youth, especially in these days.</p></div>
+<div class="tamil"><p>அவர்களைப் பின்பற்றுவது: ஆடை அணிவதிலும், தலைமுடி வைக்கும் முறையிலும் - கஸஅ என்பது தலைமுடியின் ஒரு பகுதியை மழித்து மீதியை விட்டுவிடுவதாகும் -; அவர்களின் தீய பேச்சையும் பழக்கவழக்கங்களையும் பின்பற்றுவது; தேவையின்றி அவர்களின் மொழிகளில் பேசுவது; மகத்தான குர்ஆனின் மொழியான - மாண்புமிக்க அரபி மொழியில் பேசுவதை விட்டுவிடுவது; இவை போன்ற பல, குறிப்பாக இக்காலத்தில் இளைஞர்களில் பலரிடையே பரவியுள்ளன.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن ابنِ عمرَ رضي الله عنهما أنَّ رسولَ اللهِ ﷺ نهى عن القزعِ. أخرجه البخاريُّ (5921) ومسلمٌ (120).</p></div>
+<div class="transliteration"><p>'Ani-bni 'Umar radiyallahu 'anHUma anna rasula Allahi ﷺ naha 'ani al-qaza'. Akhrajahu al-Bukhariyyu (5921) wa Muslimun (120).</p></div>
+<div class="en translation"><p>Ibn Umar, may Allah be pleased with them both, reported that the Messenger of Allah ﷺ forbade al-qaza' (shaving part of the head). Recorded by al-Bukhari (5921) and Muslim (120).</p></div>
+<div class="tamil"><p>இப்னு உமர் (ரலி) அவர்கள் கூறினார்கள்: "நபி ﷺ கஸஅ (தலையின் ஒரு பகுதியை மழித்து மீதியை விட்டுவிடுதல்) செய்வதைத் தடை செய்தார்கள்." (புகாரி 5921, முஸ்லிம் 120)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=42024" target="_blank" rel="noopener">riyad-as-saliheen 959</a>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-adab-3-7.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-adab-3-9.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-adab.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

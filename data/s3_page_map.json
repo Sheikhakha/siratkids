@@ -1,0 +1,388 @@
+{
+  "_comment": "Stage 3 (ThirdStage.pdf) lesson -> textbook page map. Keys are page basenames under images/pdf/s3/. Contiguous runs derived from each lesson's start page; per-subject end caps from OCR (Adab pp.220-262, p.263 = references).",
+  "book": {
+    "label": "Stage Three",
+    "arabic": "المرحلة الثالثة",
+    "pdf_dir": "s3"
+  },
+  "s3-tawheed-1-1": [
+    "page-012",
+    "page-013",
+    "page-014",
+    "page-015"
+  ],
+  "s3-tawheed-2-1": [
+    "page-016",
+    "page-017",
+    "page-018",
+    "page-019",
+    "page-020"
+  ],
+  "s3-tawheed-2-2": [
+    "page-021",
+    "page-022",
+    "page-023"
+  ],
+  "s3-tawheed-2-3": [
+    "page-024",
+    "page-025",
+    "page-026"
+  ],
+  "s3-tawheed-2-4": [
+    "page-027",
+    "page-028",
+    "page-029"
+  ],
+  "s3-tawheed-2-5": [
+    "page-030",
+    "page-031",
+    "page-032"
+  ],
+  "s3-tawheed-2-6": [
+    "page-033",
+    "page-034",
+    "page-035"
+  ],
+  "s3-tawheed-2-7": [
+    "page-036",
+    "page-037",
+    "page-038",
+    "page-039",
+    "page-040",
+    "page-041"
+  ],
+  "s3-tawheed-3-1": [
+    "page-042",
+    "page-043",
+    "page-044",
+    "page-045"
+  ],
+  "s3-tawheed-3-2": [
+    "page-046",
+    "page-047",
+    "page-048",
+    "page-049"
+  ],
+  "s3-tawheed-3-3": [
+    "page-050",
+    "page-051",
+    "page-052"
+  ],
+  "s3-tawheed-3-4": [
+    "page-053",
+    "page-054",
+    "page-055"
+  ],
+  "s3-tawheed-3-5": [
+    "page-056",
+    "page-057",
+    "page-058"
+  ],
+  "s3-tawheed-3-6": [
+    "page-059",
+    "page-060",
+    "page-061"
+  ],
+  "s3-tawheed-3-7": [
+    "page-062",
+    "page-063",
+    "page-064",
+    "page-065",
+    "page-066",
+    "page-067"
+  ],
+  "s3-tawheed-4-1": [
+    "page-068"
+  ],
+  "s3-fiqh-1-1": [
+    "page-076",
+    "page-077",
+    "page-078",
+    "page-079",
+    "page-080"
+  ],
+  "s3-fiqh-1-2": [
+    "page-081",
+    "page-082",
+    "page-083",
+    "page-084",
+    "page-085",
+    "page-086"
+  ],
+  "s3-fiqh-2-1": [
+    "page-087",
+    "page-088",
+    "page-089"
+  ],
+  "s3-fiqh-3-1": [
+    "page-090",
+    "page-091",
+    "page-092",
+    "page-093"
+  ],
+  "s3-fiqh-4-1": [
+    "page-094",
+    "page-095",
+    "page-096"
+  ],
+  "s3-fiqh-5-1": [
+    "page-097",
+    "page-098",
+    "page-099"
+  ],
+  "s3-fiqh-5-2": [
+    "page-100",
+    "page-101",
+    "page-102",
+    "page-103",
+    "page-104",
+    "page-105"
+  ],
+  "s3-fiqh-6-1": [
+    "page-106",
+    "page-107",
+    "page-108",
+    "page-109"
+  ],
+  "s3-fiqh-7-1": [
+    "page-110"
+  ],
+  "s3-hadith-1-1": [
+    "page-118",
+    "page-119",
+    "page-120",
+    "page-121"
+  ],
+  "s3-hadith-1-2": [
+    "page-122",
+    "page-123",
+    "page-124",
+    "page-125",
+    "page-126",
+    "page-127",
+    "page-128"
+  ],
+  "s3-hadith-2-1": [
+    "page-129",
+    "page-130",
+    "page-131"
+  ],
+  "s3-hadith-2-2": [
+    "page-132",
+    "page-133",
+    "page-134",
+    "page-135",
+    "page-136",
+    "page-137",
+    "page-138"
+  ],
+  "s3-hadith-3-1": [
+    "page-139",
+    "page-140",
+    "page-141"
+  ],
+  "s3-hadith-3-2": [
+    "page-142",
+    "page-143",
+    "page-144"
+  ],
+  "s3-hadith-3-3": [
+    "page-145",
+    "page-146",
+    "page-147",
+    "page-148",
+    "page-149",
+    "page-150",
+    "page-151",
+    "page-152"
+  ],
+  "s3-hadith-4-1": [
+    "page-153",
+    "page-154",
+    "page-155"
+  ],
+  "s3-hadith-4-2": [
+    "page-156",
+    "page-157",
+    "page-158"
+  ],
+  "s3-hadith-4-3": [
+    "page-159",
+    "page-160",
+    "page-161",
+    "page-162",
+    "page-163",
+    "page-164",
+    "page-165",
+    "page-166"
+  ],
+  "s3-hadith-5-1": [
+    "page-167",
+    "page-168",
+    "page-169"
+  ],
+  "s3-hadith-5-2": [
+    "page-170",
+    "page-171",
+    "page-172"
+  ],
+  "s3-hadith-5-3": [
+    "page-173",
+    "page-174"
+  ],
+  "s3-hadith-5-4": [
+    "page-175",
+    "page-176",
+    "page-177",
+    "page-178",
+    "page-179",
+    "page-180",
+    "page-181",
+    "page-182"
+  ],
+  "s3-hadith-6-1": [
+    "page-183",
+    "page-184",
+    "page-185"
+  ],
+  "s3-hadith-6-2": [
+    "page-186",
+    "page-187",
+    "page-188"
+  ],
+  "s3-hadith-6-3": [
+    "page-189",
+    "page-190",
+    "page-191"
+  ],
+  "s3-hadith-6-4": [
+    "page-192",
+    "page-193",
+    "page-194",
+    "page-195"
+  ],
+  "s3-hadith-6-5": [
+    "page-196"
+  ],
+  "s3-adhkar-1-1": [
+    "page-204",
+    "page-205",
+    "page-206",
+    "page-207"
+  ],
+  "s3-adhkar-1-2": [
+    "page-208",
+    "page-209"
+  ],
+  "s3-adhkar-1-3": [
+    "page-210"
+  ],
+  "s3-adhkar-1-4": [
+    "page-211",
+    "page-212",
+    "page-213"
+  ],
+  "s3-adhkar-1-5": [
+    "page-214",
+    "page-215",
+    "page-216"
+  ],
+  "s3-adhkar-1-6": [
+    "page-217"
+  ],
+  "s3-adab-1-1": [
+    "page-220",
+    "page-221",
+    "page-222"
+  ],
+  "s3-adab-1-2": [
+    "page-223",
+    "page-224",
+    "page-225",
+    "page-226"
+  ],
+  "s3-adab-1-3": [
+    "page-227",
+    "page-228",
+    "page-229"
+  ],
+  "s3-adab-1-4": [
+    "page-230",
+    "page-231"
+  ],
+  "s3-adab-1-5": [
+    "page-232",
+    "page-233",
+    "page-234"
+  ],
+  "s3-adab-1-6": [
+    "page-235",
+    "page-236",
+    "page-237"
+  ],
+  "s3-adab-2-1": [
+    "page-238",
+    "page-239"
+  ],
+  "s3-adab-2-2": [
+    "page-240",
+    "page-241"
+  ],
+  "s3-adab-2-3": [
+    "page-242",
+    "page-243"
+  ],
+  "s3-adab-2-4": [
+    "page-244"
+  ],
+  "s3-adab-2-5": [
+    "page-245"
+  ],
+  "s3-adab-2-6": [
+    "page-246"
+  ],
+  "s3-adab-2-7": [
+    "page-247"
+  ],
+  "s3-adab-2-8": [
+    "page-248"
+  ],
+  "s3-adab-2-9": [
+    "page-249"
+  ],
+  "s3-adab-2-10": [
+    "page-250"
+  ],
+  "s3-adab-2-11": [
+    "page-251"
+  ],
+  "s3-adab-3-1": [
+    "page-252"
+  ],
+  "s3-adab-3-2": [
+    "page-253"
+  ],
+  "s3-adab-3-3": [
+    "page-254"
+  ],
+  "s3-adab-3-4": [
+    "page-255"
+  ],
+  "s3-adab-3-5": [
+    "page-256"
+  ],
+  "s3-adab-3-6": [
+    "page-257"
+  ],
+  "s3-adab-3-7": [
+    "page-258",
+    "page-259"
+  ],
+  "s3-adab-3-8": [
+    "page-260",
+    "page-261"
+  ],
+  "s3-adab-3-9": [
+    "page-262"
+  ]
+}

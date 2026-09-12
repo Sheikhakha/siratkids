@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Children of the Prophet ﷺ - Hadith and Seerah | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Hadith and Seerah</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 1: Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>The Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>The Meanings of the Prophet's Names ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 2: The Attributes of the Prophet ﷺ</a>
+                <a href="s3-hadith-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>The Attributes of the Prophet ﷺ (1)</a>
+                <a href="s3-hadith-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>The Attributes of the Prophet ﷺ (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 3: The Excellence of the Prophet ﷺ</a>
+                <a href="s3-hadith-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Best of People</a>
+                <a href="s3-hadith-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>The Prophet ﷺ, the Khalil (Close Friend) of Allah</a>
+                <a href="s3-hadith-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Leader of the Children of Adam</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 4: The Cleanliness of the Prophet ﷺ</a>
+                <a href="s3-hadith-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Prophet's ﷺ Care for Cleanliness</a>
+                <a href="s3-hadith-4-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Care for the Cleanliness of the Body</a>
+                <a href="s3-hadith-4-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>Care for Mouth Cleanliness and the Fragrance of the Prophet ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 5: The Clothing of the Prophet ﷺ</a>
+                <a href="s3-hadith-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Description of the Prophet's ﷺ Clothing</a>
+                <a href="s3-hadith-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>The Rules of Clothing</a>
+                <a href="s3-hadith-5-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>How the Prophet ﷺ Wore His Clothes</a>
+                <a href="s3-hadith-5-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>Starting with the Right</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 6: The Family of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Wife of the Prophet ﷺ: Khadijah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Wife of the Prophet ﷺ: Aisha, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Wife of the Prophet ﷺ: Hafsah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-4.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">18</span>The Children of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>Loving the Family of the Prophet ﷺ</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-hadith.html">Hadith and Seerah</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">The Children of the Prophet ﷺ</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-hadith">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M60 28 C48 18 30 16 14 20 V96 C30 92 48 94 60 104 C72 94 90 92 106 96 V20 C90 16 72 18 60  Z"/><line x1="60" y1="28" x2="60" y2="104"/><path d="M26 38 h22 M26 52 h22 M72 38 h22 M72 52 h22"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128214; Unit 6</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">أَوْلَادُ النَّبِيِّ ﷺ</span>
+                <span class="en">The Children of the Prophet ﷺ</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 192&ndash;195</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-192.webp" alt="Textbook page 192" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 192"><figcaption>p. 192</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-193.webp" alt="Textbook page 193" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 193"><figcaption>p. 193</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-194.webp" alt="Textbook page 194" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 194"><figcaption>p. 194</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-195.webp" alt="Textbook page 195" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 195"><figcaption>p. 195</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>كان للنبيِّ ﷺ أبناءٌ وبناتٌ من أمِّ المؤمنينَ خديجةَ رضي الله عنها، وابنٌ من ماريةَ القبطيةِ رضي الله عنها. فلنعرِفَهم — في هذا الدرسِ — ولنتعلَّمْ كيف كان النبيُّ ﷺ يحبُّ الصِّغارَ.</p></div>
+<div class="transliteration"><p>Kana lin-nabiyyi ﷺ abna'un wa banatun min Umm al-Mu'minine Khadijata radiyallahu 'anha, wa ibnun min Mariyata al-Qibtiyyata radiyallahu 'anha. Falna'rifhum — fi hadha ad-dars — wa nata'allam kayfa kana an-nabiyyu ﷺ yuhibbu as-sighar.</p></div>
+<div class="en translation"><p>The Prophet ﷺ had sons and daughters from Umm al-Mu'minin Khadijah, may Allah be pleased with her, and a son from Mariyah al-Qibtiyyah, may Allah be pleased with her. In this lesson, let us get to know them and learn how the Prophet ﷺ loved children.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களுக்கு உம்முல் முஃமினீன் கதீஜா (ரலி), மரியா அல்-கிப்திய்யா (ரலி) ஆகியோரிடமிருந்து மகன்களும் மகள்களும் இருந்தனர். இந்தப் பாடத்தில் அவர்களை அறிந்து, சிறுவர்கள் மீது நபி ﷺ கொண்ட அன்பைக் கற்றுக்கொள்வோம்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن أنسِ بنِ مالكٍ رضي الله عنه قال: كان النبيُّ ﷺ أرحمَ الناسِ بالعيالِ، وكان له ابنٌ مُسترضَعٌ في ناحيةِ المدينةِ، وكان ظئرُهُ قَينًا، فكان يأتِيه والبيتُ قد دخَّنَ بِإذخِرٍ، فيقبِّلُه ويشمُّه. أخرجه البخاري في الأدب المفرد.</p></div>
+<div class="transliteration"><p>'An Anasi ibn Malikin radiyallahu 'anhu qal: kana an-nabiyyu ﷺ arhama an-nasi bil-'iyal, wa kana lahu ibnun mustarda'an fi nahiyati al-Madinah, wa kana zhi'ruhu qaynan, fakano ya'tihi wal-baytu qad dakhana bi-ithkhir, fayuqabbiluhu wa yashummu. Akhrajahu al-Bukhari fi al-Adab al-Mufrad.</p></div>
+<div class="en translation"><p>Anas ibn Malik, may Allah be pleased with him, said: "The Prophet ﷺ was the most merciful of people towards children. He had a son who was being nursed in a suburb of Madinah, and the husband of the wet-nurse was a blacksmith. He would go to them while the house was filled with smoke from the fire, and he would kiss the child and smell him." Narrated by Al-Bukhari in Al-Adab al-Mufrad.</p></div>
+<div class="tamil"><p>அனஸ் (ரலி) கூறினார்கள்: "சிறுவர்களுக்கு நபி ﷺ தான் மிகவும் இரக்கம் காட்டுவார். மதீனாவின் ஓர் ஓரத்தில் பால் கொடுக்கப்பட்ட ஒரு மகன் இருந்தார்; பால் கொடுத்தவரின் கணவர் கொல்லன். புகை நிறைந்த அந்த வீட்டிற்குச் சென்று குழந்தையை முத்தமிட்டு மோப்பம் பிடிப்பார்கள்." (புகாரி: அல்-அதப் அல்-முஃப்ரத்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=47767" target="_blank" rel="noopener">al-adab-al-mufrad 378</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن أبي قتادةَ الأنصاريِّ رضي الله عنه قال: رأيتُ النبيَّ ﷺ يؤُمُّ الناسَ وأمامةُ بنتُ أبي العاصِ على عاتقِه، فإذا ركَعَ وضعَها، وإذا رفَعَ أعادَها. أخرجه مسلم.</p></div>
+<div class="transliteration"><p>'An Abi Qatadata al-Ansariyya radiyallahu 'anhu qal: ra'aytu an-nabiyya ﷺ yu'ummu an-nasa wa Umamatu bintu Abil-'Asi 'ala 'atiqih, fa-idha raka'a wad'aha, wa idha rafa'a a'adaha. Akhrajahu Muslim.</p></div>
+<div class="en translation"><p>Abu Qatadah al-Ansari, may Allah be pleased with him, said: "I saw the Prophet ﷺ leading the people in prayer with Umamah bint Abi al-'As on his shoulder. When he bowed, he put her down, and when he raised his head, he lifted her again." Narrated by Muslim.</p></div>
+<div class="tamil"><p>அபூ கதாதா அல்-அன்சாரி (ரலி) கூறினார்கள்: "உமாமா இப்னத் அபீ அல்-ஆஸைத் தோளில் வைத்துக் கொண்டு நபி ﷺ மக்களுக்குத் தலைமை தொழவைப்பதைக் கண்டேன்; ருகூ செய்யும்போது அவரைக் கீழே வைப்பார்கள்; தலை உயர்த்தும்போது மீண்டும் தூக்குவார்கள்." (முஸ்லிம்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=8392" target="_blank" rel="noopener">sahih-muslim 1115</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أبناءُ النبيِّ ﷺ الذكورُ:
+١- القاسمُ: وماتَ وهو صغيرٌ.
+٢- عبدُ اللهِ: وُلدَ بعدَ البعثةِ، وماتَ صغيرًا.
+٣- إبراهيمُ: وُلدَ من ماريةَ القبطيةِ، وماتَ وهو ابنُ شهرينِ، وبكى عليه النبيُّ ﷺ ومعَه عبدُ الرحمنِ بنُ عوفٍ.</p></div>
+<div class="transliteration"><p>Abna'u an-nabiyyi ﷺ adh-dhukur: 1- Al-Qasimu wa mata wa huwa saghir. 2- 'Abdullah: wulida ba'da al-ba'thati, wa mata saghiran. 3- Ibrahimu: wulida min Mariyata al-Qibtiyyah, wa mata wa huwa ibnu shaharayni, wa baka 'alayhi an-nabiyyu ﷺ wa ma'ahu 'Abdu-r-Rahmani ibnu 'Awf.</p></div>
+<div class="en translation"><p>The sons of the Prophet ﷺ:&lt;br&gt;1. Al-Qasim: he died as a child.&lt;br&gt;2. 'Abdullah: he was born after the Revelation and died as a child.&lt;br&gt;3. Ibrahim: he was born from Mariyah al-Qibtiyyah and died when he was two months old; the Prophet ﷺ wept for him in the presence of 'Abdur-Rahman ibn 'Awf.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களின் மகன்கள்:&lt;br&gt;1. காஸிம்: சிறுவயதில் இறந்தார்.&lt;br&gt;2. அப்துல்லாஹ்: வஹ்யி வந்த பிறகு பிறந்து, சிறுவயதில் இறந்தார்.&lt;br&gt;3. இப்ராஹீம்: மரியா அல்-கிப்திய்யாவிடம் பிறந்து, 2 மாதங்களில் இறந்தார்; நபி ﷺ அப்துர் ரஹ்மான் இப்னு அவ்ஃப் முன்னிலையில் அவருக்காக அழுதார்கள்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>بناتُ النبيِّ ﷺ:
+١- زينبُ: تزوَّجَها أبو العاصِ بنُ الربيعِ.
+٢- رقيَّةُ: تزوَّجَها عثمانُ بنُ عفانَ.
+٣- أمُّ كلثومٍ: تزوَّجَها عثمانُ بنُ عفانَ بعدَ رقيةَ.
+٤- فاطمةُ: تزوَّجَها عليُّ بنُ أبي طالبٍ، وهي أمُّ الحسنِ والحسينِ، وهي سيدةُ نساءِ أهلِ الجنَّةِ.</p></div>
+<div class="transliteration"><p>Banatu an-nabiyyi ﷺ: 1- Zaynab: tazawwajaha Abu al-'Asi ibnu ar-Rabi'. 2- Ruqayyah: tazawwajaha 'Uthmanu ibnu 'Affan. 3- Umm Kulthum: tazawwajaha 'Uthmanu ibnu 'Affan ba'da Ruqayyah. 4- Fatimah: tazawwajaha 'Aliyyu ibnu Abi Talib, wa hiya Ummu al-Hasani wal-Husayn, wa hiya sayyidatu nisa'i ahli al-jannah.</p></div>
+<div class="en translation"><p>The daughters of the Prophet ﷺ:&lt;br&gt;1. Zaynab: she married Abu al-'As ibn ar-Rabi'.&lt;br&gt;2. Ruqayyah: she married 'Uthman ibn 'Affan.&lt;br&gt;3. Umm Kulthum: 'Uthman ibn 'Affan married her after Ruqayyah.&lt;br&gt;4. Fatimah: she married 'Ali ibn Abi Talib and is the mother of al-Hasan and al-Husayn, and she is the mistress of the women of Paradise.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களின் மகள்கள்:&lt;br&gt;1. ஜைனப்: அபூ அல்-ஆஸை மணந்தார்.&lt;br&gt;2. ருகய்யா: உத்மான் இப்னு அஃப்ஃபானை மணந்தார்.&lt;br&gt;3. உம்மு குல்சூம்: ருகய்யாவுக்குப் பிறகு உத்மானையே மணந்தார்.&lt;br&gt;4. ஃபாத்திமா: அலீ இப்னு அபீ தாலிபை மணந்தார்; ஹசன், ஹுசைன் ஆகியோரின் தாய்; சொர்க்கப் பெண்களின் தலைவி.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-hadith-6-3.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-hadith-6-5.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-hadith.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

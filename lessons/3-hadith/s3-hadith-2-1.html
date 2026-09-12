@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Attributes of the Prophet ﷺ (1) - Hadith and Seerah | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Hadith and Seerah</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 1: Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>The Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>The Meanings of the Prophet's Names ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 2: The Attributes of the Prophet ﷺ</a>
+                <a href="s3-hadith-2-1.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">3</span>The Attributes of the Prophet ﷺ (1)</a>
+                <a href="s3-hadith-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>The Attributes of the Prophet ﷺ (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 3: The Excellence of the Prophet ﷺ</a>
+                <a href="s3-hadith-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Best of People</a>
+                <a href="s3-hadith-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>The Prophet ﷺ, the Khalil (Close Friend) of Allah</a>
+                <a href="s3-hadith-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Leader of the Children of Adam</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 4: The Cleanliness of the Prophet ﷺ</a>
+                <a href="s3-hadith-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Prophet's ﷺ Care for Cleanliness</a>
+                <a href="s3-hadith-4-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Care for the Cleanliness of the Body</a>
+                <a href="s3-hadith-4-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>Care for Mouth Cleanliness and the Fragrance of the Prophet ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 5: The Clothing of the Prophet ﷺ</a>
+                <a href="s3-hadith-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Description of the Prophet's ﷺ Clothing</a>
+                <a href="s3-hadith-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>The Rules of Clothing</a>
+                <a href="s3-hadith-5-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>How the Prophet ﷺ Wore His Clothes</a>
+                <a href="s3-hadith-5-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>Starting with the Right</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 6: The Family of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Wife of the Prophet ﷺ: Khadijah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Wife of the Prophet ﷺ: Aisha, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Wife of the Prophet ﷺ: Hafsah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Children of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>Loving the Family of the Prophet ﷺ</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-hadith.html">Hadith and Seerah</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">The Attributes of the Prophet ﷺ (1)</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-hadith">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M60 28 C48 18 30 16 14 20 V96 C30 92 48 94 60 104 C72 94 90 92 106 96 V20 C90 16 72 18 60  Z"/><line x1="60" y1="28" x2="60" y2="104"/><path d="M26 38 h22 M26 52 h22 M72 38 h22 M72 52 h22"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128214; Unit 2</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">أَوْصَافُ النَّبِيِّ ﷺ (١)</span>
+                <span class="en">The Attributes of the Prophet ﷺ (1)</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 129&ndash;131</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-129.webp" alt="Textbook page 129" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 129"><figcaption>p. 129</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-130.webp" alt="Textbook page 130" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 130"><figcaption>p. 130</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-131.webp" alt="Textbook page 131" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 131"><figcaption>p. 131</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أحببتُ النبيَّ محمدًا ﷺ، وتعرَّفتُ على أسمائِه، وتمنَّيتُ لو رأيتُه. وقد وصَفَ لنا أصحابُ النبيِّ ﷺ أوصافَه، لأنَّهم رأَوه وعاشوا معه. فما أوصافُ النبيِّ ﷺ؟</p></div>
+<div class="transliteration"><p>Ahbabtu an-nabiyya Muhammadan ﷺ, wa ta'arraftu 'ala asma'ih, wa tamannaytu law ra'aytuh. Wa qad wasafa lana ashabu an-nabiyyi ﷺ awsafah; li'annahum ra'awhu wa 'ashu ma'ah. Fama awsafu an-nabiyyi ﷺ?</p></div>
+<div class="en translation"><p>I love the Prophet Muhammad ﷺ and I have come to know his names, and I wish I could have seen him. The Companions of the Prophet ﷺ described his attributes to us, because they saw him and lived with him. So what are the attributes of the Prophet ﷺ?</p></div>
+<div class="tamil"><p>நபி முஹம்மது ﷺ அவர்களை நான் நேசிக்கிறேன்; அவர்களின் பெயர்களை அறிந்தேன்; அவர்களைக் காண விரும்பினேன். நபித்தோழர்கள் அவர்களைக் கண்டு அவருடன் வாழ்ந்ததால் அவர்களின் பண்புகளை நமக்கு விவரித்துள்ளனர். நபி ﷺ அவர்களின் பண்புகள் யாவை?</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ما لونُ بِشْرَةِ النبيِّ ﷺ؟
+كان النبيُّ ﷺ أبيضَ البشرةِ، مُشرَبًا بحُمرةٍ.</p></div>
+<div class="transliteration"><p>Ma lawnu bishrati an-nabiyyi ﷺ?
+Kana an-nabiyyu ﷺ abyada al-basharah, mushraban bi-humrah.</p></div>
+<div class="en translation"><p>What was the colour of the Prophet's skin?&lt;br&gt;The Prophet ﷺ was white-skinned with a tinge of redness.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களின் தோல் நிறம் என்ன?&lt;br&gt;நபி ﷺ வெண்மையான, சிறிது சிவப்பு கலந்த நிறத்தில் இருந்தார்கள்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>هل كان النبيُّ ﷺ طويلًا أو قصيرًا؟
+كان النبيُّ ﷺ رَبْعَةً؛ أي بينَ الطولِ والقِصَرِ.</p></div>
+<div class="transliteration"><p>Hal kana an-nabiyyu ﷺ tawilan aw qasiran?
+Kana an-nabiyyu ﷺ rab'ah; ayy bayna at-tuli wal-qisar.</p></div>
+<div class="en translation"><p>Was the Prophet ﷺ tall or short?&lt;br&gt;The Prophet ﷺ was of medium stature — between tall and short.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்கள் உயரமானவரா அல்லது குட்டையானவரா?&lt;br&gt;நபி ﷺ உயரம் குறைவாகவும் அதிகமாகவும் இல்லாமல் நடுத்தரமாக இருந்தார்கள்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ما أوصافُ وجهِ النبيِّ ﷺ؟
+كان النبيُّ ﷺ أحسنَ الناسِ وجهًا، وجههُ أبيضُ مُشرَبٌ بحُمرةٍ، يشبِهُ القمرَ ليلةَ البدرِ في نورِه وجمالِه، وكان أكثرَ الناسِ تبسُّمًا.</p></div>
+<div class="transliteration"><p>Ma awsafu wajhi an-nabiyyi ﷺ?
+Kana an-nabiyyu ﷺ ahsana an-nasi wajhan; wajhuhu abyadu mushrabun bi-humrah, yushbihu al-qamara laylata al-badri fi nurih wa jamalih, wa kana akthara an-nasi tabassuman.</p></div>
+<div class="en translation"><p>What were the attributes of the Prophet's face?&lt;br&gt;The Prophet ﷺ was the most handsome of people in face; his face was white with a tinge of redness, resembling the full moon in its light and beauty on the night of Badr, and he was the most smiling of people.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களின் முகத்தின் பண்புகள் என்ன?&lt;br&gt;நபி ﷺ மக்களில் முக அழகில் மிகச் சிறந்தவர்; வெண்மையும் சிறு சிவப்பும் கலந்த முகம்; பூரண சந்திரனின் ஒளி, அழகை ஒத்திருந்தது; மக்களில் அதிகம் புன்னகைப்பவர்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>وكان النبيُّ ﷺ شديدَ سوادِ الشعرِ، له لحيةٌ كثيفةٌ، وكان إذا غضِبَ احمرَّ وجهُه، وإذا سرَّ وتبسَّمَ استنارَ وجهُه حتى كأنَّه قطعةُ ذهبٍ، وكان ﷺ أكثرَ الناسِ تبسُّمًا.</p></div>
+<div class="transliteration"><p>Wa kana an-nabiyyu ﷺ shadida sawadi ash-sha'r, lahu lihyatun kathifah, wa kana idha ghadiba ihmarra wajhuh, wa idha surra wa tabassama istanara wajhuh hatta ka'annahu qit'atu dhahab, wa kana ﷺ akthara an-nasi tabassuman.</p></div>
+<div class="en translation"><p>The Prophet ﷺ had very black hair and a thick beard. When he was angry his face reddened, and when he was pleased and smiled his face glowed as though it were a piece of gold; and he was the most smiling of people.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களுக்கு கருமையான முடியும் அடர்த்தியான தாடியும் இருந்தது. கோபமானால் முகம் சிவக்கும்; மகிழ்ச்சியாகப் புன்னகைத்தால் முகம் தங்கக் கட்டியைப் போல் ஒளிரும்; மக்களில் அதிகம் புன்னகைப்பவர்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن عبدِ اللهِ بنِ سلامٍ رضي الله عنه قال: لَمَّا قَدِمَ رسولُ اللهِ ﷺ المدينةَ، انجفَلَ الناسُ إليه، وقيل: قَدِمَ رسولُ اللهِ ﷺ، فجئتُ في الناسِ لأَنظُرَ إليه، فلمَّا استبَنْتُ وجهَ رسولِ اللهِ ﷺ عرَفتُ أنَّ وجهَه ليس بوجهِ كذَّابٍ. أخرجه الترمذي وابن ماجه.</p></div>
+<div class="transliteration"><p>'An 'Abdillahi ibn Salam radiyallahu 'anhu qal: lamma qadima rasulullahi ﷺ al-Madinata, injafala an-nasu ilayh, wa qil: qadima rasulullahi ﷺ, faji'tu fin-nasi li-andhura ilayh, falamma istabantu wajha rasulillahi ﷺ 'araftu anna wajhahu laysa bi-wajhi kadh-dhab. Akhrajahu at-Tirmidhi wa Ibn Majah.</p></div>
+<div class="en translation"><p>'Abdullah ibn Salam, may Allah be pleased with him, said: When the Messenger of Allah ﷺ arrived in Madinah, the people flocked towards him, and it was said: "The Messenger of Allah has arrived." I came among the people to look at him, and when I could clearly see the face of the Messenger of Allah ﷺ, I knew that his face was not the face of a liar. Narrated by At-Tirmidhi and Ibn Majah.</p></div>
+<div class="tamil"><p>அப்துல்லாஹ் இப்னு சலாம் (ரலி) கூறினார்கள்: அல்லாஹ்வின் தூதர் ﷺ மதீனா வந்தபோது மக்கள் விரைந்து சென்றனர். "தூதர் வந்துவிட்டார்" என்று கூறப்பட்டது. நான் மக்களுடன் அவரைப் பார்க்கச் சென்றேன். தூதர் ﷺ அவர்களின் முகத்தைத் தெளிவாகக் கண்டபோது, "இந்த முகம் பொய்யரின் முகம் அல்ல" என்பதை அறிந்தேன். (திர்மிதி, இப்னு மாஜா)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=28335" target="_blank" rel="noopener">tirmidhi 2555</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>لماذا كان النبيُّ ﷺ أكثرَ الناسِ تبسُّمًا؟
+لِحُسنِ خُلُقِه ﷺ، وحُبِّه للناسِ، وسماحتِه في التعامُلِ معهم.</p></div>
+<div class="transliteration"><p>Limadha kana an-nabiyyu ﷺ akthara an-nasi tabassuman?
+Li-husni khuluqih ﷺ, wa hubbi hi lin-nas, wa samahatih fi at-ta'amuli ma'ahum.</p></div>
+<div class="en translation"><p>Why was the Prophet ﷺ the most smiling of people?&lt;br&gt;Because of his noble character, his love for people, and his gentleness in dealing with them.</p></div>
+<div class="tamil"><p>நபி ﷺ ஏன் மக்களில் அதிகம் புன்னகைப்பவராக இருந்தார்கள்?&lt;br&gt;அவர்களின் அழகிய பண்பு, மக்கள் மீதான அன்பு, அவர்களுடன் மென்மையாக நடப்பது ஆகியவற்றால்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>معلومةٌ إثرائيَّةٌ: لَمَّا علِم أهلُ المدينةِ — رجالُهم ونساؤُهم وأطفالُهم — بهجرةِ النبيِّ ﷺ إليهم، فرِحوا فرحًا شديدًا، قال أنسٌ رضي الله عنه: كنتُ أسعى مع الغِلْمانِ يقولون: جاءَ محمدٌ! جاءَ محمدٌ! وقال البراءُ بنُ عازبٍ رضي الله عنه: ما رأيتُ أهلَ المدينةِ فرِحوا بشيءٍ قَطُّ مثلَ فرحِهم بقدومِ رسولِ اللهِ ﷺ. أخرجه أحمد.</p></div>
+<div class="transliteration"><p>Ma'lumatun ithra'iyyah: lamma 'alima ahlu al-Madinah — rijaluhum wa nisa'uhum wa atfaluhum — bi-hijrati an-nabiyyi ﷺ ilayhim, farihu farahan shadidan. Qala Anas radiyallahu 'anhu: kuntu as'a ma'a al-ghilmani yaqulun: ja'a Muhammad! ja'a Muhammad! Wa qala al-Bara'u ibn 'Azib radiyallahu 'anhu: ma ra'aytu ahla al-Madinati farihu bi-shay'in qattu mithla farahihim bi-qudumi rasulillahi ﷺ. Akhrajahu Ahmad.</p></div>
+<div class="en translation"><p>Enrichment: When the people of Madinah — their men, women, and children — learned of the migration of the Prophet ﷺ to them, they rejoiced greatly. Anas, may Allah be pleased with him, said: "I used to run with the boys saying: Muhammad has come! Muhammad has come!" And Al-Bara ibn 'Azib said: "I have never seen the people of Madinah rejoice about anything like their joy at the arrival of the Messenger of Allah ﷺ." Narrated by Ahmad.</p></div>
+<div class="tamil"><p>செறிவூட்டல்: நபி ﷺ ஹிஜ்ரத் செய்து வருகிறார்கள் என்பதை அறிந்த மதீனாவாசிகள் — ஆண்கள், பெண்கள், குழந்தைகள் — மிகவும் மகிழ்ந்தனர். அனஸ் (ரலி) கூறினார்: "சிறுவர்களுடன் நான் ஓடிப்போய் 'முஹம்மது வந்துவிட்டார்! வந்துவிட்டார்!' என்பேன்." அல்-பரா இப்னு ஆஸிப் (ரலி) கூறினார்: "தூதர் ﷺ வருகையில் மதீனாவாசிகள் மகிழ்ந்தது போல் வேறு எதிலும் மகிழ்ந்ததை நான் கண்டதில்லை." (அஹ்மத்)</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-hadith-1-2.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-hadith-2-2.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-hadith.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

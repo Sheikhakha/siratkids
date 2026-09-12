@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manners of the Road - Good Manners (Adab) | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Good Manners (Adab)</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adab.html" class="sidebar-unit-label">Unit 1: Practical Islamic Manners</a>
+                <a href="s3-adab-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Manners with the Noble Quran</a>
+                <a href="s3-adab-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Manners of the Gathering (Majlis)</a>
+                <a href="s3-adab-1-3.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">3</span>Manners of the Road</a>
+                <a href="s3-adab-1-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Manners of Sports</a>
+                <a href="s3-adab-1-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>Manners of Brotherhood and Friendship</a>
+                <a href="s3-adab-1-6.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>Manners of Seeking Permission (Isti'dhan)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adab.html" class="sidebar-unit-label">Unit 2: Commanded Matters (Al-Ma'murat)</a>
+                <a href="s3-adab-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Command to Tawheed</a>
+                <a href="s3-adab-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Obligation of Following the Prophet</a>
+                <a href="s3-adab-2-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>The Command to Unite and Harmonize</a>
+                <a href="s3-adab-2-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>The Command to Good Character</a>
+                <a href="s3-adab-2-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Command to Truthfulness</a>
+                <a href="s3-adab-2-6.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>Forbearance and Deliberation</a>
+                <a href="s3-adab-2-7.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>Patience</a>
+                <a href="s3-adab-2-8.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>The Command to Trustworthiness</a>
+                <a href="s3-adab-2-9.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Command to Good Speech</a>
+                <a href="s3-adab-2-10.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Command to Kindness to Parents</a>
+                <a href="s3-adab-2-11.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Command to Treat the Neighbour Well</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adab.html" class="sidebar-unit-label">Unit 3: Forbidden Matters (Al-Manhiyyat)</a>
+                <a href="s3-adab-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Prohibition of Shirk</a>
+                <a href="s3-adab-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>The Prohibition of Innovation (Bid'ah)</a>
+                <a href="s3-adab-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">20</span>The Prohibition of Lying</a>
+                <a href="s3-adab-3-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">21</span>The Prohibition of Cheating, Deceit, and Betrayal</a>
+                <a href="s3-adab-3-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">22</span>The Prohibition of Transgression</a>
+                <a href="s3-adab-3-6.html" class="sidebar-lesson"><span class="sidebar-lesson-num">23</span>The Prohibition of Insulting and Obscenity in Speech</a>
+                <a href="s3-adab-3-7.html" class="sidebar-lesson"><span class="sidebar-lesson-num">24</span>The Prohibition of Backbiting and Gossip</a>
+                <a href="s3-adab-3-8.html" class="sidebar-lesson"><span class="sidebar-lesson-num">25</span>The Prohibition of Imitating the Disbelievers</a>
+                <a href="s3-adab-3-9.html" class="sidebar-lesson"><span class="sidebar-lesson-num">26</span>Repentance to Allah from All Sins</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-adab.html">Good Manners (Adab)</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">Manners of the Road</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-adab">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="60" cy="60" r="44"/><path d="M60 24 v72 M24 60 h72 M35 35 l50 50 M85 35 l-50 50"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#11088; Unit 1</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">آدَابُ الطَّرِيقِ</span>
+                <span class="en">Manners of the Road</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 227&ndash;229</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-227.webp" alt="Textbook page 227" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 227"><figcaption>p. 227</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-228.webp" alt="Textbook page 228" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 228"><figcaption>p. 228</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-229.webp" alt="Textbook page 229" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 229"><figcaption>p. 229</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ينبغي لنا أنْ نتعلمَ آدابَ الطريقِ ونلتزمَها، ومنها:
+١- إلقاءُ السلامِ على المسلمينَ، وخاصةً الصالحينَ منهم.
+٢- كفُّ الأذى، ورَدُّ السلامِ على من ألقاهُ بمثلِهِ أو بأحسنَ منهُ.
+٣- المشيُ في الطريقِ بهدوءٍ.</p></div>
+<div class="transliteration"><p>Yanbaghi lana an nata'allama adaba at-tariqi wa nalTazimaha, wa minHa:
+1- ilqa'u as-salami 'ala al-muslimina, wa khasSatan as-saalihina minhUM.
+2- kaffu al-adha, wa raddu as-salami 'ala man alqaHu bi-mithliHi aw bi-ahsana minHu.
+3- al-mashyu fi at-tariqi bi-hudu'in.</p></div>
+<div class="en translation"><p>We must learn and observe the manners of the road. Some of them are:&lt;br&gt;1. Giving the greeting of peace (salam) to Muslims, especially the righteous among them.&lt;br&gt;2. Refraining from harm, and returning the greeting with its like or with something better.&lt;br&gt;3. Walking on the road calmly.</p></div>
+<div class="tamil"><p>சாலையின் நடத்தைகளை நாம் கற்று கடைப்பிடிக்க வேண்டும்:&lt;br&gt;1. முஸ்லிம்களுக்கு ஸலாம் கூறுவது; குறிப்பாக அவர்களில் நல்லவர்களுக்கு.&lt;br&gt;2. துன்பம் தருவதைத் தவிர்ப்பது; வாழ்த்தியவருக்கு அதே போல் அல்லது அதைவிடச் சிறப்பாக வாழ்த்துத் திருப்பி அனுப்புவது.&lt;br&gt;3. சாலையில் அமைதியாக நடப்பது.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن أبي سعيدٍ الخدريّ رضي الله عنه قال: قال رسولُ اللهِ ﷺ: «إِيَّاكُمْ وَالجُلُوسَ عَلَى الطُّرُقَاتِ»، فقالوا: ما لنا بُدٌّ؛ إنَّما هي مجالسُنا نتحدَّثُ فيها. قال: «فَإِذَا أَبَيْتُمْ إِلَّا المَجَالِسَ فَأَعْطُوا الطَّرِيقَ حَقَّهَا». قالوا: وما حقُّ الطريقِ؟ قال: «غَضُّ البَصَرِ، وَكَفُّ الأَذَى، وَرَدُّ السَّلَامِ، وَالأَمْرُ بِالمَعْرُوفِ، وَالنَّهْيُ عَنِ المُنكَرِ». أخرجه البخاريُّ ومسلمٌ.</p></div>
+<div class="transliteration"><p>'An Abi Sa'idin al-Khudriyyi radiyallahu 'anHu qala: qala rasulullahi ﷺ: «Iyyakum wal-julusa 'ala at-turuqat», faqalu: ma lana buddun; innama hiya majalisuna natahaddathu fiha. Qala: «Fa-idha abaytum illa al-majalisa fa-a'tu at-tariqa haqqaHa». Qalu: wa ma haqqu at-tariqi? Qala: «Ghaddu al-basari, wa kaffu al-adha, wa raddu as-salami, wal-amru bil-ma'rufi, wan-nahyu 'ani al-munkari». Akhrajahu al-Bukhariyyu wa Muslimun.</p></div>
+<div class="en translation"><p>Abu Said al-Khudri, may Allah be pleased with him, said: The Messenger of Allah ﷺ said: "Beware of sitting on the roadsides." They said: We have no alternative; they are our gatherings in which we talk. He said: "If you insist on sitting, then give the road its right." They asked: What is the right of the road? He said: "Lowering the gaze, refraining from harm, returning the greeting, enjoining good, and forbidding evil." Narrated by Al-Bukhari and Muslim.</p></div>
+<div class="tamil"><p>அபூ ஸயீத் அல்-குத்ரீ (ரலி) கூறினார்கள்: "சாலைகளில் அமர்வதைத் தவிருங்கள்" என்று நபி ﷺ கூறினார்கள். "இருக்கவே வேண்டும்; அவை எங்கள் பேச்சுக் கூடங்கள்" என மக்கள் கூறினர். "அப்படியானால் சாலையின் உரிமைகளை நிறைவேற்றுங்கள்" என்று கூறினார்கள். "அவை என்ன?" என்று கேட்டனர். "பார்வையைத் தாழ்த்துவது, துன்பம் தராமல் இருப்பது, ஸலாமுக்குப் பதில் கூறுவது, நன்மையை ஏவுவது, தீமையைத் தடுப்பது" என்று கூறினார்கள். (புகாரி, முஸ்லிம்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=5994" target="_blank" rel="noopener">sahih-bukhari 5994</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>٤- ألَّا أرفعَ صوتي ولا ألعبَ في الطريقِ. قال تعالى:</p></div>
+<div class="transliteration"><p>4- alla arfa'a sawti wa la al'aba fi at-tariqi. Qala ta'ala:</p></div>
+<div class="en translation"><p>4. I do not raise my voice or play on the road. Allah the Exalted said:</p></div>
+<div class="tamil"><p>4. சாலையில் சத்தமிடாமலும் விளையாடாமலும் இருப்பது. அல்லாஹ் கூறினான்:</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>﴿وَاقْصِدْ فِي مَشْيِكَ وَاغْضُضْ مِن صَوْتِكَ ۚ إِنَّ أَنكَرَ الْأَصْوَاتِ لَصَوْتُ الْحَمِيرِ﴾</p></div>
+<div class="transliteration"><p>Waqsid fi mashyika waghdud min sawtika; inna ankara al-aswati lasawtu al-hamir.</p></div>
+<div class="en translation"><p>And be moderate in your walking and lower your voice; indeed, the most disagreeable of sounds is the voice of donkeys.</p></div>
+<div class="tamil"><p>உங்கள் நடையில் நடுத்தரமாக நடங்கள்; உங்கள் குரலைத் தாழ்த்துங்கள்; நிச்சயமாக கழுதைகளின் சத்தம்தான் மிகவும் வெறுக்கத்தக்க சத்தம்.</p></div>
+<div class="block-ref"><span class="ar" dir="rtl">31:19</span></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>٥- إماطَةُ الأذى عن الطريقِ، كالقشورِ والزجاجِ والحجارةِ والمساميرِ وغيرِها، حتى لا يتأذى الناسُ منها.</p></div>
+<div class="transliteration"><p>5- I'matatu al-adha 'ani at-tariqi, kak-qushuri waz-zujaji wal-hijarati wal-masamiri wa ghayriHa, hatta la yata'adhdha an-nasu minHa.</p></div>
+<div class="en translation"><p>5. Removing harmful things from the road, such as peels, glass, stones, nails, and others, so that people are not harmed by them.</p></div>
+<div class="tamil"><p>5. சாலையிலிருந்து தீங்கானவற்றை அகற்றுவது - தோல், கண்ணாடி, கல், ஆணி போன்றவை - மக்கள் அவற்றால் துன்பப்படாமல் இருப்பதற்காக.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن أبي هريرةَ رضي الله عنه قال: قال رسولُ اللهِ ﷺ: «بَيْنَمَا رَجُلٌ يَمْشِي بِطَرِيقٍ وَجَدَ غُصْنَ شَوْكٍ عَلَى الطَّرِيقِ فَأَخَّرَهُ، فَشَكَرَ اللهُ لَهُ فَغَفَرَ لَهُ». أخرجه البخاريُّ ومسلمٌ.</p></div>
+<div class="transliteration"><p>'An Abi Hurairata radiyallahu 'anHu qala: qala rasulullahi ﷺ: «Baynama rajulun yamshi bitariqin wajada ghusna shawkin 'ala at-tariqi fa-akhkharaHu, fashakara Allahu laHu faghafara laHu». Akhrajahu al-Bukhariyyu wa Muslimun.</p></div>
+<div class="en translation"><p>Abu Hurairah, may Allah be pleased with him, said: The Messenger of Allah ﷺ said: "While a man was walking on a road, he found a thorny branch on the road and removed it, so Allah thanked him and forgave him." Narrated by Al-Bukhari and Muslim.</p></div>
+<div class="tamil"><p>அபூ ஹுரைரா (ரலி) கூறினார்கள்: "ஒருவர் சாலையில் நடந்து சென்றபோது, சாலையில் முள்ளிருந்த கிளையைக் கண்டு அதை அகற்றினார். அல்லாஹ் அவருக்கு நன்றி செலுத்தி அவரை மன்னித்தான்" என்று நபி ﷺ கூறினார்கள். (புகாரி, முஸ்லிம்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=2376" target="_blank" rel="noopener">sahih-bukhari 2376</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>٦- عدمُ عبورِ الطريقِ إلا بعدَ التأكُّدِ من عدمِ وجودِ سياراتٍ، أو دراجاتٍ، أو نحوِها.
+٧- رفعُ فتاتِ الأطعمةِ والخبزِ عن قارعةِ الطريقِ، وإبعادُ الأوراقِ التي تحتوي على آياتٍ قرآنيةٍ أو أحاديثَ نبويَّةٍ عن ممرَّاتِ الناسِ.
+٨- عدمُ قضاءِ الحاجةِ في الطريقِ، وتحت الأشجارِ، وفي الحدائقِ.</p></div>
+<div class="transliteration"><p>6- 'adamu 'uburi at-tariqi illa ba'da at-ta'akkudi min 'adami wujudi sayyaratin, aw darrajatin, aw naHwiHa.
+7- raf'u futati al-at'imati wal-khubzi 'an qari'ati at-tariqi, wa ib'adu al-awraqi allati tahtawi 'ala ayat Qur'aniyyah aw ahadith Nabawiyyah 'an marrat an-nasi.
+8- 'adamu qada'i al-hajati fi at-tariqi, wa tahta al-ashjari, wa fi al-hada'iqi.</p></div>
+<div class="en translation"><p>6. Not crossing the road except after making sure that there are no cars, bicycles, or similar things.&lt;br&gt;7. Lifting bits of food and bread off the roadside, and keeping papers that contain Quranic verses or Prophetic hadiths away from people's pathways.&lt;br&gt;8. Not relieving oneself on the road, under trees, or in gardens.</p></div>
+<div class="tamil"><p>6. கார்கள், மிதிவண்டிகள் அல்லது அவை போன்றவை இல்லை என்பதை உறுதிசெய்த பிறகே சாலையைக் கடப்பது.&lt;br&gt;7. சாலையோரத்தில் உள்ள உணவுத் துண்டுகளையும் ரொட்டித் துண்டுகளையும் அகற்றுவது; குர்ஆன் வசனங்கள் அல்லது நபிவாக்கியங்கள் உள்ள தாள்களை மக்கள் நடமாடும் இடங்களிலிருந்து அப்பாற்றி வைப்பது.&lt;br&gt;8. சாலையிலும் மரங்களுக்கு அடியிலும் தோட்டங்களிலும் கழிவைச் செய்யாமல் இருப்பது.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن ابنِ عبَّاسٍ رضي الله عنهما قال: مَرَّ النبيُّ ﷺ عَلَى قَبْرَيْنِ فَقَالَ: «إِنَّهُمَا لَيُعَذَّبَانِ، وَمَا يُعَذَّبَانِ فِي كَبِيرٍ؛ أَمَّا أَحَدُهُمَا فَكَانَ لَا يَسْتَتِرُ مِنْ بَوْلِهِ، وَأَمَّا الآخَرُ فَكَانَ يَمْشِي بِالنَّمِيمَةِ». أخرجه البخاريُّ ومسلمٌ.</p></div>
+<div class="transliteration"><p>'Ani-bni 'Abbasin radiyallahu 'anHUma qala: marra an-nabiyyu ﷺ 'ala qabrayni faqala: «InnaHUma la-yu'adhdhaban, wa ma yu'adhdhabani fi kabirin; amma ahaduHUma fakana la yastatiru min bauliHi, wal-akharu fakana yamshi bin-namimati». Akhrajahu al-Bukhariyyu wa Muslimun.</p></div>
+<div class="en translation"><p>Ibn Abbas, may Allah be pleased with him, said: The Prophet ﷺ passed by two graves and said: "Both of them are being punished, and they are not being punished for something grave; one of them did not protect himself from his urine, and the other used to spread gossip (nameemah)." Narrated by Al-Bukhari and Muslim.</p></div>
+<div class="tamil"><p>இப்னு அப்பாஸ் (ரலி) கூறினார்கள்: "நபி ﷺ இரு கல்லறைகளைக் கடந்து சென்றபோது: "இவர்கள் இருவரும் தண்டிக்கப்படுகின்றனர்; பெரிய விஷயத்திற்காக அல்ல. ஒருவர் சிறுநீரிலிருந்து பாதுகாத்துக் கொள்ளவில்லை; மற்றொருவர் கிண்டல்/வதந்தி பரப்புபவராக இருந்தார்" என்று கூறினார்கள். (புகாரி, முஸ்லிம்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=218" target="_blank" rel="noopener">sahih-bukhari 218</a>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-adab-1-2.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-adab-1-4.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-adab.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

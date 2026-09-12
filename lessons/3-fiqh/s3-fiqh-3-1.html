@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tayammum (Dry Ablution) - Fiqh (Islamic Jurisprudence) | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Fiqh (Islamic Jurisprudence)</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 1: Manners of Relieving Oneself</a>
+                <a href="s3-fiqh-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Manners of Relieving Oneself (1)</a>
+                <a href="s3-fiqh-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Manners of Relieving Oneself (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 2: Removing Impurity</a>
+                <a href="s3-fiqh-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Removing Impurity</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 3: Tayammum (Dry Ablution)</a>
+                <a href="s3-fiqh-3-1.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">4</span>Tayammum (Dry Ablution)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 4: The Status of Prayer</a>
+                <a href="s3-fiqh-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Status of Prayer</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 5: Conditions of Prayer</a>
+                <a href="s3-fiqh-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>Conditions of Prayer (1)</a>
+                <a href="s3-fiqh-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>Conditions of Prayer (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 6: Manners of Entering the Mosque</a>
+                <a href="s3-fiqh-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>Manners of Entering the Mosque</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 7: Congregational Prayer</a>
+                <a href="s3-fiqh-7-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Congregational Prayer</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-fiqh.html">Fiqh (Islamic Jurisprudence)</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">Tayammum (Dry Ablution)</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-fiqh">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M60 10 C60 10 24 54 24 78 a36 36 0 0 0 72 0 C96 54 60 10 60 10 Z"/><path d="M44 82 a18 18 0 0 0 14 16"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128167; Unit 3</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">التَّيَمُّمُ</span>
+                <span class="en">Tayammum (Dry Ablution)</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 90&ndash;93</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-090.webp" alt="Textbook page 90" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 90"><figcaption>p. 90</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-091.webp" alt="Textbook page 91" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 91"><figcaption>p. 91</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-092.webp" alt="Textbook page 92" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 92"><figcaption>p. 92</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-093.webp" alt="Textbook page 93" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 93"><figcaption>p. 93</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>خرج أحمد مع أسرته في نزهة برية، فلما حان موعد صلاة العصر لم يجدوا ماءً، فاستخدم والد أحمد التراب بدلًا عن الماء للوضوء، فتيمم مثله، ثم أديا الصلاة في جماعة.
+أتعلم من هذا الموقف:
+١- وجوب تأدية الصلاة في وقتها.
+٢- سماحة الإسلام في أن التراب يقوم مقام الماء عند عدم وجوده.</p></div>
+<div class="transliteration"><p>Kharaja Ahmad ma'a usratihi fi nuzhatin barriyah, falamma hana maw'idu salati al-asr lam yajidu ma'an, fastakhdama abu Ahmad at-turaba badalan 'ani al-ma'i lil-wudu, fata-yammama mithlah, thumma addaya as-salah fi jama'ah.</p></div>
+<div class="en translation"><p>Ahmad went out with his family for a picnic in the desert. When the time of Asr prayer came they found no water, so Ahmad's father used clean dust instead of water for ablution, performed tayammum, and they both prayed in congregation.&lt;br&gt;I learn from this scene:&lt;br&gt;1. The obligation of the prayer on time.&lt;br&gt;2. The tolerance of Islam: dust takes the place of water when none is found.</p></div>
+<div class="tamil"><p>அஹ்மத் தன் குடும்பத்துடன் காட்டுச் சுற்றுலாவுக்குச் சென்றான்; அஸ்ர் தொழுகை நேரம் வந்தபோது தண்ணீர் இல்லை; அஹ்மத்தின் தந்தை தண்ணீருக்குப் பதிலாக தூய மண்ணைப் பயன்படுத்தி தயம்மும் செய்தான்; அஹ்மத்தும் அதுபோல செய்தனர்; பின்னர் ஜமாஅத்தாக தொழுதனர்.&lt;br&gt;இதிலிருந்து கற்பது:&lt;br&gt;1. தொழுகையை சரியான நேரத்தில் செய்வது கடமை.&lt;br&gt;2. இஸ்லாத்தின் சகிப்புத்தன்மை: தண்ணீர் இல்லாதபோது மண் அதற்கு மாற்றாகும்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>التيمم هو: مسح الوجه والكفين بالتراب الطهور.
+أماكن التيمم:
+١- من لم يجد ماءً وخشي فوات وقت الصلاة.
+٢- من اشتد به المرض ويضره استعمال الماء.
+٣- من لا يستطيع الوصول إلى الماء.</p></div>
+<div class="transliteration"><p>At-tayammum huwa: mas-ul-wajhi wal-kaffayni bit-turabi at-tahur. Amakin at-tayammum: man lam yajid ma'an wa khashiya fawata waqti as-salah, wa man ishtadda bihi al-maradu wa yadhurruhu isti'malu al-ma', wa man la yastati'u al-wusula ila al-ma'.</p></div>
+<div class="en translation"><p>Tayammum is: wiping the face and the hands with pure dust.&lt;br&gt;Situations requiring tayammum:&lt;br&gt;1. Whoever finds no water and fears the prayer time will pass.&lt;br&gt;2. Whoever is severely ill and harmed by using water.&lt;br&gt;3. Whoever cannot reach water.</p></div>
+<div class="tamil"><p>தயம்மும் என்பது: தூய மண்ணால் முகத்தையும் கைகளையும் துடைத்தல்.&lt;br&gt;தயம்மும் செய்யும் சந்தர்ப்பங்கள்:&lt;br&gt;1. தண்ணீர் கிடைக்காது, தொழுகை நேரம் போய்விடும் என அஞ்சுபவர்.&lt;br&gt;2. கடும் நோயாளி, தண்ணீர் உபயோகித்தால் தீங்கு ஏற்படுபவர்.&lt;br&gt;3. தண்ணீரை அடைய முடியாதவர்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>﴿فَلَمْ تَجِدُوا مَاءً فَتَيَمَّمُوا صَعِيدًا طَيِّبًا فَامْسَحُوا بِوُجُوهِكُمْ وَأَيْدِيكُم مِّنْهُ﴾</p></div>
+<div class="transliteration"><p>Falam tajidu ma'an fa-tayammamu sa'idan tayyiban famsahu bi-wujuhikum wa aydikum minhu.</p></div>
+<div class="en translation"><p>If you can find no water, then take some clean sand and wipe your face and hands with it.</p></div>
+<div class="tamil"><p>தண்ணீர் கிடைக்கவில்லையெனில், தூய மண்ணை எடுத்து உங்கள் முகங்களையும் கைகளையும் துடைத்துக்கொள்ளுங்கள்.</p></div>
+<div class="block-ref"><span class="ar" dir="rtl">5:6</span></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>صفة التيمم:
+١- أقول: بسم الله، وأنوي.
+٢- أضرب التراب بيدي مفرجتي الأصابع.
+٣- أمسح وجهي.
+٤- أمسح كفي اليمنى بباطن كفي اليسرى، ثم كفي اليسرى بباطن كفي اليمنى.
+ولا يتيمم إلا بالتراب الطاهر.</p></div>
+<div class="transliteration"><p>Sifatu at-tayammum: aqulu bismillah wa anwi, adribu at-turaba bi-yadayya mufarrijatay al-asabi', amsahu wajhi, amsahu kaffi al-yumna bi-batini kaffi al-yusra thumma kaffi al-yusra bi-batini kaffi al-yumna.</p></div>
+<div class="en translation"><p>How to perform tayammum:&lt;br&gt;1. I say: Bismillah, and make the intention.&lt;br&gt;2. I strike the clean dust with my hands, fingers spread.&lt;br&gt;3. I wipe my face.&lt;br&gt;4. I wipe the right hand with the inner side of the left hand, then the left hand with the inner side of the right hand.&lt;br&gt;Tayammum is only done with pure dust.</p></div>
+<div class="tamil"><p>தயம்முமின் முறை:&lt;br&gt;1. பிஸ்மில்லாஹ் கூறி நோக்கம் செய்கிறேன்.&lt;br&gt;2. கூப்பிய விரல்களுடன் இரு கைகளாலும் மண்ணில் தட்டுகிறேன்.&lt;br&gt;3. முகத்தை துடைக்கிறேன்.&lt;br&gt;4. இடது கையின் உள்ளங்கையால் வலது கையையும், வலது கையின் உள்ளங்கையால் இடது கையையும் துடைக்கிறேன்.&lt;br&gt;தூய மண்ணால்தான் தயம்மும் செய்வது.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-fiqh-2-1.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-fiqh-4-1.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-fiqh.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

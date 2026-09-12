@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loving the Family of the Prophet ﷺ - Hadith and Seerah | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Hadith and Seerah</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 1: Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>The Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>The Meanings of the Prophet's Names ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 2: The Attributes of the Prophet ﷺ</a>
+                <a href="s3-hadith-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>The Attributes of the Prophet ﷺ (1)</a>
+                <a href="s3-hadith-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>The Attributes of the Prophet ﷺ (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 3: The Excellence of the Prophet ﷺ</a>
+                <a href="s3-hadith-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Best of People</a>
+                <a href="s3-hadith-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>The Prophet ﷺ, the Khalil (Close Friend) of Allah</a>
+                <a href="s3-hadith-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Leader of the Children of Adam</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 4: The Cleanliness of the Prophet ﷺ</a>
+                <a href="s3-hadith-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Prophet's ﷺ Care for Cleanliness</a>
+                <a href="s3-hadith-4-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Care for the Cleanliness of the Body</a>
+                <a href="s3-hadith-4-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>Care for Mouth Cleanliness and the Fragrance of the Prophet ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 5: The Clothing of the Prophet ﷺ</a>
+                <a href="s3-hadith-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Description of the Prophet's ﷺ Clothing</a>
+                <a href="s3-hadith-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>The Rules of Clothing</a>
+                <a href="s3-hadith-5-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>How the Prophet ﷺ Wore His Clothes</a>
+                <a href="s3-hadith-5-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>Starting with the Right</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 6: The Family of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Wife of the Prophet ﷺ: Khadijah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Wife of the Prophet ﷺ: Aisha, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Wife of the Prophet ﷺ: Hafsah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Children of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-5.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">19</span>Loving the Family of the Prophet ﷺ</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-hadith.html">Hadith and Seerah</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">Loving the Family of the Prophet ﷺ</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-hadith">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M60 28 C48 18 30 16 14 20 V96 C30 92 48 94 60 104 C72 94 90 92 106 96 V20 C90 16 72 18 60  Z"/><line x1="60" y1="28" x2="60" y2="104"/><path d="M26 38 h22 M26 52 h22 M72 38 h22 M72 52 h22"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128214; Unit 6</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">مَحَبَّةُ أَهْلِ بَيْتِ النَّبِيِّ ﷺ</span>
+                <span class="en">Loving the Family of the Prophet ﷺ</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">p. 196</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-196.webp" alt="Textbook page 196" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 196"><figcaption>p. 196</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أهلُ بيتِ النبيِّ ﷺ هم أحبُّ الناسِ إليه، وقد حضَّنا النبيُّ ﷺ على محبَّتِهم وبرِّهم والاقتداءِ بهم. فلنتعرَّفْ — في هذا الدرسِ — على من هم أهلُ بيتِه، وعلى واجبِنا نحوَهم.</p></div>
+<div class="transliteration"><p>Ahlu bayti an-nabiyyi ﷺ hum ahabbu an-nasi ilayhi, wa qad hass-ana an-nabiyyu ﷺ 'ala mahabbatihim wa birrihim wal-'ittibaihim. Falnata'arraf — fi hadha ad-dars — 'ala man hum ahlu baytih, wa 'ala wajibina nahwahum.</p></div>
+<div class="en translation"><p>The family of the Prophet ﷺ are the most beloved of people to him, and he urged us to love them, to be dutiful to them, and to follow their example. In this lesson, let us learn who they are and what our duty towards them is.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களின் குடும்பம் அவர்களுக்கு மிகவும் அன்பானவர்கள்; அவர்களை நேசிக்கவும், உதவவும், அவர்களைப் பின்பற்றவும் நபி ﷺ நமக்கு அறிவுறுத்தினார்கள். இந்தப் பாடத்தில் அவர்கள் யார், நம் கடமை என்ன என்பதை அறிவோம்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن زيدِ بنِ أرقمٍ رضي الله عنه قال: وقفَ النبيُّ ﷺ يومًا خطيبًا بماءٍ يُدعى «خُمًّا» بينَ مكَّةَ والمدينةِ، فحمدَ اللهَ وأثنى عليه، ثمَّ ذكَرَ أهلَ بيتِه، ثمَّ قال: «أما بعدُ، ألا أيُّها الناسُ، فإنما أنا بشرٌ يوشكُ أن يأتيَني رسولُ ربي فأُجيبُ، وأنا تاركٌ فيكم ثقلينِ: أوّلهما كتابُ اللهِ فيه الهدى والنورُ، فخُذوا بكتابِ اللهِ واستمسكوا به. وأهلُ بيتي أُذكِّرُكم اللهَ في أهلِ بيتي». أخرجه مسلم.</p></div>
+<div class="transliteration"><p>'An Zaydin ibni Arqama radiyallahu 'anhu qal: waqafa an-nabiyyu ﷺ yawman khatiban bi-ma'in yud'a «Khumma» bayna Makkata wal-Madinah, fahamida Allaha wa athna 'alayhi, thumma dhakara ahla baytih, thumma qal: «Amma ba'du, ala ayyuha an-nasu, fa-innama ana basharun yushku an ya'tiya Rasul? rabbi fa-ujiba, wa ana tarikun fikum thiqalayni: awwaluhuma kitabullahi fihi al-huda wan-nur, fakhudhu bi-kitabillahi wastamsiku bih. Wa ahlu bayti adhkurukumullaha fi ahli bayti». Akhrajahu Muslim.</p></div>
+<div class="en translation"><p>Zayd ibn Arqam, may Allah be pleased with him, said: "The Prophet ﷺ stood up one day to address the people at a pool called Khumm between Makkah and Madinah. He praised Allah and extolled Him, then he mentioned his family, and then he said: 'O people, I am a human being; the messenger of my Lord will soon come to me and I will respond. I am leaving among you two weighty things: the first of them is the Book of Allah, in which is guidance and light — take hold of the Book of Allah and adhere to it. And my family: I remind you of Allah concerning my family.'" Narrated by Muslim.</p></div>
+<div class="tamil"><p>ஜைத் இப்னு அர்கம் (ரலி) கூறினார்கள்: "மக்காவுக்கும் மதீனாவுக்கும் இடையே 'கும்' எனும் நீர்நிலை அருகில் நபி ﷺ நின்று உரை நிகழ்த்தினார்கள்; அல்லாஹ்வைப் புகழ்ந்து, தம் குடும்பத்தை நினைவுகூர்ந்து, 'மக்களே! நான் மனிதன்; என் இறைவனின் தூதர் விரைவில் வருவார்; நான் பதிலளிக்க வேண்டும். நான் உங்களிடம் இரண்டு பாரங்களை விட்டுச் செல்கிறேன்: முதலாவது அல்லாஹ்வின் வேதம் — அதில் நேர்வழியும் ஒளியும் உள்ளது; அதைப் பற்றிக்கொள்ளுங்கள். என் குடும்பம் — என் குடும்பம் குறித்து அல்லாஹ்வை உங்களுக்கு நினைவூட்டுகிறேன்' என்றார்கள்." (முஸ்லிம்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=42628" target="_blank" rel="noopener">riyad-as-salihin 1563</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أهلُ بيتِ النبيِّ ﷺ هم: زوجاتُه أمهاتُ المؤمنينَ، وبناتُه، وأبناءُ أبي طالبٍ: عليٌّ وعقيلٌ وجعفرٌ، وأبناءُ العباسِ، وما شابهَهُم من أقاربِه المؤمنينَ.</p></div>
+<div class="transliteration"><p>Ahlu bayti an-nabiyyi ﷺ hum: zawjatuhu Ummuhatu al-Mu'minin, wa banatuhu, wa abna'u Abi Talib: 'Aliyy wa 'Aqilun wa Ja'farun, wa abna'u al-'Abbas, wa ma shabahahum min aqaribihi al-mu'minin.</p></div>
+<div class="en translation"><p>The family of the Prophet ﷺ are: his wives (the Mothers of the Believers), his daughters, the sons of Abu Talib: 'Ali, 'Aqil and Ja'far, and the sons of al-'Abbas, and others like them among his believing relatives.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களின் குடும்பத்தினர்: அவர்களின் மனைவியர் (முஃமின்களின் தாய்மார்), மகள்கள், அபூ தாலிபின் மகன்களான அலீ, அகீல், ஜஅஃபர், அப்பாஸின் மகன்கள் மற்றும் பிற முஃமின் உறவினர்கள்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>﴿النَّبِيُّ أَوْلَى بِالْمُؤْمِنِينَ مِنْ أَنفُسِهِمْ ۖ وَأَزْوَاجُهُ أُمَّهَاتُهُمْ﴾</p></div>
+<div class="transliteration"><p>An-nabiyyu awla bil-mu'minina min anfusihim, wa azwajuhu ummahatumu lahum.</p></div>
+<div class="en translation"><p>The Prophet is more worthy of the believers than their own selves, and his wives are their mothers.</p></div>
+<div class="tamil"><p>நபி, முஃமின்களுக்கு அவர்களின் உயிர்களைவிட உரிமை உடையவர்; அவர்களின் மனைவியர் அவர்களின் தாய்மார்கள்.</p></div>
+<div class="block-ref"><span class="ar" dir="rtl">33:6</span></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>واجبُنا نحوَ أهلِ بيتِ النبيِّ ﷺ:
+١- محبَّتُهم وتقديرُهم.
+٢- الترضِّي عنهم والاستغفارُ لهم.
+٣- احترامُهم والاقتداءُ بهم.
+٤- الدعاءُ لأهلِ بيتِ النبيِّ ﷺ في الصلاةِ.</p></div>
+<div class="transliteration"><p>Wajibuna nahwa ahli bayti an-nabiyyi ﷺ: 1- mahabbatuhum wa taqdiruhum. 2- at-tardiyyu 'anhum wal-istighfar lahum. 3- ihtiramuhum wal-'ittibau bihim. 4- ad-du'a'u li-ahli bayti an-nabiyyi ﷺ fis-salat.</p></div>
+<div class="en translation"><p>Our duty towards the family of the Prophet ﷺ:&lt;br&gt;1. Love them and appreciate them.&lt;br&gt;2. Be pleased with them and seek forgiveness for them.&lt;br&gt;3. Honour them and follow their example.&lt;br&gt;4. Pray for the family of the Prophet ﷺ in prayer.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களின் குடும்பத்தார் மீது நம் கடமை:&lt;br&gt;1. அவர்களை நேசிப்பது; மதிப்பது.&lt;br&gt;2. அவர்கள் மீது திருப்தி; அவர்களுக்காக இஸ்திஃப்ஃபார்.&lt;br&gt;3. கௌரவிப்பது; பின்பற்றுவது.&lt;br&gt;4. தொழுகையில் நபி ﷺ குடும்பத்திற்காகத் துஆ செய்வது.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-hadith-6-4.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <span></span>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-hadith.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

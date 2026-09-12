@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Adhkar of Wearing a New Garment - Adhkar (Remembering Allah) and Supplications | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Adhkar (Remembering Allah) and Supplications</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-adhkar.html" class="sidebar-unit-label">Unit 1: The Virtue of Dhikr and the Prescribed Adhkar</a>
+                <a href="s3-adhkar-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>The Virtue of Remembering Allah</a>
+                <a href="s3-adhkar-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Glorifying Allah: Subhanallah</a>
+                <a href="s3-adhkar-1-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>The Adhkar of Riding a Vehicle</a>
+                <a href="s3-adhkar-1-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>The Adhkar of Calamity</a>
+                <a href="s3-adhkar-1-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>Deeds That Benefit the Deceased After His Death</a>
+                <a href="s3-adhkar-1-6.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">6</span>The Adhkar of Wearing a New Garment</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-adhkar.html">Adhkar (Remembering Allah) and Supplications</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">The Adhkar of Wearing a New Garment</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-adhkar">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3"><path d="M28 96 a44 44 0 1 1 64 0" stroke-linecap="round"/><circle cx="28" cy="100" r="5"/><circle cx="43" cy="105" r="5"/><circle cx="60" cy="107" r="6"/><circle cx="77" cy="105" r="5"/><circle cx="92" cy="100" r="5"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128172; Unit 1</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">أَذْكَارُ لِبْسِ الثَّوْبِ الْجَدِيدِ</span>
+                <span class="en">The Adhkar of Wearing a New Garment</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">p. 217</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-217.webp" alt="Textbook page 217" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 217"><figcaption>p. 217</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>إذا لبسَ المسلمُ ثوبًا جديدًا يشرعُ له أنْ يدعوَ اللهَ تعالى بما كانَ النبيُّ ﷺ يدعو به، فيسألُ اللهَ تعالى أنْ يرزقَه استعمالَ هذا الثوبِ في طاعتِه، ويستعيذُ باللهِ أنْ يستعملَهُ في معصيتِه.</p></div>
+<div class="transliteration"><p>Idha labisa al-muslimu thawban jadidan yushra'u lahu an yad'uwa Allaha ta'ala bima kana an-nabiyyu ﷺ yad'u bihi, fayas'alu Allaha ta'ala an yarzuqahu isti'mala hadha ath-thawbi fi ta'atih, wa yasta'idhu billahi an yasta'milahu fi ma'siyatihi.</p></div>
+<div class="en translation"><p>When a Muslim wears a new garment, it is prescribed for him to supplicate to Allah the Exalted with what the Prophet ﷺ used to supplicate, asking Allah the Exalted to enable him to use this garment in His obedience, and seeking refuge with Allah from using it in disobedience.</p></div>
+<div class="tamil"><p>முஸ்லிம் புதிய ஆடையை அணியும்போது, நபி ﷺ கூறிய துஆவைக் கூறுவது சட்டப்படி நல்லது; அந்த ஆடையை இறைவனுக்குக் கீழ்ப்படிதலில் பயன்படுத்தும் வல்லமையைக் கேட்டு, அதை மறுப்பில் பயன்படுத்துவதிலிருந்து இறைவனிடம் பாதுகாப்புத் தேட வேண்டும்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن عبدِ اللهِ بنِ الشِّخِّيرِ رضي الله عنه قال: كان النبيُّ ﷺ إذا لبسَ ثوبًا جديدًا قال: «اللهمَّ لكَ الحمدُ، أنتَ كسوتَنيهِ، أسألُكَ خيرَهُ وخيرَ ما صُنِعَ له، وأعوذُ بكَ من شرِّه وشرِّ ما صُنِعَ له». أخرجه الترمذي.</p></div>
+<div class="transliteration"><p>'An 'Abdillahi ibni ash-Shikhkhiri radiyallahu 'anhu qal: kana an-nabiyyu ﷺ idha labisa thawban jadidan qal: «Allahumma laka al-hamdu anta kasawtanihi, as'aluka khairahu wa khaira ma suni'a lahu, wa a'udhu bika min sharrihi wa sharri ma suni'a lahu». Akhrajahu at-Tirmidhi.</p></div>
+<div class="en translation"><p>'Abdullah ibn ash-Shikhkhir, may Allah be pleased with him, said: When the Prophet ﷺ wore a new garment he would say: "O Allah, praise is for Yours; You have clothed me with it. I ask You for its goodness and the goodness of that for which it was made, and I seek refuge with You from its evil and the evil of that for which it was made." Narrated by At-Tirmidhi.</p></div>
+<div class="tamil"><p>அப்துல்லாஹ் இப்னு அஷ்ஷிக்கீர் (ரலி) கூறினார்கள்: "புதிய ஆடையை அணியும்போது நபி ﷺ: 'இறைவா! உனக்கே அனைத்து துதியும்; நீ எனக்கு இதை அணிவித்தாய்; இதன் நன்மையையும், இது செய்யப்பட்ட நன்மையையும் உன்னிடம் கேட்கிறேன்; இதன் தீமையிலிருந்தும், இது செய்யப்பட்ட தீமையிலிருந்தும் உன்னிடம் பாதுகாப்புத் தேடுகிறேன்' என்று கூறினார்கள்." (திர்மிதி)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=27601" target="_blank" rel="noopener">tirmidhi 1821</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>معنى الدعاءِ:
+إنَّ المسلمَ إذا لبسَ ثوبًا جديدًا يدعو اللهَ تعالى أنْ يرزقَه استعمالَ هذا الثوبِ في طاعتهِ، ويستعيذُ باللهِ أنْ يستعملَ هذا الثوبَ الجديدَ في معصيتِه.</p></div>
+<div class="transliteration"><p>Ma'na ad-du'a':
+Inna al-muslima idha labisa thawban jadidan yad'u Allaha ta'ala an yarzuqahu isti'mala hadha ath-thawbi fi ta'atihi, wa yasta'idhu billahi an yasta'mila hadha ath-thawba al-jadida fi ma'siyatihi.</p></div>
+<div class="en translation"><p>The meaning of the supplication:&lt;br&gt;When a Muslim wears a new garment he asks Allah the Exalted to enable him to use this garment in His obedience, and seeks refuge with Allah from using this new garment in disobedience.</p></div>
+<div class="tamil"><p>துஆவின் பொருள்:&lt;br&gt;முஸ்லிம் புதிய ஆடை அணியும்போது, அந்த ஆடையை இறைவனுக்குக் கீழ்ப்படிதலில் பயன்படுத்தும் வல்லமையைக் கேட்கிறான்; அந்தப் புதிய ஆடையை மறுப்பில் பயன்படுத்துவதிலிருந்து இறைவனிடம் பாதுகாப்புத் தேடுகிறான்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>وإذا رأى المسلمُ صاحبَه في ثوبٍ جديدٍ يشرعُ له أنْ يدعوَ له بقولِه: «أبلي وأخلقِي»؛ فعن أمِّ خالدٍ بنتِ خالدٍ رضي الله عنها قالت: أتي النبيُّ ﷺ بثيابٍ فيها خميصةٌ سوداءُ صغيرةٌ، فقال: «من ترونَ نكسوها هذه؟» فسكتَ القومُ، فقال: «ائتوني بأمِّ خالدٍ»، فأُتي بها تحملُ، فأخذَ الخميصةَ بيدِه فألبسَها، وقال: «أبلي وأخلقي»، وكان فيها عَلَمٌ أخضرُ أو أصفرُ، فقال: «يا أمَّ خالدٍ، هذا سناهُ»؛ و«سناه» بالحبشيةِ: حَسَنٌ. أخرجه البخاري.</p></div>
+<div class="transliteration"><p>Wa idha ra'a al-muslimu sahibahu fi thawbin jadidin yushra'u lahu an yad'uwa lahu bi-qawlih: «Abli wa akhliqi»; fe'an Ummi Khalidin binti Khalidin radiyallahu 'anha qalat: utiya an-nabiyyu ﷺ bi-thiyabin fiha khamisatun sawda'u saghirah, faqala: «Man tarawna naksuha hadhihi?» fasakata al-qawm, faqala: «I'tuni bi-Ummi Khalid», fa-utiya biha tahmilu, fa'akhadha al-khamisata biyadih fa'albashaha, wa qala: «Abli wa akhliqi», wa kana fiha 'alamun akhdaru aw asfar, faqala: «Ya Ummi Khalid, hadha sanahu»; wa «sanah» bil-habashiyyati: hasanun. Akhrajahu al-Bukhari.</p></div>
+<div class="en translation"><p>And if a Muslim sees his companion wearing a new garment, it is prescribed for him to pray for him by saying: "May you wear it out and replace it." Umm Khalid bint Khalid, may Allah be pleased with her, said: "The Prophet ﷺ was brought some garments, among which was a small black cloak (khamisah). He asked: 'Whom do you think we should clothe with this?' The people kept silent. He said: 'Bring me Umm Khalid.' She was brought carried, and he took the cloak and put it on her with his own hand, then said: 'May you wear it out and replace it.' It had a green or yellow mark, so he said: 'O Umm Khalid, this is sanah' — and 'sanah' in Abyssinian means 'beautiful.'" Narrated by Al-Bukhari.</p></div>
+<div class="tamil"><p>முஸ்லிம் தம் நண்பரை புதிய ஆடையில் கண்டால் "அப்லீ வ அக்லிகீ" (மடிந்துபோகட்டும்; மாற்றுக) என்று துஆ செய்வது நல்லது. உம்மு காலித் பின்த் காலித் (ரலி) கூறினார்கள்: "நபி ﷺ அவர்களிடம் ஆடைகள் கொண்டு வரப்பட்டன; அவற்றில் ஒரு சிறிய கருப்பு கஃப்தான் இருந்தது. 'இதை யாருக்கு அணிவிக்கலாம்?' என்று கேட்டார்கள்; மக்கள் அமைதியாக இருந்தனர். 'உம்மு காலித்தை என்னிடம் அழையுங்கள்' என்றார்கள்; அவள் சுமக்கப்பட்டு வந்தாள். கஃப்தானைக் கையால் எடுத்து அவளுக்கு அணிவித்து, 'அப்லீ வ அக்லிகீ' (மடியட்டும்; மாற்றுவாயாக) என்று கூறினார்கள். அதில் பச்சை/மஞ்சள் குறி இருந்தது; 'உம்மு காலிதே! இது ஸனாஹ்' — அபிசீனிய மொழியில் 'நல்லது' என்று சொன்னார்கள்." (புகாரி)</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-adhkar-1-5.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <span></span>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-adhkar.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

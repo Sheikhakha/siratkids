@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Names of the Prophet ﷺ - Hadith and Seerah | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Hadith and Seerah</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 1: Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-1.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">1</span>The Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>The Meanings of the Prophet's Names ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 2: The Attributes of the Prophet ﷺ</a>
+                <a href="s3-hadith-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>The Attributes of the Prophet ﷺ (1)</a>
+                <a href="s3-hadith-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>The Attributes of the Prophet ﷺ (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 3: The Excellence of the Prophet ﷺ</a>
+                <a href="s3-hadith-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Best of People</a>
+                <a href="s3-hadith-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>The Prophet ﷺ, the Khalil (Close Friend) of Allah</a>
+                <a href="s3-hadith-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Leader of the Children of Adam</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 4: The Cleanliness of the Prophet ﷺ</a>
+                <a href="s3-hadith-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Prophet's ﷺ Care for Cleanliness</a>
+                <a href="s3-hadith-4-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Care for the Cleanliness of the Body</a>
+                <a href="s3-hadith-4-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>Care for Mouth Cleanliness and the Fragrance of the Prophet ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 5: The Clothing of the Prophet ﷺ</a>
+                <a href="s3-hadith-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Description of the Prophet's ﷺ Clothing</a>
+                <a href="s3-hadith-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>The Rules of Clothing</a>
+                <a href="s3-hadith-5-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>How the Prophet ﷺ Wore His Clothes</a>
+                <a href="s3-hadith-5-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>Starting with the Right</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 6: The Family of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Wife of the Prophet ﷺ: Khadijah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Wife of the Prophet ﷺ: Aisha, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Wife of the Prophet ﷺ: Hafsah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Children of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>Loving the Family of the Prophet ﷺ</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-hadith.html">Hadith and Seerah</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">The Names of the Prophet ﷺ</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-hadith">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M60 28 C48 18 30 16 14 20 V96 C30 92 48 94 60 104 C72 94 90 92 106 96 V20 C90 16 72 18 60  Z"/><line x1="60" y1="28" x2="60" y2="104"/><path d="M26 38 h22 M26 52 h22 M72 38 h22 M72 52 h22"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128214; Unit 1</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">أَسْمَاءُ النَّبِيِّ ﷺ</span>
+                <span class="en">The Names of the Prophet ﷺ</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 118&ndash;121</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-118.webp" alt="Textbook page 118" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 118"><figcaption>p. 118</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-119.webp" alt="Textbook page 119" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 119"><figcaption>p. 119</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-120.webp" alt="Textbook page 120" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 120"><figcaption>p. 120</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-121.webp" alt="Textbook page 121" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 121"><figcaption>p. 121</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أحببتُ رسولَ اللهِ محمدًا ﷺ، وتعلَّمتُ في مادةِ الحديثِ أنَّ الحديثَ: ما يُروى عن النبي ﷺ من أقوالٍ وأفعالٍ. والسيرةُ: هي حياةُ النبي ﷺ. مَن سمَّى النبيَّ محمدًا ﷺ بهذا الاسمِ؟ ومَن أطلق عليه أسماءَه الأخرى؟</p></div>
+<div class="transliteration"><p>Ahbabtu rasula Allahi Muhammadan ﷺ, wa ta'allamtu fi maddati al-hadith anna al-haditha ma yurwa 'ani an-nabiyyi ﷺ min aqwal wa af'al. Was-seeratu hiya hayatu an-nabiyyi ﷺ. Man samma an-nabiyya Muhammadan ﷺ bihadha al-ismi? Wa man atlaqa 'alayhi asma'ahu al-ukhra?</p></div>
+<div class="en translation"><p>I love the Messenger of Allah, Muhammad ﷺ, and in the Hadith subject I learned that the hadith is what is narrated about the Prophet's statements and actions, and that the Seerah is the life of the Prophet ﷺ. Who named the Prophet Muhammad ﷺ with this name? And who gave him his other names?</p></div>
+<div class="tamil"><p>அல்லாஹ்வின் தூதர் முஹம்மது ﷺ அவர்களை நான் நேசிக்கிறேன். ஹதீஸ் பாடத்தில் கற்றுக்கொண்டேன்: ஹதீஸ் என்பது நபி ﷺ அவர்களின் சொற்கள், செயல்கள் பற்றி அறிவிக்கப்படுவது. சீரா என்பது நபி ﷺ அவர்களின் வாழ்க்கை வரலாறு. முஹம்மது ﷺ என்ற பெயரை யார் சூட்டினார்கள்? அவர்களின் நல்ல பெயர்களை யார் இட்டனர்?</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>لَمَّا وُلِدَ النبيُّ ﷺ وقد توفِّيَ أبوه عبدُ اللهِ، أرسلَتْ به أمُّه آمنةُ إلى جدِّه عبدِ المطَّلبِ؛ لأنَّه قد وُلِد له غلامٌ. فأتى به ودخل به الكعبةَ، وقام يدعو اللهَ، وحملَه إليه، فرحَّبَ به وسمَّاه محمدًا.</p></div>
+<div class="transliteration"><p>Lamma wulida an-nabiyyu ﷺ wa qad tufiffiya abuhu 'Abdullah, arsalat bihi ummuhu Aaminatu ila jaddihi 'Abdil-Muttalib; li'annahu qad wulida lahu ghulam. Fa'ata bihi wa dakhala bihi al-ka'bata, wa qama yad'u Allaha, wa hamalahu ilayhi, farahhaba bihi wa sammahu Muhammadan.</p></div>
+<div class="en translation"><p>When the Prophet ﷺ was born, after his father Abdullah had passed away, his mother Aaminah sent him to his grandfather 'Abdul-Muttalib, because a grandson had been born to him. He brought him, entered the Kaaba with him, stood supplicating to Allah, carried him close, welcomed him, and named him Muhammad.</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்கள் பிறந்தபோது அவர்களின் தந்தை அப்துல்லாஹ் இறந்துவிட்டார். தாய் ஆமினா அவர்களைத் தாத்தா அப்துல் முத்தலிபிடம் அனுப்பினார் — ஏனெனில் அவருக்குப் பேரன் பிறந்திருந்தான். அவர் அவரை அழைத்துவந்து கஅபாவில் நுழைந்து அல்லாஹ்விடம் பிரார்த்தித்து, அவரை ஏந்தி வரவேற்று, 'முஹம்மது' என்று பெயரிட்டார்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>وللنبي ﷺ أسماءٌ أخرى، منها: أَحْمَدُ. فقد بشَّر نبيُّ اللهِ عيسى بنُ مريمَ عليه السلامُ بنبيٍّ اسمُه أحمدُ، يعني نبيَّنا محمدًا ﷺ. قال تعالى:</p></div>
+<div class="transliteration"><p>Walinnabiyyi ﷺ asma'un ukhra, minha: Ahmad. Faqad bashshara nabiyyu Allahi 'Isa ibnu Maryama 'alayhis-salam bi-nabiyyin ismuhu Ahmad, ya'ni nabiyyana Muhammadan ﷺ. Qala ta'ala:</p></div>
+<div class="en translation"><p>The Prophet ﷺ has other names, among them: Ahmad. The Prophet of Allah, 'Eesa son of Maryam, peace be upon him, gave glad tidings of a prophet named Ahmad — meaning our Prophet Muhammad ﷺ. Allah the Exalted said:</p></div>
+<div class="tamil"><p>நபி ﷺ அவர்களுக்கு வேறு பெயர்களும் உண்டு. அவற்றில் ஒன்று 'அஹ்மத்', அல்லாஹ்வின் நபி ஈசா இப்னு மர்யம் (அலை) அவர்கள் 'அஹ்மத்' என்ற பெயருடைய ஒரு நபி வருவார் என்று நல்லறிவிப்புச் செய்தார் — அதாவது நம் நபி முஹம்மது ﷺ. அல்லாஹ் கூறினான்:</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>﴿وَإِذْ قَالَ عِيسَى ابْنُ مَرْيَمَ يَا بَنِي إِسْرَائِيلَ إِنِّي رَسُولُ اللَّهِ إِلَيْكُم مُّصَدِّقًا لِّمَا بَيْنَ يَدَيَّ مِنَ التَّوْرَاةِ وَمُبَشِّرًا بِرَسُولٍ يَأْتِي مِن بَعْدِي اسْمُهُ أَحْمَدُ ۖ فَلَمَّا جَاءَهُم بِالْبَيِّنَاتِ قَالُوا هَٰذَا سِحْرٌ مُّبِينٌ﴾</p></div>
+<div class="transliteration"><p>Wa-idh qala 'eesa ibnu maryama ya bani isra'ila inni rasulullahi ilaykum musaddiqan lima bayna yadayya mina at-tawrati wa mubashshiran bi-rasulin ya'ti min ba'di ismuhu ahmad. Falamma ja'ahum bil-bayyinati qalu hadha sihrun mubin.</p></div>
+<div class="en translation"><p>And [mention] when 'Eesa, the son of Maryam, said, "O Children of Israel, indeed I am the messenger of Allah to you, confirming what came before me of the Torah and bringing good tidings of a messenger to come after me, whose name is Ahmad." But when he came to them with clear evidences, they said, "This is obvious magic."</p></div>
+<div class="tamil"><p>'ஈசா இப்னு மர்யம் கூறியதை நினைவுகூருங்கள்: “இஸ்ராயீல் சந்ததியினரே! தவ்ராத்தில் எனக்கு முன் இருப்பதை உண்மைப்படுத்துபவனாகவும், எனக்குப் பின் வரும், பெயர் அஹ்மத் என்று இருந்த தூதரை நல்லறிவிப்புச் செய்பவனாகவும் நான் உங்களிடம் அனுப்பப்பட்ட அல்லாஹ்வின் தூதன் ஆவேன்.” ஆனால் அவன் அவர்களிடம் தெளிவான அத்தாட்சிகளுடன் வந்தபோது, “இது தெளிவான சூனியம்” என்று கூறினர்.</p></div>
+<div class="block-ref"><span class="ar" dir="rtl">61:6</span></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>وكان محمدٌ ﷺ يُعرَفُ عند قومِه قريشٍ بالأمينِ؛ لما عُرِف به من صدقٍ وأمانةٍ وحفظٍ للودائعِ.</p></div>
+<div class="transliteration"><p>Wa kana Muhammadun ﷺ yu'rafu 'inda qawmihi Qurayshin bil-Ameen; lima 'urifa bihi min sidqin wa amanatin wa hifzin lil-wada'i.</p></div>
+<div class="en translation"><p>Muhammad ﷺ was known among his people, the Quraysh, as Al-Ameen (the Trustworthy) because of his known truthfulness, honesty, and preservation of deposits.</p></div>
+<div class="tamil"><p>முஹம்மது ﷺ அவர்கள் தம் குலமான குறைஷியரிடையே, அவர்களின் உண்மைத்தன்மை, நம்பிக்கைக்குரியவர் என்பதன் காரணமாக 'அல்-அமீன்' (நம்பிக்கைக்குரியவர்) என்று அறியப்பட்டார்கள்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أَنْشِطُ نَفْسِي — أنسبُ بين العمودَينِ:
+١- سَمَّاهُ محمدًا: جَدُّهُ عبدُ المطَّلبِ.
+٢- بشَّرَ به: عيسى بنُ مريمَ عليه السلامُ.
+٣- لقَّبَتْه بالأمينِ: قريشٌ إكرامًا له.</p></div>
+<div class="transliteration"><p>Anshitu nafsi — ansib bayna al-'amudayn: 1. Sammahu Muhammadan: jadduhu 'Abdul-Muttalib. 2. Bashshara bihi: 'Isa ibnu Maryama 'alayhis-salam. 3. Laqqabathu bil-Ameen: Qurayshun ikraman lahu.</p></div>
+<div class="en translation"><p>Activity — match between the two columns:&lt;br&gt;1. Named him Muhammad: his grandfather 'Abdul-Muttalib.&lt;br&gt;2. Gave glad tidings of him: 'Eesa son of Maryam, peace be upon him.&lt;br&gt;3. Nicknamed him Al-Ameen: the Quraysh, honouring him.</p></div>
+<div class="tamil"><p>செயல்பாடு — இரு பகுதிகளையும் பொருத்துக:&lt;br&gt;1. 'முஹம்மது' என்று பெயரிட்டவர்: தாத்தா அப்துல் முத்தலிப்.&lt;br&gt;2. அவர் வருவார் என்று நல்லறிவிப்புச் செய்தவர்: ஈசா இப்னு மர்யம் (அலை).&lt;br&gt;3. 'அல்-அமீன்' என்று பட்டம் சூட்டியவர்: அவரைக் கௌரவித்த குறைஷியர்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>معلومةٌ إثرائيَّةٌ — قِصَّةُ وَضْعِ الحَجَرِ الأسودِ: لَمَّا أرادت قبائلُ قريشٍ بناءَ الكعبةِ من جديدٍ، اختلفوا فيمَن يضَعُ الحجرَ الأسودَ، فقالوا: اجعلوا حكمًا بيننا أوَّلَ من يطلُعُ من هذا الفجِّ. فجاء النبيُّ ﷺ، فقالوا: أتاكم الأمينُ. فأخذ ثوبًا ووضَعَ الحجرَ فيه، ودعا بطونَ قريشٍ فأخذوا بنواحي الثوبِ، ثمَّ أخذه النبيُّ ﷺ فوضَعَه في مكانِه، وبذلك حُلَّتِ المشكلةُ وحُفِظتْ دماءُ أهلِ مكةَ.</p></div>
+<div class="transliteration"><p>Ma'lumatun ithra'iyyah — qissatu wad'i al-hajari al-aswad: lamma aradat qaba'ilu Qurayshin bina'a al-ka'bati min jadid, ikhtalafu fiman yada'u al-hajara al-aswad, faqalu: ij'alu halaman baynana awwala man yatl'u min hadha al-fajj. Faja'a an-nabiyyu ﷺ, faqalu: atakum al-Ameen. Faakhadha thawban wa wada'a al-hajara fihi, wa da'a butuna Qurayshin faakhadhu binawahi ath-thawb, thumma akhadhahu an-nabiyyu ﷺ fawada'ahu fi makanih, wabidhalika hhullat al-mushkilatu wa hufidhat dima'u ahli Makkah.</p></div>
+<div class="en translation"><p>Enrichment — the story of placing the Black Stone: When the tribes of Quraysh wanted to rebuild the Kaaba, they disagreed over who would place the Black Stone, and they said: "Let the first to come through this mountain pass judge between us." The Prophet ﷺ came and they said: "Al-Ameen has come to you." He took a cloth, placed the stone in it, and called the clans of Quraysh to hold its edges; then the Prophet ﷺ took the stone and placed it in its position, thereby solving the problem and preserving the lives of the people of Makkah.</p></div>
+<div class="tamil"><p>செறிவூட்டல் — கருங்கல் வைக்கப்பட்ட கதை: குறைஷி குலங்கள் கஅபாவை மீண்டும் கட்ட முனைந்தபோது, கருங்கல்லை யார் வைப்பது என மாறுபட்டனர். "இந்தப் பள்ளத்தாக்கின் வழியாக முதலில் வருபவரை நடுவராகக் கொள்வோம்" என்றனர். நபி ﷺ வந்தபோது, "அல்-அமீன் வந்துவிட்டார்" என்றனர். அவர் ஒரு துணியை எடுத்து அதில் கல்லை வைத்து, குறைஷி குலங்களை அழைத்து துணியின் பக்கங்களைப் பிடிக்கச் சொன்னார். பிறகு நபி ﷺ கல்லை எடுத்து அதன் இடத்தில் வைத்தார். இவ்வாறு பிரச்சினை தீர்ந்தது; மக்களின் உயிர்கள் காக்கப்பட்டன.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <span></span>
+            <a href="s3-hadith-1-2.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-hadith.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

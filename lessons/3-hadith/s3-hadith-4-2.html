@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care for the Cleanliness of the Body - Hadith and Seerah | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Hadith and Seerah</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 1: Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>The Names of the Prophet ﷺ</a>
+                <a href="s3-hadith-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>The Meanings of the Prophet's Names ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 2: The Attributes of the Prophet ﷺ</a>
+                <a href="s3-hadith-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>The Attributes of the Prophet ﷺ (1)</a>
+                <a href="s3-hadith-2-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>The Attributes of the Prophet ﷺ (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 3: The Excellence of the Prophet ﷺ</a>
+                <a href="s3-hadith-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Best of People</a>
+                <a href="s3-hadith-3-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>The Prophet ﷺ, the Khalil (Close Friend) of Allah</a>
+                <a href="s3-hadith-3-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">7</span>The Leader of the Children of Adam</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 4: The Cleanliness of the Prophet ﷺ</a>
+                <a href="s3-hadith-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>The Prophet's ﷺ Care for Cleanliness</a>
+                <a href="s3-hadith-4-2.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">9</span>Care for the Cleanliness of the Body</a>
+                <a href="s3-hadith-4-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">10</span>Care for Mouth Cleanliness and the Fragrance of the Prophet ﷺ</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 5: The Clothing of the Prophet ﷺ</a>
+                <a href="s3-hadith-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">11</span>The Description of the Prophet's ﷺ Clothing</a>
+                <a href="s3-hadith-5-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">12</span>The Rules of Clothing</a>
+                <a href="s3-hadith-5-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">13</span>How the Prophet ﷺ Wore His Clothes</a>
+                <a href="s3-hadith-5-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">14</span>Starting with the Right</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-hadith.html" class="sidebar-unit-label">Unit 6: The Family of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">15</span>The Wife of the Prophet ﷺ: Khadijah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">16</span>The Wife of the Prophet ﷺ: Aisha, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-3.html" class="sidebar-lesson"><span class="sidebar-lesson-num">17</span>The Wife of the Prophet ﷺ: Hafsah, may Allah be pleased with her</a>
+                <a href="s3-hadith-6-4.html" class="sidebar-lesson"><span class="sidebar-lesson-num">18</span>The Children of the Prophet ﷺ</a>
+                <a href="s3-hadith-6-5.html" class="sidebar-lesson"><span class="sidebar-lesson-num">19</span>Loving the Family of the Prophet ﷺ</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-hadith.html">Hadith and Seerah</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">Care for the Cleanliness of the Body</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-hadith">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M60 28 C48 18 30 16 14 20 V96 C30 92 48 94 60 104 C72 94 90 92 106 96 V20 C90 16 72 18 60  Z"/><line x1="60" y1="28" x2="60" y2="104"/><path d="M26 38 h22 M26 52 h22 M72 38 h22 M72 52 h22"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128214; Unit 4</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">الْعِنَايَةُ بِنَظَافَةِ الْجِسْمِ</span>
+                <span class="en">Care for the Cleanliness of the Body</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 156&ndash;158</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-156.webp" alt="Textbook page 156" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 156"><figcaption>p. 156</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-157.webp" alt="Textbook page 157" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 157"><figcaption>p. 157</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-158.webp" alt="Textbook page 158" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 158"><figcaption>p. 158</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>الجسمُ أمانةٌ من اللهِ تعالى، وعلينا أن نحافظَ عليه، وأن نعتنيَ بنظافتِه. وقد كان النبيُّ ﷺ حريصًا على نظافةِ جسمِه؛ بالمضمضةِ، والاستنشاقِ، والوضوءِ، والاغتسالِ.</p></div>
+<div class="transliteration"><p>Al-jismu amanatun minallahi ta'ala, wa 'alayna an nuhafiza 'alayh, wa an na'taniya binadafatih. Wa qad kana an-nabiyyu ﷺ harisan 'ala nadafati jismih; bil-madmadah, wal-istinshaq, wal-wudu', wal-ightisal.</p></div>
+<div class="en translation"><p>The body is a trust from Allah the Exalted, and we must take care of it and keep it clean. The Prophet ﷺ was keen on the cleanliness of his body through rinsing the mouth, sniffing water, ablution (wudu), and bathing (ghusl).</p></div>
+<div class="tamil"><p>உடல் அல்லாஹ்வின் அமானிதம். அதை பாதுகாக்கவும், தூய்மையாக வைக்கவும் வேண்டும். வாய் கொப்பளித்தல், நாசியில் நீர் செலுத்தல், வுழூ, குளியல் (குஸ்லு) மூலம் உடலின் தூய்மையில் நபி ﷺ கவனமாக இருந்தார்கள்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>عن عبدِ اللهِ بنِ عمرَ رضي الله عنهُما أنَّ رسولَ اللهِ ﷺ قال وهو واقفٌ على المنبرِ: «مَن جاءَ منكمُ الجمعةَ فليغتسِلْ». أخرجه مسلم.</p></div>
+<div class="transliteration"><p>'An 'Abdillahi ibn 'Umara radiyallahu 'anhuma anna rasulallahi ﷺ qala wa huwa waqifun 'ala al-minbar: «Man ja'a minkumu al-jumu'ata falyaghtasil». Akhrajahu Muslim.</p></div>
+<div class="en translation"><p>'Abdullah ibn 'Umar, may Allah be pleased with them both, reported that the Messenger of Allah ﷺ said while standing on the pulpit: "Whoever of you comes to the Friday prayer, let him take a bath (ghusl)." Narrated by Muslim.</p></div>
+<div class="tamil"><p>அப்துல்லாஹ் இப்னு உமர் (ரலி) அறிவிக்கிறார்: ஜும்ஆ நாளில் மிம்பரில் நின்றுகொண்டு தூதர் ﷺ கூறினார்கள்: "உங்களில் யார் ஜும்ஆ தொழுகைக்கு வருகிறாரோ, அவர் குளிக்கட்டும்." (முஸ்லிம்)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=9121" target="_blank" rel="noopener">sahih-muslim 1844</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>ماذا نستفيدُ من هذا الحديثِ؟
+١- استحبابُ الاغتسالِ يومَ الجمعةِ، وخصوصًا لمن أرادَ أن يأتيَ المسجدَ.
+٢- حرصُ النبيِّ ﷺ على نظافةِ المسلمينَ، واجتماعِهم على طهرٍ ونظافةٍ.</p></div>
+<div class="transliteration"><p>Madha nastafeedu min hadha al-hadith? 1. istihbabu al-ightisali yawma al-jumu'ah, wa khususan liman arada an ya'tiya al-masjida. 2. hirsuhu ﷺ 'ala nadafati al-muslimeen, wa ijtimaihim 'ala tuhrin wa nadafah.</p></div>
+<div class="en translation"><p>What do we learn from this hadith?&lt;br&gt;1. It is recommended to take a bath (ghusl) on Friday, especially for the one who intends to come to the mosque.&lt;br&gt;2. The Prophet's ﷺ concern for the cleanliness of the Muslims and for them gathering in purity and cleanliness.</p></div>
+<div class="tamil"><p>இந்த ஹதீஸிலிருந்து என்ன பயன்?&lt;br&gt;1. ஜும்ஆ நாளில் குளிப்பது விரும்பத்தக்கது; குறிப்பாக மஸ்ஜித் வர உள்ளவர்.&lt;br&gt;2. முஸ்லிம்களின் தூய்மையில் நபியின் அக்கறை; தூய்மையாக ஒன்றுகூடுவது.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>أَعْرِفُ عبدَ اللهِ بنَ عمرَ رضي الله عنهُما:
+١- هو ابنُ الخليفةِ عمرَ بنِ الخطابِ رضي الله عنه، وأحدُ السابقينَ للإسلامِ.
+٢- كان شديدَ الالتزامِ بالسُّنَّةِ، حريصًا على متابعةِ النبيِّ ﷺ في كلِّ أحوالِه.
+٣- كان يغتسلُ يومَ الجمعةِ، ويلبسُ أحسنَ ثيابِه، ويتطيَّبُ قبلَ ذهابِه إلى المسجدِ.
+٤- كان من أكثرِ الصحابةِ روايةً للحديثِ؛ فروى ألفًا وستمئةٍ وثلاثينَ حديثًا.</p></div>
+<div class="transliteration"><p>A'rifu 'Abdallahi ibn 'Umara radiyallahu 'anhuma: 1. huwa ibnu al-khalifati 'Umara ibn al-Khattab radiyallahu 'anhu, wa ahadu as-sabiqeen lil-islam. 2. kana shadida al-iltizam bis-sunnah, harisan 'ala mutaba'ati an-nabiyyi ﷺ fi kulli ahwalih. 3. kana yaghtasilu yawma al-jumu'ah, wa yalbasu ahsana thiyabih, wa yatayyabu qabla dhahabihi ila al-masjid. 4. kana min akthari as-sahabati riwayatan lil-hadith; farawa alfan wa sittami'atin wa thalathina hadithan.</p></div>
+<div class="en translation"><p>I get to know 'Abdullah ibn 'Umar, may Allah be pleased with them both:&lt;br&gt;1. He is the son of the Caliph 'Umar ibn al-Khattab, may Allah be pleased with him, and one of the early Muslims.&lt;br&gt;2. He was firmly committed to the Sunnah and keen to follow the Prophet ﷺ in all his affairs.&lt;br&gt;3. He used to take a bath on Friday, wear his best clothes, and apply perfume before going to the mosque.&lt;br&gt;4. He was one of the most prolific narrators of hadith among the Companions; he narrated one thousand six hundred and thirty hadiths.</p></div>
+<div class="tamil"><p>அப்துல்லாஹ் இப்னு உமர் (ரலி) அவர்களை அறிவோம்:&lt;br&gt;1. கலீபா உமர் இப்னு கத்தாப் (ரலி) அவர்களின் மகன்; இஸ்லாத்தை முதலில் ஏற்றவர்களில் ஒருவர்.&lt;br&gt;2. சுன்னத்தை கண்டிப்பாகக் கடைப்பிடிப்பவர்; நபி ﷺ அவர்களை அனைத்திலும் பின்பற்றக் கவனமானவர்.&lt;br&gt;3. ஜும்ஆ நாளில் குளித்து, சிறந்த உடை அணிந்து, நறுமணம் பூசிக்கொண்டு மஸ்ஜித் செல்வார்.&lt;br&gt;4. தோழர்களில் அதிக ஹதீஸ் அறிவிப்பாளர்; 1630 ஹதீஸ்களை அறிவித்தார்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>قال اللهُ تعالى: «إِنَّ اللَّهَ يُحِبُّ التَّوَّابِينَ وَيُحِبُّ الْمُتَطَهِّرِينَ»؛ فالنظافةُ واجبةٌ على المسلمِ صغيرًا كان أو كبيرًا.</p></div>
+<div class="transliteration"><p>Qala Allahu ta'ala: «Innallaha yuhibbu at-tawwabeena wa yuhibbu al-mutatahhireen»; fan-nadafatu wajibatun 'ala al-muslimi saghiran kana aw kabiran.</p></div>
+<div class="en translation"><p>Allah the Exalted said: "Indeed, Allah loves those who repent and loves those who purify themselves." Cleanliness is obligatory upon the Muslim, whether young or old.</p></div>
+<div class="tamil"><p>அல்லாஹ் கூறினான்: "நிச்சயமாக அல்லாஹ் பாவமன்னிப்பு கோறுவோரையும், தூய்மையாக இருப்போரையும் நேசிக்கிறான்." தூய்மை இளையோர், முதியோர் அனைவருக்கும் கடமை.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-hadith-4-1.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-hadith-4-3.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-hadith.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

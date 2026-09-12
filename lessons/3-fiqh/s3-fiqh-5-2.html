@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <script>!function(){try{if(localStorage.getItem("dark-mode")==="true"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}}()</script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions of Prayer (2) - Fiqh (Islamic Jurisprudence) | SiratKids</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
+</head>
+<body class="disable-onload-animations">
+<nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <svg class="icon-sidebar-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                </svg>
+                <svg class="icon-sidebar-closed" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <rect x="2" y="2" width="20" height="20" rx="3"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <path d="M7,2 L5,2 A3,3 0 0,1 2,5 L2,19 A3,3 0 0,1 5,22 L7,22 Z" fill="currentColor" stroke="none"/>
+                </svg>
+            </button><a href="../../index.html" class="nav-logo">
+                <img src="../../images/logo.png" alt="SiratKids logo" class="nav-logo-img">
+                <span class="nav-brand">SiratKids</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../quran-reader.html">Quran</a>
+            <button class="dm-toggle" aria-label="Toggle dark mode">
+                <svg class="dm-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="dm-icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <div class="settings-dropdown">
+                <button class="settings-toggle-btn" aria-label="Settings">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <div class="settings-dropdown-content">
+                    <div class="settings-dropdown-item">
+                        <label class="font-switcher-label" for="arabic-font">Arabic Script</label>
+                        <select id="arabic-font">
+                            <option value="nastaleeq" selected>Indopak Nastaleeq</option>
+                            <option value="naskh">Noto Naskh</option>
+                            <option value="amiri">Amiri</option>
+                            <option value="scheherazade">Scheherazade New</option>
+                            <option value="lateef">Lateef</option>
+                        </select>
+                    </div>
+                    <div class="settings-dropdown-divider"></div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">English Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                    <div class="settings-dropdown-item">
+                        <span class="settings-label">Arabic Size</span>
+                        <div class="font-size-group"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside class="sidenav-with-history-container content-loaded">
+        <div class="sidenav-inner">
+<div class="sidebar-title">Fiqh (Islamic Jurisprudence)</div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 1: Manners of Relieving Oneself</a>
+                <a href="s3-fiqh-1-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">1</span>Manners of Relieving Oneself (1)</a>
+                <a href="s3-fiqh-1-2.html" class="sidebar-lesson"><span class="sidebar-lesson-num">2</span>Manners of Relieving Oneself (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 2: Removing Impurity</a>
+                <a href="s3-fiqh-2-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">3</span>Removing Impurity</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 3: Tayammum (Dry Ablution)</a>
+                <a href="s3-fiqh-3-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">4</span>Tayammum (Dry Ablution)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 4: The Status of Prayer</a>
+                <a href="s3-fiqh-4-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">5</span>The Status of Prayer</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 5: Conditions of Prayer</a>
+                <a href="s3-fiqh-5-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">6</span>Conditions of Prayer (1)</a>
+                <a href="s3-fiqh-5-2.html" class="sidebar-lesson active"><span class="sidebar-lesson-num active">7</span>Conditions of Prayer (2)</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 6: Manners of Entering the Mosque</a>
+                <a href="s3-fiqh-6-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">8</span>Manners of Entering the Mosque</a>
+            </div>
+            <div class="sidebar-unit">
+                <a href="../../stage-3-fiqh.html" class="sidebar-unit-label">Unit 7: Congregational Prayer</a>
+                <a href="s3-fiqh-7-1.html" class="sidebar-lesson"><span class="sidebar-lesson-num">9</span>Congregational Prayer</a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-content-wrapper">
+
+    <nav aria-label="Breadcrumb"><div class="breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3.html">Stage Three</a>
+        <span class="sep">&#9657;</span>
+        <a href="../../stage-3-fiqh.html">Fiqh (Islamic Jurisprudence)</a>
+        <span class="sep">&#9657;</span>
+        <span class="current" aria-current="page">Conditions of Prayer (2)</span>
+    </div></nav>
+
+    <header class="lesson-hero subj-hero-fiqh">
+        <div class="lesson-hero-art" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M60 10 C60 10 24 54 24 78 a36 36 0 0 0 72 0 C96 54 60 10 60 10 Z"/><path d="M44 82 a18 18 0 0 0 14 16"/></svg></div>
+        <div class="lesson-hero-inner">
+            <p class="lesson-unit"><span class="stage-chip"><span class="en">Stage 3</span><span class="sep">&middot;</span><span class="ar" dir="rtl">المرحلة الثالثة</span></span><span class="lesson-unit-chip">&#128167; Unit 5</span></p>
+            <h1 class="lesson-title">
+                <span class="ar" dir="rtl">شُرُوطُ الصَّلَاةِ (٢)</span>
+                <span class="en">Conditions of Prayer (2)</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="lesson-layout">
+
+    <main class="lesson-main">
+        <div class="toggle-bar">
+            <button class="translation-toggle" data-toggle="translation" data-on="English ON" data-off="English OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">English ON</span></button>
+            <button class="translation-toggle" data-toggle="tamil" data-on="Tamil ON" data-off="Tamil OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Tamil OFF</span></button>
+            <button class="translation-toggle" data-toggle="transliteration" data-on="Transliteration ON" data-off="Transliteration OFF"><span class="toggle-track"><span class="toggle-knob"></span></span><span class="toggle-label">Transliteration OFF</span></button>
+        </div>
+
+<details class="textbook-panel">
+            <summary><span class="tb-ico" aria-hidden="true">&#128214;</span><span class="tb-title">From the Textbook</span><span class="tb-range">pp. 100&ndash;105</span></summary>
+            <div class="tb-pages"><figure class="tb-page"><img src="../../images/pdf/s3/page-100.webp" alt="Textbook page 100" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 100"><figcaption>p. 100</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-101.webp" alt="Textbook page 101" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 101"><figcaption>p. 101</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-102.webp" alt="Textbook page 102" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 102"><figcaption>p. 102</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-103.webp" alt="Textbook page 103" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 103"><figcaption>p. 103</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-104.webp" alt="Textbook page 104" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 104"><figcaption>p. 104</figcaption></figure><figure class="tb-page"><img src="../../images/pdf/s3/page-105.webp" alt="Textbook page 105" loading="lazy" tabindex="0" role="button" aria-label="Zoom textbook page 105"><figcaption>p. 105</figcaption></figure></div>
+        </details>
+
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>من شروط الصلاة: ستر العورة.
+عورة الرجل من السرة إلى الركبة.
+عورة المرأة في الصلاة كلها ما عدا وجهها وكفيها.
+عورة المرأة عند الأجانب الرجال: كلها.</p></div>
+<div class="transliteration"><p>Min shuruti as-salah: satru al-'awrah. 'Awratu ar-rajuli min as-surrati ila ar-rukbah. 'Awratu al-mar'ati fis-salahi kulluha ma 'ada wajhaha wa kaffayha.</p></div>
+<div class="en translation"><p>Among the conditions of prayer: covering the awrah.&lt;br&gt;The awrah of a man is from the navel to the knee.&lt;br&gt;The awrah of a woman in prayer is her whole body except her face and hands.&lt;br&gt;The awrah of a woman before unrelated men is her entire body.</p></div>
+<div class="tamil"><p>நிபந்தனைகளில்: அவ்ரத்தை மறைத்தல்.&lt;br&gt;ஆணின் அவ்ரா: தொப்புளிலிருந்து முழங்கால் வரை.&lt;br&gt;தொழுகையில் பெண்ணின் அவ்ரா: முகம், கை பகுதிகள் தவிர முழு உடல்.&lt;br&gt;மெஹ்ரம் அல்லாத ஆண்கள் முன்னிலையில் பெண்ணின் முழு உடலும் அவ்ரா.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>من شروط الصلاة: إزالة النجاسة.
+يجب عند إرادة الصلاة إزالة النجاسة عن ثلاثة أشياء:
+١- البدن.
+٢- الثياب.
+٣- مكان الصلاة.</p></div>
+<div class="transliteration"><p>Min shuruti as-salah: izalatu an-najasah. Yajibu 'inda iradati as-salah izalatu an-najasah 'an thalathat ashyal: al-badan, ath-thiyab, makan as-salah.</p></div>
+<div class="en translation"><p>Among the conditions of prayer: removing impurity.&lt;br&gt;When intending to pray, one must remove impurity from three things:&lt;br&gt;1. The body.&lt;br&gt;2. The clothes.&lt;br&gt;3. The place of prayer.</p></div>
+<div class="tamil"><p>நிபந்தனைகளில்: நாஜஸை நீக்குதல்.&lt;br&gt;தொழ விரும்பும்போது மூன்றிலிருந்து நாஜஸ் நீக்குதல் கடமை:&lt;br&gt;1. உடல்.&lt;br&gt;2. ஆடைகள்.&lt;br&gt;3. தொழுமிடம்.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>من شروط الصلاة: دخول الوقت.
+لا تصح الصلاة إلا بمعرفة دخول وقتها.
+أوقات الصلوات الخمس:
+١- الفجر: من طلوع الفجر الثاني إلى طلوع الشمس.
+٢- الظهر: من زوال الشمس إلى أن يصير ظل كل شيء مثله.
+٣- العصر: من خروج وقت الظهر إلى اصفرار الشمس.
+٤- المغرب: من غروب الشمس إلى مغيب الشفق الأحمر.
+٥- العشاء: من مغيب الشفق الأحمر إلى نصف الليل.</p></div>
+<div class="transliteration"><p>Min shuruti as-salah: dukhulu al-waqt. Awqatu as-salawati al-khams: al-fajr min tulu'i al-fajri ath-thani ila tulu'i ash-shams; adh-dhuhur min zawali ash-shams ila an yasira dhil-lu kulli shay'in mithlah; al-asr min khuruji waqti adh-dhuhur ila isfirari ash-shams; al-maghrib min ghurubi ash-shams ila mughibi ash-shafaqi al-ahmar; al-'isha min mughibi ash-shafaqi al-ahmar ila nisfi al-layl.</p></div>
+<div class="en translation"><p>Among the conditions of prayer: the entry of the time.&lt;br&gt;Prayer is not valid except knowing that its time has begun.&lt;br&gt;The times of the five prayers:&lt;br&gt;1. Fajr: from dawn to sunrise.&lt;br&gt;2. Dhuhr: from the sun's decline from its zenith until an object's shadow equals its length.&lt;br&gt;3. Asr: from the end of Dhuhr time until the sun turns yellow.&lt;br&gt;4. Maghrib: from sunset until the red twilight fades.&lt;br&gt;5. Isha: from the fading of the red twilight until midnight.</p></div>
+<div class="tamil"><p>நிபந்தனைகளில்: நேரம் உள்ளேறுதல்.&lt;br&gt;தொழுகை சரியான நேரத்தில் மட்டுமே செல்லும்.&lt;br&gt;ஐந்து தொழுகை நேரங்கள்:&lt;br&gt;1. ஃபஜ்ர்: விடியல் முதல் சூரிய உதயம் வரை.&lt;br&gt;2. துஹ்ர்: நண்பகல் சாய்வு முதல் நிழல் சமமாகும் வரை.&lt;br&gt;3. அஸ்ர்: துஹ்ர் முடிந்ததும் முதல் சூரியன் மஞ்சளாவது வரை.&lt;br&gt;4. மஃரிப்: சூரிய அஸ்தமனம் முதல் சிவப்பு அந்தி மறையும் வரை.&lt;br&gt;5. இஷா: சிவப்பு அந்தி மறைந்ததும் முதல் நள்ளிரவு வரை.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>﴿إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا﴾</p></div>
+<div class="transliteration"><p>Inna as-salaha kanat 'ala al-mu'minina kitaban mawquta.</p></div>
+<div class="en translation"><p>Prayer is obligatory for the believers at prescribed times.</p></div>
+<div class="tamil"><p>நம்பிக்கையாளர்களுக்கு தொழுகை குறித்த நேரங்களில் கடமையாக்கப்பட்டுள்ளது.</p></div>
+<div class="block-ref"><span class="ar" dir="rtl">4:103</span></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>من شروط الصلاة: استقبال القبلة.
+لا تصح الصلاة بدون استقبال القبلة؛ فهي شرط من شروطها.
+الكعبة في مكة المكرمة، وهي قبلة المسلمين جميعًا.
+من شروط الصلاة: النية.
+محل النية القلب ولا يتلفظ بها، فهي شرط من شروط الصلاة.</p></div>
+<div class="transliteration"><p>Min shuruti as-salah: istiqbalu al-qiblah. La tasihhu as-salah biduni istiqbali al-qiblah. Al-ka'batu fi Makkata al-mukarramah wa hiya qiblatu al-muslimin jami'an. Min shuruti as-salah: an-niyyah. Mahallu an-niyyah al-qalb wa la yutalaf-fazu biha.</p></div>
+<div class="en translation"><p>Among the conditions of prayer: facing the Qiblah.&lt;br&gt;Prayer is not valid without facing the Qiblah; it is a condition of it.&lt;br&gt;The Kaaba is in Makkah and it is the Qiblah of all Muslims.&lt;br&gt;Among the conditions of prayer: the intention (niyyah).&lt;br&gt;The place of intention is the heart, and it is not pronounced aloud; it is a condition of prayer.</p></div>
+<div class="tamil"><p>நிபந்தனைகளில்: கிப்லாவை முன்னோக்குதல்.&lt;br&gt;கிப்லா இல்லாமல் தொழுகை செல்லாது; அது நிபந்தனை.&lt;br&gt;கஃபா மக்காவில் உள்ளது; அதுவே அனைத்து முஸ்லிம்களின் கிப்லா.&lt;br&gt;நிபந்தனைகளில்: நிய்யத்.&lt;br&gt;நிய்யத்தின் இடம் நெஞ்சம்; வாயால் சொல்லப்படுவதில்லை; அது தொழுகையின் நிபந்தனை.</p></div>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>قال رسول الله ﷺ: «إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى». أخرجه البخاري.</p></div>
+<div class="transliteration"><p>Qala rasulullah ﷺ: «Innamal-a'malu binni-yyat, wa innama likullimri'in ma nawa.» Akhrajahu al-Bukhari.</p></div>
+<div class="en translation"><p>The Messenger of Allah ﷺ said: "Deeds are but by intentions, and every person will have only that which he intended." Narrated by al-Bukhari.</p></div>
+<div class="tamil"><p>நபி ﷺ கூறினார்கள்: "செயல்கள் நிய்யத்தைப் பொறுத்தே; ஒவ்வொருவருக்கும் அவர் நினைத்ததே கிடைக்கும்." (புகாரி)</p></div>
+<a class="block-ref hadith-ref" href="https://search.hadith-mcp.org/?id=1" target="_blank" rel="noopener">sahih-bukhari 1</a>
+</div>
+<div class="lesson-block">
+<div class="ar" dir="rtl"><p>فشروط الصلاة تسعة:
+١- الإسلام.
+٢- العقل.
+٣- التمييز.
+٤- دخول الوقت.
+٥- استقبال القبلة.
+٦- ستر العورة.
+٧- إزالة النجاسة.
+٨- الوضوء.
+٩- النية.</p></div>
+<div class="transliteration"><p>Fashurutu as-salah tis'ah: 1. al-islam, 2. al-'aql, 3. at-tamyiz, 4. dukhulu al-waqt, 5. istiqbalu al-qiblah, 6. satru al-'awrah, 7. izalatu an-najasah, 8. al-wudu, 9. an-niyyah.</p></div>
+<div class="en translation"><p>The conditions of prayer are nine:&lt;br&gt;1. Islam.&lt;br&gt;2. Sanity.&lt;br&gt;3. Discernment.&lt;br&gt;4. The entry of the time.&lt;br&gt;5. Facing the Qiblah.&lt;br&gt;6. Covering the awrah.&lt;br&gt;7. Removing impurity.&lt;br&gt;8. Ablution.&lt;br&gt;9. The intention.</p></div>
+<div class="tamil"><p>தொழுகையின் நிபந்தனைகள் ஒன்பது:&lt;br&gt;1. இஸ்லாம்.&lt;br&gt;2. நல்ல மனம்.&lt;br&gt;3. சித்த வயது.&lt;br&gt;4. நேரம் வருதல்.&lt;br&gt;5. கிப்லா.&lt;br&gt;6. அவ்ரா மறைத்தல்.&lt;br&gt;7. நாஜஸ் நீக்கல்.&lt;br&gt;8. உளூ.&lt;br&gt;9. நிய்யத்.</p></div>
+</div>
+
+        <div class="lesson-nav">
+            <a href="s3-fiqh-5-1.html" class="lesson-nav-prev">&#8592; Previous</a>
+            <a href="s3-fiqh-6-1.html" class="lesson-nav-next">Next &#8594;</a>
+        </div>
+        <div class="lesson-back-row">
+            <a class="btn-back-lg" href="../../stage-3-fiqh.html">&#8592; Back to Units</a>
+            <a class="btn-back-lg btn-back-alt" href="../../stage-3.html">&#8592; Back to Subjects</a>
+        </div>
+    </main>
+    <aside class="lesson-aside">
+        
+        <div class="audio-player">
+            <div class="audio-player-title">Listen in Arabic</div>
+            <button class="audio-play-btn" aria-label="Play all Arabic audio">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="audio-status">Tap to play all</div>
+            <div class="audio-text-preview"></div>
+            <div class="audio-speed-select-wrap">
+                <label class="audio-speed-label" for="audio-speed">Speed</label>
+                <select class="audio-speed-select" id="audio-speed" name="audio-speed">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+
+    </aside>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 SiratKids. All rights reserved.</p>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>
