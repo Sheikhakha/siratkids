@@ -830,6 +830,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.settings-dropdown-content').forEach(function(content) {
         if (content.closest('.stages-dropdown')) return;
         if (content.querySelector('.accent-swatches')) return;
+        /* Hide accent swatches on homepage — fixed palette */
+        if (document.body.classList.contains('home-page')) return;
 
         var row = document.createElement('div');
         row.className = 'settings-dropdown-item';

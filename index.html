@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&display=swap" rel="stylesheet">
 </head>
-<body class="disable-onload-animations">
+<body class="disable-onload-animations home-page">
 
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
@@ -80,6 +80,7 @@
     </nav>
 
     <header class="hero home-hero">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
         <div aria-hidden="true">
             <span class="hero-orb hero-orb-1"></span>
             <span class="hero-orb hero-orb-2"></span>
@@ -112,6 +113,7 @@
     <main id="main-content">
 
     <section class="stats-band reveal" aria-label="Curriculum at a glance">
+        <canvas class="section-canvas" aria-hidden="true" data-section="stats"></canvas>
         <div class="stats-grid">
             <div class="stat">
                 <span class="stat-num">160+</span>
@@ -133,6 +135,7 @@
     </section>
 
     <section class="mission-section reveal">
+        <canvas class="section-canvas" aria-hidden="true" data-section="mission"></canvas>
         <p class="kicker">Welcome to SiratKids</p>
         <h2>A Sacred Space of Learning</h2>
         <p>Welcome to a sacred space of learning designed to cultivate a deep, authentic, and lifelong connection to Islam. Our mission is to provide children and families with a structured, beautifully designed curriculum rooted firmly in the Quran and the authentic Sunnah, according to the understanding of the righteous predecessors (Salaf us-Salih).</p>
@@ -140,6 +143,7 @@
     </section>
 
     <section class="journey-section reveal" id="stages">
+        <canvas class="section-canvas" aria-hidden="true" data-section="journey"></canvas>
         <p class="kicker">How to Begin</p>
         <h2>The Learning Journey</h2>
         <p class="stages-intro">Every child&rsquo;s learning journey is unique. Follow the path from seed to summit &mdash; each stop opens a curated selection of interactive lessons tailored to your child&rsquo;s developmental stage.</p>
@@ -254,6 +258,7 @@
     </section>
 
     <section class="subjects-section reveal" id="subjects">
+        <canvas class="section-canvas" aria-hidden="true" data-section="subjects"></canvas>
         <p class="kicker">One Unified Whole</p>
         <h2>Our Core Subjects</h2>
         <p class="stages-intro">Our curriculum is deliberately integrated so that students see Islam as a living, unified whole.</p>
@@ -324,6 +329,7 @@
     </section>
 
     <section class="why-section reveal" id="why">
+        <canvas class="section-canvas" aria-hidden="true" data-section="why"></canvas>
         <p class="kicker">Why SiratKids</p>
         <h2>Built on Principle, Designed with Care</h2>
         <div class="feat-grid">
@@ -347,6 +353,7 @@
     </section>
 
     <section class="cta-band reveal">
+        <canvas class="section-canvas" aria-hidden="true" data-section="cta"></canvas>
         <div class="cta-inner">
             <h2>Begin Your Child&rsquo;s Journey Today</h2>
             <p>Free, authentic, and made with love &mdash; wherever you are.</p>
@@ -358,6 +365,7 @@
     </section>
 
     <section class="credits-section reveal" id="credits">
+        <canvas class="section-canvas" aria-hidden="true" data-section="credits"></canvas>
         <p class="kicker">Source &amp; Credits</p>
         <h2>Our Sources &amp; Methodology</h2>
         <p class="stages-intro">Authentic Islamic knowledge for the next generation &mdash; rooted in the Quran and the Sunnah, upon the way of the righteous predecessors (<em>Salaf al-Salih</em>).</p>
@@ -437,18 +445,12 @@
         (function () {
             var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            /* golden path beam down the journey timeline + stage markers lighting up */
+            /* stage markers lighting up on scroll */
             var journey = document.querySelector('.journey');
             var nodes = journey ? journey.querySelectorAll('.journey-node') : [];
-            function setBeam() {
+            function checkLit() {
                 if (!journey) return;
-                var r = journey.getBoundingClientRect();
                 var vh = window.innerHeight || document.documentElement.clientHeight;
-                var passed = Math.min(Math.max(vh * 0.72 - r.top, 0), r.height);
-                var frac = r.height ? passed / r.height : 0;
-                journey.style.setProperty('--beam', frac.toFixed(4));
-                if (frac < 0.015) { journey.classList.add('beam-off'); }
-                else { journey.classList.remove('beam-off'); }
                 nodes.forEach(function (n) {
                     var nr = n.getBoundingClientRect();
                     if (nr.top + nr.height * 0.35 < vh * 0.72) n.classList.add('lit');
@@ -479,7 +481,7 @@
                 var onScroll = function () {
                     if (ticking) return;
                     ticking = true;
-                    requestAnimationFrame(function () { setBeam(); checkPops(); ticking = false; });
+                    requestAnimationFrame(function () { checkLit(); checkPops(); ticking = false; });
                 };
                 window.addEventListener('scroll', onScroll, { passive: true });
                 window.addEventListener('resize', onScroll);
@@ -624,5 +626,7 @@
             });
         })();
     </script>
+    <script src="js/hero-canvas.js" defer></script>
+    <script src="js/section-canvases.js" defer></script>
 </body>
 </html>

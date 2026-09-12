@@ -3341,16 +3341,33 @@ select:focus-visible {
 
 /* ===== Homepage (Welcome revamp) ===== */
 .mission-section {
-    max-width: 900px; margin: 2.5rem auto; padding: 0 1rem;
+    margin: 0; padding: 96px 1rem 60px;
     text-align: center;
+    overflow: hidden;
 }
-.mission-section h2 { color: var(--primary); margin-bottom: 0.75rem; }
-.mission-section p { color: var(--text); line-height: 1.7; margin-bottom: 0.75rem; }
+.mission-section .kicker, .mission-section h2, .mission-section p {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.mission-section h2 { color: #E7EAF7; margin-bottom: 0.75rem; text-shadow: 0 2px 12px rgba(0,0,0,.5); }
+.mission-section p { color: #CBD5E1; line-height: 1.7; margin-bottom: 0.75rem; text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+.mission-section .kicker { color: #FBD679 !important; background: rgba(251,214,121,.12) !important; border-color: rgba(251,214,121,.25) !important; }
+[data-theme='dark'] .mission-section h2 { color: #F1F5F9; }
+[data-theme='dark'] .mission-section p { color: #E2E8F0; }
 .hero-verse-ref {
     font-size: 0.85rem; opacity: 0.9; margin-top: -0.25rem;
 }
 .stages-section, .subjects-section, .why-section {
-    max-width: 1100px; margin: 2.5rem auto; padding: 0 1rem;
+    margin: 0; padding: 80px 1rem 0;
+    overflow: hidden;
+}
+.stages-section > :not(.section-canvas),
+.subjects-section > :not(.section-canvas),
+.why-section > :not(.section-canvas) {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .stages-section > h2, .subjects-section > h2, .why-section > h2 {
     color: var(--primary); text-align: center;
@@ -4411,24 +4428,7 @@ body.drawer-lock { overflow: hidden; }
     .ln-sway, .ln-glow { animation: none; }
 }
 
-/* ---- scroll magic: golden path beam + tile pops + ambient particles (index.html) ---- */
-.journey::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%) scaleY(var(--beam, 0));
-    transform-origin: top center;
-    top: 28px;
-    bottom: 28px;
-    width: 7px;
-    border-radius: 7px;
-    background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--primary) 65%, transparent) 22%, var(--primary) 60%, color-mix(in srgb, var(--primary) 30%, transparent));
-    box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 40%, transparent), 0 0 24px color-mix(in srgb, var(--primary) 20%, transparent);
-    pointer-events: none;
-    opacity: .88;
-    transition: opacity .35s ease;
-}
-.journey.beam-off::after { opacity: 0; }
+/* ---- scroll magic: tile pops + ambient particles (index.html) ---- */
 .journey-node .journey-marker {
     opacity: 0;
     transform: scale(.4) rotate(-40deg);
@@ -4571,7 +4571,9 @@ body.drawer-lock { overflow: hidden; }
     0%   { opacity: 1; transform: translate(-50%,-50%) translate(0,0) scale(.4) rotate(0deg); }
     100% { opacity: 0; transform: translate(-50%,-50%) translate(var(--dx,0), var(--dy,-40px)) scale(1.1) rotate(var(--drot,80deg)); }
 }
-.journey-section, .cta-band, .credits-section { position: relative; }
+.journey-section, .cta-band, .credits-section, .stats-band { position: relative; overflow: hidden; }
+.credits-section .kicker, .credits-section h2, .credits-section .stages-intro, .credits-section .credits-grid,
+.stats-band .stats-grid { position: relative; z-index: 1; }
 @media (max-width: 900px) { .surah-scroll-decor { display: none; } }
 @media (prefers-reduced-motion: reduce) {
     .journey::after { display: none; }
@@ -4735,7 +4737,8 @@ body.drawer-lock { overflow: hidden; }
 }
 
 /* ---- journey timeline (alternating zigzag) ---- */
-.journey-section { padding: 110px 20px 72px; }
+.journey-section { padding: 110px 20px 72px; overflow: hidden; }
+.journey-section > :not(.section-canvas) { max-width: 1100px; margin-left: auto; margin-right: auto; }
 .journey-section h2, .mission-section h2, .subjects-section h2, .why-section h2 {
     font-family: var(--font-en-heading);
     font-size: clamp(1.7rem, 3.4vw, 2.3rem);
@@ -4743,9 +4746,6 @@ body.drawer-lock { overflow: hidden; }
     margin-bottom: 14px;
 }
 .journey-section, .mission-section, .subjects-section, .why-section {
-    max-width: 960px;
-    margin-left: auto;
-    margin-right: auto;
     text-align: center;
 }
 .mission-section { padding-top: 96px; }
@@ -5065,9 +5065,13 @@ a.journey-card:focus-visible,
 
 /* ---- CTA band ---- */
 .cta-band {
+    margin: 0;
+    padding: 40px 20px 70px;
+    overflow: hidden;
+}
+.cta-band .cta-inner {
     max-width: 1080px;
-    margin: 40px auto 70px;
-    padding: 0 20px;
+    margin: 0 auto;
 }
 .cta-inner {
     background:
@@ -5938,6 +5942,11 @@ a.journey-card:focus-visible,
     margin-top: 18px;
     position: relative;
     z-index: 2;
+    text-shadow: 0 2px 12px rgba(255,255,255,.6), 0 1px 3px rgba(255,255,255,.8);
+}
+[data-theme='dark'] .home-hero .hero-title,
+[data-theme='dark'] .home-hero .hero-title b {
+    text-shadow: 0 2px 16px rgba(0,0,0,.5), 0 1px 4px rgba(0,0,0,.7);
 }
 .home-hero .hero-title::after {
     content: '';
@@ -5954,20 +5963,40 @@ a.journey-card:focus-visible,
 }
 .home-hero .hero-sub-en {
     color: #554A3F;
+    text-shadow: 0 1px 8px rgba(255,255,255,.5);
+}
+[data-theme='dark'] .home-hero .hero-sub-en {
+    text-shadow: 0 1px 10px rgba(0,0,0,.4);
 }
 .home-hero .hero-sub-ar {
     color: var(--fh-indigo);
+    text-shadow: 0 1px 8px rgba(255,255,255,.5);
+}
+[data-theme='dark'] .home-hero .hero-sub-ar {
+    text-shadow: 0 1px 10px rgba(0,0,0,.4);
 }
 .home-hero .hero-verse {
     border-color: rgba(201,169,110,.34);
+    background: rgba(255,255,255,.45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
-.home-hero .hero-verse::before,
-.home-hero .hero-verse::after {
-    width: 300px;
+[data-theme='dark'] .home-hero .hero-verse {
+    background: rgba(0,0,0,.35);
+}
+.home-hero .hero-verse-en {
+    text-shadow: 0 1px 6px rgba(255,255,255,.4);
+}
+[data-theme='dark'] .home-hero .hero-verse-en {
+    text-shadow: 0 1px 8px rgba(0,0,0,.4);
 }
 .home-hero .hero-verse-ref {
     color: var(--fh-crimson);
     letter-spacing: .18em;
+}
+[data-theme='dark'] .home-hero .hero-verse-ref {
+    color: var(--fh-gold);
+    text-shadow: 0 1px 8px rgba(0,0,0,.4);
 }
 
 /* floral orbs — melt into the white sheet */
@@ -6160,3 +6189,118 @@ a.journey-card:hover { border-color: var(--fh-line); }
         linear-gradient(120deg, #1B2560 0%, #2A378A 48%, #3D4AB3 100%);
     box-shadow: 0 16px 44px rgba(0,0,0,.45);
 }
+
+/* ================================================================
+   INDEX PAGE — FIXED PREMIUM PALETTE + CANVAS BACKGROUNDS
+   ================================================================ */
+
+/* -- fixed index tokens (independent of lesson theme accent) -- */
+.home-hero, .mission-section, .journey-section,
+.subjects-section, .why-section, .cta-band, .credits-section {
+    --idx-gold: #C9A96E;
+    --idx-gold-light: #FBD679;
+    --idx-indigo: #2A378A;
+    --idx-indigo-deep: #1B2560;
+    --idx-crimson: #A03A38;
+    --idx-text: #3D3428;
+    --idx-heading: #1B2560;
+    --idx-kicker-bg: rgba(42,55,138,.08);
+    --idx-kicker-border: rgba(42,55,138,.18);
+}
+[data-theme='dark'] .home-hero, [data-theme='dark'] .mission-section,
+[data-theme='dark'] .journey-section, [data-theme='dark'] .subjects-section,
+[data-theme='dark'] .why-section, [data-theme='dark'] .cta-band,
+[data-theme='dark'] .credits-section {
+    --idx-gold: #F4C95D;
+    --idx-gold-light: #FBD679;
+    --idx-indigo: #A9B7FF;
+    --idx-indigo-deep: #6E7CF5;
+    --idx-crimson: #E07070;
+    --idx-text: #B9C0DD;
+    --idx-heading: #E7EAF7;
+    --idx-kicker-bg: rgba(169,183,255,.1);
+    --idx-kicker-border: rgba(169,183,255,.2);
+}
+
+/* -- apply fixed colors to index sections -- */
+.mission-section h2, .journey-section h2, .subjects-section h2,
+.why-section h2, .credits-section h2 {
+    color: var(--idx-heading) !important;
+}
+.mission-section p, .bento-tile p, .feat-card p, .journey-focus {
+    color: var(--idx-text) !important;
+}
+.kicker {
+    color: var(--idx-indigo) !important;
+    background: var(--idx-kicker-bg) !important;
+    border-color: var(--idx-kicker-border) !important;
+}
+
+/* -- hero CTA: unified indigo primary, gold alt -- */
+.home-hero .hero-cta {
+    background: linear-gradient(135deg, var(--idx-indigo), var(--idx-indigo-deep)) !important;
+    box-shadow: 0 10px 28px rgba(42,55,138,.3) !important;
+}
+.home-hero .hero-cta:hover {
+    box-shadow: 0 14px 34px rgba(42,55,138,.45), inset 0 0 0 1px var(--idx-gold-light) !important;
+}
+.home-hero .hero-cta-alt {
+    border-color: var(--idx-gold) !important;
+    color: var(--idx-indigo-deep) !important;
+    background: rgba(255,255,255,.7) !important;
+}
+[data-theme='dark'] .home-hero .hero-cta-alt {
+    color: var(--idx-gold-light) !important;
+    background: rgba(255,255,255,.08) !important;
+    border-color: var(--idx-gold) !important;
+}
+.home-hero .hero-cta-alt:hover {
+    background: rgba(201,169,110,.15) !important;
+}
+
+/* -- canvas positioning -- */
+#hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+.section-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+.section-canvas + *,
+.hero-content,
+.mission-section .kicker,
+.mission-section h2,
+.mission-section p,
+.journey-section .kicker,
+.journey-section h2,
+.journey-section .stages-intro,
+.journey-section .journey,
+.journey-section .stage-select-wrap,
+.journey-section > ol,
+.subjects-section .kicker,
+.subjects-section h2,
+.subjects-section .stages-intro,
+.subjects-section .subjects-bento,
+.why-section .kicker,
+.why-section h2,
+.why-section .feat-grid,
+.cta-band .cta-inner {
+    position: relative;
+    z-index: 1;
+}
+
+/* -- dark mode canvas -- */
+[data-theme='dark'] .section-canvas { opacity: 0.85; }
+
+/* -- hide accent swatches on index page -- */
+body:not(.lesson-page) .accent-swatches { display: none !important; }
+body:not(.lesson-page) .settings-dropdown-item:has(.accent-swatches) { display: none !important; }
