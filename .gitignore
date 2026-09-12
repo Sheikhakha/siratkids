@@ -7,3 +7,4 @@ scripts/__pycache__/
 data/pdfs/
 __pycache__/
 abdurahman/
+.playwright-mcp/
