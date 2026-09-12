@@ -18,31 +18,36 @@
 </head>
 <body class="sk-login-body disable-onload-animations">
 
-    <main class="sk-login-wrap">
-        <div class="sk-login-card">
-            <img src="images/logo.png" alt="SiratKids logo" class="sk-login-logo">
-            <h1 class="sk-login-brand">SiratKids</h1>
-            <p class="sk-login-welcome" id="welcome-msg">Welcome!</p>
-            <p class="sk-login-hint">What&rsquo;s your name?</p>
-            <form id="login-form" novalidate>
-                <label class="sk-sr-only" for="kid-name">Your name</label>
-                <input
-                    class="sk-login-input"
-                    type="text"
-                    id="kid-name"
-                    name="kid-name"
-                    placeholder="Enter your name"
-                    autocomplete="off"
-                    maxlength="40"
-                    required
-                    autofocus>
-                <button class="sk-login-btn" id="login-btn" type="submit">
-                    Start Learning &#9656;
-                </button>
-            </form>
-            <p class="sk-login-error" id="login-error" role="alert"></p>
+    <main class="sk-login-split">
+        <div class="sk-login-left">
+            <div class="sk-login-card">
+                <img src="images/logo.png" alt="SiratKids logo" class="sk-login-logo">
+                <h1 class="sk-login-brand">SiratKids</h1>
+                <p class="sk-login-welcome" id="welcome-msg">Welcome!</p>
+                <p class="sk-login-hint">What&rsquo;s your name?</p>
+                <form id="login-form" novalidate>
+                    <label class="sk-sr-only" for="kid-name">Your name</label>
+                    <input
+                        class="sk-login-input"
+                        type="text"
+                        id="kid-name"
+                        name="kid-name"
+                        placeholder="Enter your name"
+                        autocomplete="off"
+                        maxlength="40"
+                        required
+                        autofocus>
+                    <button class="sk-login-btn" id="login-btn" type="submit">
+                        Start Learning &#9656;
+                    </button>
+                </form>
+                <p class="sk-login-error" id="login-error" role="alert"></p>
+            </div>
+            <p class="sk-login-footnote">Your progress is saved to this account.</p>
         </div>
-        <p class="sk-login-footnote">Your progress is saved to this account.</p>
+        <div class="sk-login-right">
+            <canvas id="sk-login-canvas" aria-hidden="true"></canvas>
+        </div>
     </main>
 
     <script>
@@ -92,6 +97,6 @@
             });
         })();
     </script>
-
+    <script src="js/login-canvas.js"></script>
 </body>
 </html>

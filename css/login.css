@@ -1,5 +1,6 @@
 /* SIRATKIDS — Login page styles (login.html only) */
 
+/* ---- Split layout ---- */
 .sk-login-body {
     margin: 0;
     font-family: 'Nunito', 'Noto Naskh Arabic', sans-serif;
@@ -12,32 +13,42 @@
     padding: 24px;
 }
 
-.sk-login-wrap {
+.sk-login-split {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    max-width: 900px;
+    min-height: 520px;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme='dark'] .sk-login-split {
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+}
+
+/* ---- Left side: login card ---- */
+.sk-login-left {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    width: 100%;
-    max-width: 420px;
+    justify-content: center;
+    background: var(--bg-white);
+    padding: 40px 36px 32px;
 }
 
 .sk-login-card {
     width: 100%;
-    background: var(--bg-white);
-    border: 1px solid var(--border-default);
-    border-radius: 24px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-    padding: 40px 32px 32px;
-}
-
-[data-theme='dark'] .sk-login-card {
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    max-width: 320px;
+    text-align: center;
 }
 
 .sk-login-logo {
-    width: 64px;
-    height: 64px;
-    border-radius: 18px;
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
     object-fit: cover;
     box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
 }
@@ -46,28 +57,28 @@
     font-size: 1.5rem;
     font-weight: 900;
     color: var(--primary);
-    margin: 14px 0 4px;
+    margin: 12px 0 4px;
 }
 
 .sk-login-welcome {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     font-weight: 700;
     color: var(--text-medium);
-    margin: 4px 0 22px;
+    margin: 4px 0 20px;
 }
 
 .sk-login-hint {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     color: var(--text-medium);
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
 
 .sk-login-input {
     width: 100%;
     box-sizing: border-box;
-    padding: 14px 18px;
+    padding: 13px 16px;
     font-family: inherit;
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 600;
     border: 2px solid var(--border-control);
     border-radius: 14px;
@@ -91,15 +102,15 @@
 .sk-login-btn {
     display: block;
     width: 100%;
-    margin-top: 16px;
-    padding: 14px 28px;
+    margin-top: 14px;
+    padding: 13px 24px;
     background: var(--primary);
     color: #ffffff;
     border: none;
     cursor: pointer;
     font-family: inherit;
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     border-radius: 50px;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 6px 18px rgba(79, 70, 229, 0.35);
@@ -121,27 +132,69 @@
 
 .sk-login-error {
     display: none;
-    margin-top: 14px;
+    margin-top: 12px;
     padding: 10px 14px;
     border-radius: 12px;
     background: rgba(220, 38, 38, 0.1);
     color: var(--accent-error);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
 }
 
 .sk-login-error.show { display: block; }
 
 .sk-login-footnote {
-    margin-top: 18px;
-    font-size: 0.85rem;
+    margin-top: 16px;
+    font-size: 0.82rem;
     color: var(--text-light);
+    text-align: center;
 }
 
-[data-theme='dark'] .sk-login-input {
+/* ---- Right side: camera lens animation ---- */
+.sk-login-right {
+    flex: 1;
+    position: relative;
+    background: #0c1220;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#sk-login-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---- Dark mode adjustments ---- */
+[data-theme='dark'] .sk-login-left {
     background: var(--bg-light);
 }
 
+[data-theme='dark'] .sk-login-right {
+    background: #060a14;
+}
+
+/* ---- Mobile: stack vertically ---- */
+@media (max-width: 720px) {
+    .sk-login-split {
+        flex-direction: column;
+        max-width: 400px;
+        min-height: auto;
+    }
+
+    .sk-login-left {
+        padding: 32px 24px 24px;
+    }
+
+    .sk-login-right {
+        min-height: 300px;
+    }
+}
+
+/* ---- Screen reader only ---- */
 .sk-sr-only {
     position: absolute;
     width: 1px;
