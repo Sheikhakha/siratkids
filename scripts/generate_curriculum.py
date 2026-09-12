@@ -215,13 +215,14 @@ def block_html(b):
     lines = ['<div class="lesson-block">']
     lines.append('<div class="ar" dir="rtl">%s</div>' % p(ar))
     if str(b.get('tr', '')).strip():
-        lines.append('<div class="transliteration">%s</div>' % p(esc(b['tr'])))
+        tr = ' '.join(b['tr'].split())
+        lines.append('<div class="transliteration">%s</div>' % p(esc(tr)))
     if str(b.get('en', '')).strip():
-        en = esc(b['en']).replace('\n', '<br>')
-        lines.append('<div class="en translation">%s</div>' % p(en))
+        en = esc(b['en']).replace('\n', '\x00')
+        lines.append('<div class="en translation">%s</div>' % p(en).replace('\x00', '<br>'))
     if str(b.get('ta', '')).strip():
-        ta = esc(b['ta']).replace('\n', '<br>')
-        lines.append('<div class="tamil">%s</div>' % p(ta))
+        ta = esc(b['ta']).replace('\n', '\x00')
+        lines.append('<div class="tamil">%s</div>' % p(ta).replace('\x00', '<br>'))
     if ref_html:
         lines.append(ref_html)
     if chip:
